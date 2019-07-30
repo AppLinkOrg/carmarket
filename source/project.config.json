@@ -15,7 +15,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.5.0",
 	"appid": "wx48ab173c8064c91c",
-	"projectname": "we",
+	"projectname": "%E6%B1%BD%E8%BD%A6%E5%90%8E%E5%B8%82%E5%9C%BA",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -31,13 +31,31 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 1,
+			"list": [
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/mine/mine",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "报价单",
+					"pathName": "pages/price/price",
+					"scene": null
+				}
+			]
 		}
 	}
 }

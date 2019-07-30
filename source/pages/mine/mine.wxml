@@ -1,0 +1,50 @@
+<view class='flex-wrap flex-row flex-center text-center'>
+  <view>
+    <image class='icon-50' src="{{}}">头像获取</image>
+    <view>维修厂</view>
+    <view>13800138000</view>
+      <image class='icon-50' src="{{}}"></image>
+  </view>
+
+  <view class='flex-row'>
+    <image src='{{}}'></image>
+    <view>我的账户</view>
+  </view>
+
+
+  <view>
+    <navigator class='flex-row ' style='border-bottom:1px solid #E5E5E5'>
+    <view class="margin-20">
+      <image class='icon-20  margin-left-10  margin-top-5'  src='{{uploadpath}}resource/{{res.order}}'></image>
+      </view>
+      <view class='txt-black txt-bold'>我的订单</view>
+      <image class='icon-20' ></image>
+    </navigator>
+
+    <navigator class='flex-row '>
+      <image class='icon-20'  src='{{uploadpath}}resource/{{res.adress}}'></image>
+      <view class='txt-black txt-bold'>我的地址</view>
+    </navigator>
+
+    <navigator class='flex-row flex-center'>
+      <image class='icon-20'  src='{{uploadpath}}resource/{{res.change}}'></image>
+      <view class='txt-black txt-bold'>退换货</view>
+    </navigator>
+
+    <navigator class='flex-row flex-center'>
+      <image class='icon-20'  src='{{uploadpath}}resource/{{res.about}}'></image>
+      <view class='txt-black txt-bold'>关于我们</view>
+    </navigator>
+
+    <navigator class='flex-row flex-center'>
+      <image class='icon-20'  src='{{uploadpath}}resource/{{res.help}}'></image>
+      <view class='txt-black txt-bold'>帮助反馈</view>
+    </navigator>
+
+    <navigator class='flex-row flex-center'>
+      <image class='icon-20'  src='{{uploadpath}}resource/{{res.outlogin}}'></image>
+      <view class='txt-black txt-bold'>退出登录</view>
+    </navigator>
+
+  </view>
+</view>

@@ -1,5 +1,8 @@
 {
   "pages": [
+    "pages/find/find",
+    "pages/price/price",
+    "pages/mine/mine",
     "pages/home/home",
     "pages/auth/auth"
   ],
@@ -11,8 +14,35 @@
   "window": {
     "backgroundTextStyle": "light",
     "enablePullDownRefresh": true,
-    "navigationBarBackgroundColor": "white",
+    "navigationBarBackgroundColor": "#143779",
     "navigationBarTextStyle": "black"
+  },
+
+  "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "#4C556E",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "text": "找零件",
+        "pagePath": "pages/find/find",
+        "iconPath": "images/icons/a.png",
+        "selectedIconPath": "images/icons/a-a.png"
+      },
+      {
+        "text": "报价单",
+        "pagePath": "pages/price/price",
+        "iconPath": "images/icons/b.png",
+        "selectedIconPath": "images/icons/b-a.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/mine/mine",
+        "iconPath": "images/icons/a.png",
+        "selectedIconPath": "images/icons/b-a.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

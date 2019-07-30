@@ -1,0 +1,29 @@
+<!--轮播-->
+<view class='flex-row flex-wrap'>
+
+  <swiper class="" indicator-dots="true" autoplay="true" interval="3000" duration="500">
+  <block wx:for="{{indexbanner}}" wx:key="index">
+    <swiper-item>
+     <image src='{{uploadpath}}indexbanner/{{item.img}}' bindtap='viewPhoto'  id='{{uploadpath}}indexbanner/{{item.img}}' style='width:750rpx;height:350rpx;'></image>
+    </swiper-item>   
+  </block>  
+</swiper>
+
+
+  <view class='flex-row'>
+    <image class='icon-20' src='{{}}'></image>
+    <view class='txt-black txt-bold'>17位车架号查询</view>
+  </view>
+
+  <view class='flex-row flex-wrap'>
+    <image class='icon-20' src='{{}}'></image>
+    <view>历史搜索</view>
+    <image class='icon-20' src='{{}}'></image>
+  </view>
+
+  <view>
+    <image src='{{}}'></image>
+
+  </view>
+
+</view>
