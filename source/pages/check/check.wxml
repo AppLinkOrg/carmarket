@@ -1,0 +1,26 @@
+<view class=' flex-row margin-top-60  '>
+  <view class='borderleft'></view>
+  <view class='margin-left-10 txt-black txt-bold'>填写车架号</view>
+</view>
+
+
+<view class='flex-row '>
+  <view class=' btn txt-black'>
+    <view class='flex-row margin-left-20'>
+      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.cemera}}'></image>
+    </view>
+    <view class="flex-row flex-1 flex-column ">ss</view>
+    <view class='margin-right-20'>
+      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.delect}}'></image>
+    </view>
+  </view>
+
+</view>
+<view>{{}}</view>
+<view class='bott'></view>
+
+<view class=' flex-row margin-top-60 '>
+  <view class='borderleft'></view>
+  <view class='margin-left-10 txt-black txt-bold'>需求配件</view>
+</view>
+<view class='btn bg-blue ' style='color:white' bindtap='add'>点击添加需求配件</view>

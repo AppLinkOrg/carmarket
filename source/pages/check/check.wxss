@@ -1,0 +1,18 @@
+.borderleft{
+  border-left: 4px solid rgb(35, 16, 206);
+  height: 26rpx;
+  margin-top: 10rpx;
+  margin-left: 20rpx;
+  
+}
+
+.btnn {
+  margin: 30rpx;
+  width: 92%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+ 
+}

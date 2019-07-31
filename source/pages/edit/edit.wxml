@@ -1,0 +1,37 @@
+<view class='flex-row xia'>
+  <view class='margin-20'>头像</view>
+  <view class='flex-1'></view>
+  <view class="margin-20">
+    <image class='icon-17  margin-top-5' src='{{uploadpath}}resource/{{res.smallright}}'></image>
+  </view>
+</view>
+
+<view class='flex-row xia'>
+  <view class='margin-20'>用户名</view>
+  <view class='flex-1'></view>
+  <view class="margin-20">
+    <image class='icon-17  margin-top-5' src='{{uploadpath}}resource/{{res.smallright}}'></image>
+  </view>
+</view>
+
+
+<view class='flex-row xia'>
+  <view class='margin-20'>公司名称</view>
+  <view class='flex-1'></view>
+  <view class="margin-20">
+    <image class='icon-17  margin-top-5' src='{{uploadpath}}resource/{{res.smallright}}'></image>
+  </view>
+</view>
+
+
+<view class='flex-row xia'>
+  <view class='margin-20'>公司电话</view>
+  <view class='flex-1'></view>
+  <view class=""></view>
+</view>
+
+
+<view class='flex-row'>
+  <view class='margin-20'>营业执照</view>
+  
+</view>

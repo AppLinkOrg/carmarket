@@ -1,0 +1,25 @@
+/* .page {
+  background-color: rgb(170, 47, 47);
+} */
+
+/* .button {
+  border: 1px solid rgb(179, 179, 187);
+} */
+
+.put {
+  border-radius: 10rpx;
+  margin-left: 100rpx;
+  border: 1px solid rgb(179, 179, 187);
+  height: 120rpx;
+  width: 65%;
+}
+.btnn {
+  margin: 30rpx;
+  width: 92%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+ 
+}

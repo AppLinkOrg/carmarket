@@ -1,0 +1,17 @@
+<view class='bg-white '>
+  <view class=' flex-row '>
+    <view class='btnn button'>
+      <input class=' margin-left-20' placeholder='请输入要查询的配件'></input>
+      <view class="flex-1"></view>
+      <view class='flex-row flex-wrap '>
+        <image class='icon-17 margin-right-20' src='{{uploadpath}}resource/{{res.delect}}'></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+
+
+<view class='btn bg-blue ' style='color:white' bindtap='addclick'>确认该配件</view>
