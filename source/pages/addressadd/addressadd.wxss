@@ -1,0 +1,14 @@
+/* pages/addressadd/addressadd.wxss */
+.btn{
+  background-color: rgb(166, 166, 235);
+  height: 100rpx;
+  width: 90%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  border-radius: 10rpx;
+}

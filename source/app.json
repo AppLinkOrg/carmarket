@@ -1,5 +1,11 @@
 {
   "pages": [
+    "pages/addressadd/addressadd",
+    "pages/helpcenter/helpcenter",
+    "pages/aboutus/aboutus",
+    "pages/change/change",
+    "pages/address/address",
+    "pages/order/order",
     "pages/find/find",
     "pages/price/price",
     "pages/mine/mine",
@@ -17,7 +23,6 @@
     "navigationBarBackgroundColor": "#143779",
     "navigationBarTextStyle": "black"
   },
-
   "tabBar": {
     "color": "#bfbfbf",
     "selectedColor": "#4C556E",

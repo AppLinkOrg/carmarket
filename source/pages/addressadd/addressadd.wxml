@@ -1,0 +1,28 @@
+<view class="flex-row flex-wrap margin-left-20 margin-top-20 xia">
+  <view class="flex-row">收货人</view>
+  <view class="flex-row margin-left-40 ">
+    <input placeholder="姓名" name="name"></input>
+  </view>
+</view>
+
+<view class="flex-row flex-wrap margin-left-20 margin-top-20 xia">
+  <view class="flex-row">手机号码</view>
+  <view class="flex-row margin-left-40 ">
+    <input placeholder="请输入手机号码" name="name"></input>
+  </view>
+</view>
+<view class="flex-row flex-wrap margin-left-20 margin-top-20 xia">
+  <view class="flex-row">详细地址</view>
+  <view class="flex-row margin-left-40 ">
+    <input placeholder="请输入详细地址" name="name"></input>
+  </view>
+</view>
+<view class="flex-row flex-wrap margin-left-20 margin-top-20 xia">
+  <view class="flex-row">邮政编码</view>
+  <view class="flex-row margin-left-40 ">
+    <input placeholder="请输入邮政编码" name="name"></input>
+  </view>
+</view>
+
+  
+  <view class="btn">保存</view>
