@@ -1,2 +1,32 @@
-<!--pages/order/order.wxml-->
-<text>pages/order/order.wxml</text>
+<view class='flex-row  flex-center  ' style='height:80rpx;'>
+
+  <view class='flex-row flex-column flex-1' data-order='A' bindtap='bindorder'>
+    <view class=' txt-bold flex-1 text-center {{order=="A"?"txt-blue":""}}'>待付款</view>
+    <view class='order {{order=="A"?"bg-blue":"bg-white"}}'></view>
+  </view>
+
+  <view class='flex-row flex-column flex-1 ' data-order='B' bindtap='bindorder'>
+    <view class='txt-bold flex-1 text-center {{order=="B"?"txt-blue":""}}'>待发货</view>
+    <view class='order {{order=="B"?"bg-blue":"bg-white"}}'></view>
+  </view>
+
+  <view class='flex-row flex-column flex-1 ' data-order='C' bindtap='bindorder'>
+    <view class='txt-bold flex-1 text-center {{order=="C"?"txt-blue":""}}'>待收货</view>
+    <view class='order {{order=="C"?"bg-blue":"bg-white"}}'></view>
+  </view>
+
+  <view class='flex-row flex-column flex-1 ' data-order='D' bindtap='bindorder'>
+    <view class='txt-bold flex-1 text-center {{order=="D"?"txt-blue":""}}'>已完成</view>
+    <view class='order {{order=="D"?"bg-blue":"bg-white"}}'></view>
+  </view>
+
+  <view class='flex-row flex-column flex-1 ' data-order='E' bindtap='bindorder'>
+    <view class='txt-bold flex-1 text-center {{order=="E"?"txt-blue":""}}'>已取消</view>
+    <view class='order {{order=="E"?"bg-blue":"bg-white"}}'></view>
+  </view>
+
+</view>
+
+<view class='borderbottom'></view>
+
+<view class='box'></view>

@@ -1,2 +1,23 @@
-<!--pages/price/price.wxml-->
-<text>pages/price/price.wxml</text>
+<view class='flex-row  flex-center  ' style='height:80rpx;'>
+
+  <view class='flex-row flex-column flex-1' data-check='A' bindtap='bindcheck'>
+    <view class=' txt-bold flex-1 text-center {{check=="A"?"txt-blue":""}}'>待报价</view>
+    <view class='order {{check=="A"?"bg-blue":"bg-white"}}'></view>
+  </view>
+
+  <view class='flex-row flex-column flex-1' data-check='B' bindtap='bindcheck'>
+    <view class='txt-bold flex-1 text-center {{check=="B"?"txt-blue":""}}' data-check='B' bindtap='bindcheck'>报价中</view>
+    <view class='order {{check=="B"?"bg-blue":"bg-white"}}'></view>
+  </view>
+
+  <view class='flex-row flex-column flex-1' data-check='C' bindtap='bindcheck'>
+    <view class='txt-bold flex-1 text-center {{check=="C"?"txt-blue":""}}' data-check='C' bindtap='bindcheck'>已失效</view>
+    <view class='wait_blue' hidden='{{waitshow!=1}}'></view>
+    <view class='order {{check=="C"?"bg-blue":"bg-white"}}'></view>
+  </view>
+
+</view>
+
+<view class='borderbottom'></view>
+
+<view class='box'></view>

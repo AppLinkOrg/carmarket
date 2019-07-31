@@ -14,7 +14,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.5.0",
-	"appid": "wx48ab173c8064c91c",
+	"appid": "wxff23e3e96e8aa21a",
 	"projectname": "%E6%B1%BD%E8%BD%A6%E5%90%8E%E5%B8%82%E5%9C%BA",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -60,6 +60,35 @@
 					"id": -1,
 					"name": "addressadd",
 					"pathName": "pages/addressadd/addressadd",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "报价单",
+					"pathName": "pages/price/price",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "车架号查询",
+					"pathName": "pages/check/check",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "配件查询完成",
+					"pathName": "pages/serchgo/serchgo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "配件查询输入",
+					"pathName": "pages/serch/serch",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -1,15 +1,23 @@
 {
   "pages": [
+    "pages/find/find",
+    "pages/check/check",
     "pages/addressadd/addressadd",
     "pages/helpcenter/helpcenter",
     "pages/aboutus/aboutus",
     "pages/change/change",
     "pages/address/address",
     "pages/order/order",
-    "pages/find/find",
     "pages/price/price",
     "pages/mine/mine",
     "pages/home/home",
+    "pages/serch/serch",
+    "pages/serchgo/serchgo",
+    "pages/pricedetail/pricedetail",
+    "pages/pricing/pricing",
+    "pages/pricingdetail/pricingdetail",
+    "pages/orderdetail/orderdetail",
+    "pages/edit/edit",
     "pages/auth/auth"
   ],
   "permission": {
@@ -21,7 +29,7 @@
     "backgroundTextStyle": "light",
     "enablePullDownRefresh": true,
     "navigationBarBackgroundColor": "#143779",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#bfbfbf",

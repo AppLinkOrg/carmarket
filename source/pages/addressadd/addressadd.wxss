@@ -9,6 +9,6 @@
   justify-content: center;
   margin-top: 50rpx;
   margin-left: 30rpx;
-  margin-right: 30rpx;
+  margin-right: 20rpx;
   border-radius: 10rpx;
 }

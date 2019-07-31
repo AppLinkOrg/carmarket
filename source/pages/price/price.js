@@ -15,9 +15,27 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
   }
+
+  bindcheck(e){
+    var checkid = e.currentTarget.dataset.check;
+
+    console.log(checkid,"选中的节点值");
+
+   // return;
+
+    this.Base.setMyData({
+      check: checkid
+    });
+  }
+
+
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
+
+body.bindcheck = content.bindcheck;
+
+
 Page(body)

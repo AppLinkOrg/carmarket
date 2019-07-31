@@ -1,29 +1,37 @@
 <!--轮播-->
-<view class='flex-row flex-wrap'>
-
+<view class=''>
   <swiper class="" indicator-dots="true" autoplay="true" interval="3000" duration="500">
-  <block wx:for="{{indexbanner}}" wx:key="index">
-    <swiper-item>
-     <image src='{{uploadpath}}indexbanner/{{item.img}}' bindtap='viewPhoto'  id='{{uploadpath}}indexbanner/{{item.img}}' style='width:750rpx;height:350rpx;'></image>
-    </swiper-item>   
-  </block>  
-</swiper>
+    <block wx:for="{{indexbanner}}" wx:key="index">
+      <swiper-item>
+        <image src='{{uploadpath}}indexbanner/{{item.img}}' mode='aspectFill' style='width:750rpx;height:450rpx;'></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
 
-
-  <view class='flex-row'>
-    <image class='icon-20' src='{{}}'></image>
-    <view class='txt-black txt-bold'>17位车架号查询</view>
+<navigator url="/pages/check/check" class='flex-row  '>
+  <view class='btn'>
+    <view class='flex-row margin-left-20'>
+      <image class='icon-17 ' src='{{uploadpath}}resource/{{res.search}}'></image>
+    </view>
+    <view class='flex-row flex-column flex-1 txt-black txt-bold'> 17位车架号查询</view>
   </view>
+</navigator>
 
-  <view class='flex-row flex-wrap'>
-    <image class='icon-20' src='{{}}'></image>
-    <view>历史搜索</view>
-    <image class='icon-20' src='{{}}'></image>
+<view class=' flex-row '>
+  <view class='flex-row  '>
+    <view class='borderleft'></view>
+    <view class=' margin-left-20'>历史搜索</view>
   </view>
-
-  <view>
-    <image src='{{}}'></image>
-
+  <view class="flex-1"></view>
+  <view class='flex-row flex-wrap '>
+    <image class='icon-17 margin-right-20' src='{{uploadpath}}resource/{{res.clean}}'></image>
+    <view class='margin-right-20'>清空</view>
   </view>
+</view>
+<view class='margin-top-20'>{{}}</view>
+<view class='bott margin-top-20'></view>
 
+<view class='flex-row flex-column flex-1 '>
+  <image class='icon-100 ' src='{{uploadpath}}resource/{{res.VIN}}'></image>
 </view>

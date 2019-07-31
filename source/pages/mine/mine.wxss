@@ -1,1 +1,10 @@
-/* pages/mine/mine.wxss */
+.top{
+
+  background-color: #282be7;
+  height: 300rpx;
+}
+
+.apply{
+  background-color: #143779;
+
+}

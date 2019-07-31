@@ -15,9 +15,24 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
   }
+
+
+
+
+  bindchange(e){
+    var changeid = e.currentTarget.dataset.change;
+    this.Base.setMyData({
+      change:changeid
+
+    });
+    
+  }
+
+
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
+body.bindchange = content.bindchange; 
 Page(body)

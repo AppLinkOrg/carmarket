@@ -1,50 +1,65 @@
-<view class='flex-wrap flex-row flex-center text-center'>
-  <view>
-    <image class='icon-50' src="{{}}">头像获取</image>
+<view class='flex-wrap flex-row  text-center margin-top-20'>
+  <view class="">
+    <image class='icon-17' src='{{uploadpath}}resource/{{res.order}}'>头像获取</image>
     <view>维修厂</view>
     <view>13800138000</view>
-      <image class='icon-50' src="{{}}"></image>
+    <image class='icon-17' src="{{}}"></image>
   </view>
+</view>
 
-  <view class='flex-row'>
-    <image src='{{}}'></image>
-    <view>我的账户</view>
+<view class='flex-row flex-wrap flex-center'>
+  <view class="margin-10">
+    <image class='icon-17  margin-left-10  margin-top-5' src='{{uploadpath}}resource/{{res.order}}'></image>
   </view>
+  <view class="margin-20">我的账户</view>
+</view>
+<view>
+  <view>金币</view>
+  <view class="apply flex-row flex-wrap">额度申请</view>
+</view>
 
 
-  <view>
-    <navigator class='flex-row ' style='border-bottom:1px solid #E5E5E5'>
+<view class="flex-wrap  flex-center ">
+  <navigator url="/pages/order/order" class='flex-row  xia'>
     <view class="margin-20">
-      <image class='icon-20  margin-left-10  margin-top-5'  src='{{uploadpath}}resource/{{res.order}}'></image>
-      </view>
-      <view class='txt-black txt-bold'>我的订单</view>
-      <image class='icon-20' ></image>
-    </navigator>
+      <image class='icon-17  margin-left-10  margin-top-5' src='{{uploadpath}}resource/{{res.order}}'></image>
+    </view>
+    <view class='margin-20 txt-black txt-bold'>我的订单</view>
+    <image class='icon-17'></image>
+  </navigator>
 
-    <navigator class='flex-row '>
-      <image class='icon-20'  src='{{uploadpath}}resource/{{res.adress}}'></image>
-      <view class='txt-black txt-bold'>我的地址</view>
-    </navigator>
+  <navigator url="/pages/address/address" class='flex-row xia'>
+    <view class="margin-20">
+      <image class='icon-17 margin-left-10' src='{{uploadpath}}resource/{{res.address}}'></image>
+    </view>
+    <view class='margin-20 txt-black txt-bold'>我的地址</view>
+  </navigator>
 
-    <navigator class='flex-row flex-center'>
-      <image class='icon-20'  src='{{uploadpath}}resource/{{res.change}}'></image>
-      <view class='txt-black txt-bold'>退换货</view>
-    </navigator>
+  <navigator url="/pages/change/change" class='flex-row  xia'>
+    <view class="margin-20">
+      <image class='icon-17' src='{{uploadpath}}resource/{{res.change}}'></image>
+    </view>
+    <view class='margin-20 txt-black txt-bold'>退换货</view>
+  </navigator>
 
-    <navigator class='flex-row flex-center'>
-      <image class='icon-20'  src='{{uploadpath}}resource/{{res.about}}'></image>
-      <view class='txt-black txt-bold'>关于我们</view>
-    </navigator>
+  <navigator url="/pages/aboutus/aboutus" class='flex-row  xia'>
+    <view class="margin-20">
+      <image class='icon-17' src='{{uploadpath}}resource/{{res.about}}'></image>
+    </view>
+    <view class='margin-20 txt-black txt-bold'>关于我们</view>
+  </navigator>
 
-    <navigator class='flex-row flex-center'>
-      <image class='icon-20'  src='{{uploadpath}}resource/{{res.help}}'></image>
-      <view class='txt-black txt-bold'>帮助反馈</view>
-    </navigator>
+  <navigator url="/pages/helpcenter/helpcenter" class='flex-row  xia'>
+    <view class="margin-20">
+      <image class='icon-17' src='{{uploadpath}}resource/{{res.help}}'></image>
+    </view>
+    <view class='margin-20 txt-black txt-bold'>帮助反馈</view>
+  </navigator>
 
-    <navigator class='flex-row flex-center'>
-      <image class='icon-20'  src='{{uploadpath}}resource/{{res.outlogin}}'></image>
-      <view class='txt-black txt-bold'>退出登录</view>
-    </navigator>
-
-  </view>
+  <navigator url="/pages/edit/edit" class='flex-row  xia'>
+    <view class="margin-20">
+      <image class='icon-17' src='{{uploadpath}}resource/{{res.outlogin}}'></image>
+    </view>
+    <view class='margin-20 txt-black txt-bold'>退出登录</view>
+  </navigator>
 </view>

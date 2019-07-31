@@ -1,1 +1,13 @@
-/* pages/order/order.wxss */
+
+.borderbottom {
+  border-bottom: 1px solid rgb(226, 225, 225);
+  margin-top: 10rpx;
+}
+
+.box {
+  border-radius: 10rpx;
+  box-shadow: 1rpx 2rpx 25rpx 2rpx rgb(173, 173, 173);
+  height: 800rpx;
+  width: 95%;
+  margin: 20rpx;
+}
