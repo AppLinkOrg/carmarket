@@ -15,6 +15,12 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
   }
+  setPageTitle(instinfo) {
+    var title = "报价中心";
+    wx.setNavigationBarTitle({
+      title: title,
+    })
+  }
 
   bindcheck(e){
     var checkid = e.currentTarget.dataset.check;

@@ -1,1 +1,27 @@
-/* pages/pricingdetail/pricingdetail.wxss */
+.bg {
+  background-color: #143779;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  border-radius: 10rpx;
+}
+
+.pageone {
+  background: rgb(238, 236, 236);
+  height: 100vh;
+  width: 100%;
+}
+
+.btn {
+  background-color: rgb(252, 123, 49);
+  color: white;
+  height: 100rpx;
+}
+
+.price {
+  padding-top: 20rpx;
+  margin-top: 10rpx;
+  margin-left: 5rpx;
+  height: 70rpx;
+  margin-right: 5rpx;
+}

@@ -20,7 +20,12 @@ class Content extends AppBase {
       this.Base.setMyData({ indexbanner });
     });
   }
-
+  setPageTitle(instinfo) {
+    var title = "配件查询";
+    wx.setNavigationBarTitle({
+      title: title,
+    })
+  }
 
   addclick() {
     wx.navigateTo({

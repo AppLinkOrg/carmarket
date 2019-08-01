@@ -29,6 +29,13 @@ class Content extends AppBase {
     });
   }
 
+  setPageTitle(instinfo) {
+    var title = "配件查询";
+    wx.setNavigationBarTitle({
+      title: title,
+    })
+  }
+
   complete(e) {
     wx.navigateTo({
       url: '/pages/check/check',

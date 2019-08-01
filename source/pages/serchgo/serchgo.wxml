@@ -1,32 +1,35 @@
 <view class=''>
   <view class='bg-white '>
-    <view class='btnn button '>
+    <view class='btnn buttonone '>
       <input class='margin-left-20' placeholder='继续添加'></input>
       <view class="flex-1"></view>
       <image class='icon-17 margin-right-20' src='{{uploadpath}}resource/{{res.delect}}'></image>
     </view>
-
   </view>
 
-  <view class=' flex-row '>
-    <view class='borderleft'></view>
-    <view class='margin-left-10'>手动添加</view>
-  </view>
 
-  <view class='flex-row'>
-    <view class='margin-left-30 margin-top-20'>
-      <image class='icon-50' src='{{uploadpath}}resource/{{res.upload}}'></image>
-    </view>
-    <view class='put'>
-      <textarea placeholder='此处输入配件文字描述' ></textarea>
+  <view class='gray-block'>
+    <view class='btnn  bg-white'>
+      <view class='txt-black margin-left-20'>刹车总泵</view>
+      <view class="flex-1"></view>
+      <view class='margin-right-20 txt-primary'>删除</view>
     </view>
   </view>
 
+  <view class='margin-top'>
+    <view class=' flex-row '>
+      <view class='borderleft'></view>
+      <view class='txt-bold txt-black margin-left-10'>手动添加</view>
+    </view>
 
-
-  <view class='btn bg-blue' style='color:white' bindtap='complete'>完成</view>
-
-
-
-
+    <view class='flex-row '>
+      <view class='margin-left-30 margin-top-20'>
+        <image class='icon-50' src='{{uploadpath}}resource/{{res.upload}}'></image>
+      </view>
+      <view class='put gray-block'>
+        <textarea placeholder='此处输入配件文字描述'></textarea>
+      </view>
+    </view>
+  </view>
+  <view class='btn bg-btn' bindtap='complete'>完成</view>
 </view>

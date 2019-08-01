@@ -107,8 +107,13 @@ view, navigator, input, text, textarea {
 }
 
 .gray-block {
-  background: #c9c9c9;
+  background: #f0eded;
 }
+
+.bg-purple {
+  background: #d0dffb;
+}
+
 
 .primary-block {
   background: #2699ec;
@@ -187,6 +192,10 @@ view, navigator, input, text, textarea {
 
 .txt-bold {
   font-weight: bolder;
+}
+.bg-btn{
+  background: #143779;
+  color: white;
 }
 
 .nowrap {
@@ -403,6 +412,10 @@ button[disabled][type=primary] {
   margin-top: 20rpx;
 }
 
+.margin-top-30 {
+  margin-top: 30rpx;
+}
+
 .margin-top {
   margin-top: 40rpx;
 }
@@ -448,11 +461,11 @@ button[disabled][type=primary] {
 }
 
 .margin-top-10 {
-  margin-top: 20rpx;
+  margin-top: 10rpx;
 }
 
 .margin-top-5 {
-  margin-top: 10rpx;
+  margin-top: 5rpx;
 }
 
 .margin-left-5 {
@@ -469,6 +482,9 @@ button[disabled][type=primary] {
 
 .margin-right-20 {
   margin-right: 20rpx;
+}
+.margin-right-30 {
+  margin-right: 30rpx;
 }
 
 .margin-right-40 {
@@ -494,6 +510,7 @@ button[disabled][type=primary] {
 .margin-left-50 {
   margin-left: 50rpx;
 }
+
 
 .margin-right-15 {
   margin-right: 15rpx;
@@ -635,17 +652,17 @@ button[disabled][type=primary] {
 }
 
 .borderleft {
-  border-left: 4px solid rgb(35, 16, 206);
-  height: 26rpx;
+  border-left: 5px solid #143779;
+  height: 28rpx;
   margin-top: 10rpx;
-  margin-left: 20rpx;
+  margin-left: 30rpx;
 }
 
 .bott {
-  border-bottom: 2px solid rgb(207, 205, 205);
+  border-bottom: 2px solid rgb(228, 227, 227);
 }
 
-.button {
+.buttonone {
   border: 1px solid rgb(179, 179, 187);
 }
 
@@ -653,3 +670,5 @@ button[disabled][type=primary] {
   height: 5rpx;
   width: 100rpx;
 }
+
+

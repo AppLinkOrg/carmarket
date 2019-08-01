@@ -1,2 +1,95 @@
-<!--pages/pricingdetail/pricingdetail.wxml-->
-<text>pages/pricingdetail/pricingdetail.wxml</text>
+<view class='pageone'>
+  <view class='white-block margin-left-5 margin-right-5 margin-top-5'>
+    <view class=' flex-row margin-top  '>
+      <view class='borderleft'></view>
+      <view class='margin-left-10 txt-black txt-bold'>车辆信息</view>
+    </view>
+    <view class='flex-row flex-wrap margin-top-20'>
+      <view class='txt-black margin-left-30'>车架号：</view>
+      <view class='txt-black '>车架号待定</view>
+    </view>
+    <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10 '>
+      <view class='txt-black '>车型：</view>
+      <view class='txt-black '>车架号所搜的</view>
+    </view>
+
+  </view>
+
+  <view class='price flex-row  white-block'>
+    <view class='borderleft'></view>
+    <view class='margin-left-10 txt-black txt-bold ' style=' height:70rpx; width:100%;'>报价清单</view>
+  </view>
+
+  <view class=''>
+    <view class='bg' style=' height:200rpx; width:95%;'>
+      <view class='margin-top-10 margin-left-20 txt-white'>深圳市鑫广泰汽车服务有限公司</view>
+      <view class='flex-row flex-wrap margin-top-10'>
+        <view class='flex-1 flex-row'>
+          <image class='icon-25 margin-left-20' src='{{uploadpath}}resource/{{res.reduce}}'></image>
+          <view class='h5 txt-white margin-left-10'>已认证</view>
+        </view>
+        <view class='flex-1 flex-row'>
+          <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}'></image>
+          <view class='h5 txt-white margin-left-10'>包退换</view>
+        </view>
+        <view class='flex-1 flex-row'>
+          <view class='h2 txt-bold txt-orange margin-bottom-20'>1888</view>
+          <view class='h5 txt-bold txt-orange margin-left-10'>威币</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class=''>
+    <view class='bg' style=' height:200rpx; width:95%;'>
+      <view class='margin-top-10 margin-left-20 txt-white'>深圳市汇通汽车配件中心</view>
+      <view class='flex-row flex-wrap margin-top-10'>
+        <view class='flex-1 flex-row'>
+          <image class='icon-25 margin-left-20' src='{{uploadpath}}resource/{{res.reduce}}'></image>
+          <view class='h5 txt-white margin-left-10'>已认证</view>
+        </view>
+        <view class='flex-1 flex-row'>
+          <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}'></image>
+          <view class='h5 txt-white margin-left-10'>包退换</view>
+        </view>
+        <view class='flex-1 flex-row'>
+          <view class='h2 txt-bold txt-orange margin-bottom-20'>1888</view>
+          <view class='h5 txt-bold txt-orange margin-left-10'>威币</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='bg-white margin-left-20 margin-top-5' style=' height:190rpx; width:95%;'>
+    <view class='margin-top-20 margin-left-20 '>刹车总泵</view>
+    <view class='flex-row flex-wrap margin-top-10 margin-left-20'>
+      <view class=''>品牌：</view>
+      <view class=''>原厂</view>
+    </view>
+    <view class='flex-row flex-wrap margin-left-20'>
+      <view class=''>单价：</view>
+      <view class='txt-red'>元</view>
+      <view class='flex-1'></view>
+      <view>发货数量：</view>
+      <view class='margin-right-20'>1</view>
+    </view>
+  </view>
+
+  <view class='bg-white margin-left-20 margin-top-5' style=' height:190rpx; width:95%;'>
+    <view class='margin-top-20 margin-left-20 '>前保险杠</view>
+    <view class='flex-row flex-wrap margin-top-10 margin-left-20'>
+      <view class=''>品牌：</view>
+      <view class=''>原厂</view>
+    </view>
+    <view class='flex-row flex-wrap margin-left-20'>
+      <view class=''>单价：</view>
+      <view class='txt-red'>元</view>
+      <view class='flex-1'></view>
+      <view>发货数量：</view>
+      <view class='margin-right-20'>1</view>
+    </view>
+  </view>
+
+  <view class='btn'>确认报价</view>
+
+</view>

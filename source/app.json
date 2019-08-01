@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/orderdetail/orderdetail",
+    "pages/login/login",
     "pages/find/find",
     "pages/check/check",
     "pages/addressadd/addressadd",
@@ -16,8 +18,10 @@
     "pages/pricedetail/pricedetail",
     "pages/pricing/pricing",
     "pages/pricingdetail/pricingdetail",
-    "pages/orderdetail/orderdetail",
+    
+   
     "pages/edit/edit",
+    "pages/agreement/agreement",
     "pages/auth/auth"
   ],
   "permission": {

@@ -3,7 +3,6 @@
   <view class='margin-left-10 txt-black txt-bold'>填写车架号</view>
 </view>
 
-
 <view class='flex-row '>
   <view class=' btn txt-black'>
     <view class='flex-row margin-left-20'>
@@ -14,13 +13,54 @@
       <image class='icon-25 ' src='{{uploadpath}}resource/{{res.delect}}'></image>
     </view>
   </view>
-
 </view>
-<view>{{}}</view>
+<view class='txt-black margin-top-40 margin-left-30 margin-bottom-20'>哈佛H6 2012款</view>
 <view class='bott'></view>
 
-<view class=' flex-row margin-top-60 '>
+<view class=' flex-row margin-top-30 '>
   <view class='borderleft'></view>
   <view class='margin-left-10 txt-black txt-bold'>需求配件</view>
 </view>
-<view class='btn bg-blue ' style='color:white' bindtap='add'>点击添加需求配件</view>
+<view class='btn bg-btn ' bindtap='add'>点击添加需求配件</view>
+<view class='bott'></view>
+
+<view class=' flex-row margin-top-30 '>
+  <view class='borderleft'></view>
+  <view class='margin-left-10 txt-black txt-bold'>已添加配件</view>
+</view>
+
+<view class=''>
+  <view class='btnn  bg-purple'>
+    <view class='txt-blue margin-left-20'>刹车总泵</view>
+    <view class="flex-1"></view>
+    <view class=''>
+      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}'></image>
+    </view>
+    <view class='txt-blue margin-left-30 margin-right-30'>1</view>
+    <view class='margin-right-20'>
+      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.add}}'></image>
+    </view>
+  </view>
+</view>
+
+<view class=''>
+  <view class='btnn  bg-purple'>
+    <view class='txt-blue margin-left-20'>前保险杠</view>
+    <view class="flex-1"></view>
+    <view class=''>
+      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}'></image>
+    </view>
+    <view class='txt-blue margin-left-30 margin-right-30'>1</view>
+    <view class='margin-right-20'>
+      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.add}}'></image>
+    </view>
+  </view>
+</view>
+
+<view class='flex-row'>
+  <view class='txt-black margin-left-30'>是否开发票</view>
+  <view class='flex-1'></view>
+  <image class='icon-25 margin-right-30' src='{{uploadpath}}resource/{{res.no}}'></image>
+</view>
+
+<view class='btn bg-btn ' bindtap='public'>发布求购</view>

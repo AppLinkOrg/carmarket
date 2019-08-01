@@ -1,6 +1,6 @@
 <view class='bg-white '>
   <view class=' flex-row '>
-    <view class='btnn button'>
+    <view class='btnn buttonone'>
       <input class=' margin-left-20' placeholder='请输入要查询的配件'></input>
       <view class="flex-1"></view>
       <view class='flex-row flex-wrap '>
@@ -10,8 +10,4 @@
   </view>
 </view>
 
-
-
-
-
-<view class='btn bg-blue ' style='color:white' bindtap='addclick'>确认该配件</view>
+<view class='btn bg-btn ' bindtap='addclick'>确认该配件</view>
