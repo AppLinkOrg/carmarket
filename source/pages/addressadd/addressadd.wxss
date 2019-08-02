@@ -1,5 +1,5 @@
 .detele {
-  background: #cecece;
+  background: #afafaf;
   height: 100rpx;
   width: 50%;
   color: white;
@@ -16,4 +16,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.mar {
+  margin-left: 30rpx;
+  margin-top: 35rpx;
+  margin-bottom: 25rpx;
+}
+
+.posi {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

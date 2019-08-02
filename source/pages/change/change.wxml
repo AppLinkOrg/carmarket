@@ -1,4 +1,4 @@
-<view class='flex-row flex-center'>
+<view class='flex-row flex-center margin-top-20'>
 
   <view class='flex-row flex-column flex-1' data-change='A' bindtap='bindchange'>
     <view class=' txt-bold flex-1 text-center {{change=="A"?"txt-blue":""}}'>待退换</view>
@@ -11,7 +11,7 @@
   </view>
 
 </view>
-
+<view class='borderbottom'></view>
 
 <!--待退换-->
 <view class='box '>

@@ -15,6 +15,11 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
   }
+  setPageTitle() {
+    wx.setNavigationBarTitle({
+      title: '我的',
+    });
+  }
   bindright(){
     wx.navigateTo({
       url: '/pages/edit/edit',

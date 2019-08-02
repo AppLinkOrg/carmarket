@@ -1,8 +1,5 @@
 {
   "pages": [
-    
-   
-    
     "pages/login/login",
     "pages/find/find",
     "pages/check/check",
@@ -20,11 +17,8 @@
     "pages/pricedetail/pricedetail",
     "pages/pricing/pricing",
     "pages/pricingdetail/pricingdetail",
-
-  
     "pages/success/success",
     "pages/waitreceive/waitreceive",
-    
     "pages/orderdetail/orderdetail",
     "pages/changeapply/changeapply",
     "pages/waitsend/waitsend",

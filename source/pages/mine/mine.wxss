@@ -18,3 +18,9 @@
   justify-content: center;
   border-radius: 10rpx;
 }
+
+.mar{
+  margin-left: 20rpx;
+  margin-top: 35rpx;
+  margin-bottom: 35rpx;
+}

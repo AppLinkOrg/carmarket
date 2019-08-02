@@ -17,6 +17,11 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
   }
+  setPageTitle() {
+    wx.setNavigationBarTitle({
+      title: '我的订单',
+    });
+  }
   
   bindsend() {
     wx.navigateTo({

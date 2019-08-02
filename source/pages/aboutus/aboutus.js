@@ -15,6 +15,11 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
   }
+  setPageTitle() {
+    wx.setNavigationBarTitle({
+      title: '关于我们',
+    });
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();

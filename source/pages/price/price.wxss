@@ -1,19 +1,22 @@
-.borderbottom {
-  border-bottom: 1px solid rgb(226, 225, 225);
-  margin-top: 10rpx;
+.pageone {
+  background: rgb(238, 236, 236);
+  height: 100vh;
+  width: 100%;
 }
 
 .row {
-  border-bottom: 1px solid rgb(185, 185, 185);
+  border-bottom: 1px solid rgb(207, 44, 44);
 }
 
 .box {
   /* additive-symbols: 30rpx; */
-  border-radius: 10rpx;
-  box-shadow: 1rpx 2rpx 25rpx 2rpx rgb(173, 173, 173);
+  margin: 20rpx;
   height: 210rpx;
   width: 95%;
-  margin: 20rpx;
+  border-radius: 10rpx;
+  box-shadow: 1rpx 2rpx 25rpx 2rpx rgb(173, 173, 173);
 }
 
-
+.borderbottom {
+  border-bottom: 1px solid rgb(201, 201, 201);
+}

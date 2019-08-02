@@ -12,6 +12,11 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
   }
+  setPageTitle() {
+    wx.setNavigationBarTitle({
+      title: '找零件',
+    });
+  }
   onMyShow() {
     var that = this;
     var instapi = new InstApi();

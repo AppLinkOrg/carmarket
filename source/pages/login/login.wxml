@@ -15,7 +15,7 @@
   <view class='h5 margin-right-40 '>忘记密码</view>
 </view>
 
-<view class='btn bg-btn ' bindtap='bindlogin '>登录</view>
+<view class='btn bg-btn' bindtap='bindlogin'>登录</view>
 <view class='flex-row '>
   <view class='flex-1'></view>
   <view class='h6'> 登录即表示已阅读并同意</view>

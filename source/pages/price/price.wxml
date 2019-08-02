@@ -1,58 +1,62 @@
-<view class='flex-row  flex-center  ' style='height:80rpx;'>
+<view class='pageone'>
 
-  <view class='flex-row flex-column flex-1' data-check='A' bindtap='bindcheck'>
-    <view class=' txt-bold flex-1 text-center {{check=="A"?"txt-blue":""}}'>待报价</view>
-    <view class='order {{check=="A"?"bg-blue":"bg-white"}}'></view>
+
+  <view class='flex-row  flex-center white-block' style='height:80rpx;'>
+
+    <view class='flex-row flex-column flex-1' data-check='A' bindtap='bindcheck'>
+      <view class=' txt-bold flex-1 text-center {{check=="A"?"txt-blue":""}}'>待报价</view>
+      <view class='order {{check=="A"?"bg-blue":"bg-white"}}'></view>
+    </view>
+
+    <view class='flex-row flex-column flex-1' data-check='B' bindtap='bindcheck'>
+      <view class='txt-bold flex-1 text-center {{check=="B"?"txt-blue":""}}' data-check='B' bindtap='bindcheck'>报价中</view>
+      <view class='order {{check=="B"?"bg-blue":"bg-white"}}'></view>
+    </view>
+
+    <view class='flex-row flex-column flex-1' data-check='C' bindtap='bindcheck'>
+      <view class='txt-bold flex-1 text-center {{check=="C"?"txt-blue":""}}' data-check='C' bindtap='bindcheck'>已失效</view>
+      <view class='wait_blue' hidden='{{waitshow!=1}}'></view>
+      <view class='order {{check=="C"?"bg-blue":"bg-white"}}'></view>
+    </view>
+  </view>
+  <view class='borderbottom'></view>
+
+
+  <!--待报价-->
+  <view class='box white-block' bindtap='pricedetail'>
+    <view class='flex-row margin-left-30 margin-top-30'>
+      <view class='txt-black'>刹车总泵、前保险杠、左大灯</view>
+      <view class='flex-1'></view>
+      <view class='margin-right-30'>待报价</view>
+    </view>
+    <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
+    <view class='margin-left-30 margin-top-20'>2019-08-02/15:25</view>
   </view>
 
-  <view class='flex-row flex-column flex-1' data-check='B' bindtap='bindcheck'>
-    <view class='txt-bold flex-1 text-center {{check=="B"?"txt-blue":""}}' data-check='B' bindtap='bindcheck'>报价中</view>
-    <view class='order {{check=="B"?"bg-blue":"bg-white"}}'></view>
+  <!--报价中-->
+  <view class='box white-block' bindtap='bindpricing'>
+    <view class='flex-row margin-left-30 margin-top-30'>
+      <view class='txt-black'>刹车总泵、前保险杠、左大灯</view>
+      <view class='flex-1'></view>
+      <view class='margin-right-30'>报价中</view>
+    </view>
+    <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
+    <view class='flex-row'>
+      <view class='flex-row margin-left-30 margin-top-20'>2019-08-02/15:25</view>
+      <view class='flex-1'></view>
+      <view class='txt-red margin-right-30 margin-top-20'>已有五人报价</view>
+    </view>
   </view>
 
-  <view class='flex-row flex-column flex-1' data-check='C' bindtap='bindcheck'>
-    <view class='txt-bold flex-1 text-center {{check=="C"?"txt-blue":""}}' data-check='C' bindtap='bindcheck'>已失效</view>
-    <view class='wait_blue' hidden='{{waitshow!=1}}'></view>
-    <view class='order {{check=="C"?"bg-blue":"bg-white"}}'></view>
-  </view>
 
-</view>
-
-<view class='borderbottom'></view>
-<!--待报价-->
-<view class='box ' bindtap='pricedetail'>
-  <view class='flex-row margin-left-30 margin-top-30'>
-    <view class='txt-black'>刹车总泵、前保险杠、左大灯</view>
-    <view class='flex-1'></view>
-    <view class='margin-right-30'>待报价</view>
+  <!--已失效-->
+  <view class='box white-block' bindtap='bindlost'>
+    <view class='flex-row margin-left-30 margin-top-30'>
+      <view class='txt-black'>刹车总泵、前保险杠、左大灯</view>
+      <view class='flex-1'></view>
+      <view class='margin-right-30'>已失效</view>
+    </view>
+    <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
+    <view class='margin-left-30 margin-top-20'>2019-08-02/15:25</view>
   </view>
-  <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
-  <view class='margin-left-30 margin-top-20'>2019-08-02/15:25</view>
-</view>
-
-<!--报价中-->
-<view class='box ' bindtap='bindpricing'>
-  <view class='flex-row margin-left-30 margin-top-30'>
-    <view class='txt-black'>刹车总泵、前保险杠、左大灯</view>
-    <view class='flex-1'></view>
-    <view class='margin-right-30'>报价中</view>
-  </view>
-  <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
-  <view class='flex-row'>
-    <view class='flex-row margin-left-30 margin-top-20'>2019-08-02/15:25</view>
-    <view class='flex-1'></view>
-    <view class='txt-red margin-right-30 margin-top-20'>已有五人报价</view>
-  </view>
-</view>
-
-
-<!--已失效-->
-<view class='box ' bindtap='bindlost'>
-  <view class='flex-row margin-left-30 margin-top-30'>
-    <view class='txt-black'>刹车总泵、前保险杠、左大灯</view>
-    <view class='flex-1'></view>
-    <view class='margin-right-30'>已失效</view>
-  </view>
-  <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
-  <view class='margin-left-30 margin-top-20'>2019-08-02/15:25</view>
 </view>

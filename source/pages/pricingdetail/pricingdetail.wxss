@@ -19,3 +19,13 @@
   height: 70rpx;
   margin-right: 5rpx;
 }
+
+.queren{
+  background-color: orangered;
+  width: 95%;
+  height: 100rpx; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
