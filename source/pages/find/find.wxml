@@ -39,6 +39,9 @@
 <view class='margin-left-30 margin-top'>哈佛 H6 2012款 1.5T</view>
 <view class='bott margin-top-20'></view>
 
-<view class='flex-row flex-column  '>
-  <image class='icon-100 margin-top-60 ' src='{{uploadpath}}resource/{{res.VIN}}'></image>
+<view class='flex-row flex-column '>
+  <view class='flex-row flex-column vinbg'>
+    <image class='margin-top-30 icon-40 ' src='{{uploadpath}}resource/{{res.VIN}}'></image>
+    <view class='vin txt-white'>VIN码识别</view>
+  </view>
 </view>

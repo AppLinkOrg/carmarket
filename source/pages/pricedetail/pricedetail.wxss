@@ -1,10 +1,19 @@
-.borderleft{
+/* .borderleft{
   border-left: 4px solid rgb(35, 16, 206);
   height: 26rpx;
   margin-top: 10rpx;
   margin-left: 20rpx;
-  
 }
+
+ */
+
+.borderleft {
+  border-left: 5px solid #143779;
+  height: 28rpx;
+  margin-top: 10rpx;
+  margin-left: 30rpx;
+}
+
 
 .btnn {
   margin: 30rpx;

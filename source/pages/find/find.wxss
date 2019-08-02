@@ -15,3 +15,18 @@
   margin-left: 20rpx;
   
 } */
+
+.vinbg{
+position: fixed;
+  
+  height: 210rpx;
+  width: 210rpx;
+  border-radius: 50%;
+  background-color:  #143779;
+  bottom: 0
+}
+.vin{
+  margin-top: 10rpx;
+ 
+}
+

@@ -52,14 +52,14 @@
       {
         "text": "报价单",
         "pagePath": "pages/price/price",
-        "iconPath": "images/icons/b-a.png",
+        "iconPath": "images/icons/b-b.png",
         "selectedIconPath": "images/icons/b.png"
       },
       {
         "text": "我的",
         "pagePath": "pages/mine/mine",
-        "iconPath": "images/icons/a-a.png",
-        "selectedIconPath": "images/icons/b.png"
+        "iconPath": "images/icons/c-c.png",
+        "selectedIconPath": "images/icons/c.png"
       }
     ]
   },
