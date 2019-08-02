@@ -1,0 +1,11 @@
+.left{
+  margin-left: 80rpx;
+}
+
+.yes {
+  height: 100rpx;
+  background-color: #143779;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

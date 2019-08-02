@@ -1,0 +1,21 @@
+.left {
+  margin-left: 80rpx;
+}
+
+.btn0ne {
+  background-color: rgb(187, 187, 187);
+  height: 120rpx;
+  width: 60%;  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.btnTwo {
+  background-color: #143779;
+  height: 120rpx;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
