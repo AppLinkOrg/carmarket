@@ -21,10 +21,29 @@ class Content extends AppBase {
     })
   }
 
+  logout(){
+    wx.showModal({
+      title: '提示',
+      content: '确认退出当前用户？',
+      confirmText: "退出",
+      success: function (res) {
+        if (res.confirm) {
+          wx.clearStorage();
+          wx.redirectTo({
+            url: '/pages/login/login',
+          })
+        } else {
+
+        }
+      }
+    })
+  }
+
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
-body.onMyShow = content.onMyShow;
+body.onMyShow = content.onMyShow; 
 body.bindright = content.bindright;
+body.logout = content.logout;
 Page(body)

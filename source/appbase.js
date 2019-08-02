@@ -1,7 +1,6 @@
-/****
-import { MemberApi } from "../apis/member.api";
-import { WechatApi } from "../apis/wechat.api";
- */
+/**** */
+
+
 import {
   ApiConfig
 } from "apis/apiconfig.js";
@@ -18,13 +17,14 @@ import {
   WechatApi
 } from "apis/wechat.api";
 
+import { EnterpriseApi } from "apis/enterprise.api";
+  
 export class AppBase {
-  static BRANDAPPLE = 12;
   static QQMAPKEY = "IDVBZ-TSAKD-TXG43-H442I-74KVK-6LFF5";
   static UserInfo = {};
   static InstInfo = {};
   unicode = "carmarkets";
-  needauth = false;
+  needauth = true;
   pagetitle = null;
   app = null;
   options = null;
@@ -131,7 +131,8 @@ export class AppBase {
     this.Base.setMyData({
       options: options
     });
-
+    var token = wx.getStorageSync("token");
+    ApiConfig.SetToken(token);
     ApiConfig.SetUnicode(this.Base.unicode);
   }
   gotoOpenUserInfoSetting() {
@@ -188,109 +189,22 @@ export class AppBase {
 
       }
     }, false);
-
-    if (AppBase.UserInfo.openid == undefined) {
-      // 登录
-      console.log("onShow");
-      wx.login({
-        success: res => {
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId
-          console.log(res);
-          wx.getUserInfo({
-            success: userres => {
-              AppBase.UserInfo = userres.userInfo;
-              console.log(userres);
-
-              var memberapi = new MemberApi();
-              memberapi.getuserinfo({
-                code: res.code,
-                grant_type: "authorization_code"
-              }, data => {
-                console.log("here");
-                console.log(data);
-                AppBase.UserInfo.openid = data.openid;
-                AppBase.UserInfo.session_key = data.session_key;
-                console.log(AppBase.UserInfo);
-                ApiConfig.SetToken(data.openid);
-                console.log("goto update info");
-                //this.loadtabtype();
-
-
-                memberapi.update(AppBase.UserInfo, () => {
-
-                  console.log(AppBase.UserInfo);
-                  that.Base.setMyData({
-                    UserInfo: AppBase.UserInfo
-                  });
-
-                  that.checkPermission();
-
-                });
-
-                //that.Base.getAddress();
-              });
-            },
-            fail: faukres => {
-              var memberapi = new MemberApi();
-              console.log(res);
-              memberapi.getuserinfo({
-                code: res.code,
-                grant_type: "authorization_code"
-              }, data => {
-                console.log(data);
-                AppBase.UserInfo.openid = data.openid;
-                AppBase.UserInfo.session_key = data.session_key;
-                ApiConfig.SetToken(data.openid);
-                memberapi.update(AppBase.UserInfo, () => {
-                  if (this.Base.needauth == true) {
-                    wx.redirectTo({
-                      url: '/pages/auth/auth',
-                    })
-                  } else {
-                    that.onMyShow();
-                  }
-                });
-              });
-
-            }
-          })
-        }
-      });
-      return false;
-    } else {
-      if (that.setMyData != undefined) {
-        that.setMyData({
-          UserInfo: AppBase.UserInfo
-        });
-      } else {
-        that.Base.setMyData({
-          UserInfo: AppBase.UserInfo
-        });
-      }
-      //this.loadtabtype();
-
-      that.Base.setMyData({
-        UserInfo: AppBase.UserInfo
-      });
-
-      that.checkPermission();
-    }
+    that.onMyShow();
+    that.checkPermission();
 
   }
   checkPermission() {
-    var memberapi = new MemberApi();
+    var enterpriseApi = new EnterpriseApi();
     var that = this;
-    memberapi.info({}, (info) => {
-      if (info.mobile == "" && this.Base.needauth == true) {
-        wx.navigateTo({
-          url: '/pages/auth/auth',
+    enterpriseApi.employeeinfo({}, (info) => {
+      if (info == null && this.Base.needauth == true) {
+        wx.redirectTo({
+          url: '/pages/login/login',
         })
       } else {
-
         this.Base.setMyData({
-          memberinfo: info
+          employeeinfo: info
         });
-        that.onMyShow();
       }
     });
   }
