@@ -1,9 +1,9 @@
 <view class="bg-btn ">
   <view class="flex-row margin-left-10 ">
-    <image class='icon-100 ' src='{{uploadpath}}resource/{{res.no}}'>头像获取</image>
+    <image class='icon-100 ' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
     <view class=" margin-top-60  ">
-      <view class="txt-white ">陈师傅</view>
-      <view class="txt-white flex-row  ">深圳市兴达汽车维修中心</view>
+      <view class="txt-white ">{{employeeinfo.name}}</view>
+      <view class="txt-white flex-row  ">{{employeeinfo.enterprise.name}}</view>
     </view>
     <view class='flex-1'></view>
     <image class='icon-17 margin-right-40 margin-top-80 ' bindtap='bindright' src='{{uploadpath}}resource/{{res.whiteright}}'></image>
@@ -15,7 +15,7 @@
   <view class='margin-left-10 txt-black txt-bold'>我的账户</view>
 </view>
 <view class='flex-row margin-top-30'>
-  <view class='margin-top-10 margin-left-50 h3 txt-orange txt-bold'>50000</view>
+  <view class='margin-top-10 margin-left-50 h3 txt-orange txt-bold'>{{employeeinfo.enterprise.vdollar}}</view>
   <view class='h5 txt-black margin-left-30 margin-top-20'>威币</view>
   <view class='flex-1'></view>
   <view class='bg-btn  gbtn margin-right-20'>额度申请</view>
@@ -70,12 +70,12 @@
     <image class='icon-17 margin-right-20 margin-top' src='{{uploadpath}}resource/{{res.smallright}}'></image>
   </navigator>
 
-  <navigator url="/pages/login/login" class='flex-row  xia '>
+  <view bindtap="logout" class='flex-row  xia '>
     <view class="mar">
       <image class='icon' src='{{uploadpath}}resource/{{res.outlogin}}'></image>
     </view>
     <view class=' mar txt-black txt-bold'>退出登录</view>
     <view class='flex-1'></view>
     <image class='icon-17 margin-right-20 margin-top' src='{{uploadpath}}resource/{{res.smallright}}'></image>
-  </navigator>
+  </view>
 </view>
