@@ -20,7 +20,12 @@ class Content extends AppBase {
       this.Base.setMyData({ indexbanner });
     });
   }
-
+  
+  bindsub() {
+    wx.navigateTo({
+      url: '/pages/change/change',
+    })
+  }
 
   setPageTitle(instinfo) {
     var title = "退换货申请";
@@ -33,4 +38,5 @@ var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
+body.bindsub = content.bindsub;
 Page(body)

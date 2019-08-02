@@ -4,7 +4,7 @@
 </view>
 <view class="margin-30">手机号码：</view>
 <view class="tex">
-  <textarea class="margin-left-10 margin-top-10" placeholder="为了帮我们做更好，请尽可能详细描述您的退换货原因，并提交后台，我们平台收到后将尽快处理"></textarea>
+  <textarea class="h5 margin-left-10 margin-top-10" placeholder="为了帮我们做更好，请尽可能详细描述您的退换货原因，并提交后台，我们平台收到后将尽快处理"></textarea>
 </view>
 <view class="bott margin-top"></view>
 
@@ -73,4 +73,4 @@
   <view>全选</view>
   <image class='icon-25 margin-right-20' src='{{uploadpath}}resource/{{res.no}}'></image>
 </view>
-<view class="btn bg-btn">提交</view>
+<view class="btn bg-btn" bindtap='bindsub'>提交</view>

@@ -1,3 +1,11 @@
-.left{
+.left {
   margin-left: 80rpx;
+}
+
+.quxiao {
+  height: 100rpx;
+  background-color: #143779;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

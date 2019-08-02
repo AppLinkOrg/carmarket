@@ -5,7 +5,7 @@
 
 
 <view class='flex-row '>
-  <view class=' btn txt-black'>
+  <view class=' btn box-shadow txt-black'>
     <view class='flex-row margin-left-20'>
       <image class='icon-25 ' src='{{uploadpath}}resource/{{res.cemera}}'></image>
     </view>

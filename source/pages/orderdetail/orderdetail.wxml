@@ -61,7 +61,6 @@
 </view>
 <view class='bott margin-top-20 margin-bottom-20'></view>
 
-
 <view class='flex-row'>
   <view class='margin-left-50 '>
     <image class='icon-25 ' src='{{uploadpath}}resource/{{res.no}}'></image>
@@ -75,7 +74,6 @@
     <view class='flex-row flex-wrap margin-bottom-20'>
       <view class=''>单价：</view>
       <view class='txt-red'>元</view>
-
       <view style='margin-left:260rpx;'>发货数量：</view>
       <view class='margin-right-20'>1</view>
     </view>
@@ -104,5 +102,18 @@
   <view class='borderleft'></view>
   <view class='margin-left-10 txt-black txt-bold margin-bottom-20'>手动添加</view>
 </view>
-
-<view class='margin-left-30'>配件：</view>
+<view class='flex-row'>
+  <view class='margin-left-30 margin-top-30'>配件：</view>
+  <view class='buttonone ' style='width: 75%;'></view>
+</view>
+<view class='flex-row'>
+  <view class='margin-left-30 margin-top-30'>价格：</view>
+  <view class='buttonone ' style='width: 45%;'></view>
+  <view class=' margin-top-30'>元</view>
+</view>
+<view class='bgcolor flex-row margin-20'>
+  <view class='margin-left-20 margin-top-20'>总计：</view>
+  <view class='txt-red margin-top-20'>元</view>
+  <view class='flex-1'></view>
+  <view class='bg-btn  gbtn margin-top-20 margin-right-20'>去结算</view>
+</view>

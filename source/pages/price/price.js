@@ -22,6 +22,27 @@ class Content extends AppBase {
     })
   }
 
+  pricedetail() {
+    wx.navigateTo({
+      url: '/pages/pricedetail/pricedetail',
+    })
+  }
+
+
+  bindpricing(){
+    wx.navigateTo({
+      url: '/pages/pricingdetail/pricingdetail',
+    })
+
+  }
+  
+
+  bindlost() {
+    wx.navigateTo({
+      url: '/pages/orderdetail/orderdetail',
+    })
+  }
+
   bindcheck(e){
     var checkid = e.currentTarget.dataset.check;
 
@@ -40,6 +61,9 @@ var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
+body.pricedetail = content.pricedetail;
+body.bindpricing = content.bindpricing;
+body.bindlost = content.bindlost;
 
 body.bindcheck = content.bindcheck;
 

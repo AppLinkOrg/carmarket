@@ -1,6 +1,8 @@
 {
   "pages": [
-    "pages/orderdetail/orderdetail",
+    
+   
+    
     "pages/login/login",
     "pages/find/find",
     "pages/check/check",
@@ -18,8 +20,14 @@
     "pages/pricedetail/pricedetail",
     "pages/pricing/pricing",
     "pages/pricingdetail/pricingdetail",
+
+  
+    "pages/success/success",
+    "pages/waitreceive/waitreceive",
     
-   
+    "pages/orderdetail/orderdetail",
+    "pages/changeapply/changeapply",
+    "pages/waitsend/waitsend",
     "pages/edit/edit",
     "pages/agreement/agreement",
     "pages/auth/auth"
@@ -44,20 +52,20 @@
       {
         "text": "找零件",
         "pagePath": "pages/find/find",
-        "iconPath": "images/icons/a.png",
-        "selectedIconPath": "images/icons/a-a.png"
+        "iconPath": "images/icons/a-a.png",
+        "selectedIconPath": "images/icons/a.png"
       },
       {
         "text": "报价单",
         "pagePath": "pages/price/price",
-        "iconPath": "images/icons/b.png",
-        "selectedIconPath": "images/icons/b-a.png"
+        "iconPath": "images/icons/b-a.png",
+        "selectedIconPath": "images/icons/b.png"
       },
       {
         "text": "我的",
         "pagePath": "pages/mine/mine",
-        "iconPath": "images/icons/a.png",
-        "selectedIconPath": "images/icons/b-a.png"
+        "iconPath": "images/icons/a-a.png",
+        "selectedIconPath": "images/icons/b.png"
       }
     ]
   },

@@ -1,10 +1,20 @@
-.top{
-
+.top {
   background-color: #282be7;
   height: 300rpx;
 }
 
-.apply{
+.apply {
   background-color: #143779;
+}
+.left{
+  margin-left: 120rpx;
+}
 
+.gbtn {
+  height: 90rpx;
+  width: 240rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
 }

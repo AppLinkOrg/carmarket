@@ -7,7 +7,16 @@
 .box {
   border-radius: 10rpx;
   box-shadow: 1rpx 2rpx 25rpx 2rpx rgb(173, 173, 173);
-  height: 800rpx;
+  height: 300rpx;
   width: 95%;
   margin: 20rpx;
+}
+
+.orpay{
+  width: 140rpx;
+  height: 50rpx;
+  background-color: rgb(247, 120, 47);
+  border-radius: 10rpx;
+   text-align: center;
+
 }

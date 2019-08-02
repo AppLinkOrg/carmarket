@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 17,
 			"list": [
 				{
 					"id": -1,
@@ -64,15 +64,15 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "报价单",
+					"id": 3,
+					"name": "报价单/price",
 					"pathName": "pages/price/price",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "车架号查询",
+					"id": 4,
+					"name": "车架号查询/check",
 					"pathName": "pages/check/check",
 					"query": "",
 					"scene": null
@@ -95,6 +95,76 @@
 					"id": -1,
 					"name": "待报价详情",
 					"pathName": "pages/pricedetail/pricedetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/orderdetail/orderdetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "退换货申请",
+					"pathName": "pages/changeapply/changeapply",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "报价中详情",
+					"pathName": "pages/pricingdetail/pricingdetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "待发货waitsend",
+					"pathName": "pages/waitsend/waitsend",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "编辑资料",
+					"pathName": "pages/edit/edit",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "待收货详情/waitreceive",
+					"pathName": "pages/waitreceive/waitreceive",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "交易成功/success",
+					"pathName": "pages/success/success",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的订单/order",
+					"pathName": "pages/order/order",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "退换货/change",
+					"pathName": "pages/change/change",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "主页",
+					"pathName": "pages/find/find",
 					"scene": null
 				}
 			]

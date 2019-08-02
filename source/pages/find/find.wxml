@@ -1,16 +1,16 @@
 <!--轮播-->
-<view class=''>
-  <swiper class="" indicator-dots="true" autoplay="true" interval="3000" duration="500">
-    <block wx:for="{{indexbanner}}" wx:key="index">
-      <swiper-item>
-        <image src='{{uploadpath}}indexbanner/{{item.img}}' mode='aspectFill' style='width:750rpx;height:450rpx;'></image>
-      </swiper-item>
-    </block>
-  </swiper>
-</view>
+
+<swiper class="" indicator-dots="true" autoplay="true" interval="3000" duration="500">
+  <block wx:for="{{indexbanner}}" wx:key="index">
+    <swiper-item>
+      <image src='{{uploadpath}}indexbanner/{{item.img}}' mode='aspectFill' style='width:750rpx;height:300rpx;'></image>
+    </swiper-item>
+  </block>
+</swiper>
+
 
 <navigator url="/pages/check/check" class='flex-row  '>
-  <view class='btn'>
+  <view class='btn box-shadow'>
     <view class='flex-row margin-left-20'>
       <image class='icon-17 ' src='{{uploadpath}}resource/{{res.search}}'></image>
     </view>
@@ -24,14 +24,21 @@
     <view class=' margin-left-20'>历史搜索</view>
   </view>
   <view class="flex-1"></view>
-  <view class='flex-row flex-wrap '>
-    <image class='icon-17 margin-right-20' src='{{uploadpath}}resource/{{res.clean}}'></image>
+  <view class='flex-row  '>
     <view class='margin-right-20'>清空</view>
+    <image class='icon margin-right-20 ' src='{{uploadpath}}resource/{{res.clean}}'></image>
   </view>
 </view>
-<view class='margin-top-20'>{{}}</view>
+
+<view class='margin-left-30 margin-top-60'>哈佛 H6 2012款 1.5T</view>
 <view class='bott margin-top-20'></view>
 
-<view class='flex-row flex-column flex-1 '>
-  <image class='icon-100 ' src='{{uploadpath}}resource/{{res.VIN}}'></image>
+<view class='margin-left-30 margin-top'>哈佛 H6 2012款 1.5T</view>
+<view class='bott margin-top-20'></view>
+
+<view class='margin-left-30 margin-top'>哈佛 H6 2012款 1.5T</view>
+<view class='bott margin-top-20'></view>
+
+<view class='flex-row flex-column  '>
+  <image class='icon-100 margin-top-60 ' src='{{uploadpath}}resource/{{res.VIN}}'></image>
 </view>

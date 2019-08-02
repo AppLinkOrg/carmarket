@@ -1,14 +1,19 @@
-/* pages/addressadd/addressadd.wxss */
-.btn{
-  background-color: rgb(166, 166, 235);
+.detele {
+  background: #cecece;
   height: 100rpx;
-  width: 90%;
+  width: 50%;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50rpx;
-  margin-left: 30rpx;
-  margin-right: 20rpx;
-  border-radius: 10rpx;
+}
+
+.bao {
+  background: #143779;
+  height: 100rpx;
+  width: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

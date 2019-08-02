@@ -17,8 +17,24 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
   }
-  onMyShow() {
-    
+  
+  bindsend() {
+    wx.navigateTo({
+      url: '/pages/waitsend/waitsend',
+    })
+
+  }
+
+  bindreceive() {
+    wx.navigateTo({
+      url: '/pages/waitreceive/waitreceive',
+    })
+  }
+
+  bindsuccess() {
+    wx.navigateTo({
+      url: '/pages/success/success',
+    })
   }
 
 
@@ -30,11 +46,14 @@ class Content extends AppBase {
     });
   }
 
-
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindorder = content.bindorder;
+body.bindreceive = content.bindreceive;
+body.bindsend = content.bindsend;
+body.bindsuccess = content.bindsuccess;
+body.bindapply = content.bindapply;
 Page(body)

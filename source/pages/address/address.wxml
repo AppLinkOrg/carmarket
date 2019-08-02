@@ -1,2 +1,17 @@
-<!--pages/address/address.wxml-->
-<text>pages/address/address.wxml</text>
+<view class='flex-row flex-wrap margin-30'>
+  <view class='txt-black'>刘大大</view>
+  <view class='txt-black margin-left-30'>13800138000</view>
+  <view class='h5 bg-btn mobtn  margin-left-30'>默认</view>
+  <view class='flex-1'></view>
+  <view class='margin-top-30'>
+    <image class='icon-25 ' src='{{uploadpath}}resource/{{res.edit}}' bindtap='bindaddressadd'></image>
+  </view>
+  <view class=''>广东省深圳市罗湖区八卦一路13号</view>
+</view>
+
+
+
+<view class='bott margin-top-30'></view>
+
+
+<view class="addbtn" bindtap='bindaddressadd'>添加地址</view>

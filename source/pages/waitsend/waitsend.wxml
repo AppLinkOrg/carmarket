@@ -1,3 +1,12 @@
+<view class='flex-row flex-column bg-btn'>
+  <view class='flex-row flex-center  '>
+    <image class='icon-25 ' src='{{uploadpath}}resource/{{res.waitsend}}'></image>
+    <view class='txt-white h4 margin-left-10 margin-bottom-20'>待发货</view>
+  </view>
+  <view class='margin-bottom-40  txt-white '>订单已支付，商家正在准备发货，请耐心等待！</view>
+</view>
+
+
 <view class='flex-row flex-wrap margin-top-20'>
   <view class='txt-black margin-left-30'>订单编号：</view>
   <view class='txt-black '>20190801056455</view>
@@ -85,6 +94,4 @@
 </view>
 
 
-
-
-<view class='btn bg-btn'>取消订单</view>
+<view class='txt-white quxiao margin-top-30'>取消订单</view>

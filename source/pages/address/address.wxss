@@ -1,1 +1,20 @@
-/* pages/address/address.wxss */
+.addbtn {
+  background: #143779;
+  color: white;
+  margin: 30rpx;
+  width: 92%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+}
+
+.mobtn {
+  border-radius: 25rpx;
+  width: 120rpx;
+  height: 46rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

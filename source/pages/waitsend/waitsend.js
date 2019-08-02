@@ -22,7 +22,7 @@ class Content extends AppBase {
   }
 
   setPageTitle(instinfo) {
-    var title = "待发货";
+    var title = "订单详情";
     wx.setNavigationBarTitle({
       title: title,
     })

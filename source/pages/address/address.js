@@ -15,9 +15,16 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
   }
+  bindaddressadd() {
+    wx.navigateTo({
+      url: '/pages/addressadd/addressadd',
+    })
+  }
+
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
+body.bindaddressadd = content.bindaddressadd;
 Page(body)

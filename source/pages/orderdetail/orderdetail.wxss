@@ -1,1 +1,24 @@
-/* pages/orderdetail/orderdetail.wxss */
+.buttonone {
+  margin: 20rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+}
+
+.bgcolor {
+  background-color: rgb(235, 235, 235);
+  height: 140rpx;
+  width: 95%;
+
+}
+
+.gbtn {
+  height: 100rpx;
+  width: 260rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+}

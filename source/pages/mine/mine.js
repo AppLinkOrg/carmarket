@@ -15,9 +15,16 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
   }
+  bindright(){
+    wx.navigateTo({
+      url: '/pages/edit/edit',
+    })
+  }
+
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
+body.bindright = content.bindright;
 Page(body)

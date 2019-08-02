@@ -19,5 +19,40 @@
 </view>
 
 <view class='borderbottom'></view>
+<!--待报价-->
+<view class='box ' bindtap='pricedetail'>
+  <view class='flex-row margin-left-30 margin-top-30'>
+    <view class='txt-black'>刹车总泵、前保险杠、左大灯</view>
+    <view class='flex-1'></view>
+    <view class='margin-right-30'>待报价</view>
+  </view>
+  <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
+  <view class='margin-left-30 margin-top-20'>2019-08-02/15:25</view>
+</view>
 
-<view class='box'></view>
+<!--报价中-->
+<view class='box ' bindtap='bindpricing'>
+  <view class='flex-row margin-left-30 margin-top-30'>
+    <view class='txt-black'>刹车总泵、前保险杠、左大灯</view>
+    <view class='flex-1'></view>
+    <view class='margin-right-30'>报价中</view>
+  </view>
+  <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
+  <view class='flex-row'>
+    <view class='flex-row margin-left-30 margin-top-20'>2019-08-02/15:25</view>
+    <view class='flex-1'></view>
+    <view class='txt-red margin-right-30 margin-top-20'>已有五人报价</view>
+  </view>
+</view>
+
+
+<!--已失效-->
+<view class='box ' bindtap='bindlost'>
+  <view class='flex-row margin-left-30 margin-top-30'>
+    <view class='txt-black'>刹车总泵、前保险杠、左大灯</view>
+    <view class='flex-1'></view>
+    <view class='margin-right-30'>已失效</view>
+  </view>
+  <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
+  <view class='margin-left-30 margin-top-20'>2019-08-02/15:25</view>
+</view>

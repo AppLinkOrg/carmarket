@@ -12,12 +12,6 @@
   width: 100%;
 }
 
-.btn {
-  background-color: rgb(252, 123, 49);
-  color: white;
-  height: 100rpx;
-}
-
 .price {
   padding-top: 20rpx;
   margin-top: 10rpx;
