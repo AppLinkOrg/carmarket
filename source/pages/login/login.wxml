@@ -1,0 +1,27 @@
+<view class='margin-40'>
+
+
+  <view class='h4 txt-bold txt-black'>您好，</view>
+  <view class='h4 txt-bold txt-black spaceone'>欢迎使用荣迪威汽车后市场</view>
+
+
+  <view class='space txt-bold txt-black '>手机号码</view>
+  <input placeholder='请输入手机号码'></input>
+  <view class='bottom '></view>
+  <view class='space txt-bold txt-black'>密码</view>
+  <input class='' placeholder='请输入密码'></input>
+  <view class='bottom '></view>
+
+</view>
+
+<view class='flex-row '>
+
+  <view class='flex-3'></view>
+  <view class='flex-1'>
+    <input class='h5' placeholder='忘记密码？'></input>
+  </view>
+ 
+</view>
+<view class='btn bg-btn' bindtap='bindlogin'>登录</view>
+<view class='h6 flex-row flex-column'> 登录即表示已阅读并同意</view>
+<navigator class='h6 flex-row flex-column txt-primary' url='/pages/agreement/agreement'>《荣迪威汽车后市场服务协议》</navigator>
