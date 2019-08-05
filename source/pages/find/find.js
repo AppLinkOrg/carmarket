@@ -46,31 +46,37 @@ class Content extends AppBase {
 
   }
 
-  bindclear(){
-    var that=this;
+  bindclear() {
+    var that = this;
     var carapi = new CarApi();
     wx.showModal({
       title: '提示',
       content: '是否全部清空',
       confirmText: "确认",
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           carapi.clearallsearch({}, (clearallsearch) => {
             console.log(clearallsearch);
             that.onMyShow();
           });
         } else {
-        
+
         }
       }
     })
   }
 
 
+
   clickvin() {
-  wx.navigateTo({
-  url: '',
-})
+    var that = this;
+    this.Base.takeImage("product", (ret) => {
+      var images = that.Base.getMyData().images;
+      images.push(ret);
+      that.Base.setMyData({
+        images
+      });
+    });
   }
 
 
@@ -80,5 +86,5 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.clickvin = content.clickvin;
-body.bindclear = content.bindclear; 
+body.bindclear = content.bindclear;
 Page(body)

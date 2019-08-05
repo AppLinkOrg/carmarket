@@ -27,6 +27,13 @@ class Content extends AppBase {
     })
   }
 
+  binddelete() {
+    var that = this;
+    this.Base.setMyData({
+      searchinput: ''
+    })
+  } 
+
   addclick() {
     wx.navigateTo({
       url: '/pages/serchgo/serchgo',
@@ -41,4 +48,5 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.addclick = content.addclick;
+body.binddelete = content.binddelete;
 Page(body)

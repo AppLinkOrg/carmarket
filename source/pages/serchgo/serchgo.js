@@ -30,12 +30,12 @@ class Content extends AppBase {
   }
 
 
-  binddelete() {
+  bindclear() {
     var that = this;
     this.Base.setMyData({
       searchinput: ''
     })
-  } 
+  }
   setPageTitle(instinfo) {
     var title = "配件查询";
     wx.setNavigationBarTitle({
@@ -43,13 +43,22 @@ class Content extends AppBase {
     })
   }
 
-  complete(e) {
-    wx.navigateTo({
-      url: '/pages/check/check',
-    })
-
+  clickimage() {
+    var that = this;
+    this.Base.uploadImage("product", (ret) => {
+      var images = that.Base.getMyData().images;
+      images.push(ret);
+      that.Base.setMyData({
+        images
+      });
+    });
   }
 
+  complete(e) {
+    wx.navigateBack({
+      delta: 2
+    })
+  }
 
 }
 var content = new Content();
@@ -57,5 +66,6 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.complete = content.complete;
-body.binddelete = content.binddelete;
+body.bindclear = content.bindclear;
+body.clickimage = content.clickimage;
 Page(body)

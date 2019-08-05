@@ -1,10 +1,4 @@
-.borderleft{
-  border-left: 4px solid  #143779;
-  height: 26rpx;
-  margin-top: 10rpx;
-  margin-left: 20rpx;
-  
-}
+
 
 .btnn {
   margin: 30rpx;

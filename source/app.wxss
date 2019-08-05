@@ -107,7 +107,7 @@ view, navigator, input, text, textarea {
 }
 
 .gray-block {
-  background: #f0eded;
+  background: #f1f1f1;
 }
 
 .bg-purple {
@@ -613,6 +613,10 @@ button[disabled][type=primary] {
 .icon-75 {
   width: 150rpx;
   height: 150rpx;
+}
+.icon-90 {
+  width: 180rpx;
+  height: 180rpx;
 }
 
 .icon-100 {

@@ -15,7 +15,7 @@ class Content extends AppBase {
   onMyShow() {
 
     //options.id=5;
-    super.onLoad(options);
+    // super.onLoad(options);
   }
   setPageTitle() {
     wx.setNavigationBarTitle({

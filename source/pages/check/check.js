@@ -54,6 +54,18 @@ class Content extends AppBase {
     })
   } 
 
+  clickcamera() {
+    var that = this;
+    this.Base.takeImage("product", (ret) => {
+      var images = that.Base.getMyData().images;
+      images.push(ret);
+      that.Base.setMyData({
+        images
+      });
+    });
+  }
+
+
 
   bindadd(){
     var add=e.currentTarget.setMyData.add
@@ -91,4 +103,5 @@ body.public = content.public;
 body.binddelete = content.binddelete;
 body.bindadd = content.bindadd;
 body.bindreduce = content.bindreduce;
+body.clickcamera = content.clickcamera;
 Page(body)
