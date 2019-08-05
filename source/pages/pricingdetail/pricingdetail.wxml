@@ -25,18 +25,17 @@
       <view class='margin-top-10 margin-left-20 txt-white'>深圳市鑫广泰汽车服务有限公司</view>
       <view class='flex-row flex-wrap margin-top-10'>
         <view class='flex-1 flex-row flex-bottom'>
-          <image class='icon-25 margin-left-20' src='{{uploadpath}}resource/{{res.reduce}}'></image>
+          <image class='icon-25 margin-left-20' src='{{uploadpath}}resource/{{res.renzheng}}'></image>
           <view class='h5 txt-white margin-left-10'>已认证</view>
         </view>
         <view class='flex-1 flex-row flex-bottom'>
-          <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}'></image>
+          <image class='icon-25 ' src='{{uploadpath}}resource/{{res.tuihuan}}'></image>
           <view class='h5 txt-white margin-left-10'>包退换</view>
         </view>
         <view class='flex-1 flex-row flex-bottom'>
           <view class='h2 txt-bold txt-orange margin-bottom-20'>1888</view>
           <view class='h5 txt-bold txt-orange margin-left-10'>威币</view>
         </view>
-
       </view>
       <view class='flex-row flex-column'>
         <image class='icon-25 margin-bottom-10' src='{{uploadpath}}resource/{{res.up}}'></image>
@@ -49,11 +48,11 @@
       <view class='margin-top-10 margin-left-20 txt-white'>深圳市鑫广泰汽车服务有限公司</view>
       <view class='flex-row flex-wrap margin-top-10'>
         <view class='flex-1 flex-row flex-bottom'>
-          <image class='icon-25 margin-left-20' src='{{uploadpath}}resource/{{res.reduce}}'></image>
+          <image class='icon-25 margin-left-20' src='{{uploadpath}}resource/{{res.renzheng}}'></image>
           <view class='h5 txt-white margin-left-10'>已认证</view>
         </view>
         <view class='flex-1 flex-row flex-bottom'>
-          <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}'></image>
+          <image class='icon-25 ' src='{{uploadpath}}resource/{{res.tuihuan}}'></image>
           <view class='h5 txt-white margin-left-10'>包退换</view>
         </view>
         <view class='flex-1 flex-row flex-bottom'>
@@ -63,7 +62,7 @@
 
       </view>
       <view class='flex-row flex-column'>
-        <image class='icon-25 margin-bottom-10' src='{{uploadpath}}resource/{{res.up}}'></image>
+        <image class='icon-25 margin-bottom-10' src='{{uploadpath}}resource/{{res.down}}'></image>
       </view>
     </view>
 

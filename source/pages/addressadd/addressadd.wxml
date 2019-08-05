@@ -34,7 +34,7 @@
 <view class='flex-row mar '>
   <view class="  ">设置为默认地址</view>
   <view class='flex-1'></view>
-  <image class='icon-25 margin-right-30' src='{{uploadpath}}resource/{{res.no}}'></image>
+  <image class='icon-25 margin-right-30' src='{{uploadpath}}resource/{{res.moren}}'></image>
 </view>
 
 

@@ -1,6 +1,6 @@
 <view class='flex-row flex-column bg-btn'>
   <view class='flex-row flex-center  margin-bottom-40'>
-    <image class='icon-25 ' src='{{uploadpath}}resource/{{res.waitsend}}'></image>
+    <image class='icon-25 ' src='{{uploadpath}}resource/{{res.success}}'></image>
     <view class='txt-white h4 margin-left-10 '>交易成功</view>
   </view>
 
@@ -84,7 +84,7 @@
 
 <view class="">
   <view class="flex-row margin-left-20">
-    <image class='icon-25 margin-right-10 ' src='{{uploadpath}}resource/{{res.no}}'></image>
+    <image class='icon-25 margin-right-10 ' src='{{uploadpath}}resource/{{res.dizhi}}'></image>
     <view class="flex-row   ">
       <view class="txt-black margin-right-20">刘同学</view>
       <view class="txt-black  ">13800138000</view>

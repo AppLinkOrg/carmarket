@@ -1,5 +1,5 @@
 .borderleft{
-  border-left: 4px solid rgb(35, 16, 206);
+  border-left: 4px solid  #143779;
   height: 26rpx;
   margin-top: 10rpx;
   margin-left: 20rpx;

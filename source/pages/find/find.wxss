@@ -8,6 +8,7 @@
   border-radius: 10rpx;
   box-shadow: 1rpx 2rpx 25rpx 2rpx rgb(173, 173, 173);
 } */
+
 /* .borderleft{
   border-left: 4px solid rgb(35, 16, 206);
   height: 26rpx;
@@ -16,17 +17,15 @@
   
 } */
 
-.vinbg{
-position: fixed;
-  
+.vinbg {
+  position: fixed;
   height: 210rpx;
   width: 210rpx;
   border-radius: 50%;
-  background-color:  #143779;
-  bottom: 0
-}
-.vin{
-  margin-top: 10rpx;
- 
+  background-color: #143779;
+  bottom: 5px;
 }
 
+.vin {
+  margin-top: 10rpx;
+}

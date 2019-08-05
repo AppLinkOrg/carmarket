@@ -17,6 +17,12 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
   }
+
+  bindagree(e){
+    wx.navigateTo({
+      url: '/pages/agreement/agreement',
+    })
+  }
  
 
   bindlogin(e){
@@ -46,4 +52,5 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindlogin = content.bindlogin;
+body.bindagree = content.bindagree;
 Page(body)

@@ -1,9 +1,9 @@
 <view class="bg-btn ">
-  <view class="flex-row margin-left-10 ">
-    <image class='icon-100 ' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
+  <view class="flex-row margin-left-10 margin-bottom-10">
+    <image class='icon-100 radius-50%;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
     <view class=" margin-top-60  ">
-      <view class="txt-white ">{{employeeinfo.name}}</view>
-      <view class="txt-white flex-row  ">{{employeeinfo.enterprise.name}}</view>
+      <view class="txt-white margin-left-20">{{employeeinfo.name}}</view>
+      <view class="txt-white flex-row  margin-left-20">{{employeeinfo.enterprise.name}}</view>
     </view>
     <view class='flex-1'></view>
     <image class='icon-17 margin-right-40 margin-top-80 ' bindtap='bindright' src='{{uploadpath}}resource/{{res.whiteright}}'></image>

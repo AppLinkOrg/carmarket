@@ -2,7 +2,7 @@
   <view class='margin-30'>头像</view>
   <view class='flex-1'></view>
   <view class="margin-20 flex-row">
-   <image class='icon-25 ' src='{{uploadpath}}resource/{{res.no}}'></image>
+   <image class='icon-40 radius-50%;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
     <image class='icon-17 margin-left-10  margin-top-5' src='{{uploadpath}}resource/{{res.smallright}}'></image>
   </view>
 </view>

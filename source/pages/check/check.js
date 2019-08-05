@@ -9,6 +9,10 @@ import {
   InstApi
 } from "../../apis/inst.api.js";
 
+import {
+  CarApi
+} from "../../apis/car.api.js";
+
 class Content extends AppBase {
   constructor() {
     super();
@@ -21,19 +25,48 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var instapi = new InstApi();
+    var carapi = new CarApi();
 
     instapi.indexbanner({}, (indexbanner) => {
       this.Base.setMyData({
         indexbanner
       });
     });
+
+    carapi.searchhistory({}, (searchhistory) => {
+      this.Base.setMyData({
+        searchhistory
+      });
+    });
   }
+
+
   setPageTitle(instinfo) {
-    var title = "车架号查询";
     wx.setNavigationBarTitle({
-      title: title,
+      title: "车架号查询",
     })
   }
+
+  binddelete(){
+    var that = this;
+    this.Base.setMyData({
+      searchinput:''
+    })
+  } 
+
+
+  bindadd(){
+    var add=e.currentTarget.setMyData.add
+    
+    this.Base.setMyData({
+      
+    });
+  }
+  bindreduce(){
+    
+  }
+
+
 
   add() {
     wx.navigateTo({
@@ -42,8 +75,8 @@ class Content extends AppBase {
   }
 
   public() {
-    wx.navigateTo({
-      url: '/pages/pricedetail/pricedetail',
+    wx.switchTab({
+      url: '/pages/price/price',
     })
   }
 
@@ -55,4 +88,7 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.add = content.add;
 body.public = content.public;
+body.binddelete = content.binddelete;
+body.bindadd = content.bindadd;
+body.bindreduce = content.bindreduce;
 Page(body)

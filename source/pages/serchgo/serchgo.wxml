@@ -1,9 +1,9 @@
 <view class=''>
   <view class='bg-white '>
     <view class='btnn buttonone '>
-      <input class='margin-left-20' placeholder='继续添加'></input>
+      <input class='margin-left-20' placeholder='继续添加' value="{{searchinput}}"></input>
       <view class="flex-1"></view>
-      <image class='icon-17 margin-right-20' src='{{uploadpath}}resource/{{res.delect}}'></image>
+      <image class='icon-17 margin-right-20' src='{{uploadpath}}resource/{{res.delect}}' bindtap='binddelete'></image>
     </view>
   </view>
 

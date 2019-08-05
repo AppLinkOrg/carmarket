@@ -20,7 +20,7 @@
 <view class='flex-row '>
   <view class='flex-1'></view>
   <view class='h6'> 登录即表示已阅读并同意</view>
-  <view class='h6 txt-primary'>《荣迪威汽车后市场服务协议》</view>
+  <view class='h6 txt-primary' bindtap='bindagree'>《荣迪威汽车后市场服务协议》</view>
   <view class='flex-1'></view>
 </view>
 

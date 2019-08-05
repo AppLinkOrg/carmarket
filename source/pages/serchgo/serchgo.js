@@ -29,6 +29,13 @@ class Content extends AppBase {
     });
   }
 
+
+  binddelete() {
+    var that = this;
+    this.Base.setMyData({
+      searchinput: ''
+    })
+  } 
   setPageTitle(instinfo) {
     var title = "配件查询";
     wx.setNavigationBarTitle({
@@ -50,4 +57,5 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.complete = content.complete;
+body.binddelete = content.binddelete;
 Page(body)

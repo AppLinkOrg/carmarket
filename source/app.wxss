@@ -172,6 +172,9 @@ view, navigator, input, text, textarea {
   color: #3c78d8;
 }
 
+.txt-bc {
+  color:  #143779;
+}
 .txt-light {
   color: #fcfcfc;
   font-weight: 350;

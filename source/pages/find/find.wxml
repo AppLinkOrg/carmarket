@@ -1,9 +1,9 @@
 <!--轮播-->
 
-<swiper class="" indicator-dots="true" autoplay="true" interval="3000" duration="500">
+<swiper class="" indicator-dots="true" autoplay="true" interval="3000" duration="500" style='width:750rpx;height:400rpx;'>
   <block wx:for="{{indexbanner}}" wx:key="index">
     <swiper-item>
-      <image src='{{uploadpath}}indexbanner/{{item.img}}' mode='aspectFill' style='width:750rpx;height:300rpx;'></image>
+      <image src='{{uploadpath}}indexbanner/{{item.img}}' style='width:750rpx;height:400rpx;'></image>
     </swiper-item>
   </block>
 </swiper>
@@ -23,25 +23,24 @@
     <view class='borderleft'></view>
     <view class=' margin-left-20'>历史搜索</view>
   </view>
+
   <view class="flex-1"></view>
-  <view class='flex-row  '>
-    <view class='margin-right-20'>清空</view>
+  <view class='flex-row' bindtap='bindclear' >
+    <view class='margin-right-20' bind>清空</view>
     <image class='icon margin-right-20 ' src='{{uploadpath}}resource/{{res.clean}}'></image>
   </view>
 </view>
 
-<view class='margin-left-30 margin-top-60'>哈佛 H6 2012款 1.5T</view>
-<view class='bott margin-top-20'></view>
+<block wx:for="{{searchhistory}}" wx:key="k">
+  <view class='margin-left-30 margin-top-35'>{{item.carrecord}}</view>
+  <view class='bott margin-top-20'></view>
+</block>
 
-<view class='margin-left-30 margin-top'>哈佛 H6 2012款 1.5T</view>
-<view class='bott margin-top-20'></view>
 
-<view class='margin-left-30 margin-top'>哈佛 H6 2012款 1.5T</view>
-<view class='bott margin-top-20'></view>
 
 <view class='flex-row flex-column '>
   <view class='flex-row flex-column vinbg'>
-    <image class='margin-top-30 icon-40 ' src='{{uploadpath}}resource/{{res.VIN}}'></image>
+    <image class='margin-top-30 icon-40 ' src='{{uploadpath}}resource/{{res.VIN}}' bindtap='clickvin'></image>
     <view class='vin txt-white'>VIN码识别</view>
   </view>
 </view>

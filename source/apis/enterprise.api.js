@@ -9,7 +9,7 @@ import { ApiConfig } from 'apiconfig';
 export class EnterpriseApi{
 
 
-    employeelogin(json, callback, showLoading = true) {
+    employeeinfo(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -18,7 +18,7 @@ export class EnterpriseApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'enterprise/employeelogin',
+            url: ApiConfig.GetApiUrl() + 'enterprise/employeeinfo',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -41,7 +41,7 @@ export class EnterpriseApi{
         })
     }
 
-    employeeinfo(json, callback, showLoading = true) {
+    employeelogin(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -50,7 +50,7 @@ export class EnterpriseApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'enterprise/employeeinfo',
+            url: ApiConfig.GetApiUrl() + 'enterprise/employeelogin',
             data: json,
             method: 'POST',
             dataType: 'json',
