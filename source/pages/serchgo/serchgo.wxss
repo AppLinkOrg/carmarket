@@ -8,9 +8,9 @@
 
 .put {
   border-radius: 10rpx;
-  margin-left: 100rpx;
- 
-  height: 120rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  height: 180rpx;
   width: 65%;
 }
 .btnn {

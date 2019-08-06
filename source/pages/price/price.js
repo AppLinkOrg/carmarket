@@ -1,7 +1,17 @@
 // pages/content/content.js
-import { AppBase } from "../../appbase";
-import { ApiConfig } from "../../apis/apiconfig";
-import { InstApi } from "../../apis/inst.api.js";
+import {
+  AppBase
+} from "../../appbase";
+import {
+  ApiConfig
+} from "../../apis/apiconfig";
+import {
+  InstApi
+} from "../../apis/inst.api.js";
+
+import {
+  CarApi
+} from "../../apis/car.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -10,10 +20,18 @@ class Content extends AppBase {
   onLoad(options) {
     this.Base.Page = this;
     //options.id=5;
-    super.onLoad(options);
+    // super.onLoad(options);
+    this.Base.setMyData({
+      check: "A"
+
+    });
+
+    console.log("a");
+
   }
   onMyShow() {
     var that = this;
+   
   }
   setPageTitle(instinfo) {
     var title = "报价中心";
@@ -29,13 +47,13 @@ class Content extends AppBase {
   }
 
 
-  bindpricing(){
+  bindpricing() {
     wx.navigateTo({
       url: '/pages/pricingdetail/pricingdetail',
     })
 
   }
-  
+
 
   bindlost() {
     wx.navigateTo({
@@ -43,15 +61,16 @@ class Content extends AppBase {
     })
   }
 
-  bindcheck(e){
+  bindcheck(e) {
     var checkid = e.currentTarget.dataset.check;
 
-    console.log(checkid,"选中的节点值");
+    console.log(checkid, "选中的节点值");
 
-   // return;
+    // return;
 
     this.Base.setMyData({
       check: checkid
+
     });
   }
 

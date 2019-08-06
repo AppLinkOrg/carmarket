@@ -24,7 +24,7 @@
 
     <view class='flex-row '>
       <view class='margin-left-30 margin-top-20'>
-        <image class='icon-50' src='{{uploadpath}}resource/{{res.upload}}' bindtap="clickimage"></image>
+        <image class='icon-90' src='{{uploadpath}}resource/{{res.upload}}' bindtap="clickimage"></image>
       </view>
       <view class='put gray-block'>
         <textarea placeholder='此处输入配件文字描述'></textarea>

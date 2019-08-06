@@ -11,7 +11,7 @@
   <view class='margin-30'>用户名</view>
   <view class='flex-1'></view>
   <view class="margin-20 flex-row">
-    <view class='txt-black'>陈师傅</view>
+    <view class='txt-black'>{{employeeinfo.name}}</view>
     <image class='icon-17 margin-left-10  margin-top-5' src='{{uploadpath}}resource/{{res.smallright}}'></image>
   </view>
 </view>
@@ -21,7 +21,7 @@
   <view class='margin-30'>公司名称</view>
   <view class='flex-1'></view>
   <view class="margin-20 flex-row">
-    <view class='txt-black'>深圳市兴达汽车维修中心</view>
+    <view class='txt-black'>{{employeeinfo.enterprise.name}}</view>
     <image class='icon-17 margin-left-10  margin-top-5' src='{{uploadpath}}resource/{{res.smallright}}'></image>
   </view>
 </view>
@@ -31,12 +31,15 @@
   <view class='margin-30'>公司电话</view>
   <view class='flex-1'></view>
   <view class="margin-20 flex-row">
-    <view class='txt-black'>13800138000</view>
+    <view class='txt-black'>{{employeeinfo.mobile}}</view>
   </view>
 </view>
 
 
 <view class='flex-row'>
   <view class='margin-30'>营业执照</view>
-
+ <view class='flex-1'></view>
+  <view class="margin-20 flex-row">
+        <image class='icon-100 margin-top-20 ;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.licensedphoto}}'></image>
+  </view>
 </view>

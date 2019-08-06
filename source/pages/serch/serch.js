@@ -16,9 +16,11 @@ class Content extends AppBase {
     var that = this;
     var instapi = new InstApi();
 
-    instapi.indexbanner({}, (indexbanner) => {
-      this.Base.setMyData({ indexbanner });
+    instapi.addhistory({}, (addhistory) => {
+      this.Base.setMyData({ addhistory });
     });
+
+
   }
   setPageTitle(instinfo) {
     var title = "配件查询";

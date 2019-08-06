@@ -38,6 +38,12 @@ class Content extends AppBase {
         searchhistory
       });
     });
+
+    carapi.vin({}, (vin) => {
+      this.Base.setMyData({
+        vin
+      });
+    });
   }
 
 
@@ -47,12 +53,12 @@ class Content extends AppBase {
     })
   }
 
-  binddelete(){
+  binddelete() {
     var that = this;
     this.Base.setMyData({
-      searchinput:''
+      searchinput: ''
     })
-  } 
+  }
 
   clickcamera() {
     var that = this;
@@ -67,15 +73,15 @@ class Content extends AppBase {
 
 
 
-  bindadd(){
-    var add=e.currentTarget.setMyData.add
-    
+  bindadd() {
+    var add = e.currentTarget.setMyData.add
+
     this.Base.setMyData({
-      
+
     });
   }
-  bindreduce(){
-    
+  bindreduce() {
+
   }
 
 
