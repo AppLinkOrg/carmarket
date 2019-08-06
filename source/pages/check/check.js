@@ -27,21 +27,15 @@ class Content extends AppBase {
     var instapi = new InstApi();
     var carapi = new CarApi();
 
-    instapi.indexbanner({}, (indexbanner) => {
-      this.Base.setMyData({
-        indexbanner
-      });
-    });
-
     carapi.searchhistory({}, (searchhistory) => {
       this.Base.setMyData({
         searchhistory
       });
     });
 
-    carapi.vin({}, (vin) => {
+    carapi.addhistory({}, (addhistory) => {
       this.Base.setMyData({
-        vin
+        addhistory
       });
     });
   }
@@ -71,20 +65,13 @@ class Content extends AppBase {
     });
   }
 
-
-
   bindadd() {
     var add = e.currentTarget.setMyData.add
-
-    this.Base.setMyData({
-
-    });
+    this.Base.setMyData({});
   }
   bindreduce() {
 
   }
-
-
 
   add() {
     wx.navigateTo({
@@ -98,6 +85,38 @@ class Content extends AppBase {
     })
   }
 
+  binvin(e) {
+    console.log(e);
+    this.Base.setMyData({
+      vin: e.detail.value
+    });
+
+  }
+  convin() {
+    var that = this;
+    var vin = this.Base.getMyData().vin;
+    var api = new CarApi();
+    api.vin({
+      vin: vin
+    }, (res) => {
+      console.log(res);
+
+      if (res.code == 0) {
+        that.Base.info(res.msg);
+      }
+      var biaoti = res.title[0] + res.title[1] + res.title[2] + res.title[3] + res.title[4];
+      if (res.code == 1) {
+        console.log(res.code);
+        api.addhistory({
+          vin: vin,
+          carrecord: biaoti
+        }, (qwe) => {
+
+          that.onMyShow();
+        })
+      }
+    })
+  }
 
 }
 var content = new Content();
@@ -110,4 +129,6 @@ body.binddelete = content.binddelete;
 body.bindadd = content.bindadd;
 body.bindreduce = content.bindreduce;
 body.clickcamera = content.clickcamera;
+body.binvin = content.binvin;
+body.convin = content.convin;
 Page(body)

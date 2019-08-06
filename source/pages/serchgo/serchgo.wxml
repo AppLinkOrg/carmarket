@@ -1,7 +1,7 @@
 <view class=''>
   <view class='bg-white '>
     <view class='btnn buttonone '>
-      <input class='margin-left-20' placeholder='继续添加' value="{{searchinput}}"></input>
+      <input class='margin-left-20' placeholder='继续添加' value="{{searchinput}}" ></input>
       <view class="flex-1"></view>
       <image class='icon-17 margin-right-20' src='{{uploadpath}}resource/{{res.delect}}' bindtap='bindclear'></image>
     </view>
@@ -10,11 +10,13 @@
 
   <view class='gray-block'>
     <view class='btnn  bg-white'>
-      <view class='txt-black margin-left-20'>刹车总泵</view>
+      <view class='txt-black margin-left-20'>刹车</view>
       <view class="flex-1"></view>
       <view class='margin-right-20 txt-primary'>删除</view>
     </view>
   </view>
+ 
+
 
   <view class='margin-top'>
     <view class=' flex-row '>

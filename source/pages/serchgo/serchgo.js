@@ -8,6 +8,9 @@ import {
 import {
   InstApi
 } from "../../apis/inst.api.js";
+import {
+  CarApi
+} from "../../apis/car.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -21,12 +24,10 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var instapi = new InstApi();
+    var carapi = new CarApi();
 
-    instapi.indexbanner({}, (indexbanner) => {
-      this.Base.setMyData({
-        indexbanner
-      });
-    });
+    
+
   }
 
 
@@ -68,4 +69,5 @@ body.onMyShow = content.onMyShow;
 body.complete = content.complete;
 body.bindclear = content.bindclear;
 body.clickimage = content.clickimage;
+
 Page(body)

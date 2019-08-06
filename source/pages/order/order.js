@@ -2,6 +2,7 @@
 import { AppBase } from "../../appbase";
 import { ApiConfig } from "../../apis/apiconfig";
 import { InstApi } from "../../apis/inst.api.js";
+import { OrderApi } from "../../apis/order.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -10,12 +11,38 @@ class Content extends AppBase {
   onLoad(options) {
     this.Base.Page = this;
     //options.id=5;
-    super.onLoad(options);
+   
+    this.Base.setMyData({
+      order: "A"
+
+    });
   }
   onMyShow() {
+    
+    var orderapi = new OrderApi();
 
-    //options.id=5;
-    // super.onLoad(options);
+    orderapi.mylist({}, (mylist) => {
+      console.log(mylist)
+        
+        var dfk=[];
+        var dfh=[];
+        var dsh=[];
+        var ywc=[];
+        var yqx=[];
+
+       mylist.map({item},(qqq)=>{
+       
+        
+    
+       }) 
+      
+
+      this.Base.setMyData({
+        mylist
+      });
+    });
+
+
   }
   setPageTitle() {
     wx.setNavigationBarTitle({

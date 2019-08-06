@@ -436,6 +436,9 @@ button[disabled][type=primary] {
   margin-top: 40rpx;
 }
 
+.margin-top-50 {
+  margin-top: 50rpx;
+}
 .margin-top-60 {
   margin-top: 60rpx;
 }
