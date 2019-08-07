@@ -20,11 +20,16 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
+    this.Base.setMyData({
+      vin:this.Base.options.vin,
+      b: this.Base.options.brandCode,
+      c: this.Base.options.mcid,
+    });
+    console.log(this.Base.getMyData().vin, this.Base.getMyData().b,this.Base.getMyData().c,"传入的参数")
   }
   onMyShow() {
     var that = this;
     var instapi = new InstApi();
-    var carapi = new CarApi();
 
   }
   binpart(e) {
@@ -33,20 +38,25 @@ class Content extends AppBase {
       part: e.detail.value
     });
 
+    var carapi = new CarApi();
+    var search_key = e.detail.value;
+    var vin = this.Base.getMyData().vin;
+    var brandCode = this.Base.getMyData().b;
+    var mcid = this.Base.getMyData().c;
+    console.log("mcidearch_key");
+
+
+    // return;
+    carapi.partsearch({ vin: vin, brandCode: brandCode, mcid: mcid, search_key: search_key}, (partsearch) => {
+      this.Base.setMyData({
+        partsearch
+      });
+    });
+
+     
   }
 
-  binpartsearch() {
-    var that = this;
-    var partsearch = this.Base.getMyData().partsearch;
-    var api = new CarApi();
-    api.partsearch({
-      partsearch: partsearch
-    }, (res) => {
-      console.log(res);
 
-   
-    })
-  }
 
 
   setPageTitle(instinfo) {
@@ -64,14 +74,29 @@ class Content extends AppBase {
   }
 
   addclick() {
+    
+    var carapi = new CarApi();
+
+    var vin= this.Base.getMyData().vin;
+    var brandCode= this.Base.getMyData().b;
+    var mcid = this.Base.getMyData().c;
+    console.log("mcidearch_key");
+    
+
+   // return;
+
+
+   // vin = LVSHFCAC2FH007377 & brandCode=ford & mcid=ZD18dns9JT89XFpbQFxRPWI % 3D
     wx.navigateTo({
       url: '/pages/serchgo/serchgo',
     })
 
   }
 
+  
 
-}
+
+} 
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
@@ -80,4 +105,5 @@ body.addclick = content.addclick;
 body.binddelete = content.binddelete;
 body.binpartsearch = content.binpartsearch;
 body.binpart = content.binpart;
+
 Page(body)

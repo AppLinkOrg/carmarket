@@ -13,6 +13,10 @@ import {
   CarApi
 } from "../../apis/car.api.js";
 
+import {
+  OrderApi
+} from "../../apis/order.api.js";
+
 class Content extends AppBase {
   constructor() {
     super();
@@ -26,6 +30,7 @@ class Content extends AppBase {
     var that = this;
     var instapi = new InstApi();
     var carapi = new CarApi();
+    var orderapi = new OrderApi();
 
     carapi.searchhistory({}, (searchhistory) => {
       this.Base.setMyData({
@@ -38,6 +43,19 @@ class Content extends AppBase {
         addhistory
       });
     });
+
+    orderapi.create({}, (create) => {
+      this.Base.setMyData({
+        create: create
+      });
+    });
+
+
+  }
+  bindshou() {
+    wx.navigateTo({
+      url: '/pages/serchgo/serchgo',
+    })
   }
 
 
@@ -66,16 +84,24 @@ class Content extends AppBase {
   }
 
   bindadd() {
-    var add = e.currentTarget.setMyData.add
-    this.Base.setMyData({});
+    // var add = e.currentTarget.setMyData.add
+    // this.Base.setMyData({});
   }
-  bindreduce() {
+  bindreduce() {}
 
-  }
+  add(e) {
+    // var vin = e.currentTarget.vin
+    // console.log(vin)
 
-  add() {
+    var vin = this.Base.getMyData().a;
+    var brandCode = this.Base.getMyData().b
+    var mcid = this.Base.getMyData().c
+    var carapi = new CarApi();
+
+    console.log(vin, brandCode, mcid, "输出");
+
     wx.navigateTo({
-      url: '/pages/serch/serch',
+      url: '/pages/serch/serch?vin=' + vin + '&brandCode=' + brandCode + '&mcid=' + mcid,
     })
   }
 
@@ -95,19 +121,28 @@ class Content extends AppBase {
   convin() {
     var that = this;
     var vin = this.Base.getMyData().vin;
-    var api = new CarApi();
-    api.vin({
+    var api654654 = new CarApi();
+    api654654.vin({
       vin: vin
     }, (res) => {
-      console.log(res);
+      this.Base.setMyData({
+
+        a: res.data.vin,
+        b: res.data.brandCode,
+        c: res.data.mcid,
+        biaoti: res.title[0] + res.title[1] + res.title[2] + res.title[3] + res.title[4]
+      })
+
+      console.log(res.data.vin, res.data.brandCode, res.data.mcid, "输出");
 
       if (res.code == 0) {
         that.Base.info(res.msg);
       }
-      var biaoti = res.title[0] + res.title[1] + res.title[2] + res.title[3] + res.title[4];
+      var biaoti = this.Base.getMyData().biaoti;
+
       if (res.code == 1) {
         console.log(res.code);
-        api.addhistory({
+        api654654.addhistory({
           vin: vin,
           carrecord: biaoti
         }, (qwe) => {
@@ -130,5 +165,6 @@ body.bindadd = content.bindadd;
 body.bindreduce = content.bindreduce;
 body.clickcamera = content.clickcamera;
 body.binvin = content.binvin;
-body.convin = content.convin;
+body.convin = content.convin; 
+body.bindshou = content.bindshou; 
 Page(body)

@@ -26,7 +26,7 @@ class Content extends AppBase {
     var instapi = new InstApi();
     var carapi = new CarApi();
 
-    
+
 
   }
 
@@ -56,9 +56,12 @@ class Content extends AppBase {
   }
 
   complete(e) {
-    wx.navigateBack({
-      delta: 2
+    wx.navigateTo({
+      url: '/pages/check/check',
     })
+    // wx.navigateBack({
+    //   delta: 2
+    // })
   }
 
 }

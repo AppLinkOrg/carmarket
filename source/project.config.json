@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 20,
 			"list": [
 				{
 					"id": -1,
@@ -179,6 +179,13 @@
 					"id": -1,
 					"name": "我的账户",
 					"pathName": "pages/account/account",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "填写/check",
+					"pathName": "pages/check/check",
 					"scene": null
 				}
 			]
