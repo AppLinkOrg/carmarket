@@ -21,11 +21,11 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
     this.Base.setMyData({
-      vin:this.Base.options.vin,
+      vin: this.Base.options.vin,
       b: this.Base.options.brandCode,
       c: this.Base.options.mcid,
     });
-    console.log(this.Base.getMyData().vin, this.Base.getMyData().b,this.Base.getMyData().c,"传入的参数")
+    console.log(this.Base.getMyData().vin, this.Base.getMyData().b, this.Base.getMyData().c, "传入的参数")
   }
   onMyShow() {
     var that = this;
@@ -43,21 +43,38 @@ class Content extends AppBase {
     var vin = this.Base.getMyData().vin;
     var brandCode = this.Base.getMyData().b;
     var mcid = this.Base.getMyData().c;
-    console.log("mcidearch_key");
 
-
-    // return;
-    carapi.partsearch({ vin: vin, brandCode: brandCode, mcid: mcid, search_key: search_key}, (partsearch) => {
+    //return;
+    //接口传值
+    carapi.partsearch({
+      vin: vin,
+      brandCode: brandCode,
+      mcid: mcid,
+      search_key: search_key
+    }, (partsearch) => {
       this.Base.setMyData({
         partsearch
       });
     });
-
-     
   }
 
+  bindlabel(e) {
+    console.log(e, "啦啦啦");
 
+    //return;
+    var kkljk = e.currentTarget.dataset.name;
+    console.log(kkljk);
+    //return;
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1]; //当前页面
+    var prevPage = pages[pages.length - 2]; //上一个页面
+    //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
 
+    prevPage.setData({
+      jhjj11: kkljk
+    })
+    wx.navigateBack({})
+  }
 
   setPageTitle(instinfo) {
     var title = "配件查询";
@@ -73,30 +90,29 @@ class Content extends AppBase {
     })
   }
 
+
+
+
   addclick() {
-    
+
     var carapi = new CarApi();
 
-    var vin= this.Base.getMyData().vin;
-    var brandCode= this.Base.getMyData().b;
+    var vin = this.Base.getMyData().vin;
+    var brandCode = this.Base.getMyData().b;
     var mcid = this.Base.getMyData().c;
-    console.log("mcidearch_key");
-    
-
-   // return;
+    console.log("ascc");
+    // return;
 
 
-   // vin = LVSHFCAC2FH007377 & brandCode=ford & mcid=ZD18dns9JT89XFpbQFxRPWI % 3D
-    wx.navigateTo({
+    // vin = LVSHFCAC2FH007377 & brandCode=ford & mcid=ZD18dns9JT89XFpbQFxRPWI % 3D
+    wx.redirectTo({
       url: '/pages/serchgo/serchgo',
     })
 
   }
 
-  
 
-
-} 
+}
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
@@ -105,5 +121,6 @@ body.addclick = content.addclick;
 body.binddelete = content.binddelete;
 body.binpartsearch = content.binpartsearch;
 body.binpart = content.binpart;
+body.bindlabel = content.bindlabel;
 
 Page(body)

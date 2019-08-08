@@ -56,12 +56,10 @@ class Content extends AppBase {
   }
 
   complete(e) {
-    wx.navigateTo({
-      url: '/pages/check/check',
+   
+    wx.navigateBack({
+      
     })
-    // wx.navigateBack({
-    //   delta: 2
-    // })
   }
 
 }

@@ -25,13 +25,28 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
+
+    this.Base.setMyData({
+      jhjj: []
+    });
+
   }
   onMyShow() {
     var that = this;
     var instapi = new InstApi();
     var carapi = new CarApi();
     var orderapi = new OrderApi();
-
+    var jhjj = this.Base.getMyData().jhjj;
+    console.log(13132131);
+    console.log(this.Base.getMyData().jhjj11);
+    if (this.Base.getMyData().jhjj11 != undefined) {
+      jhjj.push(this.Base.getMyData().jhjj11);
+      this.Base.setMyData({ jhjj11:undefined})
+    }
+    this.Base.setMyData({
+      jhjj: jhjj
+    })
+    //console.log(ssasd, "浏览")
     carapi.searchhistory({}, (searchhistory) => {
       this.Base.setMyData({
         searchhistory
@@ -44,21 +59,12 @@ class Content extends AppBase {
       });
     });
 
-    orderapi.create({}, (create) => {
-      this.Base.setMyData({
-        create: create
-      });
-    });
-
-
   }
   bindshou() {
     wx.navigateTo({
       url: '/pages/serchgo/serchgo',
     })
   }
-
-
   setPageTitle(instinfo) {
     wx.setNavigationBarTitle({
       title: "车架号查询",
@@ -104,8 +110,43 @@ class Content extends AppBase {
       url: '/pages/serch/serch?vin=' + vin + '&brandCode=' + brandCode + '&mcid=' + mcid,
     })
   }
+ 
 
   public() {
+    
+    var orderapi = new OrderApi();
+    var mcid = this.Base.getMyData().c;
+    var vin =this.Base.getMyData().vin;
+    var brandCode = this.Base.getMyData().b;
+    var carname = this.Base.getMyData().biaoti;
+    var needinvoice = 'Y';  
+
+    var jhjj=this.Base.getMyData().jhjj;
+       
+      
+      var item=  jhjj.map((item)=>{
+           
+         return  item=item+'|12313|'+1;
+
+        })
+    var items = item.join(',');
+  
+   
+    console.log(mcid);
+    orderapi.create({
+      mcid: mcid, 
+      vin: vin, 
+      brandCode:brandCode,
+      carname:carname,
+      needinvoice: needinvoice,
+      items: items 
+     
+    }, (res)=>{
+      console.log(res);
+    })
+
+    
+    //console.log(vin, brandCode, mcid,"史蒂夫");
     wx.switchTab({
       url: '/pages/price/price',
     })
@@ -125,11 +166,14 @@ class Content extends AppBase {
     api654654.vin({
       vin: vin
     }, (res) => {
+
+  
       this.Base.setMyData({
 
         a: res.data.vin,
         b: res.data.brandCode,
         c: res.data.mcid,
+
         biaoti: res.title[0] + res.title[1] + res.title[2] + res.title[3] + res.title[4]
       })
 
@@ -165,6 +209,6 @@ body.bindadd = content.bindadd;
 body.bindreduce = content.bindreduce;
 body.clickcamera = content.clickcamera;
 body.binvin = content.binvin;
-body.convin = content.convin; 
-body.bindshou = content.bindshou; 
+body.convin = content.convin;
+body.bindshou = content.bindshou;
 Page(body)

@@ -13,7 +13,7 @@
 
 
 <block wx:for="{{partsearch.data}}" wx:key="k">
-  <view class='txt-black margin-top-40 margin-left-30 margin-bottom-20'>{{item.struct_label}}</view>
+  <view class='txt-black margin-top-40 margin-left-30 margin-bottom-20' data-name='{{item.struct_label}}' bindtap="bindlabel">{{item.struct_label}}</view>
   <view class='bott margin-bottom-20'></view>
 </block>
 

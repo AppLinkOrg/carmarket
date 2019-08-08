@@ -47,8 +47,8 @@
 
 <!--自动添加 -->
 <view class=''>
-  <view class='btnn  bg-purple'>
-    <view class='txt-blue margin-left-20'>刹车总泵</view>
+  <view class='btnn  bg-purple' wx:for="{{jhjj}}">
+    <view class='txt-blue margin-left-20' >{{item}}</view>
     <view class="flex-1"></view>
     <view class=''>
       <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}' bindtap='bindreduce'></image>
@@ -66,7 +66,7 @@
 <view class='flex-row'>
   <view class='buttnn  bg-purple'>
     <view class="flex-row">
-      <image class='icon-75 ' src='{{uploadpath}}resource/{{res.add}}' bindtap='bindadd'></image>
+      <image class='icon-75 ' src='' bindtap='bindadd'></image>
       <view class="flex-1"></view>
       <view class="flex-row margin-top-80">
         <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}' bindtap='bindreduce'></image>
@@ -81,10 +81,10 @@
 </view>
 
 
-<view class='flex-row'>
-  <view class='txt-black margin-left-30'>是否开发票</view>
+<view class='flex-row margin-top-20'>
+  <view class='txt-black margin-left-30 '>是否开发票</view>
   <view class='flex-1'></view>
   <image class='icon-25 margin-right-30' src='{{uploadpath}}resource/{{res.no}}'></image>
 </view>
 
-<view class='btn bg-btn ' bindtap='public'>发布求购</view>
+<button class='btn bg-btn ' bindtap='public'>发布求购</button>
