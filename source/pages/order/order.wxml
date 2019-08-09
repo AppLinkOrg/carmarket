@@ -28,7 +28,7 @@
 <view class='borderbottom'></view>
 
 <!--待付款-->
-<view class="" wx:if="{{order=='A'}}">
+<view class="" wx:if="{{order=='A'}}" >
   <view wx:if="{{mylist.length==0}}" class='flex-row flex-column'>
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
     <view class=''>暂时没有相关订单</view>
@@ -52,22 +52,22 @@
 
 <!--待发货-->
 <view class="" wx:if="{{order=='B'}}">
-  <view class='flex-row flex-column'>
+  <view class='flex-row flex-column' wx:if="{{mylist.length==0}}">
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
     <view class=''>暂时没有相关订单</view>
   </view>
-  <view class='box ' bindtap='bindsend'>
+  <view class='box ' bindtap='bindsend' wx:for="{{daifahuo}}"   wx:key="k">
 
     <view class='flex-row margin-left-30 margin-top-30'>
       <view class=''>订单编号：</view>
-      <view>2019080212634</view>
+      <view>{{item.orderno}}</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>待发货</view>
     </view>
-    <view class=' margin-left-30 margin-top-30 txt-black'>刹车总泵、前保险杠、左大灯</view>
-    <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
+    <view class=' margin-left-30 margin-top-30 txt-black'>{{item.goodsstr}}</view>
+    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
     <view class='flex-row'>
-      <view class='flex-row margin-left-30 margin-top-20'>2019-08-02/15:25</view>
+      <view class='flex-row margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
       <view class='flex-1'></view>
       <view class='orpay txt-white margin-right-30 margin-top-20'>交易成功</view>
     </view>
@@ -77,22 +77,21 @@
 <!--待收货-->
 
 <view wx:if="{{order=='C'}}">
-  <view class='flex-row flex-column'>
+  <view class='flex-row flex-column'  wx:if="{{mylist.length==0}}">
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
     <view class=''>暂时没有相关订单</view>
   </view>
-  <view class='box ' bindtap='bindreceive'>
-
+  <view class='box ' bindtap='bindreceive' wx:for="{{daishouhuo}}"  wx:key="k">
     <view class='flex-row margin-left-30 margin-top-30'>
       <view class=''>订单编号：</view>
-      <view>2019080212634</view>
+      <view>{{item.orderno}}</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>待收货</view>
     </view>
-    <view class=' margin-left-30 margin-top-30 txt-black'>刹车总泵、前保险杠、左大灯</view>
-    <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
+    <view class=' margin-left-30 margin-top-30 txt-black'>{{item.goodsstr}}</view>
+    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
     <view class='flex-row'>
-      <view class='flex-row margin-left-30 margin-top-20'>2019-08-02/15:25</view>
+      <view class='flex-row margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
       <view class='flex-1'></view>
       <view class='orpay txt-white margin-right-30 margin-top-20'>已发货</view>
     </view>
@@ -101,23 +100,21 @@
 
 <!--已完成-->
 <view wx:if="{{order=='D'}}">
-  <view class='flex-row flex-column'>
+  <view class='flex-row flex-column'  wx:if="{{mylist.length==0}}">
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
     <view class=''>暂时没有相关订单</view>
   </view>
-  <view class='box ' bindtap='bindsuccess'>
-
-
+  <view class='box ' bindtap='bindsuccess' wx:for="{{yiwancheng}}" wx:key="k">
     <view class='flex-row margin-left-30 margin-top-30'>
       <view class=''>订单编号：</view>
-      <view>2019080212634</view>
+      <view>{{item.orderno}}</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>已完成</view>
     </view>
-    <view class=' margin-left-30 margin-top-30 txt-black'>刹车总泵、前保险杠、左大灯</view>
-    <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
+    <view class=' margin-left-30 margin-top-30 txt-black'>{{item.goodsstr}}</view>
+    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
     <view class='flex-row'>
-      <view class='flex-row margin-left-30 margin-top-20'>2019-08-02/15:25</view>
+      <view class='flex-row margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
       <view class='flex-1'></view>
       <view class='orpay txt-white margin-right-30 margin-top-20'>申请退换</view>
     </view>
@@ -127,21 +124,21 @@
 
 <!--已取消-->
 <view wx:if="{{order=='E'}}">
-  <view class='flex-row flex-column'>
+  <view class='flex-row flex-column'  wx:if="{{mylist.length==0}}">
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
     <view class=''>暂时没有相关订单</view>
   </view>
-  <view class='box '>
+  <view class='box ' wx:for="{{yiquxiao}}"   wx:key="k">
     <view class='flex-row margin-left-30 margin-top-30'>
       <view class=''>订单编号：</view>
-      <view>2019080212634</view>
+      <view>{{item.orderno}}</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>已完成</view>
     </view>
-    <view class=' margin-left-30 margin-top-30 txt-black'>刹车总泵、前保险杠、左大灯</view>
-    <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
+    <view class=' margin-left-30 margin-top-30 txt-black'>{{item.goodsstr}}</view>
+    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
     <view class='flex-row'>
-      <view class='flex-row margin-left-30 margin-top-20'>2019-08-02/15:25</view>
+      <view class='flex-row margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
       <view class='flex-1'></view>
       <view class='orpay txt-white margin-right-30 margin-top-20'>继续购件</view>
     </view>

@@ -18,32 +18,51 @@ class Content extends AppBase {
     });
   }
   onMyShow() {
-    
     var orderapi = new OrderApi();
-
-    orderapi.mylist({}, (mylist) => {
-      console.log(mylist)
-        
-        var dfk=[];
-        var dfh=[];
-        var dsh=[];
-        var ywc=[];
-        var yqx=[];
-
-       mylist.map({item},(qqq)=>{
-       
-        
-    
-       }) 
-      
-
+    orderapi.mylist({
+      status: 'A,B',
+    }, (mylist) => {
       this.Base.setMyData({
         mylist
-      });
-    });
+      })
+    })
 
+    orderapi.mylist({
+      status: 'L',
+    }, (daifahuo) => {
+      this.Base.setMyData({
+        daifahuo
+      })
+    })
 
+    orderapi.mylist({
+      status: 'M',
+    }, (daishouhuo) => {
+      this.Base.setMyData({
+        daishouhuo
+      })
+    })
+
+    orderapi.mylist({
+      status: 'N',
+    }, (yiwancheng) => {
+      this.Base.setMyData({
+      
+        yiwancheng
+      })
+    })
+
+    orderapi.mylist({
+      status: 'E',
+    }, (yiquxiao) => {
+      this.Base.setMyData({
+        yiquxiao
+      })
+    })
+
+   
   }
+  
   setPageTitle() {
     wx.setNavigationBarTitle({
       title: '我的订单',

@@ -3,6 +3,7 @@ import { AppBase } from "../../appbase";
 import { ApiConfig } from "../../apis/apiconfig";
 import { InstApi } from "../../apis/inst.api.js";
 import { CarApi} from "../../apis/car.api.js";
+import { OrderApi } from "../../apis/order.api.js";
 
 
 class Content extends AppBase {
@@ -17,9 +18,11 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var instapi = new InstApi();
-    var carapi = new CarApi();
+    var orderapi = new OrderApi();
 
-    carapi.searchhistory({}, (searchhistory) => {
+    orderapi.detail({
+      id:this.Base.options.id
+    }, (searchhistory) => {
       this.Base.setMyData({
         searchhistory
       });
@@ -28,24 +31,13 @@ class Content extends AppBase {
   }
 
   setPageTitle(instinfo) {
-    var title = "车架号查询";
+    var title = "待报价";
     wx.setNavigationBarTitle({
       title: title,
     })
   }
 
 
-
-  bindcemra(){
-    var that = this;
-    this.Base.takeImage("product", (ret) => {
-      var images = that.Base.getMyData().images;
-      images.push(ret);
-      that.Base.setMyData({
-        images
-      });
-    });
-  }
 
   binddelete() {
     var that = this;
@@ -60,6 +52,6 @@ var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
-body.bindcemra = content.bindcemra;
+
 body.binddelete = content.binddelete;
 Page(body)

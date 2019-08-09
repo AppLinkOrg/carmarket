@@ -12,6 +12,10 @@ import {
 import {
   CarApi
 } from "../../apis/car.api.js";
+import {
+  OrderApi
+} from "../../apis/order.api.js";
+
 
 class Content extends AppBase {
   constructor() {
@@ -20,18 +24,11 @@ class Content extends AppBase {
   onLoad(options) {
     this.Base.Page = this;
     //options.id=5;
-    // super.onLoad(options);
+    super.onLoad(options);
     this.Base.setMyData({
-      check: "A"
-
+      check: "A",
     });
-
     console.log("a");
-
-  }
-  onMyShow() {
-    var that = this;
-   
   }
   setPageTitle(instinfo) {
     var title = "报价中心";
@@ -39,42 +36,80 @@ class Content extends AppBase {
       title: title,
     })
   }
+  onMyShow() {
+    var that = this;
+    var orderapi = new OrderApi();
+    orderapi.mylist({
+      status: 'A',
+    }, (mylist) => {
+      this.Base.setMyData({
+        mylist
+      })
+    })
+    orderapi.mylist({
+      status: 'B',
 
-  pricedetail() {
+    }, (pricede) => {
+      this.Base.setMyData({
+        pricede
+      })
+    })
+    orderapi.mylist({
+      status: 'E',
+
+    }, (poor) => {
+      this.Base.setMyData({
+        poor
+      })
+    })
+
+  }
+  
+  pricedetail(e) {
+    var id = e.currentTarget.id;
     wx.navigateTo({
-      url: '/pages/pricedetail/pricedetail',
+      url: '/pages/pricedetail/pricedetail?id=' + id,
     })
   }
 
-
-  bindpricing() {
+  bindpricing(e) {
+    var name = e.currentTarget.name;
     wx.navigateTo({
-      url: '/pages/pricingdetail/pricingdetail',
+      url: '/pages/pricingdetail/pricingdetail?name=' + name,
     })
-
+  }
+  bindtrue(e) {
+    var queren = e.currentTarget.queren;
+    wx.navigateTo({
+      url: '/pages/pricing/pricing?queren=' + queren,
+    })
   }
 
+  bindquxiao(e) {
+    var id = e.currentTarget.id
 
-  bindlost() {
-    wx.navigateTo({
-      url: '/pages/orderdetail/orderdetail',
+    console.log(id,"ggg")
+   // return
+    var orderapi = new OrderApi();
+    orderapi.updatestatus({
+      order_id: id,
+      status: "E"
+      
+    }, (myd) => {
+      this.Base.setMyData({
+        myd
+      })
     })
   }
 
   bindcheck(e) {
     var checkid = e.currentTarget.dataset.check;
-
     console.log(checkid, "选中的节点值");
-
     // return;
-
     this.Base.setMyData({
       check: checkid
-
     });
   }
-
-
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -82,9 +117,8 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.pricedetail = content.pricedetail;
 body.bindpricing = content.bindpricing;
-body.bindlost = content.bindlost;
-
 body.bindcheck = content.bindcheck;
-
+body.bindtrue = content.bindtrue;
+body.bindquxiao = content.bindquxiao;
 
 Page(body)

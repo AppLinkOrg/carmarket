@@ -185,7 +185,7 @@ view, navigator, input, text, textarea {
 }
 
 .txt-green {
-  color: darkgreen;
+  color: rgb(7, 150, 7);
 }
 
 .txt-orange {

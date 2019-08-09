@@ -62,7 +62,8 @@ class Content extends AppBase {
     console.log(e, "啦啦啦");
 
     //return;
-    var kkljk = e.currentTarget.dataset.name;
+    var kkljk=[];
+     kkljk = {name:e.currentTarget.dataset.name,num:1};
     console.log(kkljk);
     //return;
     var pages = getCurrentPages();
@@ -90,13 +91,9 @@ class Content extends AppBase {
     })
   }
 
-
-
-
   addclick() {
 
     var carapi = new CarApi();
-
     var vin = this.Base.getMyData().vin;
     var brandCode = this.Base.getMyData().b;
     var mcid = this.Base.getMyData().c;
