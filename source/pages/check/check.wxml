@@ -7,7 +7,7 @@
     <view class='flex-row margin-left-20'>
       <image class='icon-25 ' src='{{uploadpath}}resource/{{res.cemera}}' bindtap="clickcamera"></image>
     </view>
-    <input class="flex-row flex-1  margin-left-20 margin-right-20" placeholder='请填写车架号' bindinput="binvin" value="{{searchinput}}" bindconfirm="convin"></input>
+    <input class="flex-row flex-1  margin-left-20 margin-right-20" placeholder='请填写车架号' bindinput="binvin" value="{{vin}}" bindconfirm="convin"></input>
     <view class='margin-right-20'>
       <image class='icon-25 ' src='{{uploadpath}}resource/{{res.delect}}' bindtap='binddelete'></image>
     </view>

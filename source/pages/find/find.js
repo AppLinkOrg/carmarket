@@ -69,14 +69,17 @@ class Content extends AppBase {
 
 
   clickvin() {
-    var that = this;
-    this.Base.takeImage("product", (ret) => {
-      var images = that.Base.getMyData().images;
-      images.push(ret);
-      that.Base.setMyData({
-        images
-      });
-    });
+    // var that = this;
+    // this.Base.takeImage("product", (ret) => {
+    //   var images = that.Base.getMyData().images;
+    //   images.push(ret);
+    //   that.Base.setMyData({
+    //     images
+    //   });
+    // });
+    wx.navigateTo({
+      url: '/pages/vinscan/vinscan',
+    })
   }
 
 

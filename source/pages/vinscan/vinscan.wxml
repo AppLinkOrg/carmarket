@@ -1,0 +1,24 @@
+<!--pages/vinscan/vinscan.wxml-->
+<camera device-position="back" autopush style="width: 100vw; height: 100vh;">
+  <cover-view class="bg">
+  </cover-view>
+  <cover-view class="scantarget btn-primary-line">
+
+  </cover-view>
+  <cover-view class="bg2">
+    <cover-view class="h4 txt-white text-center margin-top">对准车架号拍照</cover-view>
+  <cover-view class="padding margin-top">
+    <cover-view class="margin-left margin-right text-center padding txt-white bg-primary borderwan" bindtap="take" >拍照</cover-view>
+</cover-view>
+
+  <cover-view class="flex-row flex-center" style="width:100%;margin-top:10vh;" >
+    <cover-view bindtap="upload" class="margin-left iconbg">
+      <cover-image class="icon-40 " src="{{uploadpath}}resource/{{res.uploadvin}}"  ></cover-image>
+    </cover-view>
+    <cover-view  class="flex-1"></cover-view>
+    <cover-view  bindtap="write" class="margin-right iconbg">
+      <cover-image  src="{{uploadpath}}resource/{{res.manualvin}}" class="icon-40 "></cover-image>
+    </cover-view>
+  </cover-view>
+  </cover-view>
+</camera>

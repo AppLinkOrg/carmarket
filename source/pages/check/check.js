@@ -25,10 +25,15 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
+    var vin="";
+    if(options.vin!=undefined){
+      vin=options.vin;
+    }
 
     this.Base.setMyData({
       jhjj: [],
-      qwrfwa: []
+      qwrfwa: [],
+      vin
     });
 
   }
@@ -124,7 +129,7 @@ class Content extends AppBase {
   binddelete() {
     var that = this;
     this.Base.setMyData({
-      searchinput: ''
+      vin: ''
     })
   }
 
