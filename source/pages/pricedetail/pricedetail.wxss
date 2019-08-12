@@ -36,3 +36,15 @@ Page {
   width: 100%;
   height: 252rpx;
 }
+
+.quxiaio{
+  position: fixed;
+  bottom: 0;
+  height: 100rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #143779;
+  color: white;
+}

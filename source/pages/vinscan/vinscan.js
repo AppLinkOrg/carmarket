@@ -81,11 +81,8 @@ class Content extends AppBase {
           }
         });
 
-
-
       }
     })
-
 
   }
   upload() {

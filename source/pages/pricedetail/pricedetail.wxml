@@ -16,7 +16,7 @@
     <view class='margin-left-10 txt-black txt-bold '>需求配件</view>
   </view>
 
-  <view class='' wx:for="{{searchhistory.orderitems}}">
+  <view class='' wx:for="{{searchhistory.orderitems}}" wx:key="k">
     <view class='btnn  gray-block'>
       <view class='txt-black margin-left-20'>{{item.name}}</view>
       <view class="flex-1"></view>
@@ -32,3 +32,5 @@
   </view>
 
 </view>
+
+<view class="quxiaio">取消报价</view>

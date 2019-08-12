@@ -1,3 +1,7 @@
+page {
+  background-color: rgb(241, 241, 241);
+}
+
 .buttonone {
   margin: 20rpx;
   height: 100rpx;
@@ -11,7 +15,6 @@
   background-color: rgb(235, 235, 235);
   height: 140rpx;
   width: 95%;
-
 }
 
 .gbtn {
@@ -20,5 +23,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10rpx;
+  background-color: rgb(214, 35, 35);
 }

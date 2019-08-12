@@ -23,15 +23,15 @@
         陈师傅
         <view class="txt-black  margin-bottom-20">2019/07/24 18:25</view>
       </view>
-      <view class="txt-black  margin-right-20">-￥1924威币</view>
+      <view class="txt-black  margin-right-20">-￥{{}}威币</view>
     </view>
 
-    <view class="flex-row flex-center">
+    <!-- <view class="flex-row flex-center">
       <view class="txt-black margin-left-30 margin-top-30 flex-1">
         陈师傅
         <view class="txt-black  margin-bottom-20">2019/07/24 18:25</view>
       </view>
       <view class="txt-black  margin-right-20">-￥1924威币</view>
-    </view>
+    </view> -->
   </view>
 </view>

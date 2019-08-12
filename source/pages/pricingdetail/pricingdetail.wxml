@@ -6,34 +6,30 @@
     </view>
     <view class='flex-row flex-wrap margin-top-20'>
       <view class='txt-black margin-left-30'>车架号：</view>
-      <view class='txt-black '>车架号待定</view>
+      <view class='txt-black '>{{index.vin}}</view>
     </view>
-    <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10 '>
-      <view class='txt-black '>车型：</view>
-      <view class='txt-black '>车架号所搜的</view>
+    <view class='flex-row flex-wrap margin-bottom-40 margin-left-30 margin-top-10 '>
+      <view class='txt-black '>车型：{{index.carname}}</view>
     </view>
-
   </view>
-
   <view class='price flex-row  white-block'>
     <view class='borderleft'></view>
     <view class='margin-left-10 txt-black txt-bold ' style=' height:70rpx; width:100%;'>报价清单</view>
   </view>
-
-  <view class=''>
+  <!-- <view class=''>
     <view class='bg' style=' height:220rpx; width:95%;'>
-      <view class='margin-top-10 margin-left-20 txt-white'>深圳市鑫广泰汽车服务有限公司</view>
+      <view class='margin-top-10 margin-left-20 txt-white'>{{userbaojia.enterprise_name}}</view>
       <view class='flex-row flex-wrap margin-top-10'>
-        <view class='flex-1 flex-row flex-bottom'>
+        <view class='flex-1 flex-row flex-center'>
           <image class='icon-25 margin-left-20' src='{{uploadpath}}resource/{{res.renzheng}}'></image>
           <view class='h5 txt-white margin-left-10'>已认证</view>
         </view>
-        <view class='flex-1 flex-row flex-bottom'>
+        <view class='flex-1 flex-row flex-center'>
           <image class='icon-25 ' src='{{uploadpath}}resource/{{res.tuihuan}}'></image>
           <view class='h5 txt-white margin-left-10'>包退换</view>
         </view>
         <view class='flex-1 flex-row flex-bottom'>
-          <view class='h2 txt-bold txt-orange margin-bottom-20'>1888</view>
+          <view class='h2 txt-bold txt-orange '>1888</view>
           <view class='h5 txt-bold txt-orange margin-left-10'>威币</view>
         </view>
       </view>
@@ -41,49 +37,51 @@
         <image class='icon-25 margin-bottom-10' src='{{uploadpath}}resource/{{res.up}}'></image>
       </view>
     </view>
+  </view> -->
+  <view wx:for="{{userbaojia}}" wx:key="k">
 
-  </view>
-  <view class=''>
-    <view class='bg' style=' height:220rpx; width:95%;'>
-      <view class='margin-top-10 margin-left-20 txt-white'>深圳市鑫广泰汽车服务有限公司</view>
+    <view class='bg' style=' height:190rpx; width:95%;'>
+      <view class='margin-top-10 margin-left-20 txt-white'>{{item.enterprise_name}}</view>
       <view class='flex-row flex-wrap margin-top-10'>
-        <view class='flex-1 flex-row flex-bottom'>
+        <view class='flex-1 flex-row flex-center'>
           <image class='icon-25 margin-left-20' src='{{uploadpath}}resource/{{res.renzheng}}'></image>
           <view class='h5 txt-white margin-left-10'>已认证</view>
         </view>
-        <view class='flex-1 flex-row flex-bottom'>
+        <view class='flex-1 flex-row flex-center'>
           <image class='icon-25 ' src='{{uploadpath}}resource/{{res.tuihuan}}'></image>
           <view class='h5 txt-white margin-left-10'>包退换</view>
         </view>
-        <view class='flex-1 flex-row flex-bottom'>
-          <view class='h2 txt-bold txt-orange margin-bottom-20'>1888</view>
-          <view class='h5 txt-bold txt-orange margin-left-10'>威币</view>
+        <view class=' flex-row flex-bottom'>
+          <view class='h2 txt-bold txt-orange '>{{item.amount}}</view>
+          <view class='h5 txt-bold txt-orange margin-left-10 margin-right-10'>威币</view>
         </view>
-
       </view>
       <view class='flex-row flex-column'>
-        <image class='icon-25 margin-bottom-10' src='{{uploadpath}}resource/{{res.down}}'></image>
+        <image class='icon-25 margin-bottom-10 ' src='{{uploadpath}}resource/{{res.up}}' data-check='{{item.id}}' bindtap="binddianji"></image>
+      </view>
+
+    </view>
+
+
+    <view wx:if="{{check==item.id}}">
+      <view class='bg-white margin-left-20 margin-top-5' style=' height:190rpx; width:95%;' wx:for="{{item.quoteitems}}" wx:key="key">
+        <view class='margin-top-20 margin-left-20 txt-black'>{{item.name}}</view>
+        <view class='flex-row flex-wrap margin-top-10 margin-left-20'>
+          <view class='h5'>品质：</view>
+          <view class='h5'>{{}}</view>
+        </view>
+        <view class='flex-row flex-wrap margin-left-20'>
+          <view class='h5'>单价：</view>
+          <view class='txt-red h5'>{{item.price}}元</view>
+          <view class='flex-1'></view>
+          <view class='h5'>发货数量：</view>
+          <view class='h5 margin-right-20'>{{item.qty}}</view>
+        </view>
       </view>
     </view>
 
   </view>
-
-  <view class='bg-white margin-left-20 margin-top-5' style=' height:190rpx; width:95%;'>
-    <view class='margin-top-20 margin-left-20 txt-black'>刹车总泵</view>
-    <view class='flex-row flex-wrap margin-top-10 margin-left-20'>
-      <view class='h5'>品牌：</view>
-      <view class='h5'>原厂</view>
-    </view>
-    <view class='flex-row flex-wrap margin-left-20'>
-      <view class='h5'>单价：</view>
-      <view class='txt-red h5'>元</view>
-      <view class='flex-1'></view>
-      <view class='h5'>发货数量：</view>
-      <view class='h5 margin-right-20'>1</view>
-    </view>
-  </view>
-
-  <view class='bg-white margin-left-20 margin-top-5' style=' height:190rpx; width:95%;'>
+  <!-- <view class='bg-white margin-left-20 margin-top-5' style=' height:190rpx; width:95%;'>
     <view class='margin-top-20 margin-left-20 txt-black'>前保险杠</view>
     <view class='flex-row flex-wrap margin-top-10 margin-left-20'>
       <view class='h5'>品牌：</view>
@@ -96,6 +94,7 @@
       <view class='h5'>发货数量：</view>
       <view class='h5 margin-right-20'>1</view>
     </view>
-  </view>
-  <view class='queren margin-left-20 margin-right-20' bindtap="bindqueren">确认报价</view>
+  </view> -->
+
+  <view class='queren margin-left-20 margin-right-20' bindtap="bindqueren" >选择该供应商进行交易</view>
 </view>

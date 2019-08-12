@@ -3,7 +3,7 @@
   margin-top: 20rpx;
   margin-left: 20rpx;
   margin-right: 20rpx;
-  border-radius: 10rpx;
+  border-radius: 10rpx 10rpx 0rpx 0rpx ;
 }
 
 .pageone {

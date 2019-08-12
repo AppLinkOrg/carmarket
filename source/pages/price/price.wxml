@@ -7,14 +7,6 @@
     <view class='txt-bold flex-1 text-center {{check=="B"?"txt-blue":""}}' data-check='B' bindtap='bindcheck'>报价中</view>
     <view class='order {{check=="B"?"bg-blue":"bg-white"}}'></view>
   </view>
-  <!-- <view class='flex-row flex-column flex-1' data-check='C' bindtap='bindcheck'>
-    <view class='txt-bold flex-1 text-center {{check=="C"?"txt-blue":""}}' data-check='C' bindtap='bindcheck'>待确认</view>
-    <view class='order {{check=="C"?"bg-blue":"bg-white"}}'></view>
-  </view>
-  <view class='flex-row flex-column flex-1' data-check='D' bindtap='bindcheck'>
-    <view class='txt-bold flex-1 text-center {{check=="D"?"txt-blue":""}}' data-check='D' bindtap='bindcheck'>已确认</view>
-    <view class='order {{check=="D"?"bg-blue":"bg-white"}}'></view>
-  </view> -->
 
   <view class='flex-row flex-column flex-1' data-check='C' bindtap='bindcheck'>
     <view class='txt-bold flex-1 text-center {{check=="C"?"txt-blue":""}}' data-check='C' bindtap='bindcheck'>已取消</view>
@@ -26,18 +18,18 @@
 
 <!--待报价-->
 <view class=" " wx:if="{{check=='A'}}">
-  <view wx:if="{{mylist.length==0 }}"  class='flex-row flex-column'>
+  <view wx:if="{{mylist.length==0 }}" class='flex-row flex-column'>
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
     <view class=''>暂时没有相关报价单</view>
   </view>
-  <view class='box white-block'   wx:for="{{mylist}}">
-   <view bindtap='pricedetail' id="{{item.id}}">
-    <view class='flex-row margin-left-30 margin-top-30'>
-      <view class='txt-black'>{{item.goodsstr}}</view>
-      <view class='flex-1'></view>
-      <view class='margin-right-30'>待报价</view>
-    </view>
-    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
+  <view class='box white-block' wx:for="{{mylist}}">
+    <view bindtap='pricedetail' id="{{item.id}}">
+      <view class='flex-row margin-left-30 margin-top-30'>
+        <view class='txt-black'>{{item.goodsstr}}</view>
+        <view class='flex-1'></view>
+        <view class='margin-right-30'>待报价</view>
+      </view>
+      <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
     </view>
     <view class='flex-row'>
       <view class='margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
@@ -53,7 +45,7 @@
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
     <view class=''>暂时没有相关报价单</view>
   </view>
-  <view class='box white-block' bindtap='bindpricing' name="{{item.name}}" wx:for="{{pricede}}">
+  <view class='box white-block' bindtap='bindpricing' id="{{item.id}}"  wx:for="{{pricede}}">
     <view class='flex-row margin-left-30 margin-top-30'>
       <view class='txt-black'>{{item.goodsstr}}</view>
       <view class='flex-1'></view>

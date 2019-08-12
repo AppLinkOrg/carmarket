@@ -72,12 +72,18 @@ class Content extends AppBase {
     })
   }
 
+
   bindpricing(e) {
-    var name = e.currentTarget.name;
+    console.log(e)
+    var id = e.currentTarget.id;
+    console.log(id);
+   // return;
     wx.navigateTo({
-      url: '/pages/pricingdetail/pricingdetail?name=' + name,
+      url: '/pages/pricingdetail/pricingdetail?id=' + id ,
     })
   }
+
+
   bindtrue(e) {
     var queren = e.currentTarget.queren;
     wx.navigateTo({

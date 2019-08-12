@@ -1,5 +1,7 @@
 {
   "pages": [
+
+    
     "pages/find/find",
     "pages/vinscan/vinscan",
     "pages/login/login",
@@ -27,6 +29,7 @@
     "pages/agreement/agreement",
     "pages/authority/authority",
     "pages/account/account",
+    "pages/jiaoyisuccess/jiaoyisuccess",
     "pages/auth/auth"
   ],
   "permission": {

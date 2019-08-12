@@ -49,14 +49,11 @@ class Content extends AppBase {
 
     if (this.Base.getMyData().jhjj11 != undefined) {
       var jiancha = jhjj.filter((item) => {
-
         return item.name == this.Base.getMyData().jhjj11.name;
-
       })
       console.log('jianchale');
       console.log(jiancha);
-      console.log(jiancha.name);
-     
+      console.log(jiancha.name);  
       if (jiancha.length!=0) {
         console.log("重复");
         console.log(jhjj);
@@ -66,7 +63,6 @@ class Content extends AppBase {
           if (item.name == jiancha[0].name) {
             item.num++;
           }
-
         })
         this.Base.setMyData({
           jhjj11: undefined
@@ -147,46 +143,27 @@ class Content extends AppBase {
 
   bindadd(e) {
     var jhjj = this.Base.getMyData().jhjj;
-
-
     jhjj[e.currentTarget.id].num = jhjj[e.currentTarget.id].num + 1;
     this.Base.setMyData({
-
       jhjj: jhjj
     })
   }
   //减
   bindreduce(e) {
     var jhjj = this.Base.getMyData().jhjj;
-
     if (jhjj[e.currentTarget.id].num == 1) {
-
-
       this.Base.setMyData({
         jhjj: jhjj.filter((item, idx) => {
-
           return idx != [e.currentTarget.id];
-
         })
       })
       console.log(jhjj);
-
       return
-
     }
-
     jhjj[e.currentTarget.id].num = jhjj[e.currentTarget.id].num - 1;
     this.Base.setMyData({
-
       jhjj: jhjj
     })
-
-
-
-
-
-
-
   }
 
   add(e) {
@@ -202,9 +179,7 @@ class Content extends AppBase {
     })
   }
 
-
   public() {
-
     var orderapi = new OrderApi();
     var mcid = this.Base.getMyData().c;
     var vin = this.Base.getMyData().vin;

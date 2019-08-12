@@ -39,12 +39,12 @@ class Content extends AppBase {
 
 
 
-  binddelete() {
-    var that = this;
-    this.Base.setMyData({
-      searchinput: ''
-    })
-  } 
+  // binddelete() {
+  //   var that = this;
+  //   this.Base.setMyData({
+  //     searchinput: ''
+  //   })
+  // } 
 
   
 }
@@ -53,5 +53,5 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 
-body.binddelete = content.binddelete;
+// body.binddelete = content.binddelete;
 Page(body)

@@ -1,8 +1,13 @@
 // pages/content/content.js
-import { AppBase } from "../../appbase";
-import { ApiConfig } from "../../apis/apiconfig";
-import { InstApi } from "../../apis/inst.api.js";
-import { ConsumeApi } from "../../apis/consume.api.js";
+import {
+  AppBase
+} from "../../appbase";
+import {
+  ApiConfig
+} from "../../apis/apiconfig";
+import {
+  InstApi
+} from "../../apis/inst.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -11,36 +16,31 @@ class Content extends AppBase {
   onLoad(options) {
     this.Base.Page = this;
     //options.id=5;
-    // super.onLoad(options);
+    super.onLoad(options);
   }
-
   onMyShow() {
     var that = this;
-    var consumeapi = new ConsumeApi();
+    var instapi = new InstApi();
 
-    consumeapi.list({
-      amount,
-      order_id,
-      consume_time,
-      employee_id,
-
-    }, (indexbanner) => {
+    instapi.indexbanner({}, (indexbanner) => {
       this.Base.setMyData({
         indexbanner
       });
     });
   }
 
+
+
   setPageTitle(instinfo) {
+    var title = "交易成功";
     wx.setNavigationBarTitle({
-      title: "我的账户",
+      title: title,
     })
   }
-
-
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
+
 Page(body)
