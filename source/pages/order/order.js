@@ -2,6 +2,7 @@
 import { AppBase } from "../../appbase";
 import { ApiConfig } from "../../apis/apiconfig";
 import { InstApi } from "../../apis/inst.api.js";
+import { OrderApi } from "../../apis/order.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -10,13 +11,58 @@ class Content extends AppBase {
   onLoad(options) {
     this.Base.Page = this;
     //options.id=5;
-    super.onLoad(options);
+   
+    this.Base.setMyData({
+      order: "A"
+
+    });
   }
   onMyShow() {
+    var orderapi = new OrderApi();
+    orderapi.mylist({
+      status: 'A,B',
+    }, (mylist) => {
+      this.Base.setMyData({
+        mylist
+      })
+    })
 
-    //options.id=5;
-    // super.onLoad(options);
+    orderapi.mylist({
+      status: 'L',
+    }, (daifahuo) => {
+      this.Base.setMyData({
+        daifahuo
+      })
+    })
+
+    orderapi.mylist({
+      status: 'M',
+    }, (daishouhuo) => {
+      this.Base.setMyData({
+        daishouhuo
+      })
+    })
+
+    orderapi.mylist({
+      status: 'N',
+    }, (yiwancheng) => {
+      this.Base.setMyData({
+      
+        yiwancheng
+      })
+    })
+
+    orderapi.mylist({
+      status: 'E',
+    }, (yiquxiao) => {
+      this.Base.setMyData({
+        yiquxiao
+      })
+    })
+
+   
   }
+  
   setPageTitle() {
     wx.setNavigationBarTitle({
       title: '我的订单',

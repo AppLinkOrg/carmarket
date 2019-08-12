@@ -97,5 +97,5 @@
       <view class='h5 margin-right-20'>1</view>
     </view>
   </view>
-  <view class='queren margin-left-20 margin-right-20'>确认报价</view>
+  <view class='queren margin-left-20 margin-right-20' bindtap="bindqueren">确认报价</view>
 </view>

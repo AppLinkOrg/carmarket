@@ -8,6 +8,9 @@ import {
 import {
   InstApi
 } from "../../apis/inst.api.js";
+import {
+  CarApi
+} from "../../apis/car.api.js"; 
 
 class Content extends AppBase {
   constructor() {
@@ -17,16 +20,16 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
+    this.Base.setMyData({
+      vin: this.Base.options.vin,
+      b: this.Base.options.brandCode,
+      c: this.Base.options.mcid,
+    });
   }
   onMyShow() {
     var that = this;
     var instapi = new InstApi();
-
-    instapi.indexbanner({}, (indexbanner) => {
-      this.Base.setMyData({
-        indexbanner
-      });
-    });
+    var carapi = new CarApi();
   }
 
 
@@ -53,13 +56,51 @@ class Content extends AppBase {
       });
     });
   }
+  bindart(e) {
+    console.log(e);
+    this.Base.setMyData({
+      part: e.detail.value
+    });
 
+    var carapi = new CarApi();
+    var search_key = e.detail.value;
+    var vin = this.Base.getMyData().vin;
+    var brandCode = this.Base.getMyData().b;
+    var mcid = this.Base.getMyData().c;
+
+    //return;
+    //接口传值
+    carapi.partsearch({
+      vin: vin,
+      brandCode: brandCode,
+      mcid: mcid,
+      search_key: search_key
+    }, (partsearch) => {
+      this.Base.setMyData({
+        partsearch
+      });
+    });
+  }
   complete(e) {
-    wx.navigateBack({
-      delta: 2
+    console.log(e, "啦啦啦");
+    //return;
+    var qqljk = { name: this.Base.getMyData().part,num:1}  ;
+    console.log(qqljk);
+    //return;
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1]; //当前页面
+    var prevPage = pages[pages.length - 2]; //上一个页面
+    //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+   console.log("sdfsdsds")
+    //return;
+    prevPage.setData({
+     
+      jhjj11: qqljk
     })
+    wx.navigateBack({})
   }
 
+  
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -68,4 +109,6 @@ body.onMyShow = content.onMyShow;
 body.complete = content.complete;
 body.bindclear = content.bindclear;
 body.clickimage = content.clickimage;
+body.bindart = content.bindart;
+
 Page(body)

@@ -37,9 +37,9 @@
 
 
 <view class='flex-row'>
-  <view class='margin-30'>营业执照</view>
+  <view class='margin-top-30 margin-left-50'>营业执照</view>
  <view class='flex-1'></view>
   <view class="margin-20 flex-row">
-        <image class='icon-100 margin-top-20 ;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.licensedphoto}}'></image>
+        <image class='icon-100 margin-top-20 margin-right-30;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.licensedphoto}}'></image>
   </view>
 </view>

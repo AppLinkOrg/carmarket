@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/find/find",
+    "pages/vinscan/vinscan",
     "pages/login/login",
     "pages/check/check",
     "pages/addressadd/addressadd",

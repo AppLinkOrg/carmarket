@@ -33,7 +33,10 @@ class Content extends AppBase {
     var mobile = e.detail.value.mobile;
     var password = e.detail.value.password;
     var api = new EnterpriseApi();
-    api.employeelogin({ mobile, password},(res)=>{
+    api.employeelogin({ 
+      mobile, 
+      password
+      },(res)=>{
       console.log(res);
       if(res.code==0){
 

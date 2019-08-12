@@ -2,7 +2,6 @@
 Page{
   background: rgb(241, 241, 241);
 }
- 
 
 .row {
   border-bottom: 1px solid rgb(207, 44, 44);
@@ -11,7 +10,7 @@ Page{
 .box {
   /* additive-symbols: 30rpx; */
   margin: 20rpx;
-  height: 210rpx;
+  height: 240rpx;
   width: 95%;
   border-radius: 10rpx;
   box-shadow: 1rpx 2rpx 25rpx 2rpx rgb(173, 173, 173);
@@ -19,4 +18,20 @@ Page{
 
 .borderbottom {
   border-bottom: 1px solid rgb(201, 201, 201);
+}
+
+.orpay{
+  width: 140rpx;
+  height: 50rpx;
+  background-color: rgb(247, 120, 47);
+  border-radius: 10rpx;
+  text-align: center;
+}
+
+.orpayw{
+ 
+  color: rgb(247, 120, 47);
+  border-radius: 10rpx;
+  text-align: center;
+
 }

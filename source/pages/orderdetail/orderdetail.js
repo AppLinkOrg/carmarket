@@ -20,6 +20,11 @@ class Content extends AppBase {
       this.Base.setMyData({ indexbanner });
     });
   }
+  bindadddizhi(){
+    wx.navigateTo({
+      url: '/pages/address/address',
+    })
+  }
 
   setPageTitle(instinfo) {
     var title = "订单详情";
@@ -31,5 +36,6 @@ class Content extends AppBase {
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
-body.onMyShow = content.onMyShow;
+body.onMyShow = content.onMyShow; 
+body.bindadddizhi = content.bindadddizhi;
 Page(body)

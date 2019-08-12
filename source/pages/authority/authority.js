@@ -1,7 +1,13 @@
 // pages/content/content.js
-import { AppBase } from "../../appbase";
-import { ApiConfig } from "../../apis/apiconfig";
-import { InstApi } from "../../apis/inst.api.js";
+import {
+  AppBase
+} from "../../appbase";
+import {
+  ApiConfig
+} from "../../apis/apiconfig";
+import {
+  InstApi
+} from "../../apis/inst.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -11,11 +17,14 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     // super.onLoad(options);
+    this.Base.setMyData({
+      change: "A"
+
+    });
   }
   onMyShow() {
     var that = this;
   }
-
 
   setPageTitle(instinfo) {
     wx.setNavigationBarTitle({
@@ -29,9 +38,7 @@ class Content extends AppBase {
       change: changeid
 
     });
-
   }
-
 
 }
 var content = new Content();

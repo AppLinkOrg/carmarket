@@ -1,12 +1,21 @@
-
-
 .btnn {
-  margin: 30rpx;
+  /* margin: 30rpx; */
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  margin-top: 25rpx;
   width: 92%;
   height: 100rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10rpx;
- 
+}
+
+.buttnn {
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  margin-top: 25rpx;
+  width: 92%;
+  height: 210rpx;
+  border-radius: 10rpx;
 }

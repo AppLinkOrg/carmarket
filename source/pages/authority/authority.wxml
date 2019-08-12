@@ -9,9 +9,16 @@
     <view class='txt-bold flex-1 text-center {{change=="B"?"txt-blue":""}}'>我的下级</view>
     <view class='order {{change=="B"?"bg-blue":"bg-white"}}'></view>
   </view>
-
 </view>
 <view class='borderbottom'></view>
+
+
+<view class=" " wx:if="{{change=='A'}}">
+<!-- 我的上级-->
+<view class='flex-row flex-column'>
+  <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.img}}'></image>
+  <view class=''>亲,你还没有上级哦</view>
+</view>
 
 <view class="flex-row margin-left-10 margin-bottom-10">
   <image class='icon-60 margin-left-20 margin-top-20 radius-50%;' src='{{uploadpath}}resource/{{res.cemera}}'></image>
@@ -19,16 +26,20 @@
     <view class="txt-black margin-left-20 ">陈师傅</view>
     <view class="txt-black flex-row margin-top-10  margin-left-20">成交额：￥1924威币</view>
   </view>
-</view>
+</view></view>
 
-<!-- 我的上级-->
-<view class='flex-row flex-column'>
-  <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.img}}'></image>
-  <view class=''>亲,你还没有上级哦</view>
-</view>
 
+<view class=" " wx:if="{{change=='B'}}">
 <!-- 我的下级-->
 <view class='flex-row flex-column'>
   <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.img}}'></image>
   <view class=''>亲,你还没有下级哦</view>
 </view>
+
+<view class="flex-row margin-left-10 margin-bottom-10">
+  <image class='icon-60 margin-left-20 margin-top-20 radius-50%;' src='{{uploadpath}}resource/{{res.cemera}}'></image>
+  <view class=" margin-top  ">
+    <view class="txt-black margin-left-20 ">陈师傅</view>
+    <view class="txt-black flex-row margin-top-10  margin-left-20">成交额：￥1924威币</view>
+  </view>
+</view></view>

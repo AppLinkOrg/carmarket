@@ -1,71 +1,132 @@
 <view class='flex-row  flex-center white-block' style='height:80rpx;'>
-
   <view class='flex-row flex-column flex-1' data-check='A' bindtap='bindcheck'>
     <view class=' txt-bold flex-1 text-center {{check=="A"?"txt-blue":""}}'>待报价</view>
     <view class='order {{check=="A"?"bg-blue":"bg-white"}}'></view>
   </view>
-
   <view class='flex-row flex-column flex-1' data-check='B' bindtap='bindcheck'>
     <view class='txt-bold flex-1 text-center {{check=="B"?"txt-blue":""}}' data-check='B' bindtap='bindcheck'>报价中</view>
     <view class='order {{check=="B"?"bg-blue":"bg-white"}}'></view>
   </view>
+  <!-- <view class='flex-row flex-column flex-1' data-check='C' bindtap='bindcheck'>
+    <view class='txt-bold flex-1 text-center {{check=="C"?"txt-blue":""}}' data-check='C' bindtap='bindcheck'>待确认</view>
+    <view class='order {{check=="C"?"bg-blue":"bg-white"}}'></view>
+  </view>
+  <view class='flex-row flex-column flex-1' data-check='D' bindtap='bindcheck'>
+    <view class='txt-bold flex-1 text-center {{check=="D"?"txt-blue":""}}' data-check='D' bindtap='bindcheck'>已确认</view>
+    <view class='order {{check=="D"?"bg-blue":"bg-white"}}'></view>
+  </view> -->
 
   <view class='flex-row flex-column flex-1' data-check='C' bindtap='bindcheck'>
-    <view class='txt-bold flex-1 text-center {{check=="C"?"txt-blue":""}}' data-check='C' bindtap='bindcheck'>已失效</view>
+    <view class='txt-bold flex-1 text-center {{check=="C"?"txt-blue":""}}' data-check='C' bindtap='bindcheck'>已取消</view>
     <view class='wait_blue' hidden='{{waitshow!=1}}'></view>
     <view class='order {{check=="C"?"bg-blue":"bg-white"}}'></view>
   </view>
 </view>
-
 <view class='borderbottom'></view>
 
 <!--待报价-->
 <view class=" " wx:if="{{check=='A'}}">
-  <view class='flex-row flex-column'>
+  <view wx:if="{{mylist.length==0 }}"  class='flex-row flex-column'>
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
     <view class=''>暂时没有相关报价单</view>
   </view>
-  <view class='box white-block' bindtap='pricedetail'>
+  <view class='box white-block'   wx:for="{{mylist}}">
+   <view bindtap='pricedetail' id="{{item.id}}">
     <view class='flex-row margin-left-30 margin-top-30'>
-      <view class='txt-black'>刹车总泵、前保险杠、左大灯</view>
+      <view class='txt-black'>{{item.goodsstr}}</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>待报价</view>
     </view>
-    <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
-    <view class='margin-left-30 margin-top-20'>2019-08-02/15:25</view>
+    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
+    </view>
+    <view class='flex-row'>
+      <view class='margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
+      <view class='flex-1'></view>
+      <view class='orpay txt-white margin-right-30 margin-top-20' id='{{item.id}}' bindtap="bindquxiao">取消</view>
+    </view>
   </view>
 </view>
 
 <!--报价中-->
 <view class=" " wx:if="{{check=='B'}}">
+  <view class='flex-row flex-column' wx:if="{{pricede.length==0}}">
+    <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
+    <view class=''>暂时没有相关报价单</view>
+  </view>
+  <view class='box white-block' bindtap='bindpricing' name="{{item.name}}" wx:for="{{pricede}}">
+    <view class='flex-row margin-left-30 margin-top-30'>
+      <view class='txt-black'>{{item.goodsstr}}</view>
+      <view class='flex-1'></view>
+      <view class='margin-right-30'>报价中</view>
+    </view>
+    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
+    <view class='flex-row'>
+      <view class='margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
+      <view class='flex-1'></view>
+      <view class=' txt-red margin-right-30 margin-top-20'>已有5人报价</view>
+    </view>
+  </view>
+</view>
+
+<!--已取消-->
+<view class=" " wx:if="{{check=='C'}}">
+  <view class='flex-row flex-column' wx:if="{{poor.length==0}}">
+    <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
+    <view class=''>暂时没有相关报价单</view>
+  </view>
+  <view class='box white-block' bindtap='' queren="{{item.queren}}" wx:for="{{poor}}">
+    <view class='flex-row margin-left-30 margin-top-30' bindtap='pricedetail'>
+      <view class='txt-black'>{{item.goodsstr}}</view>
+      <view class='flex-1'></view>
+      <view class='margin-right-30'>已取消</view>
+    </view>
+    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
+    <view class='flex-row'>
+      <view class='margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
+      <view class='flex-1'></view>
+      <view class='orpay txt-white margin-right-30 margin-top-20'>已取消</view>
+    </view>
+  </view>
+</view>
+
+<!--待确认-->
+<!-- <view class=" " wx:if="{{check=='C'}}">
   <view class='flex-row flex-column'>
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
     <view class=''>暂时没有相关报价单</view>
   </view>
-  <view class='box white-block' bindtap='bindpricing'>
+  <view class='box white-block' bindtap="bindtrue">
+    <view class='flex-row margin-left-30 margin-top-30'>
+      <view class='txt-black'>刹车总泵、前保险杠、左大灯</view>
+      <view class='flex-1'></view>
+      <view class='margin-right-30'>待确认</view>
+    </view>
+    <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
+    <view class='flex-row'>
+      <view class='margin-left-30 margin-top-20'>2019-08-02/15:25</view>
+      <view class='flex-1'></view>
+      <view class='orpayw  margin-right-30 margin-top-20'>等待商家确认</view>
+    </view>
+  </view>
+</view> -->
+
+<!--已确定-->
+<!-- <view class=" " wx:if="{{check=='D'}}">
+  <view class='flex-row flex-column'>
+    <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
+    <view class=''>暂时没有相关报价单</view>
+  </view>
+  <view class='box white-block' bindtap='bindtrue'>
     <view class='flex-row margin-left-30 margin-top-30'>
       <view class='txt-black'>刹车总泵、前保险杠、左大灯</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>报价中</view>
     </view>
     <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
-    <view class='margin-left-30 margin-top-20'>2019-08-02/15:25</view>
-  </view>
-</view>
-
-<!--已失效-->
-<view class=" " wx:if="{{check=='C'}}">
-  <view class='flex-row flex-column'>
-    <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
-    <view class=''>暂时没有相关报价单</view>
-  </view>
-  <view class='box white-block' bindtap='bindlost'>
-    <view class='flex-row margin-left-30 margin-top-30'>
-      <view class='txt-black'>刹车总泵、前保险杠、左大灯</view>
+    <view class='flex-row'>
+      <view class='margin-left-30 margin-top-20'>2019-08-02/15:25</view>
       <view class='flex-1'></view>
-      <view class='margin-right-30'>已失效</view>
+      <view class='txt-green margin-right-30 margin-top-20'>已确认</view>
     </view>
-    <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
-    <view class='margin-left-30 margin-top-20'>2019-08-02/15:25</view>
   </view>
-</view>
+</view> -->
