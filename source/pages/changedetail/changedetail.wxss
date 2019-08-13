@@ -1,0 +1,11 @@
+Page {
+  background: rgb(241, 241, 241);
+}
+
+
+.bottone {
+  border-bottom: 4px solid rgb(228, 227, 227);
+}
+.botttwo {
+  border-bottom: 1px solid rgb(228, 227, 227);
+}

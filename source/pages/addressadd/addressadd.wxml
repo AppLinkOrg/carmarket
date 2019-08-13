@@ -39,6 +39,6 @@
 
 
 <view class='posi flex-row '>
-  <view class="detele">删除</view>
-  <view class="bao">保存</view>
+  <view class="detele" bindtap="binddetele">删除</view>
+  <view class="bao" bindtap="bindcaocun" >保存</view>
 </view>

@@ -211,6 +211,9 @@ view, navigator, input, text, textarea {
   font-size: 120rpx !important;
 }
 
+.h1-2 {
+  font-size: 80rpx !important;
+}
 .h2 {
   font-size: 56rpx !important;
 }

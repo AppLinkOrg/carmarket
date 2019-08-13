@@ -1,6 +1,6 @@
 <view class=' flex-row margin-top  '>
   <view class='borderleft'></view>
-  <view class='margin-left-10 txt-black txt-bold'>退换货理由</view>
+  <view class='margin-left-10 txt-black txt-bold'>退换信息</view>
 </view>
 <view class="margin-30">手机号码：</view>
 <view class="tex">
@@ -10,67 +10,52 @@
 
 <view class=' flex-row margin-top  '>
   <view class='borderleft'></view>
-  <view class='margin-left-10 txt-black txt-bold'>选择退换的配件</view>
+  <view class='margin-left-10 txt-black txt-bold'>选择配件</view>
 </view>
 <view class='flex-row flex-wrap margin-top-20'>
   <view class='txt-black margin-left-30'>订单编号：</view>
-  <view class='txt-black '>20190801056455</view>
+  <view class='txt-black '>{{change.orderno}}</view>
 </view>
 <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
   <view class='txt-black '>订单时间：</view>
-  <view class='txt-black '>2019-08-01</view>
+  <view class='txt-black '>{{change.order_time_formatting}}</view>
 </view>
-<view class="bott margin-top"></view>
 
-<view class=' margin-top-30'>
+<view class='flex-row' wx:for="{{change.orderitems}}">
   <view class='margin-left-30 '>
-    <view class=' flex-row'>
-      <view class=' txt-black'>刹车总泵</view>
-      <view class="flex-1"></view>
-      <image class='icon-25 margin-right-20' src='{{uploadpath}}resource/{{res.no}}'></image>
+    <image class='icon-25 margin-top' src='{{uploadpath}}resource/{{res.no}}'></image>
+  </view>
+  <view class='margin-left-30 '>
+    <view class=' txt-black'>{{item.name}}</view>
+    <view class='flex-row  margin-top-10 '>
+      <view class=''>品质：</view>
+      <view class=''>{{}}</view>
     </view>
-    <view class='flex-row flex-wrap margin-top-10 '>
-      <view class=''>品牌：</view>
-      <view class=''>原厂</view>
-    </view>
-    <view class='flex-row  '>
+    <view class='flex-row flex-wrap '>
       <view class=''>单价：</view>
-      <view class='txt-red'>元</view>
-      <view class="flex-1"></view>
-      <view>发货数量：</view>
-      <view class="margin-right-50">1</view>
+      <view class='txt-red'>{{item.price}}元</view>
+    </view>
+  </view>
+  <view class="flex-1"></view>
+  <view class="flex-row margin-top">
+    <view class=''>
+      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}' id="{{idx}}" bindtap='bindreduce'></image>
+    </view>
+    <view class='txt-blue margin-left-30 margin-right-30'>{{item.qty}}</view>
+    <view class='margin-right-20'>
+      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.add}}' id="{{idx}}" bindtap='bindadd'></image>
     </view>
   </view>
 </view>
-<view class='bott margin-top-20 margin-bottom-20'></view>
 
-
-<view class=' margin-top-30'>
-  <view class='margin-left-30 '>
-    <view class=' flex-row'>
-      <view class=' txt-black'>前保险杠</view>
-      <view class="flex-1"></view>
-      <image class='icon-25 margin-right-20' src='{{uploadpath}}resource/{{res.no}}'></image>
-    </view>
-    <view class='flex-row flex-wrap margin-top-10 '>
-      <view class=''>品牌：</view>
-      <view class=''>原厂</view>
-    </view>
-    <view class='flex-row  '>
-      <view class=''>单价：</view>
-      <view class='txt-red'>元</view>
-      <view class="flex-1"></view>
-      <view>发货数量：</view>
-      <view class="margin-right-50">1</view>
-    </view>
-  </view>
-</view>
 <view class='bott margin-top-20 margin-bottom-20'></view>
 <view class='flex-row  '>
-  <view class='margin-left-30 txt-black'>总计：</view>
-  <view class='txt-red'>元</view>
+  <image class='icon-25 margin-left-30' src='{{uploadpath}}resource/{{res.no}}'></image>
+  <view class="margin-left-10">全选</view>
+
   <view class="flex-1"></view>
-  <view>全选</view>
-  <image class='icon-25 margin-right-20' src='{{uploadpath}}resource/{{res.no}}'></image>
+  <view class=' txt-black'>总计：</view>
+  <view class='txt-red margin-right-30'>-￥{{change.totalamount}}元</view>
 </view>
-<view class="btn bg-btn" bindtap='bindsub'>提交</view>
+<view class='bott margin-top-20 margin-bottom-20'></view>
+<view class="btn-btn" bindtap='bindsub' >提交</view>

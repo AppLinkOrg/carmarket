@@ -55,29 +55,37 @@ class Content extends AppBase {
 
   }
 
+  confirm() {
+    this.Base.setMyData({
+      showModal: false 
+    })
+  }
 
   bindtijiao() {
+    this.Base.setMyData({
+      showModal: true
+    })
 
     var orderapi = new OrderApi();
    
-    var order_id = this.Base.getMyData().order_id;
-    var receiveaddress = this.Base.getMyData().receiveaddress;
-    var receiver = this.Base.getMyData().receiver;
+    // var order_id = this.Base.getMyData().order_id;
+    // var receiveaddress = this.Base.getMyData().receiveaddress;
+    // var receiver = this.Base.getMyData().receiver;
 
-    orderapi.confirmquote({
-      order_id: id,
-      quote_id: quote_id,
-      receiveaddress: receiveaddress,
-      receiver: receiver,
-      receivecontact: receivecontact,
-      needitems: needitems,
-      noneeditems: noneeditems,
+    // orderapi.confirmquote({
+    //   order_id: id,
+    //   quote_id: quote_id,
+    //   receiveaddress: receiveaddress,
+    //   receiver: receiver,
+    //   receivecontact: receivecontact,
+    //   needitems: needitems,
+    //   noneeditems: noneeditems,
 
-    }, (querenbaojia) => {
-      this.Base.setMyData({
-        querenbaojia
-      });
-    });
+    // }, (querenbaojia) => {
+    //   this.Base.setMyData({
+    //     querenbaojia
+    //   });
+    // });
   }
   setPageTitle(instinfo) {
     var title = "订单详情";
@@ -92,6 +100,7 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindadddizhi = content.bindadddizhi;
 body.bindtijiao = content.bindtijiao;
+body.confirm = content.confirm;
 
 body.bindreduce = content.bindreduce;
 body.bindadd = content.bindadd;

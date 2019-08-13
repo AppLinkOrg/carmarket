@@ -11,6 +11,10 @@ import {
 import {
   CarApi
 } from "../../apis/car.api.js";
+import {
+  EnterpriseApi
+} from "../../apis/enterprise.api.js";
+
 
 class Content extends AppBase {
   constructor() {
@@ -23,9 +27,14 @@ class Content extends AppBase {
   }
   onMyShow() {
     var that = this;
-   
+    var enterpriseapi = new EnterpriseApi();
+    var employeeinfo = this.Base.getMyData().employeeinfo;
+    enterpriseapi.employeeinfo({}, (employeeinfo) => {
+      this.Base.setMyData({
+        employeeinfo
+      });
+    });  
   }
-
 
 }
 var content = new Content();

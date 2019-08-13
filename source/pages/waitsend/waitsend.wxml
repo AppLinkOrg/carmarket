@@ -9,17 +9,17 @@
 
 <view class='flex-row flex-wrap margin-top-20'>
   <view class='txt-black margin-left-30'>订单编号：</view>
-  <view class='txt-black '>20190801056455</view>
+  <view class='txt-black '>{{daifahuo.orderno}}</view>
 </view>
 <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
   <view class='txt-black '>订单时间：</view>
-  <view class='txt-black '>2019-08-01</view>
+  <view class='txt-black '>{{daifahuo.order_time_formatting}}</view>
 </view>
 <view class="bott margin-top"></view>
 
 <view class="flex-row margin-left-30 ">
   <image class='icon-50 margin-right-10 ' src='{{uploadpath}}resource/{{res.no}}'></image>
-  <view class="txt-black margin-top-30">深圳市鑫广泰汽车服务有限公司</view>
+  <view class="txt-black margin-top-30">{{daifahuo.enterprise_id_name}}</view>
 </view>
 
 <view class='flex-row flex-wrap margin-top-20'>
@@ -28,57 +28,44 @@
 </view>
 <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
   <view class='txt-black '>车型：</view>
-  <view class='txt-black '>SDGSGFSASDGSDG</view>
+  <view class='txt-black '>{{daifahuo.carname}}</view>
 </view>
 <view class="bott margin-top"></view>
 
-
-<view class='margin-left-30 margin-top-30'>
-  <view class=' txt-black'>刹车总泵</view>
-  <view class='flex-row  margin-top-10 '>
-    <view class=''>品牌：</view>
-    <view class=''>原厂</view>
+<view wx:for="{{daifahuo.orderitems}}" wx:key="key">
+  <view class='margin-left-30 margin-top-30' >
+    <view class=' txt-black'>{{item.name}}</view>
+    <view class='flex-row  margin-top-10 '>
+      <view class=''>品质：</view>
+      <view class=''>原厂</view>
+    </view>
+    <view class='flex-row'>
+      <view class=''>单价：</view>
+      <view class='txt-red'>￥{{item.price}}元</view>
+      <view class="flex-1"></view>
+      <view>发货数量：</view>
+      <view class="margin-right-50">{{item.qty}}</view>
+    </view>
   </view>
-  <view class='flex-row'>
-    <view class=''>单价：</view>
-    <view class='txt-red'>元</view>
-    <view class="flex-1"></view>
-    <view>发货数量：</view>
-    <view class="margin-right-50">1</view>
-  </view>
+  
+<view class='bott margin-top-20 margin-bottom-20'></view>
 </view>
 
-<view class='bott margin-top-20 margin-bottom-20'></view>
-
-<view class='margin-left-30 margin-top-30'>
-  <view class=' txt-black'>刹车总泵</view>
-  <view class='flex-row  margin-top-10 '>
-    <view class=''>品牌：</view>
-    <view class=''>原厂</view>
-  </view>
-  <view class='flex-row'>
-    <view class=''>单价：</view>
-    <view class='txt-red'>元</view>
-    <view class="flex-1"></view>
-    <view>发货数量：</view>
-    <view class="margin-right-50">1</view>
-  </view>
+<view class='margin-left-30 flex-row margin-top-20 '>
+  <view class='txt-black'>总价：</view>
+  <view class='txt-red'>￥{{daifahuo.totalamount}}元</view>
 </view>
 
 <view class='bott margin-top-20 margin-bottom-20'></view>
 <view class='margin-left-30 flex-row margin-top-20 '>
   <view class='txt-black'>发票：</view>
-  <view class='txt-black'>无</view>
+  <view class='txt-black'>{{daifahuo.needinvoice}}</view>
 </view>
-<view class='bott margin-top-20 margin-bottom-20'></view>
-<view class='margin-left-30 flex-row margin-top-20 '>
-  <view class='txt-black'>总价：</view>
-  <view class='txt-red'>元</view>
-</view>
+
 <view class='bott margin-top-20 margin-bottom-20'></view>
 <view class='margin-left-30 flex-row margin-top-20 '>
   <view class='txt-black'>备注：</view>
-  <view class='txt-black'>{{}}</view>
+  <view class='txt-black'>{{daifahuo.remarks}}</view>
 </view>
 <view class='bott margin-top-20 margin-bottom-20'></view>
 
@@ -86,12 +73,14 @@
   <view class="flex-row margin-left-20">
     <image class='icon-25 margin-right-10 ' src='{{uploadpath}}resource/{{res.dizhi}}'></image>
     <view class="flex-row   ">
-      <view class="txt-black margin-right-20">刘同学</view>
-      <view class="txt-black  ">13800138000</view>
+      <view class="txt-black margin-right-20">{{daifahuo.receiver}}</view>
+      <view class="txt-black  ">{{daifahuo.receivecontact}}</view>
     </view>
   </view>
-  <view class=" flex-row left ">广东省深圳市罗湖区东门中路</view>
+  <view class=" flex-row left ">{{daifahuo.receiveaddress}}</view>
 </view>
 
 
-<view class='txt-white quxiao margin-top-30'>取消订单</view>
+
+
+<view class='txt-white quxiao margin-top-30' bindtap="bindquxiao">取消订单</view>

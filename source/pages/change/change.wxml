@@ -15,48 +15,48 @@
 
 <view class=" " wx:if="{{change=='A'}}">
   <!-- 我的退换订单-->
-  <view class='flex-row flex-column'>
+  <view class='flex-row flex-column' wx:if="{{mylist.length==0}}">
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullchange}}'></image>
     <view class=''>暂时没有退换订单</view>
   </view>
 
   <!--待退换-->
-  <view class='box '>
+  <view class='box ' wx:for="{{daituihuna}}" wx:key="k" bindtap="bindtui" id="{{item.id}}">
     <view class='flex-row margin-left-30 margin-top-30'>
-      <view class=''>订单编号：</view>
-      <view>2019080212634</view>
+      <view class=''>退货单号：</view>
+      <view>{{item.orderno}}</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>待退换</view>
     </view>
-    <view class=' margin-left-30 margin-top-30 txt-black'>刹车总泵、前保险杠、左大灯</view>
-    <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
+    <view class=' margin-left-30 margin-top-30 txt-black'>{{item.name}}</view>
+    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
     <view class='flex-row margin-left-30 margin-top-30'>
       <view class=' '>申请退换时间：</view>
-      <view class=' '>2019-08-02/15:25</view>
+      <view class=' '>{{item.order_time_formatting}}</view>
     </view>
   </view>
 </view>
 
 <view class=" " wx:if="{{change=='B'}}">
   <!-- 我的退换订单-->
-  <view class='flex-row flex-column'>
+  <view class='flex-row flex-column' wx:if="{{mylist.length==0}}">
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullchange}}'></image>
     <view class=''>暂时没有退换订单</view>
   </view>
 
   <!--已退换-->
-  <view class='box '>
+  <view class='box ' wx:for="{{yituihuan}}" wx:key="k">
     <view class='flex-row margin-left-30 margin-top-30'>
-      <view class=''>订单编号：</view>
-      <view>2019080212634</view>
+      <view class=''>退货单号：</view>
+      <view>{{item.orderno}}</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>已退换</view>
     </view>
-    <view class=' margin-left-30 margin-top-30 txt-black'>刹车总泵、前保险杠、左大灯</view>
-    <view class='margin-left-30 margin-top-10'>哈佛H62012年SDFSDF</view>
+    <view class=' margin-left-30 margin-top-30 txt-black'>{{item.name}}</view>
+    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
     <view class='flex-row margin-left-30 margin-top-30'>
       <view class=' '>申请退换时间：</view>
-      <view class=' '>2019-08-02/15:25</view>
+      <view class=' '>{{item.order_time_formatting}}</view>
     </view>
   </view>
 </view>

@@ -2,7 +2,7 @@
 import { AppBase } from "../../appbase";
 import { ApiConfig } from "../../apis/apiconfig";
 import { InstApi } from "../../apis/inst.api.js";
-
+import { OrderApi } from "../../apis/order.api.js";
 class Content extends AppBase {
   constructor() {
     super();
@@ -15,13 +15,19 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var instapi = new InstApi();
+    var orderapi = new OrderApi();
 
-    instapi.indexbanner({}, (indexbanner) => {
-      this.Base.setMyData({ indexbanner });
+    orderapi.detail({
+      id:this.Base.options.id,
+    }, (change) => {
+      this.Base.setMyData({ 
+        change 
+        });
     });
   }
   
-  bindsub() {
+  bindsub(e) {
+    
     wx.navigateTo({
       url: '/pages/change/change',
     })
