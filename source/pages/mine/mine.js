@@ -68,7 +68,13 @@ class Content extends AppBase {
     wx.navigateTo({
       url: '/pages/helpcenter/helpcenter',
     })
+  }  
+  bindaccount(){
+    wx.navigateTo({
+      url: '/pages/account/account',
+    })
   }
+ 
 
   logout() {
     wx.showModal({
@@ -101,5 +107,6 @@ body.bindaccount = content.bindaccount;
 body.bindchange = content.bindchange;
 body.bindaboutus = content.bindaboutus;
 body.bindhelp = content.bindhelp;
+body.bindaccount = content.bindaccount; 
 body.logout = content.logout;
 Page(body)

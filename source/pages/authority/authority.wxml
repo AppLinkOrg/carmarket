@@ -14,32 +14,33 @@
 
 
 <view class=" " wx:if="{{change=='A'}}">
-<!-- 我的上级-->
-<view class='flex-row flex-column'>
-  <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.img}}'></image>
-  <view class=''>亲,你还没有上级哦</view>
-</view>
-
-<view class="flex-row margin-left-10 margin-bottom-10">
-  <image class='icon-60 margin-left-20 margin-top-20 radius-50%;' src='{{uploadpath}}resource/{{res.cemera}}'></image>
-  <view class=" margin-top  ">
-    <view class="txt-black margin-left-20 ">陈师傅</view>
-    <view class="txt-black flex-row margin-top-10  margin-left-20">成交额：￥1924威币</view>
+  <!-- 我的上级-->
+  <view class='flex-row flex-column' wx:if="{{list.length==0 }}">
+    <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.img}}'></image>
+    <view class=''>亲,你还没有上级哦</view>
   </view>
-</view></view>
 
+  <view class="flex-row margin-left-10 margin-bottom-10" wx:for="{{shang}}">
+    <image class='icon-60 margin-left-20 margin-top-20 radius-50%;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
+    <view class=" margin-top  ">
+      <view class="txt-black margin-left-20 ">{{item.employee_name}}</view>
+      <view class="txt-black flex-row margin-top-10  margin-left-20">成交额：￥{{item.amount}}威币</view>
+    </view>
+  </view>
+</view>
 
 <view class=" " wx:if="{{change=='B'}}">
-<!-- 我的下级-->
-<view class='flex-row flex-column'>
-  <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.img}}'></image>
-  <view class=''>亲,你还没有下级哦</view>
-</view>
-
-<view class="flex-row margin-left-10 margin-bottom-10">
-  <image class='icon-60 margin-left-20 margin-top-20 radius-50%;' src='{{uploadpath}}resource/{{res.cemera}}'></image>
-  <view class=" margin-top  ">
-    <view class="txt-black margin-left-20 ">陈师傅</view>
-    <view class="txt-black flex-row margin-top-10  margin-left-20">成交额：￥1924威币</view>
+  <!-- 我的下级-->
+  <view class='flex-row flex-column' wx:if="{{addresslist.length==0 }}">
+    <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.img}}'></image>
+    <view class=''>亲,你还没有下级哦</view>
   </view>
-</view></view>
+
+  <view class="flex-row margin-left-10 margin-bottom-10" wx:for="{{xia}}">
+    <image class='icon-60 margin-left-20 margin-top-20 radius-50%;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
+    <view class=" margin-top  ">
+      <view class="txt-black margin-left-20 ">{{item.employee_name}}</view>
+      <view class="txt-black flex-row margin-top-10  margin-left-20">成交额：￥{{item.amount}}威币</view>
+    </view>
+  </view>
+</view>

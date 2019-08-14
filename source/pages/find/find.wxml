@@ -8,7 +8,6 @@
   </block>
 </swiper>
 
-
 <navigator url="/pages/check/check" class='flex-row  '>
   <view class='btn box-shadow'>
     <view class='flex-row margin-left-20'>
@@ -31,8 +30,8 @@
   </view>
 </view>
 
-<block wx:for="{{searchhistory}}" wx:key="k">
-  <view class='margin-left-30 margin-top-35'>{{item.carrecord}}</view>
+<block wx:for="{{searchhistory}}" wx:key="k" >
+  <view class='margin-left-30 margin-top-35' bindtap="bindcheck">{{item.carrecord}}</view>
   <view class='bott margin-top-20'></view>
 </block>
 

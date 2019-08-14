@@ -1,5 +1,18 @@
 <view class='pageone'>
-  <view class='white-block margin-left-5 margin-right-5 margin-top-5'>
+
+  <view class="ar">
+    <view class=' flex-row margin-top-30  '>
+      <view class='borderleft'></view>
+      <view class='margin-left-10 txt-black txt-bold'>报价信息</view>
+    </view>
+    <view class="margin-left-30">
+      <view class="flex-row txt-black margin-top-20">订单编号：{{searchhistory.vin}}</view>
+      <view class="flex-row txt-black margin-top-10 margin-right-20">订单时间：{{searchhistory.carname}}</view>
+    </view>
+  </view>
+
+
+  <view class='white-block margin-left-5 margin-right-5 margin-top-10'>
     <view class=' flex-row margin-top  '>
       <view class='borderleft'></view>
       <view class='margin-left-10 txt-black txt-bold'>车辆信息</view>
@@ -81,20 +94,6 @@
     </view>
 
   </view>
-  <!-- <view class='bg-white margin-left-20 margin-top-5' style=' height:190rpx; width:95%;'>
-    <view class='margin-top-20 margin-left-20 txt-black'>前保险杠</view>
-    <view class='flex-row flex-wrap margin-top-10 margin-left-20'>
-      <view class='h5'>品牌：</view>
-      <view class='h5'>原厂</view>
-    </view>
-    <view class='flex-row flex-wrap margin-left-20'>
-      <view class='h5'>单价：</view>
-      <view class='h5 txt-red'>元</view>
-      <view class='flex-1'></view>
-      <view class='h5'>发货数量：</view>
-      <view class='h5 margin-right-20'>1</view>
-    </view>
-  </view> -->
 
-  <view class='queren margin-left-20 margin-right-20' bindtap="bindqueren" >选择该供应商进行交易</view>
+  <view class='queren margin-left-20 margin-right-20' bindtap="bindqueren">选择该供应商进行交易</view>
 </view>

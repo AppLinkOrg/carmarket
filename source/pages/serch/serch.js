@@ -60,8 +60,6 @@ class Content extends AppBase {
 
   bindlabel(e) {
     console.log(e, "啦啦啦");
-
-    //return;
     var kkljk=[];
      kkljk = {name:e.currentTarget.dataset.name,num:1};
     console.log(kkljk);

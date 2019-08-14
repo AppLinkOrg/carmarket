@@ -664,8 +664,7 @@ export class AppBase {
   info(message) {
     wx.showModal({
       title: '提示',
-      content: message,
-      showCancel: false
+      content: message
     })
   }
   warning(message) {

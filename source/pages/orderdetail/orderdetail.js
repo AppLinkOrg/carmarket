@@ -43,6 +43,15 @@ class Content extends AppBase {
       })
 
     });
+
+    orderapi.confirmquote({
+      order_id: id,
+     
+    }, (querenbaojia) => {
+      this.Base.setMyData({
+        querenbaojia
+      });
+    });
   }
 
   bindadddizhi() {

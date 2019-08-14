@@ -1,6 +1,20 @@
 <view class="ar">
   <view class=' flex-row margin-top  '>
     <view class='borderleft'></view>
+    <view class='margin-left-10 txt-black txt-bold'>报价信息</view>
+  </view>
+  <view class="margin-left-30">
+    <view class="flex-row txt-black margin-top-20">订单编号：{{searchhistory.vin}}</view>
+    <view class="flex-row txt-black margin-top-10 margin-right-20">订单时间：{{searchhistory.carname}}</view>
+  </view>
+</view>
+
+
+
+
+<view class="ar margin-top-10">
+  <view class=' flex-row margin-top  '>
+    <view class='borderleft'></view>
     <view class='margin-left-10 txt-black txt-bold'>车辆信息</view>
   </view>
   <view class="margin-left-30">

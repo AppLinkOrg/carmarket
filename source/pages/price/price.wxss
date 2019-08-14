@@ -10,7 +10,7 @@ Page{
 .box {
   /* additive-symbols: 30rpx; */
   margin: 20rpx;
-  height: 240rpx;
+  height: 260rpx;
   width: 95%;
   border-radius: 10rpx;
   box-shadow: 1rpx 2rpx 25rpx 2rpx rgb(173, 173, 173);

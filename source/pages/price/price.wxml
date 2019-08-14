@@ -24,11 +24,13 @@
   </view>
   <view class='box white-block' wx:for="{{mylist}}">
     <view bindtap='pricedetail' id="{{item.id}}">
-      <view class='flex-row margin-left-30 margin-top-30'>
-        <view class='txt-black'>{{item.goodsstr}}</view>
+      <view class='flex-row margin-left-30 margin-top-20'>
+
+        <view class="h5">报价单号：{{}}</view>
         <view class='flex-1'></view>
         <view class='margin-right-30'>待报价</view>
       </view>
+      <view class='txt-black margin-left-30'>{{item.goodsstr}}</view>
       <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
     </view>
     <view class='flex-row'>
@@ -45,12 +47,14 @@
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
     <view class=''>暂时没有相关报价单</view>
   </view>
-  <view class='box white-block' bindtap='bindpricing' id="{{item.id}}"  wx:for="{{pricede}}">
-    <view class='flex-row margin-left-30 margin-top-30'>
-      <view class='txt-black'>{{item.goodsstr}}</view>
+  <view class='box white-block' bindtap='bindpricing' id="{{item.id}}" wx:for="{{pricede}}">
+    <view class='flex-row margin-left-30 margin-top-20'>
+      <view class="h5">报价单号：{{}}</view>
+
       <view class='flex-1'></view>
       <view class='margin-right-30'>报价中</view>
     </view>
+    <view class='txt-black margin-left-30'>{{item.goodsstr}}</view>
     <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
     <view class='flex-row'>
       <view class='margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
@@ -67,11 +71,13 @@
     <view class=''>暂时没有相关报价单</view>
   </view>
   <view class='box white-block' bindtap='' queren="{{item.queren}}" wx:for="{{poor}}">
-    <view class='flex-row margin-left-30 margin-top-30' bindtap='pricedetail'>
-      <view class='txt-black'>{{item.goodsstr}}</view>
+    <view class='flex-row margin-left-30 margin-top-20' bindtap='pricedetail'>
+     <view class="h5">报价单号：{{}}</view>
+     
       <view class='flex-1'></view>
       <view class='margin-right-30'>已取消</view>
     </view>
+     <view class='txt-black margin-left-30'>{{item.goodsstr}}</view>
     <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
     <view class='flex-row'>
       <view class='margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>

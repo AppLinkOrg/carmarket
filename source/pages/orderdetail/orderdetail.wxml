@@ -42,7 +42,7 @@
     </view>
     <view class=' bottone margin-bottom-20'></view>
 
-    <view class='flex-row' wx:for="{{chuanzhi.orderitems}}">
+    <view class='flex-row' wx:for="{{querenbaojia}}">
       <view class='margin-left-30 '>
         <image class='icon-25 margin-top-20' src='{{uploadpath}}resource/{{res.no}}'></image>
       </view>

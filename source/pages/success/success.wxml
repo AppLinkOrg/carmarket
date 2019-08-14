@@ -17,8 +17,8 @@
 </view>
 <view class="bott margin-top"></view>
 
-<view class="flex-row margin-left-30 ">
-  <image class='icon-50 margin-right-10 ' src='{{uploadpath}}resource/{{res.no}}'></image>
+<view class="flex-row margin-left-30 margin-top-20">
+  <image class='icon-50 margin-right-10 radius-50%;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
   <view class="txt-black margin-top-30">{{yiwancheng.enterprise_id_name}}</view>
 </view>
 
@@ -33,21 +33,21 @@
 <view class="bott margin-top"></view>
 
 <view wx:for="{{yiwancheng.orderitems}}" wx:key="key">
-<view class='margin-left-30 margin-top-30'>
-  <view class=' txt-black'>{{item.name}}</view>
-  <view class='flex-row  margin-top-10 '>
-    <view class=''>品质：</view>
-    <view class=''>{{}}</view>
+  <view class='margin-left-30 margin-top-30'>
+    <view class=' txt-black'>{{item.name}}</view>
+    <view class='flex-row  margin-top-10 '>
+      <view class=''>品质：</view>
+      <view class=''>{{}}</view>
+    </view>
+    <view class='flex-row'>
+      <view class=''>单价：</view>
+      <view class='txt-red'>{{item.price}}元</view>
+      <view class="flex-1"></view>
+      <view>发货数量：</view>
+      <view class="margin-right-50">{{item.qty}}</view>
+    </view>
   </view>
-  <view class='flex-row'>
-    <view class=''>单价：</view>
-    <view class='txt-red'>{{item.price}}元</view>
-    <view class="flex-1"></view>
-    <view>发货数量：</view>
-    <view class="margin-right-50">{{item.qty}}</view>
-  </view>
-</view>
-<view class='bott margin-top-20 margin-bottom-20'></view>
+  <view class='bott margin-top-20 margin-bottom-20'></view>
 </view>
 
 <view class='margin-left-30 flex-row margin-top-20 '>

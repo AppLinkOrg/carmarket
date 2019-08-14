@@ -66,6 +66,12 @@ class Content extends AppBase {
     })
   }
 
+  bindcheck(){
+    
+    wx.navigateTo({
+      url: '/pages/check/check',
+    })
+  }
 
 
   clickvin() {
@@ -89,5 +95,6 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.clickvin = content.clickvin;
-body.bindclear = content.bindclear;
+body.bindclear = content.bindclear; 
+body.bindcheck = content.bindcheck;
 Page(body)
