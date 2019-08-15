@@ -34,7 +34,7 @@
     </view>
 
     <view class='put gray-block'>
-      <textarea placeholder='此处输入配件文字描述' bindconfirm="bindart" bindinput="bindart" >{{item.struct_label}}</textarea>
+      <textarea class="h5 margin-top-30 margin-left-30" placeholder='此处输入配件文字描述' bindconfirm="bindart" bindinput="bindart" >{{item.struct_label}}</textarea>
     </view>
   </view>
 

@@ -22,9 +22,9 @@
 
   <!--待退换-->
   <view class='box ' wx:for="{{daituihuna}}" wx:key="k" bindtap="bindtui" id="{{item.id}}">
-    <view class='flex-row margin-left-30 margin-top-30'>
-      <view class=''>退货单号：</view>
-      <view>{{item.orderno}}</view>
+    <view class='flex-row margin-left-30 margin-top-30 '>
+      <view class='h5'>退货单号：</view>
+      <view class="h5">{{item.orderno}}</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>待退换</view>
     </view>
@@ -46,9 +46,9 @@
 
   <!--已退换-->
   <view class='box ' wx:for="{{yituihuan}}" wx:key="k">
-    <view class='flex-row margin-left-30 margin-top-30'>
-      <view class=''>退货单号：</view>
-      <view>{{item.orderno}}</view>
+    <view class='flex-row margin-left-30 margin-top-30 '>
+      <view class='h5'>退货单号：</view>
+      <view class="h5">{{item.orderno}}</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>已退换</view>
     </view>

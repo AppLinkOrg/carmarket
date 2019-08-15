@@ -1,2 +1,1 @@
-<!--pages/aboutus/aboutus.wxml-->
-<text>pages/aboutus/aboutus.wxml</text>
+<view class="flex-row flex-column txt-black margin-top">关于我们</view>

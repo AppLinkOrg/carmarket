@@ -23,12 +23,12 @@
 </view>
 
 <view class='flex-row flex-wrap margin-top-20'>
-  <view class='txt-black margin-left-30'>车架号：</view>
-  <view class='txt-black '>20190801056455</view>
+  <view class='txt-black margin-left-30'>车架号：{{daifahuo.vin}}</view>
+  <view class='txt-black '></view>
 </view>
 <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
-  <view class='txt-black '>车型：</view>
-  <view class='txt-black '>{{daifahuo.carname}}</view>
+  <view class='txt-black margin-right-30'>车型：{{daifahuo.carname}}</view>
+  
 </view>
 <view class="bott margin-top"></view>
 
@@ -37,7 +37,7 @@
     <view class=' txt-black'>{{item.name}}</view>
     <view class='flex-row  margin-top-10 '>
       <view class=''>品质：</view>
-      <view class=''>原厂</view>
+      <view class=''>{{}}</view>
     </view>
     <view class='flex-row'>
       <view class=''>单价：</view>
@@ -79,8 +79,8 @@
   </view>
   <view class=" flex-row left ">{{daifahuo.receiveaddress}}</view>
 </view>
+<view class='bott margin-top-20 margin-bottom-20'></view>
 
 
 
-
-<view class='txt-white quxiao margin-top-30' bindtap="bindquxiao">取消订单</view>
+<view class='txt-white quxiao ' bindtap="bindquxiao">取消订单</view>

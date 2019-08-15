@@ -19,3 +19,7 @@
   align-items: center;
   justify-content: center;
 }
+.weizhi{
+  position: fixed;
+  bottom: 0;
+}

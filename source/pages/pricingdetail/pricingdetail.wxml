@@ -6,8 +6,8 @@
       <view class='margin-left-10 txt-black txt-bold'>报价信息</view>
     </view>
     <view class="margin-left-30">
-      <view class="flex-row txt-black margin-top-20">订单编号：{{searchhistory.vin}}</view>
-      <view class="flex-row txt-black margin-top-10 margin-right-20">订单时间：{{searchhistory.carname}}</view>
+      <view class="flex-row txt-black margin-top-20">订单编号：{{index.orderno}}</view>
+      <view class="flex-row txt-black margin-top-10 margin-right-20">订单时间：{{index.order_time_formatting}}</view>
     </view>
   </view>
 
@@ -22,7 +22,7 @@
       <view class='txt-black '>{{index.vin}}</view>
     </view>
     <view class='flex-row flex-wrap margin-bottom-40 margin-left-30 margin-top-10 '>
-      <view class='txt-black '>车型：{{index.carname}}</view>
+      <view class='txt-black margin-right-30'>车型：{{index.carname}}</view>
     </view>
   </view>
   <view class='price flex-row  white-block'>
@@ -54,7 +54,7 @@
   <view wx:for="{{userbaojia}}" wx:key="k">
 
     <view class='bg' style=' height:190rpx; width:95%;'>
-      <view class='margin-top-10 margin-left-20 txt-white'>{{item.enterprise_name}}</view>
+      <view class='margin-top-10 margin-left-20 txt-white'>{{item.enterprise_id_name}}</view>
       <view class='flex-row flex-wrap margin-top-10'>
         <view class='flex-1 flex-row flex-center'>
           <image class='icon-25 margin-left-20' src='{{uploadpath}}resource/{{res.renzheng}}'></image>
@@ -77,7 +77,7 @@
 
 
     <view wx:if="{{check==item.id}}">
-      <view class='bg-white margin-left-20 margin-top-5' style=' height:190rpx; width:95%;' wx:for="{{item.quoteitems}}" wx:key="key">
+      <view class='bg-white margin-left-20 margin-top-5' style=' height:170rpx; width:95%;' wx:for="{{item.quoteitems}}" wx:key="key">
         <view class='margin-top-20 margin-left-20 txt-black'>{{item.name}}</view>
         <view class='flex-row flex-wrap margin-top-10 margin-left-20'>
           <view class='h5'>品质：</view>
@@ -90,10 +90,12 @@
           <view class='h5'>发货数量：</view>
           <view class='h5 margin-right-20'>{{item.qty}}</view>
         </view>
+
       </view>
+      <view class='queren margin-left-20 margin-right-20 margin-bottom-20' bindtap="bindqueren">选择该供应商进行交易</view>
     </view>
 
   </view>
 
-  <view class='queren margin-left-20 margin-right-20' bindtap="bindqueren">选择该供应商进行交易</view>
+  <!-- <view class='queren margin-left-20 margin-right-20' bindtap="bindqueren">选择该供应商进行交易</view> -->
 </view>

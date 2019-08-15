@@ -1,6 +1,6 @@
 <view class="bg-btn ">
-  <view class="flex-row margin-left-10 margin-bottom-10">
-    <image class='icon-90 radius-50%;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
+  <view class="flex-row margin-left-10 margin-bottom-20">
+    <image class='margin-top icon-60 radius-50%;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
     <view class=" margin-top-60  ">
       <view class="txt-white margin-left-20">{{employeeinfo.name}}</view>
       <view class="txt-white flex-row  margin-left-20">{{employeeinfo.enterprise.name}}</view>
@@ -54,11 +54,11 @@
   </view>
 
 
-  <view class='flex-row xia' bindtap="bindaccount">
+  <view class='flex-row xia' bindtap="bindjilu"  id='{{list.employee_id}}'>
     <view class="mar">
       <image class='icon ' src='{{uploadpath}}resource/{{res.account}}'></image>
     </view>
-    <view class=' mar txt-black txt-bold'>我的账户</view>
+    <view class=' mar txt-black txt-bold'>交易记录</view>
     <view class='flex-1'></view>
     <image class='icon-17 margin-right-20 margin-top' src='{{uploadpath}}resource/{{res.smallright}}' ></image>
   </view>

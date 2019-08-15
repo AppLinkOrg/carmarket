@@ -59,8 +59,8 @@
   <view class='box ' bindtap='bindsend' wx:for="{{daifahuo}}" wx:key="k" id="{{item.id}}">
 
     <view class='flex-row margin-left-30 margin-top-30'>
-      <view class=''>订单编号：</view>
-      <view>{{item.orderno}}</view>
+      <view class='h5'>订单编号：</view>
+      <view class="h5">{{item.orderno}}</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>待发货</view>
     </view>
@@ -69,7 +69,7 @@
     <view class='flex-row'>
       <view class='flex-row margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
       <view class='flex-1'></view>
-      <view class='orpay txt-white margin-right-30 margin-top-20'>交易成功</view>
+      <view class='orpay txt-white margin-right-30 margin-top-20'>取消</view>
     </view>
   </view>
 </view>
@@ -83,8 +83,8 @@
   </view>
   <view class='box ' bindtap='bindreceive' wx:for="{{daishouhuo}}"  wx:key="k" id="{{item.id}}">
     <view class='flex-row margin-left-30 margin-top-30'>
-      <view class=''>订单编号：</view>
-      <view>{{item.orderno}}</view>
+      <view class="h5">订单编号：</view>
+      <view class="h5">{{item.orderno}}</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>待收货</view>
     </view>
@@ -93,7 +93,7 @@
     <view class='flex-row'>
       <view class='flex-row margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
       <view class='flex-1'></view>
-      <view class='orpay txt-white margin-right-30 margin-top-20'>已发货</view>
+      <view class='orpay txt-white margin-right-30 margin-top-20'>查看物流</view>
     </view>
   </view>
 </view>
@@ -106,8 +106,8 @@
   </view>
   <view class='box ' bindtap='bindsuccess' wx:for="{{yiwancheng}}" wx:key="k" id="{{item.id}}">
     <view class='flex-row margin-left-30 margin-top-30'>
-      <view class=''>订单编号：</view>
-      <view>{{item.orderno}}</view>
+      <view class="h5">订单编号：</view>
+      <view class="h5">{{item.orderno}}</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>已完成</view>
     </view>
@@ -130,8 +130,8 @@
   </view>
   <view class='box ' wx:for="{{yiquxiao}}"   wx:key="k">
     <view class='flex-row margin-left-30 margin-top-30'>
-      <view class=''>订单编号：</view>
-      <view>{{item.orderno}}</view>
+      <view class='h5'>订单编号：</view>
+      <view class="h5">{{item.orderno}}</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>已完成</view>
     </view>

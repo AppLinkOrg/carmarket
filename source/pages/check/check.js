@@ -25,9 +25,9 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
-    var vin="";
-    if(options.vin!=undefined){
-      vin=options.vin;
+    var vin = "";
+    if (options.vin != undefined) {
+      vin = options.vin;
     }
 
     this.Base.setMyData({
@@ -53,8 +53,8 @@ class Content extends AppBase {
       })
       console.log('jianchale');
       console.log(jiancha);
-      console.log(jiancha.name);  
-      if (jiancha.length!=0) {
+      console.log(jiancha.name);
+      if (jiancha.length != 0) {
         console.log("重复");
         console.log(jhjj);
         jhjj.map((item) => {
@@ -67,8 +67,7 @@ class Content extends AppBase {
         this.Base.setMyData({
           jhjj11: undefined
         })
-      }
-      else {
+      } else {
         console.log("不重复");
         jhjj.push(this.Base.getMyData().jhjj11);
         this.Base.setMyData({

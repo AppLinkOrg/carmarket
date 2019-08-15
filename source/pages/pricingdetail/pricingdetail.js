@@ -96,7 +96,7 @@ class Content extends AppBase {
 
 
   setPageTitle(instinfo) {
-    var title = "报价详情";
+    var title = "报价中";
     wx.setNavigationBarTitle({
       title: title,
     })

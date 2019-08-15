@@ -12,6 +12,10 @@ import {
   OrderApi
 } from "../../apis/order.api.js";
 
+import {
+  AddressApi
+} from "../../apis/address.api.js";
+
 class Content extends AppBase {
   constructor() {
     super();
@@ -21,8 +25,9 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
     this.Base.setMyData({
-      vin: this.Base.options.vin,
-      carname: this.Base.options.carname,
+      num: 1,
+      // vin: this.Base.options.vin,
+      // carname: this.Base.options.carname,
     });
   }
   onMyShow() {
@@ -34,6 +39,14 @@ class Content extends AppBase {
     var vin = this.Base.getMyData().vin;
     var carname = this.Base.getMyData().carname;
     console.log(id, "我问问");
+    var addressapi = new AddressApi();
+    addressapi.addresslist({
+
+    }, (addresslist) => {
+      this.Base.setMyData({
+        addresslist
+      })
+    })
 
     orderapi.detail({
       id: id,
@@ -43,16 +56,27 @@ class Content extends AppBase {
       })
 
     });
+    // var quote_id = this.Base.getMyData().quote_id;
+    // var needitems = this.Base.getMyData().needitems;
+    // var noneeditems = this.Base.getMyData().noneeditems;
+    // var anotherprice = this.Base.getMyData().anotherprice;
 
     orderapi.confirmquote({
       order_id: id,
-     
+      // quote_id,
+      // needitems,
+      // noneeditems,    
+      // anotherprice,
+
     }, (querenbaojia) => {
       this.Base.setMyData({
+
         querenbaojia
       });
     });
   }
+
+
 
   bindadddizhi() {
     wx.navigateTo({
@@ -60,13 +84,46 @@ class Content extends AppBase {
     })
   }
 
-  bindreduce() {
-
+  bindchoice(e) {
+    var index = e.currentTarget.dataset.index;
+    var choice = this.Base.getMyData.orderitems;
+   
+    this.Base.setMyData({
+      orderitems,
+    })
   }
 
-  confirm() {
+  bindallchoice(e) {
+    var all = this.Base.getMyData.all;
+  }
+
+  bindadd(e) {
+
+    var index = e.currentTarget.dataset.index;
+    var num = this.Base.getMyData.num;
+    num++;
     this.Base.setMyData({
-      showModal: false 
+      index: index,
+      num: num
+    })
+  }
+  bindreduce(e) {
+    var index = e.currentTarget.dataset.index;
+    var num = this.Base.getMyData.num;
+    if (num > 1) {
+      return false;
+    } else {
+      num--;
+      this.Base.setMyData({
+        index: index,
+        num: num,
+      })
+    }
+  }
+
+  binddizhi(e) {
+    this.Base.setMyData({
+      dizhi: e.detail.value
     })
   }
 
@@ -76,7 +133,7 @@ class Content extends AppBase {
     })
 
     var orderapi = new OrderApi();
-   
+
     // var order_id = this.Base.getMyData().order_id;
     // var receiveaddress = this.Base.getMyData().receiveaddress;
     // var receiver = this.Base.getMyData().receiver;
@@ -96,8 +153,25 @@ class Content extends AppBase {
     //   });
     // });
   }
+
+  binddelect() {
+
+    this.Base.setMyData({
+      showModal: false
+    })
+  }
+
+  confirm() {
+    this.Base.setMyData({
+      showModal: true
+    })
+
+    wx.navigateTo({
+      url: '/pages/jiaoyisuccess/jiaoyisuccess',
+    })
+  }
   setPageTitle(instinfo) {
-    var title = "订单详情";
+    var title = "报价详情";
     wx.setNavigationBarTitle({
       title: title,
     })
@@ -113,4 +187,8 @@ body.confirm = content.confirm;
 
 body.bindreduce = content.bindreduce;
 body.bindadd = content.bindadd;
+body.binddizhi = content.binddizhi;
+body.binddelect = content.binddelect;
+body.bindchoice = content.bindchoice;
+body.bindallchoice = content.bindallchoice;
 Page(body)

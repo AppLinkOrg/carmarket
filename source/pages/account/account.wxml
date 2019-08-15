@@ -18,7 +18,7 @@
       <view class='borderleft'></view>
       <view class='margin-left-10 txt-black txt-bold'>交易记录</view>
     </view>
-    <view class="flex-row flex-center"  wx:for="{{list}}" bindtap="bindjilu"  id='{{item.employee_id}}' >
+    <view class="flex-row flex-center"  wx:for="{{list}}">
       <view class="txt-black margin-left-30 margin-top-30 flex-1">
       {{item.employee_name}}
         <view class="txt-black  margin-bottom-20">{{item.consume_time}}</view>

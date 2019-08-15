@@ -5,7 +5,7 @@
   </view>
   <view class='flex-1 flex-row margin-top-20'>
     <image class='icon-25 margin-left-20' src='{{uploadpath}}resource/{{res.addressadd}}' bindtap="bindadddizhi"></image>
-    <input class=' margin-left-10' placeholder='请添加收货地址'></input>
+    <input class=' margin-left-10' value="{{addresslist.region}}{{addresslist.address}}" placeholder='请添加收货地址' bindinput="binddizhi"> </input>
 
   </view>
   <view class='margin-top-20 bott'></view>
@@ -42,9 +42,9 @@
     </view>
     <view class=' bottone margin-bottom-20'></view>
 
-    <view class='flex-row' wx:for="{{querenbaojia}}">
+    <view class='flex-row' wx:for="{{chuanzhi.orderitems}}">
       <view class='margin-left-30 '>
-        <image class='icon-25 margin-top-20' src='{{uploadpath}}resource/{{res.no}}'></image>
+        <image class='icon-25 margin-top-20' src='{{uploadpath}}resource/{{res.no}}' bindtap="bindchoice"></image>
       </view>
       <view class='margin-left-30 '>
         <view class=' txt-black'>{{item.name}}</view>
@@ -61,11 +61,11 @@
       <view class="flex-1"></view>
       <view class="flex-row margin-top">
         <view class=''>
-          <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}' id="{{idx}}" bindtap='bindreduce'></image>
+          <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}' data-index="{{index}}"  bindtap='bindreduce'></image>
         </view>
         <view class='txt-blue margin-left-30 margin-right-30'>{{item.qty}}</view>
         <view class='margin-right-20'>
-          <image class='icon-25 ' src='{{uploadpath}}resource/{{res.add}}' id="{{idx}}" bindtap='bindadd'></image>
+          <image class='icon-25 ' src='{{uploadpath}}resource/{{res.add}}' data-index="{{index}}"  bindtap='bindadd'></image>
         </view>
       </view>
     </view>
@@ -75,7 +75,7 @@
 
   <view class='bott margin-top-20'></view>
   <view class="flex-row margin-top-20">
-    <image class='icon-25 margin-left-30' src='{{uploadpath}}resource/{{res.no}}'></image>
+    <image class='icon-25 margin-left-30' src='{{uploadpath}}resource/{{res.no}}' bindtap="bindallchoice"></image>
     <view class="margin-left-10 txt-black">全选</view>
     <view class="flex-1"></view>
     <view class="txt-black">小计：</view>
@@ -111,13 +111,13 @@
     <view class="flex-row">
       <view class="flex-1"></view>
 
-      <image class='icon-25 margin-right-30 margin-top-30' src='{{uploadpath}}resource/{{res.delect}}'></image>
+      <image class='icon-25 margin-right-30 margin-top-30' src='{{uploadpath}}resource/{{res.delect}}' bindtap="binddelect"></image>
     </view>
     <view class="flex-row flex-column">
       <view class="txt-black margin-top-30">求购订单支付</view>
-      <view class="h1-2 txt-red margin-top margin-bottom-40">￥1924</view>
+      <view class="h1-2 txt-red margin-top margin-bottom-40">￥{{chuanzhi.totalamount}}</view>
       <view class="margin-bottom-40">从我的账户中扣除此次订单金额</view>
-      <button class="qw" bindtap="confirm">确认支付￥1924威币</button>
+      <button class="qw" bindtap="confirm">确认支付￥{{chuanzhi.totalamount}}威币</button>
     </view>
   </view>
 </view>

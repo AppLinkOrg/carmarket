@@ -27,8 +27,8 @@
   <view class='txt-black '>{{daishouhuo.vin}}</view>
 </view>
 <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
-  <view class='txt-black '>车型：</view>
-  <view class='txt-black '>{{daishouhuo.carname}}</view>
+  <view class='txt-black margin-right-30'>车型：{{daishouhuo.carname}}</view>
+ 
 </view>
 <view class="bott margin-top"></view>
 
@@ -37,7 +37,7 @@
   <view class=' txt-black'>{{item.name}}</view>
   <view class='flex-row  margin-top-10 '>
     <view class=''>品质：</view>
-    <view class=''>原厂</view>
+    <view class=''>{{}}</view>
   </view>
   <view class='flex-row'>
     <view class=''>单价：</view>
@@ -80,4 +80,5 @@
   <view class=" flex-row left ">{{daishouhuo.receiveaddress}}</view>
 </view>
 
+<view class='bott margin-top-20 margin-bottom-20'></view>
 <view class='txt-white margin-top-30 yes' bindtap="bindshou">确认签收</view>

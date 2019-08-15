@@ -28,8 +28,17 @@ class Content extends AppBase {
       });
     });
   }
+  bindorder(){
+    wx.reLaunch({
+      url: '/pages/order/order',
+    })
+  }
 
-
+  bindfind() {
+    wx.reLaunch({
+      url: '/pages/find/find',
+    })
+  }
 
   setPageTitle(instinfo) {
     var title = "交易成功";
@@ -41,6 +50,7 @@ class Content extends AppBase {
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
-body.onMyShow = content.onMyShow;
-
+body.onMyShow = content.onMyShow; 
+body.bindorder = content.bindorder;
+body.bindfind = content.bindfind; 
 Page(body)

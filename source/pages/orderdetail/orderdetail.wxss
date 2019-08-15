@@ -46,7 +46,7 @@ page {
   height: 620rpx;
   position: fixed;
   bottom:0;
-  background-color: rgb(236, 236, 236);
+  background-color: rgb(243, 243, 243);
   border-radius: 36rpx 36rpx 0rpx 0rpx;
  
 }

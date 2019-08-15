@@ -4,8 +4,8 @@
     <view class='margin-left-10 txt-black txt-bold'>报价信息</view>
   </view>
   <view class="margin-left-30">
-    <view class="flex-row txt-black margin-top-20">订单编号：{{searchhistory.vin}}</view>
-    <view class="flex-row txt-black margin-top-10 margin-right-20">订单时间：{{searchhistory.carname}}</view>
+    <view class="flex-row txt-black margin-top-20">订单编号：{{searchhistory.orderno}}</view>
+    <view class="flex-row txt-black margin-top-10 margin-right-20">订单时间：{{searchhistory.order_time_formatting}}</view>
   </view>
 </view>
 

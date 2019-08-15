@@ -25,7 +25,6 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var consumeapi = new ConsumeApi();
-
     consumeapi.list({
       
     }, (list) => {
@@ -34,14 +33,7 @@ class Content extends AppBase {
       });
     });
   }
-
-
-  bindjilu(e) {
-    var id = e.currentTarget.id;
-    wx.navigateTo({
-      url: '/pages/jiaoyijilu/jiaoyijilu?id=' + id,
-    })
-  }
+  
   setPageTitle(instinfo) {
     wx.setNavigationBarTitle({
       title: "我的账户",
@@ -54,5 +46,5 @@ var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
-body.bindjilu = content.bindjilu;
+
 Page(body)

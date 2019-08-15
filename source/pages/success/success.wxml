@@ -19,7 +19,7 @@
 
 <view class="flex-row margin-left-30 margin-top-20">
   <image class='icon-50 margin-right-10 radius-50%;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
-  <view class="txt-black margin-top-30">{{yiwancheng.enterprise_id_name}}</view>
+  <view class="txt-black margin-top-30">{{yiwancheng.quoteenterprise_id_name}}</view>
 </view>
 
 <view class='flex-row flex-wrap margin-top-20'>
@@ -27,8 +27,8 @@
   <view class='txt-black '>{{yiwancheng.vin}}</view>
 </view>
 <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
-  <view class='txt-black '>车型：</view>
-  <view class='txt-black '>{{yiwancheng.carname}}</view>
+  <view class='txt-black margin-right-30'>车型：{{yiwancheng.carname}}</view>
+
 </view>
 <view class="bott margin-top"></view>
 
@@ -78,7 +78,8 @@
   <view class=" flex-row left ">{{yiwancheng.receiveaddress}}</view>
 </view>
 
-<view class='flex-row margin-top'>
+<view class='bott margin-top-20 margin-bottom-20'></view>
+<view class='flex-row margin-top weizhi'>
   <view class='btn0ne '>
     <view class='margin-left-20 h5 txt-white'> 如果商品存在质量问题可申请退换，但是原厂的产品恕不退换</view>
   </view>
