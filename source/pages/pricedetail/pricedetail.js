@@ -14,6 +14,9 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
+    this.Base.setMyData({
+      xuan: 'F',
+    })
   }
   onMyShow() {
     var that = this;
@@ -37,7 +40,19 @@ class Content extends AppBase {
     })
   }
 
-
+  bindfapiao(e){
+    var xuan = e.currentTarget.id
+    if(xuan=='S'){
+      this.Base.setMyData({
+        xuan:'F'
+      })
+    }
+    if(xuan=='F'){
+      this.Base.setMyData({
+        xuan:'S'
+      })
+    }
+  }
 
   // binddelete() {
   //   var that = this;
@@ -51,7 +66,7 @@ class Content extends AppBase {
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
-body.onMyShow = content.onMyShow;
-
+body.onMyShow = content.onMyShow; 
+body.bindfapiao = content.bindfapiao;
 // body.binddelete = content.binddelete;
 Page(body)

@@ -19,3 +19,6 @@
   bottom: 0;
   position: fixed;
 }
+.marg{
+ width: 55vw;
+}

@@ -47,12 +47,13 @@ class Content extends AppBase {
   }
 
   clickimage() {
+    
     var that = this;
     this.Base.uploadImage("product", (ret) => {
-      var images = that.Base.getMyData().images;
-      images.push(ret);
+      console.log(ret,"查看")
       that.Base.setMyData({
-        images
+        image: ret,
+        one: true,
       });
     });
   }

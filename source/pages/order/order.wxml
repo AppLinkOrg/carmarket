@@ -1,5 +1,5 @@
 <view class='flex-row  flex-center  ' style='height:80rpx;'>
-<!-- 
+  <!-- 
   <view class='flex-row flex-column flex-1' data-order='A' bindtap='bindorder'>
     <view class=' txt-bold flex-1 text-center {{order=="A"?"txt-blue":""}}'>待付款</view>
     <view class='order {{order=="A"?"bg-blue":"bg-white"}}'></view>
@@ -56,16 +56,17 @@
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
     <view class=''>暂时没有相关订单</view>
   </view>
-  <view class='box ' bindtap='bindsend' wx:for="{{daifahuo}}" wx:key="k" id="{{item.id}}">
-
-    <view class='flex-row margin-left-30 margin-top-30'>
-      <view class='h5'>订单编号：</view>
-      <view class="h5">{{item.orderno}}</view>
-      <view class='flex-1'></view>
-      <view class='margin-right-30'>待发货</view>
+  <view class='box ' wx:for="{{daifahuo}}" wx:key="k" id="{{item.id}}">
+    <view bindtap='bindsend'>
+      <view class='flex-row margin-left-30 margin-top-30'>
+        <view class='h5'>订单编号：</view>
+        <view class="h5">{{item.orderno}}</view>
+        <view class='flex-1'></view>
+        <view class='margin-right-30'>待发货</view>
+      </view>
+      <view class=' margin-left-30 margin-top-30 txt-black margin-right-30'>{{item.goodsstr}}</view>
+      <view class='margin-left-30 margin-top-10 margin-right-30'>{{item.carname}}</view>
     </view>
-    <view class=' margin-left-30 margin-top-30 txt-black'>{{item.goodsstr}}</view>
-    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
     <view class='flex-row'>
       <view class='flex-row margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
       <view class='flex-1'></view>
@@ -77,19 +78,21 @@
 <!--待收货-->
 
 <view wx:if="{{order=='C'}}">
-  <view class='flex-row flex-column'  wx:if="{{mylist.length==0}}">
+  <view class='flex-row flex-column' wx:if="{{mylist.length==0}}">
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
     <view class=''>暂时没有相关订单</view>
   </view>
-  <view class='box ' bindtap='bindreceive' wx:for="{{daishouhuo}}"  wx:key="k" id="{{item.id}}">
-    <view class='flex-row margin-left-30 margin-top-30'>
-      <view class="h5">订单编号：</view>
-      <view class="h5">{{item.orderno}}</view>
-      <view class='flex-1'></view>
-      <view class='margin-right-30'>待收货</view>
+  <view class='box ' wx:for="{{daishouhuo}}" wx:key="k" id="{{item.id}}">
+    <view bindtap='bindreceive'>
+      <view class='flex-row margin-left-30 margin-top-30'>
+        <view class="h5">订单编号：</view>
+        <view class="h5">{{item.orderno}}</view>
+        <view class='flex-1'></view>
+        <view class='margin-right-30'>待收货</view>
+      </view>
+      <view class=' margin-left-30 margin-top-30 txt-black margin-right-30'>{{item.goodsstr}}</view>
+      <view class='margin-left-30 margin-top-10 margin-right-30'>{{item.carname}}</view>
     </view>
-    <view class=' margin-left-30 margin-top-30 txt-black'>{{item.goodsstr}}</view>
-    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
     <view class='flex-row'>
       <view class='flex-row margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
       <view class='flex-1'></view>
@@ -100,19 +103,21 @@
 
 <!--已完成-->
 <view wx:if="{{order=='D'}}">
-  <view class='flex-row flex-column'  wx:if="{{mylist.length==0}}">
+  <view class='flex-row flex-column' wx:if="{{mylist.length==0}}">
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
     <view class=''>暂时没有相关订单</view>
   </view>
-  <view class='box ' bindtap='bindsuccess' wx:for="{{yiwancheng}}" wx:key="k" id="{{item.id}}">
-    <view class='flex-row margin-left-30 margin-top-30'>
-      <view class="h5">订单编号：</view>
-      <view class="h5">{{item.orderno}}</view>
-      <view class='flex-1'></view>
-      <view class='margin-right-30'>已完成</view>
+  <view class='box ' wx:for="{{yiwancheng}}" wx:key="k" id="{{item.id}}">
+    <view bindtap='bindsuccess'>
+      <view class='flex-row margin-left-30 margin-top-30'>
+        <view class="h5">订单编号：</view>
+        <view class="h5">{{item.orderno}}</view>
+        <view class='flex-1'></view>
+        <view class='margin-right-30'>已完成</view>
+      </view>
+      <view class=' margin-left-30 margin-top-30 txt-black margin-right-30'>{{item.goodsstr}}</view>
+      <view class='margin-left-30 margin-top-10 margin-right-30'>{{item.carname}}</view>
     </view>
-    <view class=' margin-left-30 margin-top-30 txt-black'>{{item.goodsstr}}</view>
-    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
     <view class='flex-row'>
       <view class='flex-row margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
       <view class='flex-1'></view>
@@ -124,19 +129,21 @@
 
 <!--已取消-->
 <view wx:if="{{order=='E'}}">
-  <view class='flex-row flex-column'  wx:if="{{mylist.length==0}}">
+  <view class='flex-row flex-column' wx:if="{{mylist.length==0}}">
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
     <view class=''>暂时没有相关订单</view>
   </view>
-  <view class='box ' wx:for="{{yiquxiao}}"   wx:key="k">
-    <view class='flex-row margin-left-30 margin-top-30'>
-      <view class='h5'>订单编号：</view>
-      <view class="h5">{{item.orderno}}</view>
-      <view class='flex-1'></view>
-      <view class='margin-right-30'>已完成</view>
+  <view class='box ' wx:for="{{yiquxiao}}" wx:key="k">
+    <view>
+      <view class='flex-row margin-left-30 margin-top-30'>
+        <view class='h5'>订单编号：</view>
+        <view class="h5">{{item.orderno}}</view>
+        <view class='flex-1'></view>
+        <view class='margin-right-30'>已完成</view>
+      </view>
+      <view class=' margin-left-30 margin-top-30 txt-black margin-right-30'>{{item.goodsstr}}</view>
+      <view class='margin-left-30 margin-top-10 margin-right-30'>{{item.carname}}</view>
     </view>
-    <view class=' margin-left-30 margin-top-30 txt-black'>{{item.goodsstr}}</view>
-    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
     <view class='flex-row'>
       <view class='flex-row margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
       <view class='flex-1'></view>

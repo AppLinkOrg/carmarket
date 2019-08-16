@@ -134,9 +134,9 @@ class Content extends AppBase {
 
     wx.showModal({
       title: '提示',
-      content: '是否保存该数据',
+      content: '是否保存该地址',
       confirmText: "确认",
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
 
           if (id != undefined) {
@@ -169,7 +169,7 @@ class Content extends AppBase {
               that.Base.setMyData({
                 baocun
               });
-             
+
             });
           }
           wx.navigateBack({
@@ -185,7 +185,7 @@ class Content extends AppBase {
 
     // if (id != undefined) {
     //   var addressapi = new AddressApi();
- 
+
     //   addressapi.updateaddress({
     //     id: this.Base.options.id,
     //     name: people,
@@ -219,15 +219,15 @@ class Content extends AppBase {
   }
   binddetele() {
 
-    
+
     var id = this.Base.options.id;
 
     var addressapi = new AddressApi();
     wx.showModal({
       title: '提示',
-      content: '是否删除该数据',
+      content: '是否删除该地址',
       confirmText: "确认",
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           addressapi.addressdelete({
             id: id,
@@ -240,13 +240,10 @@ class Content extends AppBase {
             })
           });
         } else {
-        
         }
       }
     })
-   
   }
-
 
 }
 var content = new Content();

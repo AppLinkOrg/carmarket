@@ -4,7 +4,7 @@
 
 .yes {
   height: 100rpx;
-  width: 100%;
+  width: 100vw;
   position: fixed;
   bottom: 0;
   background-color: #143779;

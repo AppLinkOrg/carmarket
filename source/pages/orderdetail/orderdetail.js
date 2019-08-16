@@ -25,7 +25,9 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
     this.Base.setMyData({
-      num: 1,
+      qty: 1,
+      xuan: 'N',
+      quan: 'B'
       // vin: this.Base.options.vin,
       // carname: this.Base.options.carname,
     });
@@ -51,23 +53,28 @@ class Content extends AppBase {
     orderapi.detail({
       id: id,
     }, (chuanzhi) => {
+
+      chuanzhi.orderitems.map((item) => {
+
+        item.xz = false;
+
+      })
+
       this.Base.setMyData({
         chuanzhi
       })
-
+      console.log(chuanzhi);
     });
     // var quote_id = this.Base.getMyData().quote_id;
     // var needitems = this.Base.getMyData().needitems;
     // var noneeditems = this.Base.getMyData().noneeditems;
     // var anotherprice = this.Base.getMyData().anotherprice;
-
     orderapi.confirmquote({
       order_id: id,
       // quote_id,
       // needitems,
       // noneeditems,    
       // anotherprice,
-
     }, (querenbaojia) => {
       this.Base.setMyData({
 
@@ -76,8 +83,6 @@ class Content extends AppBase {
     });
   }
 
-
-
   bindadddizhi() {
     wx.navigateTo({
       url: '/pages/address/address',
@@ -85,38 +90,60 @@ class Content extends AppBase {
   }
 
   bindchoice(e) {
-    var index = e.currentTarget.dataset.index;
-    var choice = this.Base.getMyData.orderitems;
-   
+    var chuanzhi = this.Base.getMyData().chuanzhi;
+    var xuan = e.currentTarget.dataset.id;
+    chuanzhi.orderitems[xuan].xz = !chuanzhi.orderitems[xuan].xz;
     this.Base.setMyData({
-      orderitems,
+      chuanzhi
     })
   }
 
   bindallchoice(e) {
-    var all = this.Base.getMyData.all;
+    var chuanzhi = this.Base.getMyData().chuanzhi;
+    var quan = e.currentTarget.id;
+    if (quan == 'Q') {
+      chuanzhi.orderitems.map((item) => {
+        item.xz = false;
+      })
+      this.Base.setMyData({
+        quan: 'B'
+      })
+    }
+
+    if (quan == 'B') {
+      chuanzhi.orderitems.map((item) => {
+        item.xz = true;
+      })
+      this.Base.setMyData({
+        quan: 'Q'
+      })
+    }
+    this.Base.setMyData({
+      chuanzhi
+    })
   }
 
   bindadd(e) {
-
-    var index = e.currentTarget.dataset.index;
-    var num = this.Base.getMyData.num;
-    num++;
+    var index = e.currentTarget.dataset.id;
+    var chuanzhi = this.Base.getMyData().chuanzhi;
+    console.log(chuanzhi.orderitems[index].qty, "sdgytrujtutrk")
+    chuanzhi.orderitems[index].qty ++;
+    console.log(chuanzhi.orderitems[index].qty, "输出")
     this.Base.setMyData({
-      index: index,
-      num: num
+      chuanzhi
     })
   }
+
   bindreduce(e) {
-    var index = e.currentTarget.dataset.index;
-    var num = this.Base.getMyData.num;
-    if (num > 1) {
-      return false;
+    var index = e.currentTarget.dataset.id;
+    var chuanzhi = this.Base.getMyData().chuanzhi;
+    var qty = chuanzhi.orderitems[index].qty;
+    if (qty == 1) {
+      return
     } else {
-      num--;
+      chuanzhi.orderitems[index].qty--;
       this.Base.setMyData({
-        index: index,
-        num: num,
+        chuanzhi
       })
     }
   }
@@ -162,6 +189,7 @@ class Content extends AppBase {
   }
 
   confirm() {
+    
     this.Base.setMyData({
       showModal: true
     })

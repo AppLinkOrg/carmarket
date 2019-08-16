@@ -33,7 +33,8 @@ class Content extends AppBase {
     this.Base.setMyData({
       jhjj: [],
       qwrfwa: [],
-      vin
+      vin,
+      xuan: 'F',
     });
 
   }
@@ -177,6 +178,20 @@ class Content extends AppBase {
       url: '/pages/serch/serch?vin=' + vin + '&brandCode=' + brandCode + '&mcid=' + mcid,
     })
   }
+  bindshifou(e) {
+    var xuan = e.currentTarget.id
+    if (xuan == 'S') {
+      this.Base.setMyData({
+        xuan: 'F'
+      })
+    }
+    if (xuan == 'F') {
+      this.Base.setMyData({
+        xuan: 'S'
+      })
+    }
+  }
+
 
   public() {
     var orderapi = new OrderApi();
@@ -184,7 +199,7 @@ class Content extends AppBase {
     var vin = this.Base.getMyData().vin;
     var brandCode = this.Base.getMyData().b;
     var carname = this.Base.getMyData().biaoti;
-    var needinvoice = 'Y';
+    var needinvoice = 'N';
     var jhjj = this.Base.getMyData().jhjj;
     var qwrfwa = this.Base.getMyData().qwrfwa;
     var items = this.Base.getMyData().items;
@@ -270,5 +285,6 @@ body.bindreduce = content.bindreduce;
 body.clickcamera = content.clickcamera;
 body.binvin = content.binvin;
 body.convin = content.convin;
-body.bindshou = content.bindshou;
-Page(body)
+body.bindshou = content.bindshou; 
+body.bindshifou = content.bindshifou; 
+Page(body) 

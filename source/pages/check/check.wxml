@@ -59,7 +59,8 @@
 <view class='flex-row margin-top-20'>
   <view class='txt-black margin-left-30 '>是否开发票</view>
   <view class='flex-1'></view>
-  <image class='icon-25 margin-right-30' src='{{uploadpath}}resource/{{res.no}}'></image>
+  <image wx:if="{{xuan=='F'}}" id="F" class='icon-25 margin-right-30' src='{{uploadpath}}resource/{{res.no}}' bindtap="bindshifou"></image>
+    <image wx:if="{{xuan=='S'}}" id="S" class='icon-25 margin-right-30' src='{{uploadpath}}resource/{{res.shi}}' bindtap="bindshifou"></image>
 </view>
 
 <button class='btn bg-btn ' bindtap='public'>发布求购</button>
