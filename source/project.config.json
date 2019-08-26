@@ -47,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 21,
+			"current": 23,
 			"list": [
 				{
 					"id": -1,
@@ -92,8 +92,8 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "配件查询输入",
+					"id": 6,
+					"name": "手动添加查询输入",
 					"pathName": "pages/serch/serch",
 					"query": "",
 					"scene": null
@@ -200,6 +200,21 @@
 					"id": -1,
 					"name": "添加地址页面",
 					"pathName": "pages/addressadd/addressadd",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "不能识别",
+					"pathName": "pages/unserch/unserch",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "车架号查询已添加/findadd",
+					"pathName": "pages/findadd/findadd",
+					"query": "",
 					"scene": null
 				}
 			]

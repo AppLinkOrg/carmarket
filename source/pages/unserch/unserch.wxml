@@ -1,0 +1,66 @@
+<view class='flex-row  margin-top-30'>
+  <view class='borderleft'></view>
+  <view class=' margin-left-20 txt-black txt-bold'>上传照片</view>
+</view>
+
+<view class="flex-row">
+  <view class="margin-left-35 margin-top-20">
+    <image class="icon-100" hidden="{{one}}" src="{{uploadpath}}resource/{{res.upload}}" bindtap="bindupimg"></image>
+    <image class="icon-100" hidden="{{!one}}" src="{{uploadpath}}product/{{image}}" bindtap="bindupimg"></image>
+    <view class="flex-row">
+      <view class="txt-black">铭牌</view>
+      <view class="txt-red">（必填）</view>
+    </view>
+  </view>
+
+  <view class="margin-left-40 margin-top-20">
+    <image class="icon-100" hidden="{{one}}" src="{{uploadpath}}resource/{{res.upload}}" bindtap="bindupimg"></image>
+    <image class="icon-100" hidden="{{!one}}" src="{{uploadpath}}product/{{image}}" bindtap="bindupimg"></image>
+    <view class="flex-row">
+      <view class="txt-black">车头</view>
+      <view class="txt-red">（必填）</view>
+    </view>
+  </view>
+
+  <view class="margin-left-40 margin-top-20">
+    <image class="icon-100" hidden="{{one}}" src="{{uploadpath}}resource/{{res.upload}}" bindtap="bindupimg"></image>
+    <image class="icon-100" hidden="{{!one}}" src="{{uploadpath}}product/{{image}}" bindtap="bindupimg"></image>
+    <view class="flex-row">
+      <view class="txt-black">车尾</view>
+      <view class="txt-red">（必填）</view>
+    </view>
+  </view>
+</view>
+
+<view class="flex-row">
+  <view class="margin-left-35 margin-top-20">
+    <image class="icon-100" hidden="{{one}}" src="{{uploadpath}}resource/{{res.upload}}" bindtap="bindupimg"></image>
+    <image class="icon-100" hidden="{{!one}}" src="{{uploadpath}}product/{{image}}" bindtap="bindupimg"></image>
+    <image class="icon-17 detele" hidden='{{!one}}' src="{{uploadpath}}resource/{{res.quchu}}" bindtap="binddelect"></image>
+    <view class="txt-red margin-left-40">（选填）</view>
+  </view>
+
+  <view class="margin-left-40 margin-top-20">
+    <image class="icon-100" hidden="{{one}}" src="{{uploadpath}}resource/{{res.upload}}" bindtap="bindupimg"></image>
+    <image class="icon-100" hidden="{{!one}}" src="{{uploadpath}}product/{{image}}" bindtap="bindupimg"></image>
+    <image class="icon-17 detele" hidden='{{!one}}' src="{{uploadpath}}resource/{{res.quchu}}" bindtap="binddelect"></image>
+    <view class="txt-red margin-left-40">（选填）</view>
+  </view>
+</view>
+<view class="bottom"></view>
+<view class='flex-row  margin-top-30'>
+  <view class='borderleft'></view>
+  <view class=' margin-left-20 txt-black txt-bold'>一键识别</view>
+</view>
+<view class="btna">
+  <textarea class="h5 margin-left-30 margin-top-30" maxlength="200" placeholder="请将复制的文字黏贴到此处进行配件文字识别"></textarea>
+</view>
+<view class="flex-row">
+<view class="flex-1"></view>
+  <view class="btnd margin-right-30" bindtap="bindshibie">点击识别</view>
+</view>
+<view class="flex-row">
+  <view class="btnb margin-top-20">前保险杠</view>
+  <image class="icon-17 quchu" src="{{uploadpath}}resource/{{res.quchu}}"></image>
+</view>
+<view class="btnc" bindtap="bindfubu">发布询价</view>

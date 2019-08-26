@@ -522,6 +522,9 @@ button[disabled][type=primary] {
 .margin-right-50 {
   margin-right: 50rpx;
 }
+.margin-right-100 {
+  margin-right: 100rpx;
+}
 
 .margin-left-15 {
   margin-left: 15rpx;
@@ -534,6 +537,9 @@ button[disabled][type=primary] {
 .margin-left-30 {
   margin-left: 30rpx;
 }
+.margin-left-35 {
+  margin-left: 35rpx;
+}
 
 .margin-left-40 {
   margin-left: 40rpx;
@@ -543,6 +549,9 @@ button[disabled][type=primary] {
   margin-left: 50rpx;
 }
 
+.margin-left-100 {
+  margin-left: 100rpx;
+}
 .margin-right-15 {
   margin-right: 15rpx;
 }

@@ -11,7 +11,7 @@ Page {
   margin: 20rpx;
   height: 245rpx;
   width: 95%;
-  border-radius: 10rpx;
+  border-radius: 20rpx;
   box-shadow: 1rpx 2rpx 25rpx 2rpx rgb(173, 173, 173);
   display: -webkit-box;
   overflow: hidden;
@@ -35,11 +35,5 @@ Page {
   align-items: center;
   justify-content: center;
 }
-
-/* .orpayw {
-  color: rgb(247, 120, 47);
-  border-radius: 10rpx;
-  text-align: center;
-} */
 
 

@@ -72,6 +72,11 @@ class Content extends AppBase {
       url: '/pages/check/check',
     })
   }
+  bindunable(){
+    wx.navigateTo({
+      url:'/pages/unserch/unserch'
+    })
+  }
 
 
   clickvin() {
@@ -97,4 +102,5 @@ body.onMyShow = content.onMyShow;
 body.clickvin = content.clickvin;
 body.bindclear = content.bindclear; 
 body.bindcheck = content.bindcheck;
+body.bindunable = content.bindunable;
 Page(body)

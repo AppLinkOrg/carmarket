@@ -1,89 +1,38 @@
-<view class=' flex-row margin-top-60  '>
-  <view class='borderleft'></view>
-  <view class='margin-left-10 txt-black txt-bold'>填写车架号</view>
-</view>
-<view class='flex-row '>
-  <view class=' btn box-shadow txt-black'>
+<block>
+  <view class="bg-white top">
+    <view class='txt-black margin-top-30 margin-left-30 margin-bottom-20'>{{biaoti}}</view>
+    <view class="margin-left-30 margin-top-20">{{}}</view>
+  </view>
+</block>
+<view class="margin-top-20"></view>
+<view class='flex-row bg-white'>
+  <view class=' btn  txt-black'>
     <view class='flex-row margin-left-20'>
-      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.cemera}}' bindtap="clickcamera"></image>
+      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.search}}' bindtap="clickcamera"></image>
     </view>
-    <input class="flex-row flex-1  margin-left-20 margin-right-20" placeholder='请填写车架号' bindinput="binvin" value="{{vin}}" bindconfirm="convin"></input>
+    <input class="flex-row flex-1  margin-left-20 margin-right-20" placeholder='空调' bindinput="binvin" value="{{vin}}" bindconfirm="convin"></input>
     <view class='margin-right-20'>
       <image class='icon-25 ' src='{{uploadpath}}resource/{{res.delect}}' bindtap='binddelete'></image>
     </view>
   </view>
-  <image class='icon-25 margin-top-50 margin-right-20' src='{{uploadpath}}resource/{{res.search}}' bindtap="convin"></image>
 </view>
-<!-- 
- <block wx:for="{{addhistory}}" wx:key="k">
-  <view class='txt-black margin-top-40 margin-left-30 margin-bottom-20'></view>
-  <view class='bott margin-bottom-20'></view>
-</block>  -->
-<block>
-  <view class='txt-black margin-top-40 margin-left-30 margin-bottom-20'>{{biaoti}}</view>
-  <view class='bott margin-bottom-20'></view>
-</block>
-
-<view class=' flex-row margin-top-30 '>
-  <view class='borderleft'></view>
-  <view class='margin-left-10 txt-black txt-bold'>需求配件</view>
-  <view class="flex-1"></view>
-  <view class='txt-bc margin-right-10' bindtap='bindshou'>手动添加</view>
-  <image class='icon-25 margin-right-30' src='{{uploadpath}}resource/{{res.shoujia}}' bindtap='bindshou'></image>
-</view>
-<view class='btn bg-btn'  bindtap='add'>点击添加需求配件</view>
-<view class='bott'></view>
-
-<view  wx:if="{{vin!=undefined}}">
-<view class=' flex-row margin-top-30 '>
-  <view class='borderleft'></view>
-  <view class='margin-left-10 txt-black txt-bold'>已添加配件</view>
-</view>
-
-
-<!--自动添加 -->
-<view class=''>
-  <view class='btnn  bg-purple' wx:for="{{jhjj}}" wx:for-index='idx'>
-    <view class='txt-blue margin-left-20'>{{item.name}}</view>
-    <view class="flex-1"></view>
-    <view class=''>
-      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}' id="{{idx}}" bindtap='bindreduce'></image>
+<view class="flex-row">
+  <!--左侧-->
+  <scroll-view scroll-y class="left margin-top-30 margin-left-30 ">
+    <view class="txt-black">已添加配件{{}}</view>
+    <view class="flex-row smbtn margin-top-30">
+      <view class=" txt-red ">空调格 </view>
+        <image class="icon-17 detele" src="{{uploadpath}}resource/{{res.delect}}" bindtap="binddelect"></image>
+     
     </view>
-    <view class='txt-blue margin-left-30 margin-right-30'>{{item.num}}</view>
-    <view class='margin-right-20'>
-      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.add}}'  id="{{idx}}" bindtap='bindadd'></image>
-    </view>
-  </view>
+  </scroll-view>
+
+  <!--右侧-->
+  <scroll-view scroll-y class="right ">
+    <view class="txt-black margin-top-30 margin-left-30">请选择</view>
+    <view class="txt-red margin-left-30 margin-top-20">空调</view>
+    <view class="bot"></view>
+  </scroll-view>
 </view>
 
-<view class='flex-row margin-top-20'>
-  <view class='txt-black margin-left-30 '>是否开发票</view>
-  <view class='flex-1'></view>
-  <image wx:if="{{xuan=='F'}}" id="F" class='icon-25 margin-right-30' src='{{uploadpath}}resource/{{res.no}}' bindtap="bindshifou"></image>
-    <image wx:if="{{xuan=='S'}}" id="S" class='icon-25 margin-right-30' src='{{uploadpath}}resource/{{res.shi}}' bindtap="bindshifou"></image>
-</view>
-
-<button class='btn bg-btn ' bindtap='public'>发布求购</button>
-
-</view>
-
-
-<!--手动添加 -->
-<!-- <view class='flex-row' wx:for="{{qwrfwa}}">
-  <view class='buttnn  bg-purple' >
-    <view class="flex-row">
-      <image class='icon-75 ' src='' bindtap='bindadd'></image>
-      <view class="flex-1"></view>
-      <view class="flex-row margin-top-80">
-        <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}' bindtap='bindreduce'></image>
-        <view class='txt-blue margin-left-30 margin-right-30'>1</view>
-        <view class='margin-right-20'>
-          <image class='icon-25 ' src='{{uploadpath}}resource/{{res.add}}' bindtap='bindadd'></image>
-        </view>
-      </view>
-    </view>
-    <view class='txt-blue margin-left-20'>{{item}}</view>
-  </view>
-</view> -->
-
-
+<view class="button txt-white" bindtap="bindnext">下一步</view>

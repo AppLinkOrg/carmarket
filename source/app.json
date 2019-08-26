@@ -15,6 +15,8 @@
     "pages/home/home",
     "pages/serch/serch",
     "pages/serchgo/serchgo",
+    "pages/unserch/unserch",
+    "pages/findadd/findadd",
     "pages/pricedetail/pricedetail",
     "pages/pricing/pricing",
     "pages/pricingdetail/pricingdetail",

@@ -26,22 +26,37 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
 
-
-  }
-  binddelect() {
-
   }
 
-  bindnext() {
-    wx.navigateTo({
-      url: '/pages/serch/serch',
+  bindupimg() {
+    var that = this;
+    this.Base.uploadImage("product", (ret) => {
+      that.Base.setMyData({
+        image: ret,
+        one: true,
+      })
     })
   }
+  binddelect(){
+
+  }
+
+  bindshibie(){
+
+  }
+  bindfubu() {
+    wx.reLaunch({
+      url: '/pages/price/price',
+    })
+  }
+
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
+body.bindupimg = content.bindupimg;
+body.bindfubu = content.bindfubu;
 body.binddelect = content.binddelect;
-body.bindnext = content.bindnext;
+body.bindshibie = content.bindshibie;
 Page(body)

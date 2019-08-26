@@ -1,0 +1,44 @@
+page {
+  background-color: #f1f1f1;
+}
+
+.inputt {
+  background-color: #f1f1f1;
+  border-radius: 8rpx;
+  width: 60vw;
+}
+
+.cen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  border: 1rpx solid #cecece;
+  height: 65rpx;
+  width: 200rpx;
+  border-radius: 40rpx;
+}
+
+.button {
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  bottom: 10rpx;
+  position: fixed;
+  height: 90rpx;
+  width: 92vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #143779;
+  color: white;
+  border-radius: 40rpx;
+}
+.left{
+  margin-left: 120rpx;
+}
+.imgicon{
+  height: 50rpx;
+  width: 80rpx;
+}

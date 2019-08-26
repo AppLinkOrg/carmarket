@@ -24,6 +24,16 @@
   border-radius: 50%;
   background-color: #143779;
   bottom: 5px;
+  margin-left: 110rpx;
+}
+.wubg {
+  position: fixed;
+  height: 210rpx;
+  width: 210rpx;
+  border-radius: 50%;
+  background-color: #143779;
+  margin-left: 380rpx;
+  bottom: 5px;
 }
 
 .vin {

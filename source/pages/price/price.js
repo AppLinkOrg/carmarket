@@ -91,47 +91,47 @@ class Content extends AppBase {
     })
   }
 
-  bindquxiao(e) {
-    var id = e.currentTarget.id
-    console.log(id,"ggg")
-   // return
-    var orderapi = new OrderApi();
-    orderapi.updatestatus({
-      order_id: id,
-      status: "E"
+  // bindquxiao(e) {
+  //   var id = e.currentTarget.id
+  //   console.log(id,"ggg")
+  //  // return
+  //   var orderapi = new OrderApi();
+  //   orderapi.updatestatus({
+  //     order_id: id,
+  //     status: "E"
       
-    }, (myd) => {
-      this.Base.setMyData({
-        myd
-      })
-    })
-  }
+  //   }, (myd) => {
+  //     this.Base.setMyData({
+  //       myd
+  //     })
+  //   })
+  // }
  
-  bindshanchu(e){
-    var id = e.currentTarget.id
-    var orderapi = new OrderApi();
-    wx.showModal({
-      title: '提示',
-      content: '是否删除该报价单',
-      confirmText: "确认",
-      success: function (res) {
-        if (res.confirm) {
-          orderapi.updatestatus({
-            order_id: id,
-            status: "C"
-          }, (detele) => {
+  // bindshanchu(e){
+  //   var id = e.currentTarget.id
+  //   var orderapi = new OrderApi();
+  //   wx.showModal({
+  //     title: '提示',
+  //     content: '是否删除该报价单',
+  //     confirmText: "确认",
+  //     success: function (res) {
+  //       if (res.confirm) {
+  //         orderapi.updatestatus({
+  //           order_id: id,
+  //           status: "C"
+  //         }, (detele) => {
            
-          this.Base.setMyData({
-            detele
-          })
-          });
+  //         this.Base.setMyData({
+  //           detele
+  //         })
+  //         });
          
-        } else {
+  //       } else {
           
-        }
-      }
-    })
-  }
+  //       }
+  //     }
+  //   })
+  // }
      
 
 

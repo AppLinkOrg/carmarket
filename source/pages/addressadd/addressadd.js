@@ -244,11 +244,7 @@ class Content extends AppBase {
       }
     })
   }
-  changeIndicatorDots() {
-    this.setData({
-      indicatorDots: !this.data.indicatorDots
-    })
-  }
+
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -260,7 +256,7 @@ body.bindman = content.bindman;
 body.bindphone = content.bindphone;
 body.binddizhi = content.binddizhi;
 body.bindxiangxi = content.bindxiangxi;
-body.changeIndicatorDots = content.changeIndicatorDots;
+
 body.bindRegionChange = content.bindRegionChange;
 
 body.bindcheck = content.bindcheck;

@@ -22,7 +22,7 @@
 
   <view class=" margin-left-40 ">
     <picker mode="region" bindchange="bindRegionChange">
-      <input placeholder="请选择地区" name="name" value="{{city}}" disabled="{{true}}"></input>
+      <input   placeholder="请选择地区" name="name" value="{{city}}" disabled="{{true}}"></input>
     </picker>
   </view>
 
@@ -36,7 +36,7 @@
 <view class="flex-row mar">
   <view class="">门牌号</view>
   <view class=" margin-left-40 ">
-    <input placeholder="请输入门牌号" name="name" value="{{address}}" bindinput="bindxiangxi"></input>
+    <input placeholder="请输入门牌号" name="name" value="{{address}}" bindinput="bindxiangxi" ></input>
   </view>
 </view>
 <view class='bott'></view>
@@ -51,7 +51,7 @@
 
 
 </view>
- <switch checked="{{indicatorDots}}" bindchange="changeIndicatorDots" />
+
 <view class='posi flex-row '>
   <view class="detele" bindtap="binddetele" wx:if="{{id!=undefined}}">删除</view>
   <view class="bao" bindtap="bindcaocun">保存</view>
