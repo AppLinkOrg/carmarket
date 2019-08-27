@@ -38,11 +38,16 @@ class Content extends AppBase {
     })
 
   }
+  binddelect(){
+    this.Base.setMyData({
+      one:false
+    })
+  }
 
   bindbaocun() {
-    wx.navigateTo({
-      url: '/pages/findadd/findadd',
-    })
+   wx.navigateBack({
+     //delta: 1 
+   })
   }
 }
 var content = new Content();
@@ -52,4 +57,5 @@ body.onMyShow = content.onMyShow;
 
 body.clickimage = content.clickimage;
 body.bindbaocun = content.bindbaocun;
+body.binddelect = content.binddelect; 
 Page(body)

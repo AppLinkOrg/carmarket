@@ -1,18 +1,18 @@
 <block>
   <view class="bg-white top">
     <view class='txt-black margin-top-30 margin-left-30 margin-bottom-20'>{{biaoti}}</view>
-    <view class="margin-left-30 margin-top-20">{{}}</view>
+    <view class="margin-left-30 margin-top-20">{{vin}}</view>
   </view>
 </block>
 <view class="margin-top-20"></view>
 <view class='flex-row bg-white'>
   <view class=' btn  txt-black'>
     <view class='flex-row margin-left-20'>
-      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.search}}' bindtap="clickcamera"></image>
+      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.search}}' bindtap="bindpart"></image>
     </view>
-    <input class="flex-row flex-1  margin-left-20 margin-right-20" placeholder='空调' bindinput="binvin" value="{{vin}}" bindconfirm="convin"></input>
+    <input class="flex-row flex-1  margin-left-20 margin-right-20" placeholder='空调' bindinput="bindpart" value="{{partinput}}" bindconfirm="bindpart"></input>
     <view class='margin-right-20'>
-      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.delect}}' bindtap='binddelete'></image>
+      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.delect}}' bindtap='binddelect'></image>
     </view>
   </view>
 </view>
@@ -22,16 +22,18 @@
     <view class="txt-black">已添加配件{{}}</view>
     <view class="flex-row smbtn margin-top-30">
       <view class=" txt-red ">空调格 </view>
-        <image class="icon-17 detele" src="{{uploadpath}}resource/{{res.delect}}" bindtap="binddelect"></image>
-     
+      <image class="icon-17 detele" src="{{uploadpath}}resource/{{res.delect}}" bindtap="bindquchu"></image>
     </view>
   </scroll-view>
 
   <!--右侧-->
   <scroll-view scroll-y class="right ">
     <view class="txt-black margin-top-30 margin-left-30">请选择</view>
-    <view class="txt-red margin-left-30 margin-top-20">空调</view>
-    <view class="bot"></view>
+    <block wx:for="{{partsearch.data}}" wx:key="k">
+      <view class="txt-red margin-left-30 margin-top-20" data-name="{{item.subgroup_label}}" bindtap="bindleft">{{item.subgroup_label}}</view>
+
+      <view class="bot"></view>
+    </block>
   </scroll-view>
 </view>
 

@@ -22,75 +22,128 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
     this.Base.setMyData({
-      fapiao:'N',
+      fapiao: 'N',
     })
   }
   onMyShow() {
     var that = this;
 
   }
-  bindchose(e) {
-    //var id = e.currentTarget.id
-    var chose = e.currentTarget.dataset.chose;
-    this.Base.setMyData({
-      chose: chose,
-    })
-  }
-  bindimg(){
-    var that=this;
-    this.Base.uploadImage("product",(ret)=>{
-      that.Base.setMyData({
-        image:ret,
-        upimage:true
-      })
-    })
 
 
-  }
-  bindupimg(){
-    var that=this;
-    this.Base.uploadImage("upimage",(ret)=>{
-      that.Base.setMyData({
-        image:ret,
-        chuanimg:true
-      })
-    })
 
+  bindimg() {
+    wx.reLaunch({
+      url: '/pages/serchgo/serchgo',
+    })
   }
-  bindfabu(){
+
+  bindfabu() {
     wx.reLaunch({
       url: '/pages/price/price',
     })
   }
-  bindadd(){
+  bindadd() {
     wx.navigateTo({
       url: '/pages/check/check',
     })
 
   }
-  bindfapiao(e){
+  bindfapiao(e) {
     var fapiaoed = e.currentTarget.id;
-    if(fapiaoed=='Y'){
+    if (fapiaoed == 'Y') {
       this.Base.setMyData({
-        fapiao:'N'
+        fapiao: 'N'
       })
     }
-    if(fapiaoed=='N'){
+    if (fapiaoed == 'N') {
       this.Base.setMyData({
-        fapiao:'Y'
+        fapiao: 'Y'
       })
     }
 
+  }
+  //多选
+  bindchose(e) {
+    var chose = e.currentTarget.dataset.chose;
+    var xza = this.Base.getMyData().chose;
+    if (xza == 'A') {
+      this.Base.setMyData({
+        chose: '',
+      })
+    } else {
+      this.Base.setMyData({
+        chose: chose,
+      })
+    }
+  }
+
+  bindxuanb(e) {
+    var xuanb = e.currentTarget.dataset.xuanb;
+    var xzb = this.Base.getMyData().xuanb;
+    if (xzb == 'B') {
+      this.Base.setMyData({
+        xuanb: '',
+      })
+    } else {
+      this.Base.setMyData({
+        xuanb: xuanb,
+      })
+    }
+  }
+  bindxuanc(e) {
+    var xuanc = e.currentTarget.dataset.xuanc;
+    var xzc = this.Base.getMyData().xuanc;
+    if (xzc == 'C') {
+      this.Base.setMyData({
+        xuanc: '',
+      })
+    } else {
+      this.Base.setMyData({
+        xuanc: xuanc,
+      })
+    }
+  }
+  bindxuand(e) {
+    var xuand = e.currentTarget.dataset.xuand;
+    var xzd = this.Base.getMyData().xuand;
+    if (xzd == 'D') {
+      this.Base.setMyData({
+        xuand: '',
+      })
+    } else {
+      this.Base.setMyData({
+        xuand: xuand,
+      })
+    }
+  }
+  bindxuane(e) {
+    var xuane = e.currentTarget.dataset.xuane;
+    var xze = this.Base.getMyData().xuane;
+    if (xze == 'E') {
+      this.Base.setMyData({
+        xuane: '',
+      })
+    } else {
+      this.Base.setMyData({
+        xuane: xuane,
+      })
+    }
   }
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
-body.bindchose = content.bindchose;
 body.bindimg = content.bindimg;
 body.bindfabu = content.bindfabu;
 body.bindadd = content.bindadd;
-body.bindfapiao = content.bindfapiao; 
-body.bindupimg = content.bindupimg;
+body.bindfapiao = content.bindfapiao;
+
+body.bindchose = content.bindchose;
+body.bindxuanb = content.bindxuanb;
+body.bindxuanc = content.bindxuanc;
+body.bindxuand = content.bindxuand;
+body.bindxuane = content.bindxuane;
+
 Page(body)

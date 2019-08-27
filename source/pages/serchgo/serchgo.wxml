@@ -1,7 +1,7 @@
 <block>
   <view class="bg-white top">
-    <view class='txt-black margin-top-30 margin-left-30 margin-bottom-20'>{{}}</view>
-    <view class="margin-left-30 margin-top-20">{{}}</view>
+    <view class='txt-black margin-top-30 margin-left-30 margin-bottom-20'>{{biaoti}}</view>
+    <view class="margin-left-30 margin-top-20">{{vin}}</view>
   </view>
 </block>
 
@@ -13,8 +13,8 @@
 
   <view class='flex-row margin-top-30'>
     <view class='margin-left-35 margin-top-20 margin-bottom-30'>
-      <image class='icon-100' if='{{one}}' src='{{uploadpath}}resource/{{res.upload}}' bindtap="clickimage"></image>
-      <image class='icon-100 margin-left-30' if='{{!one}}' src='{{uploadpath}}product/{{image}}' bindtap="clickimage"></image>
+      <image class='icon-100' hidden='{{one}}' src='{{uploadpath}}resource/{{res.upload}}' bindtap="clickimage"></image>
+      <image class='icon-100 margin-left-30' hidden='{{!one}}' src='{{uploadpath}}product/{{image}}' bindtap="clickimage"></image>
       <image class="icon-17 detele" hidden='{{!one}}' src="{{uploadpath}}resource/{{res.quchu}}" bindtap="binddelect"></image>
     </view>
   </view>

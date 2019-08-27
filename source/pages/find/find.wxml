@@ -8,14 +8,15 @@
   </block>
 </swiper>
 
-<navigator url="/pages/check/check" class='flex-row  '>
+<view class='flex-row '>
   <view class='btn box-shadow'>
     <view class='flex-row margin-left-20'>
-      <image class='icon-17 ' src='{{uploadpath}}resource/{{res.search}}'></image>
+      <image class='icon-17 ' src='{{uploadpath}}resource/{{res.search}}' bindtap="bindsearch"></image>
     </view>
-    <view class='flex-row flex-column flex-1 txt-black txt-bold'>手动输入17位车架号查询</view>
+    <input class="flex-row flex-column flex-1" maxlength="17" value="{{vin}}" placeholder="手动输入17位车架号" bindconfirm="bindvin"  bindinput="bindvalue"></input>
+    <!-- <view class='flex-row flex-column flex-1 txt-black txt-bold'>手动输入17位车架号查询</view> -->
   </view>
-</navigator>
+</view>
 
 <view class=' flex-row '>
   <view class='flex-row  '>
