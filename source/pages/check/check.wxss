@@ -20,7 +20,7 @@ page {
 
 .smbtn {
   background-color: white;
-  border-radius: 40rpx;
+  border-radius: 14rpx;
   height: 70rpx;
   width: 220rpx;
   display: flex;
@@ -35,7 +35,7 @@ page {
 .right {
   width: 72vw;
   background-color: white;
-  height: 73vh;
+  height: 69vh;
 }
 
 .bot {
@@ -60,3 +60,6 @@ page {
   margin-right: 30rpx;
   margin-top: 10rpx;
 }
+
+
+

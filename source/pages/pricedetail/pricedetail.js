@@ -16,15 +16,17 @@ class Content extends AppBase {
     super.onLoad(options);
     this.Base.setMyData({
       xuan: 'F',
+      chakan:'C'
     })
   }
   onMyShow() {
     var that = this;
     var instapi = new InstApi();
     var orderapi = new OrderApi();
+    var id = this.Base.options.id;
 
     orderapi.detail({
-      id:this.Base.options.id
+      id:id
     }, (searchhistory) => {
       this.Base.setMyData({
         searchhistory
@@ -39,7 +41,13 @@ class Content extends AppBase {
       title: title,
     })
   }
+  bindchakan(e){
+    var chakan = e.currentTarget.dataset.chakan;
+    this.Base.setMyData({
+      chakan:chakan
+    })
 
+  }
   bindfapiao(e){
     var xuan = e.currentTarget.id
     if(xuan=='S'){
@@ -53,14 +61,6 @@ class Content extends AppBase {
       })
     }
   }
-
-  // binddelete() {
-  //   var that = this;
-  //   this.Base.setMyData({
-  //     searchinput: ''
-  //   })
-  // } 
-
   
 }
 var content = new Content();
@@ -68,5 +68,5 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow; 
 body.bindfapiao = content.bindfapiao;
-// body.binddelete = content.binddelete;
+body.bindchakan = content.bindchakan;
 Page(body)

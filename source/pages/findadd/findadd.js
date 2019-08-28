@@ -47,6 +47,13 @@ class Content extends AppBase {
     wx.navigateTo({
       url: '/pages/check/check',
     })
+  }
+  bindjian(e){
+    var index = e.currentTarget.dataset.id;
+
+  }
+  bindjia(){
+    var index = e.currentTarget.dataset.id;
 
   }
   bindfapiao(e) {
@@ -139,6 +146,8 @@ body.bindimg = content.bindimg;
 body.bindfabu = content.bindfabu;
 body.bindadd = content.bindadd;
 body.bindfapiao = content.bindfapiao;
+body.bindjian = content.bindjian;
+body.bindjia = content.bindjia;
 
 body.bindchose = content.bindchose;
 body.bindxuanb = content.bindxuanb;

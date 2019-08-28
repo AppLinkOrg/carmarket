@@ -3,9 +3,9 @@
     <image class="icon-25  margin-left-30" src='{{uploadpath}}resource/{{res.weixz}}'></image>
     <view class="margin-left-20 ">说不出来</view>
     <view class="flex-1"></view>
-    <image class="icon-25  " src='{{uploadpath}}resource/{{res.reduce}}'></image>
-    <view class="margin-left-10 margin-right-10 ">1</view>
-    <image class="icon-25  margin-right-30" src='{{uploadpath}}resource/{{res.add}}'></image>
+    <image class="icon-25  " src='{{uploadpath}}resource/{{res.reduce}}' bindtap="bindjian" data-id="{{idx}}"></image>
+    <view class="margin-left-10 margin-right-10 ">{{}}</view>
+    <image class="icon-25  margin-right-30" src='{{uploadpath}}resource/{{res.add}}' bindtap="bindjia" data-id="{{idx}}"></image>
   </view>
   <view class="flex-row margin-left-100 margin-top-30 margin-bottom-20">
     <image class="icon-25  margin-right-30" src='{{uploadpath}}resource/{{res.cemera}}' bindtap="bindimg"></image>

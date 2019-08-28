@@ -1,0 +1,69 @@
+<view class="margin-bottom-10"></view>
+<view class="bg">
+  <view class="flex-row margin-left-30 margin-top-30">
+    <view class="txt-white ">询价单：B19081929483</view>
+    <view class="flex-1"></view>
+    <view class="txt-white margin-right-30">不开票</view>
+  </view>
+  <view class="txt-white margin-left-30 margin-top-20 margin-bottom-20">车架：{{}}</view>
+</view>
+
+<view class="box">
+  <view class="flex-row margin-top-20">
+    <image class="icon margin-left-20 " src="{{uploadpath}}resource/{{res.zhong}}"></image>
+    <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.store}}"></image>
+    <view class="margin-left-10">广州汽配</view>
+    <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.smile}}"></image>
+  </view>
+  <view class="bgye margin-top-20">
+    <view class="flex-row margin-top-20 margin-bottom-20 margin-left-30">
+      <view class="kaipiao padding-left-10 padding-right-10 h6">开票</view>
+      <view class="margin-left-5 h6">本店累计满¥1000可开票，还差¥1000</view>
+      <view class="flex-1"></view>
+      <view class="txt-primary margin-right-30 h6">查看规则</view>
+    </view>
+  </view>
+  <view class="flex-row margin-top-20">
+    <image class="icon margin-left-70 " src="{{uploadpath}}resource/{{res.one}}"></image>
+    <view class="margin-left-10">燃油滤清器</view>
+    <view class="flex-1"></view>
+    <view class="">厦门湖里仓：有货</view>
+    <image class="icon margin-left-10 margin-right-30" src="{{uploadpath}}resource/{{res.sanjiao}}"></image>
+  </view>
+  <view class="flex-row margin-left-50 margin-top-20">
+    <view class="h5 margin-left-20">燃油滤清器</view>
+    <view class="h5 margin-left-30">16127451424</view>
+    <view class="flex-1"></view>
+    <view class="h5 margin-right-30">(4S价：¥474.41)</view>
+  </view>
+  <view class="flex-row margin-top-20">
+    <image class="icon margin-left-20 margin-top-20" src="{{uploadpath}}resource/{{res.zhong}}"></image>
+    <view class="yuan margin-left-10 margin-bottom-20">
+      <view class="h5 padding-left-10 padding-right-10 h6">原厂(非国内4S)：宝马</view>
+    </view>
+  </view>
+  <view class="flex-row margin-left-50 ">
+    <view class="txt-red margin-left-20">¥178.</view>
+    <view class="txt-red h6">00</view>
+    <view class="flex-1"></view>
+    <image class="icon-15 margin-top-10 margin-right-10" src="{{uploadpath}}resource/{{res.jian}}"></image>
+    <view class="flex-row flex-column num">1</view>
+    <image class="icon-15 margin-top-10 margin-left-10  margin-right-30 " src="{{uploadpath}}resource/{{res.jia}}"></image>
+  </view>
+  <view class="flex-row margin-left-50 margin-top-20 margin-bottom-20">
+    <image class="icon margin-left-10 margin-right-10" src="{{uploadpath}}resource/{{res.tui}}"></image>
+    <image class="icon margin-left-10 margin-right-10" src="{{uploadpath}}resource/{{res.ji}}"></image>
+    <image class="icon margin-left-10 margin-right-10" src="{{uploadpath}}resource/{{res.pei}}"></image>
+    <image class="icon margin-left-10 margin-right-10" src="{{uploadpath}}resource/{{res.redbao}}"></image>
+  </view>
+</view>
+<view class="bg-white bott">
+  <view class="flex-row margin-top-20">
+    <image class="icon margin-left-20 margin-top-20" src="{{uploadpath}}resource/{{res.zhong}}"></image>
+    <view class="margin-top-20 margin-left-10">全选</view>
+    <view class="flex-1"></view>
+    <view class="txt-black margin-top-20">合计：</view>
+    <view class="txt-red margin-top-20 margin-right-30">¥536.00</view>
+    <view class="bgjie txt-white margin-right-20">去结算(3)</view>
+  </view>
+</view>

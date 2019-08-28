@@ -47,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 23,
+			"current": 24,
 			"list": [
 				{
 					"id": -1,
@@ -215,6 +215,12 @@
 					"name": "车架号查询已添加/findadd",
 					"pathName": "pages/findadd/findadd",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "购物车/shopcar",
+					"pathName": "pages/shopcar/shopcar",
 					"scene": null
 				}
 			]

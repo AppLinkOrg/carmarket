@@ -26,7 +26,9 @@ class Content extends AppBase {
     this.Base.setMyData({
       vin: this.Base.options.vin,
       carname: this.Base.options.carname,
-      check:0
+      check:0,
+      chakan: 'C',
+      xuan: 'F',
 
     });
   }
@@ -69,6 +71,40 @@ class Content extends AppBase {
     });
   }
 
+  bindfapiao(e) {
+    var xuan = e.currentTarget.id
+    if (xuan == 'S') {
+      this.Base.setMyData({
+        xuan: 'F'
+      })
+    }
+    if (xuan == 'F') {
+      this.Base.setMyData({
+        xuan: 'S'
+      })
+    }
+  }
+
+  bindshai(){
+
+  }
+
+  bindxz(){
+    var xuanze = e.currentTarget.dataset.id;
+    // var baojia = this.Base.getMyData().baojia;
+    // userbaojia[xuanze].xz = !userbaojia[xuanze].xz;
+    // this.Base.setMyData({
+    //   baojia
+    // })
+  }
+  bindchakan(e) {
+    var chakan = e.currentTarget.dataset.chakan;
+    this.Base.setMyData({
+      chakan: chakan
+    })
+
+  }
+
   binddianji(e){
     var checkid = e.currentTarget.dataset.check;
     var check = this.Base.getMyData().check;
@@ -108,4 +144,8 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindqueren = content.bindqueren; 
 body.binddianji = content.binddianji;
+body.bindchakan = content.bindchakan;
+body.bindfapiao = content.bindfapiao; 
+body.bindxz = content.bindxz; 
+body.bindshai = content.bindshai;
 Page(body)

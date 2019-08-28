@@ -201,6 +201,12 @@ view, navigator, input, text, textarea {
   color: white;
 }
 
+.bg-bt {
+  background: #143779;
+
+}
+
+
 .nowrap {
   word-break: keep-all; /* 不换行 */
   white-space: nowrap; /* 不换行 */
@@ -450,6 +456,9 @@ button[disabled][type=primary] {
   margin-top: 80rpx;
 }
 
+.margin-bottom-3 {
+  margin-bottom: 3rpx;
+}
 .margin-bottom-10 {
   margin-bottom: 10rpx;
 }
@@ -547,6 +556,15 @@ button[disabled][type=primary] {
 
 .margin-left-50 {
   margin-left: 50rpx;
+}
+.margin-left-55 {
+  margin-left: 55rpx;
+}
+.margin-left-60 {
+  margin-left: 60rpx;
+}
+.margin-left-70 {
+  margin-left: 70rpx;
 }
 
 .margin-left-100 {

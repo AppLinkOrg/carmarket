@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/find/find",
     "pages/vinscan/vinscan",
     "pages/login/login",
@@ -32,6 +33,7 @@
     "pages/jiaoyisuccess/jiaoyisuccess",
     "pages/jiaoyijilu/jiaoyijilu",
     "pages/changedetail/changedetail",
+    "pages/shopcar/shopcar",
     "pages/auth/auth"
   ],
   "permission": {

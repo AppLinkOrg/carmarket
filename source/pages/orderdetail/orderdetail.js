@@ -53,9 +53,7 @@ class Content extends AppBase {
     orderapi.detail({
       id: id,
     }, (chuanzhi) => {
-
       chuanzhi.orderitems.map((item) => {
-
         item.xz = false;
 
       })
