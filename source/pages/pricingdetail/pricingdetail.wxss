@@ -95,3 +95,36 @@ Page {
   align-items: center;
   justify-content: center;
 }
+
+.left {
+  width: 40vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.dialog-box {
+  width: 60vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgb(255, 255, 255);
+}
+
+.xiaobtn {
+  border: 1rpx #e92a11 solid;
+  width: 150rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+}

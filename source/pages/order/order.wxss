@@ -5,7 +5,7 @@
 }
 
 .box {
-  border-radius: 10rpx;
+  border-radius: 20rpx;
   box-shadow: 1rpx 2rpx 25rpx 2rpx rgb(173, 173, 173);
   height: 300rpx;
   width: 95%;

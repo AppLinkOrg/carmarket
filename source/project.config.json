@@ -47,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 24,
+			"current": 25,
 			"list": [
 				{
 					"id": -1,
@@ -221,6 +221,13 @@
 					"id": -1,
 					"name": "购物车/shopcar",
 					"pathName": "pages/shopcar/shopcar",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "报价中/pricing",
+					"pathName": "pages/pricing/pricing",
 					"scene": null
 				}
 			]

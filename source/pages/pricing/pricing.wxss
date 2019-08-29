@@ -1,1 +1,24 @@
-/* pages/pricing/pricing.wxss */
+page {
+  background-color: rgb(241, 241, 241);
+}
+.bgred{
+   background: linear-gradient(to right, rgb(243, 57, 24), rgb(216, 108, 36));
+}
+
+.bottom{
+  height: 3rpx;
+  border-bottom: 1rpx solid  rgb(241, 241, 241);
+}
+
+.top{
+  margin-top: -80rpx;
+}
+.btncar {
+  width: 400rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  background-color: #b6b6b6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

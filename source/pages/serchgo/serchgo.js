@@ -46,7 +46,7 @@ class Content extends AppBase {
 
   bindbaocun() {
    wx.navigateBack({
-     //delta: 1 
+     
    })
   }
 }

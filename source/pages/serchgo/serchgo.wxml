@@ -20,5 +20,6 @@
   </view>
 
 </view>
-
-<view class='vbtn' bindtap="bindbaocun">保存</view>
+<view class="baocun">
+  <view class='vbtn margin-top-10' bindtap="bindbaocun">保存</view>
+</view>

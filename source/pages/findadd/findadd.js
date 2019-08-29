@@ -30,10 +30,8 @@ class Content extends AppBase {
 
   }
 
-
-
   bindimg() {
-    wx.reLaunch({
+    wx.navigateTo({
       url: '/pages/serchgo/serchgo',
     })
   }
@@ -44,8 +42,8 @@ class Content extends AppBase {
     })
   }
   bindadd() {
-    wx.navigateTo({
-      url: '/pages/check/check',
+    wx.navigateBack({
+      
     })
   }
   bindjian(e){

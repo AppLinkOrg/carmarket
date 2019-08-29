@@ -30,11 +30,12 @@
   align-items: center;
   justify-content: center;
   height: 90rpx;
-  width: 100vw;
+  width: 92vw;
   bottom: 10rpx;
   position: fixed;
- 
- 
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  border-radius: 40rpx;
 }
 
 .btnd {
@@ -47,12 +48,14 @@
   width: 180rpx;
   border-radius: 40rpx;
 }
-.detele{
+
+.detele {
   position: fixed;
   margin-left: -20rpx;
   margin-top: -10rpx;
 }
-.quchu{
+
+.quchu {
   position: fixed;
   margin-left: 190rpx;
   margin-top: 10rpx;

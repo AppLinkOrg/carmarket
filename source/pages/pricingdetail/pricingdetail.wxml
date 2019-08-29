@@ -21,11 +21,14 @@
       <view class="txt-black txt-bold margin-left-30">开票</view>
       <image wx:if="{{xuan=='F'}}" id="F" class='img ' src='{{uploadpath}}resource/{{res.bukai}}' bindtap="bindfapiao"></image>
       <image wx:if="{{xuan=='S'}}" id="S" class='img' src='{{uploadpath}}resource/{{res.kaifapiao}}' bindtap="bindfapiao"></image>
-
-      <view class="txt-black txt-bold margin-left-30">距离最近</view>
-      <image class="icon margin-left-10" src="{{uploadpath}}resource/{{res.jiantou}}"></image>
-      <view class="txt-black txt-bold margin-left-30">最低价格</view>
-      <image class="icon margin-left-10" src="{{uploadpath}}resource/{{res.jiantou}}"></image>
+      <view class="flex-row">
+        <view class="txt-black txt-bold margin-left-30">距离最近</view>
+        <image class="icon margin-left-10" src="{{uploadpath}}resource/{{res.jiantou}}"></image>
+      </view>
+      <view class="flex-row">
+        <view class="txt-black txt-bold margin-left-30">最低价格</view>
+        <image class="icon margin-left-10" src="{{uploadpath}}resource/{{res.jiantou}}"></image>
+      </view>
       <view class="flex-row" bindtap="bindshai">
         <view class="txt-black txt-bold margin-left-30">筛选</view>
         <image class="icon margin-left-10" src="{{uploadpath}}resource/{{res.shaixuan}}"></image>
@@ -35,7 +38,7 @@
 
   <view class=" margin-top-20">
     <view class="button" wx:for="{{userbaojia}}" wx:key="k">
-      <view class="bg-purple ">
+      <view class="bg-purple " bindtap="bindprice">
         <view class="flex-row margin-left-30 margin-top-20">
           <image class="icon margin-top" src="{{uploadpath}}resource/{{res.one}}"></image>
           <view class="margin-left-20 txt-black txt-bold">{{item.name}}</view>
@@ -112,23 +115,46 @@
   <view class="margin-bottom-3"></view>
   <view class="bg-white  ">
     <view class="margin-bottom-10 flex-row margin-top-10">
-      <view class="margin-left-30 ">
+
+      <button class="margin-left-30 clear-button" open-type="contact" style="border:0">
         <image class="icon margin-left-10 margin-right-10" src="{{uploadpath}}resource/{{res.kefu}}"></image>
         <view class="h5">客服</view>
-      </view>
+      </button>
+
       <view class=" margin-left-10 ">
         <image class="icon margin-left-50 " src="{{uploadpath}}resource/{{res.shopcar}}"></image>
         <view class="h5 margin-left-30 ">购物车</view>
       </view>
 
       <view class="flex-row  margin-left-40 ">
-        <view class="btncar txt-white ">加入购物车</view>
-        <view class="btnorder txt-white">下单</view>
+        <view class="btncar txt-white " bindtap="bindcar">加入购物车</view>
+        <view class="btnorder txt-white" bindtap="bindorder">下单</view>
       </view>
     </view>
   </view>
+</view>
 
-  <!-- <view wx:for="{{userbaojia}}" wx:key="k">
+<view class="flex-row">
+  <view class="left" wx:if="{{showModal==true}}"></view>
+  <view class="dialog-box " wx:if="{{showModal==true}}">
+    <view class="flex-row">
+      <view class="flex-1"></view>
+      <image class='icon-25 margin-right-30 margin-top-30' src='{{uploadpath}}resource/{{res.delect}}' bindtap="binddelect"></image>
+    </view>
+    <view class="flex-row margin-top-30">
+      <view class="txt-black xiaobtn margin-left-50">包邮</view>
+      <view class="txt-black xiaobtn margin-left-30">不包邮</view>
+    </view>
+    <view class="flex-row margin-top-30">
+      <view class="txt-black xiaobtn margin-left-50">市内</view>
+      <view class="txt-black xiaobtn margin-left-30">市外</view>
+    </view>
+  </view>
+</view>
+
+
+
+<!-- <view wx:for="{{userbaojia}}" wx:key="k">
     <view class='bg' style=' height:190rpx; width:95%;'>
       <view class='margin-top-10 margin-left-20 txt-white'>{{item.enterprise_id_name}}</view>
       <view class='flex-row flex-wrap margin-top-10'>
@@ -169,5 +195,4 @@
     </view>
   </view> -->
 
-  <!-- <view class='queren margin-left-20 margin-right-20' bindtap="bindqueren">选择该供应商进行交易</view> -->
-</view>
+<!-- <view class='queren margin-left-20 margin-right-20' bindtap="bindqueren">选择该供应商进行交易</view> -->

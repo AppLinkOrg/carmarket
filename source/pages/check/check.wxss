@@ -20,7 +20,7 @@ page {
 
 .smbtn {
   background-color: white;
-  border-radius: 14rpx;
+  border-radius: 10rpx;
   height: 70rpx;
   width: 220rpx;
   display: flex;

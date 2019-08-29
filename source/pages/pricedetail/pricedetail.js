@@ -41,6 +41,19 @@ class Content extends AppBase {
       title: title,
     })
   }
+
+
+  bindshai() {
+    this.Base.setMyData({
+      showModal: true
+    })
+  }
+  binddelect() {
+    this.Base.setMyData({
+      showModal: false
+    })
+
+  }
   bindchakan(e){
     var chakan = e.currentTarget.dataset.chakan;
     this.Base.setMyData({
@@ -69,4 +82,7 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow; 
 body.bindfapiao = content.bindfapiao;
 body.bindchakan = content.bindchakan;
+
+body.bindshai = content.bindshai;
+body.binddelect = content.binddelect;
 Page(body)

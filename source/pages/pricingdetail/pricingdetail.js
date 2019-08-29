@@ -70,7 +70,22 @@ class Content extends AppBase {
       });
     });
   }
+  bindcar(){
+    wx.navigateTo({
+      url: '/pages/shopcar/shopcar'
+    })
+  }
+  bindorder(){
+    wx.navigateTo({
+      url: '/pages/orderdetail/orderdetail'
+    })
+  }
+  bindprice(){
+    wx.navigateTo({
+      url: '/pages/pricing/pricing'
+    })
 
+  }
   bindfapiao(e) {
     var xuan = e.currentTarget.id
     if (xuan == 'S') {
@@ -86,6 +101,14 @@ class Content extends AppBase {
   }
 
   bindshai(){
+    this.Base.setMyData({
+      showModal: true
+    })
+  }
+  binddelect(){
+    this.Base.setMyData({
+      showModal: false
+    })
 
   }
 
@@ -122,13 +145,13 @@ class Content extends AppBase {
   }
 
 
-  bindqueren(e) {
-    var id = this.Base.options.id;
-    console.log(id);
-    wx.navigateTo({
-      url: '/pages/orderdetail/orderdetail?id=' + id,
-    })
-  }
+  // bindqueren(e) {
+  //   var id = this.Base.options.id;
+  //   console.log(id);
+  //   wx.navigateTo({
+  //     url: '/pages/orderdetail/orderdetail?id=' + id,
+  //   })
+  // }
 
 
   setPageTitle(instinfo) {
@@ -147,5 +170,9 @@ body.binddianji = content.binddianji;
 body.bindchakan = content.bindchakan;
 body.bindfapiao = content.bindfapiao; 
 body.bindxz = content.bindxz; 
-body.bindshai = content.bindshai;
+body.bindshai = content.bindshai;    
+body.bindprice = content.bindprice;
+body.bindcar = content.bindcar; 
+body.bindorder = content.bindorder;
+body.binddelect = content.binddelect; 
 Page(body)

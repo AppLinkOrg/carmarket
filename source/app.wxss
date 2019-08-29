@@ -475,6 +475,9 @@ button[disabled][type=primary] {
   margin-bottom: 40rpx;
 }
 
+.margin-bottom-60 {
+  margin-bottom: 60rpx;
+}
 .height-40 {
   height: 40rpx;
 }
@@ -566,6 +569,10 @@ button[disabled][type=primary] {
 .margin-left-70 {
   margin-left: 70rpx;
 }
+.margin-left-80 {
+  margin-left: 80rpx;
+}
+
 
 .margin-left-100 {
   margin-left: 100rpx;

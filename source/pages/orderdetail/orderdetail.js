@@ -75,7 +75,6 @@ class Content extends AppBase {
       // anotherprice,
     }, (querenbaojia) => {
       this.Base.setMyData({
-
         querenbaojia
       });
     });
@@ -125,7 +124,7 @@ class Content extends AppBase {
     var index = e.currentTarget.dataset.id;
     var chuanzhi = this.Base.getMyData().chuanzhi;
     console.log(chuanzhi.orderitems[index].qty, "sdgytrujtutrk")
-    chuanzhi.orderitems[index].qty ++;
+    chuanzhi.orderitems[index].qty++;
     console.log(chuanzhi.orderitems[index].qty, "输出")
     this.Base.setMyData({
       chuanzhi
@@ -153,49 +152,25 @@ class Content extends AppBase {
   }
 
   bindtijiao() {
-    this.Base.setMyData({
-      showModal: true
-    })
-
-    var orderapi = new OrderApi();
-
-    // var order_id = this.Base.getMyData().order_id;
-    // var receiveaddress = this.Base.getMyData().receiveaddress;
-    // var receiver = this.Base.getMyData().receiver;
-
-    // orderapi.confirmquote({
-    //   order_id: id,
-    //   quote_id: quote_id,
-    //   receiveaddress: receiveaddress,
-    //   receiver: receiver,
-    //   receivecontact: receivecontact,
-    //   needitems: needitems,
-    //   noneeditems: noneeditems,
-
-    // }, (querenbaojia) => {
-    //   this.Base.setMyData({
-    //     querenbaojia
-    //   });
-    // });
+   wx.navigateTo({
+     url: '/pages/ordersubmit/ordersubmit',
+   })
   }
 
-  binddelect() {
+  // binddelect() {
+  //   this.Base.setMyData({
+  //     showModal: false
+  //   })
+  // }
 
-    this.Base.setMyData({
-      showModal: false
-    })
-  }
-
-  confirm() {
-    
-    this.Base.setMyData({
-      showModal: true
-    })
-
-    wx.navigateTo({
-      url: '/pages/jiaoyisuccess/jiaoyisuccess',
-    })
-  }
+  // confirm() {
+  //   this.Base.setMyData({
+  //     showModal: true
+  //   })
+  //   wx.navigateTo({
+  //     url: '/pages/jiaoyisuccess/jiaoyisuccess',
+  //   })
+  // }
   setPageTitle(instinfo) {
     var title = "报价详情";
     wx.setNavigationBarTitle({

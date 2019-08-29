@@ -64,6 +64,6 @@
     <view class="flex-1"></view>
     <view class="txt-black margin-top-20">合计：</view>
     <view class="txt-red margin-top-20 margin-right-30">¥536.00</view>
-    <view class="bgjie txt-white margin-right-20">去结算(3)</view>
+    <view class="bgjie txt-white margin-right-20" bindtap="bindjiesuan">去结算(3)</view>
   </view>
 </view>

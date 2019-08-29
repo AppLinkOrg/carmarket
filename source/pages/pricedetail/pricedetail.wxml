@@ -3,33 +3,37 @@
     <view class="flex-row txt-black margin-top-30">订单编号：{{searchhistory.orderno}}</view>
     <view class="flex-row txt-black margin-top-10 margin-right-20">VIN码：{{searchhistory.vin}}</view>
   </view>
-   <view class="flex-row">
-      <view class="flex-row margin-top margin-left-55" data-chakan='C' bindtap="bindchakan">
-        <view class=" btnone  h4 {{chakan=='C'?'bg-bt':'bg-white'}}">
-          <view class="flex-row  {{chakan!='C'?'txt-bc':'txt-white'}}">按商家查看报价</view>
-        </view>
-      </view>
-      <view class="flex-row margin-top" bindtap="bindchakan" data-chakan="B">
-        <view class=" btnone btntwo h4 {{chakan=='B'?'bg-bt':'bg-white'}}">
-          <view class="flex-row  {{chakan!='B'?'txt-bc':'txt-white'}}">按配件查看报价</view>
-        </view>
+  <view class="flex-row">
+    <view class="flex-row margin-top margin-left-55" data-chakan='C' bindtap="bindchakan">
+      <view class=" btnone  h4 {{chakan=='C'?'bg-bt':'bg-white'}}">
+        <view class="flex-row  {{chakan!='C'?'txt-bc':'txt-white'}}">按商家查看报价</view>
       </view>
     </view>
+    <view class="flex-row margin-top" bindtap="bindchakan" data-chakan="B">
+      <view class=" btnone btntwo h4 {{chakan=='B'?'bg-bt':'bg-white'}}">
+        <view class="flex-row  {{chakan!='B'?'txt-bc':'txt-white'}}">按配件查看报价</view>
+      </view>
+    </view>
+  </view>
 
   <view class="flex-row margin-top">
     <view class="txt-black txt-bold margin-left-30">开票</view>
     <image wx:if="{{xuan=='F'}}" id="F" class='img ' src='{{uploadpath}}resource/{{res.bukai}}' bindtap="bindfapiao"></image>
     <image wx:if="{{xuan=='S'}}" id="S" class='img' src='{{uploadpath}}resource/{{res.kaifapiao}}' bindtap="bindfapiao"></image>
-
-    <view class="txt-black txt-bold margin-left-30">距离最近</view>
-    <image class="icon margin-left-10" src="{{uploadpath}}resource/{{res.jiantou}}"></image>
-    <view class="txt-black txt-bold margin-left-30">最低价格</view>
-    <image class="icon margin-left-10" src="{{uploadpath}}resource/{{res.jiantou}}"></image>
-    <view class="txt-black txt-bold margin-left-30">筛选</view>
-    <image class="icon margin-left-10" src="{{uploadpath}}resource/{{res.shaixuan}}"></image>
+    <view class="flex-row">
+      <view class="txt-black txt-bold margin-left-30">距离最近</view>
+      <image class="icon margin-left-10" src="{{uploadpath}}resource/{{res.jiantou}}"></image>
+    </view>
+    <view class="flex-row">
+      <view class="txt-black txt-bold margin-left-30">最低价格</view>
+      <image class="icon margin-left-10" src="{{uploadpath}}resource/{{res.jiantou}}"></image>
+    </view>
+    <view class="flex-row" bindtap="bindshai">
+      <view class="txt-black txt-bold margin-left-30">筛选</view>
+      <image class="icon margin-left-10" src="{{uploadpath}}resource/{{res.shaixuan}}"></image>
+    </view>
   </view>
 </view>
-
 
 <view class=" margin-top-20">
   <view class="button" wx:for="{{searchhistory.orderitems}}" wx:key="k">
@@ -46,5 +50,24 @@
     </view>
     <view class="bg-white txt-red wenzi h5" style=" width: 100%;height: 80rpx;">报价中</view>
     <view class="margin-bottom-20"></view>
+  </view>
+</view>
+
+
+<view class="flex-row">
+  <view class="left" wx:if="{{showModal==true}}"></view>
+  <view class="dialog-box " wx:if="{{showModal==true}}">
+    <view class="flex-row">
+      <view class="flex-1"></view>
+      <image class='icon-25 margin-right-30 margin-top-30' src='{{uploadpath}}resource/{{res.delect}}' bindtap="binddelect"></image>
+    </view>
+    <view class="flex-row margin-top-30">
+      <view class="txt-black xiaobtn margin-left-50">包邮</view>
+      <view class="txt-black xiaobtn margin-left-30">不包邮</view>
+    </view>
+    <view class="flex-row margin-top-30">
+      <view class="txt-black xiaobtn margin-left-50">市内</view>
+      <view class="txt-black xiaobtn margin-left-30">市外</view>
+    </view>
   </view>
 </view>

@@ -15,9 +15,15 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
   }
+  bindjiesuan(){
+     wx.navigateTo({
+       url: '/pages/orderdetail/orderdetail',
+     })
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
+body.bindjiesuan = content.bindjiesuan;
 Page(body)

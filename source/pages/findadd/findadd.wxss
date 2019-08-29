@@ -33,7 +33,7 @@ page {
   justify-content: center;
   background-color: #143779;
   color: white;
-  border-radius: 40rpx;
+  border-radius: 50rpx;
 }
 .left{
   margin-left: 120rpx;

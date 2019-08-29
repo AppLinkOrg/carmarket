@@ -88,30 +88,21 @@
   <view class='txt-red margin-top-30 margin-right-30'>¥{{chuanzhi.totalamount}}402.00</view>
   <view class='bg-btn gbtn margin-top-10 margin-right-20' bindtap="bindtijiao">提交订单</view>
 </view>
-<view class="flex-row">
-  <view class="dialog-box" wx:if="{{showModal}}">
 
+<!-- <view class="flex-row">
+  <view class="dialog-box" wx:if="{{showModal}}">
     <view class="flex-row">
       <view class="flex-1"></view>
       <image class='icon-25 margin-right-30 margin-top-30' src='{{uploadpath}}resource/{{res.delect}}' bindtap="binddelect"></image>
     </view>
-
     <view class="flex-row flex-column">
       <view class="txt-black margin-top-30">求购订单支付</view>
       <view class="h1-2 txt-red margin-top margin-bottom-40">￥{{chuanzhi.totalamount}}</view>
       <view class="margin-bottom-40">从我的账户中扣除此次订单金额</view>
       <button class="qw" bindtap="confirm">确认支付￥{{chuanzhi.totalamount}}威币</button>
     </view>
-
   </view>
-</view>
-
-
-
-
-
-
-
+</view> -->
 
 
 <!-- <view class='flex-1 flex-row margin-top-20'>
