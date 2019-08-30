@@ -79,8 +79,9 @@ class Content extends AppBase {
       });
     });
   }
+ 
 
-  bindadddizhi() {
+  bindyou() {
     wx.navigateTo({
       url: '/pages/address/address',
     })
@@ -182,7 +183,7 @@ var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
-body.bindadddizhi = content.bindadddizhi;
+body.bindyou = content.bindyou;
 body.bindtijiao = content.bindtijiao;
 body.confirm = content.confirm;
 

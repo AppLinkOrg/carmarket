@@ -1,9 +1,9 @@
-<view  class='flex-row flex-column' wx:if="{{addresslist.length==0 }}">
+<view class='flex-row flex-column' wx:if="{{addresslist.length==0 }}">
   <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nulladdress}}'></image>
   <view class=''>亲，您还没有收货地址哦</view>
 </view>
 
-<view wx:for="{{addresslist}}">
+<view wx:for="{{addresslist}}" bindtap="bindchuandizhi">
   <view class='flex-row flex-wrap margin-top-30 margin-left-30 '>
     <view class='txt-black txt-bold'>{{item.name}}</view>
     <view class='txt-black txt-bold margin-left-30 '>{{item.phonenumber}}</view>
@@ -13,7 +13,7 @@
       <image class='icon-25  margin-right-20' src='{{uploadpath}}resource/{{res.edit}}' bindtap='bindedit' id="{{item.id}}"></image>
     </view>
   </view>
-  <view class='margin-left-30 margin-right-30' bindtap="bindchuandizhi">{{item.region}}{{item.address}}</view>
+  <view class='margin-left-30 margin-right-30'>{{item.region}}{{item.address}}</view>
 </view>
 
 

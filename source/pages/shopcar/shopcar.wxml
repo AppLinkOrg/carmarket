@@ -5,7 +5,7 @@
     <view class="flex-1"></view>
     <view class="txt-white margin-right-30">不开票</view>
   </view>
-  <view class="txt-white margin-left-30 margin-top-20 margin-bottom-20">车架：{{}}</view>
+  <view class="h5 txt-white margin-left-30 margin-top-20 margin-bottom-20">车架：{{}}</view>
 </view>
 
 <view class="box">

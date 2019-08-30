@@ -42,3 +42,12 @@ page {
   height: 50rpx;
   width: 80rpx;
 }
+.bgbtn{
+  background-color: #f1f1f1;
+  width: 90rpx;
+  height: 50rpx;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

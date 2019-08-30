@@ -122,6 +122,9 @@ class Content extends AppBase {
     if (phone == "" || "手机号码", phone == undefined) {
       this.Base.toast('请输入手机号码');
       return;
+    } else if (phone.length != 11) {
+      this.Base.toast('请输入11位手机号码')
+      return;
     }
     if (city == "" || "地址", city == undefined) {
       this.Base.toast('请选择地区');
@@ -138,11 +141,8 @@ class Content extends AppBase {
       confirmText: "确认",
       success: function(res) {
         if (res.confirm) {
-
           if (id != undefined) {
-
             var addressapi = new AddressApi();
-
             addressapi.updateaddress({
               id: that.Base.options.id,
               name: people,
@@ -239,8 +239,7 @@ class Content extends AppBase {
 
             })
           });
-        } else {
-        }
+        } else {}
       }
     })
   }
