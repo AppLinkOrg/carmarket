@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/scss/bootstrap";
-$fa-font-path: "../node_modules/font-awesome/fonts";
-@import "../node_modules/font-awesome/scss/font-awesome.scss";
+@import "../node_modules/startbootstrap-sb-admin-2/vendor/fontawesome-free/css/all.min.css";
+//@import "../node_modules/npm-font-open-sans/open-sans.css";
+
+@import "../node_modules/startbootstrap-sb-admin-2/css/sb-admin-2.min.css";
 
 
 
@@ -71,7 +73,7 @@ $fa-font-path: "../node_modules/font-awesome/fonts";
   }
   
   .primary-block {
-    background: #2699EC;
+    background: #3d61b4;
     color: white;
   }
   
@@ -84,7 +86,7 @@ $fa-font-path: "../node_modules/font-awesome/fonts";
   }
   
   .bg-primary {
-    background: #4C556E;
+    background: #3d61b4;
   }
   .bg-red{
     background: rgb(224, 15, 15);
@@ -108,7 +110,7 @@ $fa-font-path: "../node_modules/font-awesome/fonts";
   }
   
   .white_primary {
-    background: #2699EC;
+    background: #3d61b4;
     color: white;
   }
   
@@ -126,7 +128,7 @@ $fa-font-path: "../node_modules/font-awesome/fonts";
   }
   
   .border_white_primary {
-    border-bottom: 2px solid #2699EC;
+    border-bottom: 2px solid #3d61b4;
   
   }
   
@@ -264,19 +266,19 @@ $fa-font-path: "../node_modules/font-awesome/fonts";
   button {
   
     background-color: transparent;
-    border-color: #2699EC;
+    border-color: #3d61b4;
   }
   
   .button-hover {
   
     background-color: #fcfcfc;
-    border-color: #2699EC;
+    border-color: #3d61b4;
   }
   
   button.button-hover {
   
     background-color: #fcfcfc;
-    border-color: #2699EC;
+    border-color: #3d61b4;
   }
   
   button[type=primary] {
@@ -797,4 +799,8 @@ $fa-font-path: "../node_modules/font-awesome/fonts";
   
   ion-header{
     padding-top:20px;
+  }
+
+  .no-border{
+    border:0px;
   }
