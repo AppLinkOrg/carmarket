@@ -1,10 +1,10 @@
 <view class='flex-row  flex-center white-block' style='height:80rpx;'>
   <view class='flex-row flex-column flex-1' data-check='A' bindtap='bindcheck'>
-    <view class=' txt-bold flex-1 text-center {{check=="A"?"txt-blue":""}}'>待报价</view>
+    <view class=' txt-bold flex-1 text-center {{check=="A"?"txt-blue":""}}'>未报价</view>
     <view class='order {{check=="A"?"bg-blue":"bg-white"}}'></view>
   </view>
   <view class='flex-row flex-column flex-1' data-check='B' bindtap='bindcheck'>
-    <view class='txt-bold flex-1 text-center {{check=="B"?"txt-blue":""}}' data-check='B' bindtap='bindcheck'>报价中</view>
+    <view class='txt-bold flex-1 text-center {{check=="B"?"txt-blue":""}}' data-check='B' bindtap='bindcheck'>已报价</view>
     <view class='order {{check=="B"?"bg-blue":"bg-white"}}'></view>
   </view>
 
@@ -16,7 +16,7 @@
 </view>
 <view class='borderbottom'></view>
 
-<!--待报价-->
+<!--未报价-->
 <view class=" " wx:if="{{check=='A'}}">
   <view wx:if="{{mylist.length==0 }}" class='flex-row flex-column'>
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
@@ -24,17 +24,19 @@
   </view>
   <view class='box white-block' wx:for="{{mylist}}">
     <view bindtap='pricedetail' id="{{item.id}}">
-      <view class='flex-row margin-left-30 margin-top-30'>
-        <view class='txt-black'>{{item.goodsstr}}</view>
-        <view class='flex-1'></view>
-        <view class='margin-right-30'>待报价</view>
+      <view class='flex-row margin-left-30 margin-top-20'>
+        <view class="h5 txt-black ">{{item.carname}}</view>      
+        <view class='h5 margin-left-10'>待报价</view>
       </view>
-      <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
+      <view class='borderbottom margin-top-20 margin-bottom-20'></view>
+      <view class='h5 txt-black margin-left-30 margin-right-30'>{{item.goodsstr}}</view>
+
     </view>
-    <view class='flex-row'>
-      <view class='margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
+    <view class='flex-row margin-top-20 margin-bottom-20'>
+      <view class='margin-left-30  h5'>{{item.employee_id_name}}</view>
+      <view class='  h5'>({{item}})</view>
       <view class='flex-1'></view>
-      <view class='orpay txt-white margin-right-30 margin-top-20' id='{{item.id}}' bindtap="bindquxiao">取消</view>
+      <view class='margin-right-30  h5'>{{item.order_time_formatting}}</view>
     </view>
   </view>
 </view>
@@ -45,17 +47,20 @@
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
     <view class=''>暂时没有相关报价单</view>
   </view>
-  <view class='box white-block' bindtap='bindpricing' id="{{item.id}}"  wx:for="{{pricede}}">
-    <view class='flex-row margin-left-30 margin-top-30'>
-      <view class='txt-black'>{{item.goodsstr}}</view>
-      <view class='flex-1'></view>
-      <view class='margin-right-30'>报价中</view>
+  <view class='box white-block' wx:for="{{pricede}}">
+    <view bindtap='bindpricing' id="{{item.id}}">
+      <view class='flex-row margin-left-30 margin-top-20'>
+        <view class="h5 txt-black">{{item.carname}}</view>      
+        <view class='h5 margin-left-10'>报价中</view>
+      </view>
+      <view class='borderbottom margin-top-20 margin-bottom-20'></view>
+      <view class='h5 txt-black margin-left-30 margin-right-30'>{{item.goodsstr}}</view>
     </view>
-    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
-    <view class='flex-row'>
-      <view class='margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
+    <view class='flex-row margin-top-20 margin-bottom-20'>
+      <view class='margin-left-30  h5'>{{item.employee_id_name}}</view>
+      <view class='  h5'>({{item}})</view>
       <view class='flex-1'></view>
-      <view class=' txt-red margin-right-30 margin-top-20'>已有5人报价</view>
+      <view class=' margin-right-30  h5'>{{item.order_time_formatting}}</view>
     </view>
   </view>
 </view>
@@ -66,17 +71,21 @@
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
     <view class=''>暂时没有相关报价单</view>
   </view>
-  <view class='box white-block' bindtap='' queren="{{item.queren}}" wx:for="{{poor}}">
-    <view class='flex-row margin-left-30 margin-top-30' bindtap='pricedetail'>
-      <view class='txt-black'>{{item.goodsstr}}</view>
-      <view class='flex-1'></view>
-      <view class='margin-right-30'>已取消</view>
+  <view class='box white-block' wx:for="{{poor}}">
+    <view bindtap='' queren="{{item.queren}}">
+      <view class='flex-row margin-left-30 margin-top-20' bindtap='pricedetail'>
+        <view class="h5 txt-black">{{item.carname}}</view>  
+        <view class='h5 margin-left-10'>已取消</view>
+      </view>
+      <view class='borderbottom margin-top-20 margin-bottom-20'></view>
+      <view class=' h5 txt-black margin-left-30 margin-right-30'>{{item.goodsstr}}</view>
+
     </view>
-    <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
-    <view class='flex-row'>
-      <view class='margin-left-30 margin-top-20'>{{item.order_time_formatting}}</view>
+    <view class='flex-row margin-bottom-20 margin-top-20'>
+      <view class='margin-left-30  h5'>{{item.employee_id_name}}</view>
+      <view class=' h5'>({{item}})</view>
       <view class='flex-1'></view>
-      <view class='orpay txt-white margin-right-30 margin-top-20'>已取消</view>
+      <view class=' margin-right-30  h5'>{{item.order_time_formatting}}</view>
     </view>
   </view>
 </view>

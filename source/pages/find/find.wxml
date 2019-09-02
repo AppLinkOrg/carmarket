@@ -8,15 +8,15 @@
   </block>
 </swiper>
 
-
-<navigator url="/pages/check/check" class='flex-row  '>
+<view class='flex-row '>
   <view class='btn box-shadow'>
     <view class='flex-row margin-left-20'>
-      <image class='icon-17 ' src='{{uploadpath}}resource/{{res.search}}'></image>
+      <image class='icon-17 ' src='{{uploadpath}}resource/{{res.search}}' bindtap="bindsearch"></image>
     </view>
-    <view class='flex-row flex-column flex-1 txt-black txt-bold'> 17位车架号查询</view>
+    <input class="flex-row flex-column flex-1" maxlength="17" value="{{vin}}" placeholder="手动输入17位车架号" bindconfirm="bindvin"  bindinput="bindvalue"></input>
+    <!-- <view class='flex-row flex-column flex-1 txt-black txt-bold'>手动输入17位车架号查询</view> -->
   </view>
-</navigator>
+</view>
 
 <view class=' flex-row '>
   <view class='flex-row  '>
@@ -25,22 +25,31 @@
   </view>
 
   <view class="flex-1"></view>
-  <view class='flex-row' bindtap='bindclear' >
-    <view class='margin-right-20' >清空</view>
+  <view class='flex-row' bindtap='bindclear'>
+    <view class='margin-right-20'>清空</view>
     <image class='icon margin-right-20 ' src='{{uploadpath}}resource/{{res.clean}}'></image>
   </view>
 </view>
 
 <block wx:for="{{searchhistory}}" wx:key="k">
-  <view class='margin-left-30 margin-top-35'>{{item.carrecord}}</view>
+  <view class='margin-left-30 margin-top-35' bindtap="bindcheck">{{item.carrecord}}</view>
   <view class='bott margin-top-20'></view>
 </block>
 
 
 
-<view class='flex-row flex-column '>
+<view class='flex-row  '>
   <view class='flex-row flex-column vinbg'>
     <image class='margin-top-30 icon-40 ' src='{{uploadpath}}resource/{{res.VIN}}' bindtap='clickvin' mode="aspectFit"></image>
     <view class='vin txt-white'>VIN码识别</view>
   </view>
+</view>
+
+<view class="flex-row margin-left-50">
+  <view class="flex-row  flex-column wubg">
+    <image class="margin-top-30 icon-40" src="{{uploadpath}}resource/{{res.wushibie}}" bindtap="bindunable"></image>
+    <view class="vin txt-white">无识别查找</view>
+  </view>
+
+
 </view>

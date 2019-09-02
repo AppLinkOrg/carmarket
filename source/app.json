@@ -1,7 +1,6 @@
 {
   "pages": [
-
-    
+   
     "pages/find/find",
     "pages/vinscan/vinscan",
     "pages/login/login",
@@ -17,6 +16,8 @@
     "pages/home/home",
     "pages/serch/serch",
     "pages/serchgo/serchgo",
+    "pages/unserch/unserch",
+    "pages/findadd/findadd",
     "pages/pricedetail/pricedetail",
     "pages/pricing/pricing",
     "pages/pricingdetail/pricingdetail",
@@ -30,6 +31,10 @@
     "pages/authority/authority",
     "pages/account/account",
     "pages/jiaoyisuccess/jiaoyisuccess",
+    "pages/jiaoyijilu/jiaoyijilu",
+    "pages/changedetail/changedetail",
+    "pages/shopcar/shopcar",
+    "pages/ordersubmit/ordersubmit",
     "pages/auth/auth"
   ],
   "permission": {
@@ -61,17 +66,17 @@
         "iconPath": "images/icons/b-b.png",
         "selectedIconPath": "images/icons/b.png"
       },
-        {
-          "text": "查看订单",
-          "pagePath": "pages/order/order",
-          "iconPath": "images/icons/b-b.png",
-          "selectedIconPath": "images/icons/b.png"
-        },
+      {
+        "text": "查看订单",
+        "pagePath": "pages/order/order",
+        "iconPath": "images/icons/c-c.png",
+        "selectedIconPath": "images/icons/c.png"
+      },
       {
         "text": "我的",
         "pagePath": "pages/mine/mine",
-        "iconPath": "images/icons/c-c.png",
-        "selectedIconPath": "images/icons/c.png"
+        "iconPath": "images/icons/d-d.png",
+        "selectedIconPath": "images/icons/d.png"
       }
     ]
   },

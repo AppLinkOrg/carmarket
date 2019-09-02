@@ -10,7 +10,14 @@
 		"minified": true,
 		"newFeature": true,
 		"autoAudits": false,
-		"checkInvalidKey": true
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.5.0",
@@ -40,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 20,
+			"current": 25,
 			"list": [
 				{
 					"id": -1,
@@ -85,8 +92,8 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "配件查询输入",
+					"id": 6,
+					"name": "手动添加查询输入",
 					"pathName": "pages/serch/serch",
 					"query": "",
 					"scene": null
@@ -186,6 +193,41 @@
 					"id": -1,
 					"name": "填写/check",
 					"pathName": "pages/check/check",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加地址页面",
+					"pathName": "pages/addressadd/addressadd",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "不能识别",
+					"pathName": "pages/unserch/unserch",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "车架号查询已添加/findadd",
+					"pathName": "pages/findadd/findadd",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "购物车/shopcar",
+					"pathName": "pages/shopcar/shopcar",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "报价中/pricing",
+					"pathName": "pages/pricing/pricing",
 					"scene": null
 				}
 			]

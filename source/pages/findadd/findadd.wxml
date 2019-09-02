@@ -1,0 +1,90 @@
+<view class="bg-white">
+  <view class=" flex-row margin-top-30">
+    <image class="icon-25  margin-left-30" src='{{uploadpath}}resource/{{res.weixz}}'></image>
+    <view class="margin-left-20 ">说不出来</view>
+    <view class="flex-1"></view>
+    <image class="icon  " src='{{uploadpath}}resource/{{res.jian}}' bindtap="bindjian" data-id="{{idx}}"></image>
+    <view class="margin-left-10 margin-right-10 bgbtn">123</view>
+    <image class="icon  margin-right-30" src='{{uploadpath}}resource/{{res.jia}}' bindtap="bindjia" data-id="{{idx}}"></image>
+  </view>
+  <view class="flex-row margin-left-100 margin-top-30 margin-bottom-20">
+    <image class="icon-25  margin-right-30" src='{{uploadpath}}resource/{{res.cemera}}' bindtap="bindimg"></image>
+   
+    <view class="inputt">
+      <input class="margin-left-20 h5 " placeholder="可输入备注"></input>
+    </view>
+  </view>
+</view>
+
+<view class="bg-white margin-top-5">
+  <view class=" flex-row margin-top-30">
+    <image class="icon-25  margin-left-30" src='{{uploadpath}}resource/{{res.weixz}}'></image>
+    <view class="margin-left-20 ">空调格</view>
+    <view class="flex-1"></view>
+    <image class="icon  " src='{{uploadpath}}resource/{{res.jian}}'></image>
+    <view class="margin-left-10 margin-right-10 bgbtn">1</view>
+    <image class="icon  margin-right-30" src='{{uploadpath}}resource/{{res.jia}}'></image>
+  </view>
+  <view class="margin-left-30 margin-top-20">4S价:￥350.74</view>
+  <view class="flex-row margin-left-100 margin-top-30 margin-bottom-10">
+    <image class="icon-25  margin-right-30"  src='{{uploadpath}}resource/{{res.cemera}}' bindtap="bindimg"></image>
+    
+    <view class="margin-left-10">666</view>
+  </view>
+</view>
+
+<view class="bg-white margin-top-5">
+  <view class="cen flex-row margin-top-20 margin-bottom-20" bindtap="bindadd">
+    <image class="icon-25" src="{{uploadpath}}resource/{{res.shoujia}}"></image>
+    <view class="txt-black txt-bold margin-left-10">添加配件</view>
+  </view>
+</view>
+
+<view class="bg-white margin-top-20">
+  <view class="flex-row margin-top-20">
+    <view class="txt-black txt-bold margin-left-30 margin-right-10">发票</view>
+    <view class="margin-left-50">
+      <image wx:if="{{fapiao=='N'}}" id='N' class="imgicon" src="{{uploadpath}}resource/{{res.bukai}}" bindtap="bindfapiao"></image>
+      <image wx:if="{{fapiao=='Y'}}" id="Y" class="imgicon" src="{{uploadpath}}resource/{{res.kaifapiao}}" bindtap="bindfapiao"></image>
+    </view>
+    <view class="margin-left-20">不开发票</view>
+  </view>
+</view>
+
+<view class="margin-top-5 bg-white flex-row flex-wrap">
+  <view class="txt-black txt-bold margin-left-30 margin-top">品质</view>
+
+  <view class="margin-left-30" data-chose='A' bindtap="bindchose">
+    <view class="btn flex-row {{chose=='A'?'bg-white':'gray-block'}}">
+      <view class="flex-row  {{chose!='A'?'':'txt-red'}}">原厂</view>
+    </view>
+  </view>
+
+  <view class="" data-xuanb='B' bindtap="bindxuanb">
+    <view class="btn flex-row {{xuanb=='B'?'bg-white':'gray-block'}}">
+      <view class="flex-row  {{xuanb!='B'?'':'txt-red'}}">品牌</view>
+    </view>
+  </view>
+
+  <view class="left" data-xuanc='C' bindtap="bindxuanc">
+    <view class="btn flex-row {{xuanc=='C'?'bg-white':'gray-block'}}">
+      <view class="flex-row  {{xuanc!='C'?'':'txt-red'}}">原厂再制造</view>
+    </view>
+  </view>
+
+  <view class="" data-xuand='D' bindtap="bindxuand">
+    <view class="btn flex-row {{xuand=='D'?'bg-white':'gray-block'}}">
+      <view class="flex-row  {{xuand!='D'?'':'txt-red'}}">拆车件</view>
+    </view>
+  </view>
+
+  <view class="left" data-xuane='E' bindtap="bindxuane">
+    <view class="btn flex-row {{xuane=='E'?'bg-white':'gray-block'}}">
+      <view class="flex-row  {{xuane!='E'?'':'txt-red'}}">其他</view>
+    </view>
+  </view>
+</view>
+
+
+
+<view class="button" bindtap="bindfabu">发布询价</view>

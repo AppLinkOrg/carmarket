@@ -8,6 +8,9 @@ import {
 import {
   InstApi
 } from "../../apis/inst.api.js";
+import {
+  ConsumeApi
+} from "../../apis/consume.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -20,6 +23,24 @@ class Content extends AppBase {
   }
   onMyShow() {
     var that = this;
+    var consumeapi = new ConsumeApi();
+
+    consumeapi.list({
+
+    }, (list) => {
+      this.Base.setMyData({
+        list
+      });
+    });
+  }
+
+
+  bindjilu(e) {
+    var id = e.currentTarget.id;
+    wx.navigateTo({
+      url: '/pages/jiaoyijilu/jiaoyijilu?id=' + id,
+    })
+  
   }
   setPageTitle() {
     wx.setNavigationBarTitle({
@@ -48,11 +69,7 @@ class Content extends AppBase {
       url: '/pages/authority/authority',
     })
   }
-  bindaccount() {
-    wx.navigateTo({
-      url: '/pages/account/account',
-    })
-  }
+
   bindchange() {
     wx.navigateTo({
       url: '/pages/change/change',
@@ -68,7 +85,13 @@ class Content extends AppBase {
     wx.navigateTo({
       url: '/pages/helpcenter/helpcenter',
     })
+  }  
+  bindaccount(){
+    wx.navigateTo({
+      url: '/pages/account/account',
+    })
   }
+ 
 
   logout() {
     wx.showModal({
@@ -101,5 +124,6 @@ body.bindaccount = content.bindaccount;
 body.bindchange = content.bindchange;
 body.bindaboutus = content.bindaboutus;
 body.bindhelp = content.bindhelp;
+body.bindjilu = content.bindjilu; 
 body.logout = content.logout;
 Page(body)

@@ -31,13 +31,11 @@ class Content extends AppBase {
     var that = this;
     var instapi = new InstApi();
     var carapi = new CarApi();
-
-    instapi.indexbanner({}, (indexbanner) => {
+     instapi.indexbanner({}, (indexbanner) => {
       this.Base.setMyData({
         indexbanner
       });
     });
-
     carapi.searchhistory({}, (searchhistory) => {
       this.Base.setMyData({
         searchhistory
@@ -45,6 +43,53 @@ class Content extends AppBase {
     });
 
   }
+  bindvin() {
+    var that = this;
+    var vin = this.Base.getMyData().vin;
+    var carapi = new CarApi();
+    carapi.vin({
+      vin: vin
+    }, (res) => {
+      this.Base.setMyData({
+        a: res.data.vin,
+        b: res.data.brandCode,
+        c: res.data.mcid,
+        biaoti: res.title[0] + res.title[1] + res.title[2] + res.title[3] + res.title[4]
+      })
+      console.log(res.data.vin, res.data.brandCode, res.data.mcid, "输出");
+      if (res.code == 0) {
+        that.Base.info(res.msg);
+      }
+      var biaoti = this.Base.getMyData().biaoti;
+      if (res.code == 1) {
+        console.log(res.code);
+        carapi.addhistory({
+          vin: vin,
+          carrecord: biaoti
+        }, (qwe) => {
+          that.onMyShow();
+        })
+      }
+    })
+  }
+  bindvalue(e) {
+    this.Base.setMyData({
+      vin: e.detail.value
+    })
+
+  }
+  bindsearch(e) {
+    var vin = this.Base.getMyData().a;
+    var biaoti = this.Base.getMyData().biaoti;
+    var brandCode = this.Base.getMyData().b
+    var mcid = this.Base.getMyData().c
+    var api = new CarApi();
+    console.log(vin, biaoti, "聊聊");
+    wx.navigateTo({
+      url: '/pages/check/check?vin=' + vin + '&biaoti=' + biaoti + '&brandCode=' + brandCode +'&mcid=' + mcid,
+    })
+  }
+
 
   bindclear() {
     var that = this;
@@ -66,6 +111,18 @@ class Content extends AppBase {
     })
   }
 
+  bindcheck() {
+
+
+    wx.navigateTo({
+      url: '/pages/check/check',
+    })
+  }
+  bindunable() {
+    wx.navigateTo({
+      url: '/pages/unserch/unserch'
+    })
+  }
 
 
   clickvin() {
@@ -90,4 +147,9 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.clickvin = content.clickvin;
 body.bindclear = content.bindclear;
+body.bindcheck = content.bindcheck;
+body.bindunable = content.bindunable;
+body.bindsearch = content.bindsearch;
+body.bindvin = content.bindvin;
+body.bindvalue = content.bindvalue;
 Page(body)

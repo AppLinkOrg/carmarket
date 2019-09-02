@@ -8,6 +8,9 @@ import {
 import {
   InstApi
 } from "../../apis/inst.api.js";
+import {
+  OrderApi
+} from "../../apis/order.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -21,17 +24,22 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var instapi = new InstApi();
+    var orderapi = new OrderApi();
 
-    instapi.indexbanner({}, (indexbanner) => {
+
+    orderapi.detail({
+      id: this.Base.options.id,
+    }, (yiwancheng) => {
       this.Base.setMyData({
-        indexbanner
+        yiwancheng
       });
     });
   }
 
-  bindapply() {
+  bindapply(e) {
+    var id = e.currentTarget.id;
     wx.navigateTo({
-      url: '/pages/changeapply/changeapply',
+      url: '/pages/changeapply/changeapply?id=' + id,
     })
   }
 

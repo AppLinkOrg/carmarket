@@ -20,9 +20,21 @@ class Content extends AppBase {
       this.Base.setMyData({ indexbanner });
     });
   }
+  bindcar(){
+    wx.navigateTo({
+      url: '/pages/shopcar/shopcar',
+    })
+  }
+  bindagain(){
+    wx.navigateBack({
+      
+    })
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
+body.bindcar = content.bindcar;
+body.bindagain = content.bindagain;
 Page(body)

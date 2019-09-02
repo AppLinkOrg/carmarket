@@ -1,42 +1,24 @@
-<view class=''>
-  <!-- <view class='bg-white '>
-    <view class='btnn buttonone '>
-      <input class='margin-left-20' placeholder='继续添加' value="{{searchinput}}" ></input>
-      <view class="flex-1"></view>
-      <image class='icon-17 margin-right-20' src='{{uploadpath}}resource/{{res.delect}}' bindtap='bindclear'></image>
-    </view>
+<block>
+  <view class="bg-white top">
+    <view class='txt-black margin-top-30 margin-left-30 margin-bottom-20'>{{biaoti}}</view>
+    <view class="margin-left-30 margin-top-20">{{vin}}</view>
   </view>
-  <view class='gray-block'>
-    <view class='btnn  bg-white'>
-      <view class='txt-black margin-left-20'>刹车</view>
-      <view class="flex-1"></view>
-      <view class='margin-right-20 txt-primary'>删除</view>
-    </view>
-  </view> -->
+</block>
 
-  <view class='margin-top'>
-    <view class=' flex-row '>
-      <view class='borderleft'></view>
-      <view class='txt-bold txt-black margin-left-10'>上传照片</view>
-    </view>
+<view class='margin-top-30 bg-white'>
+  <view class='put gray-block'>
+    <textarea class="h5 margin-top-30 margin-left-30" placeholder='此处输入配件文字描述' bindconfirm="bindart" bindinput="bindart">{{item.struct_label}}</textarea>
+  </view>
 
-    <view class='flex-row '>
-      <view class='margin-left-30 margin-top-20'>
-        <image class='icon-90' src='{{uploadpath}}resource/{{res.upload}}' bindtap="clickimage"></image>
-      </view>
-
-    </view>
-    <view class="xia margin-top margin-bottom-30"></view>
-
-    <view class=' flex-row '>
-      <view class='borderleft'></view>
-      <view class='txt-bold txt-black margin-left-10'>所需配件信息</view>
-    </view>
-
-    <view class='put gray-block'>
-      <textarea placeholder='此处输入配件文字描述' bindconfirm="bindart" bindinput="bindart" >{{item.struct_label}}</textarea>
+  <view class='flex-row margin-top-30'>
+    <view class='margin-left-35 margin-top-20 margin-bottom-30'>
+      <image class='icon-100' hidden='{{one}}' src='{{uploadpath}}resource/{{res.upload}}' bindtap="clickimage"></image>
+      <image class='icon-100 margin-left-30' hidden='{{!one}}' src='{{uploadpath}}product/{{image}}' bindtap="clickimage"></image>
+      <image class="icon-17 detele" hidden='{{!one}}' src="{{uploadpath}}resource/{{res.quchu}}" bindtap="binddelect"></image>
     </view>
   </view>
 
 </view>
-<view class='vbtn' bindtap='complete' data-name='{{item.struct_label}}'>保存</view>
+<view class="baocun">
+  <view class='vbtn margin-top-10' bindtap="bindbaocun">保存</view>
+</view>

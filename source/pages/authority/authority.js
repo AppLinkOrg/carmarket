@@ -8,6 +8,9 @@ import {
 import {
   InstApi
 } from "../../apis/inst.api.js";
+import {
+  ConsumeApi
+} from "../../apis/consume.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -24,6 +27,20 @@ class Content extends AppBase {
   }
   onMyShow() {
     var that = this;
+    var consumeapi = new ConsumeApi();
+    consumeapi.list({
+    }, (shang) => {
+      this.Base.setMyData({
+        shang
+      });
+    });
+
+    consumeapi.list({
+    }, (xia) => {
+      this.Base.setMyData({
+        xia
+      });
+    });
   }
 
   setPageTitle(instinfo) {

@@ -1,16 +1,20 @@
-
-<view class='flex-row flex-wrap margin-30'>
-  <view class='txt-black txt-bold'>刘大大</view>
-  <view class='txt-black txt-bold margin-left-30 '>13800138000</view>
-  <view class='h5 bg-btn mobtn  margin-left-30'>默认</view>
-  <view class='flex-1'></view>
-  <view class='margin-top-10'>
-    <image class='icon-17 ' src='{{uploadpath}}resource/{{res.edit}}' bindtap='bindaddressadd'></image>
-  </view>
-  <view class=''>广东省深圳市罗湖区八卦一路13号</view>
+<view class='flex-row flex-column' wx:if="{{addresslist.length==0 }}">
+  <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nulladdress}}'></image>
+  <view class=''>亲，您还没有收货地址哦</view>
 </view>
 
+<view wx:for="{{addresslist}}" bindtap="bindchuandizhi">
+  <view class='flex-row flex-wrap margin-top-30 margin-left-30 '>
+    <view class='txt-black txt-bold'>{{item.name}}</view>
+    <view class='txt-black txt-bold margin-left-30 '>{{item.phonenumber}}</view>
+    <view class='h5 bg-btn mobtn  margin-left-30'>{{item.morenaddress_value}}</view>
+    <view class='flex-1'></view>
+    <view class='margin-top-10'>
+      <image class='icon-25  margin-right-20' src='{{uploadpath}}resource/{{res.edit}}' bindtap='bindedit' id="{{item.id}}"></image>
+    </view>
+  </view>
+  <view class='margin-left-30 margin-right-30'>{{item.region}}{{item.address}}</view>
+</view>
 
-<view class='bott margin-top-30'></view>
 
 <view class="addbtn" bindtap='bindaddressadd'>+添加地址</view>

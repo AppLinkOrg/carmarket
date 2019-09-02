@@ -1,0 +1,88 @@
+<view class="flex-row margin-top-30 margin-bottom-30">
+  <image class="icon-50 margin-left-100" src="{{uploadpath}}resource/{{res.redgantan}}"></image>
+
+  <view class=" margin-left-30 ">
+    <view>请尽快付款</view>
+    <view class="">超过24小时会自动取消订单</view>
+    <view class="flex-row txt-red">去查看订单
+      <image class="icon " src="{{uploadpath}}resource/{{res.redyou}}"></image>
+    </view>
+  </view>
+</view>
+<view class="bg-white">
+  <view class="flex-row margin-top-20 margin-bottom-20 margin-left-20">
+    <view>订单号</view>
+    <view class="flex-1"></view>
+    <view class="">190081900</view>
+    <image class="icon margin-right-20" src="{{uploadpath}}resource/{{res.smallright}}"></image>
+  </view>
+  <view class="borderbottom margin-left-20"></view>
+</view>
+<view class="bg-white">
+  <view class="flex-row margin-top-20 margin-bottom-20 margin-left-20">
+    <view>在线支付</view>
+    <view class="flex-1"></view>
+    <view class="txt-red margin-right-20">¥225.00</view>
+  </view>
+  <view class="borderbottom margin-left-20"></view>
+</view>
+<view class="bg-white">
+  <view class="flex-row margin-top-20 margin-bottom-20 margin-left-20">
+    <view>供应商</view>
+    <view class="flex-1"></view>
+    <view class="txt-black margin-right-20">深圳兴鸿汽配</view>
+  </view>
+  <view class="borderbottom margin-left-20"></view>
+</view>
+<view class="bg-white">
+  <view class="flex-row margin-top-20 margin-bottom-20 margin-left-20">
+    <view>支付方式</view>
+  </view>
+  <view class="borderbottom margin-left-20"></view>
+</view>
+
+<view class="bg-white">
+  <view class="flex-row margin-top-20 margin-bottom-20 margin-left-20">
+    <image class="icon margin-right-20" src="{{uploadpath}}resource/{{res.wechat}}"></image>
+    <view>微信支付</view>
+    <view class="flex-1"></view>
+    <image class="icon margin-right-20" src="{{uploadpath}}resource/{{res.no}}" bindtap="bindwechat" wx:if="{{wechatxz=='F'}}" id="F"></image>
+    <image class="icon margin-right-20" src="{{uploadpath}}resource/{{res.zhong}}" bindtap="bindwechat" wx:if="{{wechatxz=='S'}}" id="S"></image>
+  </view>
+  <view class="borderbottom margin-left-20"></view>
+</view>
+<view class="bg-white ">
+  <view class="flex-row margin-top-20 margin-bottom-20 margin-left-20">
+    <image class="icon margin-right-20" src="{{uploadpath}}resource/{{res.kuaijie}}"></image>
+    <view>快捷支付</view>
+    <view class="flex-1"></view>
+    <image class="icon margin-right-20" src="{{uploadpath}}resource/{{res.no}}" bindtap="bindgouxuan" id="N" wx:if="{{gouxuan=='N'}}"></image>
+    <image class="icon margin-right-20" src="{{uploadpath}}resource/{{res.zhong}}" bindtap="bindgouxuan" id="Y" wx:if="{{gouxuan=='Y'}}"></image>
+  </view>
+  <view class="borderbottom margin-left-20"></view>
+</view>
+<view class="bg-white " style="height:10rpx"></view>
+
+<view class="button ">
+  <view class="flex-row ">
+    <view class="margin-left-20 txt-black margin-top">总金额：</view>
+    <view class="txt-red margin-top">¥402.00</view>
+    <view class="flex-1"></view>
+    <view class="btn txt-white " bindtap="bindfukuan">去付款</view>
+  </view>
+</view>
+
+<view class="flex-row">
+  <view class="dialog-box" wx:if="{{showModal}}">
+    <view class="flex-row">
+      <view class="flex-1"></view>
+      <image class='icon-25 margin-right-30 margin-top-30' src='{{uploadpath}}resource/{{res.delect}}' bindtap="binddelect"></image>
+    </view>
+    <view class="flex-row flex-column">
+      <view class="txt-black margin-top-30">求购订单支付</view>
+      <view class="h1-2 txt-red margin-top margin-bottom-40">￥</view>
+      <view class="margin-bottom-40">从我的账户中扣除此次订单金额</view>
+      <button class="qw" bindtap="confirm">确认支付￥威币</button>
+    </view>
+  </view>
+</view>

@@ -4,8 +4,11 @@
 
 .quxiao {
   height: 100rpx;
+  width: 100vw;
   background-color: #143779;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  bottom: 0
 }

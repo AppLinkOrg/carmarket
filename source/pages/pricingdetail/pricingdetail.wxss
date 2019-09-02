@@ -3,13 +3,11 @@
   margin-top: 20rpx;
   margin-left: 20rpx;
   margin-right: 20rpx;
-  border-radius: 10rpx 10rpx 0rpx 0rpx ;
+  border-radius: 10rpx 10rpx 0rpx 0rpx;
 }
 
-.pageone {
-  background: rgb(238, 236, 236);
-  height: 100vh;
-  width: 100%;
+Page {
+  background: rgb(241, 241, 241);
 }
 
 .price {
@@ -20,12 +18,113 @@
   margin-right: 5rpx;
 }
 
-.queren{
+.queren {
   background-color: orangered;
   width: 95%;
-  height: 100rpx; 
+  height: 100rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
+}
+
+.ar {
+  background-color: white;
+  width: 100%;
+  height: 352rpx;
+}
+
+.btnone {
+  width: 320rpx;
+  height: 80rpx;
+  border: 2rpx #143779 solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12rpx 0rpx 0rpx 12rpx;
+}
+
+.btntwo {
+  border-radius: 0rpx 12rpx 12rpx 0rpx;
+}
+
+.img {
+  width: 70rpx;
+  height: 40rpx;
+  margin-left: 15rpx;
+}
+
+.button {
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  border-radius: 12rpx;
+  width: 92vw;
+}
+
+.wenzi {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smbtn {
+  border: 1rpx solid slategray;
+  border-radius: 8rpx;
+}
+
+.btnt {
+  border-radius: 0rpx 0rpx 12rpx 12rpx;
+}
+
+.btncar {
+  width: 240rpx;
+  height: 80rpx;
+  border-radius: 40rpx 0rpx 0rpx 40rpx;
+  background-color: #e99211;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnorder {
+  width: 240rpx;
+  height: 80rpx;
+  border-radius: 0rpx 40rpx 40rpx 0rpx;
+  background-color: #e92a11;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left {
+  width: 40vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.dialog-box {
+  width: 60vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgb(255, 255, 255);
+}
+
+.xiaobtn {
+  border: 1rpx #e92a11 solid;
+  width: 150rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
 }

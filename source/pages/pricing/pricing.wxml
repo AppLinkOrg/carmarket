@@ -1,2 +1,71 @@
-<!--pages/pricing/pricing.wxml-->
-<text>pages/pricing/pricing.wxml</text>
+<view class="bgred flex-row " style="height:200rpx;">
+  <image class='icon margin-left-20 margin-top-30' src='{{uploadpath}}resource/{{res.gantan}}'></image>
+  <view class="margin-left-10 txt-bold h4-5 txt-white margin-top-30">已报价</view>
+</view>
+
+<view class="top white-block margin-left-20 margin-right-20" style="border-radius:20rpx;">
+  <view class="flex-row margin-top-30 ">
+    <view class="margin-left-30 ">询价单号:</view>
+    <view class="margin-left-20 ">sadadsdsadssd</view>
+  </view>
+  <view class="flex-row margin-top-30">
+    <view class="margin-left-30 ">VIN码:</view>
+    <view class="margin-left-60 ">sadadsdsadssd</view>
+  </view>
+  <view class="flex-row margin-top-30 margin-bottom-30">
+    <view class="margin-left-30 ">车型:</view>
+    <view class="margin-left-80 ">sadadsdsadssd</view>
+  </view>
+  <view class="bottom"></view>
+  <view class="flex-row margin-top-30 ">
+    <view class="margin-left-30 ">发票:</view>
+    <view class="margin-left-80 ">sadadsdsadssd</view>
+  </view>
+  <view class="flex-row margin-top-30">
+    <view class="margin-left-30 ">配件品质:</view>
+    <view class="margin-left-20 ">sadadsdsadssd</view>
+  </view>
+  <view class="flex-row margin-top-30 ">
+    <view class="margin-left-30 ">询价人:</view>
+    <view class="margin-left-50 ">sadadsdsadssd</view>
+  </view>
+  <view class="flex-row margin-top-30 margin-bottom-60">
+    <view class="margin-left-30 ">收货地址:</view>
+    <view class="margin-left-20 ">sadadsdsadssd</view>
+  </view>
+</view>
+<view class="margin-top-30"></view>
+<view class="white-block">
+  <view class="margin-left-20 flex-row margin-top-30">
+    <image class='icon margin-left-20 margin-top-30' src='{{uploadpath}}resource/{{res.one}}'></image>
+    <view class="txt-black txt-bold margin-left-20">节温器</view>
+    <view class="txt-black margin-left-20">X1</view>
+  </view>
+  <view class="margin-left-100 margin-bottom-20">译码结果：11518617544</view>
+  <view class="bottom margin-left-20 margin-right-20"></view>
+  <view class="flex-row margin-top-30 margin-bottom-30">
+    <view class="margin-left-100">客服留言：</view>
+    <view class="">总成带节温器</view>
+  </view>
+  <view class="bottom margin-left-20 margin-right-20"></view>
+  <view class="flex-row margin-top-30 margin-bottom-30 margin-left-100">
+    <view class="">备注：</view>
+    <view class="">无</view>
+  </view>
+</view>
+<view class="margin-top-20"></view>
+
+<view class="bg-white" style="position:fixed;bottom:0;width:100vw">
+  <view class="margin-bottom-10 flex-row margin-top-10">
+    <button class="margin-left-30 clear-button" open-type="contact">
+      <image class="icon margin-left-30 margin-right-10" src="{{uploadpath}}resource/{{res.kefu}}"></image>
+      <view class="h5">译码客服</view>
+    </button>
+    <view class=" margin-left-10 " bindtap="bindcar">
+      <image class="icon margin-left-60 " src="{{uploadpath}}resource/{{res.shopcar}}"></image>
+      <view class="h5 margin-left-40 ">购物车</view>
+    </view>
+    <view class="flex-1"></view>
+    <view class="btncar txt-white margin-right-30" bindtap="bindagain">重新询价</view>
+  </view>
+</view>

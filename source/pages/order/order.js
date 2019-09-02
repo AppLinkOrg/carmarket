@@ -13,19 +13,19 @@ class Content extends AppBase {
     //options.id=5;
    
     this.Base.setMyData({
-      order: "A"
+      order: "B"
 
     });
   }
   onMyShow() {
     var orderapi = new OrderApi();
-    orderapi.mylist({
-      status: 'A,B',
-    }, (mylist) => {
-      this.Base.setMyData({
-        mylist
-      })
-    })
+    // orderapi.mylist({
+    //   status: 'A,B',
+    // }, (mylist) => {
+    //   this.Base.setMyData({
+    //     mylist
+    //   })
+    // })
 
     orderapi.mylist({
       status: 'L',
@@ -69,22 +69,25 @@ class Content extends AppBase {
     });
   }
   
-  bindsend() {
+  bindsend(e) {
+    var id = e.currentTarget.id;
     wx.navigateTo({
-      url: '/pages/waitsend/waitsend',
+      url: '/pages/waitsend/waitsend?id=' + id,
     })
 
   }
 
-  bindreceive() {
+  bindreceive(e) {
+    var id = e.currentTarget.id;
     wx.navigateTo({
-      url: '/pages/waitreceive/waitreceive',
+      url: '/pages/waitreceive/waitreceive?id=' + id,
     })
   }
 
-  bindsuccess() {
+  bindsuccess(e) {
+    var id = e.currentTarget.id;
     wx.navigateTo({
-      url: '/pages/success/success',
+      url: '/pages/success/success?id=' + id,
     })
   }
 

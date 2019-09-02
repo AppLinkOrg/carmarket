@@ -1,0 +1,46 @@
+Page {
+  background: rgb(241, 241, 241);
+}
+.bg{
+  background-color: #2875ce;
+  border-radius: 16rpx 16rpx 0rpx 0rpx;
+}
+.box{
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  background-color: white;
+  border-radius: 20rpx;
+}
+.bgye{
+  background-color: #feffdc;
+}
+.kaipiao{
+  border: 1rpx solid sandybrown;
+  border-radius: 6rpx;
+}
+.yuan{
+  border: 1rpx solid rgb(207, 207, 207);
+  border-radius: 6rpx;
+}
+.num{
+  background-color: #e6e6e6;
+  width: 80rpx;
+  height: 46rpx;
+  border-radius: 6rpx;
+}
+.bott{
+  bottom: 0;
+  position: fixed;
+  width: 100vw;
+}
+.bgjie{
+   background: linear-gradient(to right, rgb(228, 46, 46) , rgb(255, 72, 0));
+   height: 80rpx;
+   width: 220rpx;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 40rpx;
+
+}

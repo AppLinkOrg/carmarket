@@ -1,11 +1,113 @@
-<view class="white-block">
-  <view class=' flex-row margin-top-30 '>
-    <view class='borderleft'></view>
-    <view class='margin-left-10 txt-black txt-bold'>收货信息</view>
+<view class="white-block onebtn margin-top-20">
+  <view class="margin-top-20 flex-row ">
+    <view class="txt-black margin-left-20 txt-bold">詹先生</view>
+    <view class="txt-black margin-left-30 txt-bold">13800138000</view>
+    <view class="margin-left-30">默认</view>
+    <view class="flex-1"></view>
+    <image class='icon margin-right-20 margin-top-20' src='{{uploadpath}}resource/{{res.smallright}}' bindtap="bindyou"></image>
   </view>
-  <view class='flex-1 flex-row margin-top-20'>
+  <view class="margin-left-20 h5 margin-bottom-20">广东xxxxxxxxxxxxxxxx</view>
+</view>
+<view class="white-block margin-top-20" style="height:10rpx;"></view>
+<view class="bgtop ">
+  <view class="flex-row margin-top-20 margin-bottom-20">
+    <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.storeone}}"></image>
+    <view class="txt-white margin-left-20 txt-bold">深圳新德兴汽配</view>
+    <view class="flex-1"></view>
+    <view class="txt-white h5">需要发票</view>
+    <image class="icon margin-left-10 margin-right-20 " src="{{uploadpath}}resource/{{res.whiteyuan}}"></image>
+  </view>
+</view>
+<view class="bgye margin-top-10">
+  <view class="flex-row margin-top-20 margin-bottom-20 margin-left-30">
+    <view class="kaipiao padding-left-10 padding-right-10 h6">开票</view>
+    <view class="margin-left-5 h6">本店累计满¥1000可开票，还差¥1000</view>
+    <view class="flex-1"></view>
+    <view class="txt-primary margin-right-30 h6">查看规则</view>
+  </view>
+</view>
+<view class="bgbottom margin-top-10">
+  <view class="flex-row margin-top-20 margin-left-20">
+    <view class="txt-black txt-bold">火花塞</view>
+    <view class="flex-1"></view>
+    <view class="txt-black margin-right-20">深圳龙岗仓</view>
+  </view>
+  <view class="margin-top-20 margin-left-20">火花塞1212021897</view>
+  <view class="flex-row margin-top-20">
+    <view class="yuan margin-left-20 margin-bottom-20">
+      <view class="h5 padding-left-10 padding-right-10 h6">原厂(非国内4S)：宝马</view>
+    </view>
+    <view class="flex-1"></view>
+    <view class="txt-red margin-right-20">¥75.00</view>
+  </view>
+  <view class="flex-row  margin-bottom-20">
+    <image class="icon margin-left-20 margin-right-10" src="{{uploadpath}}resource/{{res.tui}}"></image>
+    <image class="icon  margin-right-10" src="{{uploadpath}}resource/{{res.zhuang}}"></image>
+    <image class="icon  margin-right-10" src="{{uploadpath}}resource/{{res.ji}}"></image>
+    <image class="icon  margin-right-10" src="{{uploadpath}}resource/{{res.pei}}"></image>
+    <image class="icon  margin-right-10" src="{{uploadpath}}resource/{{res.redbao}}"></image>
+  </view>
+  <view class="bot"></view>
+  <view class="flex-row margin-left-20 margin-top-20 margin-bottom-20">
+    <view class="">给商家留言：</view>
+    <input class="margin-left-20 h5" placeholder="请输入留言"></input>
+  </view>
+  <view class="bot"></view>
+
+  <view class="white-block flex-row margin-top-20 margin-bottom-20">
+    <view class='flex-1'></view>
+    <view class="">共</view>
+    <view class="txt-red">3</view>
+    <view class="">件商品，</view>
+    <view class="txt-black">总计：</view>
+    <view class="txt-red margin-right-20">￥225.00</view>
+  </view>
+  <view class="bot"></view>
+  <view class="flex-row margin-top-20 center margin-bottom-20">
+    <view class="">收起详情</view>
+    <image class="icon" src="{{uploadpath}}resource/{{res.upjiantou}}"></image>
+  </view>
+  <view class="bottom"></view>
+
+
+  <view class="btntwo margin-top-10" >
+    <view class="flex-row margin-top-20 margin-bottom-20">
+      <view class="txt-black">深圳龙岗仓发货</view>
+      <image class="margin-left-20 margin-right-20 iconimg " src="{{uploadpath}}resource/{{res.dan}}"></image>
+      <view class="gray-block flex-row " style="width:320rpx;height:45rpx;  border-radius: 6rpx;">
+        <view class="margin-left-50 h5">选择物流公司</view>
+        <image class="icon margin-top-5 margin-left-20" src="{{uploadpath}}resource/{{res.sanjiao}}"></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='white-block flex-row ' style=" position: fixed; bottom: 0; height: 100rpx; width:100%;">
+  <view class='flex-1'></view>
+  <view class='margin-left-20 margin-top-30 txt-black txt-bold'>应付：</view>
+  <view class='txt-red margin-top-30 margin-right-30'>¥{{chuanzhi.totalamount}}402.00</view>
+  <view class='bg-btn gbtn margin-top-10 margin-right-20' bindtap="bindtijiao">提交订单</view>
+</view>
+
+<!-- <view class="flex-row">
+  <view class="dialog-box" wx:if="{{showModal}}">
+    <view class="flex-row">
+      <view class="flex-1"></view>
+      <image class='icon-25 margin-right-30 margin-top-30' src='{{uploadpath}}resource/{{res.delect}}' bindtap="binddelect"></image>
+    </view>
+    <view class="flex-row flex-column">
+      <view class="txt-black margin-top-30">求购订单支付</view>
+      <view class="h1-2 txt-red margin-top margin-bottom-40">￥{{chuanzhi.totalamount}}</view>
+      <view class="margin-bottom-40">从我的账户中扣除此次订单金额</view>
+      <button class="qw" bindtap="confirm">确认支付￥{{chuanzhi.totalamount}}威币</button>
+    </view>
+  </view>
+</view> -->
+
+
+<!-- <view class='flex-1 flex-row margin-top-20'>
     <image class='icon-25 margin-left-20' src='{{uploadpath}}resource/{{res.addressadd}}' bindtap="bindadddizhi"></image>
-    <input class=' margin-left-10' placeholder='请添加收货地址'></input>
+    <input class=' margin-left-10' value="{{addresslist.region}}{{addresslist.address}}" placeholder='请添加收货地址' bindinput="binddizhi"> </input>
 
   </view>
   <view class='margin-top-20 bott'></view>
@@ -19,62 +121,61 @@
     <view class='txt-black '>{{chuanzhi.vin}}</view>
   </view>
   <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
-    <view class='txt-black '>车型：</view>
-    <view class='txt-black '>{{chuanzhi.carname}}</view>
+    <view class='txt-black margin-right-30'>车型：{{chuanzhi.carname}}</view>
+
   </view>
 
   <view class=' bott'></view>
-<view  >
-  <view class=' flex-row margin-top-30 '>
-    <view class='borderleft'></view>
-    <view class='margin-left-10 txt-black txt-bold'>订单信息</view>
-  </view>
-  <view class='flex-row flex-wrap margin-top-20'>
-    <view class='txt-black margin-left-30'>订单编号：</view>
-    <view class='txt-black '>{{chuanzhi.created_date}}</view>
-  </view>
-  <view class='flex-row  margin-bottom-20 margin-left-30 margin-top-10'>
-    <view class='txt-black flex-wrap'>{{chuanzhi.enterprise_id_name}}</view>
-    <view class='flex-1'></view>
-    <view class='txt-bc '>联系卖家</view>
-    <image class='icon-17 margin-right-30 margin-left-10' src='{{uploadpath}}resource/{{res.lianxi}}'></image>
-  </view>
-
-
-  <view class='flex-row'  wx:for="{{chuanzhi.orderitems}}" >
-    <view class='margin-left-50 '>
-      <image class='icon-25 margin-top-20' src='{{uploadpath}}resource/{{res.no}}'></image>
+  <view>
+    <view class=' flex-row margin-top-30 '>
+      <view class='borderleft'></view>
+      <view class='margin-left-10 txt-black txt-bold margin-bottom-20'>订单信息</view>
     </view>
-    <view class='margin-left-50 '>
-      <view class=' txt-black'>{{item.name}}</view>
-      
-      <view class='flex-row  margin-top-10 '>
-        <view class=''>品牌：</view>
-        <view class=''>原厂</view>
-      </view>
-      <view class='flex-row flex-wrap '>
-        <view class=''>单价：</view>
-        <view class='txt-red'>{{item.price}}元</view>
-      </view>
-    </view>
-    <view class="flex-1"></view>
-    <view class="flex-row margin-top">
-      <view class=''>
-        <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}' id="{{idx}}" bindtap='bindreduce'></image>
-      </view>
-      <view class='txt-blue margin-left-30 margin-right-30'>{{item.qty}}</view>
-      <view class='margin-right-20'>
-        <image class='icon-25 ' src='{{uploadpath}}resource/{{res.add}}' id="{{idx}}" bindtap='bindadd'></image>
-      </view>
-    </view>
-  </view>
-  </view>
 
+    <view class=' bottone'></view>
+    <view class='flex-row  margin-bottom-20 margin-left-30 margin-top-20'>
+      <view class='txt-black flex-wrap'>{{chuanzhi.enterprise_id_name}}</view>
+      <view class='flex-1'></view>
+      <view class='txt-bc '>联系卖家</view>
+      <image class='icon-17 margin-right-30 margin-left-10' src='{{uploadpath}}resource/{{res.lianxi}}'></image>
+    </view>
+    <view class=' bottone margin-bottom-20'></view>
+
+    <view class='flex-row' wx:for="{{chuanzhi.orderitems}}" wx:for-index='idx'>
+      <view class='margin-left-30 '>
+        <image wx:if="{{!item.xz}}" id="N" data-id="{{idx}}" class='icon-25 margin-top-20' src='{{uploadpath}}resource/{{res.no}}' bindtap="bindchoice"></image>
+        <image wx:if="{{item.xz}}" id="Y" data-id="{{idx}}" class='icon-25 margin-top-20' src='{{uploadpath}}resource/{{res.zhong}}' bindtap="bindchoice"></image>
+      </view>
+      <view class='margin-left-30 '>
+        <view class=' txt-black marg'>{{item.name}}</view>
+
+        <view class='flex-row  margin-top-10 '>
+          <view class=''>品质：</view>
+          <view class=''>{{}}</view>
+        </view>
+        <view class='flex-row flex-wrap margin-bottom-20'>
+          <view class=''>单价：</view>
+          <view class='txt-red'>{{item.price}}元</view>
+        </view>
+      </view>
+      <view class="flex-1"></view>
+      <view class="flex-row margin-top">
+        <view class=''>
+          <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}' data-id="{{idx}}" bindtap='bindreduce'></image>
+        </view>
+        <view class='txt-blue margin-left-30 margin-right-30'>{{item.qty}}</view>
+        <view class='margin-right-20'>
+          <image class='icon-25 ' src='{{uploadpath}}resource/{{res.add}}' data-id="{{idx}}" bindtap='bindadd'></image>
+        </view>
+      </view>
+    </view>
+  </view>
 
 
   <view class='bott margin-top-20'></view>
   <view class="flex-row margin-top-20">
-    <image class='icon-25 margin-left-30' src='{{uploadpath}}resource/{{res.no}}'></image>
+    <image wx:if="{{quan=='B'}}" id="B" class='icon-25 margin-left-30' src='{{uploadpath}}resource/{{res.no}}' bindtap="bindallchoice"></image>
+    <image wx:if="{{quan=='Q'}}" id="Q" class='icon-25 margin-left-30' src='{{uploadpath}}resource/{{res.zhong}}' bindtap="bindallchoice"></image>
     <view class="margin-left-10 txt-black">全选</view>
     <view class="flex-1"></view>
     <view class="txt-black">小计：</view>
@@ -83,9 +184,8 @@
   <view class='bott margin-top-20'></view>
   <view class='margin-left-30 flex-row margin-top-20 '>
     <view class='txt-black'>发票：</view>
-    <view class='txt-black'>无</view>
+    <view class='txt-black'>{{chuanzhi.needinvoice}}</view>
   </view>
-
 
   <view class='bott margin-top-20'></view>
 
@@ -93,7 +193,7 @@
     <view class='borderleft'></view>
     <view class='margin-left-10 txt-black txt-bold margin-bottom-20'>备注</view>
   </view>
-  <input class='margin-left-30' placeholder='选填' style="height:140rpx;"></input>
+  <input class='margin-left-30' wx:if="{{!showModal}}" placeholder='选填' style="height:140rpx;"></input>
   <view class='bott margin-top-20'></view>
 
   <view class=' flex-row '>
@@ -102,19 +202,22 @@
     <view class='flex-1'></view>
     <view class='bg-btn  gbtn  ' bindtap="bindtijiao">提交订单</view>
   </view>
-
 </view>
 
-<!-- <view class=' flex-row margin-top-30 '>
-  <view class='borderleft'></view>
-  <view class='margin-left-10 txt-black txt-bold margin-bottom-20'>手动添加</view>
-</view>
-<view class='flex-row'>
-  <view class='margin-left-30 margin-top-30'>配件：</view>
-  <view class='buttonone ' style='width: 75%;'></view>
-</view>
-<view class='flex-row'>
-  <view class='margin-left-30 margin-top-30'>价格：</view>
-  <view class='buttonone ' style='width: 45%;'></view>
-  <view class=' margin-top-30'>元</view>
+<view class="flex-row">
+  <view class="dialog-box" wx:if="{{showModal}}">
+
+    <view class="flex-row">
+      <view class="flex-1"></view>
+      <image class='icon-25 margin-right-30 margin-top-30' src='{{uploadpath}}resource/{{res.delect}}' bindtap="binddelect"></image>
+    </view>
+
+    <view class="flex-row flex-column">
+      <view class="txt-black margin-top-30">求购订单支付</view>
+      <view class="h1-2 txt-red margin-top margin-bottom-40">￥{{chuanzhi.totalamount}}</view>
+      <view class="margin-bottom-40">从我的账户中扣除此次订单金额</view>
+      <button class="qw" bindtap="confirm">确认支付￥{{chuanzhi.totalamount}}威币</button>
+    </view>
+
+  </view>
 </view> -->
