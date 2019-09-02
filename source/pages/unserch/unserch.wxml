@@ -13,6 +13,8 @@
     </view>
   </view>
 
+
+
   <view class="margin-left-40 margin-top-20">
     <image class="icon-100" hidden="{{two}}" mode="aspectFill" src="{{uploadpath}}resource/{{res.upload}}" bindtap="binduptwo"></image>
     <image class="icon-100" hidden="{{!two}}" mode="aspectFill" src="{{uploadpath}}product/{{imagetwo}}" bindtap="binduptwo"></image>
@@ -42,7 +44,7 @@
 
   <view class="margin-left-40 margin-top-20">
     <image class="icon-100" hidden="{{five}}" mode="aspectFill" src="{{uploadpath}}resource/{{res.upload}}" bindtap="bindupfive"></image>
-    <image class="icon-100" hidden="{{!five}}" mode="aspectFill"  src="{{uploadpath}}product/{{imagefive}}" bindtap="bindupfive"></image>
+    <image class="icon-100" hidden="{{!five}}" mode="aspectFill" src="{{uploadpath}}product/{{imagefive}}" bindtap="bindupfive"></image>
     <image class="icon-17 detele" hidden='{{!five}}' src="{{uploadpath}}resource/{{res.quchu}}" bindtap="bindquchu"></image>
     <view class="txt-red margin-left-40">（选填）</view>
   </view>
@@ -54,14 +56,28 @@
   <view class=' margin-left-20 txt-black txt-bold'>一键识别</view>
 </view>
 <view class="btna">
-  <textarea class="h5 margin-left-30 margin-right-30 margin-top-30" maxlength="200" placeholder="请将复制的文字黏贴到此处进行配件文字识别"></textarea>
+  <textarea class="h5 margin-left-30 margin-right-30 margin-top-30" maxlength="200" placeholder="请将复制的文字黏贴到此处进行配件文字识别" bindinput="recognition"></textarea>
 </view>
 <view class="flex-row">
   <view class="flex-1"></view>
   <view class="btnd margin-right-30" bindtap="bindshibie">点击识别</view>
 </view>
-<view class="flex-row">
-  <view class="btnb margin-top-20">前保险杠</view>
-  <image class="icon-17 quchu" src="{{uploadpath}}resource/{{res.quchu}}"></image>
+
+
+<view class="flex-row flex-center flex-wrap">
+  <view class="block" wx:for='{{fittings}}' wx:key='k' wx:for-index='idx'>
+    <view class="btnb margin-top-20 text-center">{{item}}</view>
+    <image class="icon-17 quchu" src="{{uploadpath}}resource/{{res.quchu}}" bindtap="bindclear" id="{{idx}}"></image>
+  </view>
 </view>
-<view class="btnc" bindtap="bindfubu">发布询价</view>
+
+<view style="height:200rpx;">
+
+</view>
+
+
+<view class="btn">
+  <view class="flex-row flex-column">
+    <view class="btnc text-center" bindtap="bindfubu">发布询价</view>
+  </view>
+</view>

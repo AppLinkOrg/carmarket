@@ -22,6 +22,7 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
+    this.Base.setMyData({ fittings:[]})
   }
   onMyShow() {
     var that = this;
@@ -79,8 +80,7 @@ class Content extends AppBase {
     })
   }
 
-
-
+ 
   binddelect() {
     this.Base.setMyData({
       four:false
@@ -91,14 +91,34 @@ class Content extends AppBase {
       five: false
     })
   }
-  bindshibie() {
 
-  }
   bindfubu() {
     wx.reLaunch({
       url: '/pages/price/price',
     })
   }
+  recognition(e){
+
+    var shibie = (e.detail.value).split(',')
+    
+    this.Base.setMyData({ shibie})
+    
+    //console.log(hangshu)
+  }
+
+  bindshibie(e) {
+    var fittings = this.Base.getMyData().shibie;
+ 
+    this.Base.setMyData({ fittings})
+  }
+  bindclear(e){
+    var idx=e.currentTarget.id;
+    var fittings = this.Base.getMyData().fittings;
+
+    fittings.splice(idx, 1);
+    this.Base.setMyData({ fittings})
+  }
+
 
 }
 var content = new Content();
@@ -106,10 +126,13 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindfubu = content.bindfubu;
-body.binddelect = content.binddelect;
+body.binddelect = content.binddelect; 
+
+body.recognition = content.recognition;
 
 body.bindquchu = content.bindquchu; 
-body.bindshibie = content.bindshibie;
+body.bindshibie = content.bindshibie; 
+body.bindclear = content.bindclear;
 
 body.bindupimg = content.bindupimg;
 body.binduptwo = content.binduptwo;

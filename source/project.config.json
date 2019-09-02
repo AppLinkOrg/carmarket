@@ -47,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 25,
+			"current": 26,
 			"list": [
 				{
 					"id": -1,
@@ -228,6 +228,13 @@
 					"id": -1,
 					"name": "报价中/pricing",
 					"pathName": "pages/pricing/pricing",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "手动发布询价页面",
+					"pathName": "pages/unserch/unserch",
 					"scene": null
 				}
 			]
