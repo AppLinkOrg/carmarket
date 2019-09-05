@@ -22,19 +22,37 @@
 }
 
 .border-trb {
-    border-top: 1px solid #84817E;
-    border-right: 1px solid #84817E;
-    border-bottom: 1px solid #84817E;
+    border-top: 1px solid #B9B9B9;
+    border-right: 1px solid #B9B9B9;
+    border-bottom: 1px solid #B9B9B9;
 }
 
 .border-tlb {
-    border-top: 1px solid #84817E;
-    border-left: 1px solid #84817E;
-    border-bottom: 1px solid #84817E;
+    border-top: 1px solid #B9B9B9;
+    border-left: 1px solid #B9B9B9;
+    border-bottom: 1px solid #B9B9B9;
+}
+
+.border-tlb-r {
+    border-top: 1px solid #B9B9B9;
+    border-left: 1px solid #B9B9B9;
+    border-bottom: 1px solid #B9B9B9;
+    border-right: 1px solid #B9B9B9;
 }
 
 .btn-active {
     background:  #007bff;
-    color: #ffffff;
+    // color: #ffffff;
     border-color: #007bff;
+    a {
+        color: #fff;
+    }
+}
+
+.box-auto {
+    margin: 0 auto;
+}
+
+.txt-d-gray {
+    color: #8A8A8A;
 }

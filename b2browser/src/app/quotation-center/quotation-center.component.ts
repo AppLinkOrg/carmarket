@@ -22,8 +22,45 @@ export class QuotationCenterComponent extends AppBase  {
   }
 
   onMyShow(){
+    // this.toggleEvent();
     
   }
+
+  ngOnInit(){
+    // this.toggleEvent(); 
+  }
+
+  toggleEvent(event) {
+    
+  //   const currentEvent = event.target.parentElement;
+  //   console.log(event)
+  //   if(currentEvent.className == 'active'){
+  //     if(currentEvent.nextElementSibling === null || currentEvent.previousElementSibling === null){
+  //       if(currentEvent.previousElementSibling.className == 'active' || currentEvent.nextElementSibling.className == 'active'){
+  //         currentEvent.previousElementSibling.className = '';
+  //         currentEvent.nextElementSibling.className = ''
+  //       }
+  //     }else {
+  //         currentEvent.previousElementSibling.className = '';
+  //         currentEvent.nextElementSibling.className = ''
+  //     }
+  //     currentEvent.className = ''
+  //   }else {
+  //     if(currentEvent.nextElementSibling === null || currentEvent.previousElementSibling === null){
+  //       if(currentEvent.previousElementSibling.className == 'active' || currentEvent.nextElementSibling.className == 'active'){
+  //         currentEvent.previousElementSibling.className = '';
+  //         currentEvent.nextElementSibling.className = ''
+  //       }
+  //     }else {
+  //         currentEvent.previousElementSibling.className = '';
+  //         currentEvent.nextElementSibling.className = ''
+  //     }
+  //     currentEvent.className = 'active'
+  //   }
+  }
+  
 }
+
+
 
 

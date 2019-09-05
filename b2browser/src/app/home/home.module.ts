@@ -16,6 +16,8 @@ import { StoreHomeComponent } from '../store-home/store-home.component';
 import { QuotationCenterComponent } from '../quotation-center/quotation-center.component';
 import { QuotationDetailsComponent } from '../quotation-details/quotation-details.component';
 import { DetailsOfQuotedPriceComponent } from '../details-of-quoted-price/details-of-quoted-price.component';
+import { OrderManagementComponent } from '../order-management/order-management.component';
+import { SendGoodsDetailComponent } from '../send-goods-detail/send-goods-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { DetailsOfQuotedPriceComponent } from '../details-of-quoted-price/detail
     QuotationCenterComponent,
     QuotationDetailsComponent,
     DetailsOfQuotedPriceComponent,
+    OrderManagementComponent,
+    SendGoodsDetailComponent,
     DashboardComponent],
   imports: [
     CommonModule,

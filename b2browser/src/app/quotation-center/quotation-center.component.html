@@ -5,8 +5,8 @@
 
           <div class="quotation">
             <ul class="nav nav-tabs flex-row flex-bottom no-border">
-                <li class="flex-3 text-right"><a>报价中心</a></li>
-                <li class="active flex-3"><a>报价记录</a></li>
+                <li class="active flex-3 text-right"><a (click)="toggleEvent($event)">报价中心</a></li>
+                <li class="flex-3"><a (click)="toggleEvent($event)">报价记录</a></li>
             </ul>
           </div>
 
@@ -14,12 +14,12 @@
 
           <div class="card-body box-hide">
             <div class="margin-bottom-20" role="group" aria-label="...">
-                <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40">待报价</button>
-                <button type="button" class="btn-default border-gray-1 padding-left-40 padding-right-40">已忽略</button>           
+                <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray"><a>待报价</a></button>
+                <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray"><a>已忽略</a></button>           
             </div>
             <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead class="bg-gray text-center">
+              <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                <thead class="bg-gray">
                   <tr>
                     <th>序号</th>
                     <th>发票要求</th>
@@ -34,7 +34,7 @@
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td class="text-center">
+                    <td>
                         <div class="bg-red txt-white">发票</div>
                     </td>
                     <td>19072500000001</td>
@@ -42,7 +42,7 @@
                     <td>刹车总泵x1</td>
                     <td>无</td>
                     <td>2019/07/25 18.25</td>
-                    <td class="text-center">
+                    <td>
                         <button class="btn btn-primary"  routerLink="/quotationDetails"><a>立即报价</a></button><br>
                         <button class="btn btn-default txt-blue">忽略</button>
                     </td>
@@ -57,7 +57,7 @@
                         <td>刹车总泵x1</td>
                         <td>无</td>
                         <td>2019/07/25 18.25</td>
-                        <td class="text-center">
+                        <td>
                             <button class="btn btn-primary"  routerLink="/quotationDetails">立即报价</button><br>
                             <button class="btn btn-default txt-blue">忽略</button>
                         </td>
@@ -89,15 +89,15 @@
 
           <div class="card-body">
                 <div class="margin-bottom-20" role="group" aria-label="...">
-                        <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40">已报价</button>
-                        <button type="button" class="btn-default border-gray-1 padding-left-40 padding-right-40">已忽略</button>        
-                        <button type="button" class="btn-default no-border border-trb padding-left-40 padding-right-40">全部</button>       
+                        <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray"><a>已报价</a></button>
+                        <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray"><a>已忽略</a></button>        
+                        <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray"><a>全部</a></button>       
                  </div>
 
                  <!-- 已报价 -->
             <div class=""> 
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                   <thead class="bg-gray">
                     <tr>
                       <th>序号</th>
