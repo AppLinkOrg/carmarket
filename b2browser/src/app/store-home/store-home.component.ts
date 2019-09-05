@@ -5,12 +5,12 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 
 @Component({
-  selector: 'app-blank',
-  templateUrl: './blank.component.html',
-  styleUrls: ['./blank.component.scss'],
-  providers:[InstApi]
+  selector: 'app-store-home',
+  templateUrl: './store-home.component.html',
+  styleUrls: ['./store-home.component.scss'],
+  providers:[InstApi]  
 })
-export class BlankComponent  extends AppBase  {
+export class StoreHomeComponent extends AppBase  {
 
   constructor(
     public router: Router,

@@ -5,12 +5,12 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 
 @Component({
-  selector: 'app-blank',
-  templateUrl: './blank.component.html',
-  styleUrls: ['./blank.component.scss'],
+  selector: 'app-quotation-details',
+  templateUrl: './quotation-details.component.html',
+  styleUrls: ['./quotation-details.component.scss'],
   providers:[InstApi]
 })
-export class BlankComponent  extends AppBase  {
+export class QuotationDetailsComponent extends AppBase  {
 
   constructor(
     public router: Router,

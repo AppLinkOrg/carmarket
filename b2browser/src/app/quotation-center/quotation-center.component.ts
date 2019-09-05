@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 
+
 @Component({
-  selector: 'app-blank',
-  templateUrl: './blank.component.html',
-  styleUrls: ['./blank.component.scss'],
+  selector: 'app-quotation-center',
+  templateUrl: './quotation-center.component.html',
+  styleUrls: ['./quotation-center.component.scss'],
   providers:[InstApi]
 })
-export class BlankComponent  extends AppBase  {
+export class QuotationCenterComponent extends AppBase  {
 
   constructor(
     public router: Router,
@@ -19,8 +20,10 @@ export class BlankComponent  extends AppBase  {
   ) { 
     super(router,activeRoute,instApi);
   }
+
   onMyShow(){
     
   }
-
 }
+
+

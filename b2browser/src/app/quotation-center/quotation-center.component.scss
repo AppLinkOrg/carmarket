@@ -1,0 +1,40 @@
+
+.quotation {
+    background-color: rgba(0,0,0,0.03);
+}
+
+.padding-42 {
+    padding: 2px 22px;
+}
+
+.active {
+    font-size: 25px;
+    color: #3d61b4;
+    margin: 20px 20px 0 20px;
+    a {
+        border-bottom: 2px solid #3d61b4;
+        margin-top: 5px;
+    }
+}
+
+.box-hide {
+    display: none;
+}
+
+.border-trb {
+    border-top: 1px solid #84817E;
+    border-right: 1px solid #84817E;
+    border-bottom: 1px solid #84817E;
+}
+
+.border-tlb {
+    border-top: 1px solid #84817E;
+    border-left: 1px solid #84817E;
+    border-bottom: 1px solid #84817E;
+}
+
+.btn-active {
+    background:  #007bff;
+    color: #ffffff;
+    border-color: #007bff;
+}
