@@ -22,41 +22,57 @@ export class QuotationCenterComponent extends AppBase  {
   }
 
   onMyShow(){
-    // this.toggleEvent();
-    
+    this.toggleTitle();
+    this.toggleBtn();
   }
 
-  ngOnInit(){
-    // this.toggleEvent(); 
+  toggleTitle(){
+    let toggleTitle = document.getElementsByClassName('toggleTitle')[0].children;
+    let toggleTitleContent = document.getElementsByClassName('toggleTitleContent')[0].children;
+
+    for(let i=0; i<toggleTitle.length; i++){
+
+      toggleTitle[i].index = i;
+      
+      toggleTitle[i].onclick = function(){
+        // console.log(toggleBtns[i])
+        for(let i=0; i<toggleTitle.length; i++){
+          toggleTitle[i].classList.remove('active')
+          
+        }
+        for(let j=0; j<toggleTitleContent.length; j++){
+          toggleTitleContent[j].classList.add('box-hide');
+        } 
+        this.classList.add('active')
+        toggleTitleContent[this.index].classList.remove('box-hide')
+
+      
+      }
+    }
   }
 
-  toggleEvent(event) {
-    
-  //   const currentEvent = event.target.parentElement;
-  //   console.log(event)
-  //   if(currentEvent.className == 'active'){
-  //     if(currentEvent.nextElementSibling === null || currentEvent.previousElementSibling === null){
-  //       if(currentEvent.previousElementSibling.className == 'active' || currentEvent.nextElementSibling.className == 'active'){
-  //         currentEvent.previousElementSibling.className = '';
-  //         currentEvent.nextElementSibling.className = ''
-  //       }
-  //     }else {
-  //         currentEvent.previousElementSibling.className = '';
-  //         currentEvent.nextElementSibling.className = ''
-  //     }
-  //     currentEvent.className = ''
-  //   }else {
-  //     if(currentEvent.nextElementSibling === null || currentEvent.previousElementSibling === null){
-  //       if(currentEvent.previousElementSibling.className == 'active' || currentEvent.nextElementSibling.className == 'active'){
-  //         currentEvent.previousElementSibling.className = '';
-  //         currentEvent.nextElementSibling.className = ''
-  //       }
-  //     }else {
-  //         currentEvent.previousElementSibling.className = '';
-  //         currentEvent.nextElementSibling.className = ''
-  //     }
-  //     currentEvent.className = 'active'
-  //   }
+  toggleBtn(){
+    let toggleBtns = document.getElementsByClassName('toggleBtns')[0].children;
+    let btnContents = document.getElementsByClassName('btnContents')[0].children;
+ 
+
+    for(let i=0; i<toggleBtns.length; i++){
+
+      toggleBtns[i].index = i;
+      
+      toggleBtns[i].onclick = function(){
+        
+        for(let i=0; i<toggleBtns.length; i++){
+          toggleBtns[i].classList.remove('btn-active')
+        }
+        for(let j=0; j<btnContents.length; j++){
+          btnContents[j].classList.add('box-hide')
+        }
+        this.classList.add('btn-active')
+        btnContents[this.index].classList.remove('box-hide')
+      
+      }
+    }
   }
   
 }

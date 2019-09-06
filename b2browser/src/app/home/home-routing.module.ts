@@ -10,6 +10,11 @@ import { QuotationDetailsComponent } from '../quotation-details/quotation-detail
 import { DetailsOfQuotedPriceComponent } from '../details-of-quoted-price/details-of-quoted-price.component';
 import { OrderManagementComponent } from '../order-management/order-management.component';
 import { SendGoodsDetailComponent } from '../send-goods-detail/send-goods-detail.component';
+import { ReceivedGoodsDetailComponent } from '../received-goods-detail/received-goods-detail.component';
+import { FinishDetailComponent } from '../finish-detail/finish-detail.component';
+import { ManagementCenterComponent } from '../management-center/management-center.component';
+import { ReturnsManagementComponent } from '../returns-management/returns-management.component';
+import { ReturnsDetailComponent } from '../returns-detail/returns-detail.component';
 
 
 const routes: Routes = [
@@ -25,7 +30,12 @@ const routes: Routes = [
       { path: "quotationDetails", component: QuotationDetailsComponent },
       { path: "detailsOfQuotedPrice", component: DetailsOfQuotedPriceComponent},
       { path: "orderManagement", component: OrderManagementComponent},
-      { path: "sendGoodsDetail", component: SendGoodsDetailComponent}
+      { path: "sendGoodsDetail", component: SendGoodsDetailComponent},
+      { path: "receiveGoodsDetail", component: ReceivedGoodsDetailComponent},
+      { path: "finishDetail", component: FinishDetailComponent},
+      { path: "managementCenter", component: ManagementCenterComponent},
+      { path: "returnsManagement", component: ReturnsManagementComponent},
+      { path: "returnsDetail", component: ReturnsDetailComponent},
     ]
   }
 ];
