@@ -165,7 +165,7 @@ view, navigator, input, text, textarea {
 }
 
 .txt-gray {
-  color: #84817e;
+  color: #B9B9B9;
 }
 
 .txt-blue {
@@ -725,7 +725,7 @@ button[disabled][type=primary] {
 }
 
 .borderleft {
-  border-left: 5px solid #143779;
+  border-left: 10rpx solid #143779;
   height: 28rpx;
   margin-top: 10rpx;
   margin-left: 30rpx;

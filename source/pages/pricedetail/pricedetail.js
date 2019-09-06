@@ -22,14 +22,13 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var instapi = new InstApi();
-    var orderapi = new OrderApi();
-    var id = this.Base.options.id;
+    var orderapi = new OrderApi(); 
 
-    orderapi.detail({
-      id:id
-    }, (searchhistory) => {
+    orderapi.quoteinfo({
+      id: this.Base.options.id
+    }, (quoteinfo) => {
       this.Base.setMyData({
-        searchhistory
+        quoteinfo
       });
     });
  

@@ -36,24 +36,33 @@ class Content extends AppBase {
     })
   }
 
+
   bindfabu() {
     wx.reLaunch({
       url: '/pages/price/price',
     })
   }
+
+
   bindadd() {
     wx.navigateBack({
       
     })
   }
+
+
   bindjian(e){
     var index = e.currentTarget.dataset.id;
 
   }
+
+
   bindjia(){
     var index = e.currentTarget.dataset.id;
 
   }
+
+
   bindfapiao(e) {
     var fapiaoed = e.currentTarget.id;
     if (fapiaoed == 'Y') {
