@@ -21,8 +21,8 @@ export class AppUtil {
 
         //s = s.replace(new RegExp("</p>", "gm"), "</p><br />");
 
-        var reg = new RegExp("\"/alucard263096/seatmap/upload/", "g"); //创建正则RegExp对象   
-        s = s.replace(reg, "\"http://cmsdev.app-link.org/alucard263096/seatmap/upload/");
+        var reg = new RegExp("\"/alucard263096/carmarkets/upload/", "g"); //创建正则RegExp对象   
+        s = s.replace(reg, "\"http://cmsdev.app-link.org/alucard263096/carmarkets/upload/");
 
         return s;
     }

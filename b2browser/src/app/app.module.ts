@@ -6,16 +6,40 @@ import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HttpClientModule }    from '@angular/common/http';
 import { InstApi } from 'src/providers/inst.api';
+import { BlankComponent } from './blank/blank.component';
+import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { HomeComponent } from './home/home.component';
+
+import {FormsModule} from '@angular/forms';
+
+
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TestComponent } from './test/test.component';
+import { StoreHomeComponent } from './store-home/store-home.component';
+import { QuotationCenterComponent } from './quotation-center/quotation-center.component';
+import { QuotationDetailsComponent } from './quotation-details/quotation-details.component';
+import { DetailsOfQuotedPriceComponent } from './details-of-quoted-price/details-of-quoted-price.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesComponent
+    LoginComponent,
+    SidemenuComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    FormsModule,
+    HttpClientModule,
+    AlertModule.forRoot(),
+    PopoverModule.forRoot(),
+    ProgressbarModule.forRoot(),
+    TooltipModule.forRoot()
   ],
   providers: [InstApi],
   bootstrap: [AppComponent]
