@@ -31,59 +31,64 @@
                       <th>操作</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody *ngFor="let item of data; let i=index">
                     <tr>
-                      <td>1</td>
+                      <td>{{i+1}}</td>
                       <td>
-                          <div class="bg-red txt-white">发票</div>
+                          <div *ngIf='item.invoice_demand=="是"' class="bg-red txt-white">发票</div>
                       </td>
-                      <td>19072500000001</td>
-                      <td>哈佛 H6 2012款 1.5T手动两驱都是型 <br> LGWEF4A57CF147429</td>
-                      <td>刹车总泵x1</td>
-                      <td>无</td>
-                      <td>2019/07/25 18.25</td>
+                      <td>{{item.quotenumber}}</td>
+                      <td class="text-left">{{item.carmodel}} <br> {{item.vincode}} </td>
+                      <td><div *ngFor="let itemName of item.quoteitems">{{itemName.name}}</div></td>
+                      <td [ngSwitch]="item.carmodel==''">
+                        <div *ngSwitchCase='true'>
+                          <img [hidden]='item.frontofcar == "" || item.frontofcar == "undefined"' src="{{uploadpath}}quote/{{item.frontofcar}}" class="icon-60" />
+                          <img [hidden]='item.namesplate == "" || item.namesplate == "undefined"' src="{{uploadpath}}quote/{{item.namesplate}}" class="icon-60" />
+                          <img [hidden]='item.rearofcar == "" || item.rearofcar == "undefined"' src="{{uploadpath}}quote/{{item.rearofcar}}" class="icon-60" />
+                        </div>
+                        <div *ngSwitchCase='false'>
+                            <img [hidden]='item.photo1 == "" || item.photo1 == "undefined"' src="{{uploadpath}}quote/{{item.photo1}}" class="icon-60" />
+                            <img [hidden]='item.photo2 == "" || item.photo2 == "undefined"' src="{{uploadpath}}quote/{{item.photo2}}" class="icon-60" />
+                        </div>
+                      </td>
+                      <td>{{item.quote_time}}</td>
                       <td>
-                          <button class="btn btn-primary"  routerLink="/quotationDetails"><a>立即报价</a></button><br>
+                          <button class="btn btn-primary" (click)="tiaozhuan(item.id)"><a>立即报价</a></button><br>
                           <button class="btn btn-default txt-blue">忽略</button>
                       </td>
                     </tr>
-                    <tr>
-                          <td>2</td>
-                          <td>
-                              <!-- <div class="btn btn-danger">发票</div> -->
-                          </td>
-                          <td>19072500000001</td>
-                          <td>哈佛 H6 2012款 1.5T手动两驱都是型 <br> LGWEF4A57CF147429</td>
-                          <td>刹车总泵x1</td>
-                          <td>无</td>
-                          <td>2019/07/25 18.25</td>
-                          <td>
-                              <button class="btn btn-primary"  routerLink="/quotationDetails">立即报价</button><br>
-                              <button class="btn btn-default txt-blue">忽略</button>
-                          </td>
-                        </tr>
                   </tbody>
                 </table>
               </div>
-              <!-- <div class="flex-row flex-column">
-                  <ul class="pagination">
-                      <li class="border-gray-1 margin-10 padding-10">
-                        <a aria-label="Previous">
+              <div class="flex-row flex-column">
+                  <ul class="pagination cursor-pointer">
+                      <li class="margin-10 padding-10">共{{length}}条</li>
+                      <li class="border-gray-1 margin-10 padding-10" role='button' (click)="fristPage()">
+                          <a >
+                            <span aria-hidden="true">首页</span>
+                          </a>
+                        </li>
+                      <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Previous()">
+                        <a>
                           <span aria-hidden="true">&laquo;</span>
                         </a>
                       </li>
-                      <li class="border-gray-1 margin-10 padding-10"><a>1</a></li>
-                      <li class="border-gray-1 margin-10 padding-10"><a>2</a></li>
-                      <li class="border-gray-1 margin-10 padding-10"><a>3</a></li>
-                      <li class="border-gray-1 margin-10 padding-10"><a>4</a></li>
-                      <li class="border-gray-1 margin-10 padding-10"><a>5</a></li>
-                      <li class="border-gray-1 margin-10 padding-10">
-                        <a aria-label="Next">
-                          <span aria-hidden="true">&raquo;</span>
-                        </a>
+                      <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" *ngFor="let page of pageList"  
+                      [ngClass]="{pagActive: isActivePage(page)}" role='button'  (click)='selectPage(page)'>
+                        <a>{{page}}</a>
                       </li>
+                      <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="lastPage()">
+                          <a>
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                      <li class="border-gray-1 margin-10 padding-10" role='button' (click)="lastPage()">
+                          <a >
+                            <span aria-hidden="true">尾页</span>
+                          </a>
+                        </li>
                     </ul>
-              </div> -->
+              </div>
             </div>
 
             <div class="card-body box-hide">

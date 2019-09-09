@@ -118,6 +118,27 @@ export class OrderApi {
             });
     }
 
+    public quoteinfo(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/quoteinfo';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/quoteinfo', data, err);
+            });
+    }
+
 
     public settle(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'order/settle';
