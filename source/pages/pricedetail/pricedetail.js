@@ -16,7 +16,8 @@ class Content extends AppBase {
     super.onLoad(options);
     this.Base.setMyData({
       xuan: 'F',
-      chakan:'C'
+      chakan:'C',
+      name:0
     })
   }
   onMyShow() {
@@ -76,6 +77,20 @@ class Content extends AppBase {
   onShareAppMessage(){
     
   }
+
+
+
+  bindcheck(e){
+    var name=e.currentTarget.dataset.name;
+     
+    if (this.Base.getMyData().name == name){
+       this.Base.setMyData({ name: 0 })
+    }
+    else{
+      this.Base.setMyData({ name: name })
+    }
+     
+  }
   
 }
 var content = new Content();
@@ -83,7 +98,9 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow; 
 body.bindfapiao = content.bindfapiao;
-body.bindchakan = content.bindchakan;
+body.bindchakan = content.bindchakan; 
+
+body.bindcheck = content.bindcheck;
 
 body.bindshai = content.bindshai;
 body.binddelect = content.binddelect;
