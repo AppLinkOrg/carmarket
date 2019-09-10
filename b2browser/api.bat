@@ -1,1 +1,1 @@
-applink-cli syncapi ng alucard263096 ghclinic ./src/providers
+applink-cli syncapi ng alucard263096 carmarkets ./src/providers
