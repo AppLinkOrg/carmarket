@@ -36,6 +36,7 @@ class Content extends AppBase {
       url: '/pages/serchgo/serchgo',
     })
   }
+  
 }
 var content = new Content();
 var body = content.generateBodyJson();

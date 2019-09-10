@@ -73,6 +73,9 @@ class Content extends AppBase {
       })
     }
   }
+  onShareAppMessage(){
+    
+  }
   
 }
 var content = new Content();

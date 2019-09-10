@@ -15,11 +15,12 @@
 .block{
   position: relative;
 }
+
 .btnb {
   border-radius: 40rpx;
   border: 2rpx solid #d3d2d2;
   height: 60rpx;
-  line-height: 60rpx; 
+  line-height: 60rpx;
   min-width: 80rpx;
   padding-left: 30rpx;
   padding-right: 30rpx;
