@@ -5,8 +5,8 @@
 
           <div class="quotation">
             <ul class="nav nav-tabs flex-row flex-bottom no-border toggleTitle">
-                <li class="active flex-3 text-right"><a>报价中心</a></li>
-                <li class="flex-3"><a>报价记录</a></li>
+                <li class="active flex-3 text-right"><a (click)='quoteCenter($event)'>报价中心</a></li>
+                <li class="flex-3"><a (click)='quoteRecord($event)'>报价记录</a></li>
             </ul>
           </div>
 
@@ -14,8 +14,8 @@
 
             <div class="card-body">
               <div class="margin-bottom-20" role="group" aria-label="...">
-                  <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray"><a>待报价</a></button>
-                  <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray"><a>已忽略</a></button>           
+                  <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray"><a (click)='quoteHandle($event)'>待报价</a></button>
+                  <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray"><a (click)='neglected($event)'>已忽略</a></button>           
               </div>
               <div class="table-responsive">
                 <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
@@ -31,7 +31,7 @@
                       <th>操作</th>
                     </tr>
                   </thead>
-                  <tbody *ngFor="let item of data; let i=index">
+                  <tbody *ngFor="let item of list; let i=index">
                     <tr>
                       <td>{{i+1}}</td>
                       <td>
@@ -53,14 +53,20 @@
                       </td>
                       <td>{{item.quote_time}}</td>
                       <td>
+                        <div *ngIf='isquote==true'>
                           <button class="btn btn-primary" (click)="tiaozhuan(item.id)"><a>立即报价</a></button><br>
-                          <button class="btn btn-default txt-blue">忽略</button>
+                          <button class="btn btn-default txt-blue" (click)='ignoreHandle(item)'>忽略</button>
+                        </div>
+                        <div *ngIf='isquote==false'>
+                            <button class="btn btn-primary" (click)="tiaozhuan(item.id)"><a>立即报价</a></button><br>
+                            <!-- <button class="btn btn-default txt-blue" (click)='ignoreHandle(item)'>忽略</button> -->
+                        </div>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div class="flex-row flex-column">
+              <div class="flex-row flex-column" *ngIf='page>1'>
                   <ul class="pagination cursor-pointer">
                       <li class="margin-10 padding-10">共{{length}}条</li>
                       <li class="border-gray-1 margin-10 padding-10" role='button' (click)="fristPage()">
@@ -69,16 +75,16 @@
                           </a>
                         </li>
                       <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Previous()">
-                        <a>
+                        <a class="h3">
                           <span aria-hidden="true">&laquo;</span>
                         </a>
                       </li>
                       <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" *ngFor="let page of pageList"  
-                      [ngClass]="{pagActive: isActivePage(page)}" role='button'  (click)='selectPage(page)'>
+                      [ngClass]="{pagActive: isActivePage(page)}" role='button'  (click)='selectPage(page)' style="line-height: 36px;">
                         <a>{{page}}</a>
                       </li>
                       <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="lastPage()">
-                          <a>
+                          <a class="h3">
                             <span aria-hidden="true">&raquo;</span>
                           </a>
                         </li>
@@ -93,9 +99,9 @@
 
             <div class="card-body box-hide">
                   <div class="margin-bottom-20 toggleBtns" role="group" aria-label="...">
-                          <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray"><a>已报价</a></button>
-                          <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray"><a>已忽略</a></button>        
-                          <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray"><a>全部</a></button>       
+                          <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray"><a (click)='quotedPrice($event)'>已报价</a></button>
+                          <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray"><a (click)='neglected($event)'>已忽略</a></button>        
+                          <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray"><a (click)='allQuote($event)'>全部</a></button>       
                   </div>
                 <div class="btnContents">
                   <!-- 已报价 -->
@@ -115,38 +121,36 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td class="text-center">
-                                <div class="bg-red txt-white">发票</div>
-                            </td>
-                            <td>19072500000001</td>
-                            <td>哈佛 H6 2012款 1.5T手动两驱都是型 <br> LGWEF4A57CF147429</td>
-                            <td>刹车总泵x1</td>
+                          <tr *ngFor='let item of list;let i=index'>
+                            <td>{{i+1}}</td>
                             <td>
-                              <img src="{{uploadpath}}resource/{{res.picfujian}}" class="icon-60" />
+                                <div *ngIf='item.invoice_demand=="是"' class="bg-red txt-white">发票</div>
                             </td>
-                            <td>2019/07/25 18.25</td>
+                            <td>{{item.quotenumber}}</td>
+                            <td class="text-left">{{item.carmodel}} <br> {{item.vincode}} </td>
+                            <td><div *ngFor="let itemName of item.quoteitems">{{itemName.name}}</div></td>
+                            <td [ngSwitch]="item.carmodel==''">
+                              <div *ngSwitchCase='true'>
+                                <img [hidden]='item.frontofcar == "" || item.frontofcar == "undefined"' src="{{uploadpath}}quote/{{item.frontofcar}}" class="icon-60" />
+                                <img [hidden]='item.namesplate == "" || item.namesplate == "undefined"' src="{{uploadpath}}quote/{{item.namesplate}}" class="icon-60" />
+                                <img [hidden]='item.rearofcar == "" || item.rearofcar == "undefined"' src="{{uploadpath}}quote/{{item.rearofcar}}" class="icon-60" />
+                              </div>
+                              <div *ngSwitchCase='false'>
+                                  <img [hidden]='item.photo1 == "" || item.photo1 == "undefined"' src="{{uploadpath}}quote/{{item.photo1}}" class="icon-60" />
+                                  <img [hidden]='item.photo2 == "" || item.photo2 == "undefined"' src="{{uploadpath}}quote/{{item.photo2}}" class="icon-60" />
+                              </div>
+                            </td>
+                            <td>{{item.quote_time}}</td>
                             <td class="text-center">
-                                <button class="btn btn-primary" routerLink="/detailsOfQuotedPrice"><a>查看详情</a></button><br>
-                                <button class="btn btn-default txt-orange">等待卖家付款</button>
+                                <div *ngIf='isquote==true'>
+                                  <button class="btn btn-primary"  (click)="tiaozhuan2(item.id)"><a>查看详情</a></button><br>
+                                  <span class="txt-orange">等待卖家付款</span>
+                                </div>
+                                <div *ngIf='isquote==false'>
+                                    <button class="btn btn-primary" (click)="tiaozhuan(item.id)"><a>立即报价</a></button><br>
+                                </div>
                             </td>
                           </tr>
-                          <tr>
-                                <td>2</td>
-                                <td>
-                                    <!-- <div class="bg-red txt-white">发票</div> -->
-                                </td>
-                                <td>19072500000001</td>
-                                <td>哈佛 H6 2012款 1.5T手动两驱都是型 <br>LGWEF4A57CF147429</td>
-                                <td>刹车总泵x1</td>
-                                <td>无</td>
-                                <td>2019/07/25 18.25</td>
-                                <td class="text-center">
-                                    <button class="btn btn-primary" routerLink="/detailsOfQuotedPrice"><a>查看详情</a></button><br>
-                                    <button class="btn btn-default txt-orange">等待卖家付款</button>
-                                </td>
-                              </tr>
                         </tbody>
                       </table>
                     </div>
@@ -171,7 +175,7 @@
                     </div> -->
                   </div>
                   <!-- 已忽略 -->
-                  <div class="box-hide">
+                  <!-- <div class="box-hide">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                           <thead class="bg-gray">
@@ -187,39 +191,33 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td>1</td>
+                            <tr *ngFor='let item of list; let i=index'>
+                              <td>{{i+1}}</td>
+                            <td>
+                                <div *ngIf='item.invoice_demand=="是"' class="bg-red txt-white">发票</div>
+                            </td>
+                            <td>{{item.quotenumber}}</td>
+                            <td class="text-left">{{item.carmodel}} <br> {{item.vincode}} </td>
+                            <td><div *ngFor="let itemName of item.quoteitems">{{itemName.name}}</div></td>
+                            <td [ngSwitch]="item.carmodel==''">
+                              <div *ngSwitchCase='true'>
+                                <img [hidden]='item.frontofcar == "" || item.frontofcar == "undefined"' src="{{uploadpath}}quote/{{item.frontofcar}}" class="icon-60" />
+                                <img [hidden]='item.namesplate == "" || item.namesplate == "undefined"' src="{{uploadpath}}quote/{{item.namesplate}}" class="icon-60" />
+                                <img [hidden]='item.rearofcar == "" || item.rearofcar == "undefined"' src="{{uploadpath}}quote/{{item.rearofcar}}" class="icon-60" />
+                              </div>
+                              <div *ngSwitchCase='false'>
+                                  <img [hidden]='item.photo1 == "" || item.photo1 == "undefined"' src="{{uploadpath}}quote/{{item.photo1}}" class="icon-60" />
+                                  <img [hidden]='item.photo2 == "" || item.photo2 == "undefined"' src="{{uploadpath}}quote/{{item.photo2}}" class="icon-60" />
+                              </div>
+                            </td>
+                            <td>{{item.quote_time}}</td>
                               <td class="text-center">
-                                  <div class="bg-red txt-white">发票</div>
-                              </td>
-                              <td>19072500000001</td>
-                              <td>哈佛 H6 2012款 1.5T手动两驱都是型 <br> LGWEF4A57CF147429</td>
-                              <td>刹车总泵x1</td>
-                              <td>
-                                <img src="{{uploadpath}}resource/{{res.picfujian}}" class="icon-60" />
-                              </td>
-                              <td>2019/07/25 18.25</td>
-                              <td class="text-center">
-                                  <button class="btn btn-primary"><a>立即报价</a></button><br>
+                                  <button class="btn btn-primary" (click)="tiaozhuan(item.id)" ><a>立即报价</a></button><br>
                               </td>
                             </tr>
-                            <tr>
-                                  <td>2</td>
-                                  <td>
-                                      <!-- <div class="bg-red txt-white">发票</div> -->
-                                  </td>
-                                  <td>19072500000001</td>
-                                  <td>哈佛 H6 2012款 1.5T手动两驱都是型 <br>LGWEF4A57CF147429</td>
-                                  <td>刹车总泵x1</td>
-                                  <td>无</td>
-                                  <td>2019/07/25 18.25</td>
-                                  <td class="text-center">
-                                      <button class="btn btn-primary"><a>立即报价</a></button><br>
-                                  </td>
-                                </tr>
                           </tbody>
                         </table>
-                    </div>
+                    </div> -->
                     <!-- <div class="flex-row flex-column">
                         <ul class="pagination">
                             <li class="border-gray-1 margin-10 padding-10">
@@ -239,7 +237,7 @@
                             </li>
                           </ul>
                     </div> -->
-                  </div>
+                  <!-- </div> -->
               </div>
             </div>
 

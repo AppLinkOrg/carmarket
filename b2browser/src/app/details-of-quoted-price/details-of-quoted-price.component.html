@@ -19,35 +19,35 @@
                   <div class="card-body">
                     <div class="border-dep-gray">
                       <div class="flex-row">
-                          <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">公司名称</span><span>深圳市兴达汽车维修中心</span>
+                          <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">公司名称</span><span>{{quoteinfo.corporate_name}}</span>
                       </div>
                       <div class="flex-row">
                           <div class="flex-4">
-                              <span class="bg-dep-gray txt-black padding-four-words margin-right-20">订单编号</span><span>19072500000001</span>
+                              <span class="bg-dep-gray txt-black padding-four-words margin-right-20">订单编号</span><span>{{quoteinfo.quotenumber}}</span>
                           </div>        
                           <div class="flex-4">
-                              <span class="bg-dep-gray txt-black padding-three-words margin-right-20">车架号</span><span>LGWEF4A57CF147429</span>
+                              <span class="bg-dep-gray txt-black padding-three-words margin-right-20">车架号</span><span>{{quoteinfo.vincode}}</span>
                           </div>
                           <div class="flex-4">
-                              <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span><span>原件厂</span>
+                              <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span><span>{{quoteinfo.information}}</span>
                           </div>    
                       </div>
                       <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
                       <div class="flex-row">
                           <div class="flex-1">
-                              <span class="bg-dep-gray txt-black padding-four-words margin-right-20">报价时间</span><span>2019/07/25 18：01</span>
+                              <span class="bg-dep-gray txt-black padding-four-words margin-right-20">报价时间</span><span>{{quoteinfo.quote_time}}</span>
                           </div>        
                           <div class="flex-2">
-                              <span class="bg-dep-gray txt-black padding-two-words margin-right-20">车型</span><span>哈佛 H6 2012款 1.5T手动两驱都是型</span>
+                              <span class="bg-dep-gray txt-black padding-two-words margin-right-20">车型</span><span>{{quoteinfo.carmodel}}</span>
                           </div>  
                       </div>
                       <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
                       <div class="flex-row margin-bottom-3">
                           <div class="flex-1">
-                              <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>陈师傅</span>
+                              <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{quoteinfo.quote_person}}</span>
                           </div>        
                           <div class="flex-2">
-                              <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red">需要发票</span>
+                              <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red" *ngIf='quoteinfo.invoice_demand=="是"'>需要发票</span>
                           </div>
                       </div>
                     </div>
@@ -87,76 +87,30 @@
                                       </tr>
                                   </thead>
                                   <tbody class="h5 text-center">
-                                      <tr>
-                                          <td rowspan="2">1</td>
-                                          <td rowspan="2"> 
-                                              后空调蒸发器高压管
-                                              <img src="{{uploadpath}}resource/{{res.peijian}}" class="icon-30">
-                                          </td>
-                                          <td rowspan="2"><span></span></td>
-                                          <td>
-                                              <div>1</div>
-                                          </td>
-                                          <td>
-                                              <div>原厂原包</div>
-                                          </td>
-                                          <td>
-                                              <div>现货</div>
-                                          </td>
-                                          <td>
-                                              <div>包原厂</div>
-                                          </td>
-                                          <td>
-                                              <div>688</div>
-                                          </td>
-                                          <td>
-                                              <div>-</div>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td class="text-center">
-                                              <div>1</div>
-                                          </td>
-                                          <td>
-                                              <div>品牌</div>
-                                          </td>
-                                          <td>
-                                               <div>现货</div>
-                                          </td>
-                                          <td>
-                                              <div>三个月</div>
-                                          </td>
-                                          <td>
-                                              <div>588</div>
-                                          </td>
-                                          <td>
-                                              <div>-</div>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <td>2</td>
+                                      <tr *ngFor='let item of list; let i=index'>
+                                          <td>{{i+1}}</td>
                                           <td> 
-                                            方向机模块
+                                            {{item.name}}
                                               <!-- <img src="{{uploadpath}}resource/{{res.peijian}}" class="icon-30"> -->
                                           </td>
-                                          <td><span></span></td>
+                                          <td><span>{{item.partNubmer}}</span></td>
                                           <td>
-                                              <div>2</div>
+                                              <div>{{item.quantity}}</div>
                                           </td>
                                           <td>
-                                              <div>品牌</div>
+                                              <div>{{item.quality}}</div>
                                           </td>
                                           <td>
-                                              <div>现货</div>
+                                              <div>{{item.standby_time}}</div>
                                           </td>
                                           <td>
-                                              <div>三个月</div>
+                                              <div>{{item.guarantee}}</div>
                                           </td>
                                           <td>
-                                              <div>459</div>
+                                              <div>{{item.price}}</div>
                                           </td>
                                           <td>
-                                              <div>-</div>
+                                              <div>{{item.remarks_infor}}</div>
                                           </td>
                                       </tr>
                                   </tbody>
@@ -176,8 +130,6 @@
           <div class="col-lg-12">
             <div class="card show mb-4">
                   <div class="card-body flex-row box-auto flex-bottom">
-                     <span class="h4-5">总计:</span>
-                     <span class="txt-red h3 margin-right-20 margin-left-10">￥1924</span>
                      <span class="h4 txt-orange">等待卖家付款...</span>
                   </div>
             </div> 

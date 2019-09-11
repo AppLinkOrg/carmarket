@@ -19,7 +19,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                <div class="border-dep-gray">
+                <div class="border-dep-gray" *ngIf='quoteinfo !==null'>
                     <div class="flex-row">
                         <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">公司名称</span><span>{{quoteinfo.corporate_name}}</span>
                     </div>
@@ -49,7 +49,7 @@
                             <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{quoteinfo.quote_person}}</span>
                         </div>        
                         <div class="flex-2">
-                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red">{{quoteinfo.invoice_demand}}</span>
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red"  *ngIf='quoteinfo.invoice_demand=="是"'>需要发票</span>
                         </div>
                     </div>
                 </div>
@@ -89,40 +89,65 @@
                                     <th>新增</th>
                                     </tr>
                                 </thead>
-                                <tbody class="h5 text-center">
-                                    <tr *ngFor='let item of quoteinfo.quoteitems; let i=index'>
-                                        <td>{{i+1}}</td>
-                                        <td> 
+                                <tbody class="h5" *ngFor='let item of list; let i=index'>
+                                    <tr>
+                                        <td [attr.rowspan]='item.count' class="text-center">{{i+1}}</td>
+                                        <td [attr.rowspan]='item.count'> 
                                            {{item.name}}
                                             <!-- <img src="{{uploadpath}}resource/{{res.peijian}}" class="icon-30"> -->
                                         </td>
-                                        <td><span class="table-box">{{item.partNubmer}}</span></td>
+                                        <td [attr.rowspan]='item.count'><span class="table-box">{{item.id}}</span></td>
                                         <td>
                                             <div>{{item.quantity}}</div>
                                         </td>
                                         <td>
-                                            <div class="table-box">{{item.quality}}</div>
+                                            <!-- <div class="table-box">{{item.quality}}</div> -->
+                                            <input type="text" class="table-box" [(ngModel)]='item.quality'>
+                                            <!-- <ng-template *ngIf='count>1==true'>
+                                                {{item.quality}}
+                                            </ng-template> -->
                                         </td>
                                         <td>
-                                            <div class="table-box">{{item.standby_time}}</div>
+                                            <!-- <div class="table-box">{{item.standby_time}}</div> -->
+                                            <input type="text" class="table-box"  [(ngModel)]='item.standby_time'>
                                         </td>
                                         <td>
-                                            <div class="table-box">{{item.guarantee}}</div>
+                                            <!-- <div class="table-box">{{item.guarantee}}</div> -->
+                                            <input type="text" class="table-box"  [(ngModel)]='item.guarantee'>
                                         </td>
                                         <td>
-                                            <div class="table-box">{{item.price}}</div>
+                                            <!-- <div class="table-box">{{item.price}}</div> -->
+                                            <input type="text" class="table-box"  [(ngModel)]='item.price'>
                                         </td>
                                         <td>
-                                            <div class="table-box">{{item.remarks_infor}}</div>
+                                            <!-- <div class="table-box">{{item.remarks_infor}}</div> -->
+                                            <input type="text" class="table-box" [(ngModel)]='item.remarks_infor'>
                                         </td>
                                         <td>
                                             <div>
-                                                <button class="btn btn-primary h5">
+                                                <button class="btn btn-primary h5 addBtn" (click)="addQuote(item)">
                                                     <a>新增一条报价</a>
                                                 </button>
                                             </div> 
                                         </td>
                                     </tr>
+                                    <ng-container  *ngIf='item.count>1'>
+                                        <tr *ngFor='let list of data' >
+                                            <td>{{list.addlist.quantity}}</td>
+                                            <td>{{list.addlist.quality}}</td>
+                                            <td>{{list.addlist.standby_time}}</td>
+                                            <td>{{list.addlist.guarantee}}</td>
+                                            <td>{{list.addlist.price}}</td>
+                                            <td>{{list.addlist.remarks_infor}}</td>
+                                            <td>
+                                                <div>
+                                                    <button class="btn btn-danger h5 addBtn" (click)="deleteQuote(list)">
+                                                        <a>删除该报价</a>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                     </ng-container>
                                 </tbody>
                             </table>
                             </div>
@@ -140,9 +165,7 @@
         <div class="col-lg-12">
         <div class="card show mb-4">
                 <div class="card-body flex-row box-auto flex-bottom">
-                <span class="h4-5">总计:</span>
-                <span class="txt-red h3 margin-right-20 margin-left-10">￥1924</span>
-                <button class="btn btn-primary padding-left-50 padding-right-50"><a>提交报价</a></button>
+                <button class="btn btn-primary padding-left-50 padding-right-50" (click)="saveQuote()"><a>提交报价</a></button>
                 </div>
         </div> 
         </div>
