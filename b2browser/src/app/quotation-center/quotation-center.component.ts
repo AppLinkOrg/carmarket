@@ -4,9 +4,6 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 import { OrderApi } from 'src/providers/order.api';
-import { ConsoleReporter } from 'jasmine';
-import { ConstantPool } from '@angular/compiler';
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 @Component({
   selector: 'app-quotation-center',
@@ -49,48 +46,77 @@ export class QuotationCenterComponent extends AppBase  {
 
     var a=this.orderApi;
 
-    a.ignore({ }).then((ignore:any)=>{
-      this.ignore = ignore
-        // for(let i=0;i<ignore.length;i++){
-        //   for(let j=0;j<this.ignore.length;j++){
-        //     if(ignore[i].quote_id != this.ignore[j].quote_id){
-        //       this.ignore.push(ignore[i])
-        //     }
-        //   }
-        // }
-    })
-      
-    console.log(this.ignore)
-    
-    a.quotelist({ }).then((list:any)=>{
 
-        this.list = list.filter((item, idx) => {
-            if(this.ignore !== null){
-              for(let i=0;i<this.ignore.length; i++){
-                return item.id != this.ignore[i].quote_id && item.quotestatus=="Q"
+
+
+    a.ignore({ employee_id: 7 }).then((ignore:any)=>{
+      this.ignore = ignore
+    
+
+        if(ignore.length == 0){
+
+          a.quotelist({ }).then((list:any)=>{
+            for(let item of list){
+              if(item.quotestatus == 'Q'){
+                this.list.push(item)
               }
             }
-            this.list.push(item)
-            
-        })
-       
-    });
+            this.length = this.list.length;
+            this.pagination(this.list,this.length);
+         
+         });
 
-    // this.pagination(this.list,this.length);
-   
+        }else {
+
+          a.quotelist({ }).then((list:any)=>{
+
+            var result=[];
+            for(let item of list){
+              if(item.quotestatus === 'Q'){
+                if(this.notinignore(item,ignore)){
+                  result.push(item);
+                 }
+              }
+              
+            }
+
+            this.list=result;
+
+            this.length = this.list.length;
+            this.pagination(this.list,this.length);
+
+         });
+        }
+        
+    })
+
+    
+      
+     
+  }
+  notinignore(item,ignore){
+    for(let igitem of ignore){
+      if(item.id==igitem.quote_id){
+        return false;
+      }
+    }
+    return true;
   }
 
 
-
   ignoreHandle(item){
+    this.list = [];
+    this.pageList = [];
     item.quote_id = item.id
-    
-    console.log(item)
+    item.ignorestatus = 'Y'
+    item.employee_id = 7
+
       this.orderApi.searchignore(item).then((searchignore:any)=>{
-        console.log(searchignore)
+   
         if(searchignore.code == "0"){
-          // window.location.reload()
+
           this.onMyShow()
+          
         }
         
 
@@ -101,6 +127,7 @@ export class QuotationCenterComponent extends AppBase  {
 
   quoteCenter(event){
     this.list = [];
+    this.pageList = [];
     event.target.parentElement.classList.add('active');
     event.target.parentElement.nextElementSibling.classList.remove('active')
 
@@ -108,6 +135,12 @@ export class QuotationCenterComponent extends AppBase  {
     
     toggleTitleContent[0].classList.remove('box-hide')
     toggleTitleContent[1].classList.add('box-hide')
+
+
+    this.isquote = true;
+
+    event.target.offsetParent.lastElementChild.childNodes[0].childNodes[0].childNodes[0].classList.add('btn-active')
+    event.target.offsetParent.lastElementChild.childNodes[0].childNodes[0].childNodes[1].classList.remove('btn-active')
 
     this.onMyShow();
   }
@@ -121,6 +154,14 @@ export class QuotationCenterComponent extends AppBase  {
     toggleTitleContent[1].classList.remove('box-hide')
 
     this.list = [];
+    this.pageList = [];
+    this.isquote = true;
+
+
+
+    event.target.offsetParent.childNodes[1].lastElementChild.firstElementChild.childNodes[0].classList.add('btn-active')
+    event.target.offsetParent.childNodes[1].lastElementChild.firstElementChild.childNodes[1].classList.remove('btn-active')
+    event.target.offsetParent.childNodes[1].lastElementChild.firstElementChild.childNodes[2].classList.remove('btn-active')
 
     this.orderApi.quotelist({ }).then((list:any)=>{
 
@@ -129,15 +170,19 @@ export class QuotationCenterComponent extends AppBase  {
           this.list.push(list[i])
         }
       }
-     
+      this.length = this.list.length;
+      this.pagination(this.list,this.length);
     });
+
     
   }
 
   // 待报价
   quoteHandle(event){
     this.list = [];
+    this.pageList = [];
     this.isquote = true;
+    
 
     event.target.parentElement.classList.add('btn-active');
     event.target.parentElement.nextElementSibling.classList.remove('btn-active')
@@ -150,7 +195,9 @@ export class QuotationCenterComponent extends AppBase  {
 
   // 已忽略
   neglected(event){
-    this.list = []
+    this.list = [];
+    this.pageList = [];
+    
     this.isquote = false;
 
     event.target.parentElement.classList.add('btn-active');
@@ -161,16 +208,20 @@ export class QuotationCenterComponent extends AppBase  {
 
     this.orderApi.ignore({}).then((ignore:any)=>{
       this.list = ignore;
-      this.ignoreLength = ignore.length;
+      this.length = ignore.length;
+    
+      this.pagination(this.list,this.length);
+    
     })
-    // this.pagination(this.ignore,this.ignoreLength);
     
   }
 
   // 已报价
   quotedPrice(event){
     this.list = [];
-    this.isquote = true
+    this.pageList = [];
+    this.isquote = true;
+
     event.target.parentElement.classList.add('btn-active');
     event.target.parentElement.nextElementSibling.classList.remove('btn-active')
     event.target.parentElement.nextElementSibling.nextElementSibling.classList.remove('btn-active')
@@ -182,7 +233,8 @@ export class QuotationCenterComponent extends AppBase  {
           this.list.push(list[i])
         }
       }
-     
+      this.length = this.list.length
+      this.pagination(this.list,this.length);
     });
 
   }
@@ -190,6 +242,9 @@ export class QuotationCenterComponent extends AppBase  {
   // 全部
   allQuote(event){
     this.list = [];
+    this.pageList = [];
+    this.isquote = true;
+
     event.target.parentElement.classList.add('btn-active');
     event.target.parentElement.previousElementSibling.classList.remove('btn-active')
     event.target.parentElement.previousElementSibling.previousElementSibling.classList.remove('btn-active')
@@ -201,9 +256,12 @@ export class QuotationCenterComponent extends AppBase  {
           this.list.push(list[i])
         }
       }
-     
-    });
+      this.length = this.list.length
 
+     this.pagination(this.list,this.length);
+
+      
+    });
   }
 
 

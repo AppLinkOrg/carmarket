@@ -28,6 +28,7 @@ export class QuotationDetailsComponent extends AppBase  {
   id='';
 
   list=[];
+  fittinglist=[];
   count=1;
 
   data = [];
@@ -49,9 +50,9 @@ export class QuotationDetailsComponent extends AppBase  {
     a.quoteinfo({ id: this.id }).then((quoteinfo:any)=>{
 
       this.quoteinfo = quoteinfo;
-      this.list = quoteinfo.quoteitems;
-      console.log(quoteinfo)
-
+      this.fittinglist = quoteinfo.quoteitems;
+     
+      console.log(this.fittinglist)
     })
 
     
@@ -61,36 +62,71 @@ export class QuotationDetailsComponent extends AppBase  {
 
   addQuote(item){
 
+ 
     item.count = 2   
-    
+   
     var addList = {
+      type_id: item.id,
+      name: item.name,
       quantity: item.quantity,
       quality: item.quality,
       standby_time: item.standby_time,
       guarantee: item.guarantee,
       price: item.price,
-      remarks_infor: item.remarks_infor
+      remarks_infor: item.remarks_infor,
+      count: item.count
     }
+    console.log(this.fittinglist)
 
-    for(var i=0;i<this.obj.length;i++){
-      if(item.id == this.obj[i].id){
+
+
+    var arr = []
+  
+     for(var j=0;j<this.fittinglist.length;j++){
+
+          console.log(addList)
+
+
+                if(this.fittinglist[j].id!=item.id){
+
+
+                  arr.push([this.fittinglist[i]]);
+
+                  // this.fittinglist[j].push(
+                  //   addList
+                  // )
+
+                }
+                
+          console.log(this.fittinglist)
+
+              }
+
+    // this.fittinglist[item.id].push(
+    //   addList
+    // )
+     console.log(arr,"上看看扩扩");
+
+    for(var i=0;i<this.list.length;i++){
+      if(item.id == this.list[i].id){
         item.count ++;
       }
     }
 
-    this.data.push({
-      id: i,
-      addlist: addList
-    })
-    this.obj.push(item)
-    console.log(this.data)
+    if(addList.price !=0 ){
 
+      this.data.push({
+        addlist: addList
+      })
 
-    for(let i=0;i<this.data.length;i++){
-      if(item.id != this.data[i].id){
-        this.obj1 = this.data[i]
-      }
+      this.list.push(addList)
+
     }
+
+    console.log(this.data)
+   
+    // console.log(this.list)
+
   }
 
   deleteQuote(item){
@@ -113,7 +149,8 @@ export class QuotationDetailsComponent extends AppBase  {
      for(let i=0;i<this.list.length;i++){
 
         var lists = {
-          fittings_id: (this.list[i].quote_id), 
+          fittings_id: (this.list[i].id), 
+          name: (this.list[i].name),
           price: (this.list[i].price),
           qty: (this.list[i].quantity), 
           quality: (this.list[i].quality),
@@ -124,18 +161,15 @@ export class QuotationDetailsComponent extends AppBase  {
 
         this.fitting(lists,i)
 
-
-
-       
-
      }
 
-     if(lists.price !=0 ){
+      if(this.list.length !=0 ){
+      
+        setTimeout(()=>{
+          this.editStatus()
+        },this.list.length*300)
         
       }
-      // if(this.addConfir = true){
-      // }
-      this.editStatus()
       
   }
 
@@ -144,23 +178,29 @@ export class QuotationDetailsComponent extends AppBase  {
     setTimeout(()=>{
       this.orderApi.confirmquote(json).then((confirmquote:any)=>{
         
-          // console.log(confirmquote)
       })
     },i*300)    
   }
 
   editStatus(){
+    var a = this.orderApi
     this.quoteinfo.quotestatus = "W"
-    this.orderApi.editstatus({ id: this.quoteinfo.id, quotestatus: this.quoteinfo.quotestatus,status: this.quoteinfo.status }).then((editstatus:any)=>{
-        console.log(editstatus)
-        // if(editstatus.code == '0'){
-        //   this.router.navigateByUrl('quotationCenter');
-        // }else {
-        //   console.error('csada');
+    a.editstatus({ id: this.quoteinfo.id, quotestatus: this.quoteinfo.quotestatus,status: this.quoteinfo.status }).then((editstatus:any)=>{
+      if(editstatus.code == '0'){
 
-        // }
-       
+        a.deleteignore({ id: this.quoteinfo.id }).then((deletData:any)=>{
+          console.log(deletData)
+         })
+
+        
+          console.log('bfaj')
+          this.router.navigateByUrl('quotationCenter');
+        }
     })
+
+
+    
+
   }
 
 }

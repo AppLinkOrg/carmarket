@@ -40,7 +40,16 @@ export class DetailsOfQuotedPriceComponent  extends AppBase  {
 
         
         this.quoteinfo = quoteinfo;
-        this.list = quoteinfo.quoteitems.fittingsitem
+        
+        for(let item of quoteinfo.quoteitems){
+          if(item.fittingsitem.length != 0){
+            console.log('fffffffffff')
+            for(let list of item.fittingsitem){
+              this.list.push(list)
+            }
+          }
+          console.log('aaaaaa')
+        }
         console.log(this.quoteinfo)
         console.log( this.list)
 
