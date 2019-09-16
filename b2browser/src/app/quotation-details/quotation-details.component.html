@@ -131,14 +131,14 @@
                                             </div> 
                                         </td>
                                     </tr>
-                                    <ng-container  *ngIf='item.count>1'>
-                                        <tr *ngFor='let list of data' >
-                                            <td>{{list.addlist.quantity}}</td>
-                                            <td>{{list.addlist.quality}}</td>
-                                            <td>{{list.addlist.standby_time}}</td>
-                                            <td>{{list.addlist.guarantee}}</td>
-                                            <td>{{list.addlist.price}}</td>
-                                            <td>{{list.addlist.remarks_infor}}</td>
+                                    <ng-container ngShow='item.count>1' >
+                                        <tr *ngFor='let list of item.fittingsitem' >
+                                            <td>{{list.quantity}}</td>
+                                            <td>{{list.quality}}</td>
+                                            <td>{{list.standby_time}}</td>
+                                            <td>{{list.guarantee}}</td>
+                                            <td>{{list.price}}</td>
+                                            <td>{{list.remarks_infor}}</td>
                                             <td>
                                                 <div>
                                                     <button class="btn btn-danger h5 addBtn" (click)="deleteQuote(list)">
@@ -147,7 +147,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                     </ng-container>
+                                    </ng-container>
                                 </tbody>
                             </table>
                             </div>

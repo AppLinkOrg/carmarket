@@ -29,17 +29,9 @@ export class QuotationDetailsComponent extends AppBase  {
 
   list=[];
   fittinglist=[];
-  count=1;
+ 
 
-  data = [];
-  obj = [];
   addConfir = false;
-
-
-  obj1=[];
-  obj2=[];
-  obj3=[]
-  
 
   onMyShow(){
     
@@ -52,7 +44,6 @@ export class QuotationDetailsComponent extends AppBase  {
       this.quoteinfo = quoteinfo;
       this.fittinglist = quoteinfo.quoteitems;
      
-      console.log(this.fittinglist)
     })
 
     
@@ -62,11 +53,24 @@ export class QuotationDetailsComponent extends AppBase  {
 
   addQuote(item){
 
+    
+    if(item.count >= 2){
+
+      for(var i=0;i<this.fittinglist.length;i++){
+
+        if(item.id == this.fittinglist[i].id){
+          item.count ++;
+        }
+      }
+    }else {
+      item.count = 2
+    }
+
+    
+
  
-    item.count = 2   
-   
     var addList = {
-      type_id: item.id,
+      fittings_id: item.id,
       name: item.name,
       quantity: item.quantity,
       quality: item.quality,
@@ -76,67 +80,41 @@ export class QuotationDetailsComponent extends AppBase  {
       remarks_infor: item.remarks_infor,
       count: item.count
     }
-    console.log(this.fittinglist)
 
-
-
-    var arr = []
-  
-     for(var j=0;j<this.fittinglist.length;j++){
-
-          console.log(addList)
-
-
-                if(this.fittinglist[j].id!=item.id){
-
-
-                  arr.push([this.fittinglist[i]]);
-
-                  // this.fittinglist[j].push(
-                  //   addList
-                  // )
-
-                }
-                
-          console.log(this.fittinglist)
-
-              }
-
-    // this.fittinglist[item.id].push(
-    //   addList
-    // )
-     console.log(arr,"上看看扩扩");
-
-    for(var i=0;i<this.list.length;i++){
-      if(item.id == this.list[i].id){
-        item.count ++;
-      }
-    }
-
+   
     if(addList.price !=0 ){
 
-      this.data.push({
-        addlist: addList
-      })
+      for(var j=0;j<this.fittinglist.length;j++){
+
+          if(this.fittinglist[j].id==item.id){
+              this.fittinglist[j].fittingsitem.push(addList)
+              this.fittinglist[j].count = addList.count
+          }
+      }
 
       this.list.push(addList)
-
     }
 
-    console.log(this.data)
-   
-    // console.log(this.list)
 
   }
 
   deleteQuote(item){
-    console.log(item)
-    // for(let i=0;i<this.data.length;i++){
-    //   if(item.id == this.data[i].id){
-    //     delete this.data[i]
-    //     item.count --;
-    //   }
-    // }
+
+    for(let i=0; i<this.list.length;i++){
+      if(item.fittings_id == this.list[i].fittings_id && item.count == this.list[i].count){
+        this.list.splice(i,1)
+      }
+    }
+
+    for(let j=0;j<this.fittinglist.length;j++){
+      if(item.fittings_id == this.fittinglist[j].id){
+        for(let k=0;k<this.fittinglist[j].fittingsitem.length;k++){
+          if(item.count == this.fittinglist[j].fittingsitem[k].count){
+            this.fittinglist[j].fittingsitem.splice(k,1)
+          }
+        }
+      }
+    }
 
   }
 
@@ -149,7 +127,7 @@ export class QuotationDetailsComponent extends AppBase  {
      for(let i=0;i<this.list.length;i++){
 
         var lists = {
-          fittings_id: (this.list[i].id), 
+          fittings_id: (this.list[i].fittings_id), 
           name: (this.list[i].name),
           price: (this.list[i].price),
           qty: (this.list[i].quantity), 
@@ -177,7 +155,7 @@ export class QuotationDetailsComponent extends AppBase  {
 
     setTimeout(()=>{
       this.orderApi.confirmquote(json).then((confirmquote:any)=>{
-        
+      
       })
     },i*300)    
   }
@@ -189,11 +167,9 @@ export class QuotationDetailsComponent extends AppBase  {
       if(editstatus.code == '0'){
 
         a.deleteignore({ id: this.quoteinfo.id }).then((deletData:any)=>{
-          console.log(deletData)
+        
          })
 
-        
-          console.log('bfaj')
           this.router.navigateByUrl('quotationCenter');
         }
     })
