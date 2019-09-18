@@ -39,7 +39,7 @@
                       </td>
                       <td>{{item.quotenumber}}</td>
                       <td class="text-left">{{item.carmodel}} <br> {{item.vincode}} </td>
-                      <td><div *ngFor="let itemName of item.quoteitems">{{itemName.name}}</div></td>
+                      <td class="text-left"><div *ngFor="let itemName of item.quoteitems">{{itemName.name}} x {{itemName.quantity}} ({{itemName.id}})</div></td>
                       <td [ngSwitch]="item.carmodel==''">
                         <div *ngSwitchCase='true'>
                           <img [hidden]='item.frontofcar == "" || item.frontofcar == "undefined"' src="{{uploadpath}}quote/{{item.frontofcar}}" class="icon-60" />
@@ -128,7 +128,7 @@
                             </td>
                             <td>{{item.quotenumber}}</td>
                             <td class="text-left">{{item.carmodel}} <br> {{item.vincode}} </td>
-                            <td><div *ngFor="let itemName of item.quoteitems">{{itemName.name}}</div></td>
+                            <td class="text-left"><div *ngFor="let itemName of item.quoteitems">{{itemName.name}} x {{itemName.quantity}} ({{itemName.id}})</div></td>
                             <td [ngSwitch]="item.carmodel==''">
                               <div *ngSwitchCase='true'>
                                 <img [hidden]='item.frontofcar == "" || item.frontofcar == "undefined"' src="{{uploadpath}}quote/{{item.frontofcar}}" class="icon-60" />
@@ -171,7 +171,7 @@
                           [ngClass]="{pagActive: isActivePage(page)}" role='button'  (click)='selectPage(page)' style="line-height: 36px;">
                             <a>{{page}}</a>
                           </li>
-                          <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="lastPage()">
+                          <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Next()">
                               <a class="h3">
                                 <span aria-hidden="true">&raquo;</span>
                               </a>
@@ -183,71 +183,8 @@
                             </li>
                         </ul>
                   </div>
-                  </div>
-                  <!-- 已忽略 -->
-                  <!-- <div class="box-hide">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                          <thead class="bg-gray">
-                            <tr>
-                              <th>序号</th>
-                              <th>发票要求</th>
-                              <th>订单编号</th>
-                              <th>车型/车架号</th>
-                              <th>配件清单</th>
-                              <th>图片附件</th>
-                              <th>询价时间</th>
-                              <th>操作</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor='let item of list; let i=index'>
-                              <td>{{i+1}}</td>
-                            <td>
-                                <div *ngIf='item.invoice_demand=="是"' class="bg-red txt-white">发票</div>
-                            </td>
-                            <td>{{item.quotenumber}}</td>
-                            <td class="text-left">{{item.carmodel}} <br> {{item.vincode}} </td>
-                            <td><div *ngFor="let itemName of item.quoteitems">{{itemName.name}}</div></td>
-                            <td [ngSwitch]="item.carmodel==''">
-                              <div *ngSwitchCase='true'>
-                                <img [hidden]='item.frontofcar == "" || item.frontofcar == "undefined"' src="{{uploadpath}}quote/{{item.frontofcar}}" class="icon-60" />
-                                <img [hidden]='item.namesplate == "" || item.namesplate == "undefined"' src="{{uploadpath}}quote/{{item.namesplate}}" class="icon-60" />
-                                <img [hidden]='item.rearofcar == "" || item.rearofcar == "undefined"' src="{{uploadpath}}quote/{{item.rearofcar}}" class="icon-60" />
-                              </div>
-                              <div *ngSwitchCase='false'>
-                                  <img [hidden]='item.photo1 == "" || item.photo1 == "undefined"' src="{{uploadpath}}quote/{{item.photo1}}" class="icon-60" />
-                                  <img [hidden]='item.photo2 == "" || item.photo2 == "undefined"' src="{{uploadpath}}quote/{{item.photo2}}" class="icon-60" />
-                              </div>
-                            </td>
-                            <td>{{item.quote_time}}</td>
-                              <td class="text-center">
-                                  <button class="btn btn-primary" (click)="tiaozhuan(item.id)" ><a>立即报价</a></button><br>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div> -->
-                    <!-- <div class="flex-row flex-column">
-                        <ul class="pagination">
-                            <li class="border-gray-1 margin-10 padding-10">
-                              <a aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                              </a>
-                            </li>
-                            <li class="border-gray-1 margin-10 padding-10"><a>1</a></li>
-                            <li class="border-gray-1 margin-10 padding-10"><a>2</a></li>
-                            <li class="border-gray-1 margin-10 padding-10"><a>3</a></li>
-                            <li class="border-gray-1 margin-10 padding-10"><a>4</a></li>
-                            <li class="border-gray-1 margin-10 padding-10"><a>5</a></li>
-                            <li class="border-gray-1 margin-10 padding-10">
-                              <a aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                              </a>
-                            </li>
-                          </ul>
-                    </div> -->
-                  <!-- </div> -->
+                </div>
+                 
               </div>
             </div>
 

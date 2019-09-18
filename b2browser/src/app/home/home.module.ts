@@ -23,6 +23,7 @@ import { FinishDetailComponent } from '../finish-detail/finish-detail.component'
 import { ManagementCenterComponent } from '../management-center/management-center.component';
 import { ReturnsManagementComponent } from '../returns-management/returns-management.component';
 import { ReturnsDetailComponent } from '../returns-detail/returns-detail.component';
+import { CancelDetailComponent } from '../cancel-detail/cancel-detail.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ReturnsDetailComponent } from '../returns-detail/returns-detail.compone
     SendGoodsDetailComponent,
     ReceivedGoodsDetailComponent,
     FinishDetailComponent,
+    CancelDetailComponent,
     ManagementCenterComponent,
     ReturnsManagementComponent,
     ReturnsDetailComponent,

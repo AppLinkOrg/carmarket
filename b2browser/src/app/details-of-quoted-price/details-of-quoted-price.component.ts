@@ -31,27 +31,25 @@ export class DetailsOfQuotedPriceComponent  extends AppBase  {
   onMyShow(){
 
     this.activeRoute.queryParams.subscribe(queryParams=>{
-        // console.log(queryParams)
+      
         this.id = queryParams.id
       })
-      console.log(this.id)
+      
       var a = this.orderApi
       a.quoteinfo({ id: this.id }).then((quoteinfo:any)=>{
 
         
         this.quoteinfo = quoteinfo;
         
-        for(let item of quoteinfo.quoteitems){
-          if(item.fittingsitem.length != 0){
-            console.log('fffffffffff')
-            for(let list of item.fittingsitem){
+        for(let item of quoteinfo.fittingsitem){
+          if(item.quoteitems.length != 0){
+         
+            for(let list of item.quoteitems){
               this.list.push(list)
             }
           }
-          console.log('aaaaaa')
+        
         }
-        console.log(this.quoteinfo)
-        console.log( this.list)
 
       })
       

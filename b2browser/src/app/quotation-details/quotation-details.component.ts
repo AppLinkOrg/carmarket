@@ -5,6 +5,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 import { OrderApi } from 'src/providers/order.api';
 import { TabHeadingDirective } from 'ngx-bootstrap/tabs/public_api';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
+import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-quotation-details',
@@ -42,7 +44,16 @@ export class QuotationDetailsComponent extends AppBase  {
     a.quoteinfo({ id: this.id }).then((quoteinfo:any)=>{
 
       this.quoteinfo = quoteinfo;
-      this.fittinglist = quoteinfo.quoteitems;
+      this.fittinglist = quoteinfo.fittingsitem;
+      for(let i=0;i<quoteinfo.fittingsitem.length;i++){
+        if(quoteinfo.fittingsitem[i].quoteitems.length != 0){
+     
+          quoteinfo.fittingsitem[i].quoteitems = []
+        }
+
+      }
+      console.log(quoteinfo)
+      console.log(this.fittinglist)
      
     })
 
@@ -52,6 +63,7 @@ export class QuotationDetailsComponent extends AppBase  {
 
 
   addQuote(item){
+    console.log(item)
 
     
     if(item.count >= 2){
@@ -66,9 +78,6 @@ export class QuotationDetailsComponent extends AppBase  {
       item.count = 2
     }
 
-    
-
- 
     var addList = {
       fittings_id: item.id,
       name: item.name,
@@ -87,12 +96,13 @@ export class QuotationDetailsComponent extends AppBase  {
       for(var j=0;j<this.fittinglist.length;j++){
 
           if(this.fittinglist[j].id==item.id){
-              this.fittinglist[j].fittingsitem.push(addList)
+              this.fittinglist[j].quoteitems.push(addList)
               this.fittinglist[j].count = addList.count
           }
       }
 
       this.list.push(addList)
+      
     }
 
 
@@ -108,9 +118,9 @@ export class QuotationDetailsComponent extends AppBase  {
 
     for(let j=0;j<this.fittinglist.length;j++){
       if(item.fittings_id == this.fittinglist[j].id){
-        for(let k=0;k<this.fittinglist[j].fittingsitem.length;k++){
-          if(item.count == this.fittinglist[j].fittingsitem[k].count){
-            this.fittinglist[j].fittingsitem.splice(k,1)
+        for(let k=0;k<this.fittinglist[j].quoteitems.length;k++){
+          if(item.count == this.fittinglist[j].quoteitems[k].count){
+            this.fittinglist[j].quoteitems.splice(k,1)
           }
         }
       }

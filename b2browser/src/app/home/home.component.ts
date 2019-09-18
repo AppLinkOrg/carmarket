@@ -15,6 +15,12 @@ export class HomeComponent  extends AppBase  {
 
   toggle=false;
   instinfo=null;
+  public operatorinfo:any = {
+    name: '',
+    enterprise: {
+      name: ''
+    }
+  }
 
   constructor(
     public router: Router,
@@ -25,6 +31,7 @@ export class HomeComponent  extends AppBase  {
 
     this.instinfo={};
     this.instApi.info({unicode:"carmarkets"}).then((instinfo)=>{
+
       this.instinfo=instinfo;
     });
   }

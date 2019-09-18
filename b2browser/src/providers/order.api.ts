@@ -205,6 +205,49 @@ export class OrderApi {
             });
     }
 
+    public returnlist(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/returnlist';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/returnlist', data, err);
+            });
+    }
+
+    public returndetail(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/returndetail';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/returndetail', data, err);
+            });
+    }
+   
+
     public searchignore(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'order/searchignore';
         var headers = ApiConfig.GetHeader(url, data);

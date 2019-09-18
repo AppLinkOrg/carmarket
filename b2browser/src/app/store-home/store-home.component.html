@@ -20,7 +20,7 @@
               <div class="text-xs font-weight-bold txt-black text-uppercase mb-1">今日订单数</div>
             </div>
             <div class="col-auto" >
-              <div class="h2 mb-0 txt-white">5</div>
+              <div class="h2 mb-0 txt-white">{{count}}</div>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
               <div class="text-xs font-weight-bold txt-black text-uppercase mb-1">今日收入额</div>
             </div>
             <div class="col-auto">
-              <div class="h2 mb-0 txt-white">8569</div>
+              <div class="h2 mb-0 txt-white">{{totalIncome}}</div>
             </div>
           </div>
         </div>
@@ -55,7 +55,7 @@
                 <div class="text-xs font-weight-bold txt-black text-uppercase mb-1">本月订单数</div>
               </div>
               <div class="col-auto">
-                <div class="h2 mb-0 txt-white">135</div>
+                <div class="h2 mb-0 txt-white">{{monOrder}}</div>
               </div>
             </div>
           </div>
@@ -72,7 +72,7 @@
               <div class="text-xs font-weight-bold txt-black text-uppercase mb-1">本月收入额</div>
             </div>
             <div class="col-auto">
-              <div class="h2 mb-0 txt-white">50589</div>
+              <div class="h2 mb-0 txt-white">{{monIncome}}</div>
             </div>
           </div>
         </div>
@@ -99,14 +99,14 @@
                 <div>
                   <img src="{{uploadpath}}resource/{{res.sendgoods}}" class="icon-40 margin-right-10"/>
                    待发货：
-                   <span>2</span>
+                   <span>{{goods}}</span>
                   </div>
                 </div>
               <div class="col-xl-3"> 
                 <div>
                   <img src="{{uploadpath}}resource/{{res.returngoods}}" class="icon-40 margin-right-10"/> 
                    客户申请退货：
-                   <span>1</span>
+                   <span>{{returnGoods}}</span>
                 </div>
               </div>
             </div>

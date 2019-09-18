@@ -15,6 +15,7 @@ import { FinishDetailComponent } from '../finish-detail/finish-detail.component'
 import { ManagementCenterComponent } from '../management-center/management-center.component';
 import { ReturnsManagementComponent } from '../returns-management/returns-management.component';
 import { ReturnsDetailComponent } from '../returns-detail/returns-detail.component';
+import { CancelDetailComponent } from '../cancel-detail/cancel-detail.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
       { path: "sendGoodsDetail", component: SendGoodsDetailComponent},
       { path: "receiveGoodsDetail", component: ReceivedGoodsDetailComponent},
       { path: "finishDetail", component: FinishDetailComponent},
+      { path: "cancelDetail", component: CancelDetailComponent},
       { path: "managementCenter", component: ManagementCenterComponent},
       { path: "returnsManagement", component: ReturnsManagementComponent},
       { path: "returnsDetail", component: ReturnsDetailComponent},

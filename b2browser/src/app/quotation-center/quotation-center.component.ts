@@ -27,8 +27,6 @@ export class QuotationCenterComponent extends AppBase  {
     ignore=null;
 
     length = null;
-    length2 = null;
-    ignoreLength = null;
 
     pageSize = null;
     pages = null;
@@ -36,7 +34,6 @@ export class QuotationCenterComponent extends AppBase  {
     pageList = [];
     selPage = 1;
     data = [];
-    data2 = [];
     setData = null;
 
     isquote = true;
@@ -85,12 +82,12 @@ export class QuotationCenterComponent extends AppBase  {
             this.length = this.list.length;
             this.pagination(this.list,this.length);
 
+            console.log(this.list)
          });
         }
         
     })
 
-    
       
      
   }
@@ -283,10 +280,10 @@ export class QuotationCenterComponent extends AppBase  {
   }
 
   pagination(list,length){
-    this.pageSize = 5;
+    this.pageSize = 10;
     // if()
     this.pages = Math.ceil( length/this.pageSize )
-    this.newPage = this.pages > 5 ? 5 : this.pages;
+    this.newPage = this.pages > 10 ? 10 : this.pages;
     this.selPage = 1;
     
     this.setData = function(){
