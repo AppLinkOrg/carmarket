@@ -138,9 +138,11 @@ view, navigator, input, text, textarea {
 .bg-blue {
   background: #3c78d8;
 }
-
+.bg-red{
+  background: #f10d19;
+}
 .bg-orange {
-  background: #fbc02d;
+  background: #fea212;
 }
 
 .white_primary {
@@ -616,8 +618,8 @@ button[disabled][type=primary] {
 }
 
 .icon-17 {
-  width: 35rpx;
-  height: 35rpx;
+  width: 34rpx;
+  height: 34rpx;
 }
 
 .icon {

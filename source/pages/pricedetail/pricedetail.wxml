@@ -11,6 +11,7 @@
       </view>
     </view>
 
+
     <view class="flex-row margin-top" bindtap="bindchakan" data-chakan="B">
       <view class=" btnone btntwo h4 {{chakan=='B'?'bg-bt':'bg-white'}}">
         <view class="flex-row  {{chakan!='B'?'txt-bc':'txt-white'}}">按配件查看报价</view>
@@ -55,19 +56,19 @@
 
 
 
-<view style="height:210rpx;"></view>
+<view style="height:310rpx;"></view>
 
 <!-- height: 164rpx ; -->
 
 <view class=" margin-20 ">
 
-  <view class="{{idx==0?'':'margin-top-10'}} radius-5" wx:for="{{quoteinfo.quoteitems}}" wx:key="k" wx:for-index='idx'>
+  <view class="{{idx==0?'':'margin-top-10'}} radius-5" wx:for="{{quoteinfo.fittingsitem}}" wx:key="k" wx:for-index='idx'>
 
     <view class="bg-purple flex-row flex-center padding-20">
 
       <view class=" border h5  text-center" style="">{{idx+1}}</view>
 
-      <view class="margin-left-10">
+      <view class="margin-left-20">
 
         <view class="flex-row  flex-bottom">
           <view class=" txt-black txt-bold">{{item.name}}</view>
@@ -80,27 +81,31 @@
 
     </view>
 
-    <view class="bg-white  padding-20 " style="  " wx:for='{{item.fittingsitem}}' wx:key='s'>
+    <view class="bg-white  padding-20  " style="{{index>0?'border-top:2rpx solid #E5E5E5':''}}" wx:for-index='index' wx:for='{{item.quoteitems}}' wx:key='s'>
 
-      <view class=" flex-row flex-center">
-        <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.id==name}}' class="icon" bindtap="bindcheck" data-name='{{item.id}}'></image>
+      <view class=" flex-row flex-center" bindtap="bindcheck" data-fittings_id="{{item.fittings_id}}" data-name='{{item.name}}{{item.quality}}' id="{{item.id}}" data-index='{{idx}}' data-sx="{{index}}">
 
-        <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.id!=name}}' class="icon" bindtap="bindcheck" data-name='{{item.id}}'></image>
+        <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.check==true}}' class="icon"></image>
 
-        <view>
-          <view class="flex-row flex-center">
-            <view class="h5">￥{{item.price}}</view>
-            <view class="h5 margin-left-10 flex-1">x{{item.qty}}</view>
-            <view class="h5">{{item.company}}</view>
+        <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.check==false}}' class="icon"></image>
+
+        <view style="width:600rpx;" class="margin-left-20">
+
+          <view class="flex-row flex-bottom">
+            <view class=" txt-red txt-bold">￥{{item.price}}</view>
+            <view class="h6 margin-left-20 ">x{{item.qty}}</view>
+            <view class="flex-1"></view>
+            <view class="h6 txt-black">{{item.company}}</view>
           </view>
 
-          <view class="flex-row flex-center">
+          <view class="flex-row flex-center margin-top-10">
             <view class="h5 flex-1">{{item.quality}}</view>
-            <view class="h5">{{item.address}}</view>
+            <view class="h6">{{item.address}}</view>
           </view>
 
-          <view class="h5">备注：{{item.remarks_infor}}</view>
+          <view class="h6 margin-top-20">备注：{{item.remarks_infor}}</view>
         </view>
+
       </view>
 
     </view>
@@ -127,4 +132,34 @@
       <view class="txt-black xiaobtn margin-left-30">市外</view>
     </view>
   </view>
+</view>
+
+<view style="height:40rpx;"></view>
+
+
+<view class="bottom-block">
+
+
+  <view class="text-center h5 padding-20 " style="border-bottom:2rpx solid #E5E5E5;">共2件，合计：￥24545</view>
+
+  <view class="flex-row flex-center padding-10">
+
+    <view class="flex-1"></view>
+    <view class="flex-row flex-column">
+      <image src="{{uploadpath}}resource/{{res.kefu}}" class="icon-17"></image>
+      <view class="h5">客服</view>
+    </view>
+    <view class="flex-1"></view>
+    <view class="flex-row flex-column">
+      <image src="{{uploadpath}}resource/{{res.shopcar}}" class="icon-17"></image>
+      <view class="h5">购物车</view>
+    </view>
+    <view class="flex-1"></view>
+    <view class="buy flex-row flex-center">
+      <view class="bg-orange flex-1 text-center txt-white h5" style="height:80rpx;line-height:80rpx;">加入购物车</view>
+      <view class="bg-red flex-1 text-center txt-white h5" style="height:80rpx;line-height:80rpx;">下单</view>
+    </view>
+
+  </view>
+
 </view>

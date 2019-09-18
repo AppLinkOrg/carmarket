@@ -41,9 +41,11 @@ class Content extends AppBase {
       if(res.code==0){
 
         wx.setStorageSync("token", res.return);
+
         wx.reLaunch({
           url: '/pages/find/find',
         })
+
       }else{
         this.Base.info("用户名或密码不存在");
       }

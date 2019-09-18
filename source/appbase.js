@@ -196,13 +196,19 @@ export class AppBase {
 
   }
   checkPermission() {
+
     var enterpriseApi = new EnterpriseApi();
+
     var that = this;
+
     enterpriseApi.employeeinfo({}, (info) => {
+
+    console.log("进来")
+
       if (info == null && this.Base.needauth == true) {
-        wx.redirectTo({
-          url: '/pages/login/login',
-        })
+        // wx.redirectTo({
+        //   url: '/pages/login/login',
+        // })
       } else {
         this.Base.setMyData({
           employeeinfo: info

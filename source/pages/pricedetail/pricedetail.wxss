@@ -88,7 +88,7 @@ Page {
 
 
 .border{
-  border: 2rpx solid red;
+  border: 4rpx solid red;
   color: red;
   height: 40rpx;
   line-height: 40rpx;
@@ -96,10 +96,23 @@ Page {
   border-radius: 50%;
   
 }
+ 
 
 .top{
   position:fixed;
   width: 95vw;
   z-index: 10;
   top: 0
+}
+.bottom-block{
+  width: 100vw;
+  height: 200rpx;
+  bottom: 0;
+  background: white;
+  position: fixed;
+  z-index: 100;
+}
+.buy{
+  width: 60%;
+  border-radius: 40rpx;
 }
