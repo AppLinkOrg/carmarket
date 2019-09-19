@@ -4,9 +4,6 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 import { OrderApi } from 'src/providers/order.api';
-import { TabHeadingDirective } from 'ngx-bootstrap/tabs/public_api';
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
-import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-quotation-details',
@@ -132,8 +129,13 @@ export class QuotationDetailsComponent extends AppBase  {
 
 
 
-  saveQuote(){
-  
+  saveQuote(enterprise_id){
+     
+
+     //console.log(enterprise_id,"坎坎坷坷");
+     //return;
+
+
      for(let i=0;i<this.list.length;i++){
 
         var lists = {
@@ -144,7 +146,8 @@ export class QuotationDetailsComponent extends AppBase  {
           quality: (this.list[i].quality),
           standby_time: (this.list[i].standby_time),
           guarantee: (this.list[i].guarantee),
-          remarks_infor: (this.list[i].remarks_infor) 
+          remarks_infor: (this.list[i].remarks_infor),
+          enterprise_id: enterprise_id
         }
 
         this.fitting(lists,i)
@@ -152,7 +155,8 @@ export class QuotationDetailsComponent extends AppBase  {
      }
 
       if(this.list.length !=0 ){
-      
+      console.log(enterprise_id,"卡啦啦啦");
+
         setTimeout(()=>{
           this.editStatus()
         },this.list.length*300)
@@ -165,7 +169,7 @@ export class QuotationDetailsComponent extends AppBase  {
 
     setTimeout(()=>{
       this.orderApi.confirmquote(json).then((confirmquote:any)=>{
-      
+        console.log(confirmquote)
       })
     },i*300)    
   }
@@ -173,7 +177,8 @@ export class QuotationDetailsComponent extends AppBase  {
   editStatus(){
     var a = this.orderApi
     this.quoteinfo.quotestatus = "W"
-    a.editstatus({ id: this.quoteinfo.id, quotestatus: this.quoteinfo.quotestatus,status: this.quoteinfo.status }).then((editstatus:any)=>{
+    a.editstatus({ id: this.quoteinfo.id, quotestatus: this.quoteinfo.quotestatus,status: this.quoteinfo.status}).then((editstatus:any)=>{
+      console.log(editstatus)
       if(editstatus.code == '0'){
 
         a.deleteignore({ id: this.quoteinfo.id }).then((deletData:any)=>{

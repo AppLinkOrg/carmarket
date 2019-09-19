@@ -37,14 +37,142 @@ export class QuotationCenterComponent extends AppBase  {
     setData = null;
 
     isquote = true;
-    
+    isshow = true
+
   onMyShow(){
 
 
     var a=this.orderApi;
 
+    a.quotelist({ }).then((list:any)=>{
+      this.list = list
+
+      a.ignore({ employee_id: 7 }).then((ignore:any)=>{
+        
+        console.log(ignore,ignore.length)
+        
+
+        if(ignore.length == 0){
+
+          this.length = this.list.length
+          this.pagination(this.list,this.length)
+
+        }else {
+          this.pageList = []
+            for(let item of this.list){
+              if(item.quotestatus === 'Q'){
+                if(this.notinignore(item,ignore)==false){
+                  item.ignorestatus = 'Y'
+                }
+              }
+              
+            }
+
+            console.log(this.list)
+            this.length = this.list.length;
+            this.pagination(this.list,this.length);
+
+      }
+        
+        
+      })
+     
+      console.log(this.list)
+    });
+
+      
+     
+  }
+
+  notinignore(item,ignore){
+    for(let igitem of ignore){
+      if(item.id==igitem.quote_id){
+        return false;
+      }
+    }
+    return true;
+  }
 
 
+  ignoreHandle(item){
+    this.list = [];
+    this.pageList = [];
+    item.quote_id = item.id
+    item.ignorestatus = 'Y'
+    item.employee_id = 7
+  
+    
+      this.orderApi.searchignore(item).then((searchignore:any)=>{
+   
+        if(searchignore.code == "0"){
+
+          var a=this.orderApi;
+
+          a.ignore({ employee_id: 7 }).then((ignore:any)=>{
+            this.ignore = ignore
+          
+
+              if(ignore.length == 0){
+
+                a.quotelist({ }).then((list:any)=>{
+                  for(let item of list){
+                    if(item.quotestatus == 'Q'){
+                      this.list.push(item)
+                    }
+                  }
+                  this.length = this.list.length;
+                  this.pagination(this.list,this.length);
+              
+              });
+
+              }else {
+
+                a.quotelist({ }).then((list:any)=>{
+
+                  var result=[];
+                  for(let item of list){
+                    if(item.quotestatus === 'Q'){
+                      if(this.notinignore(item,ignore)){
+                        result.push(item);
+                      }
+                    }
+                    
+                  }
+
+                  this.list=result;
+
+                  this.length = this.list.length;
+                  this.pagination(this.list,this.length);
+
+              });
+            }
+              
+          })
+          
+        }
+      })
+    
+  }
+
+
+
+  // 待报价
+  quoteHandle(event){
+    this.list = [];
+    this.pageList = [];
+    this.isquote = true;
+    this.isshow = false
+    
+    
+    event.target.classList.add('btn-active')
+    let others = event.target.parentElement.childNodes
+
+    for(let i=2;i<others.length;i++){
+      others[i].classList.remove('btn-active')
+    }
+    others[0].classList.remove('btn-active')
+
+    var a=this.orderApi;
 
     a.ignore({ employee_id: 7 }).then((ignore:any)=>{
       this.ignore = ignore
@@ -82,110 +210,11 @@ export class QuotationCenterComponent extends AppBase  {
             this.length = this.list.length;
             this.pagination(this.list,this.length);
 
-            console.log(this.list)
          });
         }
         
     })
 
-      
-     
-  }
-  notinignore(item,ignore){
-    for(let igitem of ignore){
-      if(item.id==igitem.quote_id){
-        return false;
-      }
-    }
-    return true;
-  }
-
-
-  ignoreHandle(item){
-    this.list = [];
-    this.pageList = [];
-    item.quote_id = item.id
-    item.ignorestatus = 'Y'
-    item.employee_id = 7
-
-      this.orderApi.searchignore(item).then((searchignore:any)=>{
-   
-        if(searchignore.code == "0"){
-
-          this.onMyShow()
-          
-        }
-        
-
-      })
-    
-  }
-
-
-  quoteCenter(event){
-    this.list = [];
-    this.pageList = [];
-    event.target.parentElement.classList.add('active');
-    event.target.parentElement.nextElementSibling.classList.remove('active')
-
-    let toggleTitleContent = document.getElementsByClassName('toggleTitleContent')[0].children;
-    
-    toggleTitleContent[0].classList.remove('box-hide')
-    toggleTitleContent[1].classList.add('box-hide')
-
-
-    this.isquote = true;
-
-    event.target.offsetParent.lastElementChild.childNodes[0].childNodes[0].childNodes[0].classList.add('btn-active')
-    event.target.offsetParent.lastElementChild.childNodes[0].childNodes[0].childNodes[1].classList.remove('btn-active')
-
-    this.onMyShow();
-  }
-
-  quoteRecord(event){
-    event.target.parentElement.classList.add('active');
-    event.target.parentElement.previousElementSibling.classList.remove('active')
-
-    let toggleTitleContent = document.getElementsByClassName('toggleTitleContent')[0].children;
-    toggleTitleContent[0].classList.add('box-hide')
-    toggleTitleContent[1].classList.remove('box-hide')
-
-    this.list = [];
-    this.pageList = [];
-    this.isquote = true;
-
-
-
-    event.target.offsetParent.childNodes[1].lastElementChild.firstElementChild.childNodes[0].classList.add('btn-active')
-    event.target.offsetParent.childNodes[1].lastElementChild.firstElementChild.childNodes[1].classList.remove('btn-active')
-    event.target.offsetParent.childNodes[1].lastElementChild.firstElementChild.childNodes[2].classList.remove('btn-active')
-
-    this.orderApi.quotelist({ }).then((list:any)=>{
-
-      for(let i=0;i<list.length;i++){
-        if(list[i].quotestatus === "W"){
-          this.list.push(list[i])
-        }
-      }
-      this.length = this.list.length;
-      this.pagination(this.list,this.length);
-    });
-
-    
-  }
-
-  // 待报价
-  quoteHandle(event){
-    this.list = [];
-    this.pageList = [];
-    this.isquote = true;
-    
-
-    event.target.parentElement.classList.add('btn-active');
-    event.target.parentElement.nextElementSibling.classList.remove('btn-active')
-   
-
-    this.onMyShow();
 
   }
   
@@ -194,14 +223,16 @@ export class QuotationCenterComponent extends AppBase  {
   neglected(event){
     this.list = [];
     this.pageList = [];
-    
+    this.isshow = false
     this.isquote = false;
 
-    event.target.parentElement.classList.add('btn-active');
-    event.target.parentElement.previousElementSibling.classList.remove('btn-active')
-    if(event.target.parentElement.nextElementSibling !==null){
-      event.target.parentElement.nextElementSibling.classList.remove('btn-active')
+    event.target.classList.add('btn-active')
+    let others = event.target.parentElement.childNodes
+
+    for(let i=0;i<others.length-2;i++){
+      others[i].classList.remove('btn-active')
     }
+    others[others.length-1].classList.remove('btn-active')
 
     this.orderApi.ignore({}).then((ignore:any)=>{
       this.list = ignore;
@@ -218,10 +249,13 @@ export class QuotationCenterComponent extends AppBase  {
     this.list = [];
     this.pageList = [];
     this.isquote = true;
+    this.isshow = false
+    event.target.classList.add('btn-active')
+    let others = event.target.parentElement.childNodes
 
-    event.target.parentElement.classList.add('btn-active');
-    event.target.parentElement.nextElementSibling.classList.remove('btn-active')
-    event.target.parentElement.nextElementSibling.nextElementSibling.classList.remove('btn-active')
+    for(let i=0;i<others.length-1;i++){
+      others[i].classList.remove('btn-active')
+    }
 
     this.orderApi.quotelist({ }).then((list:any)=>{
 
@@ -238,27 +272,20 @@ export class QuotationCenterComponent extends AppBase  {
 
   // 全部
   allQuote(event){
+    console.log(event)
     this.list = [];
     this.pageList = [];
-    this.isquote = true;
+    // this.isquote = true;
+    this.isshow = true
+    event.target.classList.add('btn-active')
+    let others = event.target.parentElement.childNodes
 
-    event.target.parentElement.classList.add('btn-active');
-    event.target.parentElement.previousElementSibling.classList.remove('btn-active')
-    event.target.parentElement.previousElementSibling.previousElementSibling.classList.remove('btn-active')
-
+    for(let i=1;i<others.length;i++){
+      others[i].classList.remove('btn-active')
+    }
+   
+    this.onMyShow()
     
-    this.orderApi.quotelist({ }).then((list:any)=>{
-      for(let i=0;i<list.length;i++){
-        if(list[i].quotestatus === "W"){
-          this.list.push(list[i])
-        }
-      }
-      this.length = this.list.length
-
-     this.pagination(this.list,this.length);
-
-      
-    });
   }
 
 

@@ -3,19 +3,20 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
 
-          <div class="quotation">
-            <ul class="nav nav-tabs flex-row flex-bottom no-border toggleTitle">
-                <li class="active flex-3 text-right"><a (click)='quoteCenter($event)'>报价中心</a></li>
-                <li class="flex-3"><a (click)='quoteRecord($event)'>报价记录</a></li>
-            </ul>
-          </div>
-
+            <div class="card mb-4 bg-gray">
+                <div class="box-auto">
+                   <h4 class="margin-40">报价中心</h4>
+                </div>
+              </div>
+ 
          <div class="toggleTitleContent">
 
             <div class="card-body">
               <div class="margin-bottom-20" role="group" aria-label="...">
-                  <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray"><a (click)='quoteHandle($event)'>待报价</a></button>
-                  <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray"><a (click)='neglected($event)'>已忽略</a></button>           
+                  <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='allQuote($event)'>全部</button>           
+                  <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='quoteHandle($event)'>待报价</button>
+                  <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='neglected($event)'>已忽略</button>           
+                  <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray" (click)='quotedPrice($event)'>已报价</button>       
               </div>
               <div class="table-responsive">
                 <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
@@ -23,11 +24,12 @@
                     <tr>
                       <th>序号</th>
                       <th>发票要求</th>
-                      <th>订单编号</th>
+                      <th>报价单号</th>
                       <th>车型/车架号</th>
                       <th>配件清单</th>
                       <th>图片附件</th>
                       <th>询价时间</th>
+                      <th *ngIf='isshow'>状态</th>
                       <th>操作</th>
                     </tr>
                   </thead>
@@ -52,14 +54,18 @@
                         </div>
                       </td>
                       <td>{{item.quote_time}}</td>
+                      <td *ngIf='isshow'>{{item.quotestatus_name}}</td>
                       <td>
-                        <div *ngIf='isquote==true'>
+                        <div *ngIf='item.quotestatus === "Q"'>
                           <button class="btn btn-primary" (click)="tiaozhuan(item.id)"><a>立即报价</a></button><br>
-                          <button class="btn btn-default txt-blue" (click)='ignoreHandle(item)'>忽略</button>
+                          <button class="btn btn-default txt-blue" *ngIf='item.hasOwnProperty("ignorestatus")==false' (click)='ignoreHandle(item)'>忽略</button>
                         </div>
-                        <div *ngIf='isquote==false'>
+                        <!-- <div *ngIf='item.quotestatus === "Q" &&  isquote==false'>
                             <button class="btn btn-primary" (click)="tiaozhuan(item.id)"><a>立即报价</a></button><br>
-                            <!-- <button class="btn btn-default txt-blue" (click)='ignoreHandle(item)'>忽略</button> -->
+                        </div> -->
+                        <div *ngIf='item.quotestatus === "W"'>
+                            <button class="btn btn-primary"  (click)="tiaozhuan2(item.id)"><a>查看详情</a></button><br>
+                            <span class="txt-orange">等待卖家付款</span>
                         </div>
                       </td>
                     </tr>
@@ -94,97 +100,6 @@
                           </a>
                         </li>
                     </ul>
-              </div>
-            </div>
-
-            <div class="card-body box-hide">
-                  <div class="margin-bottom-20 toggleBtns" role="group" aria-label="...">
-                          <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray"><a (click)='quotedPrice($event)'>已报价</a></button>
-                          <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray"><a (click)='neglected($event)'>已忽略</a></button>        
-                          <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray"><a (click)='allQuote($event)'>全部</a></button>       
-                  </div>
-                <div class="btnContents">
-                  <!-- 已报价 -->
-                  <div> 
-                    <div class="table-responsive">
-                      <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
-                        <thead class="bg-gray">
-                          <tr>
-                            <th>序号</th>
-                            <th>发票要求</th>
-                            <th>订单编号</th>
-                            <th>车型/车架号</th>
-                            <th>配件清单</th>
-                            <th>图片附件</th>
-                            <th>询价时间</th>
-                            <th>操作</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor='let item of data;let i=index'>
-                            <td>{{i+1}}</td>
-                            <td>
-                                <div *ngIf='item.invoice_demand=="是"' class="bg-red txt-white">发票</div>
-                            </td>
-                            <td>{{item.quotenumber}}</td>
-                            <td class="text-left">{{item.carmodel}} <br> {{item.vincode}} </td>
-                            <td class="text-left"><div *ngFor="let itemName of item.quoteitems">{{itemName.name}} x {{itemName.quantity}} ({{itemName.id}})</div></td>
-                            <td [ngSwitch]="item.carmodel==''">
-                              <div *ngSwitchCase='true'>
-                                <img [hidden]='item.frontofcar == "" || item.frontofcar == "undefined"' src="{{uploadpath}}quote/{{item.frontofcar}}" class="icon-60" />
-                                <img [hidden]='item.namesplate == "" || item.namesplate == "undefined"' src="{{uploadpath}}quote/{{item.namesplate}}" class="icon-60" />
-                                <img [hidden]='item.rearofcar == "" || item.rearofcar == "undefined"' src="{{uploadpath}}quote/{{item.rearofcar}}" class="icon-60" />
-                              </div>
-                              <div *ngSwitchCase='false'>
-                                  <img [hidden]='item.photo1 == "" || item.photo1 == "undefined"' src="{{uploadpath}}quote/{{item.photo1}}" class="icon-60" />
-                                  <img [hidden]='item.photo2 == "" || item.photo2 == "undefined"' src="{{uploadpath}}quote/{{item.photo2}}" class="icon-60" />
-                              </div>
-                            </td>
-                            <td>{{item.quote_time}}</td>
-                            <td class="text-center">
-                                <div *ngIf='isquote==true'>
-                                  <button class="btn btn-primary"  (click)="tiaozhuan2(item.id)"><a>查看详情</a></button><br>
-                                  <span class="txt-orange">等待卖家付款</span>
-                                </div>
-                                <div *ngIf='isquote==false'>
-                                    <button class="btn btn-primary" (click)="tiaozhuan(item.id)"><a>立即报价</a></button><br>
-                                </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                    <div class="flex-row flex-column" *ngIf='pageList.length>1'>
-                      <ul class="pagination cursor-pointer">
-                          <li class="margin-10 padding-10">共{{length}}条</li>
-                          <li class="border-gray-1 margin-10 padding-10" role='button' (click)="fristPage()">
-                              <a >
-                                <span aria-hidden="true">首页</span>
-                              </a>
-                            </li>
-                          <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Previous()">
-                            <a class="h3">
-                              <span aria-hidden="true">&laquo;</span>
-                            </a>
-                          </li>
-                          <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" *ngFor="let page of pageList"  
-                          [ngClass]="{pagActive: isActivePage(page)}" role='button'  (click)='selectPage(page)' style="line-height: 36px;">
-                            <a>{{page}}</a>
-                          </li>
-                          <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Next()">
-                              <a class="h3">
-                                <span aria-hidden="true">&raquo;</span>
-                              </a>
-                            </li>
-                          <li class="border-gray-1 margin-10 padding-10" role='button' (click)="lastPage()">
-                              <a >
-                                <span aria-hidden="true">尾页</span>
-                              </a>
-                            </li>
-                        </ul>
-                  </div>
-                </div>
-                 
               </div>
             </div>
 

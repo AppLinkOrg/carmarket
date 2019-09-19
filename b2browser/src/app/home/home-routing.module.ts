@@ -16,6 +16,7 @@ import { ManagementCenterComponent } from '../management-center/management-cente
 import { ReturnsManagementComponent } from '../returns-management/returns-management.component';
 import { ReturnsDetailComponent } from '../returns-detail/returns-detail.component';
 import { CancelDetailComponent } from '../cancel-detail/cancel-detail.component';
+import { AchievementComponent } from '../achievement/achievement.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
       { path: "managementCenter", component: ManagementCenterComponent},
       { path: "returnsManagement", component: ReturnsManagementComponent},
       { path: "returnsDetail", component: ReturnsDetailComponent},
+      { path: "achievement", component: AchievementComponent},
     ]
   }
 ];

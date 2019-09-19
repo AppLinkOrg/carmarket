@@ -47,6 +47,7 @@ export class LoginComponent   extends AppBase  {
     }
     this.clearPopover();
     this.instApi.employeelogin({mobile:this.loginname,password:(this.password)}).then((res:any)=>{
+    
       if(res.code=="0"){
         var token=res.return;
         window.localStorage.setItem("lastloginname",this.loginname);

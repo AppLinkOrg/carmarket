@@ -32,6 +32,7 @@ import { ManagementCenterComponent } from './management-center/management-center
 import { ReturnsManagementComponent } from './returns-management/returns-management.component';
 import { ReturnsDetailComponent } from './returns-detail/returns-detail.component';
 import { CancelDetailComponent } from './cancel-detail/cancel-detail.component';
+import { AchievementComponent } from './achievement/achievement.component';
 
 @NgModule({
   declarations: [

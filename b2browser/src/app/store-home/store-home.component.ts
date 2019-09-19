@@ -34,6 +34,8 @@ export class StoreHomeComponent extends AppBase  {
   goods = 0
   returnGoods = 0
   
+  today_time = null
+  year_mon = null
 
   onMyShow(){
     
@@ -50,8 +52,8 @@ export class StoreHomeComponent extends AppBase  {
 
         month = month < 10 ? '0'+ month : month
         date = date < 10  ? '0'+ date : date
-        let today_time = year+ "-" + month + "-" + date;
-        let year_mon = year+ "-" + month 
+        this.today_time = year+ "-" + month + "-" + date;
+        this.year_mon = year+ "-" + month 
 
         let index = mylist[i].order_time.indexOf('-')
         
@@ -59,29 +61,29 @@ export class StoreHomeComponent extends AppBase  {
         
 
 
-        if(mylist[i].order_time == year_mon){
+        if(mylist[i].order_time == this.year_mon){
 
           this.monOrder ++ 
           this.monList.push(mylist[i])
           this.monIncome = this.getIncome(this.monList)
          
-          if(mylist[i].order_time_dateformat == today_time){
+          if(mylist[i].order_time_dateformat == this.today_time){
 
             this.count ++ 
             this.list.push(mylist[i])
             this.totalIncome = this.getIncome(this.list)
           }
 
-          if(mylist[i].status_name == '待发货'){
-            this.goods ++
-          }
-
-          if(mylist[i].status_name == '待退货'){
-            this.returnGoods ++ 
-          }
-
+         
         }
-        
+        if(mylist[i].status_name == '待发货'){
+          this.goods ++
+        }
+
+        if(mylist[i].status_name == '待退货'){
+          this.returnGoods ++ 
+        }
+
       }
     })
 
@@ -95,6 +97,50 @@ export class StoreHomeComponent extends AppBase  {
     return income
   }
 
+  reGoods(){
+   
+    this.router.navigate(['orderManagement'],{
+      queryParams: {
+        stauts: 'L'
+      }
+    })
+  }
 
+  applyGoods(){
+    this.router.navigate(['returnsManagement'],{
+      
+    })
+  }
 
+  todayOrder(){
+    this.router.navigate(['orderManagement'],{
+      queryParams: {
+        order_time_dateformat: this.today_time
+      }
+    })
+  }
+
+  todayIncome(){
+    this.router.navigate(['managementCenter'],{
+      queryParams: {
+        stauts: 'L'
+      }
+    })
+  }
+
+  monthOrder(){
+    this.router.navigate(['orderManagement'],{
+      queryParams: {
+        month_time: this.year_mon
+      }
+    })
+  }
+
+  monthIncome(){
+    this.router.navigate(['managementCenter'],{
+      queryParams: {
+        stauts: 'L'
+      }
+    })
+  }
 }
