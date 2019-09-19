@@ -12,6 +12,7 @@
     </view>
 
 
+
     <view class="flex-row margin-top" bindtap="bindchakan" data-chakan="B">
       <view class=" btnone btntwo h4 {{chakan=='B'?'bg-bt':'bg-white'}}">
         <view class="flex-row  {{chakan!='B'?'txt-bc':'txt-white'}}">按配件查看报价</view>
@@ -45,7 +46,7 @@
 
     <view class="flex-1"></view>
 
-    <view class="flex-row flex-center  " bindtap="bindshai">
+    <view class="flex-row flex-center " bindtap="bindshai">
       <view class="txt-black txt-bold   h5">筛选</view>
       <image class="icon-15  margin-left-10" src="{{uploadpath}}resource/{{res.shaixuan}}"></image>
     </view>
@@ -56,7 +57,7 @@
 
 
 
-<view style="height:310rpx;"></view>
+<view style="height:340rpx;"></view>
 
 <!-- height: 164rpx ; -->
 
@@ -95,8 +96,10 @@
             <view class=" txt-red txt-bold">￥{{item.price}}</view>
             <view class="h6 margin-left-20 ">x{{item.qty}}</view>
             <view class="flex-1"></view>
-            <view class="h6 txt-black">{{item.company}}</view>
+            <view class="h6 txt-black">{{item.edt_name}}</view>
           </view>
+
+
 
           <view class="flex-row flex-center margin-top-10">
             <view class="h5 flex-1">{{item.quality}}</view>
@@ -134,13 +137,13 @@
   </view>
 </view>
 
-<view style="height:40rpx;"></view>
+<view style="height:220rpx;"></view>
 
 
 <view class="bottom-block">
 
 
-  <view class="text-center h5 padding-20 " style="border-bottom:2rpx solid #E5E5E5;">共2件，合计：￥24545</view>
+  <view class="text-center h5 padding-20 " style="border-bottom:2rpx solid #E5E5E5;">共{{quantity}}件，合计：￥{{sum}}</view>
 
   <view class="flex-row flex-center padding-10">
 
@@ -156,7 +159,7 @@
     </view>
     <view class="flex-1"></view>
     <view class="buy flex-row flex-center">
-      <view class="bg-orange flex-1 text-center txt-white h5" style="height:80rpx;line-height:80rpx;">加入购物车</view>
+      <view class="bg-orange flex-1 text-center txt-white h5" style="height:80rpx;line-height:80rpx;" bindtap="addcar">加入购物车</view>
       <view class="bg-red flex-1 text-center txt-white h5" style="height:80rpx;line-height:80rpx;">下单</view>
     </view>
 

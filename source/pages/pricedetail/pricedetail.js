@@ -28,7 +28,9 @@ class Content extends AppBase {
       xuan: 'F',
       chakan: 'C',
       id: 0,
-      shopcar: []
+      shopcar: [],
+      sum: 0,
+      quantity: 0
     })
   }
   onMyShow() {
@@ -104,50 +106,108 @@ class Content extends AppBase {
 
 
   bindcheck(e) {
-    var shopcar = this.Base.getMyData().shopcar;
-
     var name = e.currentTarget.dataset.name;
     var index = e.currentTarget.dataset.index;
-
     var sx = e.currentTarget.dataset.sx;
     var fittings_id = e.currentTarget.dataset.fittings_id;
-
-    //console.log(name, "", index)
-
     var id = e.currentTarget.id;
-
     var quoteinfo = this.Base.getMyData().quoteinfo;
     var fittingsitem = quoteinfo.fittingsitem;
     var quoteitems = fittingsitem[index].quoteitems;
+
+   
+
     // var checking = fittingsitem[index].quoteitems[sx].check;
 
-
-
-    for (var i = 0; i < quoteitems.length; i++) {
+    for (var i = 0; i < quoteitems.length; i++) { //将所有选中状态设为未选
       if (sx != i) {
         quoteitems[i].check = false;
       }
     }
 
     console.log(fittingsitem[index].quoteitems[sx].check);
-    if (fittingsitem[index].quoteitems[sx].check) {
+    if (fittingsitem[index].quoteitems[sx].check == true) {
       fittingsitem[index].quoteitems[sx].check = false;
     } else {
       fittingsitem[index].quoteitems[sx].check = true;
     }
 
     // console.log(fittingsitem[index].quoteitems[sx].check)
-    // console.log(fittingsitem[index].quoteitems[sx])
-    // if (fittingsitem[index].quoteitems[sx].check==true){
-    //   fittingsitem[index].quoteitems[sx].check =false;
-    // }else{
-    //   fittingsitem[index].quoteitems[sx].check = true;
-    // }
 
+    this.statistics(); //选中零件统计
+
+    //this.carshoplist(); //选中的零件数组
 
     this.Base.setMyData({
       quoteinfo: quoteinfo
     })
+
+  }
+
+  statistics() { //选中零件统计
+    var quoteinfo = this.Base.getMyData().quoteinfo;
+    var fittingsitem = quoteinfo.fittingsitem;
+    var shopcar = [];
+    var sum = 0; //价格
+    var quantity = 0; //选中数量
+    for (var j = 0; j < fittingsitem.length; j++) {
+      var quoteitems = fittingsitem[j].quoteitems;
+      for (var a = 0; a < quoteitems.length; a++) {
+        if (quoteitems[a].check == true) {
+          console.log(quoteitems[a]);
+          shopcar.push(quoteitems[a]);
+          quantity++;
+          sum += parseInt(quoteitems[a].price);
+        }
+      }
+    }
+
+    this.Base.setMyData({
+      sum,
+      quantity,
+      shopcar
+    })
+    //console.log(sum);
+  }
+
+  carshoplist(json, i){
+
+      var that = this;
+      var orderapi = new OrderApi();
+      setTimeout(() => {
+        orderapi.addshopcar(json, (addshopcar) => {
+          this.Base.setMyData({ addshopcar })
+        })
+         // wx.hideLoading();
+          // wx.reLaunch({
+          //   url: '/pages/price/price',
+          // })
+      }, i * 300)
+   
+  }
+
+  addcar(e) {
+    console.log("加入购物车")
+    var shopcar = this.Base.getMyData().shopcar;
+    console.log(this.Base.getMyData().shopcar,"拉手动挡");
+    //var aaa=[];
+    for (var i = 0; i < shopcar.length;i++){
+       var list={
+         supplier: shopcar[i].company,
+         parts: shopcar[i].name,
+         quality: shopcar[i].quality,
+         price: shopcar[i].price,
+         qty: shopcar[i].qty,
+         status:'A'
+       }
+      this.carshoplist(list,i);
+      
+    }
+    
+
+    //return;
+
+ 
 
   }
 
@@ -159,8 +219,14 @@ body.onMyShow = content.onMyShow;
 body.bindfapiao = content.bindfapiao;
 body.bindchakan = content.bindchakan;
 
+body.addcar = content.addcar; 
+
+body.carshoplist = content.carshoplist; 
+
 body.bindcheck = content.bindcheck;
 
 body.bindshai = content.bindshai;
 body.binddelect = content.binddelect;
+
+body.statistics = content.statistics;
 Page(body)
