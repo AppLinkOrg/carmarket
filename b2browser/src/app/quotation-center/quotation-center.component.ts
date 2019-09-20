@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 import { OrderApi } from 'src/providers/order.api';
+import { EnterpriseApi } from 'src/providers/enterprise.api';
 
 @Component({
   selector: 'app-quotation-center',
   templateUrl: './quotation-center.component.html',
   styleUrls: ['./quotation-center.component.scss'],
-  providers:[InstApi,OrderApi]
+  providers:[InstApi,OrderApi,EnterpriseApi]
 })
 export class QuotationCenterComponent extends AppBase  {
 
@@ -17,7 +18,8 @@ export class QuotationCenterComponent extends AppBase  {
     public router: Router,
     public activeRoute: ActivatedRoute,
     public instApi:InstApi,
-    public orderApi:OrderApi
+    public orderApi:OrderApi,
+    public enterpriseApi:EnterpriseApi,
   ) { 
     super(router,activeRoute,instApi);
   }
@@ -33,65 +35,45 @@ export class QuotationCenterComponent extends AppBase  {
     newPage = null;
     pageList = [];
     selPage = 1;
-    data = [];
+    data = null;
     setData = null;
 
-    isquote = true;
+    isquote = false;
     isshow = true
+
+    enterprise_id = ''
+    employee_id = ''
 
   onMyShow(){
 
 
     var a=this.orderApi;
 
+    this.enterpriseApi.employeeinfo({ }).then((employeeinfo:any)=>{
+      console.log(employeeinfo)
+      this.enterprise_id = employeeinfo.enterprise_id
+      this.employee_id = employeeinfo.id
+    })
+
     a.quotelist({ }).then((list:any)=>{
       this.list = list
 
-      a.ignore({ employee_id: 7 }).then((ignore:any)=>{
-        
-        console.log(ignore,ignore.length)
-        
-
-        if(ignore.length == 0){
-
-          this.length = this.list.length
-          this.pagination(this.list,this.length)
-
-        }else {
-          this.pageList = []
-            for(let item of this.list){
-              if(item.quotestatus === 'Q'){
-                if(this.notinignore(item,ignore)==false){
-                  item.ignorestatus = 'Y'
-                }
-              }
-              
-            }
-
-            console.log(this.list)
-            this.length = this.list.length;
-            this.pagination(this.list,this.length);
-
+      for(let i=0;i<this.list.length;i++){
+        this.list[i].index = i
       }
-        
-        
-      })
-     
-      console.log(this.list)
+
+      this.length = this.list.length;
+      this.pagination(this.list,this.length);
+
+    
+      console.log(this.list,this.length)
     });
 
       
      
   }
 
-  notinignore(item,ignore){
-    for(let igitem of ignore){
-      if(item.id==igitem.quote_id){
-        return false;
-      }
-    }
-    return true;
-  }
+  
 
 
   ignoreHandle(item){
@@ -99,7 +81,7 @@ export class QuotationCenterComponent extends AppBase  {
     this.pageList = [];
     item.quote_id = item.id
     item.ignorestatus = 'Y'
-    item.employee_id = 7
+    item.employee_id = this.employee_id
   
     
       this.orderApi.searchignore(item).then((searchignore:any)=>{
@@ -108,10 +90,10 @@ export class QuotationCenterComponent extends AppBase  {
 
           var a=this.orderApi;
 
-          a.ignore({ employee_id: 7 }).then((ignore:any)=>{
-            this.ignore = ignore
+          a.ignore({ employee_id: this.employee_id }).then((ignore:any)=>{
+            // this.ignore = ignore
           
-
+            
               if(ignore.length == 0){
 
                 a.quotelist({ }).then((list:any)=>{
@@ -119,7 +101,13 @@ export class QuotationCenterComponent extends AppBase  {
                     if(item.quotestatus == 'Q'){
                       this.list.push(item)
                     }
+                  
                   }
+
+                  for(let i=0;i<this.list.length;i++){
+                    this.list[i].index = i
+                  }
+
                   this.length = this.list.length;
                   this.pagination(this.list,this.length);
               
@@ -141,11 +129,15 @@ export class QuotationCenterComponent extends AppBase  {
 
                   this.list=result;
 
+                  for(let i=0;i<this.list.length;i++){
+                    this.list[i].index = i
+                  }
+
                   this.length = this.list.length;
                   this.pagination(this.list,this.length);
 
               });
-            }
+              }
               
           })
           
@@ -174,9 +166,11 @@ export class QuotationCenterComponent extends AppBase  {
 
     var a=this.orderApi;
 
-    a.ignore({ employee_id: 7 }).then((ignore:any)=>{
-      this.ignore = ignore
-    
+    a.ignore({ employee_id: this.employee_id }).then((ignore:any)=>{
+      // this.ignore = ignore
+      console.log(ignore,'llll')
+      console.log(ignore)
+
 
         if(ignore.length == 0){
 
@@ -186,6 +180,11 @@ export class QuotationCenterComponent extends AppBase  {
                 this.list.push(item)
               }
             }
+
+            for(let i=0;i<this.list.length;i++){
+              this.list[i].index = i
+            }
+
             this.length = this.list.length;
             this.pagination(this.list,this.length);
          
@@ -205,7 +204,13 @@ export class QuotationCenterComponent extends AppBase  {
               
             }
 
+
+
             this.list=result;
+
+            for(let i=0;i<this.list.length;i++){
+              this.list[i].index = i
+            }
 
             this.length = this.list.length;
             this.pagination(this.list,this.length);
@@ -216,6 +221,15 @@ export class QuotationCenterComponent extends AppBase  {
     })
 
 
+  }
+
+  notinignore(item,ignore){
+    for(let igitem of ignore){
+      if(item.id==igitem.quote_id){
+        return false;
+      }
+    }
+    return true;
   }
   
 
@@ -237,7 +251,12 @@ export class QuotationCenterComponent extends AppBase  {
     this.orderApi.ignore({}).then((ignore:any)=>{
       this.list = ignore;
       this.length = ignore.length;
-    
+      
+
+      for(let i=0;i<this.list.length;i++){
+        this.list[i].index = i
+      }
+
       this.pagination(this.list,this.length);
     
     })
@@ -248,7 +267,7 @@ export class QuotationCenterComponent extends AppBase  {
   quotedPrice(event){
     this.list = [];
     this.pageList = [];
-    this.isquote = true;
+    this.isquote = false;
     this.isshow = false
     event.target.classList.add('btn-active')
     let others = event.target.parentElement.childNodes
@@ -264,6 +283,11 @@ export class QuotationCenterComponent extends AppBase  {
           this.list.push(list[i])
         }
       }
+
+      for(let i=0;i<this.list.length;i++){
+        this.list[i].index = i
+      }
+
       this.length = this.list.length
       this.pagination(this.list,this.length);
     });
@@ -275,7 +299,7 @@ export class QuotationCenterComponent extends AppBase  {
     console.log(event)
     this.list = [];
     this.pageList = [];
-    // this.isquote = true;
+    this.isquote = false;
     this.isshow = true
     event.target.classList.add('btn-active')
     let others = event.target.parentElement.childNodes
@@ -317,6 +341,7 @@ export class QuotationCenterComponent extends AppBase  {
       this.data = list.slice(this.pageSize*(this.selPage-1),this.pageSize*this.selPage);
     }
     this.data = list.slice(0, this.pageSize);
+
 
     for (var i = 0; i < this.newPage; i++) {
        this.pageList.push(i + 1);

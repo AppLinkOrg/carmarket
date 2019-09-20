@@ -52,8 +52,14 @@
               <span>退货管理</span></a>
           </li>
 
-          <li class="nav-item home-box"  routerLinkActive="active">
+          <li class="nav-item home-box"  routerLinkActive="active" *ngIf='position=="B"'>
             <a class="nav-link" href="#"  routerLink="/managementCenter"  >
+              <i class="fas fa-fw fa-stream"></i>
+              <span>管理中心</span></a>
+          </li>
+
+          <li class="nav-item home-box"  routerLinkActive="active"  *ngIf='position!="B"'>
+            <a class="nav-link" href="#"  routerLink="/employeeManagement" [queryParams]='obj' >
               <i class="fas fa-fw fa-stream"></i>
               <span>管理中心</span></a>
           </li>

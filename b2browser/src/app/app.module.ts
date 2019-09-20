@@ -33,6 +33,8 @@ import { ReturnsManagementComponent } from './returns-management/returns-managem
 import { ReturnsDetailComponent } from './returns-detail/returns-detail.component';
 import { CancelDetailComponent } from './cancel-detail/cancel-detail.component';
 import { AchievementComponent } from './achievement/achievement.component';
+import { EmployeeManagementComponent } from './employee-management/employee-management.component';
+import { WaitingComponent } from './waiting/waiting.component';
 
 @NgModule({
   declarations: [

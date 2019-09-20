@@ -17,6 +17,8 @@ import { ReturnsManagementComponent } from '../returns-management/returns-manage
 import { ReturnsDetailComponent } from '../returns-detail/returns-detail.component';
 import { CancelDetailComponent } from '../cancel-detail/cancel-detail.component';
 import { AchievementComponent } from '../achievement/achievement.component';
+import { EmployeeManagementComponent } from '../employee-management/employee-management.component';
+import { WaitingComponent } from '../waiting/waiting.component';
 
 
 const routes: Routes = [
@@ -37,9 +39,11 @@ const routes: Routes = [
       { path: "finishDetail", component: FinishDetailComponent},
       { path: "cancelDetail", component: CancelDetailComponent},
       { path: "managementCenter", component: ManagementCenterComponent},
+      { path: "employeeManagement", component: EmployeeManagementComponent},
       { path: "returnsManagement", component: ReturnsManagementComponent},
       { path: "returnsDetail", component: ReturnsDetailComponent},
       { path: "achievement", component: AchievementComponent},
+      { path: "waiting", component: WaitingComponent},
     ]
   }
 ];

@@ -185,7 +185,11 @@ export class QuotationDetailsComponent extends AppBase  {
         
          })
 
-          this.router.navigateByUrl('quotationCenter');
+          this.router.navigate(['detailsOfQuotedPrice'],{
+            queryParams:{
+              id: this.quoteinfo.id
+            }
+          })
         }
     })
 

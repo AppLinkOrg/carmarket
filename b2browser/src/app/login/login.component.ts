@@ -29,17 +29,21 @@ export class LoginComponent   extends AppBase  {
     super(router,activeRoute,instApi);
     this.isLoginPage=true;
   }
-  onMyShow(){
-    this.loginname=window.localStorage.getItem("lastloginname");
-    if(this.loginname==null){
-      this.loginname="";
-    }
-    this.password=window.localStorage.getItem("lastpassword");
-    if(this.password==null){
-      this.password="";
-    }
+  onMyShow(){ 
+    setTimeout(() => {
+      this.loginname=window.localStorage.getItem("lastloginname");
+      if(this.loginname==null){
+        this.loginname="";
+      }
+      this.password=window.localStorage.getItem("lastpassword");
+      if(this.password==null){
+        this.password="";
+      }
+    });
+    
   }
   submitresult="";
+  error = ''
   isOpen=false;
   trylogin(){
     if(this.loginname==''||this.password==''){
@@ -47,7 +51,7 @@ export class LoginComponent   extends AppBase  {
     }
     this.clearPopover();
     this.instApi.employeelogin({mobile:this.loginname,password:(this.password)}).then((res:any)=>{
-    
+        console.log(res)
       if(res.code=="0"){
         var token=res.return;
         window.localStorage.setItem("lastloginname",this.loginname);
@@ -59,7 +63,10 @@ export class LoginComponent   extends AppBase  {
         window.sessionStorage.setItem("token",token);
         this.navigate("");
       }else{
+        console.log('aaaa')
         this.submitresult=res.return;
+        this.error = '用户名或密码错误，请重新登录'
+        console.log(this.error)
         this.isOpen=true;
       }
     });
@@ -67,6 +74,7 @@ export class LoginComponent   extends AppBase  {
 
   clearPopover(){
     this.submitresult="";
+    this.error = '';
     this.isOpen=false;
   }
 }

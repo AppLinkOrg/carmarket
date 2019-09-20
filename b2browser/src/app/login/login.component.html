@@ -34,7 +34,9 @@
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck" [(ngModel)]='isremember'>
                         <label class="custom-control-label" for="customCheck"  >记住密码</label>
+                        <span class="txt-red margin-left-40" (keyup)='clearPopover()'>{{error}}</span>
                       </div>
+                      
                     </div>
                     <button  (click)='trylogin()' class="btn  btn-user btn-block" [class.btn-primary]='loginname!=""&&password!=""' [class.btn-secondary]='loginname==""||password==""' >
                       登录
