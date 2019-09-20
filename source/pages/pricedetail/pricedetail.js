@@ -22,7 +22,7 @@ class Content extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
-    options.id = 1;
+    //options.id = 1;
     super.onLoad(options);
     this.Base.setMyData({
       xuan: 'F',
@@ -37,7 +37,6 @@ class Content extends AppBase {
     var that = this;
     var instapi = new InstApi();
     var orderapi = new OrderApi();
-
     orderapi.quoteinfo({
       id: this.Base.options.id
     }, (quoteinfo) => {
@@ -115,7 +114,7 @@ class Content extends AppBase {
     var fittingsitem = quoteinfo.fittingsitem;
     var quoteitems = fittingsitem[index].quoteitems;
 
-   
+
 
     // var checking = fittingsitem[index].quoteitems[sx].check;
 
@@ -170,45 +169,47 @@ class Content extends AppBase {
     //console.log(sum);
   }
 
-  carshoplist(json, i){
+  carshoplist(json, i) {
 
-      var that = this;
-      var orderapi = new OrderApi();
-      setTimeout(() => {
-        orderapi.addshopcar(json, (addshopcar) => {
-          this.Base.setMyData({ addshopcar })
-        })
-         // wx.hideLoading();
-          // wx.reLaunch({
-          //   url: '/pages/price/price',
-          // })
-      }, i * 300)
-   
+    var that = this;
+    var orderapi = new OrderApi();
+    setTimeout(() => {
+      orderapi.addshopcar(json, (addshopcar) => {
+
+      })
+
+      wx.navigateTo({
+        url: '/pages/shopcar/shopcar'
+      })
+    }, i * 300)
+
   }
 
   addcar(e) {
     console.log("加入购物车")
     var shopcar = this.Base.getMyData().shopcar;
-    console.log(this.Base.getMyData().shopcar,"拉手动挡");
+    console.log(this.Base.getMyData().shopcar, "拉手动挡");
     //var aaa=[];
-    for (var i = 0; i < shopcar.length;i++){
-       var list={
-         supplier: shopcar[i].company,
-         parts: shopcar[i].name,
-         quality: shopcar[i].quality,
-         price: shopcar[i].price,
-         qty: shopcar[i].qty,
-         status:'A'
-       }
-      this.carshoplist(list,i);
-      
+    for (var i = 0; i < shopcar.length; i++) {
+      var list = {
+        enterprise_id: shopcar[i].enterprise_id,
+        supplier: shopcar[i].company,
+        parts: shopcar[i].name,
+        quality: shopcar[i].quality,
+        price: shopcar[i].price,
+        qty: shopcar[i].qty,
+        status: 'A'
+      }
+      this.carshoplist(list, i);
+
     }
-    
 
-    //return;
+  }
 
- 
-
+  tocar(e){
+    wx.navigateTo({
+      url: '/pages/shopcar/shopcar'
+    })
   }
 
 }
@@ -219,9 +220,10 @@ body.onMyShow = content.onMyShow;
 body.bindfapiao = content.bindfapiao;
 body.bindchakan = content.bindchakan;
 
+body.tocar = content.tocar;
 body.addcar = content.addcar; 
 
-body.carshoplist = content.carshoplist; 
+body.carshoplist = content.carshoplist;
 
 body.bindcheck = content.bindcheck;
 

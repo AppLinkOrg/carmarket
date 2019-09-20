@@ -34,117 +34,35 @@ class Content extends AppBase {
   }
   onMyShow() {
     var that = this;
-    var instapi = new InstApi();
-    var orderapi = new OrderApi();
+    var orderapi = new OrderApi(); 
 
-    var id = this.Base.options.id;
-    var vin = this.Base.getMyData().vin;
-    var carname = this.Base.getMyData().carname;
-    console.log(id, "我问问");
-    var addressapi = new AddressApi();
-    addressapi.addresslist({
+    var json = JSON.parse(this.Base.options.json)
+    console.log(json,"来了")
+    var sumprice=0;
+   
+    for (var i = 0; i < json.length;i++){
+       var ent= json[i].name;
+      var aaa = 0;
+       for(var j=0;j<ent.length;j++){
+       // console.log(parseInt(ent[j].price), "||",parseInt (ent[j].qty))
+        aaa += parseInt((ent[j].price) * (ent[j].qty));
+        //console.log(aaa,"店铺价格")
+       }
+      
 
-    }, (addresslist) => {
-      this.Base.setMyData({
-        addresslist
-      })
-    })
+      json[i].pp = aaa;
 
-    orderapi.detail({
-      id: id,
-    }, (chuanzhi) => {
-      chuanzhi.orderitems.map((item) => {
-        item.xz = false;
+      sumprice+=aaa;
+    }
 
-      })
 
-      this.Base.setMyData({
-        chuanzhi
-      })
-      console.log(chuanzhi);
-    });
-    // var quote_id = this.Base.getMyData().quote_id;
-    // var needitems = this.Base.getMyData().needitems;
-    // var noneeditems = this.Base.getMyData().noneeditems;
-    // var anotherprice = this.Base.getMyData().anotherprice;
-    orderapi.confirmquote({
-      order_id: id,
-      // quote_id,
-      // needitems,
-      // noneeditems,    
-      // anotherprice,
-    }, (querenbaojia) => {
-      this.Base.setMyData({
-        querenbaojia
-      });
-    });
+
+    this.Base.setMyData({ arr: json, sumprice})
+
   }
  
 
-  bindyou() {
-    wx.navigateTo({
-      url: '/pages/address/address',
-    })
-  }
-
-  bindchoice(e) {
-    var chuanzhi = this.Base.getMyData().chuanzhi;
-    var xuan = e.currentTarget.dataset.id;
-    chuanzhi.orderitems[xuan].xz = !chuanzhi.orderitems[xuan].xz;
-    this.Base.setMyData({
-      chuanzhi
-    })
-  }
-
-  bindallchoice(e) {
-    var chuanzhi = this.Base.getMyData().chuanzhi;
-    var quan = e.currentTarget.id;
-    if (quan == 'Q') {
-      chuanzhi.orderitems.map((item) => {
-        item.xz = false;
-      })
-      this.Base.setMyData({
-        quan: 'B'
-      })
-    }
-
-    if (quan == 'B') {
-      chuanzhi.orderitems.map((item) => {
-        item.xz = true;
-      })
-      this.Base.setMyData({
-        quan: 'Q'
-      })
-    }
-    this.Base.setMyData({
-      chuanzhi
-    })
-  }
-
-  bindadd(e) {
-    var index = e.currentTarget.dataset.id;
-    var chuanzhi = this.Base.getMyData().chuanzhi;
-    console.log(chuanzhi.orderitems[index].qty, "sdgytrujtutrk")
-    chuanzhi.orderitems[index].qty++;
-    console.log(chuanzhi.orderitems[index].qty, "输出")
-    this.Base.setMyData({
-      chuanzhi
-    })
-  }
-
-  bindreduce(e) {
-    var index = e.currentTarget.dataset.id;
-    var chuanzhi = this.Base.getMyData().chuanzhi;
-    var qty = chuanzhi.orderitems[index].qty;
-    if (qty == 1) {
-      return
-    } else {
-      chuanzhi.orderitems[index].qty--;
-      this.Base.setMyData({
-        chuanzhi
-      })
-    }
-  }
+ 
 
   binddizhi(e) {
     this.Base.setMyData({
@@ -157,27 +75,70 @@ class Content extends AppBase {
      url: '/pages/ordersubmit/ordersubmit',
    })
   }
-
-  // binddelect() {
-  //   this.Base.setMyData({
-  //     showModal: false
-  //   })
-  // }
-
-  // confirm() {
-  //   this.Base.setMyData({
-  //     showModal: true
-  //   })
-  //   wx.navigateTo({
-  //     url: '/pages/jiaoyisuccess/jiaoyisuccess',
-  //   })
-  // }
+ 
   setPageTitle(instinfo) {
-    var title = "报价详情";
+    var title = "订单提交";
     wx.setNavigationBarTitle({
       title: title,
     })
   }
+
+  check(e){
+  //this.Base.setMyData({})
+  }
+
+  submit(e){
+    var orderapi=new OrderApi();
+    var sumprice = this.Base.getMyData().sumprice;
+    var arr = this.Base.getMyData().arr;
+    console.log(this.Base.getMyData().shopcar, "拉手动挡");
+    //var aaa=[];
+    for (var i = 0; i < arr.length; i++) {
+      var list = {
+        orderno: '12345678910',
+        enterprise_id: arr[i].id,
+        totalamount: arr[i].pp,
+        receiver: '测试',
+        receivecontact: '12345678910',
+        receiveaddress: '测试地址',
+        order_status: 'W',
+        status:'A'
+      }
+      this.submitlist(list, i);
+    }
+
+    orderapi.updatemoney({ id: this.Base.getMyData().employeeinfo.id, money:sumprice}, (updatemoney)=>{
+       
+    })
+    
+  }
+
+  submitlist(json,i){
+
+    var that = this;
+    var orderapi = new OrderApi();
+    var id=[];
+    setTimeout(() => {
+      orderapi.settle(json, (settle) => {
+
+
+       wx.navigateTo({
+         url: '/pages/jiaoyisuccess/jiaoyisuccess'
+       })
+        //console.log(settle.return)
+       // this.Base.setMyData({ settle: settle.return})
+      })
+
+      //id.push(this.Base.getMyData().settle)
+
+      console.log(id)
+      // wx.navigateTo({
+      //   url: '/pages/shopcar/shopcar'
+      // })
+    }, i * 300)
+    
+  }
+  
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -185,7 +146,12 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindyou = content.bindyou;
 body.bindtijiao = content.bindtijiao;
-body.confirm = content.confirm;
+body.confirm = content.confirm; 
+
+body.submit = content.submit;
+body.submitlist = content.submitlist;
+
+body.check = content.check; 
 
 body.bindreduce = content.bindreduce;
 body.bindadd = content.bindadd;

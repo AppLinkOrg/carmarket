@@ -1,9 +1,9 @@
 <view class="bg-white padding-20 top">
 
-  <view class="flex-row txt-black h5">订单编号：{{quoteinfo.quotenumber}}</view>
+  <view class="flex-row txt-black h5">报价单编号：{{quoteinfo.quotenumber}}</view>
   <view wx:if='{{quoteinfo.vincode!=""}}' class="flex-row txt-black margin-top-10 margin-right-20">VIN码：{{quoteinfo.vincode}}</view>
 
-  <view class="flex-row" wx:if='{{quoteinfo.quotestatus!="Q"}}'>
+  <view class="flex-row" >
 
     <view class="flex-row margin-top margin-left-55" data-chakan='C' bindtap="bindchakan">
       <view class=" btnone  h4 {{chakan=='C'?'bg-bt':'bg-white'}}">
@@ -100,7 +100,6 @@
           </view>
 
 
-
           <view class="flex-row flex-center margin-top-10">
             <view class="h5 flex-1">{{item.quality}}</view>
             <view class="h6">{{item.address}}</view>
@@ -153,14 +152,14 @@
       <view class="h5">客服</view>
     </view>
     <view class="flex-1"></view>
-    <view class="flex-row flex-column">
+    <view class="flex-row flex-column" bindtap="tocar">
       <image src="{{uploadpath}}resource/{{res.shopcar}}" class="icon-17"></image>
       <view class="h5">购物车</view>
     </view>
     <view class="flex-1"></view>
     <view class="buy flex-row flex-center">
       <view class="bg-orange flex-1 text-center txt-white h5" style="height:80rpx;line-height:80rpx;" bindtap="addcar">加入购物车</view>
-      <view class="bg-red flex-1 text-center txt-white h5" style="height:80rpx;line-height:80rpx;">下单</view>
+      <view class="bg-red flex-1 text-center txt-white h5" style="height:80rpx;line-height:80rpx;" bindtap="addcar">下单</view>
     </view>
 
   </view>
