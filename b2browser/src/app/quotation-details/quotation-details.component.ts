@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 import { OrderApi } from 'src/providers/order.api';
+import { EnterpriseApi } from 'src/providers/enterprise.api';
 
 @Component({
   selector: 'app-quotation-details',
   templateUrl: './quotation-details.component.html',
   styleUrls: ['./quotation-details.component.scss'],
-  providers:[InstApi,OrderApi]
+  providers:[InstApi,OrderApi,EnterpriseApi]
 })
 export class QuotationDetailsComponent extends AppBase  {
 
@@ -17,7 +18,8 @@ export class QuotationDetailsComponent extends AppBase  {
     public router: Router,
     public activeRoute: ActivatedRoute,
     public instApi:InstApi,
-    public orderApi:OrderApi
+    public orderApi:OrderApi,
+    public enterpriseApi:EnterpriseApi,
   ) { 
     super(router,activeRoute,instApi);
   }
@@ -31,28 +33,44 @@ export class QuotationDetailsComponent extends AppBase  {
  
 
   addConfir = false;
+  employee_id=''
+  employee_id_name = ''
+  enterprise_id_name=''
 
   onMyShow(){
+
+    var a = this.orderApi
+
     
     this.activeRoute.queryParams.subscribe(queryParams=>{
+      console.log(queryParams)
       this.id = queryParams.id
-    })
-    var a = this.orderApi
-    a.quoteinfo({ id: this.id }).then((quoteinfo:any)=>{
+      this.employee_id=queryParams.employee_id
+      this.employee_id_name = queryParams.employee_id_name
+      this.enterprise_id_name = queryParams.enterprise_id_name
 
-      this.quoteinfo = quoteinfo;
-      this.fittinglist = quoteinfo.fittingsitem;
-      for(let i=0;i<quoteinfo.fittingsitem.length;i++){
-        if(quoteinfo.fittingsitem[i].quoteitems.length != 0){
-     
-          quoteinfo.fittingsitem[i].quoteitems = []
+      a.quoteinfo({ id: this.id }).then((quoteinfo:any)=>{
+      
+        this.quoteinfo = quoteinfo;
+        this.quoteinfo.employee_id = this.employee_id
+        this.quoteinfo.employee_id_name = this.employee_id_name
+        this.quoteinfo.enterprise_id_name = this.enterprise_id_name
+
+        this.fittinglist = quoteinfo.fittingsitem;
+        for(let i=0;i<quoteinfo.fittingsitem.length;i++){
+          if(quoteinfo.fittingsitem[i].quoteitems.length != 0){
+       
+            quoteinfo.fittingsitem[i].quoteitems = []
+          }
+  
         }
+        console.log(this.quoteinfo)
+        console.log(this.fittinglist)
+       
+      })
 
-      }
-      console.log(quoteinfo)
-      console.log(this.fittinglist)
-     
     })
+    
 
     
 
@@ -147,8 +165,10 @@ export class QuotationDetailsComponent extends AppBase  {
           standby_time: (this.list[i].standby_time),
           guarantee: (this.list[i].guarantee),
           remarks_infor: (this.list[i].remarks_infor),
-          enterprise_id: enterprise_id
+          enterprise_id: enterprise_id,
+          employee_id: this.employee_id
         }
+        console.log(this.employee_id,'aaaa')
 
         this.fitting(lists,i)
 
@@ -177,7 +197,7 @@ export class QuotationDetailsComponent extends AppBase  {
   editStatus(){
     var a = this.orderApi
     this.quoteinfo.quotestatus = "W"
-    a.editstatus({ id: this.quoteinfo.id, quotestatus: this.quoteinfo.quotestatus,status: this.quoteinfo.status}).then((editstatus:any)=>{
+    a.editstatus({ id: this.quoteinfo.id, quotestatus: this.quoteinfo.quotestatus,status: this.quoteinfo.status,}).then((editstatus:any)=>{
       console.log(editstatus)
       if(editstatus.code == '0'){
 
@@ -193,8 +213,6 @@ export class QuotationDetailsComponent extends AppBase  {
         }
     })
 
-
-    
 
   }
 

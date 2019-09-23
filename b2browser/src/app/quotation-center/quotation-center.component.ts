@@ -42,8 +42,9 @@ export class QuotationCenterComponent extends AppBase  {
     isshow = true
 
     enterprise_id = ''
+    enterprise_id_name=''
     employee_id = ''
-
+    employee_id_name = ''
   onMyShow(){
 
 
@@ -53,6 +54,8 @@ export class QuotationCenterComponent extends AppBase  {
       console.log(employeeinfo)
       this.enterprise_id = employeeinfo.enterprise_id
       this.employee_id = employeeinfo.id
+      this.employee_id_name = employeeinfo.name
+      this.enterprise_id_name = employeeinfo.enterprise.name
     })
 
     a.quotelist({ }).then((list:any)=>{
@@ -317,7 +320,10 @@ export class QuotationCenterComponent extends AppBase  {
   tiaozhuan(itemId){
     this.router.navigate(['quotationDetails'],{
       queryParams: {
-        id: itemId
+        id: itemId,
+        employee_id: this.employee_id,
+        employee_id_name: this.employee_id_name,
+        enterprise_id_name: this.enterprise_id_name
       }
     })
   }
@@ -325,7 +331,8 @@ export class QuotationCenterComponent extends AppBase  {
   tiaozhuan2(itemId){
     this.router.navigate(['detailsOfQuotedPrice'],{
       queryParams: {
-        id: itemId
+        id: itemId,
+       
       }
     })
   }
@@ -371,11 +378,11 @@ export class QuotationCenterComponent extends AppBase  {
 
   Previous() {
     this.selectPage(this.selPage - 1);
-  };
+  }
 
   Next () {
     this.selectPage(this.selPage + 1);
-  };
+  }
 
   fristPage(){
     this.selectPage(this.selPage = 1)

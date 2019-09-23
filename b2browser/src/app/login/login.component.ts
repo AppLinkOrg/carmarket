@@ -61,7 +61,7 @@ export class LoginComponent   extends AppBase  {
           window.localStorage.setItem("token",token);
         }
         window.sessionStorage.setItem("token",token);
-        this.navigate("");
+        this.navigate("storeHome");
       }else{
         console.log('aaaa')
         this.submitresult=res.return;

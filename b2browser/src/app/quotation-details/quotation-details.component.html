@@ -21,7 +21,7 @@
                 <div class="card-body">
                 <div class="border-dep-gray" *ngIf='quoteinfo !==null'>
                     <div class="flex-row">
-                        <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">公司名称</span><span>{{quoteinfo.corporate_name}}</span>
+                        <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">公司名称</span><span>{{quoteinfo.enterprise_id_name}}</span>
                     </div>
                     <div class="flex-row">
                         <div class="flex-4">
@@ -46,7 +46,7 @@
                     <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
                     <div class="flex-row margin-bottom-3">
                         <div class="flex-1">
-                            <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{quoteinfo.quote_person}}</span>
+                            <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{quoteinfo.employee_id_name}}</span>
                         </div>        
                         <div class="flex-2">
                             <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red"  *ngIf='quoteinfo.invoice_demand=="是"'>需要发票</span>
