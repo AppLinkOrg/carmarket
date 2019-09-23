@@ -52,6 +52,8 @@
 
 </view>
 
+<view style="height:200rpx"></view>
+
 <view class="bg-white bott">
   <view class="flex-row margin-top-20 padding-bottom-20">
     <image class="icon margin-left-20 margin-top-20" src="{{uploadpath}}resource/{{res.zhong}}"></image>

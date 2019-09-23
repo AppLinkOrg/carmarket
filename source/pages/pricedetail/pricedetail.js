@@ -20,6 +20,7 @@ class Content extends AppBase {
   constructor() {
     super();
   }
+  
   onLoad(options) {
     this.Base.Page = this;
     //options.id = 1;
@@ -193,6 +194,7 @@ class Content extends AppBase {
     for (var i = 0; i < shopcar.length; i++) {
       var list = {
         enterprise_id: shopcar[i].enterprise_id,
+        fittings_id: shopcar[i].fittings_id,
         supplier: shopcar[i].company,
         parts: shopcar[i].name,
         quality: shopcar[i].quality,

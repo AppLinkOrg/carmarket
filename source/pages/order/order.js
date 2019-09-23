@@ -13,22 +13,22 @@ class Content extends AppBase {
     //options.id=5;
    
     this.Base.setMyData({
-      order: "B"
-
+      order: "A" 
     });
   }
   onMyShow() {
     var orderapi = new OrderApi();
-    // orderapi.mylist({
-    //   status: 'A,B',
-    // }, (mylist) => {
-    //   this.Base.setMyData({
-    //     mylist
-    //   })
-    // })
 
     orderapi.mylist({
-      status: 'L',
+      order_status: 'W',
+    }, (daifukuan) => {
+      this.Base.setMyData({
+        daifukuan
+      })
+    })
+
+    orderapi.mylist({
+      order_status: 'L',
     }, (daifahuo) => {
       this.Base.setMyData({
         daifahuo
@@ -36,7 +36,7 @@ class Content extends AppBase {
     })
 
     orderapi.mylist({
-      status: 'M',
+      order_status: 'M',
     }, (daishouhuo) => {
       this.Base.setMyData({
         daishouhuo
@@ -44,23 +44,22 @@ class Content extends AppBase {
     })
 
     orderapi.mylist({
-      status: 'N',
+      order_status: 'N',
     }, (yiwancheng) => {
       this.Base.setMyData({
-      
         yiwancheng
-      })
+      }) 
     })
 
     orderapi.mylist({
-      status: 'E',
+      order_status: 'E',
     }, (yiquxiao) => {
       this.Base.setMyData({
         yiquxiao
       })
     })
 
-   
+    
   }
   
   setPageTitle() {
@@ -94,7 +93,7 @@ class Content extends AppBase {
 
   bindorder(e) {
     var orderid = e.currentTarget.dataset.order;
-    console.log(orderid, "选中的节点值");
+    //console.log(orderid, "选中的节点值");
     this.Base.setMyData({
       order: orderid
     });
