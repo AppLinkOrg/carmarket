@@ -56,7 +56,7 @@ class Content extends AppBase {
         c: res.data.mcid,
         biaoti: res.title[0] + res.title[1] + res.title[2] + res.title[3] + res.title[4]
       })
-      console.log(res.data.vin, res.data.brandCode, res.data.mcid, "输出");
+      console.log(res.data.vin, res.data.brandCode, res.data.mcid, res,"输出");
       if (res.code == 0) {
         that.Base.info(res.msg);
       }
