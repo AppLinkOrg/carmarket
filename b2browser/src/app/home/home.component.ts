@@ -44,14 +44,26 @@ export class HomeComponent  extends AppBase  {
   obj = null
 
   onMyShow(){
-    this.enterpriseApi.employeeinfo({ }).then((employeeinfo:any)=>{
-      console.log(employeeinfo)
-      this.enterprise_id = employeeinfo.enterprise_id
-      this.employee_id = employeeinfo.id
-      this.position = employeeinfo.position
 
-      this.obj = employeeinfo
+    this.activeRoute.queryParams.subscribe((aa)=>{
+      console.log(aa)
+
+      if(aa.result == 'yes'){
+        this.enterpriseApi.employeeinfo({ }).then((employeeinfo:any)=>{
+          console.log(employeeinfo)
+          this.enterprise_id = employeeinfo.enterprise_id
+          this.employee_id = employeeinfo.id
+          this.position = employeeinfo.position
+    
+          this.obj = employeeinfo
+        })
+      }
+      
+
     })
+
+  
+
   }
 
   toggleSidebar(){

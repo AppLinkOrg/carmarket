@@ -61,9 +61,15 @@ export class QuotationDetailsComponent extends AppBase  {
           if(quoteinfo.fittingsitem[i].quoteitems.length != 0){
        
             quoteinfo.fittingsitem[i].quoteitems = []
+
           }
   
         }
+
+        for(let j=0;j<this.fittinglist.length;j++){
+          this.fittinglist[j].price = ''
+        }
+
         console.log(this.quoteinfo)
         console.log(this.fittinglist)
        
@@ -77,9 +83,11 @@ export class QuotationDetailsComponent extends AppBase  {
   }
 
 
+  tianxie = false
   addQuote(item){
     console.log(item)
 
+    this.tianxie = false
     
     if(item.count >= 2){
 
@@ -104,6 +112,20 @@ export class QuotationDetailsComponent extends AppBase  {
       remarks_infor: item.remarks_infor,
       count: item.count
     }
+
+  
+    for(let key in addList){
+      if(addList[key] == ''){
+        this.tianxie = true
+        return
+      }
+    }
+
+      item.quality = ''
+      item.standby_time = ''
+      item.guarantee = ''
+      item.price = ''
+      item.remarks_infor = ''
 
    
     if(addList.price !=0 ){

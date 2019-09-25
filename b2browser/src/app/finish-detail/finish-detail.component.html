@@ -114,7 +114,9 @@
                             <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{list.employee_name}}</span>
                         </div>        
                         <div class="flex-2">
-                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red" *ngIf='list.needinvoice'>需要发票</span>
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span>
+                            <span class="txt-red" *ngIf='list.needinvoice=="是"'>需要发票</span>
+                            <span *ngIf='list.needinvoice=="否"'>不需要发票</span>
                         </div>
                     </div>
                 </div>

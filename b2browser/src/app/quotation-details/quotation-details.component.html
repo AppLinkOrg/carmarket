@@ -50,6 +50,7 @@
                         </div>        
                         <div class="flex-2">
                             <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red"  *ngIf='quoteinfo.invoice_demand=="是"'>需要发票</span>
+                            <span *ngIf='quoteinfo.invoice_demand=="否"'>不需要发票</span>
                         </div>
                     </div>
                 </div>
@@ -65,7 +66,15 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;报价处理</h6>
+                    <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;报价处理</h6>
+                </div>
+                <div *ngIf='tianxie' class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div  class="modal-dialog margin-top-tl " role="document">
+                           
+                        <span class="txt-white h4">信息未填完</span>
+                            
+                    </div>
+                   
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -109,30 +118,30 @@
                                         </td>
                                         <td>
                                             <!-- <div class="table-box">{{item.standby_time}}</div> -->
-                                            <input type="text" class="table-box"  [(ngModel)]='item.standby_time'>
+                                            <input type="text" class="table-box" [(ngModel)]='item.standby_time'>
                                         </td>
                                         <td>
                                             <!-- <div class="table-box">{{item.guarantee}}</div> -->
-                                            <input type="text" class="table-box"  [(ngModel)]='item.guarantee'>
+                                            <input type="text" class="table-box" [(ngModel)]='item.guarantee'>
                                         </td>
                                         <td>
                                             <!-- <div class="table-box">{{item.price}}</div> -->
-                                            <input type="text" class="table-box"  [(ngModel)]='item.price'>
+                                            <input type="text" class="table-box" [(ngModel)]='item.price'>
                                         </td>
                                         <td>
                                             <!-- <div class="table-box">{{item.remarks_infor}}</div> -->
-                                            <input type="text" class="table-box" [(ngModel)]='item.remarks_infor'>
+                                            <input type="text" class="table-box"  [(ngModel)]='item.remarks_infor'>
                                         </td>
                                         <td>
-                                            <div>
-                                                <button class="btn btn-primary h5 addBtn" (click)="addQuote(item)">
-                                                    <a>新增一条报价</a>
+                                            <div style='min-width: 86px'>
+                                                <button  data-toggle="modal" data-target="#myModal" class="btn btn-primary h5 addBtn" (click)="addQuote(item)">
+                                                    <a>新增报价</a>
                                                 </button>
                                             </div> 
                                         </td>
                                     </tr>
                                     <ng-container ngShow='item.count>1' >
-                                        <tr *ngFor='let list of item.quoteitems' >
+                                        <tr class="text-center" *ngFor='let list of item.quoteitems' >
                                             <td>{{list.quantity}}</td>
                                             <td>{{list.quality}}</td>
                                             <td>{{list.standby_time}}</td>
@@ -140,9 +149,9 @@
                                             <td>{{list.price}}</td>
                                             <td>{{list.remarks_infor}}</td>
                                             <td>
-                                                <div>
+                                                <div style='min-width: 86px'>
                                                     <button class="btn btn-danger h5 addBtn" (click)="deleteQuote(list)">
-                                                        <a>删除该报价</a>
+                                                        <a>删除报价</a>
                                                     </button>
                                                 </div>
                                             </td>

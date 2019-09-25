@@ -82,9 +82,12 @@ export class ManagementCenterComponent extends AppBase  {
 
       this.employeeinfo.push(employeeinfo)
 
-      this.enterpriseApi.allenterprise({ }).then((allenterprise:any)=>{
-    
-        this.allenterprise = allenterprise
+      this.enterpriseApi.allenterprise({enterprise_id:this.enterprise_id }).then((allenterprise:any)=>{
+        
+
+        this.allenterprise = allenterprise.filter((item)=>{
+          return item.position != 'B'
+        })
         console.log(this.allenterprise)
       })
 

@@ -47,17 +47,23 @@ export class StoreHomeComponent extends AppBase  {
     
     var a = this.orderApi
 
+    // this.activeRoute.queryParams.subscribe((list)=>{
+    //   console.log(list)
+    // })
+
+
     this.enterpriseApi.employeeinfo({ }).then((employeeinfo:any)=>{
       console.log(employeeinfo)
       this.enterprise_id = employeeinfo.enterprise_id
       this.position = employeeinfo.position
-      // if(employeeinfo.power == 'Y'){
-      //   console.log('aaa')
-      //   this.employee_id = ''
-      // }else{
-      //   console.log('bb')
+      
+      if(employeeinfo.power == 'Y'){
+        console.log('aaa')
+        this.employee_id = ''
+      }else{
+        console.log('bb')
         this.employee_id = employeeinfo.id
-      // }
+      }
 
         a.mylist({ enterprise_id: this.enterprise_id,employee_id:this.employee_id }).then((mylist:any)=>{
           

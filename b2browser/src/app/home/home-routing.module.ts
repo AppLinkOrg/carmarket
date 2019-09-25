@@ -20,7 +20,6 @@ import { AchievementComponent } from '../achievement/achievement.component';
 import { EmployeeManagementComponent } from '../employee-management/employee-management.component';
 import { WaitingComponent } from '../waiting/waiting.component';
 
-
 const routes: Routes = [
   {
     path: '',

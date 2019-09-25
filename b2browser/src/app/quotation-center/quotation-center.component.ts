@@ -56,21 +56,27 @@ export class QuotationCenterComponent extends AppBase  {
       this.employee_id = employeeinfo.id
       this.employee_id_name = employeeinfo.name
       this.enterprise_id_name = employeeinfo.enterprise.name
+
+
+
+      a.quotelist({ enterprise_id: this.enterprise_id}).then((list:any)=>{
+        this.list = list
+  
+        for(let i=0;i<this.list.length;i++){
+          this.list[i].index = i
+        }
+  
+        this.length = this.list.length;
+        this.pagination(this.list,this.length);
+  
+      
+        console.log(this.list,this.length)
+      });
+
     })
 
-    a.quotelist({ }).then((list:any)=>{
-      this.list = list
-
-      for(let i=0;i<this.list.length;i++){
-        this.list[i].index = i
-      }
-
-      this.length = this.list.length;
-      this.pagination(this.list,this.length);
 
     
-      console.log(this.list,this.length)
-    });
 
       
      
@@ -93,7 +99,7 @@ export class QuotationCenterComponent extends AppBase  {
 
           var a=this.orderApi;
 
-          a.ignore({ employee_id: this.employee_id }).then((ignore:any)=>{
+          a.ignore({enterprise_id: this.enterprise_id, employee_id: this.employee_id }).then((ignore:any)=>{
             // this.ignore = ignore
           
             
@@ -118,7 +124,7 @@ export class QuotationCenterComponent extends AppBase  {
 
               }else {
 
-                a.quotelist({ }).then((list:any)=>{
+                a.quotelist({enterprise_id: this.enterprise_id }).then((list:any)=>{
 
                   var result=[];
                   for(let item of list){
@@ -169,7 +175,7 @@ export class QuotationCenterComponent extends AppBase  {
 
     var a=this.orderApi;
 
-    a.ignore({ employee_id: this.employee_id }).then((ignore:any)=>{
+    a.ignore({ enterprise_id: this.enterprise_id,employee_id: this.employee_id }).then((ignore:any)=>{
       // this.ignore = ignore
       console.log(ignore,'llll')
       console.log(ignore)
@@ -195,7 +201,7 @@ export class QuotationCenterComponent extends AppBase  {
 
         }else {
 
-          a.quotelist({ }).then((list:any)=>{
+          a.quotelist({ enterprise_id: this.enterprise_id}).then((list:any)=>{
 
             var result=[];
             for(let item of list){
@@ -251,7 +257,7 @@ export class QuotationCenterComponent extends AppBase  {
     }
     others[others.length-1].classList.remove('btn-active')
 
-    this.orderApi.ignore({}).then((ignore:any)=>{
+    this.orderApi.ignore({enterprise_id: this.enterprise_id,employee_id: this.employee_id}).then((ignore:any)=>{
       this.list = ignore;
       this.length = ignore.length;
       
@@ -279,7 +285,7 @@ export class QuotationCenterComponent extends AppBase  {
       others[i].classList.remove('btn-active')
     }
 
-    this.orderApi.quotelist({ }).then((list:any)=>{
+    this.orderApi.quotelist({ enterprise_id: this.enterprise_id }).then((list:any)=>{
 
       for(let i=0;i<list.length;i++){
         if(list[i].quotestatus === "W"){
