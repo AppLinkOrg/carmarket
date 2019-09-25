@@ -21,13 +21,20 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
+    var json = JSON.parse(this.Base.options.json)
     this.Base.setMyData({
-      fapiao: 'N',
+      fapiao: 'N', json
     })
+
+    var json = JSON.parse(this.Base.options.json);
+    
   }
   onMyShow() {
     var that = this;
-
+    
+    // for(var i=0;i<json.length;i++){
+    //   json[i].num=1
+    // }
   }
 
   bindimg() {
@@ -45,6 +52,17 @@ class Content extends AppBase {
 
 
   bindadd() {
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];   //当前页面
+    var prevPage = pages[pages.length - 2];  //上一个页面
+
+    //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+    var json = JSON.stringify(this.Base.getMyData().json)
+    
+    //不需要页面更新
+    prevPage.setData({
+      json: json
+    })
     wx.navigateBack({
       
     })
@@ -52,13 +70,40 @@ class Content extends AppBase {
 
 
   bindjian(e){
-    var index = e.currentTarget.dataset.id;
+    var type = e.currentTarget.dataset.type;
+    var idx = e.currentTarget.id; 
+    var json = this.Base.getMyData().json;
+    
+      if (type == 'add') {
+        json[idx].num++
+      } else {
+        if (json[idx].num<=1){
+          wx.showToast({
+            title: '数量不能低于1~',
+            icon:'none'
+          })
+          return;
+        }else{
+          json[idx].num--
+        }
+        
+      }
+ 
+    this.Base.setMyData({ json })
+    
 
   }
+  
+  bindbeizhu(e) {
+    var idx = e.currentTarget.id;
+    var json = this.Base.getMyData().json;
 
+    json[idx].beizhu=e.detail.value;
 
-  bindjia(){
-    var index = e.currentTarget.dataset.id;
+    this.Base.setMyData({ json: json })
+    
+    // console.log(e);
+    // console.log(e.currentTarget.id);
 
   }
 
@@ -144,6 +189,8 @@ class Content extends AppBase {
       })
     }
   }
+
+
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -153,8 +200,9 @@ body.bindimg = content.bindimg;
 body.bindfabu = content.bindfabu;
 body.bindadd = content.bindadd;
 body.bindfapiao = content.bindfapiao;
-body.bindjian = content.bindjian;
-body.bindjia = content.bindjia;
+body.bindjian = content.bindjian; 
+
+body.bindbeizhu = content.bindbeizhu; 
 
 body.bindchose = content.bindchose;
 body.bindxuanb = content.bindxuanb;

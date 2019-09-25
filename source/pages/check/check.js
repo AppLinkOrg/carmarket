@@ -21,31 +21,43 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
+ 
     this.Base.setMyData({
-      vin:this.Base.options.vin,
-      brandCode:this.Base.options.brandCode,
-      mcid:this.Base.options.mcid,
-      biaoti:this.Base.options.biaoti,
-      addlist:[]
+      // vin:this.Base.options.vin,
+      // brandCode:this.Base.options.brandCode,
+      // mcid:this.Base.options.mcid,
+      // biaoti:this.Base.options.biaoti,
+    //  addlist:[] 
     })
+
+    this.bindpart();
   }
   onMyShow() {
     var that = this;
     var carapi = new CarApi();
+    
+    
+    if (this.Base.getMyData().json!=undefined){
+      var addlist2 = JSON.parse(this.Base.getMyData().json);
+      //console.log(addlist,"dddddddddd");
+      this.Base.getMyData({ addlist2 })
+    }else{
+      this.Base.setMyData({ addlist: [] })
+    }
+    
+  // carapi.searchhistory({}, (searchhistory) => {
+    //   this.Base.setMyData({
+    //     searchhistory
+    //   })
+    // })
 
-    carapi.searchhistory({}, (searchhistory) => {
-      this.Base.setMyData({
-        searchhistory
-      })
-    })
+    // carapi.addhistory({}, (addhistory) => {
+    //   this.Base.setMyData({
+    //     addhistory
+    //   })
+  // })
 
-    carapi.addhistory({}, (addhistory) => {
-      this.Base.setMyData({
-        addhistory
-      })
-    })
-
-    this.bindpart();
+    
 
   }
   setPageTitle(instinfo) {
@@ -92,38 +104,37 @@ class Content extends AppBase {
   bindclear(e){
    var id=e.currentTarget.id;
    var addlist = this.Base.getMyData().addlist;
-    var index = e.currentTarget.dataset.index; 
+   var index = e.currentTarget.dataset.index; 
    var groupslist = this.Base.getMyData().groupslist;
 
     console.log(id, "来来来",index);
-//return;
+   //return;
     addlist.splice(index, 1);
     groupslist[id].check = true;
     this.Base.setMyData({ addlist, groupslist })
   }
-  bindclick() {
-    // var that = this;
-    // var api = new CarApi();
-    // api.vin({
-    //   vin: vin
-    // }, (res) => {
-    //   this.Base.setMyData({
-
-    //   })
-    // })
-  }
+ 
 
   bindadd(e){
     var that=this;
     var idx = e.currentTarget.id;
     var name = e.currentTarget.dataset.name; 
-    var addlist = this.Base.getMyData().addlist;
+    
     var groupslist = this.Base.getMyData().groupslist;
-    console.log(name,idx);
+    
+    if (this.Base.getMyData().json != undefined){
+      var addlist = JSON.parse(this.Base.getMyData().json);
+      console.log(addlist, "new");
+    } else{
+      var addlist = this.Base.getMyData().addlist;
+    }
+//return;
 
     var list={
       id: idx,
-      name: name
+      name: name,
+      num:1,
+      beizhu:''
     };
 
     groupslist[idx].check=false;
@@ -134,8 +145,13 @@ class Content extends AppBase {
   }
 
   bindnext() {
+    var that=this;
+    var addlist = this.Base.getMyData().addlist;
     wx.navigateTo({
-      url: '/pages/findadd/findadd',
+      url: '/pages/findadd/findadd?json=' + JSON.stringify(this.Base.getMyData().addlist),
+      // success: function (res) {
+      //   that.Base.setMyData({ addlist:[]})
+      // }
     })
   }
 }
@@ -146,7 +162,7 @@ body.onMyShow = content.onMyShow;
 body.bindpart = content.bindpart;
 body.binddelect = content.binddelect;
 body.bindnext = content.bindnext;
-body.bindclick = content.bindclick;
+ 
 
 body.bindadd = content.bindadd; 
 
