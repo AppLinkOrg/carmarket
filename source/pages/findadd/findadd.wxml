@@ -1,20 +1,24 @@
-
-
-
 <view class="bg-white padding-20" wx:for='{{json}}' wx:key='k' wx:for-index='idx'>
   <view class=" flex-row margin-top-30">
     <view>{{idx+1}}</view>
     <view class="margin-left-20 ">{{item.name}}</view>
     <view class="flex-1"></view>
-    <image class="icon  " src='{{uploadpath}}resource/{{res.jian}}' bindtap="bindjian" data-type='less'  id="{{idx}}"></image>
+    <image class="icon  " src='{{uploadpath}}resource/{{res.jian}}' bindtap="bindjian" data-type='less' id="{{idx}}"></image>
     <view class="margin-left-10 margin-right-10 bgbtn">{{item.num}}</view>
-    <image class="icon  margin-right-30" src='{{uploadpath}}resource/{{res.jia}}' bindtap="bindjian" data-type='add'  id="{{idx}}"></image>
+    <image class="icon  margin-right-30" src='{{uploadpath}}resource/{{res.jia}}' bindtap="bindjian" data-type='add' id="{{idx}}"></image>
   </view>
-  <view class="flex-row margin-left-100 margin-top-30 margin-bottom-20">
-    <image class="icon-25  margin-right-30" src='{{uploadpath}}resource/{{res.cemera}}' bindtap="bindimg"></image>
-   
+  <view class="flex-row  margin-30 ">
+
+    <view class="  margin-right-30 padding-10" style=" position: relative;" >
+      <image class="icon-25   " wx:if='{{item.photo.length==0}}' src='{{uploadpath}}resource/{{res.cemera}}' bindtap="bindimg" id="{{idx}}"></image>
+      <image class="icon-25  " wx:if='{{item.photo.length>0}}' src='{{uploadpath}}fittings/{{item.photo[0]}}' bindtap="bindimg" id="{{idx}}"></image>
+
+      <view class="h6 shuzi" wx:if='{{item.photo.length>1}}'>{{item.photo.length}}</view>
+    </view>
+
+    <!-- bindinput="bindbeizhu" -->
     <view class="inputt">
-      <input class="margin-left-20 h5 " value="{{item.beizhu}}" placeholder="可输入备注" bindinput="bindbeizhu" id="{{idx}}"></input>
+      <input class="margin-left-20 h5 " bindtap="bindimg" disabled="{{true}}" value="{{item.beizhu}}" placeholder="可输入备注" id="{{idx}}"></input>
     </view>
 
   </view>

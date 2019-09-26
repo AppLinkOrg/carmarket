@@ -30,20 +30,23 @@ class Content extends AppBase {
     //  addlist:[] 
     })
 
+    if (this.Base.getMyData().json != undefined) {
+      var addlist2 = JSON.parse(this.Base.getMyData().json);
+
+      this.Base.getMyData({ addlist2 })
+    } else {
+      this.Base.setMyData({ addlist: [] })
+    }
+
     this.bindpart();
+
   }
   onMyShow() {
     var that = this;
     var carapi = new CarApi();
     
     
-    if (this.Base.getMyData().json!=undefined){
-      var addlist2 = JSON.parse(this.Base.getMyData().json);
-      //console.log(addlist,"dddddddddd");
-      this.Base.getMyData({ addlist2 })
-    }else{
-      this.Base.setMyData({ addlist: [] })
-    }
+
     
   // carapi.searchhistory({}, (searchhistory) => {
     //   this.Base.setMyData({
@@ -134,7 +137,8 @@ class Content extends AppBase {
       id: idx,
       name: name,
       num:1,
-      beizhu:''
+      beizhu: '', 
+      photo: ''
     };
 
     groupslist[idx].check=false;

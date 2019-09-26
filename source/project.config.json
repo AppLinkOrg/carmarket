@@ -47,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 27,
+			"current": 28,
 			"list": [
 				{
 					"id": -1,
@@ -242,6 +242,13 @@
 					"id": -1,
 					"name": "pages/pricedetail/pricedetail",
 					"pathName": "pages/pricedetail/pricedetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/serchgo/serchgo",
+					"pathName": "pages/serchgo/serchgo",
 					"scene": null
 				}
 			]

@@ -21,26 +21,44 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
-    var json = JSON.parse(this.Base.options.json)
+    // var json = JSON.parse(this.Base.options.json)
     this.Base.setMyData({
-      fapiao: 'N', json
+      fapiao: 'N'
     })
-
-    var json = JSON.parse(this.Base.options.json);
+ 
     
   }
   onMyShow() {
     var that = this;
+
+    if (this.Base.getMyData().list==undefined){
+      var json = JSON.parse(this.Base.options.json);
+      this.Base.setMyData({
+        json
+      })
+    }else{
+      var json = JSON.parse(this.Base.getMyData().list);
+      this.Base.setMyData({
+        json
+      })
+    }
+
     
     // for(var i=0;i<json.length;i++){
     //   json[i].num=1
     // }
+
   }
 
-  bindimg() {
+  bindimg(e) {
+    var idx=e.currentTarget.id;
+    var json = this.Base.getMyData().json;
+   // var info = json[idx];
+
     wx.navigateTo({
-      url: '/pages/serchgo/serchgo',
+      url: '/pages/serchgo/serchgo?info=' + JSON.stringify(json) + '&idx=' + idx,
     })
+
   }
 
 

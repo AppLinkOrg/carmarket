@@ -8,12 +8,7 @@ page {
 }
 
 .put {
-  border-radius: 10rpx;
-  margin-left: 30rpx;
-  margin-right: 30rpx;
-  margin-top: 20rpx;
-  height: 280rpx;
-  width: 92%;
+
 }
 
 .btnn {
