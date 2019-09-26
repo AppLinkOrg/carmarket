@@ -40,6 +40,12 @@ export class SendGoodsDetailComponent extends AppBase  {
       this.list = detailList
       this.orderItem = detailList.orderitems;
       console.log(this.list)
+
+      this.orderApi.quoteinfo({id: this.list.quote_id}).then((quoteinfo:any)=>{
+        console.log(quoteinfo)
+        this.list.quote_time = quoteinfo.quote_time
+      })
+
     })
    
 

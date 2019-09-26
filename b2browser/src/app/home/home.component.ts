@@ -56,6 +56,7 @@ export class HomeComponent  extends AppBase  {
           this.position = employeeinfo.position
     
           this.obj = employeeinfo
+          
         })
       }
       
@@ -69,5 +70,6 @@ export class HomeComponent  extends AppBase  {
   toggleSidebar(){
     this.toggle=!this.toggle;
   }
+
 
 }

@@ -52,7 +52,7 @@
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                    <div class="border-dep-gray padding-bottom-3">
+                    <div class="border-dep-gray padding-bottom-3" *ngIf='list!=null'>
                         <div class="flex-row">
                             <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">地址</span><span>{{list.receiveaddress}}</span>
                         </div>
@@ -84,7 +84,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                <div class="border-dep-gray">
+                <div class="border-dep-gray" *ngIf='list!=null'>
                     <div class="flex-row">
                         <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">公司名称</span><span>{{list.enterprise_name}}</span>
                     </div>
@@ -96,13 +96,15 @@
                             <span class="bg-dep-gray txt-black padding-three-words margin-right-20">车架号</span><span>{{list.vin}}</span>
                         </div>
                         <div class="flex-4">
-                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span><span>{{list.remarks}}</span>
+                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span>
+                            <span *ngIf='list.remarks != ""'>{{list.remarks}}</span>
+                            <span *ngIf='list.remarks == ""'>无</span>
                         </div>    
                     </div>
                     <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
                     <div class="flex-row">
                         <div class="flex-1">
-                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">报价时间</span><span>{{list.quoteconfirm_time}}</span>
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">报价时间</span><span>{{list.quote_time}}</span>
                         </div>        
                         <div class="flex-2">
                             <span class="bg-dep-gray txt-black padding-two-words margin-right-20">车型</span><span>{{list.carname}}</span>
@@ -196,7 +198,7 @@
     
             <!-- Area Chart -->
             <div class="col-lg-12">
-            <div class="card show mb-4">
+            <div class="card show mb-4" *ngIf='list!=null'>
                     <div class="card-body flex-row box-auto flex-bottom">
                     <span class="h4-5">总计:</span>
                     <span class="txt-red h3 margin-right-20 margin-left-10">￥{{list.totalamount}}</span>

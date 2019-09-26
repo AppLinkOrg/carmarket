@@ -287,21 +287,9 @@ changeSwitch(e,list){
 
   }
 
-  applytixian(totalMon){
+  applytixian(){
 
-    let account_money =  totalMon - parseInt(totalMon)
-    console.log(account_money)
-    this.enterpriseApi.applymoney({id: this.enterprise_id,account_money: account_money}).then((applymoney:any)=>{
-      console.log(applymoney)
-      if(applymoney.code == '0'){
-        // this.onMyShow()
-        for(let i=0;i<this.enterpriseinfo.length;i++){
-          if(this.enterpriseinfo[i].id == this.enterprise_id){
-            this.enterpriseinfo[i].account_money = account_money
-          }
-        }
-      }
-    })
+   
 
   }
 

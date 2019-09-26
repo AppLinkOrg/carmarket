@@ -24,7 +24,7 @@ export class FinishDetailComponent extends AppBase  {
   }
    
   id = ''
-  list = []
+  list = null
   orderItem = []
 
   onMyShow(){
@@ -32,12 +32,21 @@ export class FinishDetailComponent extends AppBase  {
 
     this.activeRoute.queryParams.subscribe(queryParams=>{
       this.id = queryParams.id
-    })
-    var a = this.orderApi
-    a.detail({ id: this.id }).then((detailList:any)=>{
-     
-      this.list = detailList
-      this.orderItem = detailList.orderitems;
+      
+      var a = this.orderApi
+      a.detail({ id: this.id }).then((detailList:any)=>{
+      
+        this.list = detailList
+        this.orderItem = detailList.orderitems;
+
+        console.log(this.list)
+
+        this.orderApi.quoteinfo({id: this.list.quote_id}).then((quoteinfo:any)=>{
+          console.log(quoteinfo)
+          this.list.quote_time = quoteinfo.quote_time
+        })
+
+      })
     })
      
   }

@@ -20,8 +20,6 @@ export class LoginComponent   extends AppBase  {
   loginname='';
   password='';
   isremember=false;
-  isforget = false;
-  inverify = false;
 
 
   constructor(
@@ -35,21 +33,27 @@ export class LoginComponent   extends AppBase  {
     this.isLoginPage=true;
   }
   onMyShow(){ 
-    setTimeout(() => {
-      this.loginname=window.localStorage.getItem("lastloginname");
-      if(this.loginname==null){
-        this.loginname="";
-      }
-      this.password=window.localStorage.getItem("lastpassword");
-      if(this.password==null){
-        this.password="";
-      }else {
-        this.isremember = true
-      }
-    });
-    console.log(this.isremember)
-    console.log(window.localStorage.getItem("lastpassword"))
-    console.log(window.localStorage.getItem("lastloginname"))
+
+
+      setTimeout(() => {
+        this.loginname=window.localStorage.getItem("lastloginname");
+        if(this.loginname==null){
+          this.loginname="";
+        }
+        this.password=window.localStorage.getItem("lastpassword");
+        if(this.password==null){
+          this.password="";
+          this.isremember = false;
+        }else if (this.password != ''){
+          this.isremember = true;
+        }
+      });
+      console.log(this.isremember)
+      console.log(window.localStorage.getItem("lastpassword"))
+      console.log(window.localStorage.getItem("lastloginname"))
+
+
+   
   }
   submitresult="";
   error = ''
@@ -68,10 +72,15 @@ export class LoginComponent   extends AppBase  {
         window.localStorage.setItem("lastloginname",this.loginname);
         
         if(this.isremember==true){
+          console.log('gggg')
           window.localStorage.setItem("lastpassword",this.password);
           window.localStorage.setItem("token",token);
+        }else {
+          console.log('ooo')
+          window.localStorage.setItem('lastpassword','');
+          window.sessionStorage.setItem("token",token);
         }
-        window.sessionStorage.setItem("token",token);
+       
         this.navigate("storeHome",{result: 'yes'});
         console.log(this.isremember)
         console.log( window.sessionStorage.getItem("token"))
@@ -91,57 +100,7 @@ export class LoginComponent   extends AppBase  {
     this.isOpen=false;
   }
 
-  forgetpass(){
-    this.isforget = true;
-  }
+ 
 
-  backlogin(){
-    this.isforget = false;
-  }
 
-  resetPwd(){
-    this.isforget = false;
-
-  }
-
-  telephone = ''
-
-  sendVerifyCode() {
-    
-
-    // this.memberApi.checkcanreg({ mobile: this.telephone }).then(ret => {
-    //   console.log(ret);
-
-    //   if (ret.code == "0") {
-    //     // this.inverify = true;
-    //     this.aliyunApi.sendverifycode({
-    //       mobile: this.mobile,
-    //       type: "register"
-    //     }).then(ret => {
-    //       console.log(ret);
-    //       if (ret.code == 0) {
-    //         this.reminder = 60;
-    //         this.show = 1;
-
-    //         this.c1 = "";
-    //         this.c2 = "";
-    //         this.c3 = "";
-    //         this.c4 = "";
-    //         //this.$refs["inputc1"].focus();
-
-    //         //var obj = this.ele.nativeElement.querySelector('#inputc1');
-    //         //obj.focus();
-
-    //         this.toast("验证码已发送，请注意查收");
-    //         this.diyici = true;
-    //         this.setInVerify();
-    //       } else {
-    //         this.toast("验证码发送失败，请稍后重试");
-    //       }
-    //     });
-    //   } else {
-    //     this.toast("手机号码已经被使用");
-    //   }
-    // });
-  }
 }

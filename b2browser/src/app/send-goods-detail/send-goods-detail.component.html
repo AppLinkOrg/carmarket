@@ -97,13 +97,15 @@
                                 <span class="bg-dep-gray txt-black padding-three-words margin-right-20">车架号</span><span>{{list.vin}}</span>
                             </div>
                             <div class="flex-4">
-                                <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span><span>{{list.remarks}}</span>
+                                <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span>
+                                <span *ngIf='list.remarks!=""'>{{list.remarks}}</span>
+                                <span *ngIf='list.remarks==""'>无</span>
                             </div>    
                         </div>
                         <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
                         <div class="flex-row">
                             <div class="flex-1">
-                                <span class="bg-dep-gray txt-black padding-four-words margin-right-20">报价时间</span><span>{{list.quoteconfirm_time}}</span>
+                                <span class="bg-dep-gray txt-black padding-four-words margin-right-20">报价时间</span><span>{{list.quote_time}}</span>
                             </div>        
                             <div class="flex-2">
                                 <span class="bg-dep-gray txt-black padding-two-words margin-right-20">车型</span><span>{{list.carname}}</span>
@@ -209,5 +211,5 @@
             </div>
             
         </div>
-    
+
     </div>

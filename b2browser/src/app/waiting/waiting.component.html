@@ -97,7 +97,9 @@
                                 <span class="bg-dep-gray txt-black padding-three-words margin-right-20">车架号</span><span>{{list.vin}}</span>
                             </div>
                             <div class="flex-4">
-                                <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span><span>{{list.remarks}}</span>
+                                <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span>
+                                <span *ngIf='list.remarks != ""'>{{list.remarks}}</span>
+                                <span *ngIf='list.remarks == ""'>无</span>
                             </div>    
                         </div>
                         <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
