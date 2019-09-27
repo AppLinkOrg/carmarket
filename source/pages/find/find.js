@@ -51,9 +51,9 @@ class Content extends AppBase {
       vin: vin
     }, (res) => {
       this.Base.setMyData({
-        a: res.data.vin,
-        b: res.data.brandCode,
-        c: res.data.mcid,
+        vin: res.data.vin,
+        brandCode: res.data.brandCode,
+        mcid: res.data.mcid,
         biaoti: res.title[0] + res.title[1] + res.title[2] + res.title[3] + res.title[4]
       })
       console.log(res.data.vin, res.data.brandCode, res.data.mcid, res,"输出");
@@ -79,10 +79,10 @@ class Content extends AppBase {
 
   }
   bindsearch(e) {
-    var vin = this.Base.getMyData().a;
+    var vin = this.Base.getMyData().vin;
     var biaoti = this.Base.getMyData().biaoti;
-    var brandCode = this.Base.getMyData().b
-    var mcid = this.Base.getMyData().c
+    var brandCode = this.Base.getMyData().brandCode
+    var mcid = this.Base.getMyData().mcid
     var api = new CarApi();
     console.log(vin, biaoti, "聊聊");
     wx.navigateTo({

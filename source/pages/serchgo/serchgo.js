@@ -11,7 +11,9 @@ import {
 import {
   CarApi
 } from "../../apis/car.api.js";
-
+import {
+  OrderApi
+} from "../../apis/order.api.js";
 
 
 class Content extends AppBase {
@@ -22,7 +24,7 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
-    
+
     var list = JSON.parse(this.Base.options.info);
     var info = list[this.Base.options.idx];
     if (info.photo.length > 0) {

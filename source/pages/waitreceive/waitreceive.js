@@ -32,7 +32,6 @@ class Content extends AppBase {
     orderapi.updatestatus({
       order_id: id,
       status: "N"
-
     }, (myd) => {
       this.Base.setMyData({
         myd

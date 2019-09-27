@@ -78,6 +78,8 @@ class Content extends AppBase {
 
   bindreceive(e) {
     var id = e.currentTarget.id;
+    console.log(id);
+    //return;
     wx.navigateTo({
       url: '/pages/waitreceive/waitreceive?id=' + id,
     })

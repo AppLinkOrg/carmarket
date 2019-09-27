@@ -34,13 +34,13 @@
     <view class=''>暂时没有相关订单</view>
   </view>
   <view class='box ' wx:for="{{daifukuan}}"   wx:key="k">
+  
     <view class='flex-row margin-left-30 margin-top-30'>
       <view class=''>订单编号：</view>
       <view>{{item.orderno}}</view>
       <view class='flex-1'></view>
       <view class='margin-right-30'>待付款</view>
     </view>
-    
     
     <view class=' margin-left-30 margin-top-30 txt-black'>{{item.goodsstr}}</view>
     <view class='margin-left-30 margin-top-10'>{{item.carname}}</view>
@@ -58,8 +58,8 @@
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
     <view class=''>暂时没有相关订单</view>
   </view>
-  <view class='box ' wx:for="{{daifahuo}}" wx:key="k" id="{{item.id}}">
-    <view bindtap='bindsend'>
+  <view class='box ' wx:for="{{daifahuo}}" wx:key="k" id="{{item.id}}" bindtap='bindsend'>
+    <view >
       <view class='flex-row margin-left-30 margin-top-30'>
         <view class='h5'>订单编号：</view>
         <view class="h5">{{item.orderno}}</view>
@@ -84,8 +84,9 @@
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
     <view class=''>暂时没有相关订单</view>
   </view>
-  <view class='box ' wx:for="{{daishouhuo}}" wx:key="k" id="{{item.id}}">
-    <view bindtap='bindreceive'>
+
+  <view class='box ' wx:for="{{daishouhuo}}" wx:key="k" id="{{item.id}}" bindtap='bindreceive'>
+    <view >
       <view class='flex-row margin-left-30 margin-top-30'>
         <view class="h5">订单编号：</view>
         <view class="h5">{{item.orderno}}</view>
@@ -109,8 +110,8 @@
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
     <view class=''>暂时没有相关订单</view>
   </view>
-  <view class='box ' wx:for="{{yiwancheng}}" wx:key="k" id="{{item.id}}">
-    <view bindtap='bindsuccess'>
+  <view class='box ' wx:for="{{yiwancheng}}" wx:key="k" id="{{item.id}}" bindtap='bindsuccess'>
+    <view >
       <view class='flex-row margin-left-30 margin-top-30'>
         <view class="h5">订单编号：</view>
         <view class="h5">{{item.orderno}}</view>

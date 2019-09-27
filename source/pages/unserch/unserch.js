@@ -169,13 +169,11 @@ class Content extends AppBase {
             photo1: imagefour,
             photo2: imagefive,
             status: 'A'
-
           }, (create) => {
 
             that.Base.setMyData({
               create
             })
-
 
             for (var i = 0; i < shibie.length; i++) {
 

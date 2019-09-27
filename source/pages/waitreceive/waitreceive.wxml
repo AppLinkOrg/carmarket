@@ -32,7 +32,7 @@
   </view>
   <view class="bott margin-top"></view>
 
-  <view wx:for="{{daishouhuo.orderitems}}">
+  <!-- <view wx:for="{{daishouhuo.orderitems}}">
     <view class='margin-left-30 margin-top-30'>
       <view class=' txt-black'>{{item.name}}</view>
       <view class='flex-row  margin-top-10 '>
@@ -49,18 +49,19 @@
     </view>
 
     <view class='bott margin-top-20 margin-bottom-20'></view>
-  </view>
+  </view> -->
+
   <view class='margin-left-30 flex-row margin-top-20 '>
     <view class='txt-black'>总价：</view>
     <view class='txt-red'>{{daishouhuo.totalamount}}元</view>
   </view>
 
   <view class='bott margin-top-20 margin-bottom-20'></view>
+
   <view class='margin-left-30 flex-row margin-top-20 '>
     <view class='txt-black'>发票：</view>
     <view class='txt-black'>{{daishouhuo.needinvoice}}</view>
   </view>
-
 
   <view class='bott margin-top-20 margin-bottom-20'></view>
   <view class='margin-left-30 flex-row margin-top-20 '>
@@ -82,4 +83,5 @@
 
   <view class='bott margin-top-20 margin-bottom-20'></view>
 </view>
-<view class='txt-white  yes' bindtap="bindshou">确认签收</view>
+
+<view class='txt-white  yes' bindtap="bindshou" id="{{daishouhuo.id}}">确认签收</view>
