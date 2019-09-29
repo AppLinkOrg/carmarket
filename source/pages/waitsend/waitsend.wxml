@@ -83,4 +83,4 @@
 
 
 
-<view class='txt-white quxiao ' bindtap="bindquxiao">取消订单</view>
+<view class='txt-white quxiao ' bindtap="bindquxiao" id="{{daifahuo.id}}">取消订单</view>

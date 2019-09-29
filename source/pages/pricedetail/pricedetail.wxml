@@ -56,7 +56,6 @@
 </view>
 
 
-
 <view style="height:340rpx;"></view>
 
 <!-- height: 164rpx ; -->
@@ -82,7 +81,13 @@
 
     </view>
 
+    <view wx:if='{{item.quoteitems.length==0}}' class="text-center h5 margin-top-10">
+     待报价...
+    </view>
+
     <view class="bg-white  padding-20  " style="{{index>0?'border-top:2rpx solid #E5E5E5':''}}" wx:for-index='index' wx:for='{{item.quoteitems}}' wx:key='s'>
+
+
 
       <view class=" flex-row flex-center" bindtap="bindcheck" data-fittings_id="{{item.fittings_id}}" data-name='{{item.name}}{{item.quality}}' id="{{item.id}}" data-index='{{idx}}' data-sx="{{index}}">
 
@@ -139,7 +144,7 @@
 <view style="height:220rpx;"></view>
 
 
-<view class="bottom-block">
+<view class="bottom-block" wx:if='{{quoteinfo.quotestatus=="W"}}'>
 
 
   <view class="text-center h5 padding-20 " style="border-bottom:2rpx solid #E5E5E5;">共{{quantity}}件，合计：￥{{sum}}</view>

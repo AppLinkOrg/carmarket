@@ -58,12 +58,10 @@ class Content extends AppBase {
    // var info = json[idx];
 
     wx.navigateTo({
-      url: '/pages/serchgo/serchgo?info=' + JSON.stringify(json) + '&idx=' + idx,
+      url: '/pages/serchgo/serchgo?info=' + JSON.stringify(json) + '&idx=' + idx + '&biaoti=' + this.Base.options.biaoti + '&vin=' + this.Base.options.vin,
     })
 
   }
-
- 
 
   bindadd() {
     var pages = getCurrentPages();

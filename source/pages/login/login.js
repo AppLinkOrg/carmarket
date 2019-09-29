@@ -23,8 +23,7 @@ class Content extends AppBase {
       url: '/pages/agreement/agreement',
     })
   }
- 
-
+  
   bindlogin(e){
     // wx.switchTab({
     //   url: '/pages/find/find',

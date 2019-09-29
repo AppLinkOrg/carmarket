@@ -84,31 +84,46 @@ class Content extends AppBase {
   }
 
   submit(e) {
+    var that =this;
     var orderapi = new OrderApi();
     var sumprice = this.Base.getMyData().sumprice;
     var arr = this.Base.getMyData().arr;
-    console.log(this.Base.getMyData().shopcar, "拉手动挡");
-    //var aaa=[];
-    for (var i = 0; i < arr.length; i++) {
-      var list = {
-        orderno: '',
-        enterprise_id: arr[i].id,
-        
-        totalamount: arr[i].pp,
-        receiver: '测试',
-        receivecontact: '12345678910',
-        receiveaddress: '测试地址',
-        order_status: 'L',
-        status: 'A'
+ 
+    wx.showModal({
+      title: '购买',
+      content: '确认购买？',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#EE2222',
+      confirmText: '确定',
+      confirmColor: '#2699EC',
+      success: function (res) {
+        if (res.confirm) {
+          
+          for (var i = 0; i < arr.length; i++) {
+            var list = {
+              orderno: '',
+              enterprise_id: arr[i].id,
+              totalamount: arr[i].pp,
+              receiver: '测试',
+              receivecontact: '12345678910',
+              receiveaddress: '测试地址',
+              order_status: 'L',
+              status: 'A'
+            }
+            that.submitlist(list, i);
+
+            orderapi.updatemoney({
+              id: that.Base.getMyData().employeeinfo.id,
+              money: sumprice
+            }, (updatemoney) => {
+            })
+
+          }
+
+
+        }
       }
-      this.submitlist(list, i);
-    }
-
-    orderapi.updatemoney({
-      id: this.Base.getMyData().employeeinfo.id,
-      money: sumprice
-    }, (updatemoney) => {
-
     })
 
   }
@@ -120,12 +135,9 @@ class Content extends AppBase {
     var id = [];
     setTimeout(() => {
       orderapi.settle(json, (settle) => {
-
-
-        //  wx.navigateTo({
-        //    url: '/pages/jiaoyisuccess/jiaoyisuccess'
-        //  })
-
+          wx.navigateTo({
+            url: '/pages/jiaoyisuccess/jiaoyisuccess'
+          })
       })
 
     }, i * 300)

@@ -32,15 +32,13 @@ class Content extends AppBase {
     } else {
       this.Base.setMyData({ images: [] })
     }
-    this.Base.setMyData({ list, beizhu: info.beizhu })
+    this.Base.setMyData({ list, beizhu: info.beizhu,biaoti:this.Base.options.biaoti,vin:this.Base.options.vin })
      
     //this.Base.setMyData({ images: [] })
   }
   onMyShow() {
     var that = this;
-
-
-
+  
   }
   clickimage() {
     var that = this;
@@ -109,7 +107,8 @@ class Content extends AppBase {
     var images = this.Base.getMyData().images;
     var beizhu = this.Base.getMyData().beizhu;
 
-    list[idx].beizhu = beizhu; 
+  
+    list[idx].beizhu = beizhu;
     //list[idx].imgnum = images.length;
     list[idx].photo = images;
     // list[idx].photo2 = images[1];

@@ -101,13 +101,79 @@ class Content extends AppBase {
     });
   }
 
+
+  bindquxiao(e) {
+    var that = this;
+    var orderapi = new OrderApi();
+    wx.showModal({
+      title: '取消订单',
+      content: '确认取消订单？',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#EE2222',
+      confirmText: '确定',
+      confirmColor: '#2699EC',
+      success: function (res) {
+        if (res.confirm) {
+
+          orderapi.updatestatus({
+            id: e.currentTarget.id,
+            order_status: "E"
+          }, (updatestatus) => {
+            that.onMyShow();
+          })
+        }
+      }
+    })
+
+
+
+
+  }
+
+  bindshou(e) {
+    var id = e.currentTarget.id
+    var orderapi = new OrderApi();
+    var that =this;
+    wx.showModal({
+      title: '收货',
+      content: '确认货物已收到？',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#EE2222',
+      confirmText: '确定',
+      confirmColor: '#2699EC',
+      success: function (res) {
+        if (res.confirm) {
+          orderapi.updatestatus({
+            id: id,
+            order_status: "N"
+          }, (updatestatus) => {
+            that.onMyShow();
+          })
+        }
+      }
+    })
+
+
+
+
+  }
+
+
+
+
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindorder = content.bindorder;
-body.bindreceive = content.bindreceive;
+body.bindreceive = content.bindreceive; 
+
+body.bindquxiao = content.bindquxiao; 
+body.bindshou = content.bindshou;
+
 body.bindsend = content.bindsend;
 body.bindsuccess = content.bindsuccess;
 body.bindapply = content.bindapply;

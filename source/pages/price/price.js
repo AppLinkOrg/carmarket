@@ -40,10 +40,26 @@ class Content extends AppBase {
     var that = this;
     var orderapi = new OrderApi();
     orderapi.quotelist({
-      status: 'A'
-    }, (mylist) => {
+      quotestatus:'Q'
+    }, (weibaolist) => {
       this.Base.setMyData({
-        mylist
+        weibaolist
+      })
+    })
+
+    orderapi.quotelist({
+      quotestatus: 'W'
+    }, (yibaolist) => {
+      this.Base.setMyData({
+        yibaolist
+      })
+    })
+
+    orderapi.quotelist({
+      quotestatus: 'E'
+    }, (quxiaolist) => {
+      this.Base.setMyData({
+        quxiaolist
       })
     })
  

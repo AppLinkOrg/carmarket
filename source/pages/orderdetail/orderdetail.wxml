@@ -25,7 +25,7 @@
 
     <view class="flex-row flex-center">
       <view>{{idx+1}}、</view>
-      <view class="margin-left-10 txt-bold black">{{item.parts}}</view>
+      <view class="margin-left-10 txt-bold black">{{item.fit_name}}</view>
     </view>
  
     <view class="flex-row flex-center margin-top-20">
