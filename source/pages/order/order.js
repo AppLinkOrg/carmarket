@@ -18,9 +18,11 @@ class Content extends AppBase {
   }
   onMyShow() {
     var orderapi = new OrderApi();
+     
+
 
     orderapi.mylist({
-      order_status: 'W',
+      order_status: 'W', 
     }, (daifukuan) => {
       this.Base.setMyData({
         daifukuan
@@ -94,6 +96,10 @@ class Content extends AppBase {
 
 
   bindorder(e) {
+
+    var id = this.Base.getMyData().employeeinfo.id;
+    console.log(id);
+    
     var orderid = e.currentTarget.dataset.order;
     //console.log(orderid, "选中的节点值");
     this.Base.setMyData({

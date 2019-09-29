@@ -41,7 +41,7 @@ class Content extends AppBase {
         searchhistory
       });
     });
-
+  
   }
 
   bindvalue(e) {
