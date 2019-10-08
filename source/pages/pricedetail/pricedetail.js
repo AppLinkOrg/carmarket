@@ -187,6 +187,7 @@ class Content extends AppBase {
   }
 
   addcar(e) {
+    var that =this;
     console.log("加入购物车")
     var shopcar = this.Base.getMyData().shopcar;
     console.log(this.Base.getMyData().shopcar, "拉手动挡");
@@ -195,6 +196,7 @@ class Content extends AppBase {
       var list = {
         enterprise_id: shopcar[i].enterprise_id,
         fittings_id: shopcar[i].fittings_id,
+        quote_id: this.Base.options.id,
         supplier: shopcar[i].company,
         parts: shopcar[i].name,
         quality: shopcar[i].quality,
@@ -209,8 +211,9 @@ class Content extends AppBase {
   }
 
   tocar(e){
+    var that =this;
     wx.navigateTo({
-      url: '/pages/shopcar/shopcar'
+      url: '/pages/shopcar/shopcar?id='+this.Base.options.id
     })
   }
 

@@ -111,8 +111,9 @@ class Content extends AppBase {
               order_status: 'L',
               status: 'A'
             }
+            
             that.submitlist(list, i);
-
+            
             orderapi.updatemoney({
               id: that.Base.getMyData().employeeinfo.id,
               money: sumprice

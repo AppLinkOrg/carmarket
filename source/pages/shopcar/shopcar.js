@@ -16,10 +16,11 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
   }
+  
   onMyShow() {
     var that = this;
     var orderapi = new OrderApi();
-    orderapi.shopcarlist({}, (shopcarlist) => {
+    orderapi.shopcarlist({ quote_id:this.Base.options.id}, (shopcarlist) => {
 
       var  etplist = {};
 

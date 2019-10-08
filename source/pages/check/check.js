@@ -21,13 +21,13 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
- 
+    
     this.Base.setMyData({
        vin:this.Base.options.vin,
       // brandCode:this.Base.options.brandCode,
        mcid:this.Base.options.mcid,
        biaoti:this.Base.options.biaoti,
-    //  addlist:[] 
+      // addlist:[]
     })
     if (this.Base.getMyData().json != undefined) {
       console.log('看两节课靠家里')
@@ -38,17 +38,14 @@ class Content extends AppBase {
       this.Base.setMyData({ addlist: [] })
     }
 
-
     this.bindpart();
 
   }
+
   onMyShow() {
     var that = this;
     var carapi = new CarApi();
-     
-
-
-
+    
   // carapi.searchhistory({}, (searchhistory) => {
     //   this.Base.setMyData({
     //     searchhistory
@@ -60,7 +57,7 @@ class Content extends AppBase {
     //     addhistory
     //   })
   // })
- 
+
 
   }
   setPageTitle(instinfo) {
@@ -122,7 +119,7 @@ class Content extends AppBase {
   bindadd(e){
     var that=this;
     var idx = e.currentTarget.id;
-    var name = e.currentTarget.dataset.name; 
+    var name = e.currentTarget.dataset.name;
     var groupslist = this.Base.getMyData().groupslist;
     
    // if (this.Base.getMyData().json != undefined){
@@ -138,7 +135,7 @@ class Content extends AppBase {
       id: idx,
       name: name,
       num:1,
-      beizhu: '', 
+      beizhu: '',
       photo: ''
     };
  

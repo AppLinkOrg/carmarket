@@ -23,7 +23,7 @@
 
     <view class="flex-row column">
       <view wx:for='{{addlist}}' wx:key='s' wx:for-index='index' class="margin-top-30 flex-row flex-top">
-        <view class=" btnb chaochu">{{item.name}}</view>
+        <view class=" btnb chaochu h6">{{item.name}}</view>
         <image class="icon-17  " style="margin-left:-6rpx;" src="{{uploadpath}}resource/{{res.quchu}}" bindtap="bindclear" id="{{item.id}}" data-index="{{index}}"></image>
       </view>
     </view>
