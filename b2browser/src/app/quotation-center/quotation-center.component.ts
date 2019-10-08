@@ -59,7 +59,7 @@ export class QuotationCenterComponent extends AppBase  {
 
 
 
-      a.quotelist({ enterprise_id: this.enterprise_id}).then((list:any)=>{
+      a.quotelist({}).then((list:any)=>{
         this.list = list
   
         for(let i=0;i<this.list.length;i++){
@@ -124,7 +124,7 @@ export class QuotationCenterComponent extends AppBase  {
 
               }else {
 
-                a.quotelist({enterprise_id: this.enterprise_id }).then((list:any)=>{
+                a.quotelist({ }).then((list:any)=>{
 
                   var result=[];
                   for(let item of list){
@@ -201,7 +201,7 @@ export class QuotationCenterComponent extends AppBase  {
 
         }else {
 
-          a.quotelist({ enterprise_id: this.enterprise_id}).then((list:any)=>{
+          a.quotelist({ }).then((list:any)=>{
 
             var result=[];
             for(let item of list){
@@ -285,7 +285,7 @@ export class QuotationCenterComponent extends AppBase  {
       others[i].classList.remove('btn-active')
     }
 
-    this.orderApi.quotelist({ enterprise_id: this.enterprise_id }).then((list:any)=>{
+    this.orderApi.quotelist({ }).then((list:any)=>{
 
       for(let i=0;i<list.length;i++){
         if(list[i].quotestatus === "W"){
