@@ -28,21 +28,18 @@ class Content extends AppBase {
   }
 
   onMyShow() {
-    var that = this;
-    var instapi = new InstApi();
+    var that = this; 
     var orderapi = new OrderApi();
     var id = this.Base.options.id;
 
     orderapi.detail({
       id: id,
     }, (change) => {
-      change.orderitems.map((item) => {
-        item.xz = false;
-      })
+ 
       this.Base.setMyData({
         change
       });
-      console.log(change);
+      
     });
   }
 

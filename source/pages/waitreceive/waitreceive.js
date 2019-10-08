@@ -29,18 +29,33 @@ class Content extends AppBase {
   bindshou(e){
     var id = e.currentTarget.id
     var orderapi = new OrderApi();
-    orderapi.updatestatus({
-      order_id: id,
-      status: "N"
 
-    }, (myd) => {
-      this.Base.setMyData({
-        myd
-      })
+
+    wx.showModal({
+      title: '收货',
+      content: '确认货物已收到？',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#EE2222',
+      confirmText: '确定',
+      confirmColor: '#2699EC',
+      success: function (res) {
+        if (res.confirm) {
+          orderapi.updatestatus({
+            id: id,
+            order_status: "N"
+          }, (updatestatus) => {
+            wx.navigateBack({
+
+            })
+          })
+        }
+      }
     })
-    wx.reLaunch({
-      url: '/pages/order/order',
-    })
+
+
+
+
   }
 
   setPageTitle(instinfo) {
@@ -49,6 +64,7 @@ class Content extends AppBase {
       title: title,
     })
   }
+
 }
 var content = new Content();
 var body = content.generateBodyJson();

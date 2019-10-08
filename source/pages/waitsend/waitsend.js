@@ -35,31 +35,37 @@ class Content extends AppBase {
         daifahuo
       })
     })
-
-    orderapi.updatestatus({
-   
-    }, (update) => {
-      this.Base.setMyData({
-        update
-      });
-    });
+ 
   }
 
   bindquxiao(e) {
-    var id = e.currentTarget.id 
+    var that =this;
     var orderapi = new OrderApi();
-    orderapi.updatestatus({
-      order_id: id,
-      status: "E"
+    wx.showModal({
+      title: '取消订单',
+      content: '确认取消订单？',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#EE2222',
+      confirmText: '确定',
+      confirmColor: '#2699EC',
+      success: function (res) {
+        if (res.confirm) {
+          
+          orderapi.updatestatus({
+            id: that.Base.options.id,
+            order_status: "E"
+          }, (updatestatus) => {
+            wx.navigateBack({
+            })
+          })
+        }
+      }
+    })
 
-    }, (myd) => {
-      this.Base.setMyData({
-        myd
-      })
-    })
-    wx.reLaunch({
-      url: '/pages/order/order',
-    })
+
+
+
   }
 
   setPageTitle(instinfo) {

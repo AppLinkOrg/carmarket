@@ -14,7 +14,21 @@ page {
   opacity: 1;
   background: orange;
 }
+.chaochu {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
+.chaochu2 {
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 .clear-button {
   padding: 0rpx;
   font-size: unset;
@@ -138,9 +152,11 @@ view, navigator, input, text, textarea {
 .bg-blue {
   background: #3c78d8;
 }
-
+.bg-red{
+  background: #f10d19;
+}
 .bg-orange {
-  background: #fbc02d;
+  background: #fea212;
 }
 
 .white_primary {
@@ -165,7 +181,7 @@ view, navigator, input, text, textarea {
 }
 
 .txt-gray {
-  color: #84817e;
+  color: #B9B9B9;
 }
 
 .txt-blue {
@@ -616,8 +632,8 @@ button[disabled][type=primary] {
 }
 
 .icon-17 {
-  width: 35rpx;
-  height: 35rpx;
+  width: 34rpx;
+  height: 34rpx;
 }
 
 .icon {
@@ -725,7 +741,7 @@ button[disabled][type=primary] {
 }
 
 .borderleft {
-  border-left: 5px solid #143779;
+  border-left: 10rpx solid #143779;
   height: 28rpx;
   margin-top: 10rpx;
   margin-left: 30rpx;

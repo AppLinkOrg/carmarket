@@ -2,19 +2,6 @@ page {
   background-color: #f1f1f1;
 }
 
-.top {
-  height: 120rpx;
-  width: 100vw;
-}
-
-.put {
-  border-radius: 10rpx;
-  margin-left: 30rpx;
-  margin-right: 30rpx;
-  margin-top: 20rpx;
-  height: 280rpx;
-  width: 92%;
-}
 
 .btnn {
   margin: 30rpx;

@@ -18,76 +18,85 @@
 
 <!--未报价-->
 <view class=" " wx:if="{{check=='A'}}">
-  <view wx:if="{{mylist.length==0 }}" class='flex-row flex-column'>
+
+  <view wx:if="{{weibaolist.length==0 }}" class='flex-row flex-column'>
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
     <view class=''>暂时没有相关报价单</view>
   </view>
-  <view class='box white-block' wx:for="{{mylist}}">
+
+  <view class=' box white-block padding-20 {{seq>0?"margin-top-20":""}}' wx:for="{{weibaolist}}" wx:key='k' wx:for-index='seq'>
     <view bindtap='pricedetail' id="{{item.id}}">
-      <view class='flex-row margin-left-30 margin-top-20'>
-        <view class="h5 txt-black ">{{item.carname}}</view>      
-        <view class='h5 margin-left-10'>待报价</view>
+
+      <view class='flex-row '>
+        <view class="h5  flex-1 txt-gray">报价单号：{{item.quotenumber}}</view>
+        <view class='h5 margin-left-10 txt-bold txt-gray'>{{item.quotestatus_name}}</view>
       </view>
-      <view class='borderbottom margin-top-20 margin-bottom-20'></view>
-      <view class='h5 txt-black margin-left-30 margin-right-30'>{{item.goodsstr}}</view>
+
+      <view class="flex-row flex-center flex-wrap margin-top-10">
+        <view wx:for='{{item.quoteitems}}' wx:key='s' class="h5 txt-black " wx:for-index='idx'>{{idx==0?'':'、'}}{{item.name}}</view>
+      </view>
+
+      <view class="h5 txt-gray txt-bold margin-top-10">{{item.carmodel}}</view>
+      <view class="h6 margin-top-10 txt-gray">{{item.quote_time}}</view>
+
 
     </view>
-    <view class='flex-row margin-top-20 margin-bottom-20'>
-      <view class='margin-left-30  h5'>{{item.employee_id_name}}</view>
-      <view class='  h5'>({{item}})</view>
-      <view class='flex-1'></view>
-      <view class='margin-right-30  h5'>{{item.order_time_formatting}}</view>
-    </view>
+
   </view>
 </view>
 
-<!--报价中-->
+<!--已报价-->
 <view class=" " wx:if="{{check=='B'}}">
-  <view class='flex-row flex-column' wx:if="{{pricede.length==0}}">
+  <view class='flex-row flex-column' wx:if="{{yibaolist.length==0}}">
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
     <view class=''>暂时没有相关报价单</view>
   </view>
-  <view class='box white-block' wx:for="{{pricede}}">
-    <view bindtap='bindpricing' id="{{item.id}}">
-      <view class='flex-row margin-left-30 margin-top-20'>
-        <view class="h5 txt-black">{{item.carname}}</view>      
-        <view class='h5 margin-left-10'>报价中</view>
+
+  <view class='box white-block padding-20' wx:for="{{yibaolist}}" wx:key='s'>
+
+    <view bindtap='pricedetail' id="{{item.id}}">
+
+      <view class='flex-row '>
+        <view class="h5  flex-1 txt-gray">报价单号：{{item.quotenumber}}</view>
+        <view class='h5 margin-left-10 txt-bold txt-green'>{{item.quotestatus_name}}</view>
       </view>
-      <view class='borderbottom margin-top-20 margin-bottom-20'></view>
-      <view class='h5 txt-black margin-left-30 margin-right-30'>{{item.goodsstr}}</view>
+
+      <view class="flex-row flex-center flex-wrap margin-top-10">
+        <view wx:for='{{item.quoteitems}}' wx:key='s' class="h5 txt-black " wx:for-index='idx'>{{idx==0?'':'、'}}{{item.name}}</view>
+      </view>
+      <view class="h5 txt-gray txt-bold margin-top-10">{{item.carmodel}}</view>
+      <view class="h6 margin-top-10 txt-gray">{{item.quote_time}}</view>
+
+
     </view>
-    <view class='flex-row margin-top-20 margin-bottom-20'>
-      <view class='margin-left-30  h5'>{{item.employee_id_name}}</view>
-      <view class='  h5'>({{item}})</view>
-      <view class='flex-1'></view>
-      <view class=' margin-right-30  h5'>{{item.order_time_formatting}}</view>
-    </view>
+
   </view>
 </view>
 
 <!--已取消-->
 <view class=" " wx:if="{{check=='C'}}">
-  <view class='flex-row flex-column' wx:if="{{poor.length==0}}">
+  <view class='flex-row flex-column' wx:if="{{quxiaolist.length==0}}">
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
     <view class=''>暂时没有相关报价单</view>
   </view>
-  <view class='box white-block' wx:for="{{poor}}">
-    <view bindtap='' queren="{{item.queren}}">
-      <view class='flex-row margin-left-30 margin-top-20' bindtap='pricedetail'>
-        <view class="h5 txt-black">{{item.carname}}</view>  
-        <view class='h5 margin-left-10'>已取消</view>
-      </view>
-      <view class='borderbottom margin-top-20 margin-bottom-20'></view>
-      <view class=' h5 txt-black margin-left-30 margin-right-30'>{{item.goodsstr}}</view>
 
+  <view class='box white-block padding-20' wx:for="{{quxiaolist}}" wx:key='y'>
+    <view bindtap='pricedetail' id="{{item.id}}">
+      <view class='flex-row '>
+        <view class="h5  flex-1 txt-gray">报价单号：{{item.quotenumber}}</view>
+        <view class='h5 margin-left-10 txt-bold txt-red'>{{item.quotestatus_name}}</view>
+      </view>
+      <view class="flex-row flex-center flex-wrap margin-top-10">
+        <view wx:for='{{item.quoteitems}}' wx:key='s' class="h5 txt-black " wx:for-index='idx'>{{idx==0?'':'、'}}{{item.name}}</view>
+      </view>
+      <view class="h5 txt-gray txt-bold margin-top-10">{{item.carmodel}}</view>
+      <view class="h6 margin-top-10 txt-gray">{{item.quote_time}}</view>
     </view>
-    <view class='flex-row margin-bottom-20 margin-top-20'>
-      <view class='margin-left-30  h5'>{{item.employee_id_name}}</view>
-      <view class=' h5'>({{item}})</view>
-      <view class='flex-1'></view>
-      <view class=' margin-right-30  h5'>{{item.order_time_formatting}}</view>
-    </view>
+
   </view>
+
+
+
 </view>
 
 <!--待确认-->

@@ -28,7 +28,7 @@ class Content extends AppBase {
     this.Base.setMyData({
       check: "A",
     });
-    console.log("a");
+    
   }
   setPageTitle(instinfo) {
     var title = "报价中心";
@@ -39,29 +39,30 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var orderapi = new OrderApi();
-    orderapi.mylist({
-      status: 'A',
-    }, (mylist) => {
+    orderapi.quotelist({
+      quotestatus:'Q'
+    }, (weibaolist) => {
       this.Base.setMyData({
-        mylist
+        weibaolist
       })
     })
-    orderapi.mylist({
-      status: 'B',
 
-    }, (pricede) => {
+    orderapi.quotelist({
+      quotestatus: 'W'
+    }, (yibaolist) => {
       this.Base.setMyData({
-        pricede
+        yibaolist
       })
     })
-    orderapi.mylist({
-      status: 'E',
 
-    }, (poor) => {
+    orderapi.quotelist({
+      quotestatus: 'E'
+    }, (quxiaolist) => {
       this.Base.setMyData({
-        poor
+        quxiaolist
       })
     })
+ 
 
   }
   
@@ -74,9 +75,9 @@ class Content extends AppBase {
 
 
   bindpricing(e) {
-    console.log(e)
+     
     var id = e.currentTarget.id;
-    console.log(id);
+     
    // return;
     wx.navigateTo({
       url: '/pages/pricingdetail/pricingdetail?id=' + id ,
@@ -137,7 +138,7 @@ class Content extends AppBase {
 
   bindcheck(e) {
     var checkid = e.currentTarget.dataset.check;
-    console.log(checkid, "选中的节点值");
+    
     // return;
     this.Base.setMyData({
       check: checkid

@@ -160,7 +160,7 @@ export class AppBase {
   onReady() {
     console.log("onReady");
   }
-  minimm
+ // minimm
   onShow() {
     var that = this;
     var instapi = new InstApi();
@@ -196,9 +196,15 @@ export class AppBase {
 
   }
   checkPermission() {
+
     var enterpriseApi = new EnterpriseApi();
+
     var that = this;
+
     enterpriseApi.employeeinfo({}, (info) => {
+
+    console.log("进来")
+
       if (info == null && this.Base.needauth == true) {
         wx.redirectTo({
           url: '/pages/login/login',
@@ -210,6 +216,8 @@ export class AppBase {
       }
     });
   }
+
+  
   loadtabtype() {
     console.log("loadtabtype");
     var memberapi = new MemberApi();
@@ -424,12 +432,12 @@ export class AppBase {
       }
     });
   }
-  uploadImage(modul, callback, count = 1, completecallback) {
+  uploadImage(modul, callback, count, completecallback) {
     wx.chooseImage({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       count: count,
-      success: function(res) {
+      success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         console.log(res.tempFilePaths);
         //that.setData({
@@ -446,7 +454,7 @@ export class AppBase {
               'module': modul,
               "field": "file"
             },
-            success: function(res) {
+            success: function (res) {
               console.log(res);
               var data = res.data
               if (data.substr(0, 7) == "success") {

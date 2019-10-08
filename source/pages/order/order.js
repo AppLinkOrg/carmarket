@@ -13,22 +13,24 @@ class Content extends AppBase {
     //options.id=5;
    
     this.Base.setMyData({
-      order: "B"
-
+      order: "A" 
     });
   }
   onMyShow() {
     var orderapi = new OrderApi();
-    // orderapi.mylist({
-    //   status: 'A,B',
-    // }, (mylist) => {
-    //   this.Base.setMyData({
-    //     mylist
-    //   })
-    // })
+     
+
 
     orderapi.mylist({
-      status: 'L',
+      order_status: 'W', 
+    }, (daifukuan) => {
+      this.Base.setMyData({
+        daifukuan
+      })
+    })
+
+    orderapi.mylist({
+      order_status: 'L',
     }, (daifahuo) => {
       this.Base.setMyData({
         daifahuo
@@ -36,7 +38,7 @@ class Content extends AppBase {
     })
 
     orderapi.mylist({
-      status: 'M',
+      order_status: 'M',
     }, (daishouhuo) => {
       this.Base.setMyData({
         daishouhuo
@@ -44,23 +46,22 @@ class Content extends AppBase {
     })
 
     orderapi.mylist({
-      status: 'N',
+      order_status: 'N',
     }, (yiwancheng) => {
       this.Base.setMyData({
-      
         yiwancheng
-      })
+      }) 
     })
 
     orderapi.mylist({
-      status: 'E',
+      order_status: 'E',
     }, (yiquxiao) => {
       this.Base.setMyData({
         yiquxiao
       })
     })
 
-   
+    
   }
   
   setPageTitle() {
@@ -79,6 +80,8 @@ class Content extends AppBase {
 
   bindreceive(e) {
     var id = e.currentTarget.id;
+    console.log(id);
+    //return;
     wx.navigateTo({
       url: '/pages/waitreceive/waitreceive?id=' + id,
     })
@@ -93,12 +96,78 @@ class Content extends AppBase {
 
 
   bindorder(e) {
+
+    var id = this.Base.getMyData().employeeinfo.id;
+    console.log(id);
+    
     var orderid = e.currentTarget.dataset.order;
-    console.log(orderid, "选中的节点值");
+    //console.log(orderid, "选中的节点值");
     this.Base.setMyData({
       order: orderid
     });
   }
+
+
+  bindquxiao(e) {
+    var that = this;
+    var orderapi = new OrderApi();
+    wx.showModal({
+      title: '取消订单',
+      content: '确认取消订单？',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#EE2222',
+      confirmText: '确定',
+      confirmColor: '#2699EC',
+      success: function (res) {
+        if (res.confirm) {
+
+          orderapi.updatestatus({
+            id: e.currentTarget.id,
+            order_status: "E"
+          }, (updatestatus) => {
+            that.onMyShow();
+          })
+        }
+      }
+    })
+
+
+
+
+  }
+
+  bindshou(e) {
+    var id = e.currentTarget.id
+    var orderapi = new OrderApi();
+    var that =this;
+    wx.showModal({
+      title: '收货',
+      content: '确认货物已收到？',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#EE2222',
+      confirmText: '确定',
+      confirmColor: '#2699EC',
+      success: function (res) {
+        if (res.confirm) {
+          orderapi.updatestatus({
+            id: id,
+            order_status: "N"
+          }, (updatestatus) => {
+            that.onMyShow();
+          })
+        }
+      }
+    })
+
+
+
+
+  }
+
+
+
 
 }
 var content = new Content();
@@ -106,7 +175,11 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindorder = content.bindorder;
-body.bindreceive = content.bindreceive;
+body.bindreceive = content.bindreceive; 
+
+body.bindquxiao = content.bindquxiao; 
+body.bindshou = content.bindshou;
+
 body.bindsend = content.bindsend;
 body.bindsuccess = content.bindsuccess;
 body.bindapply = content.bindapply;

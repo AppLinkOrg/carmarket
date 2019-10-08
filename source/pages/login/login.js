@@ -19,12 +19,11 @@ class Content extends AppBase {
   }
 
   bindagree(e){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/agreement/agreement',
     })
   }
- 
-
+  
   bindlogin(e){
     // wx.switchTab({
     //   url: '/pages/find/find',
@@ -41,9 +40,11 @@ class Content extends AppBase {
       if(res.code==0){
 
         wx.setStorageSync("token", res.return);
+
         wx.reLaunch({
           url: '/pages/find/find',
         })
+
       }else{
         this.Base.info("用户名或密码不存在");
       }
