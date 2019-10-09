@@ -142,6 +142,7 @@ class Content extends AppBase {
       quoteinfo: quoteinfo
     })
 
+
   }
 
   statistics() { //选中零件统计
@@ -172,18 +173,19 @@ class Content extends AppBase {
 
   carshoplist(json, i) {
 
+   
+ 
     var that = this;
     var orderapi = new OrderApi();
     setTimeout(() => {
       orderapi.addshopcar(json, (addshopcar) => {
+        
+      }) 
 
-      })
-
-      wx.navigateTo({
-        url: '/pages/shopcar/shopcar'
-      })
     }, i * 300)
-
+    wx.navigateTo({
+      url: '/pages/shopcar/shopcar?carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode
+    })
   }
 
   addcar(e) {
@@ -213,7 +215,7 @@ class Content extends AppBase {
   tocar(e){
     var that =this;
     wx.navigateTo({
-      url: '/pages/shopcar/shopcar?id='+this.Base.options.id
+      url: '/pages/shopcar/shopcar?id=' + this.Base.options.id + '&carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode
     })
   }
 

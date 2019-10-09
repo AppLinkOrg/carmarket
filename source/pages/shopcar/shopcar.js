@@ -16,7 +16,7 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
   }
-  
+
   onMyShow() {
     var that = this;
     var orderapi = new OrderApi();
@@ -81,7 +81,7 @@ class Content extends AppBase {
   bindjiesuan() {
     var arr = this.Base.getMyData().arr;
     wx.navigateTo({
-      url: '/pages/orderdetail/orderdetail?json=' + JSON.stringify(arr),
+      url: '/pages/orderdetail/orderdetail?json=' + JSON.stringify(arr) + '&carmodel=' + this.Base.options.carmodel + '&vin=' + this.Base.options.vin
     })
   }
 

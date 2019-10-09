@@ -89,6 +89,9 @@ class Content extends AppBase {
     var sumprice = this.Base.getMyData().sumprice;
     var arr = this.Base.getMyData().arr;
  
+
+    console.log(this.Base.getMyData().employeeinfo.id,"啦啦啦啦啦啦啦啦");
+   // return;
     wx.showModal({
       title: '购买',
       content: '确认购买？',
@@ -104,7 +107,10 @@ class Content extends AppBase {
             var list = {
               orderno: '',
               enterprise_id: arr[i].id,
+              employee_id: that.Base.getMyData().employeeinfo.id,
               totalamount: arr[i].pp,
+              vin:that.Base.options.vin,
+              carname:that.Base.options.carmodel,
               receiver: '测试',
               receivecontact: '12345678910',
               receiveaddress: '测试地址',
@@ -136,13 +142,15 @@ class Content extends AppBase {
     var id = [];
     setTimeout(() => {
       orderapi.settle(json, (settle) => {
-          wx.navigateTo({
-            url: '/pages/jiaoyisuccess/jiaoyisuccess'
-          })
+          
       })
-
+      
     }, i * 300)
 
+    wx.navigateTo({
+      url: '/pages/jiaoyisuccess/jiaoyisuccess'
+    })
+    
   }
 
 

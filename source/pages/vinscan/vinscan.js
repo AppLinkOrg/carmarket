@@ -59,9 +59,10 @@ class Content extends AppBase {
                 if (res.code == 0) {
 
                   console.log("vincatch", res);
-                  wx.navigateTo({
-                    url: '/pages/check/check?vin=' + res.return.vin,
-                  })
+
+                  // wx.navigateTo({
+                  //   url: '/pages/check/check?vin=' + res.return.vin,
+                  // })
                 }else{
                   that.Base.info("无法识别有效的vin码");
                 }
@@ -104,9 +105,9 @@ class Content extends AppBase {
         if (res.code == 0) {
 
           console.log("vincatch", res);
-          wx.navigateTo({
-            url: '/pages/check/check?vin=' + res.return.vin,
-          })
+          // wx.navigateTo({
+          //   url: '/pages/check/check?vin=' + res.return.vin,
+          // })
         } else {
           that.Base.info("无法识别有效的vin码");
         }
@@ -116,7 +117,7 @@ class Content extends AppBase {
   }
   write(){
     wx.navigateTo({
-      url: '/pages/check/check' ,
+      url: '/pages/check/check',
     })
   }
 }
