@@ -41,6 +41,8 @@ export class OrderApi{
         })
     }
 
+<<<<<<< HEAD
+=======
     addshopcar(json, callback, showLoading = true) {
 
         if (showLoading)
@@ -73,6 +75,7 @@ export class OrderApi{
         })
     }
 
+>>>>>>> 249c65ed82e92b1ac8654d314bde3e08aa7cd0ec
     confirmquote(json, callback, showLoading = true) {
 
         if (showLoading)
@@ -649,7 +652,11 @@ export class OrderApi{
         })
     }
 
+<<<<<<< HEAD
+    ignore(json, callback, showLoading = true) {
+=======
     addorderfits(json, callback, showLoading = true) {
+>>>>>>> 249c65ed82e92b1ac8654d314bde3e08aa7cd0ec
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -658,7 +665,43 @@ export class OrderApi{
         console.log(header);
         console.log(json);
         wx.request({
+<<<<<<< HEAD
+            url: ApiConfig.GetApiUrl() + 'order/ignore',
+            data: json,
+            method: 'POST',
+            dataType: 'json',
+            header: header,
+            success: function (res) {
+                if (callback != null) {
+                    callback(res.data);
+                }
+            },
+            fail: function (res) {
+                console.log(res);
+                callback(false);
+            },
+            complete: function (res) {
+                console.log(res);
+            
+                if (showLoading)
+                    ApiConfig.CloseLoading();
+            }
+        })
+    }
+
+    searchignore(json, callback, showLoading = true) {
+
+        if (showLoading)
+            ApiConfig.ShowLoading();
+
+        var header = ApiConfig.GetHeader();
+        console.log(header);
+        console.log(json);
+        wx.request({
+            url: ApiConfig.GetApiUrl() + 'order/searchignore',
+=======
             url: ApiConfig.GetApiUrl() + 'order/addorderfits',
+>>>>>>> 249c65ed82e92b1ac8654d314bde3e08aa7cd0ec
             data: json,
             method: 'POST',
             dataType: 'json',

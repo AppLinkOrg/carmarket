@@ -16,6 +16,17 @@ import { StoreHomeComponent } from '../store-home/store-home.component';
 import { QuotationCenterComponent } from '../quotation-center/quotation-center.component';
 import { QuotationDetailsComponent } from '../quotation-details/quotation-details.component';
 import { DetailsOfQuotedPriceComponent } from '../details-of-quoted-price/details-of-quoted-price.component';
+import { OrderManagementComponent } from '../order-management/order-management.component';
+import { SendGoodsDetailComponent } from '../send-goods-detail/send-goods-detail.component';
+import { ReceivedGoodsDetailComponent } from '../received-goods-detail/received-goods-detail.component';
+import { FinishDetailComponent } from '../finish-detail/finish-detail.component';
+import { ManagementCenterComponent } from '../management-center/management-center.component';
+import { ReturnsManagementComponent } from '../returns-management/returns-management.component';
+import { ReturnsDetailComponent } from '../returns-detail/returns-detail.component';
+import { CancelDetailComponent } from '../cancel-detail/cancel-detail.component';
+import { AchievementComponent } from '../achievement/achievement.component';
+import { EmployeeManagementComponent } from '../employee-management/employee-management.component';
+import { WaitingComponent } from '../waiting/waiting.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +37,17 @@ import { DetailsOfQuotedPriceComponent } from '../details-of-quoted-price/detail
     QuotationCenterComponent,
     QuotationDetailsComponent,
     DetailsOfQuotedPriceComponent,
+    OrderManagementComponent,
+    SendGoodsDetailComponent,
+    ReceivedGoodsDetailComponent,
+    FinishDetailComponent,
+    CancelDetailComponent,
+    ManagementCenterComponent,
+    EmployeeManagementComponent,
+    ReturnsManagementComponent,
+    ReturnsDetailComponent,
+    AchievementComponent,
+    WaitingComponent,
     DashboardComponent],
   imports: [
     CommonModule,
