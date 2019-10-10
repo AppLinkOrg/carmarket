@@ -13,32 +13,34 @@
 
             <div class="card-body">
               <div class="margin-bottom-20" role="group" aria-label="...">
-                  <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='allQuote($event)'>全部</button>           
-                  <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='quoteHandle($event)'>待报价</button>
+                      
+                  <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='quoteHandle($event)'>待报价</button>
+                  <button type="button" class="btn-default no-border border-tlb  padding-left-40 padding-right-40 txt-d-gray" (click)='quotedPrice($event)'>已报价</button>                    
                   <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='neglected($event)'>已忽略</button>           
-                  <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray" (click)='quotedPrice($event)'>已报价</button>       
+                  <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray" (click)='allQuote($event)'>全部</button>           
               </div>
               <div class="table-responsive">
                 <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                   <thead class="bg-gray">
                     <tr>
-                      <th>序号</th>
-                      <th>发票要求</th>
-                      <th>报价单号</th>
-                      <th>车型/车架号</th>
-                      <th>配件清单</th>
-                      <th>图片附件</th>
-                      <th>询价时间</th>
-                      <th *ngIf='isshow'>状态</th>
-                      <th>操作</th>
+                      <th width='4%'>序号</th>
+                      <th width='6%'>发票要求</th>
+                      <th width='10%'>报价单号</th>
+                      <th width='20%'>车型/车架号</th>
+                      <th width='16%'>配件清单</th>
+                      <th width='6%'>图片附件</th>
+                      <th width='15%'>卖家信息</th>
+                      <th width='8%'>询价时间</th>
+                      <th *ngIf='isshow' width='5%'>状态</th>
+                      <th width='10%'>操作</th>
                     </tr>
                   </thead>
                   <tbody *ngFor="let item of data">
                     <tr>
                       <td>{{item.index+1}}</td>
                       <td>
-                          <div *ngIf='item.invoice_demand=="是"' >需要发票</div>
-                          <div *ngIf='item.invoice_demand=="否"' >不要发票</div>
+                          <div *ngIf='item.invoice_demand=="是"' >是</div>
+                          <div *ngIf='item.invoice_demand=="否"' >否</div>
                       </td>
                       <td>{{item.quotenumber}}</td>
                       <td class="text-left">{{item.carmodel}} <br> {{item.vincode}} </td>
@@ -58,6 +60,10 @@
                             <img [hidden]='item.photo1 == "" || item.photo1 == "undefined"' src="{{uploadpath}}quote/{{item.photo1}}" class="icon-60" />
                             <img [hidden]='item.photo2 == "" || item.photo2 == "undefined"' src="{{uploadpath}}quote/{{item.photo2}}" class="icon-60" />
                         </div>
+                      </td>
+                      <td>
+                        <div>{{item.enterprise_id_name}}</div>
+                        <div>{{item.enterprise_corporate_address}}</div>
                       </td>
                       <td>{{item.quote_time}}</td>
                       <td *ngIf='isshow'>{{item.quotestatus_name}}</td>

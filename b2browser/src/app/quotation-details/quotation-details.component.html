@@ -19,10 +19,19 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                <div class="border-dep-gray" *ngIf='quoteinfo !==null'>
+                <div class="border-dep-gray padding-top-5" *ngIf='quoteinfo !==null'>
                     <div class="flex-row">
-                        <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">公司名称</span><span>{{quoteinfo.enterprise_id_name}}</span>
+                        <div class="flex-4">
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">公司名称</span><span>{{quoteinfo.enterprise_id_name}}</span>
+                        </div>        
+                        <div class="flex-4">
+                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">地址</span><span>{{quoteinfo.enterprise_corporate_address}}</span>
+                        </div>
+                        <div class="flex-4">
+                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">电话</span><span>{{quoteinfo.employee_mobile}}</span>
+                        </div>    
                     </div>
+                    <div class="flex-row"><span class="border-bottom-white border-box" style="width: 80%"></span></div>
                     <div class="flex-row">
                         <div class="flex-4">
                             <span class="bg-dep-gray txt-black padding-four-words margin-right-20">订单编号</span><span>{{quoteinfo.quotenumber}}</span>
@@ -76,6 +85,7 @@
                     </div>
                    
                 </div>
+
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="container-fluid">
@@ -94,7 +104,7 @@
                                     <th>备货时间</th>
                                     <th>质保期</th>
                                     <th>单价</th>
-                                    <th>备注信息</th>
+                                    <th>发车时间</th>
                                     <th>新增</th>
                                     </tr>
                                 </thead>
@@ -102,8 +112,11 @@
                                     <tr>
                                         <td [attr.rowspan]='item.count' class="text-center">{{i+1}}</td>
                                         <td [attr.rowspan]='item.count'> 
-                                           {{item.name}}
-                                            <!-- <img src="{{uploadpath}}resource/{{res.peijian}}" class="icon-30"> -->
+                                           <div>{{item.name}}</div>
+                                            <div class="photo">
+                                                <img *ngIf='item.photo1!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto()' src="{{uploadpath}}fittings/{{item.photo1}}" class="icon-30">
+                                                <div *ngIf='item.photoLen>1' class="photoLen" >{{item.photoLen}}</div>
+                                            </div>
                                         </td>
                                         <td [attr.rowspan]='item.count'><span class="table-box">{{item.id}}</span></td>
                                         <td>
@@ -130,7 +143,7 @@
                                         </td>
                                         <td>
                                             <!-- <div class="table-box">{{item.remarks_infor}}</div> -->
-                                            <input type="text" class="table-box"  [(ngModel)]='item.remarks_infor'>
+                                            <input type="text" class="table-box"  [(ngModel)]='item.sendcar_time'>
                                         </td>
                                         <td>
                                             <div style='min-width: 86px'>
@@ -147,7 +160,7 @@
                                             <td>{{list.standby_time}}</td>
                                             <td>{{list.guarantee}}</td>
                                             <td>{{list.price}}</td>
-                                            <td>{{list.remarks_infor}}</td>
+                                            <td>{{list.sendcar_time}}</td>
                                             <td>
                                                 <div style='min-width: 86px'>
                                                     <button class="btn btn-danger h5 addBtn" (click)="deleteQuote(list)">
@@ -157,6 +170,21 @@
                                             </td>
                                         </tr>
                                     </ng-container>
+                                        <div  *ngIf='photoshow' class="modal fade " id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                             <div  class="modal-dialog photoimg " role="img">
+                                                    <div class="modal-content">
+
+                                                     <img  class="imgs" [ngClass]="{'showSlide':click_account==0,'hideSlide': click_account!=0}" src="{{uploadpath}}fittings/{{item.photo1}}" />
+                                                     <img  class="imgs" [ngClass]="{'showSlide':click_account==1,'hideSlide': click_account!=1}" src="{{uploadpath}}fittings/{{item.photo2}}" />
+                                                     <img  class="imgs" [ngClass]="{'showSlide':click_account==2,'hideSlide': click_account!=2}" src="{{uploadpath}}fittings/{{item.photo3}}" />
+                                                     <img  class="imgs" [ngClass]="{'showSlide':click_account==3,'hideSlide': click_account!=3}" src="{{uploadpath}}fittings/{{item.photo4}}" />
+                                                     <img  class="imgs" [ngClass]="{'showSlide':click_account==4, 'hideSlide': click_account!=4}" src="{{uploadpath}}fittings/{{item.photo5}}" />
+
+                                                     <button class="btn btn-default preSlide no-border"  (click)="preSlide()"><img src="{{uploadpath}}resource/{{res.xiangzuo}}" class="icon-100 "/></button>
+                                                     <button class="btn btn-default nextSlide no-border" (click)="nextSlide()"><img src="{{uploadpath}}resource/{{res.xiangyou}}" class="icon-100 "/></button>
+                                                </div>
+                                             </div> 
+                                        </div>
                                 </tbody>
                             </table>
                             </div>

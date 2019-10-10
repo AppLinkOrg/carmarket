@@ -35,7 +35,7 @@ export class LoginComponent   extends AppBase  {
   onMyShow(){ 
 
 
-      setTimeout(() => {
+      // setTimeout(() => {
         this.loginname=window.localStorage.getItem("lastloginname");
         if(this.loginname==null){
           this.loginname="";
@@ -47,10 +47,10 @@ export class LoginComponent   extends AppBase  {
         }else if (this.password != ''){
           this.isremember = true;
         }
-      });
-      console.log(this.isremember)
-      console.log(window.localStorage.getItem("lastpassword"))
-      console.log(window.localStorage.getItem("lastloginname"))
+      // // });
+      // console.log(this.isremember)
+      // console.log(window.localStorage.getItem("lastpassword"))
+      // console.log(window.localStorage.getItem("lastloginname"))
 
 
    

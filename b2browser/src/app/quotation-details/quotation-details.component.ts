@@ -37,6 +37,8 @@ export class QuotationDetailsComponent extends AppBase  {
   employee_id_name = ''
   enterprise_id_name=''
 
+  
+
   onMyShow(){
 
     var a = this.orderApi
@@ -52,9 +54,9 @@ export class QuotationDetailsComponent extends AppBase  {
       a.quoteinfo({ id: this.id }).then((quoteinfo:any)=>{
       
         this.quoteinfo = quoteinfo;
-        this.quoteinfo.employee_id = this.employee_id
-        this.quoteinfo.employee_id_name = this.employee_id_name
-        this.quoteinfo.enterprise_id_name = this.enterprise_id_name
+        // this.quoteinfo.employee_id = this.employee_id
+        // this.quoteinfo.employee_id_name = this.employee_id_name
+        // this.quoteinfo.enterprise_id_name = this.enterprise_id_name
 
         this.fittinglist = quoteinfo.fittingsitem;
         for(let i=0;i<quoteinfo.fittingsitem.length;i++){
@@ -62,6 +64,19 @@ export class QuotationDetailsComponent extends AppBase  {
        
             quoteinfo.fittingsitem[i].quoteitems = []
 
+          }
+          quoteinfo.fittingsitem[i].photoLen=0
+          if(quoteinfo.fittingsitem[i].photo1!=''){
+            quoteinfo.fittingsitem[i].photoLen ++
+          }
+          if(quoteinfo.fittingsitem[i].photo2!=''){
+            quoteinfo.fittingsitem[i].photoLen ++
+          }
+          if(quoteinfo.fittingsitem[i].photo3!=''){
+            quoteinfo.fittingsitem[i].photoLen ++
+          }
+          if(quoteinfo.fittingsitem[i].photo4!=''){
+            quoteinfo.fittingsitem[i].photoLen ++
           }
   
         }
@@ -109,7 +124,7 @@ export class QuotationDetailsComponent extends AppBase  {
       standby_time: item.standby_time,
       guarantee: item.guarantee,
       price: item.price,
-      remarks_infor: item.remarks_infor,
+      sendcar_time: item.sendcar_time,
       count: item.count
     }
 
@@ -125,7 +140,7 @@ export class QuotationDetailsComponent extends AppBase  {
       item.standby_time = ''
       item.guarantee = ''
       item.price = ''
-      item.remarks_infor = ''
+      item.sendcar_time = ''
 
    
     if(addList.price !=0 ){
@@ -144,6 +159,23 @@ export class QuotationDetailsComponent extends AppBase  {
 
 
   }
+
+  photoshow = false 
+  showPhoto(){
+    this.photoshow = true 
+  }
+
+
+  click_account = 0;
+
+  nextSlide(){
+    this.click_account = (this.click_account + 1) % 5;
+  }
+
+  preSlide(){
+    this.click_account = (this.click_account - 1) % 5;
+  }
+
 
   deleteQuote(item){
 
@@ -186,7 +218,7 @@ export class QuotationDetailsComponent extends AppBase  {
           quality: (this.list[i].quality),
           standby_time: (this.list[i].standby_time),
           guarantee: (this.list[i].guarantee),
-          remarks_infor: (this.list[i].remarks_infor),
+          sendcar_time: (this.list[i].sendcar_time),
           enterprise_id: enterprise_id,
           employee_id: this.employee_id
         }
