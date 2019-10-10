@@ -76,6 +76,7 @@
       <view class="flex-row  {{xuane!='E'?'':'txt-red'}}">其他</view>
     </view>
   </view>
+  
 </view>
 
 

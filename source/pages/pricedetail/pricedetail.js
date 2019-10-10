@@ -23,7 +23,7 @@ class Content extends AppBase {
   
   onLoad(options) {
     this.Base.Page = this;
-    //options.id = 1;
+     options.id = 24;
     super.onLoad(options);
     this.Base.setMyData({
       xuan: 'F',
@@ -41,20 +41,42 @@ class Content extends AppBase {
     orderapi.quoteinfo({
       id: this.Base.options.id
     }, (quoteinfo) => {
-
+      var etplist = {};
       var fittingsitem = quoteinfo.fittingsitem;
+
       for (var i = 0; i < fittingsitem.length; i++) {
 
         var quoteitems = fittingsitem[i].quoteitems;
         for (var j = 0; j < quoteitems.length; j++) {
           quoteitems[j].check = false;
+
+          var list = quoteitems[j];
+          if (!etplist[list.enterprise_id]) {
+            etplist[list.enterprise_id] = [];
+          }
+          etplist[list.enterprise_id].push(list)
         }
 
+        var enterpriselist = [];
+        var price = 0;
+ 
+        for (var key in etplist) {
+
+          for (var a in etplist[key]) {
+            enterpriselist.push({ id: key, enterprise_name: etplist[key][a].edt_name, qtylist: etplist[key] })
+            break;
+          }
+
+          for (var s in etplist[key]) {
+            price += (parseInt(etplist[key][s].price) * parseInt(etplist[key][s].qty))
+          }
+
+        }
+ 
       }
-
-
+  
       this.Base.setMyData({
-        quoteinfo
+        quoteinfo, enterpriselist, price
       });
     });
 
@@ -81,11 +103,16 @@ class Content extends AppBase {
   }
   bindchakan(e) {
     var chakan = e.currentTarget.dataset.chakan;
+
+     
     this.Base.setMyData({
       chakan: chakan
     })
 
   }
+
+
+
   bindfapiao(e) {
     var xuan = e.currentTarget.id
     if (xuan == 'S') {

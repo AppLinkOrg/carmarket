@@ -10,9 +10,7 @@
         <view class="flex-row  {{chakan!='C'?'txt-bc':'txt-white'}}">按商家查看报价</view>
       </view>
     </view>
-
-
-
+  
     <view class="flex-row margin-top" bindtap="bindchakan" data-chakan="B">
       <view class=" btnone btntwo h4 {{chakan=='B'?'bg-bt':'bg-white'}}">
         <view class="flex-row  {{chakan!='B'?'txt-bc':'txt-white'}}">按配件查看报价</view>
@@ -60,7 +58,7 @@
 
 <!-- height: 164rpx ; -->
 
-<view class=" margin-20 ">
+<view wx:if='{{chakan=="B"}}' class=" margin-20 ">
 
   <view class="{{idx==0?'':'margin-top-10'}} radius-5" wx:for="{{quoteinfo.fittingsitem}}" wx:key="k" wx:for-index='idx'>
 
@@ -121,6 +119,23 @@
     <view class="margin-bottom-20"></view>
   </view>
 </view>
+
+
+
+
+
+<view wx:if='{{chakan=="C"}}' class="margin-20">
+
+</view>
+
+
+
+
+
+
+
+
+
 
 
 <view class="flex-row">
