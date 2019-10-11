@@ -116,3 +116,7 @@ Page {
   width: 60%;
   border-radius: 40rpx;
 }
+.blueblock{
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}

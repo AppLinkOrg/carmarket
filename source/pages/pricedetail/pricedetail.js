@@ -63,7 +63,7 @@ class Content extends AppBase {
         for (var key in etplist) {
 
           for (var a in etplist[key]) {
-            enterpriselist.push({ id: key, enterprise_name: etplist[key][a].edt_name, qtylist: etplist[key] })
+            enterpriselist.push({ id: key, enterprise_name: etplist[key][a].edt_name, address: etplist[key][a].edt_address, qtylist: etplist[key] })
             break;
           }
 
@@ -104,7 +104,8 @@ class Content extends AppBase {
   bindchakan(e) {
     var chakan = e.currentTarget.dataset.chakan;
 
-     
+    this.onMyShow();
+ 
     this.Base.setMyData({
       chakan: chakan
     })
@@ -141,9 +142,7 @@ class Content extends AppBase {
     var quoteinfo = this.Base.getMyData().quoteinfo;
     var fittingsitem = quoteinfo.fittingsitem;
     var quoteitems = fittingsitem[index].quoteitems;
-
-
-
+ 
     // var checking = fittingsitem[index].quoteitems[sx].check;
 
     for (var i = 0; i < quoteitems.length; i++) { //将所有选中状态设为未选
@@ -153,6 +152,7 @@ class Content extends AppBase {
     }
 
     console.log(fittingsitem[index].quoteitems[sx].check);
+
     if (fittingsitem[index].quoteitems[sx].check == true) {
       fittingsitem[index].quoteitems[sx].check = false;
     } else {
@@ -172,6 +172,29 @@ class Content extends AppBase {
 
   }
 
+  bindcheckone(e){
+    var enterprise_id = e.currentTarget.dataset.enterprise_id;
+    var index = e.currentTarget.dataset.index;
+    var sx = e.currentTarget.dataset.sx;
+    var enterpriselist = this.Base.getMyData().enterpriselist;
+    var check = enterpriselist[index].qtylist[sx].check;
+
+    
+    
+    if (check==false){
+      enterpriselist[index].qtylist[sx].check = true;
+    }else{
+      enterpriselist[index].qtylist[sx].check = false;
+    }
+ 
+    this.Base.setMyData({
+      enterpriselist: enterpriselist
+    })
+
+ 
+    this.statisticsone();
+  }
+
   statistics() { //选中零件统计
     var quoteinfo = this.Base.getMyData().quoteinfo;
     var fittingsitem = quoteinfo.fittingsitem;
@@ -182,7 +205,7 @@ class Content extends AppBase {
       var quoteitems = fittingsitem[j].quoteitems;
       for (var a = 0; a < quoteitems.length; a++) {
         if (quoteitems[a].check == true) {
-          console.log(quoteitems[a]);
+          //console.log(quoteitems[a]);
           shopcar.push(quoteitems[a]);
           quantity++;
           sum += parseInt(quoteitems[a].price);
@@ -198,10 +221,36 @@ class Content extends AppBase {
     //console.log(sum);
   }
 
+  statisticsone() { //选中零件统计
+   //return;
+    var enterpriselist = this.Base.getMyData().enterpriselist;
+
+    var shopcar = [];
+    var sum = 0; //价格
+    var quantity = 0; //选中数量
+
+    for (var j = 0; j < enterpriselist.length; j++) {
+      var qtylist = enterpriselist[j].qtylist;
+      for (var a = 0; a < qtylist.length; a++) {
+        if (qtylist[a].check == true) {
+          //console.log(quoteitems[a]);
+          shopcar.push(qtylist[a]);
+          quantity++;
+          sum += parseInt(qtylist[a].price);
+        }
+      }
+    }
+
+    this.Base.setMyData({
+      sum,
+      quantity,
+      shopcar
+    })
+    //console.log(sum);
+  }
+
   carshoplist(json, i) {
 
-   
- 
     var that = this;
     var orderapi = new OrderApi();
     setTimeout(() => {
@@ -259,10 +308,13 @@ body.addcar = content.addcar;
 
 body.carshoplist = content.carshoplist;
 
-body.bindcheck = content.bindcheck;
+body.bindcheck = content.bindcheck; 
+body.bindcheckone = content.bindcheckone;
 
 body.bindshai = content.bindshai;
 body.binddelect = content.binddelect;
 
-body.statistics = content.statistics;
+body.statistics = content.statistics; 
+body.statisticsone = content.statisticsone;
+
 Page(body)
