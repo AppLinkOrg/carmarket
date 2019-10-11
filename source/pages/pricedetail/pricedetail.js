@@ -107,7 +107,7 @@ class Content extends AppBase {
     this.onMyShow();
  
     this.Base.setMyData({
-      chakan: chakan
+      chakan: chakan, quantity:0,sum:0
     })
 
   }
@@ -249,26 +249,13 @@ class Content extends AppBase {
     //console.log(sum);
   }
 
-  carshoplist(json, i) {
 
-    var that = this;
-    var orderapi = new OrderApi();
-    setTimeout(() => {
-      orderapi.addshopcar(json, (addshopcar) => {
-        
-      }) 
-
-    }, i * 300)
-    wx.navigateTo({
-      url: '/pages/shopcar/shopcar?carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode
-    })
-  }
 
   addcar(e) {
     var that =this;
-    console.log("加入购物车")
+     
     var shopcar = this.Base.getMyData().shopcar;
-    console.log(this.Base.getMyData().shopcar, "拉手动挡");
+     
     //var aaa=[];
     for (var i = 0; i < shopcar.length; i++) {
       var list = {
@@ -285,6 +272,24 @@ class Content extends AppBase {
       this.carshoplist(list, i);
 
     }
+
+  }
+
+  carshoplist(json, i) {
+
+    var that = this;
+    var orderapi = new OrderApi();
+    setTimeout(() => {
+      orderapi.addshopcar(json, (addshopcar) => {
+
+      })
+
+ 
+    }, i * 300)
+    
+    wx.navigateTo({
+      url: '/pages/shopcar/shopcar?id=' + this.Base.options.id + '&carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode
+    })
 
   }
 
