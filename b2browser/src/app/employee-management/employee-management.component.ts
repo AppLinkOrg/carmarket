@@ -1,0 +1,613 @@
+import { Component, OnInit } from '@angular/core';
+import { AppBase } from '../AppBase';
+import { Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { InstApi } from 'src/providers/inst.api';
+import { AddressApi } from 'src/providers/address.api';
+import { OrderApi } from 'src/providers/order.api';
+import { EnterpriseApi } from 'src/providers/enterprise.api';
+
+@Component({
+  selector: 'app-employee-management',
+  templateUrl: './employee-management.component.html',
+  styleUrls: ['./employee-management.component.scss'],
+  providers:[InstApi,AddressApi,OrderApi,EnterpriseApi]
+})
+export class EmployeeManagementComponent extends AppBase  {
+
+  constructor(
+    public router: Router,
+    public activeRoute: ActivatedRoute,
+    public instApi:InstApi,
+    public adressApi:AddressApi,
+    public orderApi:OrderApi,
+    public enterpriseApi:EnterpriseApi,
+  ) { 
+    super(router,activeRoute,instApi);
+  }
+
+
+  public item: any  = {
+    region:'',
+    address: '',
+    name: '',
+    phonenumber:'',
+    morenaddress:'',
+    operation: ''
+  };
+
+  obj:any = {
+    orderno: '',
+    start_time: '',
+    end_time: ''
+  }
+
+  employee_id=''
+  enterprise_id=''
+  enterprise_id_name = ''
+
+  length = null;
+
+  pageSize = null;
+  pages = null;
+  newPage = null;
+  pageList = [];
+  selPage = 1;
+  data = [];
+  setData = null;
+  
+  order=null
+  tempOrder=null
+
+  employeePer = {
+    name: '',
+    position_name: '',
+   
+  }
+  enterprise = {
+    
+  }
+
+  employeeinfo = []
+  addresslist=[]
+
+ totalMoney = 0
+
+
+  onMyShow(){
+    this.employeeinfo = []
+    
+
+      this.enterpriseApi.employeeinfo({ }).then((employeeinfo:any)=>{
+        console.log(employeeinfo,'ooo')
+        this.enterprise_id = employeeinfo.enterprise_id
+        this.employee_id = employeeinfo.id
+        if(employeeinfo.position == 'C'){
+          employeeinfo.position_name = '报价员'
+        }
+        if(employeeinfo.position == 'D'){
+          employeeinfo.position_name = '查询员'
+        }
+        if(employeeinfo.position == 'B'){
+          employeeinfo.position_name = '老板'
+        }
+        this.employeeinfo.push(employeeinfo)
+
+         
+        this.adressApi.addresslist({ enterprise_id: this.enterprise_id,employee_id: this.employee_id }).then((addresslist:any)=>{
+          this.pageList = []
+          this.length = []
+          this.addresslist = addresslist
+          this.length = this.addresslist.length
+    
+          for(let i=0;i<this.addresslist.length;i++){
+            this.addresslist[i].index = i
+          }
+    
+          this.pagination(this.addresslist,this.length)
+        })
+    
+        
+        
+      })
+    
+  }
+
+  reset(){
+    this.obj = {
+      userName: '',
+      mobile: '',
+      orderno: '',
+      start_time: '',
+      end_time: ''
+    }
+    this.totalMoney = 0
+    let toggleBtns = document.getElementsByClassName('toggleBtns')[0].children
+    
+    toggleBtns[0].classList.add('btn-active')
+    for(let k=1;k<toggleBtns.length;k++){
+      toggleBtns[k].classList.remove('btn-active')
+    }
+
+    this.orderApi.mylist({ enterprise_id:this.enterprise_id, employee_id:  this.employee_id }).then((order)=>{
+      this.pageList = []
+      this.length = []
+      this.tempOrder = order
+
+      let tOrder = []
+
+      console.log(this.tempOrder)
+
+      for(let i=0;i<this.tempOrder.length;i++){
+
+        if(this.tempOrder[i].order_status == 'N' ){
+          this.totalMoney += parseInt( this.tempOrder[i].totalamount)
+          tOrder.push(this.tempOrder[i])
+        }
+
+        if(this.tempOrder[i].order_status == 'R'){
+          this.tempOrder[i].order_status_name = '待退款'
+          tOrder.push(this.tempOrder[i])
+        }
+
+        if(this.tempOrder[i].order_status == 'Y'){
+          this.tempOrder[i].order_status_name = '已退款'
+          this.totalMoney -= parseInt( this.tempOrder[i].totalamount)
+          tOrder.push(this.tempOrder[i])
+        }
+      }
+
+      this.order = tOrder
+
+      if(this.order!=null){
+        for(let k=0;k<this.order.length;k++){
+          this.order[k].index = k
+        }
+
+        this.length = this.order.length
+        this.pagination(this.order,this.length)
+      }
+     
+
+      console.log(this.order)
+    })
+
+    
+  }
+
+  changeMoren(flag){
+    if(flag){
+      return 'Y'
+    }else {
+      return 'N'
+    }
+  }
+
+  saveAddress(address){
+    this.pageList = []
+    address.morenaddress = this.changeMoren(address.morenaddress)
+  
+    address.status = 'A'
+
+    if(this.item.operation == 'E'){
+      
+      this.adressApi.updateaddress(address).then((updateaddress:any)=>{
+     
+        if(updateaddress.code == '0'){
+          this.onMyShow()
+        }
+      })
+    }else {
+      this.adressApi.addaddress(address).then((addaddress:any)=>{
+
+          if(addaddress.code == '0'){
+            this.onMyShow()
+          }
+      })
+
+    }
+
+   
+  }
+
+  newadd(){
+    this.item = []
+    this.item.operation = 'A'
+  }
+
+
+  editAddress(item){
+
+    this.item = item
+    this.item.operation = 'E'
+
+
+  }
+ 
+
+  deleteAddress(item){
+    this.pageList = []
+    this.adressApi.addressdelete({ id: item.id }).then((deleteAdress:any)=>{
+  
+      if(deleteAdress.code == '0'){
+        this.onMyShow()
+      }
+    })
+  }
+
+  myAccount(event){
+
+    this.pageList = []
+    this.length = []
+
+    event.target.classList.add('btn-active')
+    var others = event.target.parentElement.children
+    
+    for(let i=1;i<others.length;i++){
+      others[i].classList.remove('btn-active')
+    }
+
+    let toggleBox1 = document.getElementsByClassName('toggleBox1')[0];
+    let toggleBox2 = document.getElementsByClassName('toggleBox2')[0];
+    let toggleBox3 = document.getElementsByClassName('toggleBox3')[0];
+    toggleBox1.classList.remove('box-hide')
+    toggleBox2.classList.add('box-hide')
+    toggleBox3.classList.add('box-hide')
+
+    this.onMyShow()
+
+  }
+
+  address(event){
+    this.pageList = []
+    this.length = []
+    
+
+    event.target.classList.add('btn-active')
+    var others = event.target.parentElement.children
+    for(let i=2;i<others.length;i++){
+      others[i].classList.remove('btn-active')
+    }
+    others[0].classList.remove('btn-active')
+
+    let toggleBox1 = document.getElementsByClassName('toggleBox1')[0];
+    let toggleBox2 = document.getElementsByClassName('toggleBox2')[0];
+    let toggleBox3 = document.getElementsByClassName('toggleBox3')[0];
+    toggleBox1.classList.add('box-hide')
+    toggleBox2.classList.remove('box-hide')
+    toggleBox3.classList.add('box-hide')
+
+    this.onMyShow()
+    
+  }
+
+  myachievement(event){
+    this.pageList = []
+    this.length = []
+    
+
+    event.target.classList.add('btn-active')
+    var others = event.target.parentElement.children
+    for(let i=0;i<others.length-1;i++){
+      others[i].classList.remove('btn-active')
+    }
+
+    let toggleBox1 = document.getElementsByClassName('toggleBox1')[0];
+    let toggleBox2 = document.getElementsByClassName('toggleBox2')[0];
+    let toggleBox3 = document.getElementsByClassName('toggleBox3')[0];
+    toggleBox3.classList.remove('box-hide')
+    toggleBox2.classList.add('box-hide')
+    toggleBox1.classList.add('box-hide')
+
+    this.orderApi.mylist({ enterprise_id:this.enterprise_id, employee_id:  this.employee_id }).then((order)=>{
+      this.pageList = []
+      this.length = []
+      this.tempOrder = order
+
+      let tOrder = []
+
+      console.log(this.tempOrder)
+
+      for(let i=0;i<this.tempOrder.length;i++){
+
+        if(this.tempOrder[i].order_status == 'N' ){
+          this.totalMoney += parseInt( this.tempOrder[i].totalamount)
+          tOrder.push(this.tempOrder[i])
+        }
+
+        if(this.tempOrder[i].order_status == 'R'){
+          this.tempOrder[i].order_status_name = '待退款'
+          tOrder.push(this.tempOrder[i])
+        }
+
+        if(this.tempOrder[i].order_status == 'Y'){
+          this.tempOrder[i].order_status_name = '已退款'
+          this.totalMoney -= parseInt( this.tempOrder[i].totalamount)
+          tOrder.push(this.tempOrder[i])
+        }
+      }
+
+      this.order = tOrder
+
+      if(this.order!=null){
+        for(let k=0;k<this.order.length;k++){
+          this.order[k].index = k
+        }
+
+        this.length = this.order.length
+        this.pagination(this.order,this.length)
+      }
+     
+
+      console.log(this.order)
+    })
+
+
+  }
+
+  myAll(event){
+    console.log(this.order)
+    this.pageList = []
+
+    event.target.classList.add('btn-active')
+    var others = event.target.parentElement.children
+    for(let i=1;i<others.length;i++){
+      others[i].classList.remove('btn-active')
+    }
+
+    if(this.order != null){
+
+      this.order = this.order
+      this.length = this.order.length
+      this.pagination(this.order,this.length)
+      console.log(this.order)
+
+    }
+   
+  }
+
+  myfinish(event){
+    console.log(this.order)
+    this.pageList = []
+
+    event.target.classList.add('btn-active')
+    var others = event.target.parentElement.children
+    for(let i=2;i<others.length;i++){
+      others[i].classList.remove('btn-active')
+    }
+    others[0].classList.remove('btn-active')
+
+    if(this.order != null){
+      let finOrder = this.order.filter((item)=>{
+        return item.order_status == 'N'
+      })
+
+      for(let k=0;k<finOrder.length;k++){
+        finOrder[k].index = k
+      }
+  
+      this.length = finOrder.length
+      this.pagination(finOrder,this.length)
+  
+      console.log(finOrder)
+  
+    }
+
+  
+  }
+
+  myreturn(event){
+    this.pageList = []
+    
+    console.log(this.order)
+
+    event.target.classList.add('btn-active')
+    var others = event.target.parentElement.children
+    for(let i=0;i<others.length-2;i++){
+      others[i].classList.remove('btn-active')
+    }
+    others[others.length-1].classList.remove('btn-active')
+
+    if(this.order != null){
+      let reOrder = this.order.filter((item)=>{
+        return item.order_status == 'R'
+      })
+
+      for(let k=0;k<reOrder.length;k++){
+        reOrder[k].index = k
+      }
+      
+      this.length = reOrder.length
+      this.pagination(reOrder,this.length)
+      console.log(reOrder)
+  
+    }
+ 
+   
+  }
+
+  myyitui(event){
+    console.log(this.order)
+    this.pageList = []
+
+    event.target.classList.add('btn-active')
+    var others = event.target.parentElement.children
+    for(let i=0;i<others.length-1;i++){
+      others[i].classList.remove('btn-active')
+    }
+
+
+    if(this.order != null){
+      let yiOrder = this.order.filter((item)=>{
+        return item.order_status == 'Y'
+      })
+
+      
+      for(let k=0;k<yiOrder.length;k++){
+        yiOrder[k].index = k
+      }
+      
+
+      this.length = yiOrder.length
+      this.pagination(yiOrder,this.length)
+      console.log(yiOrder)
+    }
+
+    
+
+  }
+
+
+
+  search(item){
+
+    console.log(item)
+    console.log(this.order)
+    this.order = []
+
+    this.orderApi.mylist({enterprise_id: this.enterprise_id,employee_id:this.employee_id }).then((order:any)=>{
+      console.log(order)
+    
+        
+        this.tempOrder = order
+        let tOrder = []
+        this.pageList = []
+        this.length = []
+      
+        for(let i=0;i<this.tempOrder.length;i++){
+
+            if(this.tempOrder[i].orderno == item.orderno){
+             
+              let index = this.tempOrder[i].order_time.indexOf(' ')
+
+              if(index != -1){
+                this.tempOrder[i].order_time = this.tempOrder[i].order_time.slice(0,index)
+              }else {
+                this.tempOrder[i].order_time = this.tempOrder[i].order_time
+              }
+
+              console.log(this.tempOrder[i].order_time,index)
+              if(item.start_time <= this.tempOrder[i].order_time ){
+                if(this.tempOrder[i].order_time <= item.end_time){
+                  tOrder.push(this.tempOrder[i])
+                }else if(item.end_time == ''){
+                  tOrder.push(this.tempOrder[i])
+                }
+              }else if(item.start_time == ''){
+               
+                if(this.tempOrder[i].order_time <= item.end_time){
+                  tOrder.push(this.tempOrder[i])
+                }else if(item.end_time == ''){
+                  tOrder.push(this.tempOrder[i])
+                }
+    
+              }
+    
+            }
+            else if(item.orderno == '') {
+
+              let index = this.tempOrder[i].order_time.indexOf(' ')
+              if(index != -1){
+                this.tempOrder[i].order_time = this.tempOrder[i].order_time.slice(0,index)
+              }else {
+                this.tempOrder[i].order_time = this.tempOrder[i].order_time
+              }
+              console.log(this.tempOrder[i].order_time,index)
+              if(item.start_time <= this.tempOrder[i].order_time ){
+
+                if(this.tempOrder[i].order_time <= item.end_time){
+                  tOrder.push(this.tempOrder[i])
+                }else if(item.end_time == ''){
+                  tOrder.push(this.tempOrder[i])
+                }
+                
+               
+              }else if(item.start_time == ''){
+                
+                if(this.tempOrder[i].order_time <= item.end_time){
+                  tOrder.push(this.tempOrder[i])
+                }else if(item.end_time == ''){
+                  tOrder.push(this.tempOrder[i])
+                }
+    
+              }
+
+            }
+          }
+
+        console.log(this.tempOrder)
+        console.log(tOrder)
+
+   
+        for(let k=0;k<tOrder.length;k++){
+          tOrder[k].index = k
+        }
+
+        this.order = tOrder
+
+        this.length = tOrder.length
+        this.pagination(tOrder,this.length)
+        console.log(this.order)
+  
+      })
+
+   
+  }
+ 
+
+  pagination(list,length){
+    this.pageSize = 10;
+    // if()
+    this.pages = Math.ceil( length/this.pageSize )
+    this.newPage = this.pages > 10 ? 10 : this.pages;
+    this.selPage = 1;
+    
+    this.setData = function(){
+      this.data = list.slice(this.pageSize*(this.selPage-1),this.pageSize*this.selPage);
+    }
+    this.data = list.slice(0, this.pageSize);
+
+    for (var i = 0; i < this.newPage; i++) {
+       this.pageList.push(i + 1);
+     }
+
+  }
+
+  selectPage(page) {
+      if (page < 1 || page > this.pages) return;
+     
+      if (page > 2) {
+          var newpageList = [];
+          for (var i = (page - 3) ; i < ((page + 2) > this.pages ? this.pages : (page + 2)) ; i++) {
+              newpageList.push(i + 1);
+          }
+          this.pageList = newpageList;
+      }
+      this.selPage = page;
+      this.setData();
+      this.isActivePage(page);
+  }
+
+  isActivePage(page){
+    return this.selPage == page;
+  }
+
+
+  Previous() {
+    this.selectPage(this.selPage - 1);
+  }
+
+  Next () {
+    this.selectPage(this.selPage + 1);
+  }
+
+  fristPage(){
+    this.selectPage(this.selPage = 1);
+  }
+
+  lastPage(){
+    this.selectPage(this.selPage = this.pages);
+  }
+
+
+}

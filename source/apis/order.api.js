@@ -104,7 +104,7 @@ export class OrderApi{
             }
         })
     }
-
+ 
     confirmquote(json, callback, showLoading = true) {
 
         if (showLoading)

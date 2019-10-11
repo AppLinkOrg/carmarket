@@ -14,42 +14,52 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;报价信息</h6>
-                <a routerLink="/quotationCenter" class="txt-black"><i class="fa fa-angle-left margin-right"></i>返回</a>
+                    <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;报价信息</h6>
+                    <a routerLink="/quotationCenter" class="txt-black"><i class="fa fa-angle-left margin-right"></i>返回</a>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                <div class="border-dep-gray">
-                    <div class="flex-row">
-                        <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">公司名称</span><span>深圳市兴达汽车维修中心</span>
-                    </div>
+                <div class="border-dep-gray padding-top-5" *ngIf='quoteinfo !==null'>
                     <div class="flex-row">
                         <div class="flex-4">
-                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">订单编号</span><span>19072500000001</span>
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">公司名称</span><span>{{quoteinfo.enterprise_id_name}}</span>
                         </div>        
                         <div class="flex-4">
-                            <span class="bg-dep-gray txt-black padding-three-words margin-right-20">车架号</span><span>LGWEF4A57CF147429</span>
+                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">地址</span><span>{{quoteinfo.enterprise_corporate_address}}</span>
                         </div>
                         <div class="flex-4">
-                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span><span>原件厂</span>
+                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">电话</span><span>{{quoteinfo.employee_mobile}}</span>
+                        </div>    
+                    </div>
+                    <div class="flex-row"><span class="border-bottom-white border-box" style="width: 80%"></span></div>
+                    <div class="flex-row">
+                        <div class="flex-4">
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">订单编号</span><span>{{quoteinfo.quotenumber}}</span>
+                        </div>        
+                        <div class="flex-4">
+                            <span class="bg-dep-gray txt-black padding-three-words margin-right-20">车架号</span><span>{{quoteinfo.vincode}}</span>
+                        </div>
+                        <div class="flex-4">
+                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span><span>{{quoteinfo.information}}</span>
                         </div>    
                     </div>
                     <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
                     <div class="flex-row">
                         <div class="flex-1">
-                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">报价时间</span><span>2019/07/25 18：01</span>
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">报价时间</span><span>{{quoteinfo.quote_time}}</span>
                         </div>        
                         <div class="flex-2">
-                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">车型</span><span>哈佛 H6 2012款 1.5T手动两驱都是型</span>
+                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">车型</span><span>{{quoteinfo.carmodel}}</span>
                         </div>  
                     </div>
                     <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
                     <div class="flex-row margin-bottom-3">
                         <div class="flex-1">
-                            <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>陈师傅</span>
+                            <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{quoteinfo.employee_id_name}}</span>
                         </div>        
                         <div class="flex-2">
-                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red">需要发票</span>
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red"  *ngIf='quoteinfo.invoice_demand=="是"'>需要发票</span>
+                            <span *ngIf='quoteinfo.invoice_demand=="否"'>不需要发票</span>
                         </div>
                     </div>
                 </div>
@@ -65,8 +75,71 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;报价处理</h6>
+                    <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;报价处理</h6>
                 </div>
+                <div *ngIf='tianxie' class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div  class="modal-dialog margin-top-tl " role="document">
+                           
+                        <span class="txt-white h4">信息未填完</span>
+                            
+                    </div>
+                   
+                </div>
+
+
+                
+                <div  *ngIf='photoshow' class="modal fade " id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div  class="modal-dialog photoimg " role="img" *ngFor='let item of imgs'>
+                            <div class="modal-content" style="background: transparent; border: none">
+
+                                <div id="demo" class="carousel slide" style="width: 800px; height: 600px" >
+                                    <!-- 指示符 -->
+                                    <ul class="carousel-indicators" >
+                                    <li data-target="#demo" *ngIf='0<item.photoLen' data-slide-to="0" class="active"></li>
+                                    <li data-target="#demo"  *ngIf='1<item.photoLen' data-slide-to="1"></li>
+                                    <li data-target="#demo"  *ngIf='2<item.photoLen' data-slide-to="2"></li>
+                                    <li data-target="#demo"  *ngIf='3<item.photoLen' data-slide-to="3"></li>
+                                    <li data-target="#demo"  *ngIf='4<item.photoLen' data-slide-to="4"></li>
+                                </ul>
+                                
+                                    <!-- 轮播图片 -->
+                                    <div class="carousel-inner images" style="height: 100%;">
+                                        <div class="carousel-item active" style="height: 100%;" *ngIf='item.photo1!=""' >
+                                            <img src="{{uploadpath}}fittings/{{item.photo1}}">
+                                        </div>
+                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo2!=""'>
+                                            <img src="{{uploadpath}}fittings/{{item.photo2}}">
+                                        </div>
+                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo3!=""'>
+                                            <img src="{{uploadpath}}fittings/{{item.photo3}}">
+                                        </div>
+                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo4!=""'>
+                                            <img src="{{uploadpath}}fittings/{{item.photo4}}">
+                                        </div>
+                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo5!=""'>
+                                            <img  src="{{uploadpath}}fittings/{{item.photo5}}">
+                                        </div>
+                                    </div>
+                                
+                                    <!-- 左右切换按钮 -->
+                                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                                        <span class="carousel-control-prev-icon"></span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#demo" data-slide="next">
+                                        <span class="carousel-control-next-icon"></span>
+                                    </a>
+                                
+                                </div>
+                        
+                        
+                            </div>
+                        </div> 
+                </div>
+
+
+
+             
+
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="container-fluid">
@@ -83,106 +156,83 @@
                                     <th>数量</th>
                                     <th>品质/品牌</th>
                                     <th>备货时间</th>
-                                    <th>质保质</th>
+                                    <th>质保期</th>
                                     <th>单价</th>
-                                    <th>备注信息</th>
+                                    <th>发车时间</th>
                                     <th>新增</th>
                                     </tr>
                                 </thead>
-                                <tbody class="h5 text-center">
+                                <tbody class="h5" *ngFor='let item of fittinglist; let i=index'>
                                     <tr>
-                                        <td rowspan="2">1</td>
-                                        <td rowspan="2"> 
-                                            后空调蒸发器高压管
-                                            <img src="{{uploadpath}}resource/{{res.peijian}}" class="icon-30">
+                                        <td [attr.rowspan]='item.count' class="text-center">{{i+1}}</td>
+                                        <td [attr.rowspan]='item.count'> 
+                                           <div>{{item.name}}</div>
+                                            <div class="photo">
+                                                <img *ngIf='item.photo1!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo1}}" class="icon-30">
+                                                <img *ngIf='item.photo1=="" && item.photo2!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo2}}" class="icon-30">
+                                                <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo3}}" class="icon-30">
+                                                <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3==""  && item.photo4!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo4}}" class="icon-30">
+                                                <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3=="" && item.photo4==""  && item.photo5!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo5}}" class="icon-30">
+                                                <div *ngIf='item.photoLen>1' class="photoLen" >{{item.photoLen}}</div>
+                                            </div>
+                                    
+
                                         </td>
-                                        <td rowspan="2"><span class="table-box">654893</span></td>
+                                        <td [attr.rowspan]='item.count'><span class="table-box">{{item.id}}</span></td>
                                         <td>
-                                            <div>1</div>
-                                        </td>
-                                        <td>
-                                            <div class="table-box">原厂原包</div>
-                                        </td>
-                                        <td>
-                                            <div class="table-box">现货</div>
-                                        </td>
-                                        <td>
-                                            <div class="table-box">包原厂</div>
-                                        </td>
-                                        <td>
-                                            <div class="table-box">688</div>
+                                            <div>{{item.quantity}}</div>
                                         </td>
                                         <td>
-                                            <div class="table-box"></div>
+                                            <!-- <div class="table-box">{{item.quality}}</div> -->
+                                            <input type="text" class="table-box" [(ngModel)]='item.quality'>
+                                            <!-- <ng-template *ngIf='count>1==true'>
+                                                {{item.quality}}
+                                            </ng-template> -->
                                         </td>
                                         <td>
-                                            <div>
-                                                <button class="btn btn-primary h5">
-                                                    <a>新增一条报价</a>
+                                            <!-- <div class="table-box">{{item.standby_time}}</div> -->
+                                            <input type="text" class="table-box" [(ngModel)]='item.standby_time'>
+                                        </td>
+                                        <td>
+                                            <!-- <div class="table-box">{{item.guarantee}}</div> -->
+                                            <input type="text" class="table-box" [(ngModel)]='item.guarantee'>
+                                        </td>
+                                        <td>
+                                            <!-- <div class="table-box">{{item.price}}</div> -->
+                                            <input type="text" class="table-box" [(ngModel)]='item.price'>
+                                        </td>
+                                        <td>
+                                            <!-- <div class="table-box">{{item.remarks_infor}}</div> -->
+                                            <input type="text" class="table-box"  [(ngModel)]='item.sendcar_time'>
+                                        </td>
+                                        <td>
+                                            <div style='min-width: 86px'>
+                                                <button  data-toggle="modal" data-target="#myModal" class="btn btn-primary h5 addBtn" (click)="addQuote(item)">
+                                                    <a>新增报价</a>
                                                 </button>
                                             </div> 
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                            <div>1</div>
-                                        </td>
-                                        <td>
-                                            <div class="table-box">品牌</div>
-                                        </td>
-                                        <td>
-                                            <div class="table-box">现货</div>
-                                        </td>
-                                        <td>
-                                            <div class="table-box">三个月</div>
-                                        </td>
-                                        <td>
-                                            <div class="table-box">588</div>
-                                        </td>
-                                        <td>
-                                            <div class="table-box"></div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-danger h5">
-                                                    <a class="padding-10">&nbsp;删除该报价</a>
-                                                </button>
-                                            </div> 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td> 
-                                        方向机模块
-                                            <!-- <img src="{{uploadpath}}resource/{{res.peijian}}" class="icon-30"> -->
-                                        </td>
-                                        <td><span class="table-box">-</span></td>
-                                        <td>
-                                            <div>1</div>
-                                        </td>
-                                        <td>
-                                            <div class="table-box"></div>
-                                        </td>
-                                        <td>
-                                            <div class="table-box"></div>
-                                        </td>
-                                        <td>
-                                            <div class="table-box"></div>
-                                        </td>
-                                        <td>
-                                            <div class="table-box"></div>
-                                        </td>
-                                        <td>
-                                            <div class="table-box"></div>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                <button class="btn btn-primary h5">
-                                                    <a>新增一条报价</a>
-                                                </button>
-                                            </div> 
-                                        </td>
-                                    </tr>
+                                    <ng-container ngShow='item.count>1' >
+                                        <tr class="text-center" *ngFor='let list of item.quoteitems' >
+                                            <td>{{list.quantity}}</td>
+                                            <td>{{list.quality}}</td>
+                                            <td>{{list.standby_time}}</td>
+                                            <td>{{list.guarantee}}</td>
+                                            <td>{{list.price}}</td>
+                                            <td>{{list.sendcar_time}}</td>
+                                            <td>
+                                                <div style='min-width: 86px'>
+                                                    <button class="btn btn-danger h5 addBtn" (click)="deleteQuote(list)">
+                                                        <a>删除报价</a>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                        
+
+
                                 </tbody>
                             </table>
                             </div>
@@ -200,9 +250,7 @@
         <div class="col-lg-12">
         <div class="card show mb-4">
                 <div class="card-body flex-row box-auto flex-bottom">
-                <span class="h4-5">总计:</span>
-                <span class="txt-red h3 margin-right-20 margin-left-10">￥1924</span>
-                <button class="btn btn-primary padding-left-50 padding-right-50"><a>提交报价</a></button>
+                <button class="btn btn-primary padding-left-50 padding-right-50" (click)="saveQuote(operatorinfo.enterprise.id)"><a>提交报价</a></button>
                 </div>
         </div> 
         </div>

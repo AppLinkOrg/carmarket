@@ -1,0 +1,265 @@
+<div class="container-fluid">
+        
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+          <div class="card mb-4 bg-gray">
+            <div class="box-auto">
+               <h4 class="margin-40">管理中心</h4>
+            </div>
+          </div>
+         
+    
+          <div class="card-body">
+            <div class="margin-bottom-20 toggleBtns" role="group" aria-label="...">
+                <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='myAccount($event)'>我的账户</button>
+                <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray" (click)='address($event)'>地址管理</button>     
+            </div> 
+            <div class="toggleBox2 box-hide">
+
+                <div>
+                    <button type="button" class="btn btn-default border-primary margin-bottom-20 txt-primary"  data-toggle="modal" data-target="#myModal" (click)='newadd()'>
+                        <i class="fa fa-plus"></i>
+                        新增地址
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content margin-top-t">
+                                <div class="modal-header box-auto no-border">
+                                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                                    <h4 class="" id="myModalLabel">新增地址</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            发货地区：<input type="text" name='region' [(ngModel)]='item.region' class="input-box border-gray-1 padding-left-10">
+                                        </div>
+                                        <div class="form-group">
+                                            发货地址：<input type="text" name='address' [(ngModel)]='item.address'  class="input-box border-gray-1 padding-left-10">
+                                        </div>
+                                        <div class="form-group">
+                                            发货员：<input type="text" name='employee_name' [(ngModel)]='item.name' class="input-box border-gray-1 margin-left-16 padding-left-10">
+                                        </div>
+                                        <div class="form-group">
+                                            电话：<input type="text" name='phonenumber' [(ngModel)]='item.phonenumber' class="input-box border-gray-1 margin-left-32 padding-left-10">
+                                        </div>
+                                        <div class="form-group">
+                                            是否默认：<input type="checkbox" name='morenaddress' [(ngModel)]='item.morenaddress' style="-webkit-appearance: radio;" >
+                                        </div>
+                                    </form>
+                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-primary" (click)='saveAddress(item)'  data-dismiss="modal" >保存</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="table-responsive">
+                            <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                                <thead class="bg-gray">
+                                <tr>
+                                    <th>序号</th>
+                                    <th>发货地址</th>
+                                    <th>发货详细地址</th>
+                                    <th>发货员</th>
+                                    <th>电话</th>
+                                    <th>是否默认地址</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody *ngFor='let item of data'>
+                                    <tr>
+                                        <td class="tab-mid">{{item.index+1}}</td>
+                                        <td class="tab-mid">{{item.region}}</td>
+                                        <td class="tab-mid">{{item.address}}</td>
+                                        <td class="tab-mid">{{item.name}}</td>
+                                        <td class="tab-mid">{{item.phonenumber}}</td>
+                                        <td class="tab-mid">{{item.morenaddress}}</td>
+                                        <td class="tab-mid">
+                                            <button class="btn btn-primary" (click)='editAddress(item)'  data-toggle="modal"  data-target="#myModal"><a>修改</a></button><br>
+                                            <button class="btn txt-primary" (click)='deleteAddress(item)'><a>删除</a></button><br>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="flex-row flex-column" *ngIf='pageList.length>1'>
+                            <ul class="pagination cursor-pointer">
+                                <li class="margin-10 padding-10">共{{length}}条</li>
+                                <li class="border-gray-1 margin-10 padding-10" role='button' (click)="fristPage()">
+                                    <a >
+                                        <span aria-hidden="true">首页</span>
+                                    </a>
+                                    </li>
+                                <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Previous()">
+                                    <a class="h3">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" *ngFor="let page of pageList"  
+                                [ngClass]="{pagActive: isActivePage(page)}" role='button'  (click)='selectPage(page)' style="line-height: 36px;">
+                                    <a>{{page}}</a>
+                                </li>
+                                <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Next()">
+                                    <a class="h3">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                    </li>
+                                <li class="border-gray-1 margin-10 padding-10" role='button' (click)="lastPage()">
+                                    <a >
+                                        <span aria-hidden="true">尾页</span>
+                                    </a>
+                                    </li>
+                                </ul>
+                        </div>
+                </div>
+
+                
+
+            </div>
+          </div>
+        </div>
+        
+        <div>
+
+            
+        </div>
+
+        <div class="flex-row toggleBox1">
+            <div class="margin-right-40" style="width: 625px;">
+                <div class="row">
+                    <!-- Area Chart -->
+                    <div class="col-lg-12">
+                        <div class="card shadow mb-4">
+                            
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                
+                                <div class="card-body  flex-row" *ngFor='let item of employeeinfo'>
+                                    <div class="flex-center margin-right-40">
+                                        <img src="{{uploadpath}}employee/{{item.photo}}"  class="icon-85" />
+                                    </div>
+                                    <div class="flex-3">
+                                        <h5>{{item.name}} <span class="h6 margin-left-10">{{item.position_name}}</span></h5>
+                                        <p class="h5">{{item.enterprise.name}}</p>
+                                        <div class="h6">
+                                            <span class="margin-right-40">
+                                                <img src="{{uploadpath}}resource/{{res.authentication}}" class="icon-25 margin-right-10" style="background-blend-mode:lighten;" />已认证
+                                            </span>
+                                            <span>
+                                                <img src="{{uploadpath}}resource/{{res.return}}" class="icon-25 margin-right-10" />包退换
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-header bg-white py-3 no-border d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;企业员工</h6>
+                                </div>
+
+
+                                <div class="container-fluid">
+                                    <!-- DataTales Example -->
+                                    <div class="card shadow mb-4">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead class="bg-gray text-center">
+                                                <tr>
+                                                <th>姓名</th>
+                                                <th>电话</th>
+                                                <th>职务</th>
+                                                <th>权限</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="h5 text-center">
+                                                <tr *ngFor='let list of allenterprise'>
+                                                    <td>{{list.name}}</td>
+                                                    <td>{{list.mobile}}</td>
+                                                    <td>{{list.position_name}}</td>
+                                                    <td>
+                                                        <div class="offBtn" *ngIf='list.power == "是"'>
+                                                            <span class="offqiuti"  (click)='changeSwitch($event,list)'></span>
+                                                        </div>
+                                                        <div class="onBtn" *ngIf='list.power == "否"'>
+                                                            <span class="onqiuti"   (click)='changeSwitch($event,list)'></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div style="width: 625px;">
+                <div class="row">
+                        <!-- Area Chart -->
+                        <div class="col-lg-12">
+                            <div class="card shadow mb-4">
+                                
+                                <!-- Card Body -->
+                                <div class="card-body" *ngFor='let item of enterpriseinfo'>
+                                    
+                                    <div class="card-header bg-white py-3 no-border d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;公司账户</h6>
+                                    </div>
+                                    <div class="flex-row">
+                                        <div class="flex-2 text-center">
+                                            <h2>{{item.account_money}}</h2>
+                                            <div class="h5">账户金额</div>
+                                        </div>
+                                        <div class="flex-1 text-left flex-bottom">
+                                            <button class="btn-active btn no-border padding-left-40 padding-right-40 padding-top-20 padding-bottom-20 margin-bottom-10" (click)='applytixian()'>申请提现</button>
+                                            <!-- <button class="btn btn-default txt-blue">账单明细</button> -->
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-header bg-white py-3 no-border d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;销售额</h6>
+                                        <button class="no-border txt-blue" routerLink='/achievement'>查看更多业绩></button>
+                                    </div>
+    
+    
+                                    <div class="container-fluid">
+                                        <!-- DataTales Example -->
+                                        <div class="card shadow mb-4">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead class="bg-gray text-center">
+                                                    <tr>
+                                                        <th>姓名</th>
+                                                        <th>销售额累计</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="h5 text-center" *ngFor='let list of allenterprise'>
+                                                    <tr>
+                                                        <td>{{list.name}}</td>
+                                                        <td>{{list.sales_volume}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    

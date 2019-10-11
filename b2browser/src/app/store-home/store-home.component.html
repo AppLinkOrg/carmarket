@@ -14,13 +14,13 @@
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card bg-pal-green shadow h-100 py-2">
         <div class="card-body">
-          <div class="row no-gutters align-items-center">
+          <div class="row no-gutters align-items-center" (click)='todayOrder()'>
             <div class="col-5 mr-2">
               <img src="{{uploadpath}}resource/{{res.todayNum}}" class="icon-40 margin-left-10"/>          
               <div class="text-xs font-weight-bold txt-black text-uppercase mb-1">今日订单数</div>
             </div>
             <div class="col-auto" >
-              <div class="h2 mb-0 txt-white">5</div>
+              <div class="h2 mb-0 txt-white">{{count}}</div>
             </div>
           </div>
         </div>
@@ -31,13 +31,13 @@
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card bg-pal-yellow shadow h-100 py-2">
         <div class="card-body">
-          <div class="row no-gutters align-items-center">
+          <div class="row no-gutters align-items-center" (click)='todayIncome()'>
             <div class="col-5 mr-2">
               <img src="{{uploadpath}}resource/{{res.todayIncome}}" class="icon-40 margin-left-10"/>
               <div class="text-xs font-weight-bold txt-black text-uppercase mb-1">今日收入额</div>
             </div>
             <div class="col-auto">
-              <div class="h2 mb-0 txt-white">8569</div>
+              <div class="h2 mb-0 txt-white">{{totalIncome}}</div>
             </div>
           </div>
         </div>
@@ -49,13 +49,13 @@
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card bg-dep-yellow shadow h-100 py-2">
           <div class="card-body">
-            <div class="row no-gutters align-items-center">
+            <div class="row no-gutters align-items-center"  (click)='monthOrder()'>
               <div class="col-5 mr-2">
                 <img src="{{uploadpath}}resource/{{res.monthNum}}" class="icon-40 margin-left-10"/>
                 <div class="text-xs font-weight-bold txt-black text-uppercase mb-1">本月订单数</div>
               </div>
               <div class="col-auto">
-                <div class="h2 mb-0 txt-white">135</div>
+                <div class="h2 mb-0 txt-white">{{monOrder}}</div>
               </div>
             </div>
           </div>
@@ -66,13 +66,13 @@
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card bg-pal-red shadow h-100 py-2">
         <div class="card-body">
-          <div class="row no-gutters align-items-center">
+          <div class="row no-gutters align-items-center" (click)='monthIncome()'>
             <div class="col-5 mr-2">
               <img src="{{uploadpath}}resource/{{res.monthIncome}}" class="icon-40 margin-left-10"/>
               <div class="text-xs font-weight-bold txt-black text-uppercase mb-1">本月收入额</div>
             </div>
             <div class="col-auto">
-              <div class="h2 mb-0 txt-white">50589</div>
+              <div class="h2 mb-0 txt-white">{{monIncome}}</div>
             </div>
           </div>
         </div>
@@ -96,17 +96,17 @@
           <div class="chart-area padding-left-50 margin-40">
             <div class="row">
               <div class="col-xl-3"> 
-                <div>
+                <div (click)='reGoods()'>
                   <img src="{{uploadpath}}resource/{{res.sendgoods}}" class="icon-40 margin-right-10"/>
                    待发货：
-                   <span>2</span>
+                   <span>{{goods}}</span>
                   </div>
                 </div>
               <div class="col-xl-3"> 
-                <div>
+                <div (click)='applyGoods()'>
                   <img src="{{uploadpath}}resource/{{res.returngoods}}" class="icon-40 margin-right-10"/> 
                    客户申请退货：
-                   <span>1</span>
+                   <span>{{returnGoods}}</span>
                 </div>
               </div>
             </div>

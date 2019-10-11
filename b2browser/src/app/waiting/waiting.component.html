@@ -1,0 +1,243 @@
+<div class="container-fluid">
+
+
+        <div class="card mb-4 bg-gray">
+            <div class="box-auto flex-row">
+                <div class="arrow-line-left-active">
+                    <i class="fa fa-dot-circle txt-primary margin-left-46  margin-bottom-10 "></i>
+                    
+                    <div class="bg-primary padding-top-10 padding-bottom-10 padding-left-10 padding-right-10 txt-white chat-arrow-active">
+                        等待卖家付款
+                    </div>
+                </div>
+                <div class="margin-left-100 arrow-line-left arrow-line-right">
+                    <i class="fa fa-dot-circle margin-left-46  margin-bottom-10  txt-d-gray"></i>
+                    
+                    <div class="bg-white padding-top-10 padding-bottom-10 padding-left-30 padding-right-30 txt-d-gray chat-arrow">
+                        供应商发货
+                    </div>
+                </div>
+                <div class="margin-left-100 margin-right-100 arrow-line-left arrow-line-right">
+                    <i class="fa fa-dot-circle margin-left-46 margin-bottom-10 txt-d-gray "></i>
+                    <div class="bg-white padding-top-10 padding-bottom-10 padding-left-30 padding-right-30 txt-d-gray chat-arrow">
+                        等买家收货
+                    </div>
+                </div>
+                <div class="arrow-line-right">
+                    <i class="fa fa-dot-circle margin-left-46 margin-bottom-10 txt-d-gray"></i>
+                    <div class="bg-white padding-top-10 padding-bottom-10 padding-left-right-23 txt-d-gray chat-arrow">
+                        交易成功
+                    </div>
+                </div>
+            </div>
+            <div class="margin-left-20 margin-top-40 margin-bottom-10">
+                <button  routerLink="/orderManagement" type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 bg-white">
+                    <a class="txt-d-gray"><i class="fa fa-angle-left margin-right"></i>返回</a>
+                </button>
+                <button (click)='print()' type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 bg-white">
+                    <a class="txt-d-gray"><i class="fa fa-print margin-right"></i>打印</a>
+                </button>           
+            </div>
+        </div>
+        <div class="printHtml">
+                <div class="row">
+        
+                    <!-- Area Chart -->
+                    <div class="col-lg-12">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;收货人信息</h6>
+                            <!-- <a routerLink="/quotationCenter" class="txt-black"><i class="fa fa-angle-left margin-right"></i>返回</a> -->
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                        <div class="border-dep-gray padding-top-5 " *ngIf='list !=null'>
+                            <div class="flex-row">
+                                <div class="flex-1">
+                                    <span class="bg-dep-gray txt-black padding-three-words margin-right-20">收货人</span><span>{{list.receiver}}</span>
+                                </div>        
+                                <div class="flex-2">
+                                    <span class="bg-dep-gray txt-black padding-two-words margin-right-20">电话</span><span>{{list.receivecontact}}</span>
+                                </div>   
+                            </div>
+                            <div class="flex-row"><span class="border-box-wh"></span></div>
+                            <div class="flex-row">
+                                <!-- <div> -->
+                                    <span class="bg-dep-gray txt-black padding-two-words margin-right-20">地址</span><span>{{list.receiveaddress}}</span>
+                                <!-- </div>          -->
+                            </div>
+                        </div>
+                        </div>
+                    </div> 
+                    </div>
+                        
+            </div>
+
+            <div class="row">
+        
+                <!-- Area Chart -->
+                <div class="col-lg-12">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;订单信息</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                    <div class="border-dep-gray" *ngIf='list !=null'>
+                        <div class="flex-row">
+                            <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">公司名称</span><span>{{list.enterprise_name}}</span>
+                        </div>
+                        <div class="flex-row">
+                            <div class="flex-4">
+                                <span class="bg-dep-gray txt-black padding-four-words margin-right-20">订单编号</span><span>{{list.orderno}}</span>
+                            </div>        
+                            <div class="flex-4">
+                                <span class="bg-dep-gray txt-black padding-three-words margin-right-20">车架号</span><span>{{list.vin}}</span>
+                            </div>
+                            <div class="flex-4">
+                                <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span>
+                                <span *ngIf='list.remarks != ""'>{{list.remarks}}</span>
+                                <span *ngIf='list.remarks == ""'>无</span>
+                            </div>    
+                        </div>
+                        <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
+                        <div class="flex-row">
+                            <div class="flex-1">
+                                <span class="bg-dep-gray txt-black padding-four-words margin-right-20">报价时间</span><span>{{list.quoteconfirm_time}}</span>
+                            </div>        
+                            <div class="flex-2">
+                                <span class="bg-dep-gray txt-black padding-two-words margin-right-20">车型</span><span>{{list.carname}}</span>
+                            </div>  
+                        </div>
+                        <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
+                        <div class="flex-row margin-bottom-3">
+                            <div class="flex-1">
+                                <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{list.employee_name}}</span>
+                            </div>        
+                            <div class="flex-2">
+                                <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span>
+                                <span class="txt-red" *ngIf='list.needinvoice=="是"'>需要发票</span>
+                                <span *ngIf='list.needinvoice=="否"'>不需要发票</span>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div> 
+                </div>
+                    
+            </div>
+            <div class="row">
+        
+                    <!-- Area Chart -->
+                    <div class="col-lg-12">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;送货清单</h6>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div class="container-fluid">
+                                <!-- DataTales Example -->
+                                <div class="card shadow mb-4">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead class="bg-gray text-center">
+                                            <tr>
+                                            <th>序号</th>
+                                            <th>配件名称</th>
+                                            <th>零件号</th>
+                                            <th>数量</th>
+                                            <th>品质/品牌</th>
+                                            <th>备货时间</th>
+                                            <th>质保期</th>
+                                            <th>单价</th>
+                                            <th>备注信息</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="h5 text-center" *ngFor='let item of orderItem;let i=index'>
+                                            <tr>
+                                                <td>{{i+1}}</td>
+                                                <td> 
+                                                    {{item.name}}
+                                                </td>
+                                                <td>{{item.id}}</td>
+                                                <td>
+                                                    {{item.qty}}
+                                                </td>
+                                                <td>
+                                                    {{item.quality}}
+                                                </td>
+                                                <td>
+                                                    <div>{{item.stand_time}}</div>
+                                                </td>
+                                                <td>
+                                                    <div>{{item.guarantee}}</div>
+                                                </td>
+                                                <td>
+                                                    <div>{{item.price}}</div>
+                                                </td>
+                                                <td>
+                                                    <div>{{item.remark}}</div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                            </div> 
+                        </div>
+
+                        <div class="flex-row flex-column" *ngIf='pageList.length >1'>
+                                <ul class="pagination cursor-pointer">
+                                    <li class="margin-10 padding-10">共{{length}}条</li>
+                                    <li class="border-gray-1 margin-10 padding-10" role='button' (click)="fristPage()">
+                                        <a >
+                                          <span aria-hidden="true">首页</span>
+                                        </a>
+                                      </li>
+                                    <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Previous()">
+                                      <a class="h3">
+                                        <span aria-hidden="true">&laquo;</span>
+                                      </a>
+                                    </li>
+                                    <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" *ngFor="let page of pageList"  
+                                    [ngClass]="{pagActive: isActivePage(page)}" role='button'  (click)='selectPage(page)' style="line-height: 36px;">
+                                      <a>{{page}}</a>
+                                    </li>
+                                    <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Next()">
+                                        <a class="h3">
+                                          <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                      </li>
+                                    <li class="border-gray-1 margin-10 padding-10" role='button' (click)="lastPage()">
+                                        <a >
+                                          <span aria-hidden="true">尾页</span>
+                                        </a>
+                                      </li>
+                                  </ul>
+                            </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+        
+    
+        <div class="row margin-top-40">
+    
+            <!-- Area Chart -->
+            <div class="col-lg-12">
+            <div class="card show mb-4">
+                    <div class="card-body flex-row box-auto flex-bottom">
+                        <span class="h4 txt-orange">等待卖家付款...</span>
+                    </div>
+            </div> 
+            </div>
+            
+        </div>
+    
+    </div>

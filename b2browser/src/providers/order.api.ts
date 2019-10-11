@@ -118,6 +118,158 @@ export class OrderApi {
             });
     }
 
+    public quoteinfo(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/quoteinfo';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/quoteinfo', data, err);
+            });
+    }
+
+
+    public ignore(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/ignore';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/ignore', data, err);
+            });
+    }
+
+
+    
+    public editstatus(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/editstatus';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/editstatus', data, err);
+            });
+    }
+
+    public deleteignore(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/deleteignore';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/deleteignore', data, err);
+            });
+    }
+
+    public returnlist(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/returnlist';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/returnlist', data, err);
+            });
+    }
+
+    public returndetail(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/returndetail';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/returndetail', data, err);
+            });
+    }
+   
+
+    public searchignore(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/searchignore';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/searchignore', data, err);
+            });
+    }
+
+   
 
     public settle(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'order/settle';
