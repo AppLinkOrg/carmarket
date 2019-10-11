@@ -71,8 +71,27 @@ export class QuotationCenterComponent extends AppBase  {
               console.log(list,'qqqq')
               for(let item of list){
                 if(item.quotestatus == 'Q'){
+                  item.photoLen=0
+                  if(item.frontofcar!=''){
+                    item.photoLen ++
+                  }
+                  if(item.namesplate!=''){
+                    item.photoLen ++
+                  }
+                  if(item.rearofcar!=''){
+                    item.photoLen ++
+                  }
+                  if(item.photo1!=''){
+                    item.photoLen ++
+                  }
+                  if(item.photo2!=''){
+                    item.photoLen ++
+                  }
                   this.list.push(item)
                 }
+
+               
+
               
               }
 
@@ -123,6 +142,40 @@ export class QuotationCenterComponent extends AppBase  {
      
   }
 
+
+  photoshow = false 
+  imgs = []
+  showPhoto(item){
+    this.imgs = []
+    this.photoshow = true 
+    console.log(item)
+
+    this.imgs.push(item)
+
+    this.imgs = this.imgs.filter((item,index)=>{
+      if(item.frontofcar=="" && item.namesplate !=""){
+        item.frontofcar = item.namesplate
+        item.namesplate = ""
+      }
+      if(item.frontofcar=="" && item.namesplate =="" && item.rearofcar!=""){
+        item.frontofcar = item.rearofcar
+        item.rearofcar = ""
+      }
+      if(item.frontofcar=="" && item.namesplate =="" && item.rearofcar=="" && item.photo1 !=""){
+        item.frontofcar = item.photo1
+        item.photo1 = ""
+      }
+      if(item.frontofcar=="" && item.namesplate =="" && item.rearofcar=="" && item.photo1 =="" && item.photo2 !=""){
+        item.frontofcar = item.photo2
+        item.photo2 = ""
+      }
+      return item
+    })
+
+    console.log(this.imgs)
+
+  }
+
   
 
 
@@ -143,6 +196,10 @@ export class QuotationCenterComponent extends AppBase  {
           
         }
       })
+    
+  }
+
+  screening(){
     
   }
 

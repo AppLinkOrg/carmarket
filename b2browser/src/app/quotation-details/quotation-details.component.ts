@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,ElementRef } from '@angular/core';
 import { AppBase } from '../AppBase';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -20,6 +20,7 @@ export class QuotationDetailsComponent extends AppBase  {
     public instApi:InstApi,
     public orderApi:OrderApi,
     public enterpriseApi:EnterpriseApi,
+    public el: ElementRef,
   ) { 
     super(router,activeRoute,instApi);
   }
@@ -37,7 +38,6 @@ export class QuotationDetailsComponent extends AppBase  {
   employee_id_name = ''
   enterprise_id_name=''
 
-  
 
   onMyShow(){
 
@@ -78,7 +78,10 @@ export class QuotationDetailsComponent extends AppBase  {
           if(quoteinfo.fittingsitem[i].photo4!=''){
             quoteinfo.fittingsitem[i].photoLen ++
           }
-  
+          if(quoteinfo.fittingsitem[i].photo5!=''){
+            quoteinfo.fittingsitem[i].photoLen ++
+          }
+
         }
 
         for(let j=0;j<this.fittinglist.length;j++){
@@ -161,20 +164,38 @@ export class QuotationDetailsComponent extends AppBase  {
   }
 
   photoshow = false 
-  showPhoto(){
+  imgs = []
+  showPhoto(item){
+    this.imgs = []
     this.photoshow = true 
+    console.log(item)
+
+    this.imgs.push(item)
+
+    this.imgs = this.imgs.filter((item,index)=>{
+      if(item.photo1=="" && item.photo2 !=""){
+        item.photo1 = item.photo2
+        item.photo2 = ""
+      }
+      if(item.photo1=="" && item.photo2 =="" && item.photo3!=""){
+        item.photo1 = item.photo3
+        item.photo3 = ""
+      }
+      if(item.photo1=="" && item.photo2 =="" && item.photo3=="" && item.photo4 !=""){
+        item.photo1 = item.photo4
+        item.photo4 = ""
+      }
+      if(item.photo1=="" && item.photo2 =="" && item.photo3=="" && item.photo4 =="" && item.photo5 !=""){
+        item.photo1 = item.photo5
+        item.photo5 = ""
+      }
+      return item
+    })
+
+    console.log(this.imgs)
+
   }
 
-
-  click_account = 0;
-
-  nextSlide(){
-    this.click_account = (this.click_account + 1) % 5;
-  }
-
-  preSlide(){
-    this.click_account = (this.click_account - 1) % 5;
-  }
 
 
   deleteQuote(item){

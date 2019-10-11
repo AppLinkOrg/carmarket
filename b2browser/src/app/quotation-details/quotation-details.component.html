@@ -86,6 +86,60 @@
                    
                 </div>
 
+
+                
+                <div  *ngIf='photoshow' class="modal fade " id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div  class="modal-dialog photoimg " role="img" *ngFor='let item of imgs'>
+                            <div class="modal-content" style="background: transparent; border: none">
+
+                                <div id="demo" class="carousel slide" style="width: 800px; height: 600px" >
+                                    <!-- 指示符 -->
+                                    <ul class="carousel-indicators" >
+                                    <li data-target="#demo" *ngIf='0<item.photoLen' data-slide-to="0" class="active"></li>
+                                    <li data-target="#demo"  *ngIf='1<item.photoLen' data-slide-to="1"></li>
+                                    <li data-target="#demo"  *ngIf='2<item.photoLen' data-slide-to="2"></li>
+                                    <li data-target="#demo"  *ngIf='3<item.photoLen' data-slide-to="3"></li>
+                                    <li data-target="#demo"  *ngIf='4<item.photoLen' data-slide-to="4"></li>
+                                </ul>
+                                
+                                    <!-- 轮播图片 -->
+                                    <div class="carousel-inner images" style="height: 100%;">
+                                        <div class="carousel-item active" style="height: 100%;" *ngIf='item.photo1!=""' >
+                                            <img src="{{uploadpath}}fittings/{{item.photo1}}">
+                                        </div>
+                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo2!=""'>
+                                            <img src="{{uploadpath}}fittings/{{item.photo2}}">
+                                        </div>
+                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo3!=""'>
+                                            <img src="{{uploadpath}}fittings/{{item.photo3}}">
+                                        </div>
+                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo4!=""'>
+                                            <img src="{{uploadpath}}fittings/{{item.photo4}}">
+                                        </div>
+                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo5!=""'>
+                                            <img  src="{{uploadpath}}fittings/{{item.photo5}}">
+                                        </div>
+                                    </div>
+                                
+                                    <!-- 左右切换按钮 -->
+                                    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                                        <span class="carousel-control-prev-icon"></span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#demo" data-slide="next">
+                                        <span class="carousel-control-next-icon"></span>
+                                    </a>
+                                
+                                </div>
+                        
+                        
+                            </div>
+                        </div> 
+                </div>
+
+
+
+             
+
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="container-fluid">
@@ -114,9 +168,15 @@
                                         <td [attr.rowspan]='item.count'> 
                                            <div>{{item.name}}</div>
                                             <div class="photo">
-                                                <img *ngIf='item.photo1!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto()' src="{{uploadpath}}fittings/{{item.photo1}}" class="icon-30">
+                                                <img *ngIf='item.photo1!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo1}}" class="icon-30">
+                                                <img *ngIf='item.photo1=="" && item.photo2!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo2}}" class="icon-30">
+                                                <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo3}}" class="icon-30">
+                                                <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3==""  && item.photo4!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo4}}" class="icon-30">
+                                                <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3=="" && item.photo4==""  && item.photo5!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo5}}" class="icon-30">
                                                 <div *ngIf='item.photoLen>1' class="photoLen" >{{item.photoLen}}</div>
                                             </div>
+                                    
+
                                         </td>
                                         <td [attr.rowspan]='item.count'><span class="table-box">{{item.id}}</span></td>
                                         <td>
@@ -170,21 +230,9 @@
                                             </td>
                                         </tr>
                                     </ng-container>
-                                        <div  *ngIf='photoshow' class="modal fade " id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                             <div  class="modal-dialog photoimg " role="img">
-                                                    <div class="modal-content">
+                                        
 
-                                                     <img  class="imgs" [ngClass]="{'showSlide':click_account==0,'hideSlide': click_account!=0}" src="{{uploadpath}}fittings/{{item.photo1}}" />
-                                                     <img  class="imgs" [ngClass]="{'showSlide':click_account==1,'hideSlide': click_account!=1}" src="{{uploadpath}}fittings/{{item.photo2}}" />
-                                                     <img  class="imgs" [ngClass]="{'showSlide':click_account==2,'hideSlide': click_account!=2}" src="{{uploadpath}}fittings/{{item.photo3}}" />
-                                                     <img  class="imgs" [ngClass]="{'showSlide':click_account==3,'hideSlide': click_account!=3}" src="{{uploadpath}}fittings/{{item.photo4}}" />
-                                                     <img  class="imgs" [ngClass]="{'showSlide':click_account==4, 'hideSlide': click_account!=4}" src="{{uploadpath}}fittings/{{item.photo5}}" />
 
-                                                     <button class="btn btn-default preSlide no-border"  (click)="preSlide()"><img src="{{uploadpath}}resource/{{res.xiangzuo}}" class="icon-100 "/></button>
-                                                     <button class="btn btn-default nextSlide no-border" (click)="nextSlide()"><img src="{{uploadpath}}resource/{{res.xiangyou}}" class="icon-100 "/></button>
-                                                </div>
-                                             </div> 
-                                        </div>
                                 </tbody>
                             </table>
                             </div>
