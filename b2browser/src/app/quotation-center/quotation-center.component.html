@@ -17,6 +17,7 @@
                   <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='quoteHandle($event)'>待报价</button>
                   <button type="button" class="btn-default no-border border-tlb  padding-left-40 padding-right-40 txt-d-gray" (click)='quotedPrice($event)'>已报价</button>                    
                   <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='neglected($event)'>已忽略</button>           
+                  <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='expired($event)'>已过期</button>           
                   <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray" (click)='allQuote($event)'>全部</button> 
                 
                   
@@ -31,11 +32,27 @@
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">                
-                          <h4 class="modal-title box-auto" id="myModalLabel">报价筛选</h4>
+                          <h4 class="modal-title box-auto txt-bold" id="myModalLabel">报价筛选</h4>
                         </div>
                         <div class="modal-body">
-                            内容部分	
+                          <div class="txt-bold h4">地区</div>
+                            <span class="disname disname-active" (click)='choose($event)'>全部</span>
+                            <span  *ngFor='let dis of distinctlist' class="disname" (click)='choose($event)'>{{dis.name}}</span>
+                            
                         </div>
+                        <div class=" margin-bottom-70">
+                            <div class="flex-row margin-bottom-20">
+                                <div class="flex-4 text-right">
+                                    <button type="button" class="btn btn-default footbtn btn-danger" (click)='reset($event)'>重置</button>
+                                </div>
+                                <div class="flex-1"></div>
+                                <div class="flex-4 text-left">
+                                    <button type="button" class="btn btn-primary footbtn"  data-dismiss="modal" (click)='save()'>保存</button>
+                                </div>
+                              
+                            </div>
+                            <div class="padding-left-40">注: 筛选条件越多, 匹配将越精准, 但同时接收到的询价数量也将会大幅减少。</div>
+                          </div>
                       </div>
                     </div>
                   </div>

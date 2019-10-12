@@ -31,6 +31,72 @@ export class OrderApi {
     }
 
 
+    public distinctlist(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/distinctlist';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/distinctlist', data, err);
+            });
+    }
+
+    public addexpired(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/addexpired';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/addexpired', data, err);
+            });
+    }
+
+    public expiredlist(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/expiredlist';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/expiredlist', data, err);
+            });
+    }
+
+
+
+
     public create(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'order/create';
         var headers = ApiConfig.GetHeader(url, data);

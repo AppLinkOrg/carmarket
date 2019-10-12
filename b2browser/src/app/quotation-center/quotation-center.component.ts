@@ -41,6 +41,8 @@ export class QuotationCenterComponent extends AppBase  {
     isquote = true;
     isshow = true
 
+    distinctlist = null;
+
     enterprise_id = ''
     enterprise_id_name=''
     employee_id = ''
@@ -131,6 +133,12 @@ export class QuotationCenterComponent extends AppBase  {
           }
           
       })
+
+
+      a.distinctlist({}).then((distinctlist:any)=>{
+        console.log(distinctlist,"33333")
+        this.distinctlist = distinctlist
+      })
       
 
     })
@@ -140,6 +148,131 @@ export class QuotationCenterComponent extends AppBase  {
 
       
      
+  }
+
+  distinct = []
+
+  choose(e){
+
+    // this.distinct = []
+
+    console.log(e)
+
+    var current = e.target
+    // current.classList.add('disname-active')
+    console.log(current.innerText)
+
+    console.log(this.hasClass(current,'disname-active'))
+    if(current.innerText == "全部") {
+      this.distinct = []
+
+        var others = current.parentElement.childNodes
+        console.log(others,'444')
+        for(let i=0;i<others.length; i++){
+          if(current != others[i] && this.hasClass(others[i],'disname-active')){
+            others[i].classList.remove('disname-active')
+          }
+          current.classList.add('disname-active')
+        }
+
+        if(this.hasClass(current,'disname-active')){
+
+          this.distinct.push(current.innerText)
+        }
+
+
+    }else {
+
+      for(let i=0;i<this.distinct.length;i++){
+        if(this.distinct[i] == "全部"){
+            this.distinct.splice(i,1)
+        }
+      }
+
+
+      var others = current.parentElement.childNodes
+        for(let i=0;i<others.length; i++){
+          if(others[i].innerText == "全部"){
+            others[i].classList.remove('disname-active')
+          }
+        }
+
+        if(this.hasClass(current,'disname-active')){
+          current.classList.remove('disname-active')
+        }else {
+          current.classList.add('disname-active')
+        }
+
+        if(this.hasClass(current,'disname-active')){
+
+          this.distinct.push(current.innerText)
+        }
+  
+    }
+
+  }
+
+   hasClass(obj,cls){
+    var cls = cls || '';
+    if( cls.replace(/\s/g,'').length == 0){
+        return false;//当cls没有参数时,返回false;
+    }else{
+        return new RegExp(' ' + cls + '').test(' ' + obj.className);
+    }
+  }
+
+  reset(e){
+    this.distinct = []
+    console.log(e)
+    var others = e.target.parentElement.parentElement.parentElement.parentElement.childNodes[1].childNodes
+    console.log(others)
+    if(this.hasClass(others[0],'disname-active')){
+
+    }else {
+      others[0].classList.add('disname-active')
+    }
+
+    for(let i=1;i<others.length;i++){
+      if(this.hasClass(others[i],'disname-active')){
+        others[i].classList.remove('disname-active')
+      }
+    }
+    this.distinct = ['全部']
+  }
+
+  save(){
+    this.pageList = []
+
+    console.log(this.distinct)
+    console.log(this.list)
+    let temp = []
+    for(let i=0;i<this.list.length;i++){
+      for(let j=0;j<this.distinct.length;j++){
+
+        if(this.distinct[j] == "全部"){
+
+          temp.push(this.list[i])
+
+        }else {
+
+          if(this.list[i].enterprise_corporate_address==this.distinct[j]){
+            // console.log(this.distinct[j])
+             temp.push(this.list[i])
+  
+          }else {
+            console.log(false)
+          }
+  
+        }
+        
+      }
+    }
+
+    this.length = temp.length
+
+    this.pagination(temp,this.length)
+    console.log(temp)
+
   }
 
 
@@ -206,18 +339,21 @@ export class QuotationCenterComponent extends AppBase  {
 
 
   // 待报价
-  quoteHandle(event){
+  quoteHandle(e){
     this.list = [];
     this.pageList = [];
     this.isquote = true;
     this.isshow = false
     
     
-    event.target.classList.add('btn-active')
-    let others = event.target.parentElement.childNodes
+    let current = e.target
+    current.classList.add('btn-active')
+    let others = e.target.parentElement.childNodes
 
-    for(let i=1;i<others.length;i++){
-      others[i].classList.remove('btn-active')
+    for(let i=0;i<others.length;i++){
+      if(others[i] != current ){
+        others[i].classList.remove('btn-active')
+      }
     }
    
     this.onMyShow()
@@ -237,20 +373,21 @@ export class QuotationCenterComponent extends AppBase  {
   
 
   // 已忽略
-  neglected(event){
+  neglected(e){
     this.list = [];
     this.pageList = [];
     this.isshow = false
     this.isquote = false;
 
-    event.target.classList.add('btn-active')
-    let others = event.target.parentElement.childNodes
+    let current = e.target
+    current.classList.add('btn-active')
+    let others = e.target.parentElement.childNodes
 
-
-    for(let i=0;i<others.length-2;i++){
-      others[i].classList.remove('btn-active')
+    for(let i=0;i<others.length;i++){
+      if(others[i] != current ){
+        others[i].classList.remove('btn-active')
+      }
     }
-    others[others.length-1].classList.remove('btn-active')
 
     this.orderApi.ignore({enterprise_id: this.enterprise_id,employee_id: this.employee_id}).then((ignore:any)=>{
       this.list = ignore;
@@ -267,19 +404,98 @@ export class QuotationCenterComponent extends AppBase  {
     
   }
 
+  
+// 已过期
+  expired(e){
+
+    this.list = []
+
+    let current = e.target
+    current.classList.add('btn-active')
+    let others = e.target.parentElement.childNodes
+
+    for(let i=0;i<others.length;i++){
+      if(others[i] != current ){
+        others[i].classList.remove('btn-active')
+      }
+    }
+
+    this.orderApi.quotelist({ }).then((list:any)=>{
+
+      for(let i=0;i<list.length;i++){
+        if(list[i].quotestatus === "W"){
+          this.list.push(list[i])
+        }
+      }
+
+      for(let i=0;i<this.list.length;i++){
+        let lasttime = ''
+        this.list[i].index = i
+       
+        if(this.list[i].submitquote_time !=""){
+
+          let date = new Date()
+          let years = date.getFullYear()
+          let months = date.getMonth()+1
+          let days = date.getDay()
+          let dates = new Date(years, months, 0).getDate()
+
+          console.log(this.list[i].submitquote_time)
+          let year = this.list[i].submitquote_time.slice(0,4)
+          let month = this.list[i].submitquote_time.slice(4,7)
+          let day = this.list[i].submitquote_time.slice(7,10) 
+
+          if((dates-day)<7){
+            day = dates - parseInt(day)
+            if(month == 12){
+              year++
+              month= 1
+            }else {
+              month ++
+            }
+          }else {
+            day = parseInt(day) - 7
+          }
+
+          if(this.list[i].submitquote_time_dateformat<lasttime){
+
+            this.orderApi.addexpired(this.list[i]).then((addexpired:any)=>{
+              console.log(addexpired)
+            })
+
+          }
+
+         
+          lasttime = year + month + day
+          console.log(lasttime,'1111')
+        }
+
+      }
+
+      console.log(this.list,'888')
+      this.length = this.list.length
+      this.pagination(this.list,this.length);
+    });
+
+
+  }
+
   // 已报价
-  quotedPrice(event){
+  quotedPrice(e){
     this.list = [];
     this.pageList = [];
     this.isquote = false;
     this.isshow = false
-    event.target.classList.add('btn-active')
-    let others = event.target.parentElement.childNodes
 
-    for(let i=2;i<others.length;i++){
-      others[i].classList.remove('btn-active')
+    let current = e.target
+    current.classList.add('btn-active')
+    let others = e.target.parentElement.childNodes
+
+    for(let i=0;i<others.length;i++){
+      if(others[i] != current ){
+        others[i].classList.remove('btn-active')
+      }
     }
-    others[0].classList.remove('btn-active')
 
     
     this.orderApi.quotelist({ }).then((list:any)=>{
@@ -301,18 +517,21 @@ export class QuotationCenterComponent extends AppBase  {
   }
 
   // 全部
-  allQuote(event){
+  allQuote(e){
     console.log(event)
     this.list = [];
     this.pageList = [];
     this.isquote = false;
     this.isshow = true
-    event.target.classList.add('btn-active')
-    let others = event.target.parentElement.childNodes
 
+   let current = e.target
+    current.classList.add('btn-active')
+    let others = e.target.parentElement.childNodes
 
-    for(let i=0;i<others.length-1;i++){
-      others[i].classList.remove('btn-active')
+    for(let i=0;i<others.length;i++){
+      if(others[i] != current ){
+        others[i].classList.remove('btn-active')
+      }
     }
 
 

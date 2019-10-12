@@ -66,19 +66,19 @@ export class QuotationDetailsComponent extends AppBase  {
 
           }
           quoteinfo.fittingsitem[i].photoLen=0
-          if(quoteinfo.fittingsitem[i].photo1!=''){
+          if(quoteinfo.fittingsitem[i].photo1!='' && quoteinfo.fittingsitem[i].photo1!="undefined"){
             quoteinfo.fittingsitem[i].photoLen ++
           }
-          if(quoteinfo.fittingsitem[i].photo2!=''){
+          if(quoteinfo.fittingsitem[i].photo2!='' && quoteinfo.fittingsitem[i].photo2!="undefined"){
             quoteinfo.fittingsitem[i].photoLen ++
           }
-          if(quoteinfo.fittingsitem[i].photo3!=''){
+          if(quoteinfo.fittingsitem[i].photo3!='' && quoteinfo.fittingsitem[i].photo3!="undefined"){
             quoteinfo.fittingsitem[i].photoLen ++
           }
-          if(quoteinfo.fittingsitem[i].photo4!=''){
+          if(quoteinfo.fittingsitem[i].photo4!='' && quoteinfo.fittingsitem[i].photo4!="undefined"){
             quoteinfo.fittingsitem[i].photoLen ++
           }
-          if(quoteinfo.fittingsitem[i].photo5!=''){
+          if(quoteinfo.fittingsitem[i].photo5!='' && quoteinfo.fittingsitem[i].photo5!="undefined"){
             quoteinfo.fittingsitem[i].photoLen ++
           }
 

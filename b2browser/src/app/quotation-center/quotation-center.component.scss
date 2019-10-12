@@ -110,9 +110,9 @@
 			.modal.right .modal-dialog {
                 position: fixed;
                 top: -27px;
-                left: 58%;
+                left: 53%;
 				// margin: auto;
-				// width: 400px;
+				
 				height: 100%;
 				-webkit-transform: translate3d(0%, 0, 0);
 					-ms-transform: translate3d(0%, 0, 0);
@@ -121,12 +121,14 @@
 			}
 		
 			.modal.right .modal-content {
+                width: 530px;
 				height: 100%;
 				overflow-y: auto;
 			}
 			
 			.modal.right .modal-body {
-				padding: 15px 15px 80px;
+                height: 60%;
+				padding: 15px 20px 80px;
 			}
 		
 				
@@ -153,4 +155,29 @@
 				border: 1px solid #BBBBBB;
                 background-color: #D3D3D3;
 			}
+
+
+.disname {
+    display: inline-block;
+    width: 140px;
+    height: 46px;
+    border: 1px solid #8A8A8A;
+    color: #8A8A8A;
+    border-radius: 30px;
+    line-height: 46px;
+    text-align: center;
+    margin-right: 20px;
+    margin-top: 30px;
+}
+
+.disname-active {
+    color: #446AD8;
+    border-color: #446AD8;
+}
+
+.footbtn {
+    width: 140px ;
+    height: 46px;
+    border-radius: 30px;
+}
 
