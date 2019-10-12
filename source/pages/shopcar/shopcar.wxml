@@ -1,7 +1,7 @@
 <view class="margin-bottom-10"></view>
 
 <!-- 
-<view wx:for='{{arr}}' wx:key='key' class="margin-top-20">
+<view wx:for='{{alllist}}' wx:key='key' class="margin-top-20">
 
   <view>{{item.enterprise_id}}</view>
 
@@ -14,16 +14,18 @@
 </view> -->
 
 
-<view class="box" wx:for='{{arr}}' wx:key='key' wx:for-index='index'>
+<view class="box" wx:for='{{alllist}}' wx:key='key' wx:for-index='index'>
   <view class="flex-row margin-top-20">
-    <image class="icon margin-left-20 " src="{{uploadpath}}resource/{{res.zhong}}"></image>
+    <image class="icon" src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.allcheck==true}}' bindtap="bindchoose" id="{{index}}"></image>
+    <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.allcheck==false}}' class="icon" bindtap="bindchoose" id="{{index}}"></image>
+
     <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.store}}"></image>
     <view class="margin-left-10 txt-bold txt-black">{{item.enterprise_name}}</view>
     <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.smile}}"></image>
   </view>
 
 
-  <view class=" padding-20" wx:for='{{item.name}}' wx:for-index='idx'   wx:key='k' style="border-top:2rpx solid black">
+  <view class=" padding-20" wx:for='{{item.name}}' wx:for-index='idx' wx:key='k' style="border-top:2rpx solid black">
 
     <view class="flex-row flex-center">
       <view>{{idx+1}}、</view>
@@ -33,7 +35,10 @@
     </view>
 
     <view class="flex-row margin-top-20">
-      <image class="icon margin-left-20 margin-top-20" src="{{uploadpath}}resource/{{res.zhong}}"></image>
+
+      <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.check==true}}' class="icon"></image>
+      <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.check==false}}' class="icon"></image>
+
       <view class="yuan margin-left-10 margin-bottom-20">
         <view class="h5 padding-left-10 padding-right-10 h6">{{item.quality}}</view>
       </view>
@@ -53,6 +58,8 @@
 </view>
 
 <view style="height:200rpx"></view>
+
+
 
 <view class="bg-white bott">
   <view class="flex-row margin-top-20 padding-bottom-20">

@@ -23,7 +23,7 @@ class Content extends AppBase {
   
   onLoad(options) {
     this.Base.Page = this;
-    //options.id = 1;
+     options.id = 24;
     super.onLoad(options);
     this.Base.setMyData({
       xuan: 'F',
@@ -41,20 +41,42 @@ class Content extends AppBase {
     orderapi.quoteinfo({
       id: this.Base.options.id
     }, (quoteinfo) => {
-
+      var etplist = {};
       var fittingsitem = quoteinfo.fittingsitem;
+
       for (var i = 0; i < fittingsitem.length; i++) {
 
         var quoteitems = fittingsitem[i].quoteitems;
         for (var j = 0; j < quoteitems.length; j++) {
           quoteitems[j].check = false;
+
+          var list = quoteitems[j];
+          if (!etplist[list.enterprise_id]) {
+            etplist[list.enterprise_id] = [];
+          }
+          etplist[list.enterprise_id].push(list)
         }
 
+        var enterpriselist = [];
+        var price = 0;
+ 
+        for (var key in etplist) {
+
+          for (var a in etplist[key]) {
+            enterpriselist.push({ id: key, enterprise_name: etplist[key][a].edt_name, address: etplist[key][a].edt_address, qtylist: etplist[key] })
+            break;
+          }
+
+          for (var s in etplist[key]) {
+            price += (parseInt(etplist[key][s].price) * parseInt(etplist[key][s].qty))
+          }
+
+        }
+ 
       }
-
-
+  
       this.Base.setMyData({
-        quoteinfo
+        quoteinfo, enterpriselist, price
       });
     });
 
@@ -81,11 +103,17 @@ class Content extends AppBase {
   }
   bindchakan(e) {
     var chakan = e.currentTarget.dataset.chakan;
+
+    this.onMyShow();
+ 
     this.Base.setMyData({
-      chakan: chakan
+      chakan: chakan, quantity:0,sum:0
     })
 
   }
+
+
+
   bindfapiao(e) {
     var xuan = e.currentTarget.id
     if (xuan == 'S') {
@@ -114,9 +142,7 @@ class Content extends AppBase {
     var quoteinfo = this.Base.getMyData().quoteinfo;
     var fittingsitem = quoteinfo.fittingsitem;
     var quoteitems = fittingsitem[index].quoteitems;
-
-
-
+ 
     // var checking = fittingsitem[index].quoteitems[sx].check;
 
     for (var i = 0; i < quoteitems.length; i++) { //将所有选中状态设为未选
@@ -126,6 +152,7 @@ class Content extends AppBase {
     }
 
     console.log(fittingsitem[index].quoteitems[sx].check);
+
     if (fittingsitem[index].quoteitems[sx].check == true) {
       fittingsitem[index].quoteitems[sx].check = false;
     } else {
@@ -145,6 +172,29 @@ class Content extends AppBase {
 
   }
 
+  bindcheckone(e){
+    var enterprise_id = e.currentTarget.dataset.enterprise_id;
+    var index = e.currentTarget.dataset.index;
+    var sx = e.currentTarget.dataset.sx;
+    var enterpriselist = this.Base.getMyData().enterpriselist;
+    var check = enterpriselist[index].qtylist[sx].check;
+
+    
+    
+    if (check==false){
+      enterpriselist[index].qtylist[sx].check = true;
+    }else{
+      enterpriselist[index].qtylist[sx].check = false;
+    }
+ 
+    this.Base.setMyData({
+      enterpriselist: enterpriselist
+    })
+
+ 
+    this.statisticsone();
+  }
+
   statistics() { //选中零件统计
     var quoteinfo = this.Base.getMyData().quoteinfo;
     var fittingsitem = quoteinfo.fittingsitem;
@@ -155,7 +205,7 @@ class Content extends AppBase {
       var quoteitems = fittingsitem[j].quoteitems;
       for (var a = 0; a < quoteitems.length; a++) {
         if (quoteitems[a].check == true) {
-          console.log(quoteitems[a]);
+          //console.log(quoteitems[a]);
           shopcar.push(quoteitems[a]);
           quantity++;
           sum += parseInt(quoteitems[a].price);
@@ -171,28 +221,41 @@ class Content extends AppBase {
     //console.log(sum);
   }
 
-  carshoplist(json, i) {
+  statisticsone() { //选中零件统计
+   //return;
+    var enterpriselist = this.Base.getMyData().enterpriselist;
 
-   
- 
-    var that = this;
-    var orderapi = new OrderApi();
-    setTimeout(() => {
-      orderapi.addshopcar(json, (addshopcar) => {
-        
-      }) 
+    var shopcar = [];
+    var sum = 0; //价格
+    var quantity = 0; //选中数量
 
-    }, i * 300)
-    wx.navigateTo({
-      url: '/pages/shopcar/shopcar?carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode
+    for (var j = 0; j < enterpriselist.length; j++) {
+      var qtylist = enterpriselist[j].qtylist;
+      for (var a = 0; a < qtylist.length; a++) {
+        if (qtylist[a].check == true) {
+          //console.log(quoteitems[a]);
+          shopcar.push(qtylist[a]);
+          quantity++;
+          sum += parseInt(qtylist[a].price);
+        }
+      }
+    }
+
+    this.Base.setMyData({
+      sum,
+      quantity,
+      shopcar
     })
+    //console.log(sum);
   }
+
+
 
   addcar(e) {
     var that =this;
-    console.log("加入购物车")
+     
     var shopcar = this.Base.getMyData().shopcar;
-    console.log(this.Base.getMyData().shopcar, "拉手动挡");
+     
     //var aaa=[];
     for (var i = 0; i < shopcar.length; i++) {
       var list = {
@@ -209,6 +272,24 @@ class Content extends AppBase {
       this.carshoplist(list, i);
 
     }
+
+  }
+
+  carshoplist(json, i) {
+
+    var that = this;
+    var orderapi = new OrderApi();
+    setTimeout(() => {
+      orderapi.addshopcar(json, (addshopcar) => {
+
+      })
+
+ 
+    }, i * 300)
+    
+    wx.navigateTo({
+      url: '/pages/shopcar/shopcar?id=' + this.Base.options.id + '&carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode
+    })
 
   }
 
@@ -232,10 +313,13 @@ body.addcar = content.addcar;
 
 body.carshoplist = content.carshoplist;
 
-body.bindcheck = content.bindcheck;
+body.bindcheck = content.bindcheck; 
+body.bindcheckone = content.bindcheckone;
 
 body.bindshai = content.bindshai;
 body.binddelect = content.binddelect;
 
-body.statistics = content.statistics;
+body.statistics = content.statistics; 
+body.statisticsone = content.statisticsone;
+
 Page(body)

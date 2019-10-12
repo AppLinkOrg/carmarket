@@ -104,7 +104,11 @@ export class OrderApi{
             }
         })
     }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 69622ff952ba6a79468ed723c610637d624e69eb
     confirmquote(json, callback, showLoading = true) {
 
         if (showLoading)
@@ -712,6 +716,7 @@ export class OrderApi{
             }
         })
     }
+<<<<<<< HEAD
 
     expiredlist(json, callback, showLoading = true) {
 
@@ -776,4 +781,6 @@ export class OrderApi{
             }
         })
     }
+=======
+>>>>>>> 69622ff952ba6a79468ed723c610637d624e69eb
 }

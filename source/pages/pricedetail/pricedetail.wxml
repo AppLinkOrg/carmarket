@@ -3,15 +3,13 @@
   <view class="flex-row txt-black h5">报价单编号：{{quoteinfo.quotenumber}}</view>
   <view wx:if='{{quoteinfo.vincode!=""}}' class="flex-row txt-black margin-top-10 margin-right-20">VIN码：{{quoteinfo.vincode}}</view>
 
-  <view class="flex-row" >
+  <view class="flex-row">
 
     <view class="flex-row margin-top margin-left-55" data-chakan='C' bindtap="bindchakan">
       <view class=" btnone  h4 {{chakan=='C'?'bg-bt':'bg-white'}}">
         <view class="flex-row  {{chakan!='C'?'txt-bc':'txt-white'}}">按商家查看报价</view>
       </view>
     </view>
-
-
 
     <view class="flex-row margin-top" bindtap="bindchakan" data-chakan="B">
       <view class=" btnone btntwo h4 {{chakan=='B'?'bg-bt':'bg-white'}}">
@@ -60,7 +58,53 @@
 
 <!-- height: 164rpx ; -->
 
-<view class=" margin-20 ">
+
+<view wx:if='{{chakan=="C"}}' class="margin-20">
+
+  <view class="blueblock" style="background:#143779" wx:for='{{enterpriselist}}' wx:key='s' wx:for-index='index'>
+
+    <view class="padding-20 ">
+      <view class="txt-white"> {{item.enterprise_name}}</view>
+      <view class="txt-white h5 margin-top-20"> {{item.address}}</view>
+    </view>
+
+    <view class="bg-white  padding-20  " style="{{index>0?'border-top:2rpx solid #E5E5E5':''}}" wx:for-index='idx' wx:for='{{item.qtylist}}' wx:key='e'>
+
+      <view class=" flex-row flex-center" bindtap="bindcheckone" data-enterprise_id="{{item.enterprise_id}}" id="{{item.id}}" data-index='{{index}}' data-sx="{{idx}}">
+
+        <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.check==true}}' class="icon"></image>
+
+        <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.check==false}}' class="icon"></image>
+
+        <view style="width:600rpx;" class="margin-left-20">
+
+          <view class="flex-row flex-bottom">
+            <view class=" txt-red txt-bold">￥{{item.price}}</view>
+            <view class="h6 margin-left-20 ">x{{item.qty}}</view>
+            
+          </view>
+
+
+          <view class="flex-row flex-center margin-top-10">
+            <view class="h5 flex-1">{{item.quality}}</view>
+            <view class="flex-1"></view>
+            <view class="h5 txt-black">{{item.fit_name}}</view>
+          </view>
+
+          <view class="h6 margin-top-20">备注：{{item.remarks_infor}}</view>
+        </view>
+
+      </view>
+
+    </view>
+
+  </view>
+
+</view>
+
+
+
+<view wx:if='{{chakan=="B"}}' class=" margin-20 ">
 
   <view class="{{idx==0?'':'margin-top-10'}} radius-5" wx:for="{{quoteinfo.fittingsitem}}" wx:key="k" wx:for-index='idx'>
 
@@ -82,12 +126,10 @@
     </view>
 
     <view wx:if='{{item.quoteitems.length==0}}' class="text-center h5 margin-top-10">
-     待报价...
+      待报价...
     </view>
 
     <view class="bg-white  padding-20  " style="{{index>0?'border-top:2rpx solid #E5E5E5':''}}" wx:for-index='index' wx:for='{{item.quoteitems}}' wx:key='s'>
-
-
 
       <view class=" flex-row flex-center" bindtap="bindcheck" data-fittings_id="{{item.fittings_id}}" data-name='{{item.name}}{{item.quality}}' id="{{item.id}}" data-index='{{idx}}' data-sx="{{index}}">
 
@@ -121,6 +163,8 @@
     <view class="margin-bottom-20"></view>
   </view>
 </view>
+
+
 
 
 <view class="flex-row">

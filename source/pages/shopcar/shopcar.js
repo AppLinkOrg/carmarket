@@ -25,6 +25,7 @@ class Content extends AppBase {
       var  etplist = {};
 
       for (var i = 0; i < shopcarlist.length; i++) {
+        shopcarlist[i].check=false;
         var list = shopcarlist[i]
         if (!etplist[list.enterprise_id]) {
           etplist[list.enterprise_id] = [];
@@ -32,12 +33,12 @@ class Content extends AppBase {
         etplist[list.enterprise_id].push(list)
       }
 
-      var arr = [];
+      var alllist = [];
       var price = 0;
       for (var key in etplist) {
         
          for(var i in etplist[key]){
-           arr.push({ id: key, enterprise_name: etplist[key][i].enterprise_id_name,  name: etplist[key] })
+           alllist.push({ id: key, enterprise_name: etplist[key][i].enterprise_id_name,  name: etplist[key],allcheck:false })
            break;
          }
 
@@ -47,8 +48,37 @@ class Content extends AppBase {
        
       }
 
-      this.Base.setMyData({ arr, price })
+      this.Base.setMyData({ alllist, price })
     })
+
+  }
+
+  bindchoose(e){
+    var alllist = this.Base.getMyData().alllist;
+    var id=e.currentTarget.id;
+    var qtylist = alllist[id].name;
+   
+    //console.log(qtylist+"ddd")
+
+  
+    if (alllist[id].allcheck==false){
+        for (var i = 0; i < qtylist.length; i++) {
+          qtylist[i].check = true;
+        }
+        
+        alllist[id].allcheck = true;
+      }else{
+        for (var i = 0; i < qtylist.length; i++) {
+          qtylist[i].check = false;
+        } 
+        alllist[id].allcheck = false;
+      }
+     
+    
+    
+
+    this.Base.setMyData({ alllist: alllist})
+    console.log("ddd")
 
   }
 
@@ -60,12 +90,12 @@ class Content extends AppBase {
     var idx = e.currentTarget.dataset.idx;
     var shopcarlist = this.Base.getMyData().shopcarlist;
 
-    var arr = this.Base.getMyData().arr;
+    var alllist = this.Base.getMyData().alllist;
    // console.log("类型:" + name, 'id:', id,"来来来", index)
  
     if (name=='jian'){
-      if (arr[index].name[idx].qty>1){
-        arr[index].name[idx].qty--
+      if (alllist[index].name[idx].qty>1){
+        alllist[index].name[idx].qty--
       }else{
         wx.showToast({
           title: '数量至少为1',
@@ -73,15 +103,15 @@ class Content extends AppBase {
         })
       }
     }else{
-      arr[index].name[idx].qty++
+      alllist[index].name[idx].qty++
     }
-    this.Base.setMyData({ arr })
+    this.Base.setMyData({ alllist })
   }
 
   bindjiesuan() {
-    var arr = this.Base.getMyData().arr;
+    var alllist = this.Base.getMyData().alllist;
     wx.navigateTo({
-      url: '/pages/orderdetail/orderdetail?json=' + JSON.stringify(arr) + '&carmodel=' + this.Base.options.carmodel + '&vin=' + this.Base.options.vin
+      url: '/pages/orderdetail/orderdetail?json=' + JSON.stringify(alllist) + '&carmodel=' + this.Base.options.carmodel + '&vin=' + this.Base.options.vin
     })
   }
 
@@ -93,4 +123,7 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindjiesuan = content.bindjiesuan; 
 body.bindjisuan = content.bindjisuan; 
+
+body.bindchoose = content.bindchoose;
+
 Page(body)
