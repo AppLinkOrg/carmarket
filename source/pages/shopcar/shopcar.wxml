@@ -22,6 +22,7 @@
     <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.store}}"></image>
     <view class="margin-left-10 txt-bold txt-black">{{item.enterprise_name}}</view>
     <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.smile}}"></image>
+
   </view>
 
 
@@ -36,8 +37,8 @@
 
     <view class="flex-row margin-top-20">
 
-      <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.check==true}}' class="icon"></image>
-      <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.check==false}}' class="icon"></image>
+      <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.check==true}}' class="icon" bindtap="bindcheck" id="{{idx}}" data-index="{{index}}"></image>
+      <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.check==false}}' class="icon"  bindtap="bindcheck" id="{{idx}}" data-index="{{index}}"></image>
 
       <view class="yuan margin-left-10 margin-bottom-20">
         <view class="h5 padding-left-10 padding-right-10 h6">{{item.quality}}</view>
@@ -52,10 +53,13 @@
       <image class="icon-15 margin-top-10 margin-left-10  margin-right-30 " src="{{uploadpath}}resource/{{res.jia}}" bindtap="bindjisuan" data-name="jia" id="{{item.id}}" data-index="{{index}}" data-idx="{{idx}}"></image>
     </view>
 
+
+
   </view>
 
 
 </view>
+
 
 <view style="height:200rpx"></view>
 

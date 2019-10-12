@@ -38,6 +38,7 @@ class Content extends AppBase {
 
     var json = JSON.parse(this.Base.options.json)
     console.log(json, "来了")
+    
     var sumprice = 0;
 
     for (var i = 0; i < json.length; i++) {
@@ -150,7 +151,7 @@ class Content extends AppBase {
     wx.navigateTo({
       url: '/pages/jiaoyisuccess/jiaoyisuccess'
     })
-    
+
   }
 
 
