@@ -157,6 +157,7 @@
                                     <th>品质/品牌</th>
                                     <th>备货时间</th>
                                     <th>质保期</th>
+                                    <th>4S店价格</th>
                                     <th>单价</th>
                                     <th>发车时间</th>
                                     <th>新增</th>
@@ -168,11 +169,11 @@
                                         <td [attr.rowspan]='item.count'> 
                                            <div>{{item.name}}</div>
                                             <div class="photo">
-                                                <img *ngIf='item.photo1!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo1}}" class="icon-30">
-                                                <img *ngIf='item.photo1=="" && item.photo2!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo2}}" class="icon-30">
-                                                <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo3}}" class="icon-30">
-                                                <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3==""  && item.photo4!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo4}}" class="icon-30">
-                                                <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3=="" && item.photo4==""  && item.photo5!=""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo5}}" class="icon-30">
+                                                <img *ngIf='item.photo1!="" && item.photo1!="undefined"'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo1}}" class="icon-30">
+                                                <img *ngIf='item.photo1=="" && item.photo2!="" && item.photo2!="undefined"'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo2}}" class="icon-30">
+                                                <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3!="" && item.photo3!="undefined"'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo3}}" class="icon-30">
+                                                <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3==""  && item.photo4!="" && item.photo4!="undefined"'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo4}}" class="icon-30">
+                                                <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3=="" && item.photo4==""  && item.photo5!="" && item.photo5!="undefined"'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}fittings/{{item.photo5}}" class="icon-30">
                                                 <div *ngIf='item.photoLen>1' class="photoLen" >{{item.photoLen}}</div>
                                             </div>
                                     
@@ -199,6 +200,10 @@
                                         </td>
                                         <td>
                                             <!-- <div class="table-box">{{item.price}}</div> -->
+                                            <input type="text" class="table-box" >
+                                        </td>
+                                        <td>
+                                            <!-- <div class="table-box">{{item.price}}</div> -->
                                             <input type="text" class="table-box" [(ngModel)]='item.price'>
                                         </td>
                                         <td>
@@ -219,6 +224,7 @@
                                             <td>{{list.quality}}</td>
                                             <td>{{list.standby_time}}</td>
                                             <td>{{list.guarantee}}</td>
+                                            <td></td>
                                             <td>{{list.price}}</td>
                                             <td>{{list.sendcar_time}}</td>
                                             <td>
