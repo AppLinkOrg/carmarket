@@ -1,16 +1,16 @@
-<view class="white-block onebtn margin-top-20">
+<view class="white-block onebtn margin-top-20"  bindtap="bindaddress">
   <view class="margin-top-20 flex-row ">
     <view class="txt-black margin-left-20 txt-bold">测试</view>
     <view class="txt-black margin-left-30 txt-bold">12345678910</view>
     <!-- <view class="margin-left-30"></view> -->
     <view class="flex-1"></view>
-    <image class='icon margin-right-20 margin-top-20' src='{{uploadpath}}resource/{{res.smallright}}' bindtap="bindyou"></image>
+    <image class='icon margin-right-20 margin-top-20' src='{{uploadpath}}resource/{{res.smallright}}' ></image>
   </view>
   <view class="margin-left-20 h5 margin-bottom-20">测试地址</view>
 </view>
 
 
-<view class="box margin-40 padding-20 bg-white" wx:for='{{arr}}' wx:key='key' wx:for-index='index'> 
+<view class="box margin-40 padding-20 bg-white" wx:for='{{alllist}}' wx:key='key' wx:for-index='index'> 
 
   <view class="flex-row flex-center margin-top-20"> 
     <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.store}}"></image>
@@ -20,17 +20,18 @@
     <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{check==true}}' id="{{item.id}}" class="icon" bindtap="check"></image>
     <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{check==false}}' class="icon" bindtap="check"></image>
   </view>
- 
+
   <view class=" padding-20" wx:for='{{item.name}}' wx:for-index='idx' wx:key='k' style="border-top:2rpx solid black">
 
     <view class="flex-row flex-center">
       <view>{{idx+1}}、</view>
       <view class="margin-left-10 txt-bold black">{{item.fit_name}}</view>
+      <view class="h6 margin-left-10">x{{item.qty}}</view>
     </view>
  
     <view class="flex-row flex-center margin-top-20">
       <view class="yuan margin-left-10  ">
-        <view class="h5 padding-left-10 padding-right-10 h6">{{item.quality}}</view>
+        <view class="h5 padding-left-10 padding-right-10">{{item.quality}}</view>
       </view>
       <view class="flex-1"></view>
       <view class="txt-red margin-left-20">￥{{item.price}}</view>

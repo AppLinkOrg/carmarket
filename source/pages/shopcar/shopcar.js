@@ -21,6 +21,11 @@ class Content extends AppBase {
     this.Base.Page = this;
     options.id = 24;
     super.onLoad(options);
+    this.Base.setMyData({
+      num: 0,
+      allprice: 0,
+      chosse: 1
+    })
   }
 
   onMyShow() {
@@ -73,7 +78,9 @@ class Content extends AppBase {
     var alllist = this.Base.getMyData().alllist;
     var id = e.currentTarget.id;
     var qtylist = alllist[id].name;
-
+    var num = this.Base.getMyData().num;
+    var allprice = this.Base.getMyData().allprice;
+    var chosse = this.Base.getMyData().chosse;
     //console.log(qtylist+"ddd")
 
 
@@ -88,10 +95,25 @@ class Content extends AppBase {
         qtylist[i].check = false;
       }
       alllist[id].allcheck = false;
+      this.Base.setMyData({ chosse: 1 })
+    }
+
+
+    for (var a = 0; a < qtylist.length; a++) {
+      if (qtylist[a].check == true) {
+        allprice += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
+        num++;
+        //console.log(num);
+      } else {
+        allprice -= parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
+        num--
+      }
     }
 
     this.Base.setMyData({
-      alllist: alllist
+      alllist: alllist,
+      num,
+      allprice
     })
     console.log("ddd")
 
@@ -104,22 +126,73 @@ class Content extends AppBase {
     var index = e.currentTarget.dataset.index;
     var qtylist = alllist[index].name;
     var checking = qtylist[idx].check;
+    var chosse = this.Base.getMyData().chosse;
+    var num = 0;
+    var allprice = 0;
 
     if (checking == true) {
+      this.Base.setMyData({chosse:1})
       alllist[index].name[idx].check = false;
       alllist[index].allcheck = false;
     } else {
       alllist[index].name[idx].check = true
     }
 
+    for (var m = 0; m < alllist.length; m++) {
+      var qtylist = alllist[m].name;
+      for (var a = 0; a < qtylist.length; a++) {
+        if (qtylist[a].check == true) {
+          //var num = qtylist.length;
+          allprice += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
+          num++;
+          //console.log(qtylist.length);
+        }
+      }
+    }
+
     this.Base.setMyData({
-      alllist
+      alllist,
+      num,
+      allprice
     })
 
     //console.log(checking,"pp")
 
   }
 
+  bindallcheck(e) {
+    var type = e.currentTarget.id;
+    var alllist = this.Base.getMyData().alllist;
+    var num = 0;
+    var allprice = 0;
+
+    for (var m = 0; m < alllist.length; m++) {
+      var qtylist = alllist[m].name;
+      if (type == 2) {
+        alllist[m].allcheck = true;
+      } else {
+        alllist[m].allcheck = false;
+      }
+
+      for (var a = 0; a < qtylist.length; a++) {
+        if (type == 2) {
+          qtylist[a].check = true;
+        } else {
+          qtylist[a].check = false;
+        }
+        if (qtylist[a].check == true) {
+          //var num = qtylist.length;
+          allprice += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
+          num++;
+          //console.log(qtylist.length);
+        }
+      }
+    }
+
+    this.Base.setMyData({
+      chosse: type, alllist, num, allprice
+    })
+  }
 
 
   bindjisuan(e) {
@@ -128,8 +201,9 @@ class Content extends AppBase {
     var index = e.currentTarget.dataset.index;
     var idx = e.currentTarget.dataset.idx;
     var shopcarlist = this.Base.getMyData().shopcarlist;
-
     var alllist = this.Base.getMyData().alllist;
+    var allprice = 0;
+
     // console.log("类型:" + name, 'id:', id,"来来来", index)
 
     if (name == 'jian') {
@@ -144,36 +218,55 @@ class Content extends AppBase {
     } else {
       alllist[index].name[idx].qty++
     }
+
+
+    for (var m = 0; m < alllist.length; m++) {
+      var qtylist = alllist[m].name;
+      for (var a = 0; a < qtylist.length; a++) {
+        if (qtylist[a].check == true) {
+          //var num = qtylist.length;
+          allprice += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
+          //console.log(qtylist.length);
+        }
+      }
+    }
+
+
     this.Base.setMyData({
-      alllist
+      alllist,
+      allprice
     })
   }
 
   bindjiesuan() {
     var lista = this.Base.getMyData().alllist;
 
-     var linjian=[];
+    var linjian = [];
 
     for (var i = 0; i < lista.length; i++) {
       var list = lista[i].name;
- 
 
-      for (var j = 0; j < list.length;j++){
-       if (list[j].check==true){
-         linjian.push(list[j]);
-       }
+      for (var j = 0; j < list.length; j++) {
+        if (list[j].check == true) {
+          linjian.push(list[j]);
+        }
       }
- 
+
     }
-    
-    this.Base.setMyData({ linjian})
-    
-   // return;
-    wx.navigateTo({
-      url: '/pages/orderdetail/orderdetail?json=' + JSON.stringify(lista) + '&carmodel=' + this.Base.options.carmodel + '&vin=' + this.Base.options.vin
+
+    this.Base.setMyData({
+      linjian
     })
-    
+    // return;
+    wx.navigateTo({
+      url: '/pages/orderdetail/orderdetail?json=' + JSON.stringify(linjian) + '&carmodel=' + this.Base.options.carmodel + '&vin=' + this.Base.options.vin
+    })
+
   }
+
+
+
+
 
 
 }
@@ -186,5 +279,5 @@ body.bindjisuan = content.bindjisuan;
 
 body.bindchoose = content.bindchoose;
 body.bindcheck = content.bindcheck;
-
+body.bindallcheck = content.bindallcheck;
 Page(body)

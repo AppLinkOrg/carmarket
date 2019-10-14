@@ -8,7 +8,7 @@
 <view class="flex-row mar">
   <view class="">手机号码</view>
   <view class=" margin-left-40 ">
-    <input class='' placeholder="请输入手机号码" name="name" value="{{phone}}" bindinput="bindphone"></input>
+    <input class='' placeholder="请输入手机号码" name="name" maxlength="11" value="{{phone}}" bindinput="bindphone"></input>
   </view>
 </view>
 

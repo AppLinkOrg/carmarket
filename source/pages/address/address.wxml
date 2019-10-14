@@ -7,7 +7,9 @@
   <view class='flex-row flex-wrap margin-top-30 margin-left-30 '>
     <view class='txt-black txt-bold'>{{item.name}}</view>
     <view class='txt-black txt-bold margin-left-30 '>{{item.phonenumber}}</view>
-    <view class='h5 bg-btn mobtn  margin-left-30'>{{item.morenaddress_value}}</view>
+
+    <view class='h5 bg-btn mobtn  margin-left-30' wx:if='{{item.morenaddress_value=="Y"}}'>默认</view>
+
     <view class='flex-1'></view>
     <view class='margin-top-10'>
       <image class='icon-25  margin-right-20' src='{{uploadpath}}resource/{{res.edit}}' bindtap='bindedit' id="{{item.id}}"></image>
@@ -17,4 +19,4 @@
 </view>
 
 
-<view class="addbtn" bindtap='bindaddressadd'>+添加地址</view>
+<view class="addbtn" bindtap='bindaddressadd'>+ 添加地址</view>

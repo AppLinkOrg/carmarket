@@ -36,42 +36,74 @@ class Content extends AppBase {
     var that = this;
     var orderapi = new OrderApi();
 
-    var json = JSON.parse(this.Base.options.json)
-    console.log(json, "来了")
-    
+    var shopcarlist = JSON.parse(this.Base.options.json);
+
+    var etplist = {};
+
+    for (var i = 0; i < shopcarlist.length; i++) {
+      shopcarlist[i].check = false;
+      var list = shopcarlist[i]
+      if (!etplist[list.enterprise_id]) {
+        etplist[list.enterprise_id] = [];
+      }
+      etplist[list.enterprise_id].push(list)
+    }
+
+    var alllist = [];
+    //var price = 0;
+    for (var key in etplist) {
+
+      for (var i in etplist[key]) {
+        alllist.push({
+          id: key,
+          enterprise_name: etplist[key][i].enterprise_id_name,
+          name: etplist[key],
+          allcheck: false
+        })
+        break;
+      }
+
+      // for (var s in etplist[key]) {
+      //   price += (parseInt(etplist[key][s].price) * parseInt(etplist[key][s].qty))
+      // }
+
+    }
+
+    // this.Base.setMyData({
+
+    // })
+
+    //return;
+
+    //var json = alllist;
+    //console.log(json, "来了")
+
     var sumprice = 0;
 
-    for (var i = 0; i < json.length; i++) {
-      var ent = json[i].name;
+    for (var i = 0; i < alllist.length; i++) {
+      var ent = alllist[i].name;
       var aaa = 0;
       for (var j = 0; j < ent.length; j++) {
         // console.log(parseInt(ent[j].price), "||",parseInt (ent[j].qty))
         aaa += parseInt((ent[j].price) * (ent[j].qty));
         //console.log(aaa,"店铺价格")
       }
-      json[i].pp = aaa;
+      alllist[i].pp = aaa;
       sumprice += aaa;
     }
 
     this.Base.setMyData({
-      arr: json,
-      sumprice
+      //arr: json,
+      sumprice,
+      alllist,
+      //price
     })
 
   }
 
 
-  binddizhi(e) {
-    this.Base.setMyData({
-      dizhi: e.detail.value
-    })
-  }
 
-  bindtijiao() {
-    wx.navigateTo({
-      url: '/pages/ordersubmit/ordersubmit',
-    })
-  }
+
 
   setPageTitle(instinfo) {
     var title = "订单提交";
@@ -85,14 +117,12 @@ class Content extends AppBase {
   }
 
   submit(e) {
-    var that =this;
+    var that = this;
     var orderapi = new OrderApi();
     var sumprice = this.Base.getMyData().sumprice;
     var arr = this.Base.getMyData().arr;
- 
-
-    console.log(this.Base.getMyData().employeeinfo.id,"啦啦啦啦啦啦啦啦");
-   // return;
+    console.log(this.Base.getMyData().employeeinfo.id, "啦啦啦啦啦啦啦啦");
+    // return;
     wx.showModal({
       title: '购买',
       content: '确认购买？',
@@ -101,31 +131,30 @@ class Content extends AppBase {
       cancelColor: '#EE2222',
       confirmText: '确定',
       confirmColor: '#2699EC',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
-          
+
           for (var i = 0; i < arr.length; i++) {
             var list = {
               orderno: '',
               enterprise_id: arr[i].id,
               employee_id: that.Base.getMyData().employeeinfo.id,
               totalamount: arr[i].pp,
-              vin:that.Base.options.vin,
-              carname:that.Base.options.carmodel,
+              vin: that.Base.options.vin,
+              carname: that.Base.options.carmodel,
               receiver: '测试',
               receivecontact: '12345678910',
               receiveaddress: '测试地址',
               order_status: 'L',
               status: 'A'
             }
-            
+
             that.submitlist(list, i);
-            
+
             orderapi.updatemoney({
               id: that.Base.getMyData().employeeinfo.id,
               money: sumprice
-            }, (updatemoney) => {
-            })
+            }, (updatemoney) => {})
 
           }
 
@@ -143,9 +172,9 @@ class Content extends AppBase {
     var id = [];
     setTimeout(() => {
       orderapi.settle(json, (settle) => {
-          
+
       })
-      
+
     }, i * 300)
 
     wx.navigateTo({
@@ -154,18 +183,21 @@ class Content extends AppBase {
 
   }
 
-
-  fits() {
-
+  bindaddress(e) {
+    wx.navigateTo({
+      url: '/pages/address/address',
+      success: function(res) {}
+    })
   }
+
 
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
-body.bindyou = content.bindyou;
-body.bindtijiao = content.bindtijiao;
+
+body.bindaddress = content.bindaddress;
 body.confirm = content.confirm;
 
 body.submit = content.submit;
@@ -173,10 +205,4 @@ body.submitlist = content.submitlist;
 
 body.check = content.check;
 
-body.bindreduce = content.bindreduce;
-body.bindadd = content.bindadd;
-body.binddizhi = content.binddizhi;
-body.binddelect = content.binddelect;
-body.bindchoice = content.bindchoice;
-body.bindallchoice = content.bindallchoice;
 Page(body)

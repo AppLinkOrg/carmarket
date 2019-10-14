@@ -53,9 +53,11 @@ class Content extends AppBase {
 
   bindchuandizhi(e) {
     var id = e.currentTarget.id
-    wx.navigateTo({
-      url: '/pages/orderdetail/orderdetail?id=' + id,
+
+    wx.navigateBack({
+      
     })
+     
   }
 }
 var content = new Content();

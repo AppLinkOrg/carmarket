@@ -1,5 +1,3 @@
-<view class="margin-bottom-10"></view>
-
 <!-- 
 <view wx:for='{{alllist}}' wx:key='key' class="margin-top-20">
 
@@ -12,7 +10,6 @@
   </view>
 
 </view> -->
-
 
 <view class="box" wx:for='{{alllist}}' wx:key='key' wx:for-index='index'>
   <view class="flex-row margin-top-20">
@@ -38,7 +35,7 @@
     <view class="flex-row margin-top-20">
 
       <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.check==true}}' class="icon" bindtap="bindcheck" id="{{idx}}" data-index="{{index}}"></image>
-      <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.check==false}}' class="icon"  bindtap="bindcheck" id="{{idx}}" data-index="{{index}}"></image>
+      <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.check==false}}' class="icon" bindtap="bindcheck" id="{{idx}}" data-index="{{index}}"></image>
 
       <view class="yuan margin-left-10 margin-bottom-20">
         <view class="h5 padding-left-10 padding-right-10 h6">{{item.quality}}</view>
@@ -66,12 +63,13 @@
 
 
 <view class="bg-white bott">
-  <view class="flex-row margin-top-20 padding-bottom-20">
-    <image class="icon margin-left-20 margin-top-20" src="{{uploadpath}}resource/{{res.zhong}}"></image>
-    <view class="margin-top-20 margin-left-10">全选</view>
+  <view class="flex-row flex-center padding-20">
+    <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{chosse==2}}' id="1" class="icon" bindtap="bindallcheck"></image>
+    <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{chosse==1}}' id="2" class="icon" bindtap="bindallcheck"></image>
+    <view class=" margin-left-10">全选</view>
     <view class="flex-1"></view>
-    <view class="txt-black margin-top-20">合计：</view>
-    <view class="txt-red margin-top-20 margin-right-30">¥{{price}}</view>
-    <view class="bgjie txt-white margin-right-20" bindtap="bindjiesuan">去结算({{arr.length}})</view>
+    <view class="txt-black ">合计：</view>
+    <view class="txt-red  margin-right-30">¥{{allprice}}</view>
+    <view class="bgjie txt-white" bindtap="bindjiesuan">去结算({{num}})</view>
   </view>
 </view>
