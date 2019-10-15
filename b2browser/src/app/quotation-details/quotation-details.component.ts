@@ -159,7 +159,7 @@ export class QuotationDetailsComponent extends AppBase  {
       this.list.push(addList)
       
     }
-
+    console.log(this.list)
 
   }
 
@@ -228,6 +228,7 @@ export class QuotationDetailsComponent extends AppBase  {
      //console.log(enterprise_id,"坎坎坷坷");
      //return;
 
+     console.log(this.list,'444')
 
      for(let i=0;i<this.list.length;i++){
 
@@ -253,7 +254,7 @@ export class QuotationDetailsComponent extends AppBase  {
       console.log(enterprise_id,"卡啦啦啦");
 
         setTimeout(()=>{
-          this.editStatus()
+          this.editStatus(enterprise_id)
         },this.list.length*300)
         
       }
@@ -267,16 +268,42 @@ export class QuotationDetailsComponent extends AppBase  {
         console.log(confirmquote)
       })
     },i*300)    
+
   }
 
-  editStatus(){
+  editStatus(enterprise_id){
+
+    // let date = new Date()
+    // let year = date.getFullYear()
+    // let month = date.getMonth() + 1
+    // let day = date.getDay()
+    
+
+    // let nowtime = year + '-' + month + '-' + day 
+    // let end_time = year + '-' + month + '-' + day +7
+
+    // console.log(nowtime,end_time)
+
+    var date1 = new Date();
+    var date2 = new Date(date1);
+    date2.setDate(date1.getDate() + 7);
+    console.log(date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate());
+    console.log(date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate());
+
     var a = this.orderApi
     this.quoteinfo.quotestatus = "W"
-    a.editstatus({ id: this.quoteinfo.id, quotestatus: this.quoteinfo.quotestatus,status: this.quoteinfo.status,}).then((editstatus:any)=>{
-      console.log(editstatus)
-      if(editstatus.code == '0'){
+    this.quoteinfo.quoteemployee_id = this.employee_id
+    this.quoteinfo.quoteenterprise_id = enterprise_id
+    this.quoteinfo.quote_id = this.id
+    this.quoteinfo.yiquoted_time = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate()
+    this.quoteinfo.expired_time = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate()
+    console.log(this.quoteinfo)
 
-        a.deleteignore({ id: this.quoteinfo.id }).then((deletData:any)=>{
+    a.addexpired(this.quoteinfo).then((addexpired:any)=>{
+      console.log(addexpired)
+      if(addexpired.code == '0'){
+
+        a.deleteignore({ id: this.quoteinfo.id,quoteemployee_id: this.employee_id,quoteenterprise_id:enterprise_id }).then((deletData:any)=>{
         
          })
 

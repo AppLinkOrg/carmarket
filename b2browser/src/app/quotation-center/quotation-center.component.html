@@ -75,19 +75,19 @@
                           
                               <!-- 轮播图片 -->
                               <div class="carousel-inner images" style="height: 100%;">
-                                  <div class="carousel-item active" style="height: 100%;" *ngIf='item.frontofcar!=""' >
+                                  <div class="carousel-item active" style="height: 100%;" *ngIf='item.frontofcar!="" && item.frontofcar!="undefined"' >
                                       <img src="{{uploadpath}}quote/{{item.frontofcar}}">
                                   </div>
-                                  <div class="carousel-item" style="height: 100%;" *ngIf='item.namesplate!=""'>
+                                  <div class="carousel-item" style="height: 100%;" *ngIf='item.namesplate!="" && item.namesplate!="undefined"'>
                                       <img src="{{uploadpath}}quote/{{item.namesplate}}">
                                   </div>
-                                  <div class="carousel-item" style="height: 100%;" *ngIf='item.rearofcar!=""'>
+                                  <div class="carousel-item" style="height: 100%;" *ngIf='item.rearofcar!="" && item.rearofcar!="undefined"'>
                                       <img src="{{uploadpath}}quote/{{item.rearofcar}}">
                                   </div>
-                                  <div class="carousel-item" style="height: 100%;" *ngIf='item.photo1!=""'>
+                                  <div class="carousel-item" style="height: 100%;" *ngIf='item.photo1!="" && item.photo1!="undefined"'>
                                       <img src="{{uploadpath}}quote/{{item.photo1}}">
                                   </div>
-                                  <div class="carousel-item" style="height: 100%;" *ngIf='item.photo2!=""'>
+                                  <div class="carousel-item" style="height: 100%;" *ngIf='item.photo2!="" && item.photo2!="undefined"'>
                                       <img  src="{{uploadpath}}quote/{{item.photo2}}">
                                   </div>
                               </div>
