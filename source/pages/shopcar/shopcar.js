@@ -19,7 +19,7 @@ class Content extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
-    options.id = 24;
+    //options.id = 24;
     super.onLoad(options);
     this.Base.setMyData({
       num: 0,
@@ -259,7 +259,7 @@ class Content extends AppBase {
     })
     // return;
     wx.navigateTo({
-      url: '/pages/orderdetail/orderdetail?json=' + JSON.stringify(linjian) + '&carmodel=' + this.Base.options.carmodel + '&vin=' + this.Base.options.vin
+      url: '/pages/orderdetail/orderdetail?json=' + JSON.stringify(linjian) + '&carmodel=' + this.Base.options.carmodel + '&vin=' + this.Base.options.vin + '&id=' + this.Base.options.id
     })
 
   }

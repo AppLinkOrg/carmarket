@@ -61,7 +61,7 @@
 
 <view wx:if='{{chakan=="C"}}' class="margin-20">
 
-  <view class="blueblock" style="background:#143779" wx:for='{{enterpriselist}}' wx:key='s' wx:for-index='index'>
+  <view class="blueblock {{index>0?'margin-top':''}}" style="background:#143779" wx:for='{{enterpriselist}}' wx:key='s' wx:for-index='index'>
 
     <view class="padding-20 ">
       <view class="txt-white"> {{item.enterprise_name}}</view>

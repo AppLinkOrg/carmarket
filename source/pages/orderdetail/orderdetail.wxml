@@ -1,12 +1,12 @@
 <view class="white-block onebtn margin-top-20"  bindtap="bindaddress">
   <view class="margin-top-20 flex-row ">
-    <view class="txt-black margin-left-20 txt-bold">测试</view>
-    <view class="txt-black margin-left-30 txt-bold">12345678910</view>
+    <view class="txt-black margin-left-20 txt-bold">{{addressinfo.name}}</view>
+    <view class="txt-black margin-left-30 txt-bold">{{addressinfo.phonenumber}}</view>
     <!-- <view class="margin-left-30"></view> -->
     <view class="flex-1"></view>
     <image class='icon margin-right-20 margin-top-20' src='{{uploadpath}}resource/{{res.smallright}}' ></image>
   </view>
-  <view class="margin-left-20 h5 margin-bottom-20">测试地址</view>
+  <view class="margin-left-20 h5 margin-bottom-20">{{addressinfo.region}}{{addressinfo.address}}</view>
 </view>
 
 

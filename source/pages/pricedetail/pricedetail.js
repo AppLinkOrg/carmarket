@@ -23,7 +23,7 @@ class Content extends AppBase {
   
   onLoad(options) {
     this.Base.Page = this;
-     options.id = 24;
+    // options.id = 24;
     super.onLoad(options);
     this.Base.setMyData({
       xuan: 'F',

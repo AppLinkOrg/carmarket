@@ -38,6 +38,31 @@ class Content extends AppBase {
 
     var shopcarlist = JSON.parse(this.Base.options.json);
 
+    if (this.Base.getMyData().info != undefined) {
+      this.Base.setMyData({
+        addressinfo: this.Base.getMyData().info
+      })
+    } else {
+      var addressapi = new AddressApi();
+      addressapi.addresslist({
+
+      }, (addresslist) => {
+
+        var address = addresslist.filter((item, idx) => {
+          return item.morenaddress_value == 'Y';
+        })
+
+        this.Base.setMyData({
+          addressinfo: address[0]
+        })
+
+      })
+    }
+
+
+
+
+
     var etplist = {};
 
     for (var i = 0; i < shopcarlist.length; i++) {
@@ -103,8 +128,6 @@ class Content extends AppBase {
 
 
 
-
-
   setPageTitle(instinfo) {
     var title = "订单提交";
     wx.setNavigationBarTitle({
@@ -120,7 +143,8 @@ class Content extends AppBase {
     var that = this;
     var orderapi = new OrderApi();
     var sumprice = this.Base.getMyData().sumprice;
-    var arr = this.Base.getMyData().arr;
+    var arr = this.Base.getMyData().alllist;
+    var addressinfo = this.Base.getMyData().addressinfo;
     console.log(this.Base.getMyData().employeeinfo.id, "啦啦啦啦啦啦啦啦");
     // return;
     wx.showModal({
@@ -142,19 +166,17 @@ class Content extends AppBase {
               totalamount: arr[i].pp,
               vin: that.Base.options.vin,
               carname: that.Base.options.carmodel,
-              receiver: '测试',
-              receivecontact: '12345678910',
-              receiveaddress: '测试地址',
-              order_status: 'L',
+              quote_id:that.Base.options.id,
+              receiver: addressinfo.name,
+              receivecontact: addressinfo.phonenumber,
+              receiveaddress: addressinfo.region + addressinfo.address,
+              order_status: 'W',
               status: 'A'
             }
 
             that.submitlist(list, i);
 
-            orderapi.updatemoney({
-              id: that.Base.getMyData().employeeinfo.id,
-              money: sumprice
-            }, (updatemoney) => {})
+
 
           }
 
@@ -177,15 +199,19 @@ class Content extends AppBase {
 
     }, i * 300)
 
+    // wx.navigateTo({
+    //   url: '/pages/jiaoyisuccess/jiaoyisuccess'
+    // })
+
     wx.navigateTo({
-      url: '/pages/jiaoyisuccess/jiaoyisuccess'
+      url: '/pages/waitpay/waitpay?id=' + that.Base.options.id
     })
 
   }
 
   bindaddress(e) {
     wx.navigateTo({
-      url: '/pages/address/address',
+      url: '/pages/address/address?ad=1',
       success: function(res) {}
     })
   }

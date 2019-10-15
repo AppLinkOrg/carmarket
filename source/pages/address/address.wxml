@@ -3,19 +3,29 @@
   <view class=''>亲，您还没有收货地址哦</view>
 </view>
 
-<view wx:for="{{addresslist}}" bindtap="bindchuandizhi">
-  <view class='flex-row flex-wrap margin-top-30 margin-left-30 '>
-    <view class='txt-black txt-bold'>{{item.name}}</view>
-    <view class='txt-black txt-bold margin-left-30 '>{{item.phonenumber}}</view>
+<view wx:for="{{addresslist}}"  class="flex-row flex-center padding-20">
 
-    <view class='h5 bg-btn mobtn  margin-left-30' wx:if='{{item.morenaddress_value=="Y"}}'>默认</view>
 
-    <view class='flex-1'></view>
-    <view class='margin-top-10'>
-      <image class='icon-25  margin-right-20' src='{{uploadpath}}resource/{{res.edit}}' bindtap='bindedit' id="{{item.id}}"></image>
+  <view class="flex-1" bindtap="bindchuandizhi" id="{{item.id}}">
+    <view class='flex-row flex-wrap   '>
+      <view class='txt-black txt-bold'>{{item.name}}</view>
+      <view class='txt-black txt-bold margin-left-30 '>{{item.phonenumber}}</view>
+
+      <view class='h5 bg-btn mobtn  margin-left-30' wx:if='{{item.morenaddress_value=="Y"}}'>默认</view>
+
     </view>
+    <view class='margin-top-20 margin-right-30'>{{item.region}}{{item.address}}</view>
   </view>
-  <view class='margin-left-30 margin-right-30'>{{item.region}}{{item.address}}</view>
+
+
+
+
+  <view class=''>
+    <image class='icon  margin-right-20' src='{{uploadpath}}resource/{{res.edit}}' bindtap='bindedit' id="{{item.id}}"></image>
+  </view>
+
+
+
 </view>
 
 

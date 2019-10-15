@@ -4,6 +4,8 @@
     "pages/find/find",
     "pages/vinscan/vinscan",
     "pages/login/login",
+    "pages/waitpay/waitpay",
+    "pages/obligations/obligations",
     "pages/check/check",
     "pages/addressadd/addressadd",
     "pages/helpcenter/helpcenter",

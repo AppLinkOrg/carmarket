@@ -24,8 +24,7 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var addressapi = new AddressApi();
-    addressapi.addresslist({
-
+    addressapi.addresslist({ 
     }, (addresslist) => {
       this.Base.setMyData({
         addresslist
@@ -45,19 +44,37 @@ class Content extends AppBase {
 
 
   bindedit(e) {
-    var id = e.currentTarget.id
+    var id = e.currentTarget.id;
     wx.navigateTo({
       url: '/pages/addressadd/addressadd?id=' + id,
     })
   }
 
   bindchuandizhi(e) {
-    var id = e.currentTarget.id
+  console.log(1111111)
+    if(this.Base.options.ad!=undefined){
+      var id = e.currentTarget.id;
+      var addressapi = new AddressApi();
+      addressapi.addressinfo({
+        id: id
+      }, (addressinfo) => {
 
-    wx.navigateBack({
-      
-    })
-     
+        var pages = getCurrentPages();
+        var currPage = pages[pages.length - 1];   //当前页面
+        var prevPage = pages[pages.length - 2];  //上一个页面
+
+        //不需要页面更新
+        prevPage.setData({
+          info: addressinfo
+        })
+
+        wx.navigateBack({
+
+        })
+
+      })
+    }
+  
   }
 }
 var content = new Content();

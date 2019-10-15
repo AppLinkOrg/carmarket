@@ -111,7 +111,7 @@ class Content extends AppBase {
     list[idx].beizhu = beizhu;
     //list[idx].imgnum = images.length;
     list[idx].photo = images;
-    // list[idx].photo2 = images[1];
+    // list[idx].photo2 = images[1];  
     // list[idx].photo3 = images[2];
     // list[idx].photo4 = images[3];
     // list[idx].photo5 = images[4];
@@ -119,7 +119,7 @@ class Content extends AppBase {
 
     console.log(list)
     //return;
-
+    
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];   //当前页面
     var prevPage = pages[pages.length - 2];  //上一个页面

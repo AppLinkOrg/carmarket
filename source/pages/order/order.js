@@ -1,8 +1,16 @@
 // pages/content/content.js
-import { AppBase } from "../../appbase";
-import { ApiConfig } from "../../apis/apiconfig";
-import { InstApi } from "../../apis/inst.api.js";
-import { OrderApi } from "../../apis/order.api.js";
+import {
+  AppBase
+} from "../../appbase";
+import {
+  ApiConfig
+} from "../../apis/apiconfig";
+import {
+  InstApi
+} from "../../apis/inst.api.js";
+import {
+  OrderApi
+} from "../../apis/order.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -11,18 +19,18 @@ class Content extends AppBase {
   onLoad(options) {
     this.Base.Page = this;
     //options.id=5;
-   
+
     this.Base.setMyData({
-      order: "A" 
+      order: "A"
     });
   }
   onMyShow() {
     var orderapi = new OrderApi();
-     
+
 
 
     orderapi.mylist({
-      order_status: 'W', 
+      order_status: 'W',
     }, (daifukuan) => {
       this.Base.setMyData({
         daifukuan
@@ -50,7 +58,7 @@ class Content extends AppBase {
     }, (yiwancheng) => {
       this.Base.setMyData({
         yiwancheng
-      }) 
+      })
     })
 
     orderapi.mylist({
@@ -61,15 +69,15 @@ class Content extends AppBase {
       })
     })
 
-    
+
   }
-  
+
   setPageTitle() {
     wx.setNavigationBarTitle({
       title: '我的订单',
     });
   }
-  
+
   bindsend(e) {
     var id = e.currentTarget.id;
     wx.navigateTo({
@@ -99,7 +107,7 @@ class Content extends AppBase {
 
     var id = this.Base.getMyData().employeeinfo.id;
     console.log(id);
-    
+
     var orderid = e.currentTarget.dataset.order;
     //console.log(orderid, "选中的节点值");
     this.Base.setMyData({
@@ -119,7 +127,7 @@ class Content extends AppBase {
       cancelColor: '#EE2222',
       confirmText: '确定',
       confirmColor: '#2699EC',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
 
           orderapi.updatestatus({
@@ -140,7 +148,7 @@ class Content extends AppBase {
   bindshou(e) {
     var id = e.currentTarget.id
     var orderapi = new OrderApi();
-    var that =this;
+    var that = this;
     wx.showModal({
       title: '收货',
       content: '确认货物已收到？',
@@ -149,7 +157,7 @@ class Content extends AppBase {
       cancelColor: '#EE2222',
       confirmText: '确定',
       confirmColor: '#2699EC',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           orderapi.updatestatus({
             id: id,
@@ -167,7 +175,12 @@ class Content extends AppBase {
   }
 
 
-
+  bindtobuy(e) {
+    var id = e.currentTarget.id;
+    wx.navigateTo({
+      url: '/pages/obligations/obligations?id=' + id
+    })
+  }
 
 }
 var content = new Content();
@@ -175,10 +188,11 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindorder = content.bindorder;
-body.bindreceive = content.bindreceive; 
+body.bindreceive = content.bindreceive;
 
-body.bindquxiao = content.bindquxiao; 
+body.bindquxiao = content.bindquxiao;
 body.bindshou = content.bindshou;
+body.bindtobuy = content.bindtobuy;
 
 body.bindsend = content.bindsend;
 body.bindsuccess = content.bindsuccess;
