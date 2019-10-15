@@ -46,11 +46,11 @@ export class DetailsOfQuotedPriceComponent  extends AppBase  {
       })
       
       var a = this.orderApi
-      a.quoteinfo({ id: this.id }).then((quoteinfo:any)=>{
+      a.yiquoteinfo({ id: this.id }).then((quoteinfo:any)=>{
 
         
         this.quoteinfo = quoteinfo;
-        console.log(this.quoteinfo)
+        console.log(this.quoteinfo,'jjjjj')
         
         for(let item of quoteinfo.fittingsitem){
           if(item.quoteitems.length != 0){

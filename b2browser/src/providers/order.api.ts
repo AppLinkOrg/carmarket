@@ -424,4 +424,90 @@ export class OrderApi {
             });
     }
 
+    public addquote(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/addquote';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/addquote', data, err);
+            });
+    }
+
+
+    public 	editquotestatus(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/editquotestatus';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/editquotestatus', data, err);
+            });
+    }
+
+    
+    public 	yiquotelist(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/yiquotelist';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/yiquotelist', data, err);
+            });
+    }
+
+    public 	yiquoteinfo(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/yiquoteinfo';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/yiquoteinfo', data, err);
+            });
+    }
+
 }
