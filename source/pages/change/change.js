@@ -26,16 +26,16 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var orderapi = new OrderApi();
-    orderapi.mylist({
-
-    }, (daituihuna) => {
+    orderapi.returnlist({
+    orderstatus:'D'
+    }, (returnlist) => {
       this.Base.setMyData({
-        daituihuna
+        returnlist
       })
     })
 
-    orderapi.mylist({
-
+    orderapi.returnlist({ 
+      orderstatus: 'Y'
     }, (yituihuan) => {
       this.Base.setMyData({
         yituihuan

@@ -17,29 +17,34 @@ class Content extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
-    //options.id=5;
+    //options.id = 16;
     super.onLoad(options);
     this.Base.setMyData({
       qty: 1,
-
-      quan: 'B'
-
+      quan: 'B',price:0
     });
   }
 
   onMyShow() {
-    var that = this; 
+    var that = this;
     var orderapi = new OrderApi();
     var id = this.Base.options.id;
 
     orderapi.detail({
       id: id,
     }, (change) => {
- 
+
+      var list = change.orderitem;
+
+      for (var i = 0; i < list.length; i++) {
+        list[i].check = false;
+        list[i].shuliang = list[i].qty;
+      }
+
       this.Base.setMyData({
         change
       });
-      
+
     });
   }
 
@@ -47,72 +52,178 @@ class Content extends AppBase {
 
   bindxuanze(e) {
     var change = this.Base.getMyData().change;
+    var price = 0;
     console.log(change, "sdfsdfg")
 
     var xuan = e.currentTarget.dataset.id;
-    change.orderitems[xuan].xz = !change.orderitems[xuan].xz;
+    var list = change.orderitem;
+
+    if (change.orderitem[xuan].check == false) {
+      change.orderitem[xuan].check = true
+    } else {
+      change.orderitem[xuan].check = false
+      this.Base.setMyData({ quan: 'B' })
+    }
+
+    for (var i = 0; i < list.length; i++) {
+
+      if (list[i].check == true) {
+        price += parseFloat(list[i].price) * parseInt(list[i].qty)
+      }
+
+    }
+
+
+    //  change.orderitems[xuan].xz = !change.orderitems[xuan].xz;
+
     this.Base.setMyData({
-      change
+      change,
+      price
     })
   }
+
   bindall(e) {
     var change = this.Base.getMyData().change;
-    var quan = e.currentTarget.id;
-    if (quan == 'Q') {
-      change.orderitems.map((item) => {
-        item.xz = false;
-      })
-      this.Base.setMyData({
-        quan: 'B'
-      })
+    var orderitem = change.orderitem;
+    var price=0;
+    var id=e.currentTarget.id;
+    console.log(id,"lll"); 
+
+    if (id == 'B') {
+      for (var i = 0; i < orderitem.length; i++) { 
+        change.orderitem[i].check = true
+      }
+      this.Base.setMyData({ quan:'Q'})
+    } else {
+      for (var i = 0; i < orderitem.length; i++) {
+        change.orderitem[i].check = false
+      }
+      this.Base.setMyData({ quan: 'B' })
     }
 
-    if (quan == 'B') {
-      change.orderitems.map((item) => {
-        item.xz = true;
-      })
-      this.Base.setMyData({
-        quan: 'Q'
-      })
+    for (var i = 0; i < orderitem.length; i++) {
+
+      if (orderitem[i].check == true) {
+        price += parseFloat(orderitem[i].price) * parseInt(orderitem[i].qty)
+      }
+
     }
+  
     this.Base.setMyData({
-      change
+      change, price
     })
   }
-
-  bindreduce(e) {
-    var index = e.currentTarget.dataset.id;
-    var change = this.Base.getMyData().change;
-    var qty = change.orderitems[index].qty;
-    if (qty == 1) {
-      return
-    } else {
-      change.orderitems[index].qty--;
-      this.Base.setMyData({
-        change
-      })
-    }
-  }
-
 
   bindadd(e) {
-    var index = e.currentTarget.dataset.id;
+    var index = e.currentTarget.id;
+    var type = e.currentTarget.dataset.type;
     var change = this.Base.getMyData().change;
-    console.log(change.orderitems[index].qty, "加出来")
+    var qty = change.orderitem[index].qty;
+    var shuliang = change.orderitem[index].shuliang;
+    if (type == 'jia' ) {
+      if (qty<shuliang){
+        change.orderitem[index].qty++
+      }
+      
+    } else{
+      if (qty>1){
+        change.orderitem[index].qty-- 
+      }
+    }
 
-    change.orderitems[index].qty++;
     this.Base.setMyData({
       change
     })
-  }
-  bindsub(e) {
 
-    wx.navigateTo({
-      url: '/pages/change/change',
+  }
+
+  bindsubmit(e) {
+    var that = this;
+
+    var change = this.Base.getMyData().change;
+    var shibie = change.orderitem;
+
+    //console.log(shibie);
+    //return;
+
+    wx.showModal({
+      title: '提交',
+      content: '确认发布询价？',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#EE2222',
+      confirmText: '确定',
+      confirmColor: '#2699EC',
+      success: function (res) {
+        if (res.confirm) {
+
+          wx.showLoading({
+            title: '发布中',
+            mask: true
+          })
+
+          var orderapi = new OrderApi();
+
+          orderapi.addtuihuo({
+         
+           order_id: change.id,
+            enterprise_id: change.enterprise_id,
+            employee_id: change.employee_id,
+            remarks: that.Base.getMyData().content,
+            carmodel: change.carname,
+            return_money: that.Base.getMyData().price,
+            receivecontact: that.Base.getMyData().phone,
+            orderstatus: 'D',
+            status:'A'
+          }, (addtuihuo) => { 
+            that.Base.setMyData({
+              addtuihuo
+            }) 
+            for (var i = 0; i < shibie.length; i++) { 
+              if (shibie[i].check==true){
+                var list = {
+                  tuihuo_id: addtuihuo.return,
+                  name: shibie[i].name,
+                  photo: shibie[i].photo,
+                  qty: shibie[i].qty,
+                  price: shibie[i].price,
+                  quality: shibie[i].quality,
+                  status: 'A'
+                }
+                that.fitting(list, i) 
+              } 
+            } 
+          }) 
+        }
+      }
+    });
+
+  }
+
+  fitting(json, i) {
+    var that = this;
+    var orderapi = new OrderApi();
+    setTimeout(() => {
+      orderapi.addtuohuoitem(json, (addtuohuoitem) => {
+        that.Base.setMyData({
+          addtuohuoitem
+        })
+
+        wx.hideLoading();
+        wx.reLaunch({
+          url: '/pages/order/order',
+        })
+      })
+    }, i * 300)
+  }
+
+  bindphone(e){
+    this.Base.setMyData({
+      phone: e.detail.value
     })
   }
 
-  bindcon() {
+  bindcon(e) {
     this.Base.setMyData({
       content: e.detail.value
     })
@@ -129,8 +240,10 @@ var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
-body.bindsub = content.bindsub;
-body.bindcon = content.bindcon;
+body.bindsubmit = content.bindsubmit; 
+body.fitting = content.fitting; 
+body.bindcon = content.bindcon; 
+body.bindphone = content.bindphone;
 body.bindxuanze = content.bindxuanze;
 body.bindall = content.bindall;
 body.bindreduce = content.bindreduce;

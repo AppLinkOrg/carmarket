@@ -329,6 +329,38 @@ export class OrderApi{
         })
     }
 
+    editquotestatus(json, callback, showLoading = true) {
+
+        if (showLoading)
+            ApiConfig.ShowLoading();
+
+        var header = ApiConfig.GetHeader();
+        console.log(header);
+        console.log(json);
+        wx.request({
+            url: ApiConfig.GetApiUrl() + 'order/editquotestatus',
+            data: json,
+            method: 'POST',
+            dataType: 'json',
+            header: header,
+            success: function (res) {
+                if (callback != null) {
+                    callback(res.data);
+                }
+            },
+            fail: function (res) {
+                console.log(res);
+                callback(false);
+            },
+            complete: function (res) {
+                console.log(res);
+            
+                if (showLoading)
+                    ApiConfig.CloseLoading();
+            }
+        })
+    }
+
     editstatus(json, callback, showLoading = true) {
 
         if (showLoading)
@@ -809,7 +841,7 @@ export class OrderApi{
         })
     }
 
-    editquotestatus(json, callback, showLoading = true) {
+    yiquoteinfo(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -818,7 +850,103 @@ export class OrderApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'order/editquotestatus',
+            url: ApiConfig.GetApiUrl() + 'order/yiquoteinfo',
+            data: json,
+            method: 'POST',
+            dataType: 'json',
+            header: header,
+            success: function (res) {
+                if (callback != null) {
+                    callback(res.data);
+                }
+            },
+            fail: function (res) {
+                console.log(res);
+                callback(false);
+            },
+            complete: function (res) {
+                console.log(res);
+            
+                if (showLoading)
+                    ApiConfig.CloseLoading();
+            }
+        })
+    }
+
+    yiquotelist(json, callback, showLoading = true) {
+
+        if (showLoading)
+            ApiConfig.ShowLoading();
+
+        var header = ApiConfig.GetHeader();
+        console.log(header);
+        console.log(json);
+        wx.request({
+            url: ApiConfig.GetApiUrl() + 'order/yiquotelist',
+            data: json,
+            method: 'POST',
+            dataType: 'json',
+            header: header,
+            success: function (res) {
+                if (callback != null) {
+                    callback(res.data);
+                }
+            },
+            fail: function (res) {
+                console.log(res);
+                callback(false);
+            },
+            complete: function (res) {
+                console.log(res);
+            
+                if (showLoading)
+                    ApiConfig.CloseLoading();
+            }
+        })
+    }
+
+    addtuihuo(json, callback, showLoading = true) {
+
+        if (showLoading)
+            ApiConfig.ShowLoading();
+
+        var header = ApiConfig.GetHeader();
+        console.log(header);
+        console.log(json);
+        wx.request({
+            url: ApiConfig.GetApiUrl() + 'order/addtuihuo',
+            data: json,
+            method: 'POST',
+            dataType: 'json',
+            header: header,
+            success: function (res) {
+                if (callback != null) {
+                    callback(res.data);
+                }
+            },
+            fail: function (res) {
+                console.log(res);
+                callback(false);
+            },
+            complete: function (res) {
+                console.log(res);
+            
+                if (showLoading)
+                    ApiConfig.CloseLoading();
+            }
+        })
+    }
+
+    addtuohuoitem(json, callback, showLoading = true) {
+
+        if (showLoading)
+            ApiConfig.ShowLoading();
+
+        var header = ApiConfig.GetHeader();
+        console.log(header);
+        console.log(json);
+        wx.request({
+            url: ApiConfig.GetApiUrl() + 'order/addtuohuoitem',
             data: json,
             method: 'POST',
             dataType: 'json',

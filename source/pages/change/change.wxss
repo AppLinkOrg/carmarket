@@ -1,9 +1,9 @@
 .box {
   /* additive-symbols: 30rpx; */
   border-radius: 10rpx;
+  
   box-shadow: 1rpx 2rpx 25rpx 2rpx rgb(173, 173, 173);
-  height: 280rpx;
-  width: 95%;
+   
   margin: 20rpx;
 }
 

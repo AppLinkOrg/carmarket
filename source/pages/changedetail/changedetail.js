@@ -15,11 +15,11 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var orderapi = new OrderApi();
-    orderapi.detail({
+    orderapi.returndetail({
       id: this.Base.options.id
-    }, (waittui) => {
+    }, (info) => {
       this.Base.setMyData({
-        waittui
+        info
       });
     });
 

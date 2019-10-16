@@ -47,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 29,
+			"current": 31,
 			"list": [
 				{
 					"id": -1,
@@ -256,6 +256,20 @@
 					"id": -1,
 					"name": "pages/waitpay/waitpay",
 					"pathName": "pages/waitpay/waitpay",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/changeapply/changeapply",
+					"pathName": "pages/changeapply/changeapply",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/change/change",
+					"pathName": "pages/change/change",
 					"scene": null
 				}
 			]

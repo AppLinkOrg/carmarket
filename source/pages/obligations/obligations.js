@@ -42,8 +42,8 @@ class Content extends AppBase {
     var mylist = this.Base.getMyData().mylist;
 
     wx.showModal({
-      title: '取消订单',
-      content: '确认取消订单？',
+      title: '购买',
+      content: '确认购买？',
       showCancel: true,
       cancelText: '取消',
       cancelColor: '#EE2222',
