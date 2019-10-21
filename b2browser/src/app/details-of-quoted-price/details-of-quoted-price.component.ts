@@ -22,7 +22,7 @@ export class DetailsOfQuotedPriceComponent  extends AppBase  {
     public orderApi: OrderApi,
     public enterpriseApi: EnterpriseApi,
   ) { 
-    super(router,activeRoute,instApi);
+    super(router,activeRoute,instApi,enterpriseApi);
   }
 
 
@@ -66,7 +66,7 @@ export class DetailsOfQuotedPriceComponent  extends AppBase  {
         }
 
         this.enterpriseApi.allenterprise({ id: this.employee_id,enterprise_id: this.enterprise_id}).then((info:any)=>{
-          console.log(info)
+          console.log(info,'info')
           for(let i=0;i<info.length;i++){
             if(info[i].id == this.employee_id && info[i].enterprise_id==this.enterprise_id){
               this.employee_id_name = info[i].name
@@ -76,7 +76,7 @@ export class DetailsOfQuotedPriceComponent  extends AppBase  {
         })
         
 
-        console.log(this.perInfo)
+        console.log(this.perInfo,'perInfo')
         console.log(this.list)
         console.log(this.employee_id,this.employee_id_name,this.enterprise_id_name)
       })

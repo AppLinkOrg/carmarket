@@ -23,7 +23,7 @@ export class AchievementComponent extends AppBase  {
     public orderApi:OrderApi,
     public enterpriseApi:EnterpriseApi,
   ) { 
-    super(router,activeRoute,instApi);
+    super(router,activeRoute,instApi,enterpriseApi);
   }
 
   id =''

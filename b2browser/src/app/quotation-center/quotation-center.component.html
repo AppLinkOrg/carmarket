@@ -59,7 +59,7 @@
 
   
              
-              <div  *ngIf='photoshow' class="modal fade " id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div  *ngIf='photoshow' class="modal fade "  id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                   <div  class="modal-dialog photoimg " role="img" *ngFor='let item of imgs'>
                       <div class="modal-content" style="background: transparent; border: none">
 
@@ -124,41 +124,42 @@
                       <th *ngIf='isshow' width='5%'>状态</th>
                       <th width='10%'>操作</th>
                   </thead>
-                  <tbody *ngFor="let item of data">
+                  <tbody class="lheight" *ngFor="let item of data">
                     <tr>
-                      <td>{{item.index+1}}</td>
+                      <td><div>{{item.index+1}}</div></td>
                       <td>
                           <div *ngIf='item.invoice_demand=="是"' >是</div>
                           <div *ngIf='item.invoice_demand=="否"' >否</div>
                       </td>
-                      <td>{{item.quotenumber}}</td>
-                      <td class="text-left">{{item.carmodel}} <br> {{item.vincode}} </td>
+                      <td><div>{{item.quotenumber}}</div></td>
+                      <td class="text-left"><div>{{item.carmodel}} <br> {{item.vincode}}</div> </td>
                       <td class="text-left">
                         <div *ngFor="let itemName of item.quoteitems;let i=index" >
                           <div *ngIf='i<3'>{{itemName.name}} x {{itemName.quantity}} ({{itemName.id}})</div>
                         </div>
                         <div *ngIf='item.quoteitems.length>3'>......</div>
                       </td>
-                      <td [ngSwitch]="item.carmodel==''">
+                      <td [ngSwitch]="item.carmodel=='' || item.carmodel=='undefined'">
                           <div class="photo">
                             <div *ngSwitchCase='true'>
-                              <img *ngIf ='item.frontofcar != "" ' data-toggle="modal" data-target="#myModal2" src="{{uploadpath}}quote/{{item.frontofcar}}" class="icon-60"  (click)='showPhoto(item)' />
-                              <img *ngIf ='item.frontofcar == ""  && item.namesplate != "" '  data-toggle="modal" data-target="#myModal2"  src="{{uploadpath}}quote/{{item.namesplate}}" class="icon-60"  (click)='showPhoto(item)'/>
-                              <img *ngIf ='item.frontofcar == ""  && item.namesplate == ""  && item.rearofcar != "" ' data-toggle="modal" data-target="#myModal2"   src="{{uploadpath}}quote/{{item.rearofcar}}" class="icon-60"  (click)='showPhoto(item)'/>
+                              <img *ngIf ='item.frontofcar != ""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}quote/{{item.frontofcar}}" class="icon-60"  />
+                              <img *ngIf ='item.frontofcar == ""  && item.namesplate != "" '   data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)'  src="{{uploadpath}}quote/{{item.namesplate}}" class="icon-60" />
+                              <img *ngIf ='item.frontofcar == ""  && item.namesplate == ""  && item.rearofcar != ""  '  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)'  src="{{uploadpath}}quote/{{item.rearofcar}}" class="icon-60"  />
                             </div>
                             <div *ngSwitchCase='false'>
-                                <img *ngIf ='item.photo1 != "" ' data-toggle="modal" data-target="#myModal2"  src="{{uploadpath}}quote/{{item.photo1}}" class="icon-60" />
-                                <img *ngIf ='item.photo1 == "" && item.photo2 != "" '  data-toggle="modal" data-target="#myModal2" src="{{uploadpath}}quote/{{item.photo2}}" class="icon-60" />
+                                <img *ngIf ='item.photo1 != "" '  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)'  src="{{uploadpath}}quote/{{item.photo1}}" class="icon-60" />
+                                <img *ngIf ='item.photo1 == "" && item.photo2 != "" '   data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}quote/{{item.photo2}}" class="icon-60" />
                             </div>
                             <div *ngIf='item.photoLen>1' class="photoLen" >{{item.photoLen}}</div>
                           </div>
+                          
                       </td>
                       <td>
                         <div>{{item.enterprise_id_name}}</div>
                         <div>{{item.enterprise_corporate_address}}</div>
                       </td>
-                      <td>{{item.quote_time}}</td>
-                      <td *ngIf='isshow'>{{item.quotestatus_name}}</td>
+                      <td><div>{{item.quote_time}}</div></td>
+                      <td *ngIf='isshow'><div>{{item.quotestatus_name}}</div></td>
                       <td>
                         <div *ngIf='item.quotestatus === "Q" &&  isquote==true'>
                           <button class="btn btn-primary" (click)="tiaozhuan(item.id)"><a>立即报价</a></button><br>

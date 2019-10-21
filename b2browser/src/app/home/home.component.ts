@@ -29,7 +29,7 @@ export class HomeComponent  extends AppBase  {
     public instApi:InstApi,
     public enterpriseApi:EnterpriseApi
   ) { 
-    super(router,activeRoute,instApi);
+    super(router,activeRoute,instApi,enterpriseApi);
 
     this.instinfo={};
     this.instApi.info({unicode:"carmarkets"}).then((instinfo)=>{
@@ -40,7 +40,6 @@ export class HomeComponent  extends AppBase  {
 
   enterprise_id = ''
   employee_id = ''
-  position=''
   obj = null
 
   onMyShow(){
@@ -53,7 +52,6 @@ export class HomeComponent  extends AppBase  {
           console.log(employeeinfo)
           this.enterprise_id = employeeinfo.enterprise_id
           this.employee_id = employeeinfo.id
-          this.position = employeeinfo.position
     
           this.obj = employeeinfo
           

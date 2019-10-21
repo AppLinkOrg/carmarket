@@ -29,7 +29,7 @@ export class LoginComponent   extends AppBase  {
     public enterpriseApi:EnterpriseApi,
     public memberApi:MemberApi,
   ) { 
-    super(router,activeRoute,instApi);
+    super(router,activeRoute,instApi,enterpriseApi);
     this.isLoginPage=true;
   }
   onMyShow(){ 
@@ -65,7 +65,7 @@ export class LoginComponent   extends AppBase  {
     }
 
     this.clearPopover();
-    this.instApi.employeelogin({mobile:this.loginname,password:(this.password)}).then((res:any)=>{
+    this.enterpriseApi.employeelogin({mobile:this.loginname,password:(this.password)}).then((res:any)=>{
         console.log(res)
       if(res.code=="0"){
         var token=res.return;

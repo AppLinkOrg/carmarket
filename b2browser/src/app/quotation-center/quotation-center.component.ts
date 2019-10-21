@@ -21,7 +21,7 @@ export class QuotationCenterComponent extends AppBase {
     public orderApi: OrderApi,
     public enterpriseApi: EnterpriseApi,
   ) {
-    super(router, activeRoute, instApi);
+    super(router, activeRoute, instApi,enterpriseApi);
   }
 
   list = [];
@@ -120,6 +120,24 @@ export class QuotationCenterComponent extends AppBase {
                 for (let item of list) {
                   if (item.quotestatus === 'Q') {
                     if (this.notinignore(item, yiquotelist)) {
+
+                      item.photoLen = 0
+                      if (item.frontofcar != '' && item.frontofcar !="undefined") {
+                        item.photoLen++
+                      }
+                      if (item.namesplate != '' && item.namesplate !="undefined") {
+                        item.photoLen++
+                      }
+                      if (item.rearofcar != '' && item.rearofcar !="undefined") {
+                        item.photoLen++
+                      }
+                      if (item.photo1 != '' && item.photo1 !="undefined") {
+                        item.photoLen++
+                      }
+                      if (item.photo2 != '' && item.photo2 !="undefined") {
+                        item.photoLen++
+                      }
+
                       result.push(item);
                     }
                   }
@@ -148,7 +166,7 @@ export class QuotationCenterComponent extends AppBase {
             if(yiquotelist.length == 0){
 
               a.quotelist({}).then((list: any) => {
-                console.log(list, 'qqqq')
+                console.log(list, 'list')
                 var result = [];
                   for (let item of list) {
                     if (item.quotestatus == 'Q') {
@@ -195,22 +213,42 @@ export class QuotationCenterComponent extends AppBase {
             }else {
 
               a.quotelist({}).then((list: any) => {
-                console.log(list, 'bbb')
+                console.log(list, 'list')
                 var result = [];
                 for (let item of list) {
                   if (item.quotestatus === 'Q') {
+                    item.photoLen = 0
+                    
+                    if (item.frontofcar != '' && item.frontofcar !="undefined") {
+                      item.photoLen++
+                    }
+                    if (item.namesplate != '' && item.namesplate !="undefined") {
+                      item.photoLen++
+                    }
+                    if (item.rearofcar != '' && item.rearofcar !="undefined") {
+                      item.photoLen++
+                    }
+                    if (item.photo1 != '' && item.photo1 !="undefined") {
+                      item.photoLen++
+                    }
+                    if (item.photo2 != '' && item.photo2 !="undefined") {
+                      item.photoLen++
+                    }
+
+                    console.log('尽快发货方')
+                    console.log(this.notinignore(item, yiquotelist),'jjjjdddddd')
                     if (this.notinignore(item, yiquotelist)) {
+                      console.log('斤斤计较')
                       if (this.notinignore(item, ignore)) {
-                        result.push(item);
-                      }
-                    }else {
-                      if (this.notinignore(item, ignore)) {
+                        console.log('jjjjj')
                         result.push(item);
                       }
                     }
+                      
                   }
     
                 }
+                console.log(result,'kkkkk')
     
                 this.list = result;
     
@@ -226,30 +264,6 @@ export class QuotationCenterComponent extends AppBase {
     
           })
 
-
-
-          // a.quotelist({}).then((list: any) => {
-          //   console.log(list, 'bbb')
-          //   var result = [];
-          //   for (let item of list) {
-          //     if (item.quotestatus === 'Q') {
-          //       if (this.notinignore(item, ignore)) {
-          //         result.push(item);
-          //       }
-          //     }
-
-          //   }
-
-          //   this.list = result;
-
-          //   for (let i = 0; i < this.list.length; i++) {
-          //     this.list[i].index = i
-          //   }
-
-          //   this.length = this.list.length;
-          //   this.pagination(this.list, this.length);
-
-          // });
         }
 
       })
@@ -325,7 +339,7 @@ export class QuotationCenterComponent extends AppBase {
 
       if (this.hasClass(current, 'disname-active')) {
 
-        this.distinct.push(current.innerText)
+        this.distinct.push(current)
       }
 
     }
@@ -346,13 +360,14 @@ export class QuotationCenterComponent extends AppBase {
     console.log(e)
     var others = e.target.parentElement.parentElement.parentElement.parentElement.childNodes[1].childNodes
     console.log(others)
-    if (this.hasClass(others[0], 'disname-active')) {
+    if (this.hasClass(others[1], 'disname-active')) {
 
     } else {
-      others[0].classList.add('disname-active')
+      others[1].classList.add('disname-active')
     }
 
-    for (let i = 1; i < others.length; i++) {
+    others[0].classList.remove('disname-active')
+    for (let i = 2; i < others.length; i++) {
       if (this.hasClass(others[i], 'disname-active')) {
         others[i].classList.remove('disname-active')
       }
@@ -364,7 +379,7 @@ export class QuotationCenterComponent extends AppBase {
     this.pageList = []
 
     console.log(this.distinct)
-    console.log(this.list)
+    console.log(this.list,'555555')
     let temp = []
     for (let i = 0; i < this.list.length; i++) {
       for (let j = 0; j < this.distinct.length; j++) {
@@ -375,18 +390,28 @@ export class QuotationCenterComponent extends AppBase {
 
         } else {
 
-          if (this.list[i].enterprise_corporate_address == this.distinct[j]) {
-            // console.log(this.distinct[j])
-            temp.push(this.list[i])
+          if(this.hasClass(this.distinct[j],'disname-active')){
+            console.log(this.distinct[j].innerText)
 
-          } else {
-            console.log(false)
+            if (this.list[i].enterprise_corporate_address == this.distinct[j].innerText) {
+              // console.log(this.distinct[j])
+              temp.push(this.list[i])
+              console.log('kkkkk')
+  
+            } else {
+              console.log(false)
+            }
+
           }
+
+         
 
         }
 
       }
     }
+
+    console.log(temp,'6666')
 
     this.length = temp.length
 
@@ -399,6 +424,7 @@ export class QuotationCenterComponent extends AppBase {
   photoshow = false
   imgs = []
   showPhoto(item) {
+    console.log(item)
     this.imgs = []
     this.photoshow = true
     console.log(item)
@@ -442,7 +468,7 @@ export class QuotationCenterComponent extends AppBase {
     console.log(item)
 
 
-    this.orderApi.searchignore(item).then((searchignore: any) => {
+    this.orderApi.addignore(item).then((searchignore: any) => {
 
       if (searchignore.code == "0") {
 
@@ -591,12 +617,14 @@ export class QuotationCenterComponent extends AppBase {
     this.orderApi.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((list: any) => {
       console.log(list,'pppp')
 
-      let date = new Date()
-      let year = date.getFullYear()
-      let month = date.getMonth() + 1
-      let day = date.getDate()
+      let date = new Date();
+      let year = date.getFullYear();
+      let month = date.getMonth() + 1;
+      let day = date.getDate();
+      let hh = date.getHours();
+      let mm = date.getMinutes();
   
-      let nowtime = year + '-' + month + '-' + day 
+      let nowtime = year + '-' + month + '-' + day +" "+ hh +":"+ mm
       console.log(nowtime,'5555')
 
       for (let i = 0; i < list.length; i++) {
@@ -643,23 +671,34 @@ export class QuotationCenterComponent extends AppBase {
       }
     }
 
+    var a = this.orderApi
+    let result = []
 
+    a.yiquotelist({quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((yiquotelist:any)=>{
+      console.log(yiquotelist,'yiquotelist')
+      // let yiquotelists = yiquotelist
 
+      a.quotelist({}).then((quotelist:any)=>{
+        for(let item of quotelist){
+          if(item.quotestatus=='Q'){
+            for(let yiitem of yiquotelist){
+              if(item.id == yiitem.quote_id){
+                result.push(yiitem)
+              }else {
+                result.push(item)
+              }
+            }
+          }
+        }
 
-    this.orderApi.quotelist({}).then((list: any) => {
-      this.list = list
-
-      for (let i = 0; i < this.list.length; i++) {
-        this.list[i].index = i
-      }
-
-      this.length = this.list.length;
-      this.pagination(this.list, this.length);
-
-
-      console.log(this.list, this.length)
-    });
-
+        this.list = result
+        for (let i = 0; i < this.list.length; i++) {
+          this.list[i].index = i
+        }
+        this.length = this.list.length
+        this.pagination(this.list,this.length)
+      })
+    })
 
 
   }

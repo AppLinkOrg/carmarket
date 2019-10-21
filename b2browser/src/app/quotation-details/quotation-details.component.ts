@@ -22,7 +22,7 @@ export class QuotationDetailsComponent extends AppBase  {
     public enterpriseApi:EnterpriseApi,
     public el: ElementRef,
   ) { 
-    super(router,activeRoute,instApi);
+    super(router,activeRoute,instApi,enterpriseApi);
   }
 
 
@@ -88,8 +88,8 @@ export class QuotationDetailsComponent extends AppBase  {
           this.fittinglist[j].price = ''
         }
 
-        console.log(this.quoteinfo)
-        console.log(this.fittinglist)
+        console.log(this.quoteinfo,'quoteinfo')
+        console.log(this.fittinglist,'fittinglist')
        
       })
 
@@ -295,8 +295,8 @@ export class QuotationDetailsComponent extends AppBase  {
     this.quoteinfo.quoteemployee_id = this.employee_id
     this.quoteinfo.quoteenterprise_id = enterprise_id
     this.quoteinfo.quote_id = this.id
-    this.quoteinfo.yiquoted_time = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate()
-    this.quoteinfo.expired_time = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate()
+    this.quoteinfo.yiquoted_time = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + (date1.getDate()) +" "+ (date1.getHours()) + ":" + (date1.getMinutes())
+    this.quoteinfo.expired_time = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() +" "+ (date2.getHours()) + ":" + (date2.getMinutes())
     console.log(this.quoteinfo)
 
     a.addexpired(this.quoteinfo).then((addexpired:any)=>{

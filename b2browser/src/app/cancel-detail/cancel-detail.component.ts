@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 import { OrderApi } from 'src/providers/order.api';
+import { EnterpriseApi } from 'src/providers/enterprise.api';
 
 
 @Component({
   selector: 'app-cancel-detail',
   templateUrl: './cancel-detail.component.html',
   styleUrls: ['./cancel-detail.component.scss'],
-  providers:[InstApi,OrderApi]
+  providers:[InstApi,OrderApi,EnterpriseApi]
 })
 export class CancelDetailComponent extends AppBase  {
 
@@ -18,9 +19,10 @@ export class CancelDetailComponent extends AppBase  {
     public router: Router,
     public activeRoute: ActivatedRoute,
     public instApi:InstApi,
-    public orderApi:OrderApi
+    public orderApi:OrderApi,
+    public enterpriseApi:EnterpriseApi,
   ) { 
-    super(router,activeRoute,instApi);
+    super(router,activeRoute,instApi,enterpriseApi);
   }
 
 

@@ -13,6 +13,7 @@
             <div class="margin-bottom-20" role="group" aria-label="...">
                 <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='allGoods($event)'>全部</button>
                 <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='returnGoods($event)'>待退货</button>
+                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='reingGoods($event)'>退货中</button>
                 <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray" (click)='yiGoods($event)'>已退货</button>       
             </div>
           
@@ -34,15 +35,15 @@
                 <tbody *ngFor='let item of data'>
                   <tr>
                     <td class="tab-mid">{{item.index+1}}</td>
-                    <td class="tab-mid">{{item.orderno}}</td>
-                    <td class="tab-mid">T{{item.orderno}}</td>
+                    <td class="tab-mid">{{item.order_orderno}}</td>
+                    <td class="tab-mid">{{item.returnno}}</td>
                     <td class="tab-mid">{{item.enterprise_name}}</td>
                     <td class="tab-mid">{{item.receiver}}</td>
                     <td class="tab-mid">{{item.return_time}}</td>
-                    <td class="tab-mid">￥{{item.totalamount}}</td>
-                    <td class="tab-mid" *ngIf='isshow'>{{item.order_status_name}}</td>
+                    <td class="tab-mid">￥{{item.return_money}}</td>
+                    <td class="tab-mid" *ngIf='isshow'>{{item.orderstatus_name}}</td>
                     <td class="tab-mid">
-                        <button class="btn btn-primary" (click)='tiaozhuan(item)'><a>查看详情</a></button><br>
+                        <button class="btn btn-primary" (click)='tiaozhuan(item.id)'><a>查看详情</a></button><br>
                     </td>
                   </tr>
                   

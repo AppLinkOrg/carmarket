@@ -25,7 +25,7 @@ export class ManagementCenterComponent extends AppBase  {
     public enterpriseApi:EnterpriseApi,
     public consumeApi:ConsumeApi
   ) { 
-    super(router,activeRoute,instApi);
+    super(router,activeRoute,instApi,enterpriseApi);
   }
 
 
@@ -103,10 +103,17 @@ export class ManagementCenterComponent extends AppBase  {
     
         this.addresslist = addresslist
         this.length = this.addresslist.length
+
   
         for(let i=0;i<this.addresslist.length;i++){
           this.addresslist[i].index = i
+          if(this.addresslist[i].morenaddress=='Y'){
+            this.addresslist[i].morenaddress = '是'
+          }else if( this.addresslist[i].morenaddress ='N' ) {
+            this.addresslist[i].morenaddress = "否"
+          }
         }
+        console.log(this.addresslist,'addlist')
   
         this.pagination(this.addresslist,this.length)
       })
@@ -197,13 +204,15 @@ changeSwitch(e,list){
   saveAddress(address){
     this.pageList = []
     address.morenaddress = this.changeMoren(address.morenaddress)
+    address.enterprise_id = this.enterprise_id
+    address.employee_id = this.employee_id
   
     address.status = 'A'
 
     if(this.item.operation == 'E'){
       
       this.adressApi.updateaddress(address).then((updateaddress:any)=>{
-     
+        console.log(updateaddress,'updateaddress')
         if(updateaddress.code == '0'){
           this.onMyShow()
         }
