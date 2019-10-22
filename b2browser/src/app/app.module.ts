@@ -19,7 +19,6 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { TestComponent } from './test/test.component';
 import { StoreHomeComponent } from './store-home/store-home.component';
 import { QuotationCenterComponent } from './quotation-center/quotation-center.component';
 import { QuotationDetailsComponent } from './quotation-details/quotation-details.component';

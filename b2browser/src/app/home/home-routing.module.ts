@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { HomeComponent } from './home.component';
-import { TestComponent } from '../test/test.component';
 import { BlankComponent } from '../blank/blank.component';
 import { StoreHomeComponent } from '../store-home/store-home.component';
 import { QuotationCenterComponent } from '../quotation-center/quotation-center.component';
