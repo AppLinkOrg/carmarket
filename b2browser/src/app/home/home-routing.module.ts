@@ -27,7 +27,6 @@ const routes: Routes = [
     children: [
       { path: "dashboard", component: DashboardComponent },
       { path: "blank", component: BlankComponent },
-      { path: "test", component: TestComponent },
       { path: "storeHome", component: StoreHomeComponent },
       { path: "quotationCenter", component: QuotationCenterComponent },
       { path: "quotationDetails", component: QuotationDetailsComponent },

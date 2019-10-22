@@ -186,7 +186,8 @@ export class EmployeeManagementComponent extends AppBase  {
   saveAddress(address){
     this.pageList = []
     address.morenaddress = this.changeMoren(address.morenaddress)
-  
+    address.enterprise_id = this.enterprise_id
+    address.employee_id = this.employee_id
     address.status = 'A'
 
     if(this.item.operation == 'E'){

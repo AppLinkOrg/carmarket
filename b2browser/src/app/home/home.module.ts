@@ -11,7 +11,6 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxUploaderModule } from 'ngx-uploader';
-import { TestComponent } from '../test/test.component';
 import { StoreHomeComponent } from '../store-home/store-home.component';
 import { QuotationCenterComponent } from '../quotation-center/quotation-center.component';
 import { QuotationDetailsComponent } from '../quotation-details/quotation-details.component';
@@ -32,7 +31,6 @@ import { WaitingComponent } from '../waiting/waiting.component';
   declarations: [
     HomeComponent,
     BlankComponent,
-    TestComponent,
     StoreHomeComponent,
     QuotationCenterComponent,
     QuotationDetailsComponent,
