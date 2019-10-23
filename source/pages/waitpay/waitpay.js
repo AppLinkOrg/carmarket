@@ -17,9 +17,13 @@ class Content extends AppBase {
     var that = this;
     var sumprice=0;
     var orderapi = new OrderApi();
+    
+  //  console.log(this.Base.options.id,"1111111")
+
     orderapi.mylist({
-      order_status: 'W',quote_id:this.Base.options.id
+      quote_id: this.Base.options.id, order_status: 'W'
     }, (mylist) => { 
+
       for (var i = 0; i < mylist.length;i++){
         sumprice += parseFloat(mylist[i].totalamount) ;
       }
@@ -56,17 +60,14 @@ class Content extends AppBase {
               }, (updatestatus) => {
               })
             }
-            // wx.reLaunch({
-            //   url: '/pages/order/order',
-            // })
+            wx.reLaunch({
+              url: '/pages/order/order',
+            })
           })
         }
       }
     })
-
-
-
-
+ 
 
   }
 }

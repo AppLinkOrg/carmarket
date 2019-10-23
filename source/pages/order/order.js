@@ -54,7 +54,7 @@ class Content extends AppBase {
     })
 
     orderapi.mylist({
-      order_status: 'N',
+      order_status: 'N,R,Y',
     }, (yiwancheng) => {
       this.Base.setMyData({
         yiwancheng
@@ -102,6 +102,12 @@ class Content extends AppBase {
     })
   }
 
+  totuihuan(e){
+    var id = e.currentTarget.id;
+    wx.navigateTo({
+      url: '/pages/changeapply/changeapply?id=' + id,
+    })
+  }
 
   bindorder(e) {
 
@@ -188,7 +194,9 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindorder = content.bindorder;
-body.bindreceive = content.bindreceive;
+body.bindreceive = content.bindreceive; 
+
+body.totuihuan = content.totuihuan; 
 
 body.bindquxiao = content.bindquxiao;
 body.bindshou = content.bindshou;

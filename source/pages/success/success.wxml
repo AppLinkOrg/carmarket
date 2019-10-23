@@ -79,7 +79,7 @@
 </view>
 
 <view class='bott margin-top-20 margin-bottom-20'></view>
-<view class='flex-row margin-top weizhi'>
+<view class='flex-row margin-top weizhi' wx:if='{{yiwancheng.order_status=="N"}}'>
   <view class='btn0ne '>
     <view class='margin-left-20 h5 txt-white'> 如果商品存在质量问题可申请退换，但是原厂的产品恕不退换</view>
   </view>

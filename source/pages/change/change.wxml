@@ -34,12 +34,9 @@
     <view class=' margin-top-10'>{{item.carmodel}}</view>
     <view class='flex-row  margin-top-30'>
       <view class=' '>申请退换时间：</view>
-      <view class=' '>{{item.order_time_formatting}}</view>
+      <view class=' '>{{item.return_time}}</view>
     </view>
   </view>
-
-
-
 
 </view>
 
@@ -56,7 +53,7 @@
       <view class='h5'>退货单号：</view>
       <view class="h5">{{item.returnno}}</view>
       <view class='flex-1'></view>
-      <view class='margin-right-30'>待退换</view>
+      <view class='margin-right-30'>已退换</view>
     </view>
     <view class="flex-row flex-center flex-wrap margin-top-10">
       <view class=' txt-black' wx:for='{{item.tuihuoitem}}' wx:key='s' wx:for-index='idx'>{{idx==0?'':'、'}}{{item.name}}</view>
@@ -64,7 +61,7 @@
     <view class=' margin-top-10'>{{item.carmodel}}</view>
     <view class='flex-row  margin-top-30'>
       <view class=' '>申请退换时间：</view>
-      <view class=' '>{{item.order_time_formatting}}</view>
+      <view class=' '>{{item.return_time}}</view>
     </view>
   </view>
 

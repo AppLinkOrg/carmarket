@@ -5,22 +5,21 @@
 
 
   <view class="flex-row flex-center padding-20" style="border-bottom:2rpx solid #BBBBBB">
-    <view class="flex-1">订单号</view>
+    <view class="flex-1 h5 opa">订单号</view>
     <view>{{item.orderno}}</view>
   </view>
 
   <view class="flex-row flex-center padding-20" style="border-bottom:2rpx solid #BBBBBB">
-    <view class="flex-1">在线支付</view>
-    <view>￥{{item.totalamount}}</view>
+    <view class="flex-1 h5 opa">在线支付</view>
+    <view class=" txt-red">￥{{item.totalamount}}</view>
   </view>
 
   <view class="flex-row flex-center padding-20" >
-    <view class="flex-1">供应商</view>
+    <view class="flex-1 h5 opa">供应商</view>
     <view>{{item.enterprise_id_name}}</view>
   </view>
 <view style="height:50rpx;"></view>
-  
-
+   
 </view>
 
 <view class="bg-white bott">

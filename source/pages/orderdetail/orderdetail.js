@@ -148,8 +148,8 @@ class Content extends AppBase {
     console.log(this.Base.getMyData().employeeinfo.id, "啦啦啦啦啦啦啦啦");
     // return;
     wx.showModal({
-      title: '购买',
-      content: '确认购买？',
+      title: '提交',
+      content: '确认提交订单？',
       showCancel: true,
       cancelText: '取消',
       cancelColor: '#EE2222',
@@ -166,7 +166,7 @@ class Content extends AppBase {
               totalamount: arr[i].pp,
               vin: that.Base.options.vin,
               carname: that.Base.options.carmodel,
-              quote_id:that.Base.options.id,
+              quote_id: that.Base.options.id,
               receiver: addressinfo.name,
               receivecontact: addressinfo.phonenumber,
               receiveaddress: addressinfo.region + addressinfo.address,
@@ -180,7 +180,6 @@ class Content extends AppBase {
 
           }
 
-
         }
       }
     })
@@ -188,25 +187,39 @@ class Content extends AppBase {
   }
 
   submitlist(json, i) {
-
+ 
     var that = this;
     var orderapi = new OrderApi();
     var id = [];
     setTimeout(() => {
-      orderapi.settle(json, (settle) => {
 
-      })
+      orderapi.settle(json, (settle) => {})
 
     }, i * 300)
+    
+    //   wx.hideLoading();
+    //   wx.showToast({
+    //     title: '订单提交成功',
+    //     icon: 'none'
+    //   })
+    
+    wx.navigateTo({
+      url: '/pages/waitpay/waitpay?id=' + this.Base.options.id
+    })
+    // setTimeout(() => {
+      
+    //   wx.hideLoading();
+    //   wx.showToast({
+    //     title: '订单提交成功',
+    //     icon: 'none'
+    //   })
+    // }, 1500)
 
     // wx.navigateTo({
     //   url: '/pages/jiaoyisuccess/jiaoyisuccess'
     // })
 
-    wx.navigateTo({
-      url: '/pages/waitpay/waitpay?id=' + that.Base.options.id
-    })
-
+ 
   }
 
   bindaddress(e) {

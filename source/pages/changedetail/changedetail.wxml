@@ -17,7 +17,7 @@
   </view>
   <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
     <view class='txt-black '>退货时间：</view>
-    <view class='txt-black '>{{info.order_time_formatting}}</view>
+    <view class='txt-black '>{{info.return_time}}</view>
   </view>
   <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
     <view class='txt-black '>手机号码：</view>

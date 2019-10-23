@@ -27,7 +27,7 @@
 
     <view class="flex-row flex-center">
       <view>{{idx+1}}、</view>
-      <view class="margin-left-10 txt-bold black">{{item.fit_name}}</view>
+      <view class="margin-left-10 txt-bold black">{{item.fittings_name}}</view>
       <view class="flex-1"></view>
       <image class="icon margin-left-10 margin-right-30" src="{{uploadpath}}resource/{{res.sanjiao}}"></image>
     </view>

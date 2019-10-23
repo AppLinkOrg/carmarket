@@ -320,6 +320,7 @@ body.bindshai = content.bindshai;
 body.binddelect = content.binddelect;
 
 body.statistics = content.statistics; 
+ 
 body.statisticsone = content.statisticsone;
 
 Page(body)

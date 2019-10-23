@@ -42,11 +42,15 @@ class Content extends AppBase {
     })
   
   }
+
+  
   setPageTitle() {
     wx.setNavigationBarTitle({
       title: '我的',
     });
   }
+
+
   bindright() {
     wx.navigateTo({
       url: '/pages/edit/edit',

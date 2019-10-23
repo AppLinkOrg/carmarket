@@ -160,11 +160,12 @@ class Content extends AppBase {
             var addressapi = new AddressApi();
             addressapi.addaddress({
               name: people,
+              employee_id:that.Base.getMyData().employeeinfo.id,
               phonenumber: phone,
               region: city,
               address: address,
-              morenaddress: check
-
+              status:'A',
+              morenaddress: check 
             }, (baocun) => {
               that.Base.setMyData({
                 baocun
@@ -176,9 +177,7 @@ class Content extends AppBase {
 
           })
 
-        } else {
-
-        }
+        }  
       }
     })
 

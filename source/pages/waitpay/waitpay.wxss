@@ -11,3 +11,6 @@
    width: 220rpx; 
    border-radius: 40rpx;
 }
+.opa{
+  opacity: 0.6
+}

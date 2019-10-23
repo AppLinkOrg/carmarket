@@ -15,9 +15,10 @@ class Content extends AppBase {
   constructor() {
     super();
   }
+
   onLoad(options) {
     this.Base.Page = this;
-    //options.id = 16;
+   //options.id = 16;
     super.onLoad(options);
     this.Base.setMyData({
       qty: 1,
@@ -47,9 +48,7 @@ class Content extends AppBase {
 
     });
   }
-
-
-
+ 
   bindxuanze(e) {
     var change = this.Base.getMyData().change;
     var price = 0;
@@ -118,7 +117,9 @@ class Content extends AppBase {
     var index = e.currentTarget.id;
     var type = e.currentTarget.dataset.type;
     var change = this.Base.getMyData().change;
+    var price=0;
     var qty = change.orderitem[index].qty;
+    var list = change.orderitem;
     var shuliang = change.orderitem[index].shuliang;
     if (type == 'jia' ) {
       if (qty<shuliang){
@@ -131,8 +132,16 @@ class Content extends AppBase {
       }
     }
 
+    for (var i = 0; i < list.length; i++) {
+
+      if (list[i].check == true) {
+        price += parseFloat(list[i].price) * parseInt(list[i].qty)
+      }
+
+    }
+
     this.Base.setMyData({
-      change
+      change,price
     })
 
   }
@@ -148,7 +157,7 @@ class Content extends AppBase {
 
     wx.showModal({
       title: '提交',
-      content: '确认发布询价？',
+      content: '确认提交退货申请？',
       showCancel: true,
       cancelText: '取消',
       cancelColor: '#EE2222',
@@ -157,16 +166,16 @@ class Content extends AppBase {
       success: function (res) {
         if (res.confirm) {
 
-          wx.showLoading({
-            title: '发布中',
-            mask: true
-          })
+          // wx.showLoading({
+          //   title: '提交中',
+          //   mask: true
+          // })
 
           var orderapi = new OrderApi();
 
           orderapi.addtuihuo({
          
-           order_id: change.id,
+            order_id: change.id,
             enterprise_id: change.enterprise_id,
             employee_id: change.employee_id,
             remarks: that.Base.getMyData().content,
@@ -176,23 +185,31 @@ class Content extends AppBase {
             orderstatus: 'D',
             status:'A'
           }, (addtuihuo) => { 
+
+            // orderapi.updatestatus({
+            //   id: that.Base.options.id,
+            //   order_status: "R"
+            // }, (updatestatus) => {
+             
+            // })
+ 
             that.Base.setMyData({
               addtuihuo
             }) 
-            for (var i = 0; i < shibie.length; i++) { 
-              if (shibie[i].check==true){
-                var list = {
-                  tuihuo_id: addtuihuo.return,
-                  name: shibie[i].name,
-                  photo: shibie[i].photo,
-                  qty: shibie[i].qty,
-                  price: shibie[i].price,
-                  quality: shibie[i].quality,
-                  status: 'A'
-                }
-                that.fitting(list, i) 
-              } 
-            } 
+            // for (var i = 0; i < shibie.length; i++) { 
+            //   if (shibie[i].check==true){
+            //     var list = {
+            //       tuihuo_id: addtuihuo.return,
+            //       name: shibie[i].name,
+            //       photo: shibie[i].photo,
+            //       qty: shibie[i].qty,
+            //       price: shibie[i].price,
+            //       quality: shibie[i].quality,
+            //       status: 'A'
+            //     }
+            //     that.fitting(list, i) 
+            //   } 
+            // } 
           }) 
         }
       }
