@@ -677,27 +677,44 @@ export class QuotationCenterComponent extends AppBase {
     a.yiquotelist({quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((yiquotelist:any)=>{
       console.log(yiquotelist,'yiquotelist')
       // let yiquotelists = yiquotelist
-
-      a.quotelist({}).then((quotelist:any)=>{
-        for(let item of quotelist){
-          if(item.quotestatus=='Q'){
-            for(let yiitem of yiquotelist){
-              if(item.id == yiitem.quote_id){
-                result.push(yiitem)
-              }else {
-                result.push(item)
+      if(yiquotelist.length==0){
+        a.quotelist({}).then((quotelist:any)=>{
+          for(let item of quotelist){
+            if(item.quotestatus=='Q'){
+              result.push(item)
+            }
+          }
+  
+          this.list = result
+          for (let i = 0; i < this.list.length; i++) {
+            this.list[i].index = i
+          }
+          this.length = this.list.length
+          this.pagination(this.list,this.length)
+        })
+      }else {
+        a.quotelist({}).then((quotelist:any)=>{
+          for(let item of quotelist){
+            if(item.quotestatus=='Q'){
+              for(let yiitem of yiquotelist){
+                if(item.id == yiitem.quote_id){
+                  result.push(yiitem)
+                }else {
+                  result.push(item)
+                }
               }
             }
           }
-        }
-
-        this.list = result
-        for (let i = 0; i < this.list.length; i++) {
-          this.list[i].index = i
-        }
-        this.length = this.list.length
-        this.pagination(this.list,this.length)
-      })
+  
+          this.list = result
+          for (let i = 0; i < this.list.length; i++) {
+            this.list[i].index = i
+          }
+          this.length = this.list.length
+          this.pagination(this.list,this.length)
+        })
+      }
+     
     })
 
 

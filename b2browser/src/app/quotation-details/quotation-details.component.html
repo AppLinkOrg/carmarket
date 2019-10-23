@@ -58,8 +58,8 @@
                             <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{quoteinfo.employee_id_name}}</span>
                         </div>        
                         <div class="flex-2">
-                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red"  *ngIf='quoteinfo.invoice_demand=="是"'>需要发票</span>
-                            <span *ngIf='quoteinfo.invoice_demand=="否"'>不需要发票</span>
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red"  *ngIf='quoteinfo.invoice_demand_value=="Y"'>需要发票</span>
+                            <span *ngIf='quoteinfo.invoice_demand_value=="N"'>不需要发票</span>
                         </div>
                     </div>
                 </div>

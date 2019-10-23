@@ -107,9 +107,9 @@ export class ManagementCenterComponent extends AppBase  {
   
         for(let i=0;i<this.addresslist.length;i++){
           this.addresslist[i].index = i
-          if(this.addresslist[i].morenaddress=='Y'){
+          if(this.addresslist[i].morenaddress_value=='是'){
             this.addresslist[i].morenaddress = '是'
-          }else if( this.addresslist[i].morenaddress ='N' ) {
+          }else if( this.addresslist[i].morenaddress_value ='否' ) {
             this.addresslist[i].morenaddress = "否"
           }
         }
@@ -163,7 +163,7 @@ changeSwitch(e,list){
         
       })
 
-    }else if(list.power == '否'){
+    }else if(list.power == '否' || list.power==""){
       e.target.classList.add('offqiuti')
       e.target.parentElement.classList.add('offBtn')
       
@@ -195,9 +195,9 @@ changeSwitch(e,list){
   
   changeMoren(flag){
     if(flag){
-      return 'Y'
+      return '是'
     }else {
-      return 'N'
+      return '否'
     }
   }
 
@@ -208,6 +208,7 @@ changeSwitch(e,list){
     address.employee_id = this.employee_id
   
     address.status = 'A'
+    console.log(address,'address')
 
     if(this.item.operation == 'E'){
       
