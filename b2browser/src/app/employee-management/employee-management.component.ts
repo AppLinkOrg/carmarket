@@ -23,7 +23,7 @@ export class EmployeeManagementComponent extends AppBase  {
     public orderApi:OrderApi,
     public enterpriseApi:EnterpriseApi,
   ) { 
-    super(router,activeRoute,instApi);
+    super(router,activeRoute,instApi,enterpriseApi);
   }
 
 
@@ -102,6 +102,11 @@ export class EmployeeManagementComponent extends AppBase  {
     
           for(let i=0;i<this.addresslist.length;i++){
             this.addresslist[i].index = i
+            if(this.addresslist[i].morenaddress_value=='是'){
+              this.addresslist[i].morenaddress = '是'
+            }else if( this.addresslist[i].morenaddress_value ='否' ) {
+              this.addresslist[i].morenaddress = "否"
+            }
           }
     
           this.pagination(this.addresslist,this.length)
@@ -177,17 +182,21 @@ export class EmployeeManagementComponent extends AppBase  {
 
   changeMoren(flag){
     if(flag){
-      return 'Y'
+      return '是'
     }else {
-      return 'N'
+      return '否'
     }
   }
 
   saveAddress(address){
     this.pageList = []
     address.morenaddress = this.changeMoren(address.morenaddress)
-  
+    address.enterprise_id = this.enterprise_id
+    address.employee_id = this.employee_id
     address.status = 'A'
+    console.log('llllll')
+    console.log(address,'address')
+    console.log('aaaaa')
 
     if(this.item.operation == 'E'){
       

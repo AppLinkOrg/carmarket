@@ -58,8 +58,8 @@
                             <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{quoteinfo.employee_id_name}}</span>
                         </div>        
                         <div class="flex-2">
-                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red"  *ngIf='quoteinfo.invoice_demand=="是"'>需要发票</span>
-                            <span *ngIf='quoteinfo.invoice_demand=="否"'>不需要发票</span>
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red"  *ngIf='quoteinfo.invoice_demand_value=="Y"'>需要发票</span>
+                            <span *ngIf='quoteinfo.invoice_demand_value=="N"'>不需要发票</span>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                 
                 <div  *ngIf='photoshow' class="modal fade " id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div  class="modal-dialog photoimg " role="img" *ngFor='let item of imgs'>
-                            <div class="modal-content" style="background: transparent; border: none">
+                            <div class="modal-content" style="background: transparent; border: none;width: 800px; height: 600px">
 
                                 <div id="demo" class="carousel slide" style="width: 800px; height: 600px" >
                                     <!-- 指示符 -->
@@ -104,19 +104,19 @@
                                 
                                     <!-- 轮播图片 -->
                                     <div class="carousel-inner images" style="height: 100%;">
-                                        <div class="carousel-item active" style="height: 100%;" *ngIf='item.photo1!=""' >
+                                        <div class="carousel-item active" style="height: 100%;" *ngIf='item.photo1!=""&&item.photo1!="undefined"' >
                                             <img src="{{uploadpath}}fittings/{{item.photo1}}">
                                         </div>
-                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo2!=""'>
+                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo2!=""&&item.photo2!="undefined"'>
                                             <img src="{{uploadpath}}fittings/{{item.photo2}}">
                                         </div>
-                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo3!=""'>
+                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo3!=""&&item.photo3!="undefined"'>
                                             <img src="{{uploadpath}}fittings/{{item.photo3}}">
                                         </div>
-                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo4!=""'>
+                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo4!=""&&item.photo4!="undefined"'>
                                             <img src="{{uploadpath}}fittings/{{item.photo4}}">
                                         </div>
-                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo5!=""'>
+                                        <div class="carousel-item" style="height: 100%;" *ngIf='item.photo5!=""&&item.photo5!="undefined"'>
                                             <img  src="{{uploadpath}}fittings/{{item.photo5}}">
                                         </div>
                                     </div>

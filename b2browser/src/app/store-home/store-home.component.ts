@@ -21,7 +21,7 @@ export class StoreHomeComponent extends AppBase  {
     public orderApi:OrderApi,
     public enterpriseApi:EnterpriseApi,
   ) { 
-    super(router,activeRoute,instApi);
+    super(router,activeRoute,instApi,enterpriseApi);
   }
 
   list = []
@@ -41,7 +41,6 @@ export class StoreHomeComponent extends AppBase  {
 
  enterprise_id = ''
  employee_id=''
- position = ''
 
   onMyShow(){
     
@@ -55,7 +54,6 @@ export class StoreHomeComponent extends AppBase  {
     this.enterpriseApi.employeeinfo({ }).then((employeeinfo:any)=>{
       console.log(employeeinfo)
       this.enterprise_id = employeeinfo.enterprise_id
-      this.position = employeeinfo.position
       
       if(employeeinfo.power == 'Y'){
         console.log('aaa')

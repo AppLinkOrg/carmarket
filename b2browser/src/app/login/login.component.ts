@@ -29,13 +29,13 @@ export class LoginComponent   extends AppBase  {
     public enterpriseApi:EnterpriseApi,
     public memberApi:MemberApi,
   ) { 
-    super(router,activeRoute,instApi);
+    super(router,activeRoute,instApi,enterpriseApi);
     this.isLoginPage=true;
   }
   onMyShow(){ 
 
 
-      // setTimeout(() => {
+      setTimeout(() => {
         this.loginname=window.localStorage.getItem("lastloginname");
         if(this.loginname==null){
           this.loginname="";
@@ -47,7 +47,7 @@ export class LoginComponent   extends AppBase  {
         }else if (this.password != ''){
           this.isremember = true;
         }
-      // // });
+      });
       // console.log(this.isremember)
       // console.log(window.localStorage.getItem("lastpassword"))
       // console.log(window.localStorage.getItem("lastloginname"))
@@ -65,7 +65,7 @@ export class LoginComponent   extends AppBase  {
     }
 
     this.clearPopover();
-    this.instApi.employeelogin({mobile:this.loginname,password:(this.password)}).then((res:any)=>{
+    this.enterpriseApi.employeelogin({mobile:this.loginname,password:(this.password)}).then((res:any)=>{
         console.log(res)
       if(res.code=="0"){
         var token=res.return;

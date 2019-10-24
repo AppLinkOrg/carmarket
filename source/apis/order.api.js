@@ -105,6 +105,38 @@ export class OrderApi{
         })
     }
 
+    addquotation(json, callback, showLoading = true) {
+
+        if (showLoading)
+            ApiConfig.ShowLoading();
+
+        var header = ApiConfig.GetHeader();
+        console.log(header);
+        console.log(json);
+        wx.request({
+            url: ApiConfig.GetApiUrl() + 'order/addquotation',
+            data: json,
+            method: 'POST',
+            dataType: 'json',
+            header: header,
+            success: function (res) {
+                if (callback != null) {
+                    callback(res.data);
+                }
+            },
+            fail: function (res) {
+                console.log(res);
+                callback(false);
+            },
+            complete: function (res) {
+                console.log(res);
+            
+                if (showLoading)
+                    ApiConfig.CloseLoading();
+            }
+        })
+    }
+
     addshopcar(json, callback, showLoading = true) {
 
         if (showLoading)
@@ -361,6 +393,70 @@ export class OrderApi{
         })
     }
 
+    editquotation(json, callback, showLoading = true) {
+
+        if (showLoading)
+            ApiConfig.ShowLoading();
+
+        var header = ApiConfig.GetHeader();
+        console.log(header);
+        console.log(json);
+        wx.request({
+            url: ApiConfig.GetApiUrl() + 'order/editquotation',
+            data: json,
+            method: 'POST',
+            dataType: 'json',
+            header: header,
+            success: function (res) {
+                if (callback != null) {
+                    callback(res.data);
+                }
+            },
+            fail: function (res) {
+                console.log(res);
+                callback(false);
+            },
+            complete: function (res) {
+                console.log(res);
+            
+                if (showLoading)
+                    ApiConfig.CloseLoading();
+            }
+        })
+    }
+
+    editquote(json, callback, showLoading = true) {
+
+        if (showLoading)
+            ApiConfig.ShowLoading();
+
+        var header = ApiConfig.GetHeader();
+        console.log(header);
+        console.log(json);
+        wx.request({
+            url: ApiConfig.GetApiUrl() + 'order/editquote',
+            data: json,
+            method: 'POST',
+            dataType: 'json',
+            header: header,
+            success: function (res) {
+                if (callback != null) {
+                    callback(res.data);
+                }
+            },
+            fail: function (res) {
+                console.log(res);
+                callback(false);
+            },
+            complete: function (res) {
+                console.log(res);
+            
+                if (showLoading)
+                    ApiConfig.CloseLoading();
+            }
+        })
+    }
+
     editquotestatus(json, callback, showLoading = true) {
 
         if (showLoading)
@@ -435,6 +531,38 @@ export class OrderApi{
         console.log(json);
         wx.request({
             url: ApiConfig.GetApiUrl() + 'order/mylist',
+            data: json,
+            method: 'POST',
+            dataType: 'json',
+            header: header,
+            success: function (res) {
+                if (callback != null) {
+                    callback(res.data);
+                }
+            },
+            fail: function (res) {
+                console.log(res);
+                callback(false);
+            },
+            complete: function (res) {
+                console.log(res);
+            
+                if (showLoading)
+                    ApiConfig.CloseLoading();
+            }
+        })
+    }
+
+    quotationlist(json, callback, showLoading = true) {
+
+        if (showLoading)
+            ApiConfig.ShowLoading();
+
+        var header = ApiConfig.GetHeader();
+        console.log(header);
+        console.log(json);
+        wx.request({
+            url: ApiConfig.GetApiUrl() + 'order/quotationlist',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -649,6 +777,38 @@ export class OrderApi{
         })
     }
 
+    updatecheck(json, callback, showLoading = true) {
+
+        if (showLoading)
+            ApiConfig.ShowLoading();
+
+        var header = ApiConfig.GetHeader();
+        console.log(header);
+        console.log(json);
+        wx.request({
+            url: ApiConfig.GetApiUrl() + 'order/updatecheck',
+            data: json,
+            method: 'POST',
+            dataType: 'json',
+            header: header,
+            success: function (res) {
+                if (callback != null) {
+                    callback(res.data);
+                }
+            },
+            fail: function (res) {
+                console.log(res);
+                callback(false);
+            },
+            complete: function (res) {
+                console.log(res);
+            
+                if (showLoading)
+                    ApiConfig.CloseLoading();
+            }
+        })
+    }
+
     updatemoney(json, callback, showLoading = true) {
 
         if (showLoading)
@@ -659,6 +819,38 @@ export class OrderApi{
         console.log(json);
         wx.request({
             url: ApiConfig.GetApiUrl() + 'order/updatemoney',
+            data: json,
+            method: 'POST',
+            dataType: 'json',
+            header: header,
+            success: function (res) {
+                if (callback != null) {
+                    callback(res.data);
+                }
+            },
+            fail: function (res) {
+                console.log(res);
+                callback(false);
+            },
+            complete: function (res) {
+                console.log(res);
+            
+                if (showLoading)
+                    ApiConfig.CloseLoading();
+            }
+        })
+    }
+
+    updateqty(json, callback, showLoading = true) {
+
+        if (showLoading)
+            ApiConfig.ShowLoading();
+
+        var header = ApiConfig.GetHeader();
+        console.log(header);
+        console.log(json);
+        wx.request({
+            url: ApiConfig.GetApiUrl() + 'order/updateqty',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -809,7 +1001,7 @@ export class OrderApi{
         })
     }
 
-    updatecheck(json, callback, showLoading = true) {
+    createorder(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -818,39 +1010,7 @@ export class OrderApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'order/updatecheck',
-            data: json,
-            method: 'POST',
-            dataType: 'json',
-            header: header,
-            success: function (res) {
-                if (callback != null) {
-                    callback(res.data);
-                }
-            },
-            fail: function (res) {
-                console.log(res);
-                callback(false);
-            },
-            complete: function (res) {
-                console.log(res);
-            
-                if (showLoading)
-                    ApiConfig.CloseLoading();
-            }
-        })
-    }
-
-    updateqty(json, callback, showLoading = true) {
-
-        if (showLoading)
-            ApiConfig.ShowLoading();
-
-        var header = ApiConfig.GetHeader();
-        console.log(header);
-        console.log(json);
-        wx.request({
-            url: ApiConfig.GetApiUrl() + 'order/updateqty',
+            url: ApiConfig.GetApiUrl() + 'order/createorder',
             data: json,
             method: 'POST',
             dataType: 'json',

@@ -24,7 +24,7 @@
                     </div>
                     <div class="flex-row">
                         <div class="flex-1">
-                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">订单编号</span><span>{{returndetail.orderno}}</span>
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">订单编号</span><span>{{returndetail.order_orderno}}</span>
                         </div>        
                         <div class="flex-2">
                             <span class="bg-dep-gray txt-black padding-three-words margin-right-20">申请人</span><span>{{returndetail.receiver}}</span>
@@ -33,10 +33,10 @@
                     <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
                     <div class="flex-row margin-bottom-3">
                         <div class="flex-1">
-                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">退货单号</span><span>T{{returndetail.orderno}}</span>
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">退货单号</span><span>{{returndetail.returnno}}</span>
                         </div>        
                         <div class="flex-2">
-                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">申请时间</span><span>{{returndetail.updated_date}}</span>
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">申请时间</span><span>{{returndetail.return_time}}</span>
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                                         <th>备货时间</th>
                                         <th>质保期</th>
                                         <th>单价</th>
-                                        <th>备注信息</th>
+                                        <th>发车时间</th>
                                         </tr>
                                     </thead>
                                     <tbody class="h5 text-center">
@@ -112,5 +112,31 @@
                 </div>
         </div>
     
-    
+        <div class="row margin-top-40" *ngIf='returnstatus=="R"'>
+
+            <!-- Area Chart -->
+            <div class="col-lg-12">
+            <div class="card show mb-4">
+                    <div class="card-body flex-row box-auto flex-bottom">
+                    <button class="btn btn-primary padding-left-50 padding-right-50" (click)="saveQuote(returndetail)"><a>同意申请退货</a></button>
+                    </div>
+            </div> 
+            </div>
+            
+        </div>
+
+        
+        <div class="row margin-top-40"  *ngIf='returnstatus=="I"'>
+
+            <!-- Area Chart -->
+            <div class="col-lg-12">
+            <div class="card show mb-4">
+                    <div class="card-body flex-row box-auto flex-bottom">
+                    <button class="btn btn-primary padding-left-50 padding-right-50" (click)="saveQuote(returndetail)"><a>已收到货</a></button>
+                    </div>
+            </div> 
+            </div>
+            
+        </div>
+
     </div>

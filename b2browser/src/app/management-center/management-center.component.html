@@ -141,7 +141,8 @@
                                 
                                 <div class="card-body  flex-row" *ngFor='let item of employeeinfo'>
                                     <div class="flex-center margin-right-40">
-                                        <img src="{{uploadpath}}employee/{{item.photo}}"  class="icon-85" />
+                                        <img src="{{uploadpath}}employee/{{item.photo}}" *ngIf='item.photo!=""' class="icon-85" />
+                                        <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='item.photo==""'  class="icon-85" />
                                     </div>
                                     <div class="flex-3">
                                         <h5>{{item.name}} <span class="h6 margin-left-10">{{item.position_name}}</span></h5>
@@ -185,7 +186,7 @@
                                                         <div class="offBtn" *ngIf='list.power == "是"'>
                                                             <span class="offqiuti"  (click)='changeSwitch($event,list)'></span>
                                                         </div>
-                                                        <div class="onBtn" *ngIf='list.power == "否"'>
+                                                        <div class="onBtn" *ngIf='list.power == "否" || list.power==""'>
                                                             <span class="onqiuti"   (click)='changeSwitch($event,list)'></span>
                                                         </div>
                                                     </td>

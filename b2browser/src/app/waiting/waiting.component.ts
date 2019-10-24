@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 import { OrderApi } from 'src/providers/order.api';
+import { EnterpriseApi } from 'src/providers/enterprise.api';
 
 @Component({
   selector: 'app-waiting',
   templateUrl: './waiting.component.html',
   styleUrls: ['./waiting.component.scss'],
-  providers:[InstApi,OrderApi]
+  providers:[InstApi,OrderApi,EnterpriseApi]
 })
 export class WaitingComponent  extends AppBase  {
 
@@ -18,8 +19,9 @@ export class WaitingComponent  extends AppBase  {
     public activeRoute: ActivatedRoute,
     public instApi:InstApi,
     public orderApi:OrderApi,
+    public enterpriseApi:EnterpriseApi,
   ) { 
-    super(router,activeRoute,instApi);
+    super(router,activeRoute,instApi,enterpriseApi);
   }
   id = ''
   list = null;

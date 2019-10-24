@@ -21,7 +21,7 @@ export class ReturnsManagementComponent extends AppBase  {
     public orderApi:OrderApi,
     public enterpriseApi:EnterpriseApi,
   ) { 
-    super(router,activeRoute,instApi);
+    super(router,activeRoute,instApi,enterpriseApi);
   }
 
   returnlist = []
@@ -72,7 +72,7 @@ export class ReturnsManagementComponent extends AppBase  {
           this.pageList = []
           this.returnlist = []
 
-          a.mylist({ enterprise_id: this.enterprise_id,employee_id:this.employee_id, order_status: this.status }).then((returnlist:any)=>{
+          a.returnlist({ enterprise_id: this.enterprise_id,employee_id:this.employee_id, orderstatus: this.status }).then((returnlist:any)=>{
 
             this.pageList = []
             this.returnlist = []
@@ -99,17 +99,17 @@ export class ReturnsManagementComponent extends AppBase  {
           this.returnlist = []
 
 
-          a.mylist({ enterprise_id: this.enterprise_id, employee_id:this.employee_id,}).then((returnlist:any)=>{
+          a.returnlist({ enterprise_id: this.enterprise_id, employee_id:this.employee_id,}).then((returnlist:any)=>{
             this.pageList = []
-            this.returnlist = []
+            this.returnlist = returnlist
 
             console.log(returnlist,'sss')
 
-            for(let i=0;i<returnlist.length;i++){
-              if(returnlist[i].order_status == 'R' || returnlist[i].order_status=='Y'){
-                this.returnlist.push(returnlist[i])
-              }
-            }
+            // for(let i=0;i<returnlist.length;i++){
+            //   if(returnlist[i].order_status == 'R' || returnlist[i].order_status=='Y'){
+            //     this.returnlist.push(returnlist[i])
+            //   }
+            // }
 
             for(let j=0;j<this.returnlist.length;j++){
               this.returnlist[j].index = j
@@ -137,8 +137,14 @@ export class ReturnsManagementComponent extends AppBase  {
     this.isshow = true
     
     event.target.classList.add('btn-active')
-    event.target.parentElement.childNodes[1].classList.remove('btn-active')
-    event.target.parentElement.childNodes[2].classList.remove('btn-active')
+    
+    var others =  event.target.parentElement.childNodes
+    for(let j=0;j<others.length;j++){
+      if(others[j] != event.target){
+        others[j].classList.remove('btn-active')
+      }
+    }
+
     this.onMyShow()
 
     this.returnlist = this.returnlist
@@ -153,12 +159,16 @@ export class ReturnsManagementComponent extends AppBase  {
     this.isshow = false
    
     event.target.classList.add('btn-active')
-    event.target.parentElement.childNodes[0].classList.remove('btn-active')
-    event.target.parentElement.childNodes[2].classList.remove('btn-active')
+    var others =  event.target.parentElement.childNodes
+    for(let j=0;j<others.length;j++){
+      if(others[j] != event.target){
+        others[j].classList.remove('btn-active')
+      }
+    }
     
     if(this.returnlist !=null ){
       let relist = this.returnlist.filter(item=>{
-        return item.order_status == 'R'
+        return item.orderstatus == 'R'
       })
 
       for(let k=0;k<relist.length;k++){
@@ -171,6 +181,36 @@ export class ReturnsManagementComponent extends AppBase  {
    
   }
 
+  reingGoods(e){
+    this.pageList = []
+    this.length = null
+
+    this.isshow = false
+
+    e.target.classList.add('btn-active')
+    var others =  e.target.parentElement.childNodes
+    for(let j=0;j<others.length;j++){
+      if(others[j] != e.target){
+        others[j].classList.remove('btn-active')
+      }
+    }
+
+    if(this.returnlist !=null ){
+      let relist = this.returnlist.filter(item=>{
+        return item.orderstatus == 'I'
+      })
+
+      for(let k=0;k<relist.length;k++){
+        relist[k].index = k
+      }
+      this.length = relist.length
+      this.pagination(relist,this.length)
+
+    }
+
+
+  }
+
   yiGoods(event){
     this.pageList = []
     this.length = null
@@ -178,13 +218,17 @@ export class ReturnsManagementComponent extends AppBase  {
     this.isshow = false
  
     event.target.classList.add('btn-active')
-    event.target.parentElement.childNodes[0].classList.remove('btn-active')
-    event.target.parentElement.childNodes[1].classList.remove('btn-active')
+    var others =  event.target.parentElement.childNodes
+    for(let j=0;j<others.length;j++){
+      if(others[j] != event.target){
+        others[j].classList.remove('btn-active')
+      }
+    }
 
 
     if(this.returnlist !=null ){
       let relist = this.returnlist.filter(item=>{
-        return item.order_status == 'Y'
+        return item.orderstatus == 'Y'
       })
 
       for(let k=0;k<relist.length;k++){
@@ -200,7 +244,7 @@ export class ReturnsManagementComponent extends AppBase  {
   tiaozhuan(item){
     this.router.navigate(['returnsDetail'],{
       queryParams: {
-        id: item.orderno
+        id:item
       }
     })
   }

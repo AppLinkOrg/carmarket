@@ -6,6 +6,7 @@ import { ReturnStatement } from "@angular/compiler";
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { OnInit, AfterViewInit} from '@angular/core';
+import { EnterpriseApi } from 'src/providers/enterprise.api';
 
 declare let Wechat: any;
 
@@ -51,7 +52,7 @@ export class AppBase implements OnInit {
         }
     }
 
-
+    position=''
     bfscrolltop; // 获取软键盘唤起前浏览器滚动部分的高度
 
 
@@ -59,7 +60,8 @@ export class AppBase implements OnInit {
     public constructor(
         public router: Router,
         public activeRoute: ActivatedRoute,
-        public instApi: InstApi
+        public instApi: InstApi,
+        public enterpriseApi: EnterpriseApi,
     ) {
         this.activeRoute.queryParams.subscribe((params: Params) => {
             console.log(params);
@@ -93,11 +95,13 @@ export class AppBase implements OnInit {
                 this.router.navigate(["login"]);
             } else {
                 ApiConfig.SetToken(token);
-                this.instApi.operatorinfo({}).then((operator:any)=>{
+                this.enterpriseApi.employeeinfo({}).then((operator:any)=>{
+                    console.log(operator,'operator')
                     if(operator==null){
                         this.router.navigate(["login"]);
                     }else{
                         this.operatorinfo=operator;
+                        this.position = operator.position
                     }
                 });
             }
