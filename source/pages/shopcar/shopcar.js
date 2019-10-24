@@ -22,7 +22,7 @@ class Content extends AppBase {
     //options.id = 24;
     super.onLoad(options);
     this.Base.setMyData({
-      num: 0,
+      //num: 0,
       allprice: 0,
       chosse: 1
     })
@@ -30,6 +30,8 @@ class Content extends AppBase {
 
   onMyShow() {
     var that = this;
+    var price = 0;
+    var num=0;
     var orderapi = new OrderApi();
     orderapi.shopcarlist({
       quote_id: this.Base.options.id
@@ -38,7 +40,11 @@ class Content extends AppBase {
       var etplist = {};
 
       for (var i = 0; i < shopcarlist.length; i++) {
-        shopcarlist[i].check = false;
+        //shopcarlist[i].check = false;
+        if (shopcarlist[i].ck_value=='Y'){
+          num++;
+          price += (parseInt(shopcarlist[i].price) * parseInt(shopcarlist[i].qty))
+        }
         var list = shopcarlist[i]
         if (!etplist[list.enterprise_id]) {
           etplist[list.enterprise_id] = [];
@@ -47,7 +53,7 @@ class Content extends AppBase {
       }
 
       var alllist = [];
-      var price = 0;
+      
       for (var key in etplist) {
 
         for (var i in etplist[key]) {
@@ -60,25 +66,28 @@ class Content extends AppBase {
           break;
         }
 
-        for (var s in etplist[key]) {
-          price += (parseInt(etplist[key][s].price) * parseInt(etplist[key][s].qty))
-        }
+        // for (var s in etplist[key]) {
+        //   price += (parseInt(etplist[key][s].price) * parseInt(etplist[key][s].qty))
+        // }
 
       }
 
       this.Base.setMyData({
+        shopcarlist,
         alllist,
+        num,
         price
       })
     })
 
   }
+ 
 
   bindchoose(e) {
     var alllist = this.Base.getMyData().alllist;
     var id = e.currentTarget.id;
     var qtylist = alllist[id].name;
-    var num = this.Base.getMyData().num;
+  //  var num = this.Base.getMyData().num;
     var allprice = this.Base.getMyData().allprice;
     var chosse = this.Base.getMyData().chosse;
     //console.log(qtylist+"ddd")
@@ -102,19 +111,20 @@ class Content extends AppBase {
     for (var a = 0; a < qtylist.length; a++) {
       if (qtylist[a].check == true) {
         allprice += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
-        num++;
+      //  num++;
         //console.log(num);
       } else {
         allprice -= parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
-        num--
+      //   num--
       }
     }
 
     this.Base.setMyData({
       alllist: alllist,
-      num,
+      //  num,
       allprice
     })
+    
     console.log("ddd")
 
   }
@@ -123,25 +133,36 @@ class Content extends AppBase {
   bindcheck(e) {
     var alllist = this.Base.getMyData().alllist;
     var idx = e.currentTarget.id;
-    var index = e.currentTarget.dataset.index;
+    var carid = e.currentTarget.dataset.carid;
+    var index = e.currentTarget.dataset.index; 
     var qtylist = alllist[index].name;
-    var checking = qtylist[idx].check;
+    var checking = qtylist[idx].ck_value;
+    var orderapi = new OrderApi();
     var chosse = this.Base.getMyData().chosse;
     var num = 0;
     var allprice = 0;
 
-    if (checking == true) {
-      this.Base.setMyData({chosse:1})
+    if (checking == "Y") {
+      this.Base.setMyData({chosse:1});
+      orderapi.updatecheck({ ck: 'N', id: carid}, (updatecheck)=>{
+        this.onMyShow();
+        // this.Base.setMyData({})
+      })
+
       alllist[index].name[idx].check = false;
       alllist[index].allcheck = false;
     } else {
+      orderapi.updatecheck({ ck: 'Y', id: carid }, (updatecheck) => {
+        // this.Base.setMyData({})
+        this.onMyShow();
+      })
       alllist[index].name[idx].check = true
     }
 
     for (var m = 0; m < alllist.length; m++) {
       var qtylist = alllist[m].name;
       for (var a = 0; a < qtylist.length; a++) {
-        if (qtylist[a].check == true) {
+        if (qtylist[a].ck_value == 'Y') {
           //var num = qtylist.length;
           allprice += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
           num++;
@@ -150,8 +171,10 @@ class Content extends AppBase {
       }
     }
 
+    
+
     this.Base.setMyData({
-      alllist,
+     // alllist,
       num,
       allprice
     })
@@ -163,7 +186,7 @@ class Content extends AppBase {
   bindallcheck(e) {
     var type = e.currentTarget.id;
     var alllist = this.Base.getMyData().alllist;
-    var num = 0;
+    //var num = 0;
     var allprice = 0;
 
     for (var m = 0; m < alllist.length; m++) {
@@ -183,19 +206,20 @@ class Content extends AppBase {
         if (qtylist[a].check == true) {
           //var num = qtylist.length;
           allprice += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
-          num++;
+         // num++;
           //console.log(qtylist.length);
         }
       }
     }
 
     this.Base.setMyData({
-      chosse: type, alllist, num, allprice
+      chosse: type, alllist,   allprice
     })
   }
 
 
   bindjisuan(e) {
+    var orderapi = new OrderApi();
     var id = e.currentTarget.id;
     var name = e.currentTarget.dataset.name;
     var index = e.currentTarget.dataset.index;
@@ -203,12 +227,17 @@ class Content extends AppBase {
     var shopcarlist = this.Base.getMyData().shopcarlist;
     var alllist = this.Base.getMyData().alllist;
     var allprice = 0;
-
+ 
     // console.log("类型:" + name, 'id:', id,"来来来", index)
+    
+
+
 
     if (name == 'jian') {
-      if (alllist[index].name[idx].qty > 1) {
-        alllist[index].name[idx].qty--
+      if (alllist[index].name[idx].qty > 1) { 
+        orderapi.updateqty({ type: 'B', id: id }, (updatecheck) => {
+          this.onMyShow();
+        })
       } else {
         wx.showToast({
           title: '数量至少为1',
@@ -216,7 +245,10 @@ class Content extends AppBase {
         })
       }
     } else {
-      alllist[index].name[idx].qty++
+      orderapi.updateqty({ type: 'A', id: id }, (updatecheck) => {
+        this.onMyShow();
+      })
+      //alllist[index].name[idx].qty++
     }
 
 

@@ -27,7 +27,7 @@ class Content extends AppBase {
     var that = this;
     var orderapi = new OrderApi();
     orderapi.returnlist({
-    orderstatus:'D'
+    orderstatus:'R'
     }, (returnlist) => {
       this.Base.setMyData({
         returnlist

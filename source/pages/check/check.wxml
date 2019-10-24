@@ -10,7 +10,7 @@
     <view class='flex-row margin-left-20'>
       <image class='icon-25 ' src='{{uploadpath}}resource/{{res.search}}' bindtap="bindpart"></image>
     </view>
-    <input class="flex-row flex-1  margin-left-20 margin-right-20" placeholder='空调' bindinput="bindpart" value="{{partinput}}" bindconfirm="bindpart"></input>
+    <input class="flex-row flex-1  margin-left-20 margin-right-20" placeholder='空调' bindinput="bindinput" value="{{partinput}}" bindconfirm="bindpart"></input>
     <view class='margin-right-20'>
       <image class='icon-25 ' src='{{uploadpath}}resource/{{res.delect}}' bindtap='binddelect'></image>
     </view>
@@ -18,7 +18,7 @@
 </view>
 <view class="flex-row">
   <!--左侧-->
-  <scroll-view scroll-y class="left margin-top-30 padding-20 ">
+  <scroll-view scroll-y class="left  padding-20 ">
     <view class="txt-black">已添加配件</view>
 
     <view class="flex-row column">
@@ -30,10 +30,10 @@
   </scroll-view>
 
   <!--右侧-->
-  <scroll-view scroll-y class="right ">
-    <view class="txt-black margin-top-30 margin-left-30">请选择</view>
+  <scroll-view scroll-y class="right padding-20">
+    <view class="txt-black  margin-left-30">请选择</view>
     <block wx:for="{{groupslist}}" wx:key="k" wx:for-index='idx' wx:if='{{item.check==true}}'>
-      <view class="txt-red margin-left-30 margin-top-20" id="{{idx}}" data-name="{{item.label}}" bindtap="bindadd">{{item.label}}</view>
+      <view class="txt-red margin-left-30 margin-top-20" id="{{idx}}" data-mid="{{item.mid}}" data-name="{{item.label}}" bindtap="bindadd">{{item.label}}</view>
       <view class="bot"></view>
     </block>
   </scroll-view>

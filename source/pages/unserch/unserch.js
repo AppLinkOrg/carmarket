@@ -205,11 +205,13 @@ class Content extends AppBase {
           addfittings
         })
         wx.hideLoading();
-        wx.reLaunch({
-          url: '/pages/price/price',
-        })
+        
       })
     }, i * 300)
+
+    wx.reLaunch({
+      url: '/pages/price/price',
+    })
   }
 
 

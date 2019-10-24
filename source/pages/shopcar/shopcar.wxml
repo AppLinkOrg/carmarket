@@ -34,8 +34,8 @@
 
     <view class="flex-row margin-top-20">
 
-      <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.check==true}}' class="icon" bindtap="bindcheck" id="{{idx}}" data-index="{{index}}"></image>
-      <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.check==false}}' class="icon" bindtap="bindcheck" id="{{idx}}" data-index="{{index}}"></image>
+      <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.ck_value=="Y"}}' class="icon" bindtap="bindcheck" id="{{idx}}" data-index="{{index}}" data-carid="{{item.id}}"></image>
+      <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.ck_value=="N"}}' class="icon" bindtap="bindcheck" id="{{idx}}" data-index="{{index}}"  data-carid="{{item.id}}"></image>
 
       <view class="yuan margin-left-10 margin-bottom-20">
         <view class="h5 padding-left-10 padding-right-10 h6">{{item.quality}}</view>
@@ -69,7 +69,7 @@
     <view class=" margin-left-10">全选</view>
     <view class="flex-1"></view>
     <view class="txt-black ">合计：</view>
-    <view class="txt-red  margin-right-30">¥{{allprice}}</view>
+    <view class="txt-red  margin-right-30">¥{{price}}</view>
     <view class="bgjie txt-white" bindtap="bindjiesuan">去结算({{num}})</view>
   </view>
 </view>

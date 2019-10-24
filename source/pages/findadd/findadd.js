@@ -206,9 +206,10 @@ class Content extends AppBase {
 
   bindsubmit(e) {
     var that = this;
-
-    var shibie = this.Base.getMyData().json;
-
+    // invoice_demand
+    var shibie = this.Base.getMyData().json; 
+    var fapiao = this.Base.getMyData().fapiao;
+ 
     console.log(shibie);
     //return;
 
@@ -232,8 +233,8 @@ class Content extends AppBase {
           orderapi.create({
             quotestatus: 'Q',
             carmodel: that.Base.options.biaoti,
-            vincode:that.Base.options.vin,
- 
+            vincode: that.Base.options.vin, 
+            invoice_demand: fapiao,
             status: 'A'
           }, (create) => {
 
@@ -247,6 +248,7 @@ class Content extends AppBase {
                 quote_id: create.return,
                 name: shibie[i].name,
                 quantity: shibie[i].num,
+                partnubmer: shibie[i].mid,
                 photo1: shibie[i].photo[0],
                 photo2: shibie[i].photo[1],
                 photo3: shibie[i].photo[2],
@@ -255,6 +257,8 @@ class Content extends AppBase {
                 status: 'A'
               }
               that.fitting(list, i)
+ 
+             
 
             }
 
@@ -274,14 +278,20 @@ class Content extends AppBase {
       orderapi.addfittings(json, (addfittings) => {
         that.Base.setMyData({
           addfittings
-        })
-        
-        wx.hideLoading();
-        wx.reLaunch({
-          url: '/pages/price/price',
-        })
+        }) 
       })
+      
     }, i * 300)
+
+    setTimeout(() => {
+      wx.hideLoading();
+      wx.reLaunch({
+        url: '/pages/price/price',
+      })
+    }, json.length * 500)
+   
+ 
+
   }
 
 

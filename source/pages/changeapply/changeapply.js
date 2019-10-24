@@ -166,10 +166,12 @@ class Content extends AppBase {
       success: function (res) {
         if (res.confirm) {
 
+
           // wx.showLoading({
           //   title: '提交中',
           //   mask: true
           // })
+
 
           var orderapi = new OrderApi();
 
@@ -182,34 +184,35 @@ class Content extends AppBase {
             carmodel: change.carname,
             return_money: that.Base.getMyData().price,
             receivecontact: that.Base.getMyData().phone,
-            orderstatus: 'D',
+            orderstatus: 'R',
             status:'A'
           }, (addtuihuo) => { 
 
-            // orderapi.updatestatus({
-            //   id: that.Base.options.id,
-            //   order_status: "R"
-            // }, (updatestatus) => {
+            orderapi.updatestatus({
+              id: that.Base.options.id,
+              order_status: "R"
+            }, (updatestatus) => {
              
-            // })
+            })
  
             that.Base.setMyData({
               addtuihuo
             }) 
-            // for (var i = 0; i < shibie.length; i++) { 
-            //   if (shibie[i].check==true){
-            //     var list = {
-            //       tuihuo_id: addtuihuo.return,
-            //       name: shibie[i].name,
-            //       photo: shibie[i].photo,
-            //       qty: shibie[i].qty,
-            //       price: shibie[i].price,
-            //       quality: shibie[i].quality,
-            //       status: 'A'
-            //     }
-            //     that.fitting(list, i) 
-            //   } 
-            // } 
+            
+            for (var i = 0; i < shibie.length; i++) { 
+              if (shibie[i].check==true){
+                var list = {
+                  tuihuo_id: addtuihuo.return,
+                  name: shibie[i].name,
+                  photo: shibie[i].photo,
+                  qty: shibie[i].qty,
+                  price: shibie[i].price,
+                  quality: shibie[i].quality,
+                  status: 'A'
+                }
+                that.fitting(list, i) 
+              } 
+            } 
           }) 
         }
       }
@@ -227,11 +230,13 @@ class Content extends AppBase {
         })
 
         wx.hideLoading();
-        wx.reLaunch({
-          url: '/pages/order/order',
-        })
+       
       })
     }, i * 300)
+
+    wx.reLaunch({
+      url: '/pages/order/order',
+    })
   }
 
   bindphone(e){

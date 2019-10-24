@@ -46,12 +46,13 @@ page {
 
 .left {
   width: 38vw;
+  height: 64vh;
 }
 
 .right {
   width: 72vw;
   background-color: white;
-  height: 69vh;
+  height: 64vh;
 }
 
 .bot {

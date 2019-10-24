@@ -36,6 +36,7 @@ class Content extends AppBase {
         indexbanner
       });
     });
+
     carapi.searchhistory({}, (searchhistory) => {
       this.Base.setMyData({
         searchhistory
@@ -121,15 +122,10 @@ class Content extends AppBase {
         return;
       }
       if (res.code == 1) {
-        carapi.addhistory({
-          vin: vin,
-          carrecord: biaoti
-        }, (qwe) => {
-          wx.navigateTo({
-            url: '/pages/check/check?vin=' + vin + '&biaoti=' + biaoti + '&brandCode=' + brandCode + '&mcid=' + mcid,
-          })
-          that.onMyShow();
+        wx.navigateTo({
+          url: '/pages/check/check?vin=' + vin + '&biaoti=' + biaoti + '&brandCode=' + brandCode + '&mcid=' + mcid,
         })
+        that.onMyShow();
       }
     })
  

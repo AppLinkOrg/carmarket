@@ -81,18 +81,16 @@
           <view class="flex-row flex-bottom">
             <view class=" txt-red txt-bold">￥{{item.price}}</view>
             <view class="h6 margin-left-20 ">x{{item.qty}}</view>
-            
           </view>
 
-
-          <view class="flex-row flex-center margin-top-10">
-            <view class="h5 flex-1">{{item.quality}}</view>
-            <view class="flex-1"></view>
-            <view class="h5 txt-black">{{item.fit_name}}</view>
+          <view class="flex-row flex-top margin-top-10">
+            <view class="h5  ">{{item.quality}}</view>
+            <view class="h5 txt-black flex-1 margin-left-10">{{item.fit_name}}</view>
           </view>
 
           <view class="h6 margin-top-20">备注：{{item.remarks_infor}}</view>
         </view>
+
 
       </view>
 
@@ -115,7 +113,7 @@
       <view class="margin-left-20">
 
         <view class="flex-row  flex-bottom">
-          <view class=" txt-black txt-bold">{{item.name}}</view>
+          <view class=" txt-black txt-bold h5">{{item.name}}</view>
           <view class="margin-left-20 txt-black txt-bold h5"> x{{item.quantity}}</view>
           <!-- <image class="icon-30 margin-top-20 margin-left-50" src="{{uploadpath}}resource/{{res.epc}}"></image> -->
         </view>

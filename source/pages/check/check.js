@@ -24,7 +24,7 @@ class Content extends AppBase {
     
     this.Base.setMyData({
        vin:this.Base.options.vin,
-      // brandCode:this.Base.options.brandCode,
+       brandCode:this.Base.options.brandCode,
        mcid:this.Base.options.mcid,
        biaoti:this.Base.options.biaoti,
       // addlist:[]
@@ -38,7 +38,7 @@ class Content extends AppBase {
       this.Base.setMyData({ addlist: [] })
     }
 
-    this.bindpart();
+    //this.bindpart();
 
   }
 
@@ -65,25 +65,28 @@ class Content extends AppBase {
       title: '添加配件',
     })
   }
+  bindinput(e){
+    this.Base.setMyData({
+      search_key: e.detail.value
+    })
+  }
   bindpart(e) {
     console.log(e,"输出")
-    // this.Base.setMyData({
-    //   search_key: e.detail.value
-    // })
+    
     var carapi = new CarApi();
-    // var search_key = e.detail.value;
-    // var vin = this.Base.getMyData().vin;
-    // var brandCode = this.Base.getMyData().brandCode
-    // var mcid = this.Base.getMyData().mcid;
+     var search_key = e.detail.value;
+     var vin = this.Base.getMyData().vin;
+    var brandCode = this.Base.getMyData().brandCode
+     var mcid = this.Base.getMyData().mcid;
 
    // console.log(search_key, vin, brandCode, mcid)
     //return;
 
-    carapi.groups({
-      vin:'LVSHGFAR3DF071861',
-      brandCode:'volvos',
-      mcid:'ZD18dns9JT89LC4sQC4pLS09Yg%3D%3D',
-      search_key:'发动机'
+    carapi.partsearch({
+      vin: vin,
+      brandCode: brandCode,
+      mcid: mcid,
+      search_key: search_key
     }, (groups) =>{
       var groulist = groups.data;
       for (var i = 0; i < groulist.length;i++){
@@ -120,6 +123,7 @@ class Content extends AppBase {
     var that=this;
     var idx = e.currentTarget.id;
     var name = e.currentTarget.dataset.name;
+    var mid = e.currentTarget.dataset.mid;
     var groupslist = this.Base.getMyData().groupslist;
     
    // if (this.Base.getMyData().json != undefined){
@@ -135,6 +139,7 @@ class Content extends AppBase {
       id: idx,
       name: name,
       num:1,
+      mid: mid,
       beizhu: '',
       photo: ''
     };
@@ -170,9 +175,9 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindpart = content.bindpart;
 body.binddelect = content.binddelect;
-body.bindnext = content.bindnext;
+body.bindnext = content.bindnext; 
  
-
+body.bindinput = content.bindinput;
 body.bindadd = content.bindadd; 
 
 body.bindclear = content.bindclear; 
