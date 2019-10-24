@@ -299,21 +299,29 @@ export class QuotationDetailsComponent extends AppBase  {
     this.quoteinfo.expired_time = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() +" "+ (date2.getHours()) + ":" + (date2.getMinutes())
     console.log(this.quoteinfo)
 
-    a.addexpired(this.quoteinfo).then((addexpired:any)=>{
-      console.log(addexpired)
-      if(addexpired.code == '0'){
-
-        a.deleteignore({ id: this.quoteinfo.id,quoteemployee_id: this.employee_id,quoteenterprise_id:enterprise_id }).then((deletData:any)=>{
-        
-         })
-
-          this.router.navigate(['detailsOfQuotedPrice'],{
-            queryParams:{
-              id: this.quoteinfo.id
+    a.editquote({id:this.id,quotestatus:"W"}).then((editquote:any)=>{
+      if(editquote.code=='0'){
+        a.addexpired(this.quoteinfo).then((addexpired:any)=>{
+          console.log(addexpired)
+          if(addexpired.code == '0'){
+    
+            a.deleteignore({ id: this.quoteinfo.id,quoteemployee_id: this.employee_id,quoteenterprise_id:enterprise_id }).then((deletData:any)=>{
+            
+             })
+    
+              this.router.navigate(['detailsOfQuotedPrice'],{
+                queryParams:{
+                  id: this.quoteinfo.id
+                }
+              })
             }
-          })
-        }
+        })
+      }
+     
+
     })
+
+   
 
 
   }

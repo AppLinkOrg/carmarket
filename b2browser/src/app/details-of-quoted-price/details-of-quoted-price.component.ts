@@ -46,6 +46,14 @@ export class DetailsOfQuotedPriceComponent  extends AppBase  {
       })
       
       var a = this.orderApi
+
+      this.enterpriseApi.employeeinfo({}).then((employeeinfo: any) => {
+        console.log(employeeinfo)
+        this.enterprise_id = employeeinfo.enterprise_id
+        this.employee_id = employeeinfo.id
+        this.employee_id_name = employeeinfo.name
+        this.enterprise_id_name = employeeinfo.enterprise.name
+
       a.yiquoteinfo({ id: this.id }).then((quoteinfo:any)=>{
 
         
@@ -56,14 +64,18 @@ export class DetailsOfQuotedPriceComponent  extends AppBase  {
           if(item.quoteitems.length != 0){
          
             for(let list of item.quoteitems){
-              this.employee_id = list.employee_id
-              this.enterprise_id_name = list.edt_name
-              this.enterprise_id = list.enterprise_id
-              this.list.push(list)
+              if( list.employee_id == this.employee_id && list.enterprise_id== this.enterprise_id){
+                this.list.push(list)
+              }
+              // this.employee_id = list.employee_id
+              // this.enterprise_id_name = list.edt_name
+              // this.enterprise_id = list.enterprise_id
             }
           }
         
         }
+      })
+    })
 
         this.enterpriseApi.allenterprise({ id: this.employee_id,enterprise_id: this.enterprise_id}).then((info:any)=>{
           console.log(info,'info')
@@ -79,7 +91,7 @@ export class DetailsOfQuotedPriceComponent  extends AppBase  {
         console.log(this.perInfo,'perInfo')
         console.log(this.list)
         console.log(this.employee_id,this.employee_id_name,this.enterprise_id_name)
-      })
+     
       
 
   }

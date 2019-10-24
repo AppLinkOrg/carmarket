@@ -60,6 +60,41 @@ export class QuotationCenterComponent extends AppBase {
       this.employee_id_name = employeeinfo.name
       this.enterprise_id_name = employeeinfo.enterprise.name
 
+      a.quotelist({}).then((list: any) => {
+        console.log(list,'list')
+
+        a.quotationlist({}).then((quotationlist:any)=>{
+          if(quotationlist.length==0){
+            for (let item of list) {
+    
+              if(item.quotestatus=='Q'){
+                    
+                    item.quote_id = item.id
+                      a.addquotation(item).then((addquotation:any)=>{
+                        console.log(addquotation,'addquotation')
+                      })
+                    
+                }
+            }
+          }else {
+              for (let item of list) {
+    
+                if(item.quotestatus=='Q'){
+                      if(this.notinignore(item,quotationlist)){
+                        item.quote_id = item.id
+                        a.addquotation(item).then((addquotation:any)=>{
+                          console.log(addquotation,'addquotation')
+                        })
+                      }
+                     
+                  }
+              }
+           
+          }
+         
+        })
+            
+            
 
 
       a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
@@ -75,7 +110,7 @@ export class QuotationCenterComponent extends AppBase {
 
             if(yiquotelist.length == 0){
 
-              a.quotelist({}).then((list: any) => {
+              a.quotationlist({}).then((list: any) => {
                 console.log(list, 'lsit')
 
                   for (let item of list) {
@@ -114,7 +149,7 @@ export class QuotationCenterComponent extends AppBase {
               })
             }else {
 
-              a.quotelist({}).then((list: any) => {
+              a.quotationlist({}).then((list: any) => {
                 console.log(list, 'bbb')
                 var result = [];
                 for (let item of list) {
@@ -165,7 +200,7 @@ export class QuotationCenterComponent extends AppBase {
 
             if(yiquotelist.length == 0){
 
-              a.quotelist({}).then((list: any) => {
+              a.quotationlist({}).then((list: any) => {
                 console.log(list, 'list')
                 var result = [];
                   for (let item of list) {
@@ -212,7 +247,7 @@ export class QuotationCenterComponent extends AppBase {
               })
             }else {
 
-              a.quotelist({}).then((list: any) => {
+              a.quotationlist({}).then((list: any) => {
                 console.log(list, 'list')
                 var result = [];
                 for (let item of list) {
@@ -268,7 +303,8 @@ export class QuotationCenterComponent extends AppBase {
 
       })
 
-
+    })
+    
       a.distinctlist({}).then((distinctlist: any) => {
         console.log(distinctlist, "33333")
         this.distinctlist = distinctlist
@@ -678,7 +714,7 @@ export class QuotationCenterComponent extends AppBase {
       console.log(yiquotelist,'yiquotelist')
       // let yiquotelists = yiquotelist
       if(yiquotelist.length==0){
-        a.quotelist({}).then((quotelist:any)=>{
+        a.quotationlist({}).then((quotelist:any)=>{
           for(let item of quotelist){
             if(item.quotestatus=='Q'){
               result.push(item)
@@ -693,7 +729,7 @@ export class QuotationCenterComponent extends AppBase {
           this.pagination(this.list,this.length)
         })
       }else {
-        a.quotelist({}).then((quotelist:any)=>{
+        a.quotationlist({}).then((quotelist:any)=>{
           for(let item of quotelist){
             if(item.quotestatus=='Q'){
               for(let yiitem of yiquotelist){
