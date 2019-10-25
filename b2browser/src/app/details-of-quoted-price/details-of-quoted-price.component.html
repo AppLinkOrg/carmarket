@@ -47,8 +47,8 @@
                               <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{quoteinfo.employee_id_name}}</span>
                           </div>        
                           <div class="flex-2">
-                              <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red" *ngIf='quoteinfo.invoice_demand_value=="Y"'>需要发票</span>
-                              <span *ngIf='quoteinfo.invoice_demand_value=="N"'>不需要发票</span>
+                              <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red" *ngIf='quoteinfo.invoice_demand_value=="是"'>需要发票</span>
+                              <span *ngIf='quoteinfo.invoice_demand_value=="否"'>不需要发票</span>
                           </div>
                       </div>
                     </div>
@@ -95,7 +95,7 @@
                                             {{item.name}}
                                               <!-- <img src="{{uploadpath}}resource/{{res.peijian}}" class="icon-30"> -->
                                           </td>
-                                          <td><span>{{item.fittings_id}}</span></td>
+                                          <td><span>{{item.partnubmer}}</span></td>
                                           <td>
                                               <div>{{item.qty}}</div>
                                           </td>
@@ -109,7 +109,7 @@
                                               <div>{{item.guarantee}}</div>
                                           </td>
                                           <td>
-                                              <div>{{item.price}}</div>
+                                              <div>{{item.Sprice}}</div>
                                           </td>
                                           <td>
                                             <div>{{item.price}}</div>

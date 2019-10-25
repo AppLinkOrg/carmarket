@@ -41,7 +41,7 @@ export class ReceivedGoodsDetailComponent extends AppBase  {
       a.detail({ id: this.id}).then((detailList:any)=>{
      
         this.list = detailList
-        this.orderItem = detailList.orderitems;
+        this.orderItem = detailList.orderitem;
 
         this.orderApi.quoteinfo({id: this.list.quote_id}).then((quoteinfo:any)=>{
           console.log(quoteinfo)

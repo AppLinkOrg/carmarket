@@ -42,7 +42,7 @@
                   <td class="tab-mid">{{item.enterprise_name}}</td>
                   <td class="text-left">
                     <div *ngFor='let list of item.orderitem;let i=index'>
-                      <div *ngIf='i<3'>{{list.name}} x {{list.qty}} ({{list.id}})</div>
+                      <div *ngIf='i<3'>{{list.parts}} x {{list.qty}} ({{list.mcid}})</div>
                     </div>
                     <div *ngIf='item.orderitem.length>3'>......</div>
                   </td>

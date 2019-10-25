@@ -29,26 +29,26 @@ export class WaitingComponent  extends AppBase  {
 
   onMyShow(){
     
-
     this.activeRoute.queryParams.subscribe(queryParams=>{
       this.id = queryParams.id
-   
-    var a = this.orderApi    
+    })
 
-      a.detail({ id: this.id}).then((detailList:any)=>{
-     
-        this.list = detailList
-        this.orderItem = detailList.orderitems;
+    var a = this.orderApi
 
+    a.detail({ id: this.id }).then((detailList:any)=>{
+    
+      this.list = detailList
+      this.orderItem = detailList.orderitem;
+      console.log(this.list,'lllllllll')
+      console.log( this.orderItem)
 
-        this.orderApi.quoteinfo({id: this.list.quote_id}).then((quoteinfo:any)=>{
-          console.log(quoteinfo)
-          this.list.quote_time = quoteinfo.quote_time
-        })
-
+      this.orderApi.quoteinfo({id: this.list.quote_id}).then((quoteinfo:any)=>{
+        console.log(quoteinfo)
+        this.list.quote_time = quoteinfo.quote_time
       })
 
-    })    
+    })
+   
 
   }
   
