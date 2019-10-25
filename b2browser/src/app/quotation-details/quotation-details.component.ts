@@ -146,6 +146,7 @@ export class QuotationDetailsComponent extends AppBase  {
       item.standby_time = ''
       item.guarantee = ''
       item.price = ''
+      item.Sprice = ''
       item.sendcar_time = ''
 
    
@@ -300,6 +301,7 @@ export class QuotationDetailsComponent extends AppBase  {
     this.quoteinfo.quoteemployee_id = this.employee_id
     this.quoteinfo.quoteenterprise_id = enterprise_id
     // this.quoteinfo.quote_id = this.id
+    this.quoteinfo.invoice_demand =this.quoteinfo.invoice_demand_value
     this.quoteinfo.yiquoted_time = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + (date1.getDate()) +" "+ (date1.getHours()) + ":" + (date1.getMinutes())
     this.quoteinfo.expired_time = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() +" "+ (date2.getHours()) + ":" + (date2.getMinutes())
     console.log(this.quoteinfo)

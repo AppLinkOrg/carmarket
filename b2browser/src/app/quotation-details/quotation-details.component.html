@@ -21,17 +21,17 @@
                 <div class="card-body">
                 <div class="border-dep-gray padding-top-5" *ngIf='quoteinfo !==null'>
                     <div class="flex-row">
-                        <div class="flex-4">
+                        <div class="flex-1">
                             <span class="bg-dep-gray txt-black padding-four-words margin-right-20">公司名称</span><span>{{quoteinfo.enterprise_id_name}}</span>
                         </div>        
-                        <div class="flex-4">
+                        <div class="flex-2">
                             <span class="bg-dep-gray txt-black padding-two-words margin-right-20">地址</span><span>{{quoteinfo.enterprise_corporate_address}}</span>
                         </div>
-                        <div class="flex-4">
+                        <!-- <div class="flex-4">
                             <span class="bg-dep-gray txt-black padding-two-words margin-right-20">电话</span><span>{{quoteinfo.employee_mobile}}</span>
-                        </div>    
+                        </div>     -->
                     </div>
-                    <div class="flex-row"><span class="border-bottom-white border-box" style="width: 80%"></span></div>
+                    <div class="flex-row"><span class="border-bottom-white border-box" style="width: 60%"></span></div>
                     <div class="flex-row">
                         <div class="flex-4">
                             <span class="bg-dep-gray txt-black padding-four-words margin-right-20">订单编号</span><span>{{quoteinfo.quotenumber}}</span>
@@ -40,7 +40,9 @@
                             <span class="bg-dep-gray txt-black padding-three-words margin-right-20">车架号</span><span>{{quoteinfo.vincode}}</span>
                         </div>
                         <div class="flex-4">
-                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span><span>{{quoteinfo.information}}</span>
+                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span>
+                            <span *ngIf='quoteinfo.information!=""'>{{quoteinfo.information}}</span>
+                            <span *ngIf='quoteinfo.information==""'>无</span>
                         </div>    
                     </div>
                     <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
@@ -224,7 +226,7 @@
                                             <td>{{list.quality}}</td>
                                             <td>{{list.standby_time}}</td>
                                             <td>{{list.guarantee}}</td>
-                                            <td></td>
+                                            <td>{{list.Sprice}}</td>
                                             <td>{{list.price}}</td>
                                             <td>{{list.sendcar_time}}</td>
                                             <td>

@@ -70,6 +70,7 @@ export class QuotationCenterComponent extends AppBase {
               if(item.quotestatus=='Q'){
                     
                     item.quote_id = item.id
+                    item.invoice_demand =item.invoice_demand
                       a.addquotation(item).then((addquotation:any)=>{
                         console.log(addquotation,'addquotation')
                       })
@@ -82,6 +83,7 @@ export class QuotationCenterComponent extends AppBase {
                 if(item.quotestatus=='Q'){
                       if(this.notinignore(item,quotationlist)){
                         item.quote_id = item.id
+                        item.invoice_demand =item.invoice_demand
                         a.addquotation(item).then((addquotation:any)=>{
                           console.log(addquotation,'addquotation')
                         })
