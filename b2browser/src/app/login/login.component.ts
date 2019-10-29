@@ -65,7 +65,7 @@ export class LoginComponent   extends AppBase  {
     }
 
     this.clearPopover();
-    this.enterpriseApi.employeelogin({mobile:this.loginname,password:(this.password)}).then((res:any)=>{
+    this.enterpriseApi.employeelogin({mobile:this.loginname,password:(this.password),isb: 'Y'}).then((res:any)=>{
         console.log(res)
       if(res.code=="0"){
         var token=res.return;
@@ -84,10 +84,16 @@ export class LoginComponent   extends AppBase  {
         this.navigate("storeHome",{result: 'yes'});
         console.log(this.isremember)
         console.log( window.sessionStorage.getItem("token"))
+      }else if(res.code='404'){
+        console.log('aaaa')
+        this.submitresult=res.return;
+        this.error = '用户不存在！请更换用户'
+        console.log(this.error)
+        this.isOpen=true;
       }else{
         console.log('aaaa')
         this.submitresult=res.return;
-        this.error = '用户名或密码错误，请重新登录'
+        // this.error = '用户不存在！请更换用户'
         console.log(this.error)
         this.isOpen=true;
       }

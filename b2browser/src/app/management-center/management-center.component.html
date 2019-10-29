@@ -22,7 +22,7 @@
                         新增地址
                     </button>
                     <!-- Modal -->
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal fade" id="myModal" tabindex="-1" #myModal role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content margin-top-t">
                                 <div class="modal-header box-auto no-border">
@@ -41,16 +41,20 @@
                                             发货员：<input type="text" name='employee_name' [(ngModel)]='item.name' class="input-box border-gray-1 margin-left-16 padding-left-10">
                                         </div>
                                         <div class="form-group">
-                                            电话：<input type="text" name='phonenumber' [(ngModel)]='item.phonenumber' class="input-box border-gray-1 margin-left-32 padding-left-10">
+                                            电话：<input type="tel" maxlength="11" name='phonenumber' [(ngModel)]='item.phonenumber' class="input-box border-gray-1 margin-left-32 padding-left-10">
                                         </div>
                                         <div class="form-group">
                                             是否默认：<input type="checkbox" name='morenaddress' [(ngModel)]='item.morenaddress' style="-webkit-appearance: radio;" >
                                         </div>
                                     </form>
+                                    <div *ngIf='isshow' style="color: red;">
+                                            电话号码输入错误，请重新输入！
+                                        </div>
                                     </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                    <button type="button" class="btn btn-primary" (click)='saveAddress(item)'  data-dismiss="modal" >保存</button>
+                                    <button type="button" class="btn btn-default" (click)='quxiao(item)' data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-primary" (click)='saveAddress(item)' >保存</button>
+                    
                                 </div>
                             </div>
                         </div>

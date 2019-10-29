@@ -31,7 +31,7 @@
                                 <h4 class="" id="myModalLabel">新增地址</h4>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form name="item">
                                     <div class="form-group">
                                         发货地区：<input type="text" name='region' [(ngModel)]='item.region' class="input-box border-gray-1 padding-left-10">
                                     </div>
@@ -42,16 +42,20 @@
                                         发货员：<input type="text" name='employee_name' [(ngModel)]='item.name' class="input-box border-gray-1 margin-left-16 padding-left-10">
                                     </div>
                                     <div class="form-group">
-                                        电话：<input type="text" name='phonenumber' [(ngModel)]='item.phonenumber' class="input-box border-gray-1 margin-left-32 padding-left-10">
+                                        电话：<input type="tel" maxlength="11" (keyup)='inputphone()' ng-pattern="/^1[3|4|5|7|8]\d{9}$/" name='phonenumber' [(ngModel)]='item.phonenumber' class="input-box border-gray-1 margin-left-32 padding-left-10">
+                                       
                                     </div>
                                     <div class="form-group">
                                         是否默认：<input type="checkbox" name='morenaddress' [(ngModel)]='item.morenaddress' style="-webkit-appearance: radio;" >
                                     </div>
                                 </form>
+                                <div *ngIf='isshow' style="color: red;">
+                                    电话号码输入错误，请重新输入！
+                                </div>
                                 </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                <button type="button" class="btn btn-primary" (click)='saveAddress(item)'  data-dismiss="modal" >保存</button>
+                                <button type="button" class="btn btn-default" (click)='quxiao(item)' data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-primary" (click)='saveAddress(item)'  data-dismiss="modal">保存</button>
                             </div>
                         </div>
                     </div>
@@ -79,7 +83,11 @@
                                     <td class="tab-mid">{{item.address}}</td>
                                     <td class="tab-mid">{{item.name}}</td>
                                     <td class="tab-mid">{{item.phonenumber}}</td>
-                                    <td class="tab-mid">{{item.morenaddress}}</td>
+                                    <td class="tab-mid">
+                                        <div *ngIf='item.morenaddress==true'>是</div>
+                                        <div *ngIf='item.morenaddress==false'>否</div>
+                                        <div *ngIf='item.morenaddress!=true && item.morenaddress!=false'>{{item.morenaddress}}</div>
+                                    </td>
                                     <td class="tab-mid">
                                         <button class="btn btn-primary" (click)='editAddress(item)'  data-toggle="modal"  data-target="#myModal"><a>修改</a></button><br>
                                         <button class="btn txt-primary" (click)='deleteAddress(item)'><a>删除</a></button><br>

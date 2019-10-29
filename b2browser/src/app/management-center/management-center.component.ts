@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef ,ViewChild} from '@angular/core';
 import { AppBase } from '../AppBase';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -20,10 +20,11 @@ export class ManagementCenterComponent extends AppBase  {
   constructor(
     public router: Router,
     public activeRoute: ActivatedRoute,
+    public el: ElementRef,
     public instApi:InstApi,
     public adressApi:AddressApi,
     public enterpriseApi:EnterpriseApi,
-    public consumeApi:ConsumeApi
+    public consumeApi:ConsumeApi,
   ) { 
     super(router,activeRoute,instApi,enterpriseApi);
   }
@@ -201,6 +202,18 @@ changeSwitch(e,list){
     }
   }
 
+  
+  quxiao(){
+    if(this.item.morenaddress==false){
+      this.item.morenaddress = "否"
+    }else if(this.item.morenaddress==true){
+      this.item.morenaddress = '是'
+    }
+  
+    console.log(this.item,'quxiao')
+  }
+ 
+  @ViewChild('myModal',{static:true}) closeModal: ElementRef;
   saveAddress(address){
     this.pageList = []
     address.morenaddress = this.changeMoren(address.morenaddress)
@@ -211,20 +224,47 @@ changeSwitch(e,list){
     console.log(address,'address')
 
     if(this.item.operation == 'E'){
-      
-      this.adressApi.updateaddress(address).then((updateaddress:any)=>{
-        console.log(updateaddress,'updateaddress')
-        if(updateaddress.code == '0'){
-          this.onMyShow()
-        }
-      })
-    }else {
-      this.adressApi.addaddress(address).then((addaddress:any)=>{
 
-          if(addaddress.code == '0'){
-            this.onMyShow()
+      if(address.region!="" && address.address!="" && address.name!=""){
+        console.log('kljkljlkjkl')
+        if(address.phonenumber!=""){
+          let reg = /^1[3|4|5|7|8]\d{9}$/
+          if(reg.test(address.phonenumber)){
+            console.log('ppppppp')
+            this.adressApi.updateaddress(address).then((updateaddress:any)=>{
+              console.log(updateaddress,'updateaddress')
+              if(updateaddress.code == '0'){
+                this.onMyShow()
+                this.closeModal.nativeElement.click();
+              }
+            })
+          }else {
+            this.isshow = true
           }
-      })
+        }
+      }
+      
+     
+    }else {
+      if(address.region!="" && address.address!="" && address.name!=""){
+        console.log('kljkljlkjkl')
+        if(address.phonenumber!=""){
+          let reg = /^1[3|4|5|7|8]\d{9}$/
+          if(reg.test(address.phonenumber)){
+            console.log('ppppppp')
+            this.adressApi.addaddress(address).then((addaddress:any)=>{
+
+                if(addaddress.code == '0'){
+                  this.closeModal.nativeElement.click();
+                  this.onMyShow();
+                  
+                }
+            })
+          }else {
+            this.isshow = true
+          }
+        }
+      }
 
     }
 
@@ -238,7 +278,12 @@ changeSwitch(e,list){
 
 
   editAddress(item){
-
+    console.log(item,'item')
+    if(item.morenaddress=="否"){
+      item.morenaddress = false
+    }else if(item.morenaddress=='是'){
+      item.morenaddress = true
+    }
     this.item = item
     this.item.operation = 'E'
 
