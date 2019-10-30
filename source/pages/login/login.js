@@ -34,7 +34,8 @@ class Content extends AppBase {
     var api = new EnterpriseApi();
     api.employeelogin({ 
       mobile, 
-      password
+      password,
+      isa:'Y'
       },(res)=>{
       console.log(res);
       if(res.code==0){

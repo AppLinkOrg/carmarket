@@ -268,6 +268,9 @@ class Content extends AppBase {
         quality: shopcar[i].quality,
         price: shopcar[i].price,
         qty: shopcar[i].qty,
+        standby_time: shopcar[i].standby_time,
+        guarantee:shopcar[i].guarantee,
+        sendcar_time:shopcar[i].sendcar_time,
         status: 'A'
       }
       this.carshoplist(list, i);

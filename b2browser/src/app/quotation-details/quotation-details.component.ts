@@ -134,14 +134,25 @@ export class QuotationDetailsComponent extends AppBase  {
       count: item.count
     }
 
-  
-    for(let key in addList){
-      if(addList[key] == ''){
-        this.tianxie = true
-        return
+    if(addList.partnubmer!=""){
+      for(let key in addList){
+        if(addList[key] == ''){
+          this.tianxie = true
+          return
+        }
       }
+    }else {
+      for(let key in addList){
+        if(key!='partnubmer'){
+          if(addList[key] == ''){
+            this.tianxie = true
+            return
+          }
+        }
+      }
+  
     }
-
+    
       item.quality = ''
       item.standby_time = ''
       item.guarantee = ''
@@ -292,7 +303,7 @@ export class QuotationDetailsComponent extends AppBase  {
 
     var date1 = new Date();
     var date2 = new Date(date1);
-    date2.setDate(date1.getDate() + 7);
+    date2.setDate(date1.getDate() + 1);
     console.log(date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate());
     console.log(date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate());
 

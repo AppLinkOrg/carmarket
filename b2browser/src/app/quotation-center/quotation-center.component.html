@@ -17,7 +17,7 @@
                   <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='quoteHandle($event)'>待报价</button>
                   <button type="button" class="btn-default no-border border-tlb  padding-left-40 padding-right-40 txt-d-gray" (click)='quotedPrice($event)'>已报价</button>                    
                   <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='neglected($event)'>已忽略</button>           
-                  <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='expired($event)'>已过期</button>           
+                  <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='expired($event)'>已失效</button>           
                   <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray" (click)='allQuote($event)'>全部</button> 
                 
                   
@@ -114,11 +114,11 @@
                   <thead class="bg-gray">
                     <tr>
                       <th width='4%'>序号</th>
-                      <th width='6%'>发票要求</th>
+                      <th width='8%'>发票要求</th>
                       <th width='10%'>报价单号</th>
-                      <th width='20%'>车型/车架号</th>
+                      <th width='16%'>车型/车架号</th>
                       <th width='16%'>配件清单</th>
-                      <th width='6%'>图片附件</th>
+                      <th width='8%'>图片附件</th>
                       <th width='15%'>卖家信息</th>
                       <th width='8%'>询价时间</th>
                       <th *ngIf='isshow' width='5%'>状态</th>

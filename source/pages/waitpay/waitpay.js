@@ -64,6 +64,13 @@ class Content extends AppBase {
               url: '/pages/order/order',
             })
           })
+          orderapi.editquotestatus({ 
+           quoteenterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
+           quotestatus: 'E',
+           invalid: 'Y'
+           }, (editquotestatus)=>{
+             console.log(editquotestatus,'ooooo')
+          })
         }
       }
     })

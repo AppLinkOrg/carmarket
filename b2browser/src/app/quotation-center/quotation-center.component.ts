@@ -678,7 +678,7 @@ export class QuotationCenterComponent extends AppBase {
         if (list[i].quotestatus == "W") {
           
           if (list[i].expired_time_dateformat < nowtime) {
-            this.orderApi.editquotestatus({quoteenterprise_id: this.enterprise_id,quotestatus: 'E'}).then((editquotestatus:any)=>{
+            this.orderApi.editquotestatus({quoteenterprise_id: this.enterprise_id,quotestatus: 'E',invalid: 'Y'}).then((editquotestatus:any)=>{
               console.log(editquotestatus)
             })
           
