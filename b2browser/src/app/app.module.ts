@@ -49,7 +49,7 @@ import { WaitingComponent } from './waiting/waiting.component';
     AlertModule.forRoot(),
     PopoverModule.forRoot(),
     ProgressbarModule.forRoot(),
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
   ],
   providers: [InstApi],
   bootstrap: [AppComponent]

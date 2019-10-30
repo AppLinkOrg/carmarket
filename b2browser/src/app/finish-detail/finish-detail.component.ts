@@ -37,9 +37,9 @@ export class FinishDetailComponent extends AppBase  {
       
       var a = this.orderApi
       a.detail({ id: this.id }).then((detailList:any)=>{
-      
+          console.log(detailList,'detailList')
         this.list = detailList
-        this.orderItem = detailList.orderitems;
+        this.orderItem = detailList.orderitem;
 
         console.log(this.list)
 

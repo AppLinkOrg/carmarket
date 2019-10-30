@@ -128,14 +128,15 @@
                     <tr>
                       <td><div>{{item.index+1}}</div></td>
                       <td>
-                          <div *ngIf='item.invoice_demand_value=="Y"' >是</div>
-                          <div *ngIf='item.invoice_demand_value=="N"' >否</div>
+                          <!-- <div *ngIf='item.invoice_demand_value=="Y"' >是</div>
+                          <div *ngIf='item.invoice_demand_value=="N"' >否</div> -->
+                          <div >{{item.invoice_demand_value}}</div>
                       </td>
                       <td><div>{{item.quotenumber}}</div></td>
                       <td class="text-left"><div>{{item.carmodel}} <br> {{item.vincode}}</div> </td>
                       <td class="text-left">
                         <div *ngFor="let itemName of item.quoteitems;let i=index" >
-                          <div *ngIf='i<3'>{{itemName.name}} x {{itemName.quantity}} ({{itemName.id}})</div>
+                          <div *ngIf='i<3'>{{itemName.name}} x {{itemName.quantity}} ({{itemName.partnubmer}})</div>
                         </div>
                         <div *ngIf='item.quoteitems.length>3'>......</div>
                       </td>
@@ -162,15 +163,15 @@
                       <td *ngIf='isshow'><div>{{item.quotestatus_name}}</div></td>
                       <td>
                         <div *ngIf='item.quotestatus === "Q" &&  isquote==true'>
-                          <button class="btn btn-primary" (click)="tiaozhuan(item.id)"><a>立即报价</a></button><br>
+                          <button class="btn btn-primary" (click)="tiaozhuan(item.id,item.quote_id)"><a>立即报价</a></button><br>
                           <button class="btn btn-default txt-blue" (click)='ignoreHandle(item)'>忽略</button>
                         </div>
                         
                         <div *ngIf='item.quotestatus === "Q" &&  isquote==false'>
-                            <button class="btn btn-primary" (click)="tiaozhuan(item.id)"><a>立即报价</a></button><br>
+                            <button class="btn btn-primary" (click)="tiaozhuan(item.id,item.quote_id)"><a>立即报价</a></button><br>
                         </div>
                         <div *ngIf='item.quotestatus === "W"'>
-                            <button class="btn btn-primary"  (click)="tiaozhuan2(item.id)"><a>查看详情</a></button><br>
+                            <button class="btn btn-primary"  (click)="tiaozhuan2(item.quote_id)"><a>查看详情</a></button><br>
                             <span class="txt-orange">等待卖家付款</span>
                         </div>
                       </td>

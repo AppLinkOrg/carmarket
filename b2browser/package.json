@@ -28,6 +28,7 @@
     "ng": "0.0.0",
     "ngx-agora": "^1.5.13",
     "ngx-bootstrap": "^5.1.1",
+    "ngx-bootstrap-modal": "^2.0.1",
     "ngx-uploader": "^7.1.0",
     "npm-font-open-sans": "^1.1.0",
     "popper.js": "^1.15.0",

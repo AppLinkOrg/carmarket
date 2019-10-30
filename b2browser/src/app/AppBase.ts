@@ -165,10 +165,11 @@ export class AppBase implements OnInit {
         window.location.href = "tel:" + tel;
     }
     logout(){
+        this.navigate("/login")
         window.sessionStorage.removeItem("token");
         window.localStorage.removeItem("token");
-        this.navigate("/login")
     }
+   
 
 
     showAlert(content,title="提示"){

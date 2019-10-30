@@ -47,11 +47,12 @@ export class QuotationDetailsComponent extends AppBase  {
     this.activeRoute.queryParams.subscribe(queryParams=>{
       console.log(queryParams)
       this.id = queryParams.id
+    
       this.employee_id=queryParams.employee_id
       this.employee_id_name = queryParams.employee_id_name
       this.enterprise_id_name = queryParams.enterprise_id_name
 
-      a.quoteinfo({ id: this.id }).then((quoteinfo:any)=>{
+      a.quotationdetail({ id: this.id,quote_id: queryParams.quote_id }).then((quoteinfo:any)=>{
       
         this.quoteinfo = quoteinfo;
         // this.quoteinfo.employee_id = this.employee_id
@@ -122,11 +123,13 @@ export class QuotationDetailsComponent extends AppBase  {
     var addList = {
       fittings_id: item.id,
       name: item.name,
+      partnubmer:item.partnubmer,
       quantity: item.quantity,
       quality: item.quality,
       standby_time: item.standby_time,
       guarantee: item.guarantee,
       price: item.price,
+      Sprice:item.Sprice,
       sendcar_time: item.sendcar_time,
       count: item.count
     }
@@ -143,6 +146,7 @@ export class QuotationDetailsComponent extends AppBase  {
       item.standby_time = ''
       item.guarantee = ''
       item.price = ''
+      item.Sprice = ''
       item.sendcar_time = ''
 
    
@@ -234,15 +238,17 @@ export class QuotationDetailsComponent extends AppBase  {
 
         var lists = {
           fittings_id: (this.list[i].fittings_id), 
+          partnubmer: (this.list[i].partnubmer),
           name: (this.list[i].name),
           price: (this.list[i].price),
+          Sprice: (this.list[i].Sprice),
           qty: (this.list[i].quantity), 
           quality: (this.list[i].quality),
           standby_time: (this.list[i].standby_time),
           guarantee: (this.list[i].guarantee),
           sendcar_time: (this.list[i].sendcar_time),
           enterprise_id: enterprise_id,
-          employee_id: this.employee_id
+          employee_id: this.employee_id,
         }
         console.log(this.employee_id,'aaaa')
 
@@ -294,24 +300,26 @@ export class QuotationDetailsComponent extends AppBase  {
     this.quoteinfo.quotestatus = "W"
     this.quoteinfo.quoteemployee_id = this.employee_id
     this.quoteinfo.quoteenterprise_id = enterprise_id
-    this.quoteinfo.quote_id = this.id
+    // this.quoteinfo.quote_id = this.id
+    this.quoteinfo.invoice_demand =this.quoteinfo.invoice_demand_value
     this.quoteinfo.yiquoted_time = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + (date1.getDate()) +" "+ (date1.getHours()) + ":" + (date1.getMinutes())
     this.quoteinfo.expired_time = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() +" "+ (date2.getHours()) + ":" + (date2.getMinutes())
     console.log(this.quoteinfo)
 
-    a.editquote({id:this.id,quotestatus:"W"}).then((editquote:any)=>{
+    a.editquote({id:this.quoteinfo.quote_id,quotestatus:"W"}).then((editquote:any)=>{
       if(editquote.code=='0'){
+        console.log(this.quoteinfo,'llllllll')
         a.addexpired(this.quoteinfo).then((addexpired:any)=>{
           console.log(addexpired)
           if(addexpired.code == '0'){
     
-            a.deleteignore({ id: this.quoteinfo.id,quoteemployee_id: this.employee_id,quoteenterprise_id:enterprise_id }).then((deletData:any)=>{
-            
+            a.deleteignore({ quote_id: this.quoteinfo.quote_id,quoteenterprise_id:enterprise_id,status:'D' }).then((deletData:any)=>{
+                console.log(deletData,'deletData')
              })
     
               this.router.navigate(['detailsOfQuotedPrice'],{
                 queryParams:{
-                  id: this.quoteinfo.id
+                  quote_id: this.quoteinfo.quote_id
                 }
               })
             }

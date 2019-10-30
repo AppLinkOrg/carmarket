@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef,ViewChild } from '@angular/core';
 import { AppBase } from '../AppBase';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -21,6 +21,7 @@ export class EmployeeManagementComponent extends AppBase  {
     public instApi:InstApi,
     public adressApi:AddressApi,
     public orderApi:OrderApi,
+    public el:ElementRef,
     public enterpriseApi:EnterpriseApi,
   ) { 
     super(router,activeRoute,instApi,enterpriseApi);
@@ -187,8 +188,14 @@ export class EmployeeManagementComponent extends AppBase  {
       return '否'
     }
   }
-
+  isshow=false
+  @ViewChild('myModal',{static:true}) closeModal: ElementRef;
   saveAddress(address){
+    // this.el.nativeElement.querySelector('#myModal').modal('toggle')
+
+    
+    console.log(address,'addresssssss')
+
     this.pageList = []
     address.morenaddress = this.changeMoren(address.morenaddress)
     address.enterprise_id = this.enterprise_id
@@ -200,25 +207,59 @@ export class EmployeeManagementComponent extends AppBase  {
 
     if(this.item.operation == 'E'){
       
-      this.adressApi.updateaddress(address).then((updateaddress:any)=>{
-     
-        if(updateaddress.code == '0'){
-          this.onMyShow()
-        }
-      })
-    }else {
-      this.adressApi.addaddress(address).then((addaddress:any)=>{
-
-          if(addaddress.code == '0'){
-            this.onMyShow()
+      if(address.region!="" && address.address!="" && address.name!=""){
+        console.log('kljkljlkjkl')
+        if(address.phonenumber!=""){
+          let reg = /^1[3|4|5|7|8]\d{9}$/
+          if(reg.test(address.phonenumber)){
+            console.log('ppppppp')
+            this.adressApi.updateaddress(address).then((updateaddress:any)=>{
+              console.log(updateaddress,'updateaddress')
+              if(updateaddress.code == '0'){
+                this.onMyShow()
+                this.closeModal.nativeElement.click();
+              }
+            })
+          }else {
+            this.isshow = true
           }
-      })
+        }
+      }
+      
+    }else {
+
+      if(address.region!="" && address.address!="" && address.name!=""){
+        console.log('kljkljlkjkl')
+        if(address.phonenumber!=""){
+          let reg = /^1[3|4|5|7|8]\d{9}$/
+          if(reg.test(address.phonenumber)){
+            console.log('ppppppp')
+            this.adressApi.addaddress(address).then((addaddress:any)=>{
+
+                if(addaddress.code == '0'){
+                  this.closeModal.nativeElement.click();
+                  this.onMyShow()
+
+                }
+            })
+          }else {
+            this.isshow = true
+          }
+        }
+      }
+
+    
 
     }
 
    
   }
 
+  inputphone(){
+    this.isshow = false
+  }
+
+  
   newadd(){
     this.item = []
     this.item.operation = 'A'
@@ -227,10 +268,26 @@ export class EmployeeManagementComponent extends AppBase  {
 
   editAddress(item){
 
+    console.log(item,'addresssssss')
+    if(item.morenaddress=="否"){
+      item.morenaddress = false
+    }else if(item.morenaddress=='是'){
+      item.morenaddress = true
+    }
+
     this.item = item
     this.item.operation = 'E'
 
 
+  }
+
+  quxiao(){
+    if(this.item.morenaddress==false){
+      this.item.morenaddress = "否"
+    }else if(this.item.morenaddress==true){
+      this.item.morenaddress = '是'
+    }
+    console.log(this.item,'quxiao')
   }
  
 

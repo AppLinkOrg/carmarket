@@ -615,4 +615,25 @@ export class OrderApi {
             });
     }
 
+    public 	quotationdetail(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/quotationdetail';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/quotationdetail', data, err);
+            });
+    }
+
 }
