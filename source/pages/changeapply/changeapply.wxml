@@ -34,7 +34,7 @@
   </view>
 
   <view class='margin-left-30 '>
-    <view class=' txt-black marg'>{{item.name}}</view>
+    <view class=' txt-black marg'>{{item.parts}}</view>
     <view class='flex-row  margin-top-10 '>
       <view class=''>品质：</view>
       <view class=''>{{item.quality }}</view>

@@ -10,6 +10,7 @@
   <view class="flex-row  margin-30 ">
 
     <view class="  margin-right-30 padding-10" style=" position: relative;" >
+
       <image class="icon-25   " wx:if='{{item.photo.length==0}}' src='{{uploadpath}}resource/{{res.cemera}}' bindtap="bindimg" id="{{idx}}"></image>
       <image class="icon-25  " wx:if='{{item.photo.length>0}}' src='{{uploadpath}}fittings/{{item.photo[0]}}' bindtap="bindimg" id="{{idx}}"></image>
 

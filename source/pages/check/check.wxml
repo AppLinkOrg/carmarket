@@ -4,15 +4,15 @@
     <view class="margin-left-30 margin-top-20">{{vin}}</view>
   </view>
 </block>
-<view class="margin-top-20"></view>
-<view class='flex-row bg-white'>
+ 
+<view class='flex-row bg-white margin-top-20'>
   <view class=' btn  txt-black'>
     <view class='flex-row margin-left-20'>
-      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.search}}' bindtap="bindpart"></image>
+      <image class='icon ' src='{{uploadpath}}resource/{{res.search}}' bindtap="bindpart"></image>
     </view>
-    <input class="flex-row flex-1  margin-left-20 margin-right-20" placeholder='空调' bindinput="bindinput" value="{{partinput}}" bindconfirm="bindpart"></input>
+    <input class=" flex-1 h5  margin-left-20 margin-right-20" placeholder-class="opa5" placeholder='请输入配件名称...' bindinput="bindinput" value="{{partinput}}" bindconfirm="bindpart"></input>
     <view class='margin-right-20'>
-      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.delect}}' bindtap='binddelect'></image>
+      <image class='icon ' src='{{uploadpath}}resource/{{res.delect}}' bindtap='binddelect'></image>
     </view>
   </view>
 </view>

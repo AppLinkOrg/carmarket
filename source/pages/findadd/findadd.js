@@ -211,6 +211,7 @@ class Content extends AppBase {
     var fapiao = this.Base.getMyData().fapiao;
  
     console.log(shibie);
+
     //return;
 
     wx.showModal({
@@ -231,7 +232,9 @@ class Content extends AppBase {
 
           var orderapi = new OrderApi();
           orderapi.create({
-            quotestatus: 'Q',
+            employee_id: that.Base.getMyData().employeeinfo.id,
+            enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
+            quotestatus: 'Q', 
             carmodel: that.Base.options.biaoti,
             vincode: that.Base.options.vin, 
             invoice_demand: fapiao,
@@ -241,6 +244,8 @@ class Content extends AppBase {
             that.Base.setMyData({
               create
             })
+
+
 
             for (var i = 0; i < shibie.length; i++) {
 

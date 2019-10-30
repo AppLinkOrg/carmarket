@@ -203,7 +203,7 @@ class Content extends AppBase {
               if (shibie[i].check==true){
                 var list = {
                   tuihuo_id: addtuihuo.return,
-                  name: shibie[i].name,
+                  name: shibie[i].parts,
                   photo: shibie[i].photo,
                   qty: shibie[i].qty,
                   price: shibie[i].price,

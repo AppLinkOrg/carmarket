@@ -118,7 +118,7 @@
           <!-- <image class="icon-30 margin-top-20 margin-left-50" src="{{uploadpath}}resource/{{res.epc}}"></image> -->
         </view>
 
-        <view class=" h6 margin-top-10">燃油滤清器16127451424</view>
+        <view class=" h6 margin-top-10">{{item.partnubmer}}</view>
       </view>
 
     </view>
@@ -172,13 +172,46 @@
       <view class="flex-1"></view>
       <image class='icon-25 margin-right-30 margin-top-30' src='{{uploadpath}}resource/{{res.delect}}' bindtap="binddelect"></image>
     </view>
+
     <view class="flex-row margin-top-30">
       <view class="txt-black xiaobtn margin-left-50">包邮</view>
       <view class="txt-black xiaobtn margin-left-30">不包邮</view>
     </view>
+
     <view class="flex-row margin-top-30">
       <view class="txt-black xiaobtn margin-left-50">市内</view>
       <view class="txt-black xiaobtn margin-left-30">市外</view>
+    </view>
+
+
+    <view class="margin-top-20">
+      <view class="margin-left-20">地区筛选</view>
+      <view class="flex-row margin-top-30" >
+        <view class="txt-black xiaobtn margin-left-50" bindtap="toast">罗湖区</view>
+        <view class="txt-black xiaobtn margin-left-30" bindtap="toast">龙岗区</view>
+      </view>
+
+      <view class="flex-row margin-top-30">
+        <view class="txt-black xiaobtn margin-left-50" bindtap="toast">南山区</view>
+        <view class="txt-black xiaobtn margin-left-30" bindtap="toast">宝安区</view>
+      </view>
+
+      <view class="flex-row margin-top-30">
+        <view class="txt-black xiaobtn margin-left-50"bindtap="toast">龙华区</view>
+        <view class="txt-black xiaobtn margin-left-30"bindtap="toast">福田区</view>
+      </view>
+
+      <view class="flex-row margin-top-30">
+
+        <view class="txt-black xiaobtn margin-left-50"bindtap="toast">坪山新区</view>
+        <view class="txt-black xiaobtn margin-left-30"bindtap="toast">盐田区</view>
+      </view>
+
+      <view class="flex-row margin-top-30">
+        <view class="txt-black xiaobtn margin-left-50"bindtap="toast">光明新区</view>
+        <view class="txt-black xiaobtn margin-left-30"bindtap="toast">大鹏新区</view>
+      </view>
+
     </view>
   </view>
 </view>

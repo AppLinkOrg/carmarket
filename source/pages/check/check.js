@@ -21,21 +21,25 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
-    
+
     this.Base.setMyData({
-       vin:this.Base.options.vin,
-       brandCode:this.Base.options.brandCode,
-       mcid:this.Base.options.mcid,
-       biaoti:this.Base.options.biaoti,
+      vin: this.Base.options.vin,
+      brandCode: this.Base.options.brandCode,
+      mcid: this.Base.options.mcid,
+      biaoti: this.Base.options.biaoti,
       // addlist:[]
     })
     if (this.Base.getMyData().json != undefined) {
       console.log('看两节课靠家里')
       var addlist = JSON.parse(this.Base.getMyData().json);
-      this.Base.setMyData({ addlist })
+      this.Base.setMyData({
+        addlist
+      })
     } else {
       console.log('来看看了')
-      this.Base.setMyData({ addlist: [] })
+      this.Base.setMyData({
+        addlist: []
+      })
     }
 
     //this.bindpart();
@@ -45,8 +49,8 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var carapi = new CarApi();
-    
-  // carapi.searchhistory({}, (searchhistory) => {
+
+    // carapi.searchhistory({}, (searchhistory) => {
     //   this.Base.setMyData({
     //     searchhistory
     //   })
@@ -56,7 +60,7 @@ class Content extends AppBase {
     //   this.Base.setMyData({
     //     addhistory
     //   })
-  // })
+    // })
 
 
   }
@@ -65,21 +69,23 @@ class Content extends AppBase {
       title: '添加配件',
     })
   }
-  bindinput(e){
+  bindinput(e) {
     this.Base.setMyData({
       search_key: e.detail.value
     })
   }
   bindpart(e) {
-    console.log(e,"输出")
-    
+    console.log(e, "输出")
+    wx.showLoading({
+      title: '搜索中...',
+    })
     var carapi = new CarApi();
-     var search_key = e.detail.value;
-     var vin = this.Base.getMyData().vin;
+    var search_key = e.detail.value;
+    var vin = this.Base.getMyData().vin;
     var brandCode = this.Base.getMyData().brandCode
-     var mcid = this.Base.getMyData().mcid;
+    var mcid = this.Base.getMyData().mcid;
 
-   // console.log(search_key, vin, brandCode, mcid)
+    // console.log(search_key, vin, brandCode, mcid)
     //return;
 
     carapi.partsearch({
@@ -87,13 +93,14 @@ class Content extends AppBase {
       brandCode: brandCode,
       mcid: mcid,
       search_key: search_key
-    }, (groups) =>{
+    }, (groups) => {
       var groulist = groups.data;
-      for (var i = 0; i < groulist.length;i++){
-        groulist[i].check=true;
+      for (var i = 0; i < groulist.length; i++) {
+        groulist[i].check = true;
       }
+      wx.hideLoading();
       this.Base.setMyData({
-       groupslist: groups.data
+        groupslist: groups.data
       })
     })
 
@@ -105,61 +112,67 @@ class Content extends AppBase {
     })
   }
 
-  bindclear(e){
-   var id=e.currentTarget.id;
-   var addlist = this.Base.getMyData().addlist;
-   var index = e.currentTarget.dataset.index; 
-   var groupslist = this.Base.getMyData().groupslist;
+  bindclear(e) {
+    var id = e.currentTarget.id;
+    var addlist = this.Base.getMyData().addlist;
+    var index = e.currentTarget.dataset.index;
+    var groupslist = this.Base.getMyData().groupslist;
 
-    console.log(id, "来来来",index);
-   //return;
+    console.log(id, "来来来", index);
+    //return;
     addlist.splice(index, 1);
     groupslist[id].check = true;
-    this.Base.setMyData({ addlist, groupslist })
+    this.Base.setMyData({
+      addlist,
+      groupslist
+    })
   }
- 
 
-  bindadd(e){
-    var that=this;
+
+  bindadd(e) {
+    var that = this;
     var idx = e.currentTarget.id;
     var name = e.currentTarget.dataset.name;
     var mid = e.currentTarget.dataset.mid;
     var groupslist = this.Base.getMyData().groupslist;
-    
-   // if (this.Base.getMyData().json != undefined){
+
+    // if (this.Base.getMyData().json != undefined){
     //  var addlist = JSON.parse(this.Base.getMyData().json);
-      //console.log(addlist, "new");
-  //  } else{
-      var addlist = this.Base.getMyData().addlist; 
+    //console.log(addlist, "new");
+    //  } else{
+    var addlist = this.Base.getMyData().addlist;
     //}
-//return;
+    //return;
     groupslist[idx].check = false;
 
-    var list={
+    var list = {
       id: idx,
       name: name,
-      num:1,
+      num: 1,
       mid: mid,
       beizhu: '',
       photo: ''
     };
- 
+
     console.log(idx, "设置的顺序");
 
     addlist.push(list)
-    this.Base.setMyData({ addlist, groupslist})
+    this.Base.setMyData({
+      addlist,
+      groupslist
+    })
   }
 
   bindnext() {
-    var that=this;
+    var that = this;
     var addlist = this.Base.getMyData().addlist;
     var vin = this.Base.options.vin,
-      biaoti= this.Base.options.biaoti
-   // var groupslist = this.Base.getMyData().groupslist;
+      biaoti = this.Base.options.biaoti
+    // var groupslist = this.Base.getMyData().groupslist;
     wx.navigateTo({
       url: '/pages/findadd/findadd?json=' + JSON.stringify(this.Base.getMyData().addlist) + '&biaoti=' + biaoti + '&vin=' + vin
       // success: function (res) {
- 
+
       //   for (var i = 0; i < groupslist.length; i++) {
       //     groupslist[i].check = true;
       //   }
@@ -175,10 +188,10 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindpart = content.bindpart;
 body.binddelect = content.binddelect;
-body.bindnext = content.bindnext; 
- 
-body.bindinput = content.bindinput;
-body.bindadd = content.bindadd; 
+body.bindnext = content.bindnext;
 
-body.bindclear = content.bindclear; 
-Page(body) 
+body.bindinput = content.bindinput;
+body.bindadd = content.bindadd;
+
+body.bindclear = content.bindclear;
+Page(body)

@@ -1,6 +1,5 @@
 /**** */
-
-
+ 
 import {
   ApiConfig
 } from "apis/apiconfig.js";
@@ -126,6 +125,7 @@ export class AppBase {
     console.log("yeah!");
   }
   onLoad(options) {
+     
     this.Base.options = options;
     console.log(options);
     console.log("onload");
@@ -136,6 +136,8 @@ export class AppBase {
     var token = wx.getStorageSync("token");
     ApiConfig.SetToken(token);
     ApiConfig.SetUnicode(this.Base.unicode);
+
+    
   }
   gotoOpenUserInfoSetting() {
     var that = this;
@@ -162,8 +164,10 @@ export class AppBase {
   }
  // minimm
   onShow() {
+    
     var that = this;
     var instapi = new InstApi();
+   
     instapi.resources({}, (res) => {
       this.Base.setMyData({
         res
@@ -191,8 +195,9 @@ export class AppBase {
 
       }
     }, false);
-    that.onMyShow();
+    
     that.checkPermission();
+    
 
   }
   checkPermission() {
@@ -203,17 +208,23 @@ export class AppBase {
 
     enterpriseApi.employeeinfo({}, (info) => {
 
-    console.log("进来")
+      console.log(info.enterprise,'试试水')
 
-      if (info == null && this.Base.needauth == true) {
+      if (info.enterprise == '' && this.Base.needauth == true) {
+
+        console.log("进来")
+        
         wx.redirectTo({
           url: '/pages/login/login',
         })
       } else {
         this.Base.setMyData({
-          employeeinfo: info
+          employeeinfo: info, emp_id: info.id
         });
+        that.onMyShow();
       }
+
+      
     });
   }
 
@@ -255,6 +266,8 @@ export class AppBase {
     prevPage.dataReturnCallback(this.Base.options.callbackid, data);
     wx.navigateBack();
   }
+
+
 
   dataReturnCallback(callbackid, data) {
     console.log("please use dataReturnCallback(callbackid, data)");

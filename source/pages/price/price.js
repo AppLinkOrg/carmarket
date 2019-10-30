@@ -39,16 +39,23 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var orderapi = new OrderApi();
+
+
+    console.log("来了来了", this.Base.getMyData().emp_id)
+
+
     orderapi.quotelist({
-      quotestatus:'Q'
+      quotestatus: 'Q', employee_id: this.Base.getMyData().emp_id
     }, (weibaolist) => {
       this.Base.setMyData({
         weibaolist
       })
     })
 
+
+    
     orderapi.quotelist({
-      quotestatus: 'W'
+      quotestatus: 'W', employee_id: this.Base.getMyData().emp_id
     }, (yibaolist) => {
       this.Base.setMyData({
         yibaolist
@@ -56,13 +63,13 @@ class Content extends AppBase {
     })
 
     orderapi.quotelist({
-      quotestatus: 'E'
+      quotestatus: 'E', employee_id: this.Base.getMyData().emp_id
     }, (quxiaolist) => {
       this.Base.setMyData({
         quxiaolist
       })
     })
- 
+
 
   }
   

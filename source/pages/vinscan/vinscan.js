@@ -60,9 +60,31 @@ class Content extends AppBase {
 
                   console.log("vincatch", res);
 
-                  // wx.navigateTo({
-                  //   url: '/pages/check/check?vin=' + res.return.vin,
-                  // })
+                  carapi.vin({
+                    vin: res.return.vin
+                  }, (res) => {
+                    var vin = res.data.vin,
+                      brandCode = res.data.brandCode,
+                      mcid = res.data.mcid,
+                      biaoti = res.title[0] + res.title[1] + res.title[2] + res.title[3] + res.title[4]
+                    if (res.code == 0) {
+                      that.Base.info(res.msg);
+                      return;
+                    }
+                    if (res.code == 1) {
+                      carapi.addhistory({
+                        vin: vin,
+                        carrecord: biaoti
+                      }, (qwe) => {
+                        wx.navigateTo({
+                          url: '/pages/check/check?vin=' + vin + '&biaoti=' + biaoti + '&brandCode=' + brandCode + '&mcid=' + mcid,
+                        })
+                        that.onMyShow();
+                      })
+                    }
+                  })
+ 
+
                 }else{
                   that.Base.info("无法识别有效的vin码");
                 }
@@ -105,9 +127,30 @@ class Content extends AppBase {
         if (res.code == 0) {
 
           console.log("vincatch", res);
-          // wx.navigateTo({
-          //   url: '/pages/check/check?vin=' + res.return.vin,
-          // })
+
+          carapi.vin({
+            vin: res.return.vin
+          }, (res) => {
+            var vin = res.data.vin,
+              brandCode = res.data.brandCode,
+              mcid = res.data.mcid,
+              biaoti = res.title[0] + res.title[1] + res.title[2] + res.title[3] + res.title[4]
+            if (res.code == 0) {
+              that.Base.info(res.msg);
+              return;
+            }
+            if (res.code == 1) {
+              carapi.addhistory({
+                vin: vin,
+                carrecord: biaoti
+              }, (qwe) => {
+                wx.navigateTo({
+                  url: '/pages/check/check?vin=' + vin + '&biaoti=' + biaoti + '&brandCode=' + brandCode + '&mcid=' + mcid,
+                })
+                that.onMyShow();
+              })
+            }
+          })
         } else {
           that.Base.info("无法识别有效的vin码");
         }

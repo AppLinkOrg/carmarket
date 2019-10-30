@@ -26,11 +26,9 @@ class Content extends AppBase {
   }
   onMyShow() {
     var orderapi = new OrderApi();
-
-
-
+ 
     orderapi.mylist({
-      order_status: 'W',
+      order_status: 'W', employee_id: this.Base.getMyData().emp_id
     }, (daifukuan) => {
       this.Base.setMyData({
         daifukuan
@@ -38,7 +36,7 @@ class Content extends AppBase {
     })
 
     orderapi.mylist({
-      order_status: 'L',
+      order_status: 'L', employee_id: this.Base.getMyData().emp_id
     }, (daifahuo) => {
       this.Base.setMyData({
         daifahuo
@@ -46,7 +44,7 @@ class Content extends AppBase {
     })
 
     orderapi.mylist({
-      order_status: 'M',
+      order_status: 'M', employee_id: this.Base.getMyData().emp_id
     }, (daishouhuo) => {
       this.Base.setMyData({
         daishouhuo
@@ -54,7 +52,7 @@ class Content extends AppBase {
     })
 
     orderapi.mylist({
-      order_status: 'N,R,Y',
+      order_status: 'N,R,Y', employee_id: this.Base.getMyData().emp_id
     }, (yiwancheng) => {
       this.Base.setMyData({
         yiwancheng
@@ -62,7 +60,7 @@ class Content extends AppBase {
     })
 
     orderapi.mylist({
-      order_status: 'E',
+      order_status: 'E', employee_id: this.Base.getMyData().emp_id
     }, (yiquxiao) => {
       this.Base.setMyData({
         yiquxiao

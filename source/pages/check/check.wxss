@@ -43,7 +43,9 @@ page {
   right: 0;
   top: 0;
 }
-
+.opa5{
+  opacity: 0.6
+}
 .left {
   width: 38vw;
   height: 64vh;

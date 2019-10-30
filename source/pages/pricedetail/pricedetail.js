@@ -264,6 +264,7 @@ class Content extends AppBase {
         quote_id: this.Base.options.id,
         supplier: shopcar[i].company,
         parts: shopcar[i].name,
+        mcid: shopcar[i].mcid,
         quality: shopcar[i].quality,
         price: shopcar[i].price,
         qty: shopcar[i].qty,
@@ -293,6 +294,15 @@ class Content extends AppBase {
 
   }
 
+  toast(e){
+    wx.showModal({
+      title: 'ERRO',
+      content: 'Unable to get the current location temporarily, please check whether the interface is correct！',
+      showCancel: false,
+      confirmText: "cancel", 
+    })
+  }
+
   tocar(e){
     var that =this;
     wx.navigateTo({
@@ -320,6 +330,8 @@ body.bindshai = content.bindshai;
 body.binddelect = content.binddelect;
 
 body.statistics = content.statistics; 
+
+body.toast = content.toast;
  
 body.statisticsone = content.statisticsone;
 

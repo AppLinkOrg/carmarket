@@ -158,27 +158,44 @@ class Content extends AppBase {
       success: function(res) {
         if (res.confirm) {
 
-          for (var i = 0; i < arr.length; i++) {
-            var list = {
-              orderno: '',
-              enterprise_id: arr[i].id,
-              employee_id: that.Base.getMyData().employeeinfo.id,
-              totalamount: arr[i].pp,
-              vin: that.Base.options.vin,
-              carname: that.Base.options.carmodel,
-              quote_id: that.Base.options.id,
-              receiver: addressinfo.name,
-              receivecontact: addressinfo.phonenumber,
-              receiveaddress: addressinfo.region + addressinfo.address,
-              order_status: 'W',
-              status: 'A'
-            }
 
-            that.submitlist(list, i);
+          orderapi.createorder({
+            employee_id: that.Base.getMyData().employeeinfo.id,
+            vin: that.Base.options.vin,
+            carname: that.Base.options.carmodel,
+            quote_id: that.Base.options.id,
+            receiver: addressinfo.name,
+            receivecontact: addressinfo.phonenumber,
+            receiveaddress: addressinfo.region + addressinfo.address,
+            totalamount: 35,
+          }, (createorder)=>{
+            wx.navigateTo({
+              url: '/pages/waitpay/waitpay?id=' + that.Base.options.id
+            })
+           // that.Base.setMyData({ createorder})
+          })
+
+          // for (var i = 0; i < arr.length; i++) {
+          //   var list = {
+          //     orderno: '',
+          //     enterprise_id: arr[i].id,
+              
+          //     totalamount: arr[i].pp,
+          //     vin: that.Base.options.vin,
+          //     carname: that.Base.options.carmodel,
+          //     quote_id: that.Base.options.id,
+          //     receiver: addressinfo.name,
+          //     receivecontact: addressinfo.phonenumber,
+          //     receiveaddress: addressinfo.region + addressinfo.address,
+          //     order_status: 'W',
+          //     status: 'A'
+          //   }
+
+          //   that.submitlist(list, i);
 
 
 
-          }
+          // }
 
         }
       }

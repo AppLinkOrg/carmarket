@@ -279,7 +279,7 @@ class Content extends AppBase {
       var list = lista[i].name;
 
       for (var j = 0; j < list.length; j++) {
-        if (list[j].check == true) {
+        if (list[j].ck_value == 'Y') {
           linjian.push(list[j]);
         }
       }
@@ -289,6 +289,7 @@ class Content extends AppBase {
     this.Base.setMyData({
       linjian
     })
+    
     // return;
     wx.navigateTo({
       url: '/pages/orderdetail/orderdetail?json=' + JSON.stringify(linjian) + '&carmodel=' + this.Base.options.carmodel + '&vin=' + this.Base.options.vin + '&id=' + this.Base.options.id

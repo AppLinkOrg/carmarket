@@ -26,7 +26,7 @@
       <view class='h5'>退货单号：</view>
       <view class="h5">{{item.returnno}}</view>
       <view class='flex-1'></view>
-      <view class='margin-right-30'>待退换</view>
+      <view class='margin-right-30'>{{item.orderstatus_name}}</view>
     </view>
     <view class="flex-row flex-center flex-wrap margin-top-10">
       <view class=' txt-black' wx:for='{{item.tuihuoitem}}' wx:key='s' wx:for-index='idx'>{{idx==0?'':'、'}}{{item.name}}</view>
