@@ -119,6 +119,9 @@ export class QuotationDetailsComponent extends AppBase  {
     }else {
       item.count = 2
     }
+    if(item.partnubmer==""){
+      item.partnubmer='无识别'
+    }
 
     var addList = {
       fittings_id: item.id,
@@ -134,24 +137,13 @@ export class QuotationDetailsComponent extends AppBase  {
       count: item.count
     }
 
-    if(addList.partnubmer!=""){
       for(let key in addList){
         if(addList[key] == ''){
           this.tianxie = true
           return
         }
       }
-    }else {
-      for(let key in addList){
-        if(key!='partnubmer'){
-          if(addList[key] == ''){
-            this.tianxie = true
-            return
-          }
-        }
-      }
-  
-    }
+   
     
       item.quality = ''
       item.standby_time = ''
@@ -311,7 +303,7 @@ export class QuotationDetailsComponent extends AppBase  {
     this.quoteinfo.quotestatus = "W"
     this.quoteinfo.quoteemployee_id = this.employee_id
     this.quoteinfo.quoteenterprise_id = enterprise_id
-    // this.quoteinfo.quote_id = this.id
+    this.quoteinfo.invalid = 'N'
     this.quoteinfo.invoice_demand =this.quoteinfo.invoice_demand_value
     this.quoteinfo.yiquoted_time = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + (date1.getDate()) +" "+ (date1.getHours()) + ":" + (date1.getMinutes())
     this.quoteinfo.expired_time = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() +" "+ (date2.getHours()) + ":" + (date2.getMinutes())

@@ -264,7 +264,7 @@ class Content extends AppBase {
         quote_id: this.Base.options.id,
         supplier: shopcar[i].company,
         parts: shopcar[i].name,
-        mcid: shopcar[i].mcid,
+        mcid: shopcar[i].partnubmer,
         quality: shopcar[i].quality,
         price: shopcar[i].price,
         qty: shopcar[i].qty,

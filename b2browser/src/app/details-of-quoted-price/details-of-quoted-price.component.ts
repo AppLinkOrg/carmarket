@@ -37,6 +37,7 @@ export class DetailsOfQuotedPriceComponent  extends AppBase  {
 
   perInfo = []
   quote_id=''
+  invalid=''
 
   onMyShow(){
 
@@ -66,6 +67,7 @@ export class DetailsOfQuotedPriceComponent  extends AppBase  {
           
               this.quoteinfo = quoteinfo;
               console.log(this.quoteinfo,'jjjjj')
+              this.invalid = quoteinfo.invalid_value
               
               for(let item of quoteinfo.fittingsitem){
                 if(item.quoteitems.length != 0){

@@ -17,6 +17,30 @@ class Content extends AppBase {
     var that = this;
     var sumprice=0;
     var orderapi = new OrderApi();
+    var shopcarlist = JSON.parse(this.Base.options.json);
+    
+
+    var alllist = [];
+
+    for (var i = 0; i < shopcarlist.length; i++) {
+      var list = shopcarlist[i]
+      for(let key of list.name){
+        alllist.push({
+          quote_id: key.quote_id,
+          quotecompan_id: key.enterprise_id
+        })
+      }
+    }
+
+   
+    this.Base.setMyData({
+      alllist
+    })
+
+
+
+    console.log(shopcarlist,'555555555555');
+    console.log(alllist, 'eeee');
     
   //  console.log(this.Base.options.id,"1111111")
 
@@ -38,6 +62,9 @@ class Content extends AppBase {
     var that = this;
     var orderapi = new OrderApi();
     var mylist=this.Base.getMyData().mylist;
+    var arr = this.Base.getMyData().alllist;
+
+    console.log(arr,'arr')
  
     wx.showModal({
       title: '取消订单',
@@ -64,13 +91,27 @@ class Content extends AppBase {
               url: '/pages/order/order',
             })
           })
-          orderapi.editquotestatus({ 
-           quoteenterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
-           quotestatus: 'E',
-           invalid: 'Y'
-           }, (editquotestatus)=>{
-             console.log(editquotestatus,'ooooo')
-          })
+
+          for(var i=0;i<arr.length;i++){
+            orderapi.editquotation({
+              quotecompan_id:arr[i].quotecompan_id,
+              quote_id: arr[i].quote_id,
+              quotestatus:'W'
+            }, (editquotation)=>{
+            })
+
+            orderapi.editquotestatus({
+              quoteenterprise_id: arr[i].quotecompan_id,
+              quote_id: arr[i].quote_id,
+              quotestatus: 'C',
+              invalid: 'Y'
+            }, (editquotestatus) => {
+              console.log(editquotestatus, 'ooooo')
+            })
+
+          }
+
+         
         }
       }
     })

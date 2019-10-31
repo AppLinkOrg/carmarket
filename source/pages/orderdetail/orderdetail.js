@@ -180,7 +180,7 @@ class Content extends AppBase {
             totalamount: 35,
           }, (createorder)=>{
             wx.navigateTo({
-              url: '/pages/waitpay/waitpay?id=' + that.Base.options.id
+              url: '/pages/waitpay/waitpay?id=' + that.Base.options.id + '&json=' + JSON.stringify(arr)
             })
            // that.Base.setMyData({ createorder})
           })

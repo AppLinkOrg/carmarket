@@ -57,6 +57,7 @@ class Content extends AppBase {
     orderapi.quotelist({
       quotestatus: 'W', employee_id: this.Base.getMyData().emp_id
     }, (yibaolist) => {
+      console.log(yibaolist,'yyyyyy')
       this.Base.setMyData({
         yibaolist
       })

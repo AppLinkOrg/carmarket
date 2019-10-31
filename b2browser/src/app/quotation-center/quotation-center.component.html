@@ -133,23 +133,29 @@
                           <div >{{item.invoice_demand_value}}</div>
                       </td>
                       <td><div>{{item.quotenumber}}</div></td>
-                      <td class="text-left"><div>{{item.carmodel}} <br> {{item.vincode}}</div> </td>
+                      <td >
+                        <div class="text-left" *ngIf='item.carmodel!=""'>{{item.carmodel}} <br> {{item.vincode}}</div>
+                        <div *ngIf='item.carmodel==""'>无识别</div>
+                       </td>
                       <td class="text-left">
                         <div *ngFor="let itemName of item.quoteitems;let i=index" >
-                          <div *ngIf='i<3'>{{itemName.name}} x {{itemName.quantity}} ({{itemName.partnubmer}})</div>
+                          <div *ngIf='i<3'>
+                            {{itemName.name}} x {{itemName.quantity}} <span *ngIf='itemName.partnubmer!=""'>({{itemName.partnubmer}})</span>
+                            <span *ngIf='itemName.partnubmer==""'>(无识别)</span>
+                          </div>
                         </div>
                         <div *ngIf='item.quoteitems.length>3'>......</div>
                       </td>
                       <td [ngSwitch]="item.carmodel=='' || item.carmodel=='undefined'">
                           <div class="photo">
                             <div *ngSwitchCase='true'>
-                              <img *ngIf ='item.frontofcar != ""'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}quote/{{item.frontofcar}}" class="icon-60"  />
-                              <img *ngIf ='item.frontofcar == ""  && item.namesplate != "" '   data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)'  src="{{uploadpath}}quote/{{item.namesplate}}" class="icon-60" />
-                              <img *ngIf ='item.frontofcar == ""  && item.namesplate == ""  && item.rearofcar != ""  '  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)'  src="{{uploadpath}}quote/{{item.rearofcar}}" class="icon-60"  />
+                              <img *ngIf ='item.frontofcar != "" && item.frontofcar != "undefined"'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}quote/{{item.frontofcar}}" class="icon-60"  />
+                              <img *ngIf ='item.frontofcar == ""  && item.namesplate != "" && item.namesplate != "undefined"'   data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)'  src="{{uploadpath}}quote/{{item.namesplate}}" class="icon-60" />
+                              <img *ngIf ='item.frontofcar == ""  && item.namesplate == ""  && item.rearofcar != ""  && item.rearofcar != "undefined"'  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)'  src="{{uploadpath}}quote/{{item.rearofcar}}" class="icon-60"  />
                             </div>
                             <div *ngSwitchCase='false'>
-                                <img *ngIf ='item.photo1 != "" '  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)'  src="{{uploadpath}}quote/{{item.photo1}}" class="icon-60" />
-                                <img *ngIf ='item.photo1 == "" && item.photo2 != "" '   data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}quote/{{item.photo2}}" class="icon-60" />
+                                <img *ngIf ='item.photo1 != "" && item.photo1!="undefined" '  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)'  src="{{uploadpath}}quote/{{item.photo1}}" class="icon-60" />
+                                <img *ngIf ='item.photo1 == "" && item.photo1=="undefined" && item.photo2 != "" && item.photo2!="undefined"'   data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}quote/{{item.photo2}}" class="icon-60" />
                             </div>
                             <div *ngIf='item.photoLen>1' class="photoLen" >{{item.photoLen}}</div>
                           </div>
@@ -170,9 +176,9 @@
                         <div *ngIf='item.quotestatus === "Q" &&  isquote==false'>
                             <button class="btn btn-primary" (click)="tiaozhuan(item.id,item.quote_id)"><a>立即报价</a></button><br>
                         </div>
-                        <div *ngIf='item.quotestatus === "W"'>
+                        <div *ngIf='item.quotestatus === "W" || item.quotestatus=="C"'>
                             <button class="btn btn-primary"  (click)="tiaozhuan2(item.quote_id)"><a>查看详情</a></button><br>
-                            <span class="txt-orange">等待卖家付款</span>
+                            <span class="txt-orange"  *ngIf='item.invalid_value ==="N"'>等待卖家付款</span>
                         </div>
                       </td>
                     </tr>

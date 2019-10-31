@@ -25,7 +25,7 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
     this.Base.setMyData({
-      fittings: []
+      fapiao: 'N',  fittings: []
     })
   }
   onMyShow() {
@@ -33,6 +33,20 @@ class Content extends AppBase {
 
   }
 
+  bindfapiao(e) {
+    var fapiaoed = e.currentTarget.id;
+    if (fapiaoed == 'Y') {
+      this.Base.setMyData({
+        fapiao: 'N'
+      })
+    }
+    if (fapiaoed == 'N') {
+      this.Base.setMyData({
+        fapiao: 'Y'
+      })
+    }
+
+  }
 
   bindupimg() {
     var that = this;
@@ -142,6 +156,7 @@ class Content extends AppBase {
     var imagefour = this.Base.getMyData().imagefour;
     var imagefive = this.Base.getMyData().imagefive;
     var shibie = this.Base.getMyData().fittings;
+    var fapiao = this.Base.getMyData().fapiao;
     console.log(shibie);
     //return;
 
@@ -170,6 +185,7 @@ class Content extends AppBase {
             rearofcar: imagethree,
             photo1: imagefour,
             photo2: imagefive,
+            invoice_demand: fapiao,
             status: 'A'
           }, (create) => {
 
@@ -234,7 +250,7 @@ body.recognition = content.recognition;
 body.bindquchu = content.bindquchu;
 body.bindshibie = content.bindshibie;
 body.bindclear = content.bindclear;
-
+body.bindfapiao = content.bindfapiao;
 body.bindupimg = content.bindupimg;
 body.binduptwo = content.binduptwo;
 body.bindupthree = content.bindupthree;

@@ -26,7 +26,9 @@
                               <span class="bg-dep-gray txt-black padding-four-words margin-right-20">订单编号</span><span>{{quoteinfo.quotenumber}}</span>
                           </div>        
                           <div class="flex-4">
-                              <span class="bg-dep-gray txt-black padding-three-words margin-right-20">车架号</span><span>{{quoteinfo.vincode}}</span>
+                              <span class="bg-dep-gray txt-black padding-three-words margin-right-20">车架号</span>
+                              <span *ngIf='quoteinfo.vincode!=""'>{{quoteinfo.vincode}}</span>
+                              <span *ngIf='quoteinfo.vincode==""'>无识别</span>
                           </div>
                           <div class="flex-4">
                               <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span>
@@ -40,7 +42,9 @@
                               <span class="bg-dep-gray txt-black padding-four-words margin-right-20">报价时间</span><span>{{quoteinfo.quote_time}}</span>
                           </div>        
                           <div class="flex-2">
-                              <span class="bg-dep-gray txt-black padding-two-words margin-right-20">车型</span><span>{{quoteinfo.carmodel}}</span>
+                              <span class="bg-dep-gray txt-black padding-two-words margin-right-20">车型</span>
+                              <span *ngIf='quoteinfo.carmodel!=""'>{{quoteinfo.carmodel}}</span>
+                              <span *ngIf='quoteinfo.carmodel==""'>无识别</span>
                           </div>  
                       </div>
                       <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
@@ -137,7 +141,8 @@
           <div class="col-lg-12">
             <div class="card show mb-4">
                   <div class="card-body flex-row box-auto flex-bottom">
-                     <span class="h4 txt-orange">等待卖家付款...</span>
+                     <span *ngIf='invalid=="N"' class="h4 txt-orange">等待卖家付款...</span>
+                     <span *ngIf='invalid=="Y"' class="h4 txt-orange">已失效</span>
                   </div>
             </div> 
           </div>
