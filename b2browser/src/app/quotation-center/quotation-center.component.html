@@ -188,26 +188,26 @@
               <div class="flex-row flex-column" *ngIf='pageList.length >1'>
                   <ul class="pagination cursor-pointer">
                       <li class="margin-10 padding-10">共{{length}}条</li>
-                      <li class="border-gray-1 margin-10 padding-10" role='button' (click)="fristPage()">
+                      <li class="border-gray-1 margin-10 padding-10 cur-po" role='button' (click)="fristPage()">
                           <a >
                             <span aria-hidden="true">首页</span>
                           </a>
                         </li>
-                      <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Previous()">
+                      <li class="border-gray-1 margin-10 padding-left-17 padding-right-17 cur-po" role='button'  (click)="Previous()">
                         <a class="h3">
                           <span aria-hidden="true">&laquo;</span>
                         </a>
                       </li>
-                      <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" *ngFor="let page of pageList"  
+                      <li class="border-gray-1 margin-10 padding-left-17 padding-right-17 cur-po" *ngFor="let page of pageList"  
                       [ngClass]="{pagActive: isActivePage(page)}" role='button'  (click)='selectPage(page)' style="line-height: 36px;">
                         <a>{{page}}</a>
                       </li>
-                      <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Next()">
+                      <li class="border-gray-1 margin-10 padding-left-17 padding-right-17 cur-po" role='button'  (click)="Next()">
                           <a class="h3">
                             <span aria-hidden="true">&raquo;</span>
                           </a>
                         </li>
-                      <li class="border-gray-1 margin-10 padding-10" role='button' (click)="lastPage()">
+                      <li class="border-gray-1 margin-10 padding-10 cur-po" role='button' (click)="lastPage()">
                           <a >
                             <span aria-hidden="true">尾页</span>
                           </a>
