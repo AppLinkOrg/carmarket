@@ -179,6 +179,7 @@ class Content extends AppBase {
           orderapi.create({
             quotestatus: 'Q',
             employee_id: that.Base.getMyData().employeeinfo.id,
+            employee_id_mobile: that.Base.getMyData().employeeinfo.mobile,
             enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
             namesplate: imageone,
             frontofcar: imagetwo,
