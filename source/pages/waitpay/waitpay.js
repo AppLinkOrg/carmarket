@@ -92,6 +92,15 @@ class Content extends AppBase {
             })
           })
 
+          orderapi.addconsume({ 
+            enterprise_id: that.getMyData().employeeinfo.enterprise.id,
+            employee_id: that.getMyData().employeeinfo.id,
+            amount: that.Base.getMyData().sumprice,
+            
+          }).then(()=>{
+
+          })
+
           for(var i=0;i<arr.length;i++){
             orderapi.editquotation({
               quotecompan_id:arr[i].quotecompan_id,
