@@ -15,7 +15,6 @@ import {
 import {
   WechatApi
 } from "apis/wechat.api";
-
 import {
   EnterpriseApi
 } from "apis/enterprise.api";
@@ -217,14 +216,16 @@ export class AppBase {
         wx.redirectTo({
           url: '/pages/login/login',
         })
+
       } else {
+        
         this.Base.setMyData({
           employeeinfo: info, emp_id: info.id
         });
+        
         that.onMyShow();
       }
-
-      
+ 
     });
   }
 
