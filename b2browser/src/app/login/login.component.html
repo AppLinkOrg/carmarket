@@ -22,7 +22,7 @@
                     <div class="form-group">
                       <i class="fas fa-fw fa-user faicon"></i>
                       <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                      (keyup)='clearPopover()'
+                      (keyup)='clearPopover()'  [popover]='submitresult2' [isOpen]="isOpen" placement='bottom'
                        name='loginname' [(ngModel)]="loginname" placeholder="请输入账户手机号" maxlength='11'>
                     </div>
                     <div class="form-group">

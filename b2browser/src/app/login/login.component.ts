@@ -56,6 +56,7 @@ export class LoginComponent   extends AppBase  {
    
   }
   submitresult="";
+  submitresult2=""
   error = ''
   isOpen=false;
 
@@ -84,17 +85,13 @@ export class LoginComponent   extends AppBase  {
         this.navigate("storeHome",{result: 'yes'});
         console.log(this.isremember)
         console.log( window.sessionStorage.getItem("token"))
-      }else if(res.code='404'){
+      }else if(res.code=='2'){
         console.log('aaaa')
-        this.submitresult=res.return;
-        this.error = '用户不存在！请更换用户'
-        console.log(this.error)
+        this.submitresult2=res.return;
         this.isOpen=true;
       }else{
         console.log('aaaa')
         this.submitresult=res.return;
-        // this.error = '用户不存在！请更换用户'
-        console.log(this.error)
         this.isOpen=true;
       }
     });
@@ -102,6 +99,7 @@ export class LoginComponent   extends AppBase  {
 
   clearPopover(){
     this.submitresult="";
+    this.submitresult2=""
     this.error = '';
     this.isOpen=false;
   }

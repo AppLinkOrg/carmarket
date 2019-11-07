@@ -3,7 +3,7 @@
   <view class='h4 txt-bold txt-black margin-top-60'>您好，</view>
   <view class='h4 txt-bold txt-black spaceone'>欢迎使用荣迪威汽车后市场</view>
   <view class='h5 margin-bottom-30 txt-bold txt-black '>手机号码</view>
-  <input  name="mobile" placeholder='请输入手机号码'></input>
+  <input  name="mobile" placeholder='请输入手机号码' maxlength="11"></input>
   <view class='bottom '></view>
   <view class='h5 margin-bottom-30 txt-bold txt-black'>密码</view>
   <input class='' name="password" type="password" placeholder='请输入密码'></input>

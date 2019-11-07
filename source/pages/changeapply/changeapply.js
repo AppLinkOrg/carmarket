@@ -208,6 +208,10 @@ class Content extends AppBase {
                   qty: shibie[i].qty,
                   price: shibie[i].price,
                   quality: shibie[i].quality,
+                  mcid: shibie[i].mcid,
+                  stand_time: shibie[i].standby_time,
+                  guarantee: shibie[i].guarantee,
+                  remark: shibie[i].sendcar_time,
                   status: 'A'
                 }
                 that.fitting(list, i) 

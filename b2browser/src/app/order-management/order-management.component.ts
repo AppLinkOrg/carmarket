@@ -106,21 +106,43 @@ export class OrderManagementComponent extends AppBase  {
                   }
                  
                 }
-  
+
+                for(let a=0;a<this.list.length-1;a++){
+                  for(let b=a+1; b<this.list.length;b++){
+                    if(this.list[a].orderno<this.list[b].orderno){
+                      let temp = this.list[a]
+                      this.list[a] = this.list[b]
+                      this.list[b]  = temp
+                    }
+                  }
+                }
+               console.log('kkkk')
+
                 for(let i=0;i<this.list.length;i++){
                   this.list[i].index = i
                 }
+                
       
                 this.length = this.list.length
                 this.pagination(this.list,this.length)
                
               }else {
               
-      
+                console.log('oooo')
                 this.list.push(mylist[j])
-                
-                for(let i=0;i<this.list.length;i++){
-                  this.list[i].index = i
+
+                for(let a=0;a<this.list.length-1;a++){
+                  for(let b=a+1; b<this.list.length;b++){
+                    if(this.list[a].orderno<this.list[b].orderno){
+                      let temp = this.list[a]
+                      this.list[a] = this.list[b]
+                      this.list[b]  = temp
+                    }
+                  }
+                }
+               
+                for(let k=0;k<this.list.length;k++){
+                  this.list[k].index = k
                 }
   
                 this.length = this.list.length

@@ -63,4 +63,9 @@
   top: 0
 }
 
+.imgicon{
+  height: 50rpx;
+  width: 80rpx;
+}
+
 

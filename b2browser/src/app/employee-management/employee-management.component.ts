@@ -282,11 +282,13 @@ export class EmployeeManagementComponent extends AppBase  {
   }
 
   quxiao(){
+    this.pageList = []
     if(this.item.morenaddress==false){
       this.item.morenaddress = "否"
     }else if(this.item.morenaddress==true){
       this.item.morenaddress = '是'
     }
+    this.onMyShow()
     console.log(this.item,'quxiao')
   }
  

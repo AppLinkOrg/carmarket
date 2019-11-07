@@ -88,11 +88,21 @@
   <view class="btnd text-center h5 margin-right-30" bindtap="bindshibie">点击识别</view>
 </view>
 
-
 <view class="flex-row flex-center flex-wrap">
   <view class="block" wx:for='{{fittings}}' wx:key='k' wx:for-index='idx'>
     <view class="btnb margin-top-20 text-center">{{item}}</view>
     <image class="icon-17 quchu" src="{{uploadpath}}resource/{{res.quchu}}" bindtap="bindclear" id="{{idx}}"></image>
+  </view>
+</view>
+
+<view class="bg-white margin-top-20">
+  <view class="flex-row margin-top-20">
+    <view class="txt-black txt-bold margin-left-30 margin-right-10">发票</view>
+    <view class="margin-left-50">
+      <image wx:if="{{fapiao=='N'}}" id='N' class="imgicon" src="{{uploadpath}}resource/{{res.bukai}}" bindtap="bindfapiao"></image>
+      <image wx:if="{{fapiao=='Y'}}" id="Y" class="imgicon" src="{{uploadpath}}resource/{{res.kaifapiao}}" bindtap="bindfapiao"></image>
+    </view>
+    <view class="margin-left-20">不开发票</view>
   </view>
 </view>
 

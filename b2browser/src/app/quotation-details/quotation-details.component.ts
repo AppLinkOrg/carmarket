@@ -119,6 +119,9 @@ export class QuotationDetailsComponent extends AppBase  {
     }else {
       item.count = 2
     }
+    if(item.partnubmer==""){
+      item.partnubmer='无识别'
+    }
 
     var addList = {
       fittings_id: item.id,
@@ -134,14 +137,14 @@ export class QuotationDetailsComponent extends AppBase  {
       count: item.count
     }
 
-  
-    for(let key in addList){
-      if(addList[key] == ''){
-        this.tianxie = true
-        return
+      for(let key in addList){
+        if(addList[key] == ''){
+          this.tianxie = true
+          return
+        }
       }
-    }
-
+   
+    
       item.quality = ''
       item.standby_time = ''
       item.guarantee = ''
@@ -292,7 +295,7 @@ export class QuotationDetailsComponent extends AppBase  {
 
     var date1 = new Date();
     var date2 = new Date(date1);
-    date2.setDate(date1.getDate() + 7);
+    date2.setDate(date1.getDate() + 1);
     console.log(date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate());
     console.log(date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate());
 
@@ -300,7 +303,7 @@ export class QuotationDetailsComponent extends AppBase  {
     this.quoteinfo.quotestatus = "W"
     this.quoteinfo.quoteemployee_id = this.employee_id
     this.quoteinfo.quoteenterprise_id = enterprise_id
-    // this.quoteinfo.quote_id = this.id
+    this.quoteinfo.invalid = 'N'
     this.quoteinfo.invoice_demand =this.quoteinfo.invoice_demand_value
     this.quoteinfo.yiquoted_time = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + (date1.getDate()) +" "+ (date1.getHours()) + ":" + (date1.getMinutes())
     this.quoteinfo.expired_time = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() +" "+ (date2.getHours()) + ":" + (date2.getMinutes())

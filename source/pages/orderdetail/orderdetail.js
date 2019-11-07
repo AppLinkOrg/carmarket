@@ -146,6 +146,16 @@ class Content extends AppBase {
     var arr = this.Base.getMyData().alllist;
     var addressinfo = this.Base.getMyData().addressinfo;
     console.log(this.Base.getMyData().employeeinfo.id, "啦啦啦啦啦啦啦啦");
+
+
+    if (addressinfo==undefined){
+     wx.showToast({
+       title: '请先选择地址!',
+       icon:'none'
+     })
+     return;
+     }
+
     // return;
     wx.showModal({
       title: '提交',
@@ -170,7 +180,7 @@ class Content extends AppBase {
             totalamount: 35,
           }, (createorder)=>{
             wx.navigateTo({
-              url: '/pages/waitpay/waitpay?id=' + that.Base.options.id
+              url: '/pages/waitpay/waitpay?id=' + that.Base.options.id + '&json=' + JSON.stringify(arr)
             })
            // that.Base.setMyData({ createorder})
           })

@@ -9,8 +9,8 @@ import {
   InstApi
 } from "../../apis/inst.api.js";
 import {
-  ConsumeApi
-} from "../../apis/consume.api.js";
+  OrderApi
+} from "../../apis/order.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -24,11 +24,12 @@ class Content extends AppBase {
 
   onMyShow() {
     var that = this;
-    var consumeapi = new ConsumeApi();
     var id = this.Base.options.id;
-    consumeapi.list({
-      employee_id:id,
+    var orderApi = new OrderApi();
+    orderApi.consumelist({
+      enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id
     }, (list) => {
+      console.log(list, 'ooooo')
       this.Base.setMyData({
         list
       });

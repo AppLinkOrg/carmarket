@@ -70,7 +70,13 @@ export class QuotationCenterComponent extends AppBase {
               if(item.quotestatus=='Q'){
                     
                     item.quote_id = item.id
-                    item.invoice_demand =item.invoice_demand
+
+                    if(item.invoice_demand!=""){
+                      item.invoice_demand =item.invoice_demand
+                    }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){
+                      item.invoice_demand =item.invoice_demand_value
+                    }
+                    
                       a.addquotation(item).then((addquotation:any)=>{
                         console.log(addquotation,'addquotation')
                       })
@@ -83,7 +89,13 @@ export class QuotationCenterComponent extends AppBase {
                 if(item.quotestatus=='Q'){
                       if(this.notinignore(item,quotationlist)){
                         item.quote_id = item.id
-                        item.invoice_demand =item.invoice_demand
+                        
+                        if(item.invoice_demand!=""){
+                          item.invoice_demand =item.invoice_demand
+                        }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){
+                          item.invoice_demand =item.invoice_demand_value
+                        }
+
                         a.addquotation(item).then((addquotation:any)=>{
                           console.log(addquotation,'addquotation')
                         })
@@ -121,19 +133,19 @@ export class QuotationCenterComponent extends AppBase {
                       item.photoLen = 0
                       console.log(item)
       
-                      if (item.frontofcar != '') {
+                      if (item.frontofcar != '' && item.frontofcar!="undefined") {
                         item.photoLen++
                       }
-                      if (item.namesplate != '') {
+                      if (item.namesplate != ''&& item.namesplate!="undefined") {
                         item.photoLen++
                       }
-                      if (item.rearofcar != '') {
+                      if (item.rearofcar != ''&& item.rearofcar!="undefined") {
                         item.photoLen++
                       }
-                      if (item.photo1 != '') {
+                      if (item.photo1 != ''&& item.photo1!="undefined") {
                         item.photoLen++
                       }
-                      if (item.photo2 != '') {
+                      if (item.photo2 != ''&& item.photo2!="undefined") {
                         item.photoLen++
                       }
                       this.list.push(item)
@@ -431,7 +443,7 @@ export class QuotationCenterComponent extends AppBase {
           if(this.hasClass(this.distinct[j],'disname-active')){
             console.log(this.distinct[j].innerText)
 
-            if (this.list[i].enterprise_corporate_address == this.distinct[j].innerText) {
+            if (this.list[i].enterprise_corporate_address.indexOf(this.distinct[j].innerText)!=-1) {
               // console.log(this.distinct[j])
               temp.push(this.list[i])
               console.log('kkkkk')
@@ -624,7 +636,7 @@ export class QuotationCenterComponent extends AppBase {
 
       for (let i = 0; i < list.length; i++) {
         
-        if(list[i].quotestatus == 'E'){
+        if(list[i].quotestatus == 'E' || list[i].invalid=='是'){
           this.list.push(list[i])
         }
       }
@@ -675,10 +687,10 @@ export class QuotationCenterComponent extends AppBase {
       console.log(nowtime,'5555')
 
       for (let i = 0; i < list.length; i++) {
-        if (list[i].quotestatus == "W") {
+        if (list[i].invalid=='否' || list[i].quotestatus=='C') {
           
-          if (list[i].expired_time_dateformat < nowtime) {
-            this.orderApi.editquotestatus({quoteenterprise_id: this.enterprise_id,quotestatus: 'E'}).then((editquotestatus:any)=>{
+          if (list[i].expired_time_dateformat < nowtime && list[i].quotestatus=="W") {
+            this.orderApi.editquotestatus({quoteenterprise_id: this.enterprise_id,quotestatus: 'E',quote_id: list[i].quote_id}).then((editquotestatus:any)=>{
               console.log(editquotestatus)
             })
           

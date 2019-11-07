@@ -11,7 +11,7 @@
   <div class="row">
 
     <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-3 col-md-6 mb-4 cursor-po">
       <div class="card bg-pal-green shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center" (click)='todayOrder()'>
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-3 col-md-6 mb-4 cursor-po">
       <div class="card bg-pal-yellow shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center" (click)='todayIncome()'>
@@ -46,7 +46,7 @@
 
     
     <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-3 col-md-6 mb-4 cursor-po">
         <div class="card bg-dep-yellow shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center"  (click)='monthOrder()'>
@@ -63,7 +63,7 @@
       </div>
 
     <!-- Pending Requests Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-3 col-md-6 mb-4 cursor-po">
       <div class="card bg-pal-red shadow h-100 py-2">
         <div class="card-body">
           <div class="row no-gutters align-items-center" (click)='monthIncome()'>
@@ -95,14 +95,14 @@
         <div class="card-body txt-blue ">
           <div class="chart-area padding-left-50 margin-40">
             <div class="row">
-              <div class="col-xl-3"> 
+              <div class="col-xl-3  cursor-po"> 
                 <div (click)='reGoods()'>
                   <img src="{{uploadpath}}resource/{{res.sendgoods}}" class="icon-40 margin-right-10"/>
                    待发货：
                    <span>{{goods}}</span>
                   </div>
                 </div>
-              <div class="col-xl-3"> 
+              <div class="col-xl-3  cursor-po"> 
                 <div (click)='applyGoods()'>
                   <img src="{{uploadpath}}resource/{{res.returngoods}}" class="icon-40 margin-right-10"/> 
                    客户申请退货：

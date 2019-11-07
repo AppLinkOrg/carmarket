@@ -34,7 +34,8 @@ class Content extends AppBase {
     var num=0;
     var orderapi = new OrderApi();
     orderapi.shopcarlist({
-      quote_id: this.Base.options.id
+      quote_id: this.Base.options.id,
+      status:'A'
     }, (shopcarlist) => {
 
       var etplist = {};

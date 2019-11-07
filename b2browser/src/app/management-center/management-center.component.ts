@@ -137,7 +137,7 @@ export class ManagementCenterComponent extends AppBase  {
 
 
 changeSwitch(e,list){
-    
+    console.log(list,'llll')
 
     if(list.power == '是'){
       e.target.classList.add('onqiuti')
@@ -164,7 +164,7 @@ changeSwitch(e,list){
         
       })
 
-    }else if(list.power == '否' || list.power==""){
+    }else if(list.power == '否'){
       e.target.classList.add('offqiuti')
       e.target.parentElement.classList.add('offBtn')
       
@@ -204,12 +204,13 @@ changeSwitch(e,list){
 
   
   quxiao(){
+    this.pageList = []
     if(this.item.morenaddress==false){
       this.item.morenaddress = "否"
     }else if(this.item.morenaddress==true){
       this.item.morenaddress = '是'
     }
-  
+    this.onMyShow()
     console.log(this.item,'quxiao')
   }
  
