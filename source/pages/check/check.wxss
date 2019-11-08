@@ -3,8 +3,8 @@ page {
 }
 
 .top {
-  height: 160rpx;
-  width: 100vw;
+  /* height: 160rpx; */
+ // width: 100vw;
 }
 
 .btn {
@@ -68,16 +68,17 @@ page {
   margin-top: -30rpx;
 }
 
-.button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 90rpx;
+.button { 
+  position: fixed;
+  bottom: 2%;
+  margin: 40rpx;
+  width: 90vw;
+  height: 90rpx; 
+  line-height: 90rpx;
   background-color: #143779;
+  color: white;
   border-radius: 50rpx;
-  margin-left: 30rpx;
-  margin-right: 30rpx;
-  margin-top: 10rpx;
+  z-index: 10;
 }
 
 

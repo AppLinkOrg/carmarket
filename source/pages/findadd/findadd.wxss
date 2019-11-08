@@ -22,18 +22,17 @@ page {
 }
 
 .button {
-  margin-left: 30rpx;
-  margin-right: 30rpx;
-  bottom: 10rpx;
+  
   position: fixed;
-  height: 90rpx;
-  width: 92vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  bottom: 2%;
+  margin: 40rpx;
+  width: 90vw;
+  height: 90rpx; 
+  line-height: 90rpx;
   background-color: #143779;
   color: white;
   border-radius: 50rpx;
+  z-index: 10;
 }
 .left{
   margin-left: 120rpx;

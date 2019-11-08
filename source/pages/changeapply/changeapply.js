@@ -175,10 +175,10 @@ class Content extends AppBase {
 
           var orderapi = new OrderApi();
 
-          orderapi.addtuihuo({
-         
+          orderapi.addtuihuo({ 
             order_id: change.id,
-            enterprise_id: change.enterprise_id,
+           // enterprise_id: change.enterprise_id,
+            enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
             employee_id: change.employee_id,
             remarks: that.Base.getMyData().content,
             carmodel: change.carname,

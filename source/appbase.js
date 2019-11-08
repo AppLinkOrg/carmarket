@@ -218,7 +218,6 @@ export class AppBase {
         })
 
       } else {
-        
         this.Base.setMyData({
           employeeinfo: info, emp_id: info.id
         });

@@ -171,13 +171,14 @@ class Content extends AppBase {
 
           orderapi.createorder({
             employee_id: that.Base.getMyData().employeeinfo.id,
+            //fahuo_id:that.Base.
             vin: that.Base.options.vin,
             carname: that.Base.options.carmodel,
             quote_id: that.Base.options.id,
             receiver: addressinfo.name,
             receivecontact: addressinfo.phonenumber,
             receiveaddress: addressinfo.region + addressinfo.address,
-            totalamount: 35,
+            totalamount: sumprice,
           }, (createorder)=>{
             wx.navigateTo({
               url: '/pages/waitpay/waitpay?id=' + that.Base.options.id + '&json=' + JSON.stringify(arr)

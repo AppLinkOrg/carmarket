@@ -45,31 +45,39 @@ class Content extends AppBase {
 
 
     orderapi.quotelist({
-      quotestatus: 'Q', employee_id: this.Base.getMyData().emp_id
-    }, (weibaolist) => {
+        employee_id: this.Base.getMyData().emp_id
+    }, (quotelist) => {
       this.Base.setMyData({
-        weibaolist
+        quotelist
       })
     })
+
+    // orderapi.quotelist({
+    //   quotestatus: 'Q', employee_id: this.Base.getMyData().emp_id
+    // }, (weibaolist) => {
+    //   this.Base.setMyData({
+    //     weibaolist
+    //   })
+    // })
 
 
     
-    orderapi.quotelist({
-      quotestatus: 'W', employee_id: this.Base.getMyData().emp_id
-    }, (yibaolist) => {
-      console.log(yibaolist,'yyyyyy')
-      this.Base.setMyData({
-        yibaolist
-      })
-    })
+    // orderapi.quotelist({
+    //   quotestatus: 'W', employee_id: this.Base.getMyData().emp_id
+    // }, (yibaolist) => {
+    //   console.log(yibaolist,'yyyyyy')
+    //   this.Base.setMyData({
+    //     yibaolist
+    //   })
+    // })
 
-    orderapi.quotelist({
-      quotestatus: 'E', employee_id: this.Base.getMyData().emp_id
-    }, (quxiaolist) => {
-      this.Base.setMyData({
-        quxiaolist
-      })
-    })
+    // orderapi.quotelist({
+    //   quotestatus: 'E', employee_id: this.Base.getMyData().emp_id
+    // }, (quxiaolist) => {
+    //   this.Base.setMyData({
+    //     quxiaolist
+    //   })
+    // })
 
 
   }

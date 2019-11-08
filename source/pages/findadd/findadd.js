@@ -32,7 +32,7 @@ class Content extends AppBase {
   }
   onMyShow() {
     var that = this;
-
+    var carapi=new CarApi();
     if (this.Base.getMyData().list==undefined){
       var json = JSON.parse(this.Base.options.json);
       this.Base.setMyData({
@@ -44,11 +44,7 @@ class Content extends AppBase {
         json
       })
     }
-
-    
-    // for(var i=0;i<json.length;i++){
-    //   json[i].num=1
-    // }
+ 
 
   }
 
@@ -259,6 +255,7 @@ class Content extends AppBase {
                 photo3: shibie[i].photo[2],
                 photo4: shibie[i].photo[3],
                 photo5: shibie[i].photo[4],
+                Sprice: shibie[i].cost_price,
                 status: 'A'
               }
               that.fitting(list, i)

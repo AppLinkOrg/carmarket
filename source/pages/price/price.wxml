@@ -1,4 +1,4 @@
-<view class='flex-row  flex-center white-block' style='height:80rpx;'>
+<!-- <view class='flex-row  flex-center white-block' style='height:80rpx;'>
   <view class='flex-row flex-column flex-1' data-check='A' bindtap='bindcheck'>
     <view class=' txt-bold flex-1 text-center {{check=="A"?"txt-blue":""}}'>未报价</view>
     <view class='order {{check=="A"?"bg-blue":"bg-white"}}'></view>
@@ -14,22 +14,22 @@
     <view class='order {{check=="C"?"bg-blue":"bg-white"}}'></view>
   </view>
 </view>
-<view class='borderbottom'></view>
+<view class='borderbottom'></view> -->
 
 <!--未报价-->
-<view class=" " wx:if="{{check=='A'}}">
+<view class=" "  >
 
-  <view wx:if="{{weibaolist.length==0 }}" class='flex-row flex-column'>
+  <view wx:if="{{quotelist.length==0 }}" class='flex-row flex-column'>
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
-    <view class=''>暂时没有相关报价单</view>
+    <view class='txt-bold'>暂时没有相关报价单</view>
   </view>
 
-  <view class=' box white-block padding-20 {{seq>0?"margin-top-20":""}}' wx:for="{{weibaolist}}" wx:key='k' wx:for-index='seq'>
+  <view class=' box white-block padding-20 {{seq>0?"margin-top-20":""}}' wx:for="{{quotelist}}" wx:key='k' wx:for-index='seq'>
     <view bindtap='pricedetail' id="{{item.id}}">
 
       <view class='flex-row '>
         <view class="h5  flex-1 txt-gray">报价单号：{{item.quotenumber}}</view>
-        <view class='h5 margin-left-10 txt-bold txt-gray'>{{item.quotestatus_name}}</view>
+        <view class='h5 margin-left-10 txt-bold  {{item.quotestatus=="W"?"txt-green":"txt-gray"}}'>{{item.quotestatus_name}}</view>
       </view>
 
       <view class="flex-row flex-center flex-wrap margin-top-10">
@@ -43,10 +43,11 @@
     </view>
 
   </view>
+
 </view>
 
 <!--已报价-->
-<view class=" " wx:if="{{check=='B'}}">
+<!-- <view class=" " wx:if="{{check=='B'}}">
   <view class='flex-row flex-column' wx:if="{{yibaolist.length==0}}">
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
     <view class=''>暂时没有相关报价单</view>
@@ -71,10 +72,11 @@
     </view>
 
   </view>
-</view>
+
+</view> -->
 
 <!--已取消-->
-<view class=" " wx:if="{{check=='C'}}">
+<!-- <view class=" " wx:if="{{check=='C'}}">
   <view class='flex-row flex-column' wx:if="{{quxiaolist.length==0}}">
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
     <view class=''>暂时没有相关报价单</view>
@@ -97,7 +99,7 @@
 
 
 
-</view>
+</view> -->
 
 <!--待确认-->
 <!-- <view class=" " wx:if="{{check=='C'}}">

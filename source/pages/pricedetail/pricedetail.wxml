@@ -81,12 +81,15 @@
           <view class="flex-row flex-bottom">
             <view class=" txt-red txt-bold">￥{{item.price}}</view>
             <view class="h6 margin-left-20 ">x{{item.qty}}</view>
+            
           </view>
 
-          <view class="flex-row flex-top margin-top-10">
-            <view class="h5  ">{{item.quality}}</view>
-            <view class="h5 txt-black flex-1 margin-left-10">{{item.fit_name}}</view>
+          <view class="flex-row flex-center margin-top-10">
+            <view class="h5  flex-1">品质：{{item.quality}}</view>
+            <view class="h5 txt-black  margin-left-10">{{item.fit_name}} </view>
+            <view class="h6 margin-left-20  ">4S价:￥{{item.Sprice}}</view>
           </view>
+          <view class="h6 margin-top-10">{{item.mcid}}</view>
 
           <view class="h6 margin-top-20">备注：{{item.remarks_infor}}</view>
         </view>
@@ -114,11 +117,12 @@
 
         <view class="flex-row  flex-bottom">
           <view class=" txt-black txt-bold h5">{{item.name}}</view>
-          <view class="margin-left-20 txt-black txt-bold h5"> x{{item.quantity}}</view>
+          <view class="margin-left-20 txt-black txt-bold h5"> x{{item.quantity}} </view>
+          <view class="h6  ">(4S价:￥{{item.Sprice}})</view>
           <!-- <image class="icon-30 margin-top-20 margin-left-50" src="{{uploadpath}}resource/{{res.epc}}"></image> -->
         </view>
 
-        <view class=" h6 margin-top-10">{{item.partnubmer}}</view>
+        <view class=" h6 margin-top-10">{{item.name}}  {{item.partnubmer}}</view>
       </view>
 
     </view>
@@ -147,10 +151,10 @@
 
           <view class="flex-row flex-center margin-top-10">
             <view class="h5 flex-1">{{item.quality}}</view>
-            <view class="h6">{{item.address}}</view>
+            <view class="h6">{{item.edt_address}}</view>
           </view>
 
-          <view class="h6 margin-top-20">备注：{{item.remarks_infor}}</view>
+          <view class="h6 margin-top-20" wx:if='{{item.remarks_infor!=""}}'>备注：{{item.remarks_infor}}</view>
         </view>
 
       </view>

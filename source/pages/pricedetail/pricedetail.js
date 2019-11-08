@@ -259,7 +259,8 @@ class Content extends AppBase {
     //var aaa=[];
     for (var i = 0; i < shopcar.length; i++) {
       var list = {
-        enterprise_id: shopcar[i].enterprise_id,
+        supplier: shopcar[i].enterprise_id,
+        enterprise_id: this.Base.getMyData().employeeinfo.enterprise.id,
         fittings_id: shopcar[i].fittings_id,
         quote_id: this.Base.options.id,
         supplier: shopcar[i].company,

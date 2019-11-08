@@ -25,13 +25,14 @@ class Content extends AppBase {
     var that = this;
     var consumeapi = new ConsumeApi();
 
-    consumeapi.list({
+    // consumeapi.list({
 
-    }, (list) => {
-      this.Base.setMyData({
-        list
-      });
-    });
+    // }, (list) => {
+    //   this.Base.setMyData({
+    //     list
+    //   });
+    // });
+
   }
 
 

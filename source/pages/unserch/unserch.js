@@ -160,6 +160,37 @@ class Content extends AppBase {
     console.log(shibie);
     //return;
 
+    if (imageone==undefined){
+     wx.showToast({
+       title: '请选择铭牌图片',
+       icon:'none'
+     })
+     return;
+    }
+    if (imagetwo == undefined) {
+      wx.showToast({
+        title: '请选择车头图片',
+        icon: 'none'
+      })
+      return;
+    }
+    if (imagethree == undefined) {
+      wx.showToast({
+        title: '请选择车尾图片',
+        icon: 'none'
+      })
+      return;
+    }
+ 
+    if (shibie == '') {
+      wx.showToast({
+        title: '请输入零件名并识别',
+        icon: 'none'
+      })
+      return;
+    }
+ 
+
     wx.showModal({
       title: '提交',
       content: '确认发布询价？',
@@ -167,7 +198,7 @@ class Content extends AppBase {
       cancelText: '取消',
       cancelColor: '#EE2222',
       confirmText: '确定',
-      confirmColor: '#2699EC',
+      confirmColor00: '#2699EC',
       success: function(res) {
         if (res.confirm) {
           wx.showLoading({

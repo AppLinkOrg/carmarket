@@ -1,24 +1,40 @@
 <view class="bg-white padding-20" wx:for='{{json}}' wx:key='k' wx:for-index='idx'>
-  <view class=" flex-row margin-top-30">
-    <view>{{idx+1}}</view>
-    <view class="margin-left-20 ">{{item.name}}</view>
-    <view class="flex-1"></view>
-    <image class="icon  " src='{{uploadpath}}resource/{{res.jian}}' bindtap="bindjian" data-type='less' id="{{idx}}"></image>
-    <view class="margin-left-10 margin-right-10 bgbtn">{{item.num}}</view>
-    <image class="icon  margin-right-30" src='{{uploadpath}}resource/{{res.jia}}' bindtap="bindjian" data-type='add' id="{{idx}}"></image>
-  </view>
-  <view class="flex-row  margin-30 ">
+  <view class=" flex-row flex-top margin-top-30">
+    <view class=" txt-bold txt-black ">{{idx+1}}、</view>
+    <view class=" txt-bold txt-black h5">{{item.name}}</view>
 
-    <view class="  margin-right-30 padding-10" style=" position: relative;" >
+
+    <view class="flex-1"></view>
+
+    <view class="flex-row flex-center">
+      <image class="icon  " src='{{uploadpath}}resource/{{res.jian}}' bindtap="bindjian" data-type='less' id="{{idx}}"></image>
+      <view class="margin-left-10 margin-right-10 bgbtn">{{item.num}}</view>
+      <image class="icon  margin-right-30" src='{{uploadpath}}resource/{{res.jia}}' bindtap="bindjian" data-type='add' id="{{idx}}"></image>
+    </view>
+ 
+  </view>
+
+
+  <view class="flex-row flex-center margin-top-10 margin-left-30">
+    <view class="h5 txt-black  ">{{item.mid}}</view>
+    <image src="{{uploadpath}}resource/{{res.suolve}}" id="{{item.img}}" bindtap="viewPhoto" class="icon margin-left-30"></image>
+  </view>
+
+
+  <view class="h6 margin-top-10 margin-left-30">4S价格:￥{{item.cost_price}}</view>
+  <view class="flex-row flex-center  margin-30 ">
+
+    <view class="  margin-right-30 padding-10" style=" position: relative;">
 
       <image class="icon-25   " wx:if='{{item.photo.length==0}}' src='{{uploadpath}}resource/{{res.cemera}}' bindtap="bindimg" id="{{idx}}"></image>
       <image class="icon-25  " wx:if='{{item.photo.length>0}}' src='{{uploadpath}}fittings/{{item.photo[0]}}' bindtap="bindimg" id="{{idx}}"></image>
 
       <view class="h6 shuzi" wx:if='{{item.photo.length>1}}'>{{item.photo.length}}</view>
+
     </view>
 
     <!-- bindinput="bindbeizhu" -->
-    <view class="inputt">
+    <view class=" ">
       <input class="margin-left-20 h5 " bindtap="bindimg" disabled="{{true}}" value="{{item.beizhu}}" placeholder="可输入备注" id="{{idx}}"></input>
     </view>
 
@@ -77,9 +93,10 @@
       <view class="flex-row  {{xuane!='E'?'':'txt-red'}}">其他</view>
     </view>
   </view>
-  
+
 </view>
 
 
+<view style="height:200rpx;"></view>
 
-<view class="button" bindtap="bindsubmit">发布询价</view>
+<view class="button text-center" bindtap="bindsubmit">发布询价</view>

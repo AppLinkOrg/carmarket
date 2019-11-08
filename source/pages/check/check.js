@@ -19,15 +19,23 @@ class Content extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
-    //options.id=5;
+   // options.id = 5;
     super.onLoad(options);
 
     this.Base.setMyData({
+
+      // biaoti: "福特EDGE CED 2015-2015年2.0L EcoBoost (240PS)6速自动变速箱6F中档范围",
+      // brandCode: "ford",
+      // mcid: "ZD18dns9JT89XFpbQFxRPWI%3D",
+      // vin: "LVSHFCAC2FH007377",
+
       vin: this.Base.options.vin,
       brandCode: this.Base.options.brandCode,
       mcid: this.Base.options.mcid,
       biaoti: this.Base.options.biaoti,
-      // addlist:[]
+
+      //// addlist:[]
+
     })
     if (this.Base.getMyData().json != undefined) {
       console.log('看两节课靠家里')
@@ -133,6 +141,7 @@ class Content extends AppBase {
     var that = this;
     var idx = e.currentTarget.id;
     var name = e.currentTarget.dataset.name;
+    var img = e.currentTarget.dataset.img;
     var mid = e.currentTarget.dataset.mid;
     var groupslist = this.Base.getMyData().groupslist;
 
@@ -143,24 +152,43 @@ class Content extends AppBase {
     var addlist = this.Base.getMyData().addlist;
     //}
     //return;
-    groupslist[idx].check = false;
 
-    var list = {
-      id: idx,
-      name: name,
-      num: 1,
-      mid: mid,
-      beizhu: '',
-      photo: ''
-    };
+    var carapi = new CarApi();
+    carapi.selectprice({
+      pid: mid,
+      brandCode: this.Base.getMyData().brandCode
+    }, (ret) => {
 
-    console.log(idx, "设置的顺序");
+      console.log(ret.data[0])
+ 
+      groupslist[idx].check = false;
 
-    addlist.push(list)
-    this.Base.setMyData({
-      addlist,
-      groupslist
+      var list = {
+        id: idx,
+        name: name,
+        num: 1,
+        img: img,
+        brandCode: this.Base.getMyData().brandCode,
+        cost_price: ret.data[0].sale_price,      //销售价
+        mill: ret.data[0].mill,      //厂商
+        parttype: ret.data[0].parttype,    //零件类型
+        mid: mid,       //零件号
+        beizhu: '',
+        photo: ''
+      };
+
+      console.log(idx, "设置的顺序");
+
+      addlist.push(list)
+      this.Base.setMyData({
+        addlist,
+        groupslist
+        //aaaa: ret
+      })
+ 
     })
+  
+
   }
 
   bindnext() {
