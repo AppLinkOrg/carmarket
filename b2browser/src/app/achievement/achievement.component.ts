@@ -151,7 +151,7 @@ export class AchievementComponent extends AppBase  {
               
               for(let j=0;j<tOrder.length;j++){
                 if(tOrder[j].order_status == 'N' ){
-                  this.totalMoney +=  parseInt(tOrder[j].totalamount)
+                  this.totalMoney =  parseInt(tOrder[j].totalamount)
                   this.order.push(tOrder[j])
                 }
 
@@ -161,7 +161,7 @@ export class AchievementComponent extends AppBase  {
                 }
 
                 if(tOrder[j].order_status == 'Y'){
-                  this.totalMoney -=  parseInt(tOrder[j].totalamount)
+                  this.totalMoney =  parseInt(tOrder[j].totalamount)
                   tOrder[j].order_status_name = '已退款'
                   this.order.push(tOrder[j])
                 }
@@ -219,7 +219,7 @@ export class AchievementComponent extends AppBase  {
 
               for(let j=0;j<tOrder.length;j++){
                 if(tOrder[j].order_status == 'N' ){
-                  this.totalMoney += tOrder[j].totalamount
+                  this.totalMoney = tOrder[j].totalamount
                   this.order.push(tOrder[j])
                 }
 
@@ -229,7 +229,7 @@ export class AchievementComponent extends AppBase  {
                 }
 
                 if(tOrder[j].order_status == 'Y'){
-                  this.totalMoney -= tOrder[j].totalamount
+                  this.totalMoney = tOrder[j].totalamount
                   tOrder[j].order_status_name = '已退款'
                   this.order.push(tOrder[j])
                 }

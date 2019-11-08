@@ -119,10 +119,10 @@
                       <th width='16%'>车型/车架号</th>
                       <th width='16%'>配件清单</th>
                       <th width='8%'>图片附件</th>
-                      <th width='15%'>卖家信息</th>
+                      <th width='15%'>买家信息</th>
                       <th width='8%'>询价时间</th>
                       <th *ngIf='isshow' width='5%'>状态</th>
-                      <th width='10%'>操作</th>
+                      <th width='10%' *ngIf="exp">操作</th>
                   </thead>
                   <tbody class="lheight" *ngFor="let item of data">
                     <tr>
@@ -167,7 +167,7 @@
                       </td>
                       <td><div>{{item.quote_time}}</div></td>
                       <td *ngIf='isshow'><div>{{item.quotestatus_name}}</div></td>
-                      <td>
+                      <td *ngIf='exp'>
                         <div *ngIf='item.quotestatus === "Q" &&  isquote==true'>
                           <button class="btn btn-primary" (click)="tiaozhuan(item.id,item.quote_id)"><a>立即报价</a></button><br>
                           <button class="btn btn-default txt-blue" (click)='ignoreHandle(item)'>忽略</button>
@@ -176,9 +176,12 @@
                         <div *ngIf='item.quotestatus === "Q" &&  isquote==false'>
                             <button class="btn btn-primary" (click)="tiaozhuan(item.id,item.quote_id)"><a>立即报价</a></button><br>
                         </div>
+                        <div *ngIf='item.quotestatus === "E" &&  isquote==false'>
+                          <div >一</div><br>
+                      </div>
                         <div *ngIf='item.quotestatus === "W" || item.quotestatus=="C"'>
                             <button class="btn btn-primary"  (click)="tiaozhuan2(item.quote_id)"><a>查看详情</a></button><br>
-                            <span class="txt-orange"  *ngIf='item.invalid_value ==="N"'>等待卖家付款</span>
+                            <span class="txt-orange"  *ngIf='item.invalid_value ==="N"'>等待买家付款</span>
                         </div>
                       </td>
                     </tr>

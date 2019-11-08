@@ -543,7 +543,7 @@ export class QuotationCenterComponent extends AppBase {
     this.isquote = true;
     this.isshow = false
 
-
+    this.exp = true;
     let current = e.target
     current.classList.add('btn-active')
     let others = e.target.parentElement.childNodes
@@ -585,7 +585,7 @@ export class QuotationCenterComponent extends AppBase {
     this.pageList = [];
     this.isshow = false
     this.isquote = false;
-
+    this.exp = true;
     let current = e.target
     current.classList.add('btn-active')
     let others = e.target.parentElement.childNodes
@@ -611,7 +611,7 @@ export class QuotationCenterComponent extends AppBase {
 
   }
 
-
+  exp=true
   // 已过期
   expired(e) {
 
@@ -619,7 +619,7 @@ export class QuotationCenterComponent extends AppBase {
     this.pageList = [];
     this.isquote = false;
     this.isshow = false
-
+    this.exp = false;
     let current = e.target
     current.classList.add('btn-active')
     let others = e.target.parentElement.childNodes
@@ -661,7 +661,7 @@ export class QuotationCenterComponent extends AppBase {
     this.pageList = [];
     this.isquote = false;
     this.isshow = false
-
+    this.exp = true;
     let current = e.target
     current.classList.add('btn-active')
     let others = e.target.parentElement.childNodes
@@ -685,20 +685,29 @@ export class QuotationCenterComponent extends AppBase {
   
       let nowtime = year + '-' + month + '-' + day +" "+ hh +":"+ mm
       console.log(nowtime,'5555')
-
+      let shijian = date.getTime()
+      console.log(shijian)
       for (let i = 0; i < list.length; i++) {
         if (list[i].invalid=='否' || list[i].quotestatus=='C') {
-          
-          if (list[i].expired_time_dateformat < nowtime && list[i].quotestatus=="W") {
+          console.log(list[i],'哈哈哈')
+          let newDate = new Date(list[i].expired_time)
+          list[i].times = newDate.getTime()
+          if (list[i].times < shijian && list[i].quotestatus=="W") {
+            console.log('西喜爱',list[i].times)
             this.orderApi.editquotestatus({quoteenterprise_id: this.enterprise_id,quotestatus: 'E',quote_id: list[i].quote_id}).then((editquotestatus:any)=>{
               console.log(editquotestatus)
+              if(editquotestatus){
+                
+              }
             })
           
-          }else {
+          }
+          if( list[i].quotestatus=="W" || list[i].quotestatus=="C"){
+            console.log('哈哈哈')
             this.list.push(list[i])
           }
-        
         }
+        //break;
 
       }
 
@@ -719,7 +728,7 @@ export class QuotationCenterComponent extends AppBase {
     this.pageList = [];
     this.isquote = false;
     this.isshow = true
-
+    this.exp = true;
     let current = e.target
     current.classList.add('btn-active')
     let others = e.target.parentElement.childNodes

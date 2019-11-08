@@ -5,12 +5,13 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 import { OrderApi } from 'src/providers/order.api';
 import { EnterpriseApi } from 'src/providers/enterprise.api';
+import { MemberApi } from 'src/providers/member.api';
 
 @Component({
   selector: 'app-returns-detail',
   templateUrl: './returns-detail.component.html',
   styleUrls: ['./returns-detail.component.scss'],
-  providers:[InstApi,OrderApi,EnterpriseApi]
+  providers:[InstApi,OrderApi,EnterpriseApi,MemberApi]
 })
 export class ReturnsDetailComponent extends AppBase  {
 
@@ -20,6 +21,7 @@ export class ReturnsDetailComponent extends AppBase  {
     public instApi:InstApi,
     public orderApi:OrderApi,
     public enterpriseApi:EnterpriseApi,
+    public memberApi:MemberApi,
   ) { 
     super(router,activeRoute,instApi,enterpriseApi);
   }
@@ -47,19 +49,44 @@ export class ReturnsDetailComponent extends AppBase  {
   }
   
   saveQuote(item){
+    var that = this
     console.log(item)
+    console.log(this.operatorinfo)
     if(item.orderstatus=='R'){
+
       item.orderstatus = 'I'
+      this.orderApi.updatereturnstatus({id:item.id,orderstatus:item.orderstatus}).then((updatereturnstatus:any)=>{
+        console.log(updatereturnstatus)
+        if(updatereturnstatus.code=='0'){
+          this.navigate('returnsManagement')
+        }
+      })
+
     }else if(item.orderstatus=='I'){
-      item.orderstatus='Y'
+      that.orderApi.addconsume({type:"R",amount:item.return_money,enterprise_id:this.operatorinfo.enterprise_id,employee_id:this.operatorinfo.id}).then((addconsume)=>{
+        console.log(addconsume,'aaaa')
+        if(addconsume){
+          that.memberApi.editenterprise({id:item.enterprise_id,account_money:item.return_money}).then((editenterprise)=>{
+            if(editenterprise){
+              that.memberApi.editmoney({id:this.operatorinfo.id,sales_volume:item.return_money}).then((editmoney)=>{
+                if(editmoney){
+                  item.orderstatus='Y'
+                  that.orderApi.updatereturnstatus({id:item.id,orderstatus:item.orderstatus}).then((updatereturnstatus:any)=>{
+                    console.log(updatereturnstatus)
+                    if(updatereturnstatus.code=='0'){
+                      that.navigate('returnsManagement')
+                    }
+                  })
+                }
+              })
+            }
+          })
+          
+        }
+      })
     }
 
-    this.orderApi.updatereturnstatus(item).then((updatereturnstatus:any)=>{
-      console.log(updatereturnstatus)
-      if(updatereturnstatus.code=='0'){
-        this.navigate('returnsManagement')
-      }
-    })
+    
 
 
   }

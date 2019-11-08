@@ -118,13 +118,31 @@
             <div class="col-lg-12">
             <div class="card show mb-4">
                     <div class="card-body flex-row box-auto flex-bottom">
-                    <button class="btn btn-primary padding-left-50 padding-right-50" (click)="saveQuote(returndetail)"><a>同意申请退货</a></button>
+                    <button class="btn btn-primary padding-left-50 padding-right-50"  data-toggle="modal" data-target="#myModal3" ><a>同意申请退货</a></button>
                     </div>
             </div> 
             </div>
             
         </div>
 
+        <div class="modal fade" tabindex="-1" role="dialog" id="myModal3">
+                
+            <div class="modal-dialog" >
+              <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">退货提示</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+              <div class="modal-body">
+               同意给买家退货？
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary " (click)="saveQuote(returndetail)"  data-dismiss="modal">确定</button>
+              </div>
+              </div>
+            </div>
+        </div>
         
         <div class="row margin-top-40"  *ngIf='returnstatus=="I"'>
 
@@ -132,11 +150,31 @@
             <div class="col-lg-12">
             <div class="card show mb-4">
                     <div class="card-body flex-row box-auto flex-bottom">
-                    <button class="btn btn-primary padding-left-50 padding-right-50" (click)="saveQuote(returndetail)"><a>已收到货</a></button>
+                    <button class="btn btn-primary padding-left-50 padding-right-50" data-toggle="modal" data-target="#myModal4"><a>已收到货</a></button>
                     </div>
             </div> 
             </div>
             
+        </div>
+
+        
+        <div class="modal fade" tabindex="-1" role="dialog" id="myModal4" >
+                
+            <div class="modal-dialog" >
+              <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">退货提示</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+              <div class="modal-body">
+              已经收到买家的退回来的货品？
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary "  (click)="saveQuote(returndetail)"  data-dismiss="modal">确定</button>
+              </div>
+              </div>
+            </div>
         </div>
 
     </div>

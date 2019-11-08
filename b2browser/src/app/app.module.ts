@@ -34,6 +34,7 @@ import { CancelDetailComponent } from './cancel-detail/cancel-detail.component';
 import { AchievementComponent } from './achievement/achievement.component';
 import { EmployeeManagementComponent } from './employee-management/employee-management.component';
 import { WaitingComponent } from './waiting/waiting.component';
+import { ConsumeComponent } from './consume/consume.component';
 
 @NgModule({
   declarations: [
