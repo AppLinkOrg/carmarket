@@ -60,13 +60,13 @@ export class ReturnsManagementComponent extends AppBase  {
         console.log(employeeinfo)
         this.enterprise_id = employeeinfo.enterprise_id
         
-        // if(employeeinfo.power == 'Y'){
-        //   console.log('aaa')
-        //   this.employee_id = ''
-        // }else{
-        //   console.log('bb')
-        //   this.employee_id = employeeinfo.id
-        // }
+        if(employeeinfo.power == 'Y'){
+          console.log('aaa')
+          this.employee_id = ''
+        }else{
+          console.log('bb')
+          this.employee_id = employeeinfo.id
+        }
 
         if(this.status != undefined){
           this.pageList = []
@@ -99,7 +99,7 @@ export class ReturnsManagementComponent extends AppBase  {
           this.returnlist = []
 
 
-          a.returnlist({ enterprise_id: this.enterprise_id, employee_id:this.employee_id,}).then((returnlist:any)=>{
+          a.returnlist({ gongsi: this.enterprise_id, baojia:this.employee_id,}).then((returnlist:any)=>{
             this.pageList = []
             this.returnlist = returnlist
 

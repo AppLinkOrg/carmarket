@@ -6,6 +6,7 @@ import { InstApi } from 'src/providers/inst.api';
 import { OrderApi } from 'src/providers/order.api';
 import { EnterpriseApi } from 'src/providers/enterprise.api';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { MemberApi } from 'src/providers/member.api';
 
 @Component({
   selector: 'app-order-management',
@@ -65,13 +66,13 @@ export class OrderManagementComponent extends AppBase  {
         console.log(employeeinfo,'000')
         this.enterprise_id = employeeinfo.enterprise_id
 
-        // if(employeeinfo.power == 'Y'){
-        //   console.log('aaa')
-        //   this.employee_id = ''
-        // }else{
-        //   console.log('bb')
-        //   this.employee_id = employeeinfo.id
-        // }
+        if(employeeinfo.power == 'Y'){
+          console.log('aaa')
+          this.employee_id = ''
+        }else{
+          console.log('bb')
+          this.employee_id = employeeinfo.id
+        }
        
 
         a.mylist({ enterprise_id: this.enterprise_id,employee_id: this.employee_id }).then((mylist:any)=>{
@@ -81,7 +82,11 @@ export class OrderManagementComponent extends AppBase  {
           this.pageList = []
           for(let j=0;j<mylist.length;j++){
             if(mylist[j].order_status != 'R' && mylist[j].order_status != 'Y'){
-  
+              this.enterpriseApi.getemployeeinfo({id:mylist[j].baojia}).then((getemployeeinfo:any)=>{
+                console.log(getemployeeinfo,'嘻嘻嘻嘻嘻')
+                mylist[j].baojiaperson = getemployeeinfo.name
+                mylist[j].baojiacom = getemployeeinfo.enterprise_name
+              })
               var lists = []
               lists.push(mylist[j])
   
