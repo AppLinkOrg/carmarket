@@ -1,0 +1,120 @@
+.bg-dep-gray {
+    background: #D2D2D2;
+}
+
+.border-dep-gray {
+    border: 1px solid #D2D2D2;
+}
+
+.padding-rb {
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 4px;
+    padding-top: 4px;
+}
+
+.detail-wh {
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+
+
+.padding-two-words {
+    padding: 4.5px 24px;
+}
+
+.padding-three-words {
+    padding: 4.5px 16px;
+}
+
+.padding-four-words {
+    padding: 4.5px 8px;
+}
+
+
+.border-bottom-white {
+    border-bottom: 2px solid #fff;
+    z-index: 2;
+}
+
+.border-box {
+    width:60%;
+    height: 1px;
+    background: #fff;
+}
+
+.margin-bottom-3 {
+    margin-bottom: 3px;
+}
+
+.table-box {
+    display: inline-block;
+    width: 100%;
+    height: 30px;  /*自适应时需要变动*/
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #8A8A8A;
+}
+
+.fix-bottom-ed {
+    position: fixed;
+    bottom: 3.5rem;
+    width: 100vw;
+    // z-index: 100;
+}
+
+.box-auto {
+    margin: 0 auto;
+}
+
+.border-tlb-r {
+    border-top: 1px solid #B9B9B9;
+    border-left: 1px solid #B9B9B9;
+    border-bottom: 1px solid #B9B9B9;
+    border-right: 1px solid #B9B9B9;
+}
+
+.input-box {
+    width: 70%;
+    height: 30px;
+}
+
+.btn-active {
+    background:  #007bff;
+    color: #ffffff !important;
+    border-color: #007bff;
+}
+
+.border-trb {
+    border-top: 1px solid #B9B9B9;
+    border-right: 1px solid #B9B9B9;
+    border-bottom: 1px solid #B9B9B9;
+}
+
+.border-tlb {
+    border-top: 1px solid #B9B9B9;
+    border-left: 1px solid #B9B9B9;
+    border-bottom: 1px solid #B9B9B9;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.pagActive {
+    background: #007bff;
+    a {
+        color: #fff;
+    }
+}
+
+.padding-left-17 {
+    padding-left: 17px;
+}
+
+.padding-right-17 {
+    padding-right: 17px;
+}
