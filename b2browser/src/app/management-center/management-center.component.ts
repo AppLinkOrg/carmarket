@@ -58,7 +58,7 @@ export class ManagementCenterComponent extends AppBase  {
   selPage = 1;
   data = [];
   setData = null;
-
+  acc_money=0
   onMyShow(){
     
     var a = this.adressApi
@@ -70,6 +70,7 @@ export class ManagementCenterComponent extends AppBase  {
 
       this.enterprise_id = employeeinfo.enterprise_id
       this.employee_id = employeeinfo.id
+      this.acc_money = Number(employeeinfo.account_money) 
 
       if(employeeinfo.position == 'C'){
         employeeinfo.position_name = '报价员'
@@ -291,7 +292,7 @@ changeSwitch(e,list){
 
   }
  
-
+  
   deleteAddress(item){
     this.pageList = []
     this.adressApi.addressdelete({ id: item.id }).then((deleteAdress:any)=>{
@@ -300,6 +301,22 @@ changeSwitch(e,list){
         this.onMyShow()
       }
     })
+  }
+  money=""
+  cancel(){
+    this.tixian=false
+  }
+  queding(){
+    console.log(this.money,'money')
+    if(this.money!="" &&  this.acc_money >= Number(this.money) ){
+      this.enterpriseApi.addtixian({enterprise_id:this.enterprise_id,money:this.money,status:'A'}).then((addtixian)=>{
+        console.log(addtixian,'addtixian')
+        if(addtixian){
+          this.tixian=false
+        }
+      })
+    }
+    
   }
 
   myAccount(event){
@@ -342,10 +359,10 @@ changeSwitch(e,list){
     toggleBox2.classList.remove('box-hide')
 
   }
-
+tixian=false
   applytixian(){
 
-   
+   this.tixian=true
 
   }
 

@@ -97,6 +97,8 @@ export class LoginComponent   extends AppBase  {
     });
   }
 
+
+
   clearPopover(){
     this.submitresult="";
     this.submitresult2=""
