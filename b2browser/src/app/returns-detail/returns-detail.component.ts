@@ -42,7 +42,11 @@ export class ReturnsDetailComponent extends AppBase  {
       console.log(returndetail,'llllll')
       this.returnstatus = returndetail.orderstatus
       this.returndetail = returndetail
-      this.returnitem = returndetail.tuihuoitem
+      this.returnitem = returndetail.tuihuoitem.filter((item)=>{
+        if(returndetail.id==item.tuihuo_id){
+          return item
+        }
+      })
     })
     
 

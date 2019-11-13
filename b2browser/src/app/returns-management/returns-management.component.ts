@@ -72,7 +72,7 @@ export class ReturnsManagementComponent extends AppBase  {
           this.pageList = []
           this.returnlist = []
 
-          a.returnlist({ enterprise_id: this.enterprise_id,employee_id:this.employee_id, orderstatus: this.status }).then((returnlist:any)=>{
+          a.returnlist({ gongsi: this.enterprise_id,baojia:this.employee_id, orderstatus: this.status }).then((returnlist:any)=>{
 
             this.pageList = []
             this.returnlist = []
