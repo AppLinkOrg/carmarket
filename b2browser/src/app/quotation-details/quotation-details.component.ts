@@ -149,7 +149,6 @@ export class QuotationDetailsComponent extends AppBase  {
       item.standby_time = ''
       item.guarantee = ''
       item.price = ''
-      item.Sprice = ''
       item.sendcar_time = ''
 
    
@@ -166,6 +165,7 @@ export class QuotationDetailsComponent extends AppBase  {
       this.list.push(addList)
       
     }
+    this.baojia=false
     console.log(this.list)
 
   }
@@ -227,46 +227,46 @@ export class QuotationDetailsComponent extends AppBase  {
 
 
 
-
+  baojia=true
 
   saveQuote(enterprise_id){
      
 
-     //console.log(enterprise_id,"坎坎坷坷");
-     //return;
-
      console.log(this.list,'444')
+    
+      console.log(this.baojia,'baojai')
+        this.baojia=false;
+        for(let i=0;i<this.list.length;i++){
 
-     for(let i=0;i<this.list.length;i++){
+          var lists = {
+            fittings_id: (this.list[i].fittings_id), 
+            partnubmer: (this.list[i].partnubmer),
+            name: (this.list[i].name),
+            price: (this.list[i].price),
+            Sprice: (this.list[i].Sprice),
+            qty: (this.list[i].quantity), 
+            quality: (this.list[i].quality),
+            standby_time: (this.list[i].standby_time),
+            guarantee: (this.list[i].guarantee),
+            sendcar_time: (this.list[i].sendcar_time),
+            enterprise_id: enterprise_id,
+            employee_id: this.employee_id,
+          }
+          console.log(this.employee_id,'aaaa')
 
-        var lists = {
-          fittings_id: (this.list[i].fittings_id), 
-          partnubmer: (this.list[i].partnubmer),
-          name: (this.list[i].name),
-          price: (this.list[i].price),
-          Sprice: (this.list[i].Sprice),
-          qty: (this.list[i].quantity), 
-          quality: (this.list[i].quality),
-          standby_time: (this.list[i].standby_time),
-          guarantee: (this.list[i].guarantee),
-          sendcar_time: (this.list[i].sendcar_time),
-          enterprise_id: enterprise_id,
-          employee_id: this.employee_id,
-        }
-        console.log(this.employee_id,'aaaa')
+          this.fitting(lists,i)
 
-        this.fitting(lists,i)
-
-     }
-
-      if(this.list.length !=0 ){
-      console.log(enterprise_id,"卡啦啦啦");
-
-        setTimeout(()=>{
-          this.editStatus(enterprise_id)
-        },this.list.length*300)
-        
       }
+
+        if(this.list.length !=0 ){
+        console.log(enterprise_id,"卡啦啦啦");
+
+          setTimeout(()=>{
+            this.editStatus(enterprise_id)
+          },this.list.length*300)
+          
+      }
+    
       
   }
 

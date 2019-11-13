@@ -87,7 +87,7 @@
                     <div class="card-body">
                     <div class="border-dep-gray" *ngIf='list !=null'>
                         <div class="flex-row">
-                            <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">公司名称</span><span>{{list.enterprise_name}}</span>
+                            <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">公司名称</span><span>{{list.baojiacom}}</span>
                         </div>
                         <div class="flex-row">
                             <div class="flex-4">
@@ -118,7 +118,7 @@
                         <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
                         <div class="flex-row margin-bottom-3">
                             <div class="flex-1">
-                                <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{list.employee_name}}</span>
+                                <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{list.baojiaperson}}</span>
                             </div>        
                             <div class="flex-2">
                                 <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span>
@@ -209,11 +209,31 @@
                     <div class="card-body flex-row box-auto flex-bottom">
                     <span class="h4-5">总计:</span>
                     <span class="txt-red h3 margin-right-20 margin-left-10" *ngIf='list !=null'>￥{{list.totalamount}}</span>
-                    <button class="btn btn-primary padding-left-50 padding-right-50"><a (click)='changeStatus()'>立即发货</a></button>
+                    <button class="btn btn-primary padding-left-50 padding-right-50"  data-toggle="modal" data-target="#myModal3"><a  >立即发货</a></button>
                     </div>
             </div> 
             </div>
             
+
+            <div class="modal fade" tabindex="-1" role="dialog" id="myModal3">
+                
+                  <div class="modal-dialog" >
+                    <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">发货提示</h4>
+                      <button type="button" class="close" data-dismiss="modal">×</button>
+                    </div>
+                    <div class="modal-body">
+                      现在给买家发货吗？
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                      <button type="button" class="btn btn-primary " (click)='changeStatus()'  data-dismiss="modal">确定</button>
+                    </div>
+                    </div>
+                  </div>
+              </div>
+
         </div>
 
     </div>

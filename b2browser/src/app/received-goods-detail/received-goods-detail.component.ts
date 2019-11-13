@@ -39,6 +39,12 @@ export class ReceivedGoodsDetailComponent extends AppBase  {
     var a = this.orderApi    
 
       a.detail({ id: this.id}).then((detailList:any)=>{
+
+        this.enterpriseApi.getemployeeinfo({id:detailList.baojia}).then((getemployeeinfo:any)=>{
+          console.log(getemployeeinfo,'嘻嘻嘻嘻嘻')
+          detailList.baojiaperson = getemployeeinfo.name
+          detailList.baojiacom = getemployeeinfo.enterprise_name
+        })
      
         this.list = detailList
         this.orderItem = detailList.orderitem;
