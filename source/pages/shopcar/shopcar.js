@@ -327,6 +327,7 @@ class Content extends AppBase {
   }
 
 
+
   deleteshop(e) {
     var id = e.currentTarget.id;
     var orderapi = new OrderApi();

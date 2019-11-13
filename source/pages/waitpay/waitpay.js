@@ -80,6 +80,8 @@ class Content extends AppBase {
             id: that.Base.getMyData().employeeinfo.enterprise.id,
             money: that.Base.getMyData().sumprice
           }, (updatemoney) => {
+
+
             for (var i = 0; i < mylist.length; i++) {
               orderapi.updatestatus({
                 id: mylist[i].id,

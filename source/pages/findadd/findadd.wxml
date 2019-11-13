@@ -15,6 +15,7 @@
   </view>
 
 
+
   <view class="flex-row flex-center margin-top-10 margin-left-30">
     <view class="h5 txt-black  ">{{item.mid}}</view>
     <image src="{{uploadpath}}resource/{{res.suolve}}" id="{{item.img}}" bindtap="viewPhoto" class="icon margin-left-30"></image>
