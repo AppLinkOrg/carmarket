@@ -1,6 +1,5 @@
 {
-  "pages": [
-   
+  "pages": [ 
     "pages/find/find",
     "pages/vinscan/vinscan",
     "pages/login/login",

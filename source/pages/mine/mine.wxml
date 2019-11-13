@@ -12,17 +12,18 @@
 
 <view class=' flex-row margin-top-30 '>
   <view class='borderleft'></view>
-  <view class='margin-left-10 txt-black txt-bold'>我的账户</view>
+  <view class='margin-left-10 txt-black txt-bold'>账户余额</view>
 </view>
 
 <view class='flex-row margin-top-30'>
-  <view class='margin-top-10 margin-left-50 h3 txt-orange txt-bold'>{{employeeinfo.money}}</view>
+  <view class='margin-top-10 margin-left-50 h3 txt-orange txt-bold'>{{employeeinfo.enterprise.account_money}}</view>
   <view class='h5 txt-black margin-left-30 margin-top-20'>威币</view>
   <view class='flex-1'></view>
-  <view class='bg-btn  gbtn margin-right-20' bindtap="bindaccount">查看账户</view>
+  <view class='bg-btn  gbtn margin-right-20' bindtap="bindaccount">查看明细</view>
 </view>
-<view class='h5 txt-black margin-left-50  '>账户余额</view>
+<!-- <view class='h5 txt-black margin-left-50  '>账户余额</view> -->
 <view class='bott margin-top-20'></view>
+
 
 <view class="flex-wrap  flex-center ">
 
@@ -68,7 +69,7 @@
     <view class="mar">
       <image class='icon' src='{{uploadpath}}resource/{{res.change}}'></image>
     </view>
-    <view class=' mar txt-black txt-bold'>配件退换</view>
+    <view class=' mar txt-black txt-bold'>配件退货</view>
     <view class='flex-1'></view>
     <image class='icon-17 margin-right-20 margin-top' src='{{uploadpath}}resource/{{res.smallright}}' ></image>
   </view>

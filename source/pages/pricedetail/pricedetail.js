@@ -38,6 +38,9 @@ class Content extends AppBase {
     var that = this;
     var instapi = new InstApi();
     var orderapi = new OrderApi();
+
+    this.Base.setMyData({ quantity: 0, sum:0});
+
     orderapi.quoteinfo({
       id: this.Base.options.id
     }, (quoteinfo) => {
@@ -58,6 +61,7 @@ class Content extends AppBase {
         }
 
         var enterpriselist = [];
+
         var price = 0;
  
         for (var key in etplist) {
@@ -83,24 +87,24 @@ class Content extends AppBase {
   }
 
   setPageTitle(instinfo) {
-    var title = "待报价";
+    var title = "查看报价";
     wx.setNavigationBarTitle({
       title: title,
     })
   }
-
 
   bindshai() {
     this.Base.setMyData({
       showModal: true
     })
   }
+
   binddelect() {
     this.Base.setMyData({
       showModal: false
-    })
-
+    }) 
   }
+
   bindchakan(e) {
     var chakan = e.currentTarget.dataset.chakan;
 
@@ -253,17 +257,24 @@ class Content extends AppBase {
 
   addcar(e) {
     var that =this;
-     
+   // console.log(this.Base.getMyData().employeeinfo.enterprise.id)
+     //return;
     var shopcar = this.Base.getMyData().shopcar;
-     
+    var emp_id = this.Base.getMyData().employeeinfo.enterprise.id;
     //var aaa=[];
     for (var i = 0; i < shopcar.length; i++) {
+     // console.log(emp_id, '000', this.Base.getMyData().employeeinfo.id);
       var list = {
-        supplier: shopcar[i].enterprise_id,
-        enterprise_id: this.Base.getMyData().employeeinfo.enterprise.id,
+        //supplier: shopcar[i].enterprise_id,
+
+        
+        enterprise_id: shopcar[i].enterprise_id,
+        supplier: emp_id,
+        baojia: this.Base.getMyData().employeeinfo.id,
+        employee_id: shopcar[i].employee_id,
         fittings_id: shopcar[i].fittings_id,
         quote_id: this.Base.options.id,
-        supplier: shopcar[i].company,
+        //supplier: shopcar[i].company,
         parts: shopcar[i].name,
         mcid: shopcar[i].partnubmer,
         quality: shopcar[i].quality,

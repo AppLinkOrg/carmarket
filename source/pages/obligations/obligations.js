@@ -52,7 +52,7 @@ class Content extends AppBase {
       success: function(res) {
         if (res.confirm) {
           orderapi.updatemoney({
-            id: that.Base.getMyData().employeeinfo.id,
+            id: that.Base.getMyData().employeeinfo.enterprise.id,
             money: price
           }, (updatemoney) => {
             orderapi.updatestatus({

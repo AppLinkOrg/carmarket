@@ -67,8 +67,8 @@ class Content extends AppBase {
     console.log(arr,'arr')
  
     wx.showModal({
-      title: '取消订单',
-      content: '确认取消订单？',
+      title: '付款',
+      content: '确认付款？',
       showCancel: true,
       cancelText: '取消',
       cancelColor: '#EE2222',
@@ -77,7 +77,7 @@ class Content extends AppBase {
       success: function (res) {
         if (res.confirm) {
           orderapi.updatemoney({
-            id: that.Base.getMyData().employeeinfo.id,
+            id: that.Base.getMyData().employeeinfo.enterprise.id,
             money: that.Base.getMyData().sumprice
           }, (updatemoney) => {
             for (var i = 0; i < mylist.length; i++) {

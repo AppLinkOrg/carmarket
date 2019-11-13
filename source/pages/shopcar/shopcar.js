@@ -31,18 +31,18 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var price = 0;
-    var num=0;
+    var num = 0;
     var orderapi = new OrderApi();
     orderapi.shopcarlist({
       quote_id: this.Base.options.id,
-      status:'A'
+      status: 'A'
     }, (shopcarlist) => {
 
       var etplist = {};
 
       for (var i = 0; i < shopcarlist.length; i++) {
         //shopcarlist[i].check = false;
-        if (shopcarlist[i].ck_value=='Y'){
+        if (shopcarlist[i].ck_value == 'Y') {
           num++;
           price += (parseInt(shopcarlist[i].price) * parseInt(shopcarlist[i].qty))
         }
@@ -54,7 +54,7 @@ class Content extends AppBase {
       }
 
       var alllist = [];
-      
+
       for (var key in etplist) {
 
         for (var i in etplist[key]) {
@@ -82,13 +82,13 @@ class Content extends AppBase {
     })
 
   }
- 
+
 
   bindchoose(e) {
     var alllist = this.Base.getMyData().alllist;
     var id = e.currentTarget.id;
     var qtylist = alllist[id].name;
-  //  var num = this.Base.getMyData().num;
+    //  var num = this.Base.getMyData().num;
     var allprice = this.Base.getMyData().allprice;
     var chosse = this.Base.getMyData().chosse;
     //console.log(qtylist+"ddd")
@@ -105,18 +105,20 @@ class Content extends AppBase {
         qtylist[i].check = false;
       }
       alllist[id].allcheck = false;
-      this.Base.setMyData({ chosse: 1 })
+      this.Base.setMyData({
+        chosse: 1
+      })
     }
 
 
     for (var a = 0; a < qtylist.length; a++) {
       if (qtylist[a].check == true) {
         allprice += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
-      //  num++;
+        //  num++;
         //console.log(num);
       } else {
         allprice -= parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
-      //   num--
+        //   num--
       }
     }
 
@@ -125,7 +127,7 @@ class Content extends AppBase {
       //  num,
       allprice
     })
-    
+
     console.log("ddd")
 
   }
@@ -135,7 +137,7 @@ class Content extends AppBase {
     var alllist = this.Base.getMyData().alllist;
     var idx = e.currentTarget.id;
     var carid = e.currentTarget.dataset.carid;
-    var index = e.currentTarget.dataset.index; 
+    var index = e.currentTarget.dataset.index;
     var qtylist = alllist[index].name;
     var checking = qtylist[idx].ck_value;
     var orderapi = new OrderApi();
@@ -144,8 +146,13 @@ class Content extends AppBase {
     var allprice = 0;
 
     if (checking == "Y") {
-      this.Base.setMyData({chosse:1});
-      orderapi.updatecheck({ ck: 'N', id: carid}, (updatecheck)=>{
+      this.Base.setMyData({
+        chosse: 1
+      });
+      orderapi.updatecheck({
+        ck: 'N',
+        id: carid
+      }, (updatecheck) => {
         this.onMyShow();
         // this.Base.setMyData({})
       })
@@ -153,7 +160,10 @@ class Content extends AppBase {
       alllist[index].name[idx].check = false;
       alllist[index].allcheck = false;
     } else {
-      orderapi.updatecheck({ ck: 'Y', id: carid }, (updatecheck) => {
+      orderapi.updatecheck({
+        ck: 'Y',
+        id: carid
+      }, (updatecheck) => {
         // this.Base.setMyData({})
         this.onMyShow();
       })
@@ -172,10 +182,10 @@ class Content extends AppBase {
       }
     }
 
-    
+
 
     this.Base.setMyData({
-     // alllist,
+      // alllist,
       num,
       allprice
     })
@@ -207,14 +217,16 @@ class Content extends AppBase {
         if (qtylist[a].check == true) {
           //var num = qtylist.length;
           allprice += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
-         // num++;
+          // num++;
           //console.log(qtylist.length);
         }
       }
     }
 
     this.Base.setMyData({
-      chosse: type, alllist,   allprice
+      chosse: type,
+      alllist,
+      allprice
     })
   }
 
@@ -228,15 +240,18 @@ class Content extends AppBase {
     var shopcarlist = this.Base.getMyData().shopcarlist;
     var alllist = this.Base.getMyData().alllist;
     var allprice = 0;
- 
+
     // console.log("类型:" + name, 'id:', id,"来来来", index)
-    
+
 
 
 
     if (name == 'jian') {
-      if (alllist[index].name[idx].qty > 1) { 
-        orderapi.updateqty({ type: 'B', id: id }, (updatecheck) => {
+      if (alllist[index].name[idx].qty > 1) {
+        orderapi.updateqty({
+          type: 'B',
+          id: id
+        }, (updatecheck) => {
           this.onMyShow();
         })
       } else {
@@ -246,7 +261,10 @@ class Content extends AppBase {
         })
       }
     } else {
-      orderapi.updateqty({ type: 'A', id: id }, (updatecheck) => {
+      orderapi.updateqty({
+        type: 'A',
+        id: id
+      }, (updatecheck) => {
         this.onMyShow();
       })
       //alllist[index].name[idx].qty++
@@ -291,6 +309,16 @@ class Content extends AppBase {
       linjian
     })
     
+    var ljlist = this.Base.getMyData().linjian;
+    console.log(ljlist, ljlist.length, 'pppppppp')
+
+    if (ljlist.length == 0) {
+      this.Base.toast('请选择零件~');
+      return;
+    }
+
+   // return;
+
     // return;
     wx.navigateTo({
       url: '/pages/orderdetail/orderdetail?json=' + JSON.stringify(linjian) + '&carmodel=' + this.Base.options.carmodel + '&vin=' + this.Base.options.vin + '&id=' + this.Base.options.id
@@ -299,7 +327,31 @@ class Content extends AppBase {
   }
 
 
+  deleteshop(e) {
+    var id = e.currentTarget.id;
+    var orderapi = new OrderApi();
+    var that =this;
 
+    wx.showModal({
+      title: '删除？',
+      content: '确认删除该商品?',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#EE2222',
+      confirmText: '确定',
+      confirmColor: '#2699EC',
+      success: function(res) {
+        if (res.confirm) {
+          orderapi.deleteshop({
+            id: id
+          }, (deleteshop) => {
+           that.onMyShow();
+          })
+        }
+      }
+    })
+
+  }
 
 
 
@@ -310,6 +362,8 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindjiesuan = content.bindjiesuan;
 body.bindjisuan = content.bindjisuan;
+
+body.deleteshop = content.deleteshop;
 
 body.bindchoose = content.bindchoose;
 body.bindcheck = content.bindcheck;

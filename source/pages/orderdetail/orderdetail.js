@@ -59,10 +59,6 @@ class Content extends AppBase {
       })
     }
 
-
-
-
-
     var etplist = {};
 
     for (var i = 0; i < shopcarlist.length; i++) {
@@ -157,6 +153,7 @@ class Content extends AppBase {
      }
 
     // return;
+    
     wx.showModal({
       title: '提交',
       content: '确认提交订单？',
@@ -171,6 +168,8 @@ class Content extends AppBase {
 
           orderapi.createorder({
             employee_id: that.Base.getMyData().employeeinfo.id,
+           // ent_id: that.Base.getMyData().employeeinfo.enterprise.id,
+            gongsi: that.Base.getMyData().employeeinfo.id,
             //fahuo_id:that.Base.
             vin: that.Base.options.vin,
             carname: that.Base.options.carmodel,

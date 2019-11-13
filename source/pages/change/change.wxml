@@ -1,12 +1,12 @@
 <view class='flex-row flex-center margin-top-20'>
 
   <view class='flex-row flex-column flex-1' data-change='A' bindtap='bindchange'>
-    <view class=' txt-bold flex-1 text-center {{change=="A"?"txt-blue":""}}'>待退换</view>
+    <view class=' txt-bold flex-1 text-center {{change=="A"?"txt-blue":""}}'>待退货</view>
     <view class='order {{change=="A"?"bg-blue":"bg-white"}}'></view>
   </view>
 
   <view class='flex-row flex-column flex-1 ' data-change='B' bindtap='bindchange'>
-    <view class='txt-bold flex-1 text-center {{change=="B"?"txt-blue":""}}'>已退换</view>
+    <view class='txt-bold flex-1 text-center {{change=="B"?"txt-blue":""}}'>已退货</view>
     <view class='order {{change=="B"?"bg-blue":"bg-white"}}'></view>
   </view>
 
@@ -14,7 +14,11 @@
 <view class='borderbottom'></view>
 
 <view class=" " wx:if="{{change=='A'}}">
+
   <!-- 我的退换订单-->
+
+
+
   <view class='flex-row flex-column' wx:if="{{returnlist.length==0}}">
     <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullchange}}'></image>
     <view class=''>暂时没有退换订单</view>

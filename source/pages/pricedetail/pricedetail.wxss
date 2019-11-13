@@ -120,3 +120,6 @@ Page {
   border-top-left-radius: 10rpx;
   border-top-right-radius: 10rpx;
 }
+.border_top{
+border-top: 2rpx solid rgb(212, 209, 209);
+}

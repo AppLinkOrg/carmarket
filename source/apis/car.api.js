@@ -137,7 +137,7 @@ export class CarApi{
         })
     }
 
-    vin(json, callback, showLoading = true) {
+    selectprice(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -146,7 +146,7 @@ export class CarApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'car/vin',
+            url: ApiConfig.GetApiUrl() + 'car/selectprice',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -169,7 +169,7 @@ export class CarApi{
         })
     }
 
-    selectprice(json, callback, showLoading = true) {
+    vin(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -178,7 +178,7 @@ export class CarApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'car/selectprice',
+            url: ApiConfig.GetApiUrl() + 'car/vin',
             data: json,
             method: 'POST',
             dataType: 'json',

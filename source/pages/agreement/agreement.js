@@ -6,11 +6,12 @@ import { InstApi } from "../../apis/inst.api.js";
 class Content extends AppBase {
   constructor() {
     super();
+    this.needauth = false;
   }
   onLoad(options) {
     this.Base.Page = this;
     //options.id=5;
-    super.onLoad(options);
+    super.onLoad(options); 
   }
   onMyShow() {
     var that = this;

@@ -18,18 +18,18 @@
 
     <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.store}}"></image>
     <view class="margin-left-10 txt-bold txt-black">{{item.enterprise_name}}</view>
-    <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.smile}}"></image>
+    <!-- <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.smile}}"></image> -->
 
   </view>
 
 
-  <view class=" padding-20" wx:for='{{item.name}}' wx:for-index='idx' wx:key='k' style="border-top:2rpx solid black">
+  <view class="padding-20" wx:for='{{item.name}}' wx:for-index='idx' wx:key='k' style="border-top:2rpx solid black">
 
     <view class="flex-row flex-center">
       <view>{{idx+1}}、</view>
       <view class="margin-left-10 txt-bold black">{{item.fittings_name}}</view>
       <view class="flex-1"></view>
-      <image class="icon margin-left-10 margin-right-30" src="{{uploadpath}}resource/{{res.sanjiao}}"></image>
+      <image class="icon   margin-right-30" id="{{item.id}}" bindtap="deleteshop" src="{{uploadpath}}resource/{{res.quchu}}"></image>
     </view>
 
     <view class="flex-row margin-top-20">

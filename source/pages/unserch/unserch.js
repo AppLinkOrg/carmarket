@@ -137,6 +137,9 @@ class Content extends AppBase {
     this.Base.setMyData({
       fittings
     })
+
+    this.Base.gotoBottom();
+
   }
   bindclear(e) {
     var idx = e.currentTarget.id;

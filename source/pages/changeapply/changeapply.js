@@ -178,8 +178,15 @@ class Content extends AppBase {
           orderapi.addtuihuo({ 
             order_id: change.id,
            // enterprise_id: change.enterprise_id,
+            // enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
+            // employee_id: change.employee_id,
+
+            baojia: change.employee_id,
+            gongsi: change.enterprise_id,
+
             enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
-            employee_id: change.employee_id,
+            employee_id: that.Base.getMyData().employeeinfo.id,
+            
             remarks: that.Base.getMyData().content,
             carmodel: change.carname,
             return_money: that.Base.getMyData().price,

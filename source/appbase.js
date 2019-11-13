@@ -112,7 +112,8 @@ export class AppBase {
       dataReturnCallback: base.dataReturnCallback,
       loadtabtype: base.loadtabtype,
       contactkefu: base.contactkefu,
-      contactweixin: base.contactweixin,
+      contactweixin: base.contactweixin, 
+      gotoBottom: base.gotoBottom,
       download: base.download,
       checkPermission: base.checkPermission
 
@@ -855,6 +856,12 @@ export class AppBase {
     wx.showToast({
       title: msg,
       icon: "none"
+    })
+  }
+  gotoBottom() {
+    wx.pageScrollTo({
+      scrollTop: 100000,
+      duration: 300
     })
   }
 }

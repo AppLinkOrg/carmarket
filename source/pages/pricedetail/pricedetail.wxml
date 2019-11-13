@@ -68,9 +68,9 @@
       <view class="txt-white h5 margin-top-20"> {{item.address}}</view>
     </view>
 
-    <view class="bg-white  padding-20  " style="{{index>0?'border-top:2rpx solid #E5E5E5':''}}" wx:for-index='idx' wx:for='{{item.qtylist}}' wx:key='e'>
+    <view class="bg-white  padding-20  border_top" wx:for-index='idx' wx:for='{{item.qtylist}}' wx:key='e'>
 
-      <view class=" flex-row flex-center" bindtap="bindcheckone" data-enterprise_id="{{item.enterprise_id}}" id="{{item.id}}" data-index='{{index}}' data-sx="{{idx}}">
+      <view class=" flex-row flex-center " bindtap="bindcheckone" data-enterprise_id="{{item.enterprise_id}}" id="{{item.id}}" data-index='{{index}}' data-sx="{{idx}}">
 
         <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.check==true}}' class="icon"></image>
 
@@ -81,7 +81,7 @@
           <view class="flex-row flex-bottom">
             <view class=" txt-red txt-bold">￥{{item.price}}</view>
             <view class="h6 margin-left-20 ">x{{item.qty}}</view>
-            
+
           </view>
 
           <view class="flex-row flex-center margin-top-10">
@@ -89,9 +89,10 @@
             <view class="h5 txt-black  margin-left-10">{{item.fit_name}} </view>
             <view class="h6 margin-left-20  ">4S价:￥{{item.Sprice}}</view>
           </view>
+
           <view class="h6 margin-top-10">{{item.mcid}}</view>
 
-          <view class="h6 margin-top-20">备注：{{item.remarks_infor}}</view>
+          <view class="h6 margin-top-20" wx:if='{{item.remarks_infor!=""}}'>备注：{{item.remarks_infor}}</view>
         </view>
 
 
@@ -122,7 +123,7 @@
           <!-- <image class="icon-30 margin-top-20 margin-left-50" src="{{uploadpath}}resource/{{res.epc}}"></image> -->
         </view>
 
-        <view class=" h6 margin-top-10">{{item.name}}  {{item.partnubmer}}</view>
+        <view class=" h6 margin-top-10">{{item.name}} {{item.partnubmer}}</view>
       </view>
 
     </view>
@@ -190,7 +191,7 @@
 
     <view class="margin-top-20">
       <view class="margin-left-20">地区筛选</view>
-      <view class="flex-row margin-top-30" >
+      <view class="flex-row margin-top-30">
         <view class="txt-black xiaobtn margin-left-50" bindtap="toast">罗湖区</view>
         <view class="txt-black xiaobtn margin-left-30" bindtap="toast">龙岗区</view>
       </view>
@@ -201,19 +202,19 @@
       </view>
 
       <view class="flex-row margin-top-30">
-        <view class="txt-black xiaobtn margin-left-50"bindtap="toast">龙华区</view>
-        <view class="txt-black xiaobtn margin-left-30"bindtap="toast">福田区</view>
+        <view class="txt-black xiaobtn margin-left-50" bindtap="toast">龙华区</view>
+        <view class="txt-black xiaobtn margin-left-30" bindtap="toast">福田区</view>
       </view>
 
       <view class="flex-row margin-top-30">
 
-        <view class="txt-black xiaobtn margin-left-50"bindtap="toast">坪山新区</view>
-        <view class="txt-black xiaobtn margin-left-30"bindtap="toast">盐田区</view>
+        <view class="txt-black xiaobtn margin-left-50" bindtap="toast">坪山新区</view>
+        <view class="txt-black xiaobtn margin-left-30" bindtap="toast">盐田区</view>
       </view>
 
       <view class="flex-row margin-top-30">
-        <view class="txt-black xiaobtn margin-left-50"bindtap="toast">光明新区</view>
-        <view class="txt-black xiaobtn margin-left-30"bindtap="toast">大鹏新区</view>
+        <view class="txt-black xiaobtn margin-left-50" bindtap="toast">光明新区</view>
+        <view class="txt-black xiaobtn margin-left-30" bindtap="toast">大鹏新区</view>
       </view>
 
     </view>
@@ -232,9 +233,12 @@
 
     <view class="flex-1"></view>
     <view class="flex-row flex-column">
-      <image src="{{uploadpath}}resource/{{res.kefu}}" class="icon-17"></image>
-      <view class="h5">客服</view>
+      <button class=' clear-button' hover-class='bg_gray' open-type='contact' style='border-radius:0;border:0;'>
+        <image src="{{uploadpath}}resource/{{res.kefu}}" class="icon-17"></image>
+        <view class="h5">客服</view>
+      </button>
     </view>
+
     <view class="flex-1"></view>
     <view class="flex-row flex-column" bindtap="tocar">
       <image src="{{uploadpath}}resource/{{res.shopcar}}" class="icon-17"></image>
