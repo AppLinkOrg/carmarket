@@ -8,12 +8,13 @@ import { ApiConfig } from '../api.config';
 import { OperatorApi } from 'src/providers/operator.api';
 import { EnterpriseApi } from 'src/providers/enterprise.api';
 import { MemberApi } from 'src/providers/member.api';
+import { OrderApi } from 'src/providers/order.api';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers:[EnterpriseApi,MemberApi]
+  providers:[EnterpriseApi,MemberApi,OrderApi]
 })
 export class LoginComponent   extends AppBase  {
 
@@ -28,8 +29,9 @@ export class LoginComponent   extends AppBase  {
     public instApi:InstApi,
     public enterpriseApi:EnterpriseApi,
     public memberApi:MemberApi,
+    public OrderApi:OrderApi,
   ) { 
-    super(router,activeRoute,instApi,enterpriseApi);
+    super(router,activeRoute,instApi,OrderApi,enterpriseApi);
     this.isLoginPage=true;
   }
   onMyShow(){ 

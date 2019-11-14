@@ -7,13 +7,14 @@ import { AddressApi } from 'src/providers/address.api';
 import { emptyScheduled } from 'rxjs/internal/observable/empty';
 import { EnterpriseApi } from 'src/providers/enterprise.api';
 import { ConsumeApi } from 'src/providers/consume.api';
+import { OrderApi } from 'src/providers/order.api';
 
 
 @Component({
   selector: 'app-management-center',
   templateUrl: './management-center.component.html',
   styleUrls: ['./management-center.component.scss'],
-  providers:[InstApi,AddressApi,EnterpriseApi,ConsumeApi]
+  providers:[InstApi,AddressApi,EnterpriseApi,ConsumeApi,OrderApi]
 })
 export class ManagementCenterComponent extends AppBase  {
 
@@ -25,8 +26,9 @@ export class ManagementCenterComponent extends AppBase  {
     public adressApi:AddressApi,
     public enterpriseApi:EnterpriseApi,
     public consumeApi:ConsumeApi,
+    public OrderApi:OrderApi,
   ) { 
-    super(router,activeRoute,instApi,enterpriseApi);
+    super(router,activeRoute,instApi,OrderApi,enterpriseApi);
   }
 
 
@@ -205,6 +207,7 @@ changeSwitch(e,list){
 
   
   quxiao(){
+    this.isshow = false
     this.pageList = []
     if(this.item.morenaddress==false){
       this.item.morenaddress = "否"
@@ -225,53 +228,110 @@ changeSwitch(e,list){
     address.status = 'A'
     console.log(address,'address')
 
-    if(this.item.operation == 'E'){
+    if(address.morenaddress=="是"){
+      this.adressApi.clearaddress({check:'Y',employee_id:this.employee_id}).then((clearaddress:any)=>{
+        console.log(clearaddress)
+        if(clearaddress.code=='0'){
+          if(this.item.operation == 'E'){
 
-      if(address.region!="" && address.address!="" && address.name!=""){
-        console.log('kljkljlkjkl')
-        if(address.phonenumber!=""){
-          let reg = /^1[3|4|5|7|8]\d{9}$/
-          if(reg.test(address.phonenumber)){
-            console.log('ppppppp')
-            this.adressApi.updateaddress(address).then((updateaddress:any)=>{
-              console.log(updateaddress,'updateaddress')
-              if(updateaddress.code == '0'){
-                this.onMyShow()
-                this.closeModal.nativeElement.click();
-              }
-            })
-          }else {
-            this.isshow = true
-          }
-        }
-      }
-      
-     
-    }else {
-      if(address.region!="" && address.address!="" && address.name!=""){
-        console.log('kljkljlkjkl')
-        if(address.phonenumber!=""){
-          let reg = /^1[3|4|5|7|8]\d{9}$/
-          if(reg.test(address.phonenumber)){
-            console.log('ppppppp')
-            this.adressApi.addaddress(address).then((addaddress:any)=>{
-
-                if(addaddress.code == '0'){
-                  this.closeModal.nativeElement.click();
-                  this.onMyShow();
-                  
+            if(address.region!="" && address.address!="" && address.name!=""){
+              console.log('kljkljlkjkl')
+              if(address.phonenumber!=""){
+                let reg = /^1[3|4|5|7|8]\d{9}$/
+                if(reg.test(address.phonenumber)){
+                  console.log('ppppppp')
+                  this.adressApi.updateaddress(address).then((updateaddress:any)=>{
+                    console.log(updateaddress,'updateaddress')
+                    if(updateaddress.code == '0'){
+                      this.onMyShow()
+                      this.closeModal.nativeElement.click();
+                    }
+                  })
+                }else {
+                  this.isshow = true
                 }
-            })
+              }
+            }
+            
+           
           }else {
-            this.isshow = true
+            if(address.region!="" && address.address!="" && address.name!=""){
+              console.log('kljkljlkjkl')
+              if(address.phonenumber!=""){
+                let reg = /^1[3|4|5|7|8]\d{9}$/
+                if(reg.test(address.phonenumber)){
+                  console.log('ppppppp')
+                  this.adressApi.addaddress(address).then((addaddress:any)=>{
+      
+                      if(addaddress.code == '0'){
+                        this.closeModal.nativeElement.click();
+                        this.onMyShow();
+                        
+                      }
+                  })
+                }else {
+                  this.isshow = true
+                }
+              }
+            }
+      
+          }
+      
+        }
+      })
+    }else {
+
+    
+
+      if(this.item.operation == 'E'){
+
+        if(address.region!="" && address.address!="" && address.name!=""){
+          console.log('kljkljlkjkl')
+          if(address.phonenumber!=""){
+            let reg = /^1[3|4|5|7|8]\d{9}$/
+            if(reg.test(address.phonenumber)){
+              console.log('ppppppp')
+              this.adressApi.updateaddress(address).then((updateaddress:any)=>{
+                console.log(updateaddress,'updateaddress')
+                if(updateaddress.code == '0'){
+                  this.onMyShow()
+                  this.closeModal.nativeElement.click();
+                }
+              })
+            }else {
+              this.isshow = true
+            }
           }
         }
+        
+      
+      }else {
+        if(address.region!="" && address.address!="" && address.name!=""){
+          console.log('kljkljlkjkl')
+          if(address.phonenumber!=""){
+            let reg = /^1[3|4|5|7|8]\d{9}$/
+            if(reg.test(address.phonenumber)){
+              console.log('ppppppp')
+              this.adressApi.addaddress(address).then((addaddress:any)=>{
+
+                  if(addaddress.code == '0'){
+                    this.closeModal.nativeElement.click();
+                    this.onMyShow();
+                    
+                  }
+              })
+            }else {
+              this.isshow = true
+            }
+          }
+        }
+
       }
-
     }
-
    
   }
+
+
 
   newadd(){
     this.item = []
@@ -303,18 +363,31 @@ changeSwitch(e,list){
     })
   }
   money=""
+  error=""
   cancel(){
     this.tixian=false
+    this.error=""
+  }
+  clear(){
+    this.error=""
   }
   queding(){
     console.log(this.money,'money')
-    if(this.money!="" &&  this.acc_money >= Number(this.money) ){
-      this.enterpriseApi.addtixian({enterprise_id:this.enterprise_id,money:this.money,status:'A'}).then((addtixian)=>{
-        console.log(addtixian,'addtixian')
-        if(addtixian){
-          this.tixian=false
-        }
-      })
+    if(this.money!=null && this.money!=""){
+      if(this.acc_money >= Number(this.money)){
+        this.enterpriseApi.addtixian({enterprise_id:this.enterprise_id,money:this.money,status:'A'}).then((addtixian)=>{
+          console.log(addtixian,'addtixian')
+          if(addtixian){
+            this.tixian=false
+            this.error=""
+          }
+        })
+      }else {
+        this.error='提现金额太大了，余额不足！'
+      }
+     
+    }else {
+      this.error='提现金额为空，请重新填入！'
     }
     
   }

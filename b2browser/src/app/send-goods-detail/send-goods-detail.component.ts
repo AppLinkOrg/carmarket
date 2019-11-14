@@ -21,7 +21,7 @@ export class SendGoodsDetailComponent extends AppBase  {
     public orderApi: OrderApi,
     public enterpriseApi: EnterpriseApi,
   ) { 
-    super(router,activeRoute,instApi,enterpriseApi);
+    super(router,activeRoute,instApi,orderApi,enterpriseApi);
   }
 
   id = '';
@@ -46,7 +46,11 @@ export class SendGoodsDetailComponent extends AppBase  {
       })
 
       this.list = detailList
-      this.orderItem = detailList.orderitem;
+      this.orderItem = detailList.orderitem.filter(item=>{
+        if(detailList.id==item.order_id){
+          return item
+        }
+      })
       console.log(this.list,'lllllllll')
       console.log( this.orderItem)
 

@@ -22,7 +22,7 @@ export class ConsumeComponent extends AppBase  {
     public enterpriseApi:EnterpriseApi,
     public orderApi:OrderApi,
   ) { 
-    super(router,activeRoute,instApi,enterpriseApi);
+    super(router,activeRoute,instApi,orderApi,enterpriseApi);
   }
   consumelist=null
   onMyShow(){

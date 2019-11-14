@@ -24,7 +24,7 @@ export class EmployeeManagementComponent extends AppBase  {
     public el:ElementRef,
     public enterpriseApi:EnterpriseApi,
   ) { 
-    super(router,activeRoute,instApi,enterpriseApi);
+    super(router,activeRoute,instApi,orderApi,enterpriseApi);
   }
 
 

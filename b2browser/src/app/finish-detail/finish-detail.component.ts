@@ -22,7 +22,7 @@ export class FinishDetailComponent extends AppBase  {
     public orderApi:OrderApi,
     public enterpriseApi:EnterpriseApi,
   ) { 
-    super(router,activeRoute,instApi,enterpriseApi);
+    super(router,activeRoute,instApi,orderApi,enterpriseApi);
   }
    
   id = ''
@@ -45,7 +45,11 @@ export class FinishDetailComponent extends AppBase  {
         })
           console.log(detailList,'detailList')
         this.list = detailList
-        this.orderItem = detailList.orderitem;
+        this.orderItem = detailList.orderitem.filter(item=>{
+          if(detailList.id==item.order_id){
+            return item
+          }
+        })
 
         console.log(this.list)
 

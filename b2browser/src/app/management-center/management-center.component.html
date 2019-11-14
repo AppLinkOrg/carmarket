@@ -273,8 +273,10 @@
     <div *ngIf='tixian' class="tixian">
         <div class="biaoti" >提现</div>
         <div class="con">
-            <span class="margin-right-10 f18">提现金额</span><input [(ngModel)]='money' type="number">
+            <span class="margin-right-10 f18">提现金额</span><input (keyup)='clear()' [(ngModel)]='money' type="number">
+            <div class="margin-top-20" style="color: red;">{{error}}</div>
         </div>
+        
         <div class="text-center">
             <button class="btn1" (click)='cancel()'>取消</button>
             <button class="btn2" (click)='queding()'>确定</button>

@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 import { EnterpriseApi } from 'src/providers/enterprise.api';
+import { OrderApi } from 'src/providers/order.api';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers:[InstApi,EnterpriseApi]
+  providers:[InstApi,EnterpriseApi,OrderApi]
 })
 export class HomeComponent  extends AppBase  {
 
@@ -27,9 +28,10 @@ export class HomeComponent  extends AppBase  {
     public router: Router,
     public activeRoute: ActivatedRoute,
     public instApi:InstApi,
-    public enterpriseApi:EnterpriseApi
+    public enterpriseApi:EnterpriseApi,
+    public OrderApi:OrderApi,
   ) { 
-    super(router,activeRoute,instApi,enterpriseApi);
+    super(router,activeRoute,instApi,OrderApi,enterpriseApi);
 
     this.instinfo={};
     this.instApi.info({unicode:"carmarkets"}).then((instinfo)=>{

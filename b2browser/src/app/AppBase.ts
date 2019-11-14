@@ -1,6 +1,7 @@
 import { ApiConfig } from "./api.config";
 import { AppUtil } from "./app.util";
 import { InstApi } from "../providers/inst.api";
+import { OrderApi } from "../providers/order.api";
 import { AppComponent } from "./app.component";
 import { ReturnStatement } from "@angular/compiler";
 import { Router } from '@angular/router';
@@ -61,6 +62,7 @@ export class AppBase implements OnInit {
         public router: Router,
         public activeRoute: ActivatedRoute,
         public instApi: InstApi,
+        public orderapi: OrderApi,
         public enterpriseApi: EnterpriseApi,
     ) {
         this.activeRoute.queryParams.subscribe((params: Params) => {
@@ -102,6 +104,9 @@ export class AppBase implements OnInit {
                     }else{
                         this.operatorinfo=operator;
                         this.position = operator.position
+                        this.getquoteisread();
+                        this.getorderisread();
+                        this.getreturnisread();
                     }
                 });
             }
@@ -175,5 +180,55 @@ export class AppBase implements OnInit {
     showAlert(content,title="提示"){
      
           
+    }
+    isread='N'
+    quotereadnum=""
+    getquoteisread(){
+        var that = this
+        console.log(this.operatorinfo.enterprise_id,this.operatorinfo.id,'意义')
+        this.orderapi.isread({enterprise_id:this.operatorinfo.enterprise_id,employee_id:this.operatorinfo.id}).then((ret:any)=>{
+                console.log(ret,'已读')
+                if(ret){
+                    if(ret.code=='0'){
+                        that.isread = 'Y'
+                    }else {
+                        that.isread = 'N'
+                        that.quotereadnum = ret.code
+                    }
+                }
+               
+        })
+    }
+    oread='N'
+    ordernum=''
+    getorderisread(){
+        var that = this
+        this.orderapi.orderisread({enterprise_id:this.operatorinfo.enterprise_id,employee_id:this.operatorinfo.id}).then((ret:any)=>{
+            console.log(ret,'订单')
+            if(ret){
+                if(ret.code=='0'){
+                    that.oread = 'Y'
+                }else {
+                    that.oread = 'N'
+                    that.ordernum = ret.code
+                }
+            }
+        })
+    }
+    risread='N'
+    returnnum=''
+    getreturnisread(){
+        var that = this
+        this.orderapi.returnisread({gongsi:this.operatorinfo.enterprise_id,baojia:this.operatorinfo.id}).then((ret:any)=>{
+            console.log(ret,'退货')
+            if(ret){
+                if(ret.code=='0'){
+                    that.risread = 'Y'
+                }else {
+                    that.risread = 'N'
+                    that.returnnum = ret.code
+                }
+            }
+        })
     }
 }

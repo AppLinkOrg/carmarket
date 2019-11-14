@@ -42,7 +42,7 @@
 }
 
 .border-box {
-    width:60%;
+    width:80%;
     height: 1px;
     background: #fff;
 }
@@ -69,5 +69,11 @@
 
 .box-auto {
     margin: 0 auto;
+}
+
+.tabth {
+    td {
+        vertical-align: middle;
+    }
 }
 

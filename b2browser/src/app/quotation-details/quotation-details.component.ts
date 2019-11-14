@@ -22,7 +22,7 @@ export class QuotationDetailsComponent extends AppBase  {
     public enterpriseApi:EnterpriseApi,
     public el: ElementRef,
   ) { 
-    super(router,activeRoute,instApi,enterpriseApi);
+    super(router,activeRoute,instApi,orderApi,enterpriseApi);
   }
 
 
@@ -101,7 +101,7 @@ export class QuotationDetailsComponent extends AppBase  {
 
   }
 
-
+  rate=""
   tianxie = false
   addQuote(item){
     console.log(item)
@@ -123,6 +123,16 @@ export class QuotationDetailsComponent extends AppBase  {
       item.partnubmer='无识别'
     }
 
+    if(item.pinzhi==""){
+      item.pinzhi = '无'
+    }
+
+    if(this.rate!=""){
+      let rates = item.price*Number(this.rate)/100;
+      
+      item.price = item.price + rates;
+    }
+
     var addList = {
       fittings_id: item.id,
       name: item.name,
@@ -134,7 +144,9 @@ export class QuotationDetailsComponent extends AppBase  {
       price: item.price,
       Sprice:item.Sprice,
       sendcar_time: item.sendcar_time,
-      count: item.count
+      count: item.count,
+      rate:this.rate,
+      pinzhi: item.pinzhi
     }
 
       for(let key in addList){
@@ -249,6 +261,8 @@ export class QuotationDetailsComponent extends AppBase  {
             standby_time: (this.list[i].standby_time),
             guarantee: (this.list[i].guarantee),
             sendcar_time: (this.list[i].sendcar_time),
+            rate: (this.list[i].rate),
+            pinzhi: (this.list[i].pinzhi),
             enterprise_id: enterprise_id,
             employee_id: this.employee_id,
           }
@@ -295,7 +309,7 @@ export class QuotationDetailsComponent extends AppBase  {
 
     var date1 = new Date();
     var date2 = new Date(date1);
-    date2.setDate(date1.getDate() + 1);
+    date2.setDate(date1.getDate() + 3);
     console.log(date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate());
     console.log(date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate());
 
@@ -304,6 +318,7 @@ export class QuotationDetailsComponent extends AppBase  {
     this.quoteinfo.quoteemployee_id = this.employee_id
     this.quoteinfo.quoteenterprise_id = enterprise_id
     this.quoteinfo.invalid = 'N'
+    this.quoteinfo.rate = this.rate
     this.quoteinfo.invoice_demand =this.quoteinfo.invoice_demand_value
     this.quoteinfo.yiquoted_time = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + (date1.getDate()) +" "+ (date1.getHours()) + ":" + (date1.getMinutes())
     this.quoteinfo.expired_time = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() +" "+ (date2.getHours()) + ":" + (date2.getMinutes())

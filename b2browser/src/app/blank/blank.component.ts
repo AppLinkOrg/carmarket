@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 import { EnterpriseApi } from 'src/providers/enterprise.api';
+import { OrderApi } from 'src/providers/order.api';
 
 @Component({
   selector: 'app-blank',
@@ -18,8 +19,9 @@ export class BlankComponent  extends AppBase  {
     public activeRoute: ActivatedRoute,
     public instApi:InstApi,
     public enterpriseApi:EnterpriseApi,
+    public orderApi:OrderApi,
   ) { 
-    super(router,activeRoute,instApi,enterpriseApi);
+    super(router,activeRoute,instApi,orderApi,enterpriseApi);
   }
   onMyShow(){
     

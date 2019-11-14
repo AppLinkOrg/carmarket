@@ -21,7 +21,7 @@ export class QuotationCenterComponent extends AppBase {
     public orderApi: OrderApi,
     public enterpriseApi: EnterpriseApi,
   ) {
-    super(router, activeRoute, instApi,enterpriseApi);
+    super(router, activeRoute, instApi,orderApi,enterpriseApi);
   }
 
   list = [];
