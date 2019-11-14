@@ -711,7 +711,7 @@ export class AppBase {
   }
   backHome() {
     wx.switchTab({
-      url: '/pages/home/home',
+      url: '/pages/find/find',
     })
   }
   logout() {

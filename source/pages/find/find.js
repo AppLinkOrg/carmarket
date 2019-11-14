@@ -21,6 +21,7 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
+    this.Base.setMyData({count:0})
   }
   setPageTitle() {
     wx.setNavigationBarTitle({
@@ -46,9 +47,10 @@ class Content extends AppBase {
   }
 
   bindvalue(e) {
+     console.log(e);
 
     this.Base.setMyData({
-      vin: e.detail.value
+      vin: e.detail.value, count: e.detail.cursor
     })
 
   }

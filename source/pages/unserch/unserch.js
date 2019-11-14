@@ -25,7 +25,7 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
     this.Base.setMyData({
-      fapiao: 'N',  fittings: []
+      fapiao: 'N', fittings: [], images: []
     })
   }
   onMyShow() {
@@ -58,6 +58,8 @@ class Content extends AppBase {
     })
   }
 
+
+
   binduptwo() {
     var that = this;
     this.Base.uploadImage("quote", (ret) => {
@@ -78,24 +80,32 @@ class Content extends AppBase {
     })
   }
 
-  bindupfour() {
+  jguploadimg() {
     var that = this;
     this.Base.uploadImage("quote", (ret) => {
+      var images = that.Base.getMyData().images;
+
+      images.push(ret);
       that.Base.setMyData({
-        imagefour: ret,
-        four: true,
-      })
-    })
+        images
+      });
+
+    }, 9, undefined);
   }
 
-  bindupfive() {
+  jgminusImg(e) {
     var that = this;
-    this.Base.uploadImage("quote", (ret) => {
-      that.Base.setMyData({
-        imagefive: ret,
-        five: true,
-      })
-    })
+    var seq = e.currentTarget.id;
+    var images = that.Base.getMyData().images;
+    var imgs = [];
+    for (var i = 0; i < images.length; i++) {
+      if (seq != i) {
+        imgs.push(images[i]);
+      }
+    }
+    that.Base.setMyData({
+      images: imgs
+    });
   }
 
 
@@ -155,7 +165,9 @@ class Content extends AppBase {
     var that = this;
     var imageone = this.Base.getMyData().imageone;
     var imagetwo = this.Base.getMyData().imagetwo;
-    var imagethree = this.Base.getMyData().imagethree;
+    var imagethree = this.Base.getMyData().imagethree; 
+
+    var images = this.Base.getMyData().images;
     var imagefour = this.Base.getMyData().imagefour;
     var imagefive = this.Base.getMyData().imagefive;
     var shibie = this.Base.getMyData().fittings;
@@ -218,8 +230,7 @@ class Content extends AppBase {
             namesplate: imageone,
             frontofcar: imagetwo,
             rearofcar: imagethree,
-            photo1: imagefour,
-            photo2: imagefive,
+            photo1: images, 
             invoice_demand: fapiao,
             status: 'A'
           }, (create) => {
@@ -276,6 +287,9 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindfubu = content.bindfubu;
 body.binddelect = content.binddelect;
+
+body.jguploadimg = content.jguploadimg;
+body.jgminusImg = content.jgminusImg;
 
 body.fitting = content.fitting;
 body.bindsubmit = content.bindsubmit;

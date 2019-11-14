@@ -27,8 +27,8 @@
 
     <view class="flex-row flex-center">
       <view>{{idx+1}}、</view>
-      <view class="margin-left-10 txt-bold black">{{item.fittings_name}}</view>
-      <view class="flex-1"></view>
+      <view class="margin-left-10 txt-bold black flex-1">{{item.fittings_name}}</view>
+       
       <image class="icon   margin-right-30" id="{{item.id}}" bindtap="deleteshop" src="{{uploadpath}}resource/{{res.quchu}}"></image>
     </view>
 

@@ -1,6 +1,6 @@
 <view class="bg-white padding-20 top">
 
-  <view class="flex-row txt-black h5">报价单编号：{{quoteinfo.quotenumber}}</view>
+  <view class="flex-row txt-black txt-bold">报价单编号：{{quoteinfo.quotenumber}}</view>
   <view wx:if='{{quoteinfo.vincode!=""}}' class="flex-row txt-black margin-top-10 margin-right-20">VIN码：{{quoteinfo.vincode}}</view>
 
   <view class="flex-row">
@@ -61,6 +61,13 @@
 
 <view wx:if='{{chakan=="C"}}' class="margin-20">
 
+  <view wx:if='{{enterpriselist.length==0}}' class='flex-row flex-column'>
+    <view class="height-100"></view>
+    <image class="icon-50" src="{{uploadpath}}resource/{{res.null_icon}}"></image>
+    <!-- <image class="icon-15" src="{{uploadpath}}resource/{{res.shaixuan}}"></image> -->
+    <view class="margin-top txt-primary">暂无供应商报价</view>
+  </view>
+
   <view class="blueblock {{index>0?'margin-top':''}}" style="background:#143779" wx:for='{{enterpriselist}}' wx:key='s' wx:for-index='index'>
 
     <view class="padding-20 ">
@@ -70,29 +77,32 @@
 
     <view class="bg-white  padding-20  border_top" wx:for-index='idx' wx:for='{{item.qtylist}}' wx:key='e'>
 
-      <view class=" flex-row flex-center " bindtap="bindcheckone" data-enterprise_id="{{item.enterprise_id}}" id="{{item.id}}" data-index='{{index}}' data-sx="{{idx}}">
+      <view class=" flex-row flex-top " bindtap="bindcheckone" data-enterprise_id="{{item.enterprise_id}}" id="{{item.id}}" data-index='{{index}}' data-sx="{{idx}}">
 
-        <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.check==true}}' class="icon"></image>
+        <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.check==true}}' class="icon margin-top-6"></image>
 
-        <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.check==false}}' class="icon"></image>
+        <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.check==false}}' class="icon margin-top-6"></image>
 
         <view style="width:600rpx;" class="margin-left-20">
 
           <view class="flex-row flex-bottom">
             <view class=" txt-red txt-bold">￥{{item.price}}</view>
             <view class="h6 margin-left-20 ">x{{item.qty}}</view>
+            <view class="h6 margin-left-30  ">(4S价:￥{{item.Sprice}})</view>
+
+            <view class="h6 margin-left-20" wx:if='{{item.mcid!=""}}'>零件号：{{item.mcid}}</view>
+          </view>
+
+          <view class="flex-row flex-top margin-top-10">
+            <view class="h5   ">品质：【{{item.quality}}】</view>
+            <view class="h5 txt-black flex-1 margin-left-10">{{item.fit_name}} </view>
 
           </view>
 
-          <view class="flex-row flex-center margin-top-10">
-            <view class="h5  flex-1">品质：{{item.quality}}</view>
-            <view class="h5 txt-black  margin-left-10">{{item.fit_name}} </view>
-            <view class="h6 margin-left-20  ">4S价:￥{{item.Sprice}}</view>
-          </view>
 
-          <view class="h6 margin-top-10">{{item.mcid}}</view>
 
           <view class="h6 margin-top-20" wx:if='{{item.remarks_infor!=""}}'>备注：{{item.remarks_infor}}</view>
+
         </view>
 
 
@@ -110,20 +120,22 @@
 
   <view class="{{idx==0?'':'margin-top-10'}} radius-5" wx:for="{{quoteinfo.fittingsitem}}" wx:key="k" wx:for-index='idx'>
 
-    <view class="bg-purple flex-row flex-center padding-20">
+    <view class="bg-bt flex-row flex-center padding-20">
 
-      <view class=" border h5  text-center" style="">{{idx+1}}</view>
+      <view class=" border h5  text-center " style="">{{idx+1}}</view>
 
-      <view class="margin-left-20">
+      <view class="margin-left-20 flex-1">
 
         <view class="flex-row  flex-bottom">
-          <view class=" txt-black txt-bold h5">{{item.name}}</view>
-          <view class="margin-left-20 txt-black txt-bold h5"> x{{item.quantity}} </view>
-          <view class="h6  ">(4S价:￥{{item.Sprice}})</view>
+
+          <view class=" txt-white txt-bold h5  padding-right-20 flex-1">{{item.name}} x{{item.quantity}}</view>
+          <!-- <view class="margin-left-10 txt-black txt-bold h5  "  > x{{item.quantity}} </view> -->
+
+          <view class="h6  txt-white margin-left-10">(4S价:￥{{item.Sprice}})</view>
           <!-- <image class="icon-30 margin-top-20 margin-left-50" src="{{uploadpath}}resource/{{res.epc}}"></image> -->
         </view>
 
-        <view class=" h6 margin-top-10">{{item.name}} {{item.partnubmer}}</view>
+        <view class=" h6 margin-top-10 txt-white">{{item.name}} ({{item.partnubmer}})</view>
       </view>
 
     </view>
@@ -146,13 +158,13 @@
             <view class=" txt-red txt-bold">￥{{item.price}}</view>
             <view class="h6 margin-left-20 ">x{{item.qty}}</view>
             <view class="flex-1"></view>
-            <view class="h6 txt-black">{{item.edt_name}}</view>
+            <view class="h5 txt-bold txt-black">{{item.edt_name}}</view>
           </view>
 
 
           <view class="flex-row flex-center margin-top-10">
-            <view class="h5 flex-1">{{item.quality}}</view>
-            <view class="h6">{{item.edt_address}}</view>
+            <view class="h5 flex-1 txt-black">【{{item.quality}}】</view>
+            <view class="h5 txt-black">{{item.edt_address}}</view>
           </view>
 
           <view class="h6 margin-top-20" wx:if='{{item.remarks_infor!=""}}'>备注：{{item.remarks_infor}}</view>
@@ -177,17 +189,6 @@
       <view class="flex-1"></view>
       <image class='icon-25 margin-right-30 margin-top-30' src='{{uploadpath}}resource/{{res.delect}}' bindtap="binddelect"></image>
     </view>
-
-    <view class="flex-row margin-top-30">
-      <view class="txt-black xiaobtn margin-left-50">包邮</view>
-      <view class="txt-black xiaobtn margin-left-30">不包邮</view>
-    </view>
-
-    <view class="flex-row margin-top-30">
-      <view class="txt-black xiaobtn margin-left-50">市内</view>
-      <view class="txt-black xiaobtn margin-left-30">市外</view>
-    </view>
-
 
     <view class="margin-top-20">
       <view class="margin-left-20">地区筛选</view>
@@ -221,35 +222,40 @@
   </view>
 </view>
 
-<view style="height:220rpx;"></view>
+<view style="height:250rpx;"></view>
 
 
 <view class="bottom-block" wx:if='{{quoteinfo.quotestatus=="W"}}'>
 
 
-  <view class="text-center h5 padding-20 " style="border-bottom:2rpx solid #E5E5E5;">共{{quantity}}件，合计：￥{{sum}}</view>
+  <view class="text-center h5 txt-bold txt-red padding-20 " style="border-bottom:2rpx solid #E5E5E5;">共{{quantity}}件，合计：￥{{sum}}</view>
 
   <view class="flex-row flex-center padding-10">
 
     <view class="flex-1"></view>
-    <view class="flex-row flex-column">
-      <button class=' clear-button' hover-class='bg_gray' open-type='contact' style='border-radius:0;border:0;'>
-        <image src="{{uploadpath}}resource/{{res.kefu}}" class="icon-17"></image>
-        <view class="h5">客服</view>
-      </button>
+
+    <button class=' clear-button' hover-class='bg_gray' open-type='contact' style='border-radius:0;border:0;'>
+      <view class="flex-row flex-column"> 
+        <image src="{{uploadpath}}resource/{{res.kefu}}" class="icon"></image>
+        <view class="h5  txt-primary margin-top-6">客服</view> 
+      </view>
+    </button>
+
+    <view class="flex-1"></view>
+    <view class="flex-row flex-column" bindtap="backHome">
+      <image src="{{uploadpath}}resource/{{res.shopcar}}" class="icon"></image>
+      <view class="h5  txt-primary margin-top-6">报价中心</view>
     </view>
 
     <view class="flex-1"></view>
-    <view class="flex-row flex-column" bindtap="tocar">
-      <image src="{{uploadpath}}resource/{{res.shopcar}}" class="icon-17"></image>
-      <view class="h5">购物车</view>
-    </view>
-    <view class="flex-1"></view>
+
     <view class="buy flex-row flex-center">
-      <view class="bg-orange flex-1 text-center txt-white h5" style="height:80rpx;line-height:80rpx;" bindtap="addcar">加入购物车</view>
-      <view class="bg-red flex-1 text-center txt-white h5" style="height:80rpx;line-height:80rpx;" bindtap="addcar">下单</view>
+      <view class="bg-red flex-1 text-center txt-white txt-bold h5" style="height:80rpx;line-height:80rpx;" bindtap="addcar">下单</view>
+      <!-- <view class="bg-red flex-1 text-center txt-white h5" style="height:80rpx;line-height:80rpx;" bindtap="addcar">下单</view> -->
     </view>
 
   </view>
+
+ 
 
 </view>

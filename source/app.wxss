@@ -169,7 +169,7 @@ view, navigator, input, text, textarea {
 }
 
 .txt-primary {
-  color: #2699ec;
+  color: #143779;
 }
 
 .txt-black {
@@ -518,8 +518,8 @@ button[disabled][type=primary] {
   margin-top: 10rpx;
 }
 
-.margin-top-5 {
-  margin-top: 5rpx;
+.margin-top-6 {
+  margin-top: 6rpx;
 }
 
 .margin-left-5 {
@@ -615,6 +615,12 @@ button[disabled][type=primary] {
 
 .radius-50 {
   border-radius: 50%;
+}
+.radius-10 {
+  border-radius: 10rpx;
+}
+.radius-20 {
+  border-radius: 20rpx;
 }
 
 .radius-5 {

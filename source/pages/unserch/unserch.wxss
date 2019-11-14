@@ -57,6 +57,15 @@
   border-radius: 40rpx;
 }
 
+.btnd2 {
+  background-color: #1f4fa8;
+  color: white; 
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 180rpx;
+  border-radius: 40rpx;
+}
+
 .detele {
   position: absolute;
   right: 0; 
@@ -68,4 +77,16 @@
   width: 80rpx;
 }
 
+.icon-50 {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 10rpx;
+}
 
+.icon-close {
+  width: 38rpx;
+  height: 38rpx;
+  /* position: absolute;
+  right: 0;
+  top: 0; */
+}

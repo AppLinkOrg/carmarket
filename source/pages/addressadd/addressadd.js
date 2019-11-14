@@ -39,7 +39,6 @@ class Content extends AppBase {
 
         this.Base.setMyData({
           info,
-
           city: info.region,
           phone: info.phonenumber,
           people: info.name,
@@ -143,77 +142,57 @@ class Content extends AppBase {
         if (res.confirm) {
           if (id != undefined) {
             var addressapi = new AddressApi();
-            addressapi.updateaddress({
-              id: that.Base.options.id,
-              name: people,
-              phonenumber: phone,
-              region: city,
-              address: address,
-              morenaddress: check
-            }, (edit) => {
-              that.Base.setMyData({
-                edit
-              });
-            });
-          } else {
 
+            addressapi.clearaddress({
+              check: check, employee_id: that.Base.getMyData().employeeinfo.id
+            }, (clearaddress) => {
+
+              addressapi.updateaddress({
+                id: that.Base.options.id,
+                name: people,
+                phonenumber: phone,
+                region: city,
+                address: address,
+                morenaddress: check
+              }, (edit) => {
+                that.Base.setMyData({
+                  edit
+                });
+              });
+
+            })
+
+
+          } else {
             var addressapi = new AddressApi();
+            addressapi.clearaddress({
+              check: check,employee_id:that.Base.getMyData().employeeinfo.id
+            }, (clearaddress) => {
+ 
             addressapi.addaddress({
               name: people,
-              employee_id:that.Base.getMyData().employeeinfo.id,
+              employee_id: that.Base.getMyData().employeeinfo.id,
               phonenumber: phone,
               region: city,
               address: address,
-              status:'A',
-              morenaddress: check 
+              status: 'A',
+              morenaddress: check
             }, (baocun) => {
               that.Base.setMyData({
                 baocun
               });
 
             });
+            })
           }
           wx.navigateBack({
 
           })
 
-        }  
+        }
       }
     })
 
-
-    // if (id != undefined) {
-    //   var addressapi = new AddressApi();
-
-    //   addressapi.updateaddress({
-    //     id: this.Base.options.id,
-    //     name: people,
-    //     phonenumber: phone,
-    //     region: city,
-    //     address: address,
-    //     morenaddress: check
-    //   }, (edit) => {
-    //     this.Base.setMyData({
-    //       edit
-    //     });
-    //   });
-    // } else {
-
-    //   var addressapi = new AddressApi();
-    //   addressapi.addaddress({
-    //     name: people,
-    //     phonenumber: phone,
-    //     region: city,
-    //     address: address,
-    //     morenaddress: check
-    //   }, (baocun) => {
-    //     this.Base.setMyData({
-    //       baocun
-    //     });
-    //   });
-    // }
-    // wx.navigateBack({
-    // })
 
   }
   binddetele() {

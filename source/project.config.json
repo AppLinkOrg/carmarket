@@ -47,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 31,
+			"current": 32,
 			"list": [
 				{
 					"id": -1,
@@ -270,6 +270,13 @@
 					"id": -1,
 					"name": "pages/change/change",
 					"pathName": "pages/change/change",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/address/address",
+					"pathName": "pages/address/address",
 					"scene": null
 				}
 			]

@@ -88,8 +88,8 @@ Page {
 
 
 .border{
-  border: 4rpx solid red;
-  color: red;
+  border: 4rpx solid white;
+  color: white;
   height: 40rpx;
   line-height: 40rpx;
   width: 40rpx;
@@ -106,7 +106,7 @@ Page {
 }
 .bottom-block{
   width: 100vw;
-  height: 200rpx;
+  height: 230rpx;
   bottom: 0;
   background: white;
   position: fixed;
