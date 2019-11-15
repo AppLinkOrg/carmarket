@@ -6,8 +6,9 @@ import { AppComponent } from "./app.component";
 import { ReturnStatement } from "@angular/compiler";
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
-import { OnInit, AfterViewInit} from '@angular/core';
+import { OnInit, AfterViewInit,ElementRef} from '@angular/core';
 import { EnterpriseApi } from 'src/providers/enterprise.api';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 declare let Wechat: any;
 
@@ -76,19 +77,32 @@ export class AppBase implements OnInit {
         if(token==null&&longlivetoken!=null){
             window.sessionStorage.setItem("token",longlivetoken);
         }
+       
+        
     }
+
+    
     setStatusBar() {
         //  this.statusBar.styleLightContent();
+        
     }
     ngOnInit() {
         this.bfscrolltop = document.body.scrollTop;
         ApiConfig.SetUnicode(AppBase.UNICODE);
-
+        console.log('嘻嘻嘻')
         this.CheckPermission();
         this.getResources();
         this.getInstInfo();
         this.onMyLoad();
         this.setStatusBar();
+
+        let oldtime = (new Date()).getTime()
+        window.localStorage.setItem('oldtime',oldtime.toString())
+        console.log('上次时间了')
+       
+  
+
+        // window.localStorage.getItem('oldtime',new Date())
     }
     CheckPermission() {
         if (this.isLoginPage == false) {
@@ -104,16 +118,22 @@ export class AppBase implements OnInit {
                     }else{
                         this.operatorinfo=operator;
                         this.position = operator.position
-                        this.getquoteisread();
-                        this.getorderisread();
-                        this.getreturnisread();
+                         
                     }
                 });
             }
         }
     }
     onMyLoad() {
+
+        console.log('现在')
+        let oldtime = window.sessionStorage.getItem("oldtime");
+        let time =  Number(oldtime) + 10*60*1000;
+        if(Number(oldtime) > time){
+            this.navigate('/login');
+        }
     }
+
     getInstInfo() {
 
         if (AppBase.StaticInstInfo == null) {
@@ -146,7 +166,7 @@ export class AppBase implements OnInit {
     }
 
     onMyShow() {
-
+       
     }
 
     windowslocation(url) {
@@ -181,54 +201,7 @@ export class AppBase implements OnInit {
      
           
     }
-    isread='N'
-    quotereadnum=""
-    getquoteisread(){
-        var that = this
-        console.log(this.operatorinfo.enterprise_id,this.operatorinfo.id,'意义')
-        this.orderapi.isread({enterprise_id:this.operatorinfo.enterprise_id,employee_id:this.operatorinfo.id}).then((ret:any)=>{
-                console.log(ret,'已读')
-                if(ret){
-                    if(ret.code=='0'){
-                        that.isread = 'Y'
-                    }else {
-                        that.isread = 'N'
-                        that.quotereadnum = ret.code
-                    }
-                }
-               
-        })
-    }
-    oread='N'
-    ordernum=''
-    getorderisread(){
-        var that = this
-        this.orderapi.orderisread({enterprise_id:this.operatorinfo.enterprise_id,employee_id:this.operatorinfo.id}).then((ret:any)=>{
-            console.log(ret,'订单')
-            if(ret){
-                if(ret.code=='0'){
-                    that.oread = 'Y'
-                }else {
-                    that.oread = 'N'
-                    that.ordernum = ret.code
-                }
-            }
-        })
-    }
-    risread='N'
-    returnnum=''
-    getreturnisread(){
-        var that = this
-        this.orderapi.returnisread({gongsi:this.operatorinfo.enterprise_id,baojia:this.operatorinfo.id}).then((ret:any)=>{
-            console.log(ret,'退货')
-            if(ret){
-                if(ret.code=='0'){
-                    that.risread = 'Y'
-                }else {
-                    that.risread = 'N'
-                    that.returnnum = ret.code
-                }
-            }
-        })
-    }
+    
+    
+    
 }

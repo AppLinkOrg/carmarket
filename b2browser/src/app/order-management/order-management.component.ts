@@ -48,7 +48,7 @@ export class OrderManagementComponent extends AppBase  {
 
   enterprise_id=''
   employee_id=''
- 
+  em_id=""
   onMyShow(){
 
     var a = this.orderApi
@@ -65,6 +65,7 @@ export class OrderManagementComponent extends AppBase  {
       this.enterpriseApi.employeeinfo({ }).then((employeeinfo:any)=>{
         console.log(employeeinfo,'000')
         this.enterprise_id = employeeinfo.enterprise_id
+        this.em_id = employeeinfo.id
 
         if(employeeinfo.power == 'Y'){
           console.log('aaa')
@@ -359,43 +360,77 @@ export class OrderManagementComponent extends AppBase  {
 
 
   tiaozhuan(itemId){
-    this.router.navigate(['sendGoodsDetail'],{
-      queryParams: {
-        id: itemId
+    this.orderApi.editisread({order_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
+      console.log(ret,'改改了')
+      if(ret){
+        this.router.navigate(['sendGoodsDetail'],{
+          queryParams: {
+            id: itemId
+          }
+        })
       }
     })
+      
+      
+
+    
   }
 
   tiaozhuan2(itemId){
-    this.router.navigate(['receiveGoodsDetail'],{
-      queryParams: {
-        id: itemId
+    this.orderApi.editisread({order_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
+      console.log(ret,'改改了')
+      if(ret){
+        this.router.navigate(['receiveGoodsDetail'],{
+          queryParams: {
+            id: itemId
+          }
+        })
       }
     })
+
+   
   }
 
   tiaozhuan3(itemId){
-    this.router.navigate(['finishDetail'],{
-      queryParams: {
-        id: itemId
+    this.orderApi.editisread({order_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
+      console.log(ret,'改改了')
+      if(ret){
+        this.router.navigate(['finishDetail'],{
+          queryParams: {
+            id: itemId
+          }
+        })
       }
     })
+   
   }
 
   tiaozhuan4(itemId){
-    this.router.navigate(['cancelDetail'],{
-      queryParams: {
-        id: itemId
+    this.orderApi.editisread({order_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
+      console.log(ret,'改改了')
+      if(ret){
+        this.router.navigate(['cancelDetail'],{
+          queryParams: {
+            id: itemId
+          }
+        })
       }
     })
+    
   }
 
   tiaozhuan5(itemId){
-    this.router.navigate(['waiting'],{
-      queryParams: {
-        id: itemId
+    this.orderApi.editisread({order_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.employee_id }).then((ret)=>{
+      console.log(ret,'改改了')
+      if(ret){
+        this.router.navigate(['waiting'],{
+          queryParams: {
+            id: itemId
+          }
+        })
       }
     })
+    
   }
 
 

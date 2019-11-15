@@ -5,6 +5,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 import { OrderApi } from 'src/providers/order.api';
 import { EnterpriseApi } from 'src/providers/enterprise.api';
+import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-quotation-details',
@@ -127,10 +128,17 @@ export class QuotationDetailsComponent extends AppBase  {
       item.pinzhi = '无'
     }
 
+   
+
     if(this.rate!=""){
       let rates = item.price*Number(this.rate)/100;
       
       item.price = item.price + rates;
+     
+    }
+
+    if(this.rate==""){
+      this.rate='无';
     }
 
     var addList = {
@@ -148,21 +156,21 @@ export class QuotationDetailsComponent extends AppBase  {
       rate:this.rate,
       pinzhi: item.pinzhi
     }
-
+    console.log(addList)
       for(let key in addList){
         if(addList[key] == ''){
           this.tianxie = true
           return
         }
       }
-   
+     
     
       item.quality = ''
       item.standby_time = ''
       item.guarantee = ''
       item.price = ''
       item.sendcar_time = ''
-
+      
    
     if(addList.price !=0 ){
 
@@ -178,7 +186,7 @@ export class QuotationDetailsComponent extends AppBase  {
       
     }
     this.baojia=false
-    console.log(this.list)
+   
 
   }
 
@@ -296,17 +304,6 @@ export class QuotationDetailsComponent extends AppBase  {
 
   editStatus(enterprise_id){
 
-    // let date = new Date()
-    // let year = date.getFullYear()
-    // let month = date.getMonth() + 1
-    // let day = date.getDay()
-    
-
-    // let nowtime = year + '-' + month + '-' + day 
-    // let end_time = year + '-' + month + '-' + day +7
-
-    // console.log(nowtime,end_time)
-
     var date1 = new Date();
     var date2 = new Date(date1);
     date2.setDate(date1.getDate() + 3);
@@ -326,22 +323,27 @@ export class QuotationDetailsComponent extends AppBase  {
 
     a.editquote({id:this.quoteinfo.quote_id,quotestatus:"W"}).then((editquote:any)=>{
       if(editquote.code=='0'){
-        console.log(this.quoteinfo,'llllllll')
-        a.addexpired(this.quoteinfo).then((addexpired:any)=>{
-          console.log(addexpired)
-          if(addexpired.code == '0'){
-    
-            a.deleteignore({ quote_id: this.quoteinfo.quote_id,quoteenterprise_id:enterprise_id,status:'D' }).then((deletData:any)=>{
-                console.log(deletData,'deletData')
-             })
-    
-              this.router.navigate(['detailsOfQuotedPrice'],{
-                queryParams:{
-                  quote_id: this.quoteinfo.quote_id
+        a.editquotation({quote_id:this.quoteinfo.quote_id,quotecompan_id:enterprise_id,quotestatus:'W'}).then((ret)=>{
+          if(ret){
+            console.log(this.quoteinfo,'llllllll')
+            a.addexpired(this.quoteinfo).then((addexpired:any)=>{
+              console.log(addexpired)
+              if(addexpired.code == '0'){
+        
+                a.deleteignore({ quote_id: this.quoteinfo.quote_id,quoteenterprise_id:enterprise_id,status:'D' }).then((deletData:any)=>{
+                    console.log(deletData,'deletData')
+                 })
+        
+                  this.router.navigate(['detailsOfQuotedPrice'],{
+                    queryParams:{
+                      quote_id: this.quoteinfo.quote_id
+                    }
+                  })
                 }
-              })
-            }
+            })
+          }
         })
+     
       }
      
 
