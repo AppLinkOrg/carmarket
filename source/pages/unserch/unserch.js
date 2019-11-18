@@ -34,17 +34,15 @@ class Content extends AppBase {
   }
 
   bindfapiao(e) {
+    
     var fapiaoed = e.currentTarget.id;
-    if (fapiaoed == 'Y') {
+    console.log('0000', fapiaoed);
+     
       this.Base.setMyData({
-        fapiao: 'N'
+        fapiao: fapiaoed
       })
-    }
-    if (fapiaoed == 'N') {
-      this.Base.setMyData({
-        fapiao: 'Y'
-      })
-    }
+    
+ 
 
   }
 
@@ -55,7 +53,7 @@ class Content extends AppBase {
         imageone: ret,
         one: true,
       })
-    })
+    },1)
   }
 
 
@@ -67,7 +65,7 @@ class Content extends AppBase {
         imagetwo: ret,
         two: true,
       })
-    })
+    },1)
   }
 
   bindupthree() {
@@ -77,7 +75,7 @@ class Content extends AppBase {
         imagethree: ret,
         three: true,
       })
-    })
+    },1)
   }
 
   jguploadimg() {

@@ -83,14 +83,15 @@
 
         <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.check==false}}' class="icon margin-top-6"></image>
 
-        <view style="width:600rpx;" class="margin-left-20">
+        <view style=" " class="margin-left-20">
 
           <view class="flex-row flex-bottom">
-            <view class=" txt-red txt-bold">￥{{item.price}}</view>
+            <view class=" txt-red txt-bold" wx:if='{{xuan=="F"}}'>￥{{item.price}}</view>
+            <view class=" txt-red txt-bold" wx:if='{{xuan=="S"}}'>￥{{item.rateprice}}</view>
             <view class="h6 margin-left-20 ">x{{item.qty}}</view>
             <view class="h6 margin-left-30  ">(4S价:￥{{item.Sprice}})</view>
 
-            <view class="h6 margin-left-20" wx:if='{{item.mcid!=""}}'>零件号：{{item.mcid}}</view>
+            <view class="h6 margin-left-20" wx:if='{{item.mcid!=""}}'>{{item.mcid}}</view>
           </view>
 
           <view class="flex-row flex-top margin-top-10">
@@ -155,7 +156,9 @@
         <view style="width:600rpx;" class="margin-left-20">
 
           <view class="flex-row flex-bottom">
-            <view class=" txt-red txt-bold">￥{{item.price}}</view>
+            <view class=" txt-red txt-bold" wx:if='{{xuan=="F"}}'>￥{{item.price}}</view> 
+            <view class=" txt-red txt-bold" wx:if='{{xuan=="S"}}'>￥{{item.rateprice}}</view>
+
             <view class="h6 margin-left-20 ">x{{item.qty}}</view>
             <view class="flex-1"></view>
             <view class="h5 txt-bold txt-black">{{item.edt_name}}</view>

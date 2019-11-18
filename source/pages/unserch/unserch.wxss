@@ -72,15 +72,11 @@
   top: 0
 }
 
-.imgicon{
-  height: 50rpx;
-  width: 80rpx;
-}
+ 
 
 .icon-50 {
   width: 128rpx;
   height: 128rpx;
-  border-radius: 10rpx;
 }
 
 .icon-close {

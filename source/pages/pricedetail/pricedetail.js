@@ -72,7 +72,13 @@ class Content extends AppBase {
           }
 
           for (var s in etplist[key]) {
-            price += (parseInt(etplist[key][s].price) * parseInt(etplist[key][s].qty))
+
+            if(this.Base.getMyData().xuan=='F'){
+              price += (parseInt(etplist[key][s].price) * parseInt(etplist[key][s].qty))
+            }else{
+              price += (parseInt(etplist[key][s].rateprice) * parseInt(etplist[key][s].qty))
+            }
+            
           }
 
         }
@@ -130,7 +136,11 @@ class Content extends AppBase {
         xuan: 'S'
       })
     }
+    this.onMyShow();
+
+    this.statistics();
   }
+
   onShareAppMessage() {
 
   }
@@ -212,7 +222,13 @@ class Content extends AppBase {
           //console.log(quoteitems[a]);
           shopcar.push(quoteitems[a]);
           quantity++;
-          sum += parseInt(quoteitems[a].price);
+
+          if(this.Base.getMyData().xuan=='F'){
+            sum += parseInt(quoteitems[a].price);
+          }else{
+            sum += parseInt(quoteitems[a].rateprice);
+          }
+          
         }
       }
     }
@@ -240,7 +256,12 @@ class Content extends AppBase {
           //console.log(quoteitems[a]);
           shopcar.push(qtylist[a]);
           quantity++;
-          sum += parseInt(qtylist[a].price);
+          // sum += parseInt(qtylist[a].price);
+          if (this.Base.getMyData().xuan == 'F') {
+            sum += parseInt(qtylist[a].price);
+          } else {
+            sum += parseInt(qtylist[a].rateprice);
+          }
         }
       }
     }

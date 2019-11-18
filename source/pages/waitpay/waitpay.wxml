@@ -14,18 +14,20 @@
     <view class=" txt-red">￥{{item.totalamount}}</view>
   </view>
 
-  <view class="flex-row flex-center padding-20" >
+  <view class="flex-row flex-center padding-20">
     <view class="flex-1 h5 opa">供应商</view>
     <view>{{item.enterprise_id_name}}</view>
   </view>
-<view style="height:50rpx;"></view>
-   
+  <view style="height:150rpx;"></view>
+
 </view>
 
 <view class="bg-white bott">
-  <view class="flex-row margin-top-20 padding-bottom-20">
+  <view class="flex-row flex-center margin-top-20 padding-bottom-20">
+
     <view class="flex-1"></view>
-    <view class="txt-black margin-top-20">应付：￥{{sumprice}}</view>
-    <view class="bgjie txt-white margin-left-20 margin-right-20 text-center" bindtap="bindbuy">购买</view>
+    <view class="txt-black  ">应付：￥{{sumprice}}</view>
+    <view class="bgjie txt-white margin-left-20 margin-right-20 text-center" bindtap="bindbuy">付款</view>
+    <view class="bgjie txt-white margin-left-20 margin-right-20 text-center" bindtap="backHome">取消</view>
   </view>
 </view>

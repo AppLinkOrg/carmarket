@@ -179,7 +179,7 @@ class Content extends AppBase {
             receiveaddress: addressinfo.region + addressinfo.address,
             totalamount: sumprice,
           }, (createorder)=>{
-            wx.navigateTo({
+            wx.reLaunch({
               url: '/pages/waitpay/waitpay?id=' + that.Base.options.id + '&json=' + JSON.stringify(arr)
             })
            // that.Base.setMyData({ createorder})

@@ -6,9 +6,9 @@
 }
 .bgjie{
    background: linear-gradient(to right, rgb(228, 46, 46) , rgb(255, 72, 0));
-   height: 80rpx;
-   line-height: 80rpx;
-   width: 220rpx; 
+   height: 60rpx;
+   line-height: 60rpx;
+   width: 160rpx; 
    border-radius: 40rpx;
 }
 .opa{
