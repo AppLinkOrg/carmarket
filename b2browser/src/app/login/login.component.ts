@@ -50,12 +50,8 @@ export class LoginComponent   extends AppBase  {
           this.isremember = true;
         }
       });
-      // console.log(this.isremember)
-      // console.log(window.localStorage.getItem("lastpassword"))
-      // console.log(window.localStorage.getItem("lastloginname"))
 
-
-   
+     
   }
   submitresult="";
   submitresult2=""
@@ -83,7 +79,9 @@ export class LoginComponent   extends AppBase  {
           window.localStorage.setItem('lastpassword','');
           window.sessionStorage.setItem("token",token);
         }
-       
+        let oldtime = (new Date()).getTime() + 10*60*1000;
+        window.localStorage.setItem('oldtime',oldtime.toString())
+        console.log(window.localStorage.getItem("oldtime"),'time')
         this.navigate("storeHome",{result: 'yes'});
         console.log(this.isremember)
         console.log( window.sessionStorage.getItem("token"))

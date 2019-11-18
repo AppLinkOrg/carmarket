@@ -65,13 +65,14 @@
 
                           <div id="demo" class="carousel slide" style="width: 1000px; height: 800px" >
                               <!-- 指示符 -->
-                              <ul class="carousel-indicators" >
-                              <li data-target="#demo" *ngIf='0<item.photoLen' data-slide-to="0" class="active"></li>
-                              <li data-target="#demo"  *ngIf='1<item.photoLen' data-slide-to="1"></li>
-                              <li data-target="#demo"  *ngIf='2<item.photoLen' data-slide-to="2"></li>
-                              <li data-target="#demo"  *ngIf='3<item.photoLen' data-slide-to="3"></li>
-                              <li data-target="#demo"  *ngIf='4<item.photoLen' data-slide-to="4"></li>
-                          </ul>
+                              <ul class="carousel-indicators">
+                                <!-- <li data-target="#demo" *ngIf='0<item.photoLen' data-slide-to="0" class="active"></li>
+                                <li data-target="#demo"  *ngIf='1<item.photoLen' data-slide-to="1"></li>
+                                <li data-target="#demo"  *ngIf='2<item.photoLen' data-slide-to="2"></li>
+                                <li data-target="#demo"  *ngIf='3<item.photoLen' data-slide-to="3"></li>
+                                <li data-target="#demo"  *ngIf='4<item.photoLen' data-slide-to="4"></li> -->
+                                <!-- <li data-target="#demo"   data-slide-to="item.photoLen-1" class="active"></li> -->
+                             </ul>
                           
                               <!-- 轮播图片 -->
                               <div class="carousel-inner images" style="height: 100%;">
@@ -84,20 +85,20 @@
                                   <div class="carousel-item" style="height: 100%;" *ngIf='item.rearofcar!="" && item.rearofcar!="undefined"'>
                                       <img src="{{uploadpath}}quote/{{item.rearofcar}}">
                                   </div>
-                                  <div class="carousel-item" style="height: 100%;" *ngIf='item.photo1!="" && item.photo1!="undefined"'>
-                                      <img src="{{uploadpath}}quote/{{item.photo1}}">
+                                  <div class="carousel-item" style="height: 100%;" *ngFor='let photos of item.arr;let k=index;'>
+                                      <img src="{{uploadpath}}quote/{{photos}}">
                                   </div>
-                                  <div class="carousel-item" style="height: 100%;" *ngIf='item.photo2!="" && item.photo2!="undefined"'>
+                                  <!-- <div class="carousel-item" style="height: 100%;" *ngIf='item.photo2!="" && item.photo2!="undefined"'>
                                       <img  src="{{uploadpath}}quote/{{item.photo2}}">
-                                  </div>
+                                  </div> -->
                               </div>
                           
                               <!-- 左右切换按钮 -->
                               <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                                  <span class="carousel-control-prev-icon"></span>
+                                <div><img src="{{uploadpath}}resource/{{res.arrowl}}" style="width: 30px !important;height: 30px !important;"/></div>
                               </a>
                               <a class="carousel-control-next" href="#demo" data-slide="next">
-                                  <span class="carousel-control-next-icon"></span>
+                                 <div><img src="{{uploadpath}}resource/{{res.arrowr}}"  style="width: 30px !important;height: 30px !important;"></div>
                               </a>
                           
                           </div>
@@ -155,7 +156,7 @@
                             </div>
                             <div *ngSwitchCase='false'>
                                 <img *ngIf ='item.photo1 != "" && item.photo1!="undefined" '  data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)'  src="{{uploadpath}}quote/{{item.photo1}}" class="icon-60" />
-                                <img *ngIf ='item.photo1 == "" && item.photo1=="undefined" && item.photo2 != "" && item.photo2!="undefined"'   data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}quote/{{item.photo2}}" class="icon-60" />
+                                <!-- <img *ngIf ='item.photo1 == "" && item.photo1=="undefined" && item.photo2 != "" && item.photo2!="undefined"'   data-toggle="modal" data-target="#myModal2"  (click)='showPhoto(item)' src="{{uploadpath}}quote/{{item.photo2}}" class="icon-60" /> -->
                             </div>
                             <div *ngIf='item.photoLen>1' class="photoLen" >{{item.photoLen}}</div>
                           </div>

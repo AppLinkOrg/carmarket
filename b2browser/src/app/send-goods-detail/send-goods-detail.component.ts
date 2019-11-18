@@ -75,12 +75,9 @@ export class SendGoodsDetailComponent extends AppBase  {
   }
 
   print(){
-    let bdHtml = document.getElementsByClassName('printHtml')[0].innerHTML
-    let wind = window.open("",'newwindow', 'height=300, width=700, top=100, left=100, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no');
-    wind.document.body.innerHTML = bdHtml;
-    wind.print();
-    // window.document.body.innerHTML=prnhtml;   
-    // window.print();
+    this.orderApi.print({order_id:this.id}).then((print)=>{
+    
+    });
   }
 
 }

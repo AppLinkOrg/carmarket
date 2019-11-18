@@ -82,15 +82,14 @@ export class StoreHomeComponent extends AppBase  {
             
             mylist[i].order_time = mylist[i].order_time.substring(0,index+3)
             
-
-
+          
             if(mylist[i].order_time == this.year_mon){
 
               // this.monOrder ++ 
               // this.monList.push(mylist[i])
               // this.monIncome = this.getIncome(this.monList)
-            
-              if(mylist[i].order_time_dateformat == this.today_time){
+          
+              if(mylist[i].order_time_dateformat ==  this.today_time){
                 if(mylist[i].order_status != 'R' && mylist[i].order_status != 'Y'){
                   this.count ++ 
                   this.list.push(mylist[i])
@@ -123,7 +122,7 @@ export class StoreHomeComponent extends AppBase  {
   getIncome(list){
     let income = 0
     for(let i=0;i<list.length;i++){
-      income += parseInt( list[i].totalamount)
+      income += Number( list[i].totalamount)
     }
     return income
   }

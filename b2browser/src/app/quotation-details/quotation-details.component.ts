@@ -133,7 +133,7 @@ export class QuotationDetailsComponent extends AppBase  {
     if(this.rate!=""){
       let rates = item.price*Number(this.rate)/100;
       
-      item.price = item.price + rates;
+      item.rateprice = item.price + rates;
      
     }
 
@@ -151,6 +151,7 @@ export class QuotationDetailsComponent extends AppBase  {
       guarantee: item.guarantee,
       price: item.price,
       Sprice:item.Sprice,
+      rateprice: item.rateprice,
       sendcar_time: item.sendcar_time,
       count: item.count,
       rate:this.rate,
@@ -271,6 +272,7 @@ export class QuotationDetailsComponent extends AppBase  {
             sendcar_time: (this.list[i].sendcar_time),
             rate: (this.list[i].rate),
             pinzhi: (this.list[i].pinzhi),
+            rateprice:(this.list[i].rateprice),
             enterprise_id: enterprise_id,
             employee_id: this.employee_id,
           }

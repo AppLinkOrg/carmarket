@@ -67,11 +67,14 @@ export class ReturnsDetailComponent extends AppBase  {
       })
 
     }else if(item.orderstatus=='I'){
-      that.orderApi.addconsume({type:"R",amount:item.return_money,enterprise_id:this.operatorinfo.enterprise_id,employee_id:this.operatorinfo.id}).then((addconsume)=>{
+      that.orderApi.addxiaofei({type:"R",amount:item.return_money,enterprise_id:this.operatorinfo.enterprise_id,employee_id:this.operatorinfo.id}).then((addconsume)=>{
         console.log(addconsume,'aaaa')
         if(addconsume){
           that.memberApi.editenterprise({id:item.enterprise_id,account_money:item.return_money}).then((editenterprise)=>{
             if(editenterprise){
+              that.orderApi.updatemoney({id:this.operatorinfo.enterprise_id,money:item.return_money}).then(()=>{
+
+              })
               that.memberApi.editmoney({id:this.operatorinfo.id,sales_volume:item.return_money}).then((editmoney)=>{
                 if(editmoney){
                   item.orderstatus='Y'

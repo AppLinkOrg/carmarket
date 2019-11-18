@@ -62,4 +62,10 @@ export class FinishDetailComponent extends AppBase  {
     })
      
   }
+  print(){
+    this.orderApi.print({order_id:this.id}).then((print)=>{
+    
+    });
+  }
+
 }

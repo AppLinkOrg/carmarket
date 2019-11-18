@@ -783,5 +783,67 @@ export class OrderApi {
             });
     }
 
+    public 	addxiaofei(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/addxiaofei';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/addxiaofei', data, err);
+            });
+    }
+
+    public 	updatemoney(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/updatemoney';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/updatemoney', data, err);
+            });
+    }
+    public 	print(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/print';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/print', data, err);
+            });
+    }
+
 
 }

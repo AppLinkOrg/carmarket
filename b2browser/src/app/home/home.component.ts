@@ -50,7 +50,8 @@ export class HomeComponent  extends AppBase  {
   oread='Y'
   isread='Y'
   onMyShow(){
-
+    let oldtime = (new Date()).getTime() +  10*60*1000;
+    window.localStorage.setItem('oldtime',oldtime.toString())
     
     this.activeRoute.queryParams.subscribe((aa)=>{
       
@@ -73,33 +74,33 @@ export class HomeComponent  extends AppBase  {
                       that.returnnum = ret.code
                   }
               }
-          })
-  
-  
-          this.orderapi.orderisread({enterprise_id:employeeinfo.enterprise_id,employee_id:employeeinfo.id}).then((ret:any)=>{
-            console.log(ret,'订单')
-            if(ret){
-                if(ret.code=='0'){
-                    that.oread = 'Y'
-                }else if(ret.code!="0"){
-                    that.oread = 'N'
-                    that.ordernum = ret.code
-                }
-            }
-        })
-  
-        this.orderapi.isread({enterprise_id:employeeinfo.enterprise_id,employee_id:employeeinfo.id}).then((ret:any)=>{
-          console.log(ret,'已读')
-          if(ret){
-              if(ret.code=='0'){
-                  that.isread = 'Y'
-              }else if(ret.code!="0") {
-                  that.isread = 'N'
-                  that.quotereadnum = ret.code
+            })
+    
+    
+            this.orderapi.orderisread({enterprise_id:employeeinfo.enterprise_id,employee_id:employeeinfo.id}).then((ret:any)=>{
+              console.log(ret,'订单')
+              if(ret){
+                  if(ret.code=='0'){
+                      that.oread = 'Y'
+                  }else if(ret.code!="0"){
+                      that.oread = 'N'
+                      that.ordernum = ret.code
+                  }
               }
-          }
-         
-       })
+            })
+      
+            this.orderapi.isread({enterprise_id:employeeinfo.enterprise_id,employee_id:employeeinfo.id}).then((ret:any)=>{
+              console.log(ret,'已读')
+              if(ret){
+                  if(ret.code=='0'){
+                      that.isread = 'Y'
+                  }else if(ret.code!="0") {
+                      that.isread = 'N'
+                      that.quotereadnum = ret.code
+                  }
+              }
+            
+            })
 
             
           }, 1000);
@@ -141,9 +142,11 @@ export class HomeComponent  extends AppBase  {
 
   }
 
+
   toggleSidebar(){
-    this.toggle=!this.toggle;
     console.log('jjjjjj')
+    this.toggle=!this.toggle;
+  
   }
 
 

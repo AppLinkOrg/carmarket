@@ -95,14 +95,9 @@ export class AppBase implements OnInit {
         this.getInstInfo();
         this.onMyLoad();
         this.setStatusBar();
-
-        let oldtime = (new Date()).getTime()
-        window.localStorage.setItem('oldtime',oldtime.toString())
-        console.log('上次时间了')
        
-  
-
-        // window.localStorage.getItem('oldtime',new Date())
+        this.checktime();
+      
     }
     CheckPermission() {
         if (this.isLoginPage == false) {
@@ -118,20 +113,28 @@ export class AppBase implements OnInit {
                     }else{
                         this.operatorinfo=operator;
                         this.position = operator.position
-                         
                     }
                 });
             }
         }
     }
-    onMyLoad() {
-
+    checktime(){
         console.log('现在')
-        let oldtime = window.sessionStorage.getItem("oldtime");
-        let time =  Number(oldtime) + 10*60*1000;
-        if(Number(oldtime) > time){
+        let nowtime = (new Date()).getTime();
+        let oldtime = window.localStorage.getItem("oldtime");
+        console.log(oldtime, window.localStorage.getItem("oldtime"))
+        console.log(Number(oldtime),'oldtiem',nowtime)
+        
+        if(nowtime > Number(oldtime)  ){
+            var al = alert("长时间不操作，请重新登录！")
             this.navigate('/login');
         }
+    }
+
+  
+    onMyLoad() {
+        
+      
     }
 
     getInstInfo() {

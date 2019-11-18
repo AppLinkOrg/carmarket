@@ -19,6 +19,7 @@ import { AchievementComponent } from '../achievement/achievement.component';
 import { EmployeeManagementComponent } from '../employee-management/employee-management.component';
 import { WaitingComponent } from '../waiting/waiting.component';
 import { ConsumeComponent } from '../consume/consume.component';
+import { PrintingComponent } from '../printing/printing.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,7 @@ const routes: Routes = [
       { path: "achievement", component: AchievementComponent},
       { path: "waiting", component: WaitingComponent},
       { path: "consume", component: ConsumeComponent},
+      { path: "printing", component: PrintingComponent},
     ]
   }
 ];

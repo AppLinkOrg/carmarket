@@ -122,7 +122,7 @@ export class QuotationCenterComponent extends AppBase {
         if (ignore.length == 0) {
           a.yiquotelist({quoteenterprise_id: this.enterprise_id}).then((yiquotelist:any)=>{
             console.log(yiquotelist,'yiquotelist')
-            console.log(yiquotelist.length,'yiquotelist.lenght')
+            console.log(yiquotelist.length,'yiquotelist.length')
 
             if(yiquotelist.length == 0){
 
@@ -145,11 +145,12 @@ export class QuotationCenterComponent extends AppBase {
                         item.photoLen++
                       }
                       if (item.photo1 != ''&& item.photo1!="undefined") {
-                        item.photoLen++
+                        var arr =  item.photo1.split(/[, ，]/)
+                        item.photoLen +=arr.length
                       }
-                      if (item.photo2 != ''&& item.photo2!="undefined") {
-                        item.photoLen++
-                      }
+                      // if (item.photo2 != ''&& item.photo2!="undefined") {
+                      //   item.photoLen++
+                      // }
                       this.list.push(item)
                     }
                   }
@@ -183,11 +184,12 @@ export class QuotationCenterComponent extends AppBase {
                         item.photoLen++
                       }
                       if (item.photo1 != '' && item.photo1 !="undefined") {
-                        item.photoLen++
+                        var arr =  item.photo1.split(/[, ，]/)
+                        item.photoLen +=arr.length
                       }
-                      if (item.photo2 != '' && item.photo2 !="undefined") {
-                        item.photoLen++
-                      }
+                      // if (item.photo2 != '' && item.photo2 !="undefined") {
+                      //   item.photoLen++
+                      // }
 
                       result.push(item);
                     }
@@ -236,11 +238,12 @@ export class QuotationCenterComponent extends AppBase {
                           item.photoLen++
                         }
                         if (item.photo1 != '' && item.photo1 !="undefined") {
-                          item.photoLen++
+                          var arr =  item.photo1.split(/[, ，]/)
+                          item.photoLen += arr.length
                         }
-                        if (item.photo2 != '' && item.photo2 !="undefined") {
-                          item.photoLen++
-                        }
+                        // if (item.photo2 != '' && item.photo2 !="undefined") {
+                        //   item.photoLen++
+                        // }
                         result.push(item);
 
                       }
@@ -280,11 +283,12 @@ export class QuotationCenterComponent extends AppBase {
                       item.photoLen++
                     }
                     if (item.photo1 != '' && item.photo1 !="undefined") {
-                      item.photoLen++
+                      var arr =  item.photo1.split(/[, ，]/)
+                      item.photoLen +=arr.length
                     }
-                    if (item.photo2 != '' && item.photo2 !="undefined") {
-                      item.photoLen++
-                    }
+                    // if (item.photo2 != '' && item.photo2 !="undefined") {
+                    //   item.photoLen++
+                    // }
 
                     console.log('尽快发货方')
                     console.log(this.notinignore2(item, yiquotelist),'jjjjdddddd')
@@ -512,8 +516,15 @@ export class QuotationCenterComponent extends AppBase {
     console.log(item)
 
     this.imgs.push(item)
-
+    var arr=[]
     this.imgs = this.imgs.filter((item, index) => {
+
+      console.log(item.photo1,'lllll')
+       arr =  item.photo1.split(/[, ，]/)
+        console.log(arr,'急急急')
+
+        item.arr  = arr
+
       if (item.frontofcar == ""  && item.namesplate != "") {
         item.frontofcar = item.namesplate
         item.namesplate = ""
@@ -523,17 +534,15 @@ export class QuotationCenterComponent extends AppBase {
         item.rearofcar = ""
       }
       if (item.frontofcar == "" && item.namesplate == "" && item.rearofcar == "" && item.photo1 != "") {
-        item.frontofcar = item.photo1
+       
+        item.frontofcar =  item.photo1
         item.photo1 = ""
       }
-      if (item.frontofcar == "" && item.namesplate == "" && item.rearofcar == "" && item.photo1 == "" && item.photo2 != "") {
-        item.frontofcar = item.photo2
-        item.photo2 = ""
-      }
+    
       return item
     })
-
-    console.log(this.imgs)
+    // var iamg =  this.imgs.concat(arr)
+    console.log( this.imgs,'llll')
 
   }
 

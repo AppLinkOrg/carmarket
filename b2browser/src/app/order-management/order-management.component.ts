@@ -420,7 +420,7 @@ export class OrderManagementComponent extends AppBase  {
   }
 
   tiaozhuan5(itemId){
-    this.orderApi.editisread({order_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.employee_id }).then((ret)=>{
+    this.orderApi.editisread({order_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
       console.log(ret,'改改了')
       if(ret){
         this.router.navigate(['waiting'],{

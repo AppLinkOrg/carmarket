@@ -27,6 +27,7 @@ import { AchievementComponent } from '../achievement/achievement.component';
 import { EmployeeManagementComponent } from '../employee-management/employee-management.component';
 import { WaitingComponent } from '../waiting/waiting.component';
 import { ConsumeComponent } from '../consume/consume.component';
+import { PrintingComponent } from '../printing/printing.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { ConsumeComponent } from '../consume/consume.component';
     AchievementComponent,
     WaitingComponent,
     ConsumeComponent,
+    PrintingComponent,
     DashboardComponent],
   imports: [
     CommonModule,
