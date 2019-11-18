@@ -21,7 +21,7 @@ export class ReturnsManagementComponent extends AppBase  {
     public orderApi:OrderApi,
     public enterpriseApi:EnterpriseApi,
   ) { 
-    super(router,activeRoute,instApi,enterpriseApi);
+    super(router,activeRoute,instApi,orderApi,enterpriseApi);
   }
 
   returnlist = []
@@ -42,7 +42,7 @@ export class ReturnsManagementComponent extends AppBase  {
 
   enterprise_id = ''
   employee_id=''
-
+  em_id=""
   onMyShow(){
 
     var a = this.orderApi
@@ -59,6 +59,7 @@ export class ReturnsManagementComponent extends AppBase  {
       this.enterpriseApi.employeeinfo({ }).then((employeeinfo:any)=>{
         console.log(employeeinfo)
         this.enterprise_id = employeeinfo.enterprise_id
+        this.em_id = employeeinfo.id
         
         if(employeeinfo.power == 'Y'){
           console.log('aaa')
@@ -242,11 +243,18 @@ export class ReturnsManagementComponent extends AppBase  {
   }
 
   tiaozhuan(item){
-    this.router.navigate(['returnsDetail'],{
-      queryParams: {
-        id:item
+    
+    this.orderApi.editisread({return_id:item,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
+      console.log(ret,'改改了')
+      if(ret){
+        this.router.navigate(['returnsDetail'],{
+          queryParams: {
+            id:item
+          }
+        })
       }
     })
+    
   }
 
   

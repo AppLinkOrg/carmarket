@@ -5,12 +5,13 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 import { FloorApi } from 'src/providers/floor.api';
 import { EnterpriseApi } from 'src/providers/enterprise.api';
+import { OrderApi } from 'src/providers/order.api';
 
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss'],
-  providers:[FloorApi,EnterpriseApi]
+  providers:[FloorApi,EnterpriseApi,OrderApi]
 })
 export class HeroesComponent extends AppBase {
 
@@ -20,8 +21,9 @@ export class HeroesComponent extends AppBase {
     public instApi:InstApi,
     public floorApi:FloorApi,
     public EnterpriseApi:EnterpriseApi,
+    public OrderApi:OrderApi,
   ) { 
-    super(router,activeRoute,instApi,EnterpriseApi);
+    super(router,activeRoute,instApi,OrderApi,EnterpriseApi);
   }
   floorlist=[];
   floor=null;

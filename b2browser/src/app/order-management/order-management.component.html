@@ -27,7 +27,7 @@
                   <th>序号</th>
                   <th>订单编号</th>
                   <th>公司名称</th>
-                  <th>配件清单</th>
+                  <th width="30%">配件清单</th>
                   <th>报价员</th>
                   <th>下单时间</th>
                   <th>订单金额</th>
@@ -62,7 +62,7 @@
                     </div>
                     <div *ngIf='operation=="S"'>
                         <button class="btn btn-primary" (click)='tiaozhuan2(item.id)'><a>查看详情</a></button><br>
-                        <span class="txt-orange">等待卖家收货</span>
+                        <span class="txt-orange">等待买家收货</span>
                     </div>
                     <div *ngIf='operation=="F"'>
                         <button class="btn btn-primary" (click)='tiaozhuan3(item.id)'><a>查看详情</a></button><br>

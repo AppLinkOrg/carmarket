@@ -21,7 +21,7 @@ export class QuotationCenterComponent extends AppBase {
     public orderApi: OrderApi,
     public enterpriseApi: EnterpriseApi,
   ) {
-    super(router, activeRoute, instApi,enterpriseApi);
+    super(router, activeRoute, instApi,orderApi,enterpriseApi);
   }
 
   list = [];
@@ -63,14 +63,15 @@ export class QuotationCenterComponent extends AppBase {
       a.quotelist({}).then((list: any) => {
         console.log(list,'list')
 
-        a.quotationlist({}).then((quotationlist:any)=>{
+        a.quotationlist({quotecompan_id:this.enterprise_id,quoteper:this.employee_id}).then((quotationlist:any)=>{
           if(quotationlist.length==0){
             for (let item of list) {
     
               if(item.quotestatus=='Q'){
                     
                     item.quote_id = item.id
-
+                    item.quoteper = this.employee_id
+                    item.quotecompan_id = this.enterprise_id
                     if(item.invoice_demand!=""){
                       item.invoice_demand =item.invoice_demand
                     }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){
@@ -87,9 +88,10 @@ export class QuotationCenterComponent extends AppBase {
               for (let item of list) {
     
                 if(item.quotestatus=='Q'){
-                      if(this.notinignore(item,quotationlist)){
+                      if(this.notinignore4(item,quotationlist)){
                         item.quote_id = item.id
-                        
+                        item.quoteper = this.employee_id
+                        item.quotecompan_id = this.enterprise_id
                         if(item.invoice_demand!=""){
                           item.invoice_demand =item.invoice_demand
                         }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){
@@ -124,7 +126,7 @@ export class QuotationCenterComponent extends AppBase {
 
             if(yiquotelist.length == 0){
 
-              a.quotationlist({}).then((list: any) => {
+              a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
                 console.log(list, 'lsit')
 
                   for (let item of list) {
@@ -163,7 +165,7 @@ export class QuotationCenterComponent extends AppBase {
               })
             }else {
 
-              a.quotationlist({}).then((list: any) => {
+              a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
                 console.log(list, 'bbb')
                 var result = [];
                 for (let item of list) {
@@ -214,7 +216,7 @@ export class QuotationCenterComponent extends AppBase {
 
             if(yiquotelist.length == 0){
 
-              a.quotationlist({}).then((list: any) => {
+              a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
                 console.log(list, 'list')
                 var result = [];
                   for (let item of list) {
@@ -261,7 +263,7 @@ export class QuotationCenterComponent extends AppBase {
               })
             }else {
 
-              a.quotationlist({}).then((list: any) => {
+              a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
                 console.log(list, 'list')
                 var result = [];
                 for (let item of list) {
@@ -333,6 +335,36 @@ export class QuotationCenterComponent extends AppBase {
 
 
   }
+
+  notinignore4(item,arr){
+    for(let yiitem of arr){
+      if(yiitem.quote_id==item.id){
+        if(yiitem.quotecompan_id==this.enterprise_id && yiitem.quoteper==this.employee_id){
+          return false
+        }
+      }
+    }
+    return true;
+  }
+
+  notinignore(item, ignore) {
+    for (let igitem of ignore) {
+      if (item.id == igitem.quote_id) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  notinignore2(item, ignore) {
+    for (let igitem of ignore) {
+      if (item.quote_id == igitem.quote_id) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 
   distinct = []
 
@@ -560,23 +592,6 @@ export class QuotationCenterComponent extends AppBase {
 
   }
 
-  notinignore(item, ignore) {
-    for (let igitem of ignore) {
-      if (item.id == igitem.quote_id) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  notinignore2(item, ignore) {
-    for (let igitem of ignore) {
-      if (item.quote_id == igitem.quote_id) {
-        return false;
-      }
-    }
-    return true;
-  }
 
 
   // 已忽略
@@ -747,7 +762,7 @@ export class QuotationCenterComponent extends AppBase {
       // let yiquotelists = yiquotelist
       if(yiquotelist.length==0){
         let result = []
-        a.quotationlist({}).then((quotelist:any)=>{
+        a.quotationlist({quotecompan_id:this.enterprise_id,quoteper:this.employee_id}).then((quotelist:any)=>{
           for(let item of quotelist){
             if(item.quotestatus=='Q'){
               result.push(item)
@@ -763,7 +778,7 @@ export class QuotationCenterComponent extends AppBase {
         })
       }else {
         let result = []
-        a.quotationlist({}).then((quotelist:any)=>{
+        a.quotationlist({quoteenterprise_id: this.enterprise_id,quoteper:this.employee_id}).then((quotelist:any)=>{
           console.log(quotelist,'quotelsit')
           for(let item of quotelist){
             if(item.quotestatus=='Q'){
@@ -799,24 +814,36 @@ export class QuotationCenterComponent extends AppBase {
 
 
   tiaozhuan(itemId,quote_id) {
-    this.router.navigate(['quotationDetails'], {
-      queryParams: {
-        id: itemId,
-        quote_id: quote_id,
-        employee_id: this.employee_id,
-        employee_id_name: this.employee_id_name,
-        enterprise_id_name: this.enterprise_id_name
+    this.orderApi.editisread({quote_id:quote_id,enterprise_id:this.enterprise_id,employee_id:this.employee_id }).then((ret)=>{
+      console.log(ret,'改改了')
+      if(ret){
+        this.router.navigate(['quotationDetails'], {
+          queryParams: {
+            id: itemId,
+            quote_id: quote_id,
+            employee_id: this.employee_id,
+            employee_id_name: this.employee_id_name,
+            enterprise_id_name: this.enterprise_id_name
+          }
+        })
       }
     })
+    
   }
 
   tiaozhuan2(itemId) {
-    this.router.navigate(['detailsOfQuotedPrice'], {
-      queryParams: {
-        quote_id: itemId,
-
+    this.orderApi.editisread({quote_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.employee_id }).then((ret)=>{
+      console.log(ret,'改改了')
+      if(ret){
+        this.router.navigate(['detailsOfQuotedPrice'], {
+          queryParams: {
+            quote_id: itemId,
+    
+          }
+        })
       }
     })
+    
   }
 
   pagination(list, length) {

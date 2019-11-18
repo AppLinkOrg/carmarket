@@ -24,7 +24,7 @@ export class EmployeeManagementComponent extends AppBase  {
     public el:ElementRef,
     public enterpriseApi:EnterpriseApi,
   ) { 
-    super(router,activeRoute,instApi,enterpriseApi);
+    super(router,activeRoute,instApi,orderApi,enterpriseApi);
   }
 
 
@@ -205,52 +205,110 @@ export class EmployeeManagementComponent extends AppBase  {
     console.log(address,'address')
     console.log('aaaaa')
 
-    if(this.item.operation == 'E'){
+
+    if(address.morenaddress=='是'){
+      this.adressApi.clearaddress({check:'Y',employee_id:this.employee_id}).then((clearaddress:any)=>{
+        console.log(clearaddress)
+        if(clearaddress.code=='0'){
+          if(this.item.operation == 'E'){
       
-      if(address.region!="" && address.address!="" && address.name!=""){
-        console.log('kljkljlkjkl')
-        if(address.phonenumber!=""){
-          let reg = /^1[3|4|5|7|8]\d{9}$/
-          if(reg.test(address.phonenumber)){
-            console.log('ppppppp')
-            this.adressApi.updateaddress(address).then((updateaddress:any)=>{
-              console.log(updateaddress,'updateaddress')
-              if(updateaddress.code == '0'){
-                this.onMyShow()
-                this.closeModal.nativeElement.click();
-              }
-            })
-          }else {
-            this.isshow = true
-          }
-        }
-      }
-      
-    }else {
-
-      if(address.region!="" && address.address!="" && address.name!=""){
-        console.log('kljkljlkjkl')
-        if(address.phonenumber!=""){
-          let reg = /^1[3|4|5|7|8]\d{9}$/
-          if(reg.test(address.phonenumber)){
-            console.log('ppppppp')
-            this.adressApi.addaddress(address).then((addaddress:any)=>{
-
-                if(addaddress.code == '0'){
-                  this.closeModal.nativeElement.click();
-                  this.onMyShow()
-
+            if(address.region!="" && address.address!="" && address.name!=""){
+              console.log('kljkljlkjkl')
+              if(address.phonenumber!=""){
+                let reg = /^1[3|4|5|7|8]\d{9}$/
+                if(reg.test(address.phonenumber)){
+                  console.log('ppppppp')
+                  this.adressApi.updateaddress(address).then((updateaddress:any)=>{
+                    console.log(updateaddress,'updateaddress')
+                    if(updateaddress.code == '0'){
+                      this.onMyShow()
+                      this.closeModal.nativeElement.click();
+                    }
+                  })
+                }else {
+                  this.isshow = true
                 }
-            })
+              }
+            }
+            
           }else {
-            this.isshow = true
+      
+            if(address.region!="" && address.address!="" && address.name!=""){
+              console.log('kljkljlkjkl')
+              if(address.phonenumber!=""){
+                let reg = /^1[3|4|5|7|8]\d{9}$/
+                if(reg.test(address.phonenumber)){
+                  console.log('ppppppp')
+                  this.adressApi.addaddress(address).then((addaddress:any)=>{
+      
+                      if(addaddress.code == '0'){
+                        this.closeModal.nativeElement.click();
+                        this.onMyShow()
+      
+                      }
+                  })
+                }else {
+                  this.isshow = true
+                }
+              }
+            }
+      
+          
+      
+          }
+
+        }
+      })
+    }else {
+      if(this.item.operation == 'E'){
+      
+        if(address.region!="" && address.address!="" && address.name!=""){
+          console.log('kljkljlkjkl')
+          if(address.phonenumber!=""){
+            let reg = /^1[3|4|5|7|8]\d{9}$/
+            if(reg.test(address.phonenumber)){
+              console.log('ppppppp')
+              this.adressApi.updateaddress(address).then((updateaddress:any)=>{
+                console.log(updateaddress,'updateaddress')
+                if(updateaddress.code == '0'){
+                  this.onMyShow()
+                  this.closeModal.nativeElement.click();
+                }
+              })
+            }else {
+              this.isshow = true
+            }
           }
         }
+        
+      }else {
+  
+        if(address.region!="" && address.address!="" && address.name!=""){
+          console.log('kljkljlkjkl')
+          if(address.phonenumber!=""){
+            let reg = /^1[3|4|5|7|8]\d{9}$/
+            if(reg.test(address.phonenumber)){
+              console.log('ppppppp')
+              this.adressApi.addaddress(address).then((addaddress:any)=>{
+  
+                  if(addaddress.code == '0'){
+                    this.closeModal.nativeElement.click();
+                    this.onMyShow()
+  
+                  }
+              })
+            }else {
+              this.isshow = true
+            }
+          }
+        }
+  
+      
+  
       }
+    }
 
     
-
-    }
 
    
   }

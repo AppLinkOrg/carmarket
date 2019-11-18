@@ -22,15 +22,43 @@ export class ConsumeComponent extends AppBase  {
     public enterpriseApi:EnterpriseApi,
     public orderApi:OrderApi,
   ) { 
-    super(router,activeRoute,instApi,enterpriseApi);
+    super(router,activeRoute,instApi,orderApi,enterpriseApi);
   }
   consumelist=null
+  allenterprise=null
+  name=''
+  templist=null
   onMyShow(){
     console.log(this.params,'llll')
+    console.log(this.operatorinfo.name,'uuuuuu')
+    // this.name = this.params.name
+    this.enterpriseApi.allenterprise({enterprise_id:this.params.enterprise_id }).then((allenterprise:any)=>{
+      console.log(allenterprise,'全部')
+      this.allenterprise = allenterprise
+    })
+
+
     this.orderApi.consumelist({enterprise_id:this.params.enterprise_id}).then((consumelist)=>{
       console.log(consumelist)
+      this.templist = consumelist
       this.consumelist = consumelist
+      
     })
   } 
+ 
+  changcode(){
+    console.log(this.name)
+    if(this.name!=""){
+      this.consumelist = this.templist.filter(item=>{
+        if(item.employee_name==this.name){
+          return item
+        }
 
+      })
+    }
+  }
+
+  reset(){
+    this.consumelist = this.templist
+  }
 }

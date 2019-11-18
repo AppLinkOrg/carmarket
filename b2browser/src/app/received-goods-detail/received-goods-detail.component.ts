@@ -22,7 +22,7 @@ export class ReceivedGoodsDetailComponent extends AppBase  {
     public orderApi:OrderApi,
     public enterpriseApi:EnterpriseApi,
   ) { 
-    super(router,activeRoute,instApi,enterpriseApi);
+    super(router,activeRoute,instApi,orderApi,enterpriseApi);
   }
   
   
@@ -47,7 +47,11 @@ export class ReceivedGoodsDetailComponent extends AppBase  {
         })
      
         this.list = detailList
-        this.orderItem = detailList.orderitem;
+        this.orderItem = detailList.orderitem.filter(item=>{
+          if(detailList.id==item.order_id){
+            return item
+          }
+        })
 
         this.orderApi.quoteinfo({id: this.list.quote_id}).then((quoteinfo:any)=>{
           console.log(quoteinfo)

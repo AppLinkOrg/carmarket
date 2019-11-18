@@ -41,18 +41,30 @@
               <a class="nav-link" href="#"  routerLink="/quotationCenter"  >
                 <i class="fas fa-fw fa-newspaper"></i>
                 <span>报价中心</span></a>
+                <div class="redbox" *ngIf='isread=="N"'>
+                    <img src="{{uploadpath}}resource/{{res.duihua}}" class=" ">
+                  <span>{{quotereadnum}}</span>
+                </div>
           </li>
 
           <li class="nav-item home-box"  routerLinkActive="active">
             <a class="nav-link" href="#"  routerLink="/orderManagement"  >
               <i class="fas fa-fw fa-clipboard-list"></i>
               <span>订单管理</span></a>
+              <div class="redbox" *ngIf='oread=="N"'>
+                  <img src="{{uploadpath}}resource/{{res.duihua}}" class=" ">
+                 <span>{{ordernum}}</span>
+              </div>
           </li>
 
           <li class="nav-item home-box"  routerLinkActive="active">
             <a class="nav-link" href="#"  routerLink="/returnsManagement"  >
               <i class="fas fa-fw fa-user icon-fa"></i>
               <span>退货管理</span></a>
+              <div class="redbox" *ngIf='risread=="N"'>
+                  <img src="{{uploadpath}}resource/{{res.duihua}}" class=" ">
+                <span>{{returnnum}}</span>
+              </div>
           </li>
 
           <li class="nav-item home-box"  routerLinkActive="active" *ngIf='position=="B"'>
@@ -64,7 +76,9 @@
           <li class="nav-item home-box"  routerLinkActive="active"  *ngIf='position!="B"'>
             <a class="nav-link" href="#"  routerLink="/employeeManagement" [queryParams]='obj' >
               <i class="fas fa-fw fa-stream"></i>
-              <span>管理中心</span></a>
+              <span>管理中心</span>
+            </a>
+           
           </li>
   
       

@@ -23,7 +23,7 @@ export class ReturnsDetailComponent extends AppBase  {
     public enterpriseApi:EnterpriseApi,
     public memberApi:MemberApi,
   ) { 
-    super(router,activeRoute,instApi,enterpriseApi);
+    super(router,activeRoute,instApi,orderApi,enterpriseApi);
   }
 
   id = '';
