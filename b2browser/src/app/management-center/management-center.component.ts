@@ -62,7 +62,9 @@ export class ManagementCenterComponent extends AppBase  {
   setData = null;
   acc_money=0
   onMyShow(){
-    
+    this.employeeinfo = [];
+    this.allenterprise = []
+    this.enterpriseinfo = [];
     var a = this.adressApi
 
     this.enterpriseApi.employeeinfo({ }).then((employeeinfo:any)=>{
@@ -72,8 +74,8 @@ export class ManagementCenterComponent extends AppBase  {
 
       this.enterprise_id = employeeinfo.enterprise_id
       this.employee_id = employeeinfo.id
-      this.acc_money = Number(employeeinfo.account_money) 
-
+      
+      
       if(employeeinfo.position == 'C'){
         employeeinfo.position_name = '报价员'
       }
@@ -99,7 +101,8 @@ export class ManagementCenterComponent extends AppBase  {
         console.log(enterpriseinfo)
        
         this.enterpriseinfo.push(enterpriseinfo)
-        
+        this.acc_money = enterpriseinfo.account_money
+        console.log(this.acc_money,'mmmmmmm')
       })
 
      
@@ -378,8 +381,13 @@ changeSwitch(e,list){
         this.enterpriseApi.addtixian({enterprise_id:this.enterprise_id,money:this.money,status:'A'}).then((addtixian)=>{
           console.log(addtixian,'addtixian')
           if(addtixian){
+            this.OrderApi.updatemoney({id:this.enterprise_id,money:this.money}).then((updatemoney)=>{
+              console.log(updatemoney)
+              
+            })
             this.tixian=false
             this.error=""
+            this.onMyShow();
           }
         })
       }else {

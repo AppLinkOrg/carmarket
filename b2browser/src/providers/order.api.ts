@@ -833,14 +833,15 @@ export class OrderApi {
 
         if (showLoadingModal) {
             loading = ApiConfig.GetLoadingModal();
-        }
-
+        } 
+        
         return this.http.post(url, body, options).toPromise()
+ 
             .then((res) => {
-                return res;
+                return  res; 
             })
             .catch(err => {
-                console.error(err);
+                console.error(err,'000000');
                 return ApiConfig.ErrorHandle('order/print', data, err);
             });
     }
