@@ -5,6 +5,7 @@
     <swiper-item>
       <image src='{{uploadpath}}indexbanner/{{item.img}}' style='width:750rpx;height:400rpx;'></image>
     </swiper-item>
+  
   </block>
 </swiper>
 
@@ -14,7 +15,8 @@
     <image class='icon-17 margin-left-20' src='{{uploadpath}}resource/{{res.search}}'></image>
 
     <input class="flex-1 margin-left-10 padding-right-20" maxlength="17" value="{{vin}}" placeholder="手动输入17位车架号" bindconfirm="bindsearch" bindinput="bindvalue"></input>
-
+ 
+ 
     <view class="margin-right-20 h6 txt-bold">{{count}}/17</view>
 
     <image class='icon-25 margin-right-20' bindtap="clickvin" src='{{uploadpath}}resource/{{res.cream}}'></image>
