@@ -116,7 +116,6 @@ export class AppBase implements OnInit {
                     }else{
                         this.operatorinfo=operator;
                         this.position = operator.position
-                        window.sessionStorage.removeItem("currenttime");
                     }
                 });
             }

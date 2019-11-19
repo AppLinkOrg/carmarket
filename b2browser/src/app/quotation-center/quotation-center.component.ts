@@ -73,6 +73,7 @@ export class QuotationCenterComponent extends AppBase {
                     item.quote_id = item.id
                     item.quoteper = this.employee_id
                     item.quotecompan_id = this.enterprise_id
+               
                     if(item.invoice_demand!=""){
                       item.invoice_demand =item.invoice_demand
                     }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){
@@ -93,6 +94,7 @@ export class QuotationCenterComponent extends AppBase {
                         item.quote_id = item.id
                         item.quoteper = this.employee_id
                         item.quotecompan_id = this.enterprise_id
+                       
                         if(item.invoice_demand!=""){
                           item.invoice_demand =item.invoice_demand
                         }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){

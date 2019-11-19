@@ -70,12 +70,27 @@
 
   <view class="blueblock {{index>0?'margin-top':''}}" style="background:#143779" wx:for='{{enterpriselist}}' wx:key='s' wx:for-index='index'>
 
-    <view class="padding-20 ">
-      <view class="txt-white"> {{item.enterprise_name}}</view>
-      <view class="txt-white h5 margin-top-20"> {{item.address}}</view>
+    <view class="padding-20 flex-row flex-center">
+        
+        <image src="{{uploadpath}}resource/{{res.yes}}" id="{{index}}" data-type="{{false}}" bindtap="quanxuan" wx:if='{{item.allcheck==true}}' class="icon margin-top-6"></image>
+        <image src="{{uploadpath}}resource/{{res.no}}" id="{{index}}" data-type="{{true}}" bindtap="quanxuan" wx:if='{{item.allcheck==false}}' class="icon margin-top-6"></image>
+
+        <view class="flex-1">
+          <view class="txt-white"> {{item.enterprise_name}}</view>
+          <view class="txt-white h5 margin-top-20"> {{item.address}}</view>
+        </view>
+
+        <view>
+          
+        </view>
+
+        <image  src="{{uploadpath}}resource/{{res.upjiantou}}" id="{{index}}" bindtap="shoucang" data-type="{{false}}" wx:if='{{item.show==true}}' class="icon"></image>
+        <image  src="{{uploadpath}}resource/{{res.arrowbot}}" id="{{index}}" bindtap="shoucang" data-type="{{true}}" wx:if='{{item.show==false}}' class="icon"></image>
+
+
     </view>
 
-    <view class="bg-white  padding-20  border_top" wx:for-index='idx' wx:for='{{item.qtylist}}' wx:key='e'>
+    <view wx:if='{{item.show==false}}' class="bg-white  padding-20  border_top" wx:for-index='idx' wx:for='{{item.qtylist}}' wx:key='e'>
 
       <view class=" flex-row flex-top " bindtap="bindcheckone" data-enterprise_id="{{item.enterprise_id}}" id="{{item.id}}" data-index='{{index}}' data-sx="{{idx}}">
 
@@ -83,9 +98,9 @@
 
         <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.check==false}}' class="icon margin-top-6"></image>
 
-        <view style=" " class="margin-left-20">
+        <view style=" " class="margin-left-20 flex-1">
 
-          <view class="flex-row flex-bottom">
+          <view class="flex-row flex-bottom ">
             <view class=" txt-red txt-bold" wx:if='{{xuan=="F"}}'>￥{{item.price}}</view>
             <view class=" txt-red txt-bold" wx:if='{{xuan=="S"}}'>￥{{item.rateprice}}</view>
             <view class="h6 margin-left-20 ">x{{item.qty}}</view>
@@ -156,7 +171,7 @@
         <view style="width:600rpx;" class="margin-left-20">
 
           <view class="flex-row flex-bottom">
-            <view class=" txt-red txt-bold" wx:if='{{xuan=="F"}}'>￥{{item.price}}</view> 
+            <view class=" txt-red txt-bold" wx:if='{{xuan=="F"}}'>￥{{item.price}}</view>
             <view class=" txt-red txt-bold" wx:if='{{xuan=="S"}}'>￥{{item.rateprice}}</view>
 
             <view class="h6 margin-left-20 ">x{{item.qty}}</view>
@@ -238,9 +253,9 @@
     <view class="flex-1"></view>
 
     <button class=' clear-button' hover-class='bg_gray' open-type='contact' style='border-radius:0;border:0;'>
-      <view class="flex-row flex-column"> 
+      <view class="flex-row flex-column">
         <image src="{{uploadpath}}resource/{{res.kefu}}" class="icon"></image>
-        <view class="h5  txt-primary margin-top-6">客服</view> 
+        <view class="h5  txt-primary margin-top-6">客服</view>
       </view>
     </button>
 
@@ -259,6 +274,6 @@
 
   </view>
 
- 
+
 
 </view>

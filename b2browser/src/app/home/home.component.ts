@@ -65,49 +65,27 @@ export class HomeComponent  extends AppBase  {
       
          
             console.log("进来了");
-            this.orderapi.returnisread({gongsi:employeeinfo.enterprise_id,baojia:employeeinfo.id}).then((ret:any)=>{
-              console.log('退货')
-              if(ret){
-                  if(ret.code=='0'){
-                      that.risread = 'Y'
-                  }else if(ret.code!="0"){
-                      that.risread = 'N'
-                      that.returnnum = ret.code
-                  }
-              }
-            })
-    
+       
     
             this.orderapi.orderisread({enterprise_id:employeeinfo.enterprise_id,employee_id:employeeinfo.id}).then((ret:any)=>{
               console.log(ret,'订单')
-              if(ret){
-                  if(ret.code=='0'){
-                      that.oread = 'Y'
-                  }else if(ret.code!="0"){
-                      that.oread = 'N'
-                      that.ordernum = ret.code
-                  }
+              
+              if(ret.order>'0'){
+                that.oread = 'N'
+                that.ordernum = ret.order;
               }
-            })
-      
-            this.orderapi.isread({enterprise_id:employeeinfo.enterprise_id,employee_id:employeeinfo.id}).then((ret:any)=>{
-              console.log(ret,'已读')
-              if(ret){
-                  if(ret.code=='0'){
-                      that.isread = 'Y'
-                  }else if(ret.code!="0") {
-                      that.isread = 'N'
-                      that.quotereadnum = ret.code
-                  }
+              if(ret.quote>'0'){
+                that.isread = 'N'
+                that.quotereadnum = ret.quote;
               }
-            
+              
+              if(ret.return>'0'){
+                that.risread = 'N'
+                that.returnnum = ret.return;
+              }
+             
             })
-
-           
-
-     
-
-          
+    
         })
 
       if(aa.result == 'yes'){

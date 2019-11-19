@@ -22,8 +22,9 @@ class Content extends AppBase {
   }
   
   onLoad(options) {
+
     this.Base.Page = this;
-    // options.id = 24;
+     options.id = 5;
     super.onLoad(options);
     this.Base.setMyData({
       xuan: 'F',
@@ -52,6 +53,7 @@ class Content extends AppBase {
         var quoteitems = fittingsitem[i].quoteitems;
         for (var j = 0; j < quoteitems.length; j++) {
           quoteitems[j].check = false;
+          quoteitems[j].show = false;
 
           var list = quoteitems[j];
           if (!etplist[list.enterprise_id]) {
@@ -67,7 +69,7 @@ class Content extends AppBase {
         for (var key in etplist) {
 
           for (var a in etplist[key]) {
-            enterpriselist.push({ id: key, enterprise_name: etplist[key][a].edt_name, address: etplist[key][a].edt_address, qtylist: etplist[key] })
+            enterpriselist.push({ id: key, allcheck:false,show:false, enterprise_name: etplist[key][a].edt_name, address: etplist[key][a].edt_address, qtylist: etplist[key] })
             break;
           }
 
@@ -346,6 +348,43 @@ class Content extends AppBase {
     })
   }
 
+  quanxuan(e){
+    var type=e.currentTarget.dataset.type;
+    var idx=e.currentTarget.id;
+
+    var enterpriselist = this.Base.getMyData().enterpriselist;
+    console.log(type,idx);
+
+    enterpriselist[idx].allcheck = type;
+
+    var qtylist = enterpriselist[idx].qtylist;
+
+    for (var i = 0; i < qtylist.length;i++){
+      qtylist[i].check = type 
+    }
+    this.statisticsone();
+    this.Base.setMyData({ enterpriselist});
+
+  
+  }
+  shoucang(e){
+    var type = e.currentTarget.dataset.type;
+    var idx = e.currentTarget.id;
+
+    var enterpriselist = this.Base.getMyData().enterpriselist;
+    console.log(type, idx);
+
+    enterpriselist[idx].show = type;
+
+    var qtylist = enterpriselist[idx].qtylist;
+
+    for (var i = 0; i < qtylist.length; i++) {
+      qtylist[i].show = type
+    }
+    this.Base.setMyData({ enterpriselist });
+
+  }
+
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -370,5 +409,7 @@ body.statistics = content.statistics;
 body.toast = content.toast;
  
 body.statisticsone = content.statisticsone;
+body.quanxuan = content.quanxuan; 
+body.shoucang = content.shoucang; 
 
 Page(body)

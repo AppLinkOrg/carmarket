@@ -248,7 +248,7 @@
                                             <td>{{list.quality}}</td>
                                             <td>{{list.standby_time}}</td>
                                             <td>{{list.guarantee}}</td>
-                                            <td>{{list.rateprice}}</td>
+                                            <td><div *ngIf='rate!="无"'>{{list.rateprice}}</div><div *ngIf='rate=="无"'>{{list.price}}</div></td>
                                             <td>{{list.sendcar_time}}</td>
                                             <td>
                                                 <div style='min-width: 86px'>
