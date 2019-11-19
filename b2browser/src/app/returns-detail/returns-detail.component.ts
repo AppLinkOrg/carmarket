@@ -75,6 +75,10 @@ export class ReturnsDetailComponent extends AppBase  {
               that.orderApi.updatemoney({id:this.operatorinfo.enterprise_id,money:item.return_money}).then(()=>{
 
               })
+
+              that.orderApi.addxiaofei({type:"R",amount:item.return_money,enterprise_id:item.enterprise_id}).then(()=>{
+
+              })
               that.memberApi.editmoney({id:this.operatorinfo.id,sales_volume:item.return_money}).then((editmoney)=>{
                 if(editmoney){
                   item.orderstatus='Y'

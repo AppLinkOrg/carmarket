@@ -60,9 +60,7 @@ export class WaitingComponent  extends AppBase  {
 
   }
   print(){
-    this.orderApi.print({order_id:this.id}).then((print)=>{
-    
-    });
+    window.open('https://cmsdev.app-link.org/alucard263096/carmarkets/api/order/print?order_id='+this.id);
   }
 
 }
