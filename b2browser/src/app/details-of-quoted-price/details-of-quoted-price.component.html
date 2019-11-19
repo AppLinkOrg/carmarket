@@ -48,22 +48,29 @@
                               <span *ngIf='quoteinfo.carmodel==""'>无识别</span>
                           </div>  
                           <div class="flex-4">
-                            <div  *ngIf='quoteinfo.invoice_demand_value=="是"'>
-                                <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票税率</span>
-                                <span>{{quoteinfo.rate}}%</span>
-                            </div>
+
+                              <span class="bg-dep-gray txt-black padding-two-words margin-right-20">品质</span><span class="txt-red"  *ngIf='quoteinfo.pinzhi==""'>无</span>
+                              <span *ngIf='quoteinfo.pinzhi!=""'>{{quoteinfo.pinzhi}}</span>
+                           
                             
                         </div>
                       </div>
-                      <div class="flex-row"><span class="border-bottom-white border-box" style="width: 60%;"></span></div>
+                      <div class="flex-row"><span class="border-bottom-white border-box" ></span></div>
                       <div class="flex-row margin-bottom-3">
                           <div class="flex-3">
                               <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{quoteinfo.employee_id_name}}</span>
                           </div>        
-                          <div style="flex: 8;">
+                          <div class="flex-4">
                               <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red" *ngIf='quoteinfo.invoice_demand_value=="是"'>需要发票</span>
                               <span *ngIf='quoteinfo.invoice_demand_value=="否"'>不需要发票</span>
                           </div>
+                          <div  class="flex-4">
+                              <div  *ngIf='quoteinfo.invoice_demand_value=="是"'>
+                                  <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票税率</span>
+                                  <span>{{quoteinfo.rate}}%</span>
+                              </div>
+                           
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -94,7 +101,7 @@
                                       <th width='20%'>配件名称</th>
                                       <th>零件号</th>
                                       <th>数量</th>
-                                      <th>品质</th>
+                                      <!-- <th>品质</th> -->
                                       <th>品质/品牌</th>
                                       <th>备货时间</th>
                                       <th>质保期</th>
@@ -114,9 +121,9 @@
                                           <td>
                                               <div>{{item.qty}}</div>
                                           </td>
-                                          <td>
+                                          <!-- <td>
                                               <div>{{item.pinzhi}}</div>
-                                          </td>
+                                          </td> -->
                                           <td>
                                               <div>{{item.quality}}</div>
                                           </td>

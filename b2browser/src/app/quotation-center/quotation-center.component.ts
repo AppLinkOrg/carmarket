@@ -89,12 +89,12 @@ export class QuotationCenterComponent extends AppBase {
           }else {
               for (let item of list) {
     
-                if(item.quotestatus=='Q'){
+                if(item.quotestatus=='Q' || item.quotestatus=="W"){
                       if(this.notinignore4(item,quotationlist)){
                         item.quote_id = item.id
                         item.quoteper = this.employee_id
                         item.quotecompan_id = this.enterprise_id
-                       
+                         item.quotestatus = "Q"
                         if(item.invoice_demand!=""){
                           item.invoice_demand =item.invoice_demand
                         }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){
@@ -157,6 +157,7 @@ export class QuotationCenterComponent extends AppBase {
                       this.list.push(item)
                     }
                   }
+                  this.list = this.list.sort(this.compare("quote_time_timespan"))
         
                   for (let i = 0; i < this.list.length; i++) {
                     this.list[i].index = i
@@ -200,7 +201,7 @@ export class QuotationCenterComponent extends AppBase {
     
                 }
     
-                this.list = result;
+                this.list = result.sort(this.compare("quote_time_timespan"));
     
                 for (let i = 0; i < this.list.length; i++) {
                   this.list[i].index = i
@@ -256,7 +257,7 @@ export class QuotationCenterComponent extends AppBase {
                     
                     }
                   }
-                  this.list = result;
+                  this.list = result.sort(this.compare("quote_time_timespan"));
         
                   for (let i = 0; i < this.list.length; i++) {
                     this.list[i].index = i
@@ -308,7 +309,7 @@ export class QuotationCenterComponent extends AppBase {
                 }
                 console.log(result,'kkkkk')
     
-                this.list = result;
+                this.list = result.sort(this.compare("quote_time_timespan"));
     
                 for (let i = 0; i < this.list.length; i++) {
                   this.list[i].index = i
@@ -341,6 +342,12 @@ export class QuotationCenterComponent extends AppBase {
 
 
 
+  }
+
+  compare(pro){
+    return function(a,b){
+      return b[pro]-a[pro]
+    }
   }
 
   notinignore4(item,arr){
