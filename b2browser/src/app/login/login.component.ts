@@ -35,8 +35,8 @@ export class LoginComponent   extends AppBase  {
     this.isLoginPage=true;
   }
   onMyShow(){ 
-
-
+      var nowtime = new Date()
+      window.localStorage.setItem('currenttime',nowtime.toString())
       setTimeout(() => {
         this.loginname=window.localStorage.getItem("lastloginname");
         if(this.loginname==null){

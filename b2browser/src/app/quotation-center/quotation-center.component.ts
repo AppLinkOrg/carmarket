@@ -50,7 +50,8 @@ export class QuotationCenterComponent extends AppBase {
 
   onMyShow() {
 
-
+    let oldtime = (new Date()).getTime() +  10*60*1000;
+    window.localStorage.setItem('oldtime',oldtime.toString())
     var a = this.orderApi;
 
     this.enterpriseApi.employeeinfo({}).then((employeeinfo: any) => {

@@ -29,6 +29,8 @@ export class ConsumeComponent extends AppBase  {
   name=''
   templist=null
   onMyShow(){
+    let oldtime = (new Date()).getTime() +  10*60*1000;
+    window.localStorage.setItem('oldtime',oldtime.toString())
     console.log(this.params,'llll')
     console.log(this.operatorinfo.name,'uuuuuu')
     // this.name = this.params.name

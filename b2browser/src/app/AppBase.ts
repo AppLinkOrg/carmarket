@@ -102,6 +102,9 @@ export class AppBase implements OnInit {
     CheckPermission() {
         if (this.isLoginPage == false) {
             var token = window.sessionStorage.getItem("token");
+
+            console.log("token");
+
             if (token == null) {
                 this.router.navigate(["login"]);
             } else {
@@ -113,22 +116,23 @@ export class AppBase implements OnInit {
                     }else{
                         this.operatorinfo=operator;
                         this.position = operator.position
+                        window.sessionStorage.removeItem("currenttime");
                     }
                 });
             }
         }
     }
     checktime(){
-        console.log('现在')
+       
         let nowtime = (new Date()).getTime();
         let oldtime = window.localStorage.getItem("oldtime");
-        console.log(oldtime, window.localStorage.getItem("oldtime"))
-        console.log(Number(oldtime),'oldtiem',nowtime)
-        
+
         if(nowtime > Number(oldtime)  ){
+            
             var al = alert("长时间不操作，请重新登录！")
             this.navigate('/login');
         }
+
     }
 
   

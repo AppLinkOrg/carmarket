@@ -50,6 +50,7 @@ export class HomeComponent  extends AppBase  {
   oread='Y'
   isread='Y'
   onMyShow(){
+    
     let oldtime = (new Date()).getTime() +  10*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
     
@@ -62,7 +63,7 @@ export class HomeComponent  extends AppBase  {
         this.enterpriseApi.employeeinfo({ }).then((employeeinfo:any)=>{
           console.log(employeeinfo)
       
-          setTimeout(() => {
+         
             console.log("进来了");
             this.orderapi.returnisread({gongsi:employeeinfo.enterprise_id,baojia:employeeinfo.id}).then((ret:any)=>{
               console.log('退货')
@@ -102,8 +103,7 @@ export class HomeComponent  extends AppBase  {
             
             })
 
-            
-          }, 1000);
+           
 
      
 

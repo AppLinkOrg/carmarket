@@ -57,7 +57,8 @@ export class AchievementComponent extends AppBase  {
 
 
   onMyShow(){
-
+    let oldtime = (new Date()).getTime() +  10*60*1000;
+    window.localStorage.setItem('oldtime',oldtime.toString())
     
       this.enterpriseApi.allenterprise({}).then((allenterprise:any)=>{
         console.log(allenterprise)
