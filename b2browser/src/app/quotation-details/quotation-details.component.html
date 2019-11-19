@@ -57,23 +57,27 @@
                             <span *ngIf='quoteinfo.carmodel!=""'>{{quoteinfo.carmodel}}</span>
                             <span *ngIf='quoteinfo.carmodel==""'>无识别</span>
                         </div>  
+                        <div  class="flex-4">
+                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">品质</span><span class="txt-red"  *ngIf='quoteinfo.pinzhi==""'>无</span>
+                            <span *ngIf='quoteinfo.pinzhi!=""'>{{quoteinfo.pinzhi}}</span>
+                        </div>
+                        
+                    </div>
+                    <div class="flex-row"><span class="border-bottom-white border-box" ></span></div>
+                    <div class="flex-row margin-bottom-3">
+                        <div class="flex-3">
+                            <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{quoteinfo.employee_id_name}}</span>
+                        </div>        
+                        <div class="flex-4">
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red"  *ngIf='quoteinfo.invoice_demand_value=="是"'>需要发票</span>
+                            <span *ngIf='quoteinfo.invoice_demand_value=="否"'>不需要发票</span>
+                        </div>
                         <div class="flex-4" >
                             <div *ngIf='quoteinfo.invoice_demand_value=="是"'>
                                 <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票税率</span>
                                 <input type="text" [(ngModel)]='rate' style="border: 1px solid #ccc; padding-left:5px;">%
                             </div>
                         </div>
-                    </div>
-                    <div class="flex-row"><span class="border-bottom-white border-box" style="width: 60%;"></span></div>
-                    <div class="flex-row margin-bottom-3">
-                        <div class="flex-3">
-                            <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{quoteinfo.employee_id_name}}</span>
-                        </div>        
-                        <div style="flex: 8;">
-                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red"  *ngIf='quoteinfo.invoice_demand_value=="是"'>需要发票</span>
-                            <span *ngIf='quoteinfo.invoice_demand_value=="否"'>不需要发票</span>
-                        </div>
-                       
                     </div>
                 </div>
                 </div>
@@ -170,7 +174,7 @@
                                         <th style="width: 10%;">零件号</th>
                                         <th width='4%'>数量</th>
                                         <th >4S店价格</th>
-                                        <th width='9%'>品质</th>
+                                        <!-- <th width='9%'>品质</th> -->
                                         <th width='9%'>品质/品牌</th>
                                         <th width='9%'>备货时间</th>
                                         <th width='9%'>质保期</th>
@@ -205,10 +209,10 @@
                                         <td class="text-center">
                                             <div>{{item.Sprice}}</div>
                                         </td>
-                                        <td class="text-center">
+                                        <!-- <td class="text-center">
                                             <div *ngIf='item.pinzhi!=""'>{{item.pinzhi}}</div>
                                             <div *ngIf='item.pinzhi==""'>无</div>
-                                        </td>
+                                        </td> -->
                                         <td>
                                             <!-- <div class="table-box">{{item.quality}}</div> -->
                                             <input type="text" class="table-box" [(ngModel)]='item.quality'>
@@ -232,7 +236,7 @@
                                             <!-- <div class="table-box">{{item.remarks_infor}}</div> -->
                                             <input type="text" class="table-box"  [(ngModel)]='item.sendcar_time'>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <div style='min-width: 86px'>
                                                 <button  data-toggle="modal" data-target="#myModal" class="btn btn-primary h5 addBtn" (click)="addQuote(item)">
                                                     <a>新增报价</a>
@@ -244,13 +248,13 @@
                                         <tr class="text-center" *ngFor='let list of item.quoteitems' >
                                             <td>{{list.quantity}}</td>
                                             <td>{{list.Sprice}}</td>
-                                            <td>{{list.pinzhi}}</td>
+                                            <!-- <td>{{list.pinzhi}}</td> -->
                                             <td>{{list.quality}}</td>
                                             <td>{{list.standby_time}}</td>
                                             <td>{{list.guarantee}}</td>
                                             <td><div *ngIf='rate!="无"'>{{list.rateprice}}</div><div *ngIf='rate=="无"'>{{list.price}}</div></td>
                                             <td>{{list.sendcar_time}}</td>
-                                            <td>
+                                            <td class="text-center">
                                                 <div style='min-width: 86px'>
                                                     <button class="btn btn-danger h5 addBtn" (click)="deleteQuote(list)">
                                                         <a>删除报价</a>
