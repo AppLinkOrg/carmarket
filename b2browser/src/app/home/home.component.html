@@ -5,110 +5,103 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar  sidebar-dark accordion" [class.toggled]="toggle"
-          id="accordionSidebar">
+  <!-- Sidebar -->
+  <ul class="navbar-nav bg-gradient-primary sidebar  sidebar-dark accordion" [class.toggled]="toggle"
+    id="accordionSidebar">
 
-          
 
-          <!-- Sidebar - Brand -->
-          <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-            <!-- <div class="sidebar-brand-icon rotate-n-15">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+      <!-- <div class="sidebar-brand-icon rotate-n-15">
                       <i class="fas fa-laugh-wink"></i>
                   </div> -->
-            <img src="{{uploadpath}}resource/{{res.logo}}" class="icon-40 ">
-            <div class="sidebar-brand-text mx-3">{{instinfo.name}}</div>
-          </a>
-      
-          <!-- Divider -->
-          <hr class="sidebar-divider my-0">
-      
-   
-      
-          <!-- Divider -->
-          <hr class="sidebar-divider">
-      
+      <img src="{{uploadpath}}resource/{{res.logo}}" class="icon-40 ">
+      <div class="sidebar-brand-text mx-3">{{instinfo.name}}</div>
+    </a>
 
-          <!-- Nav Item - Charts -->
-          <li class="nav-item home-box"  routerLinkActive="active">
-            <a class="nav-link" href="#"  routerLink="/storeHome"  >
-              <i class="fas fa-fw fa-store"></i>
-              <span>店铺首页</span></a>
-          </li>
-            
-          <!-- Nav Item - Charts -->
-          <li class="nav-item home-box"  routerLinkActive="active">
-              <a class="nav-link" href="#"  routerLink="/quotationCenter"  >
-                <i class="fas fa-fw fa-newspaper"></i>
-                <span>报价中心</span></a>
-                <div class="redbox" *ngIf='isread=="N"'>
-                    <img src="{{uploadpath}}resource/{{res.duihua}}" class=" ">
-                  <span>{{quotereadnum}}</span>
-                </div>
-          </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
 
-          <li class="nav-item home-box"  routerLinkActive="active">
-            <a class="nav-link" href="#"  routerLink="/orderManagement"  >
-              <i class="fas fa-fw fa-clipboard-list"></i>
-              <span>订单管理</span></a>
-              <div class="redbox" *ngIf='oread=="N"'>
-                  <img src="{{uploadpath}}resource/{{res.duihua}}" class=" ">
-                 <span>{{ordernum}}</span>
-              </div>
-          </li>
 
-          <li class="nav-item home-box"  routerLinkActive="active">
-            <a class="nav-link" href="#"  routerLink="/returnsManagement"  >
-              <i class="fas fa-fw fa-user icon-fa"></i>
-              <span>退货管理</span></a>
-              <div class="redbox" *ngIf='risread=="N"'>
-                  <img src="{{uploadpath}}resource/{{res.duihua}}" class=" ">
-                <span>{{returnnum}}</span>
-              </div>
-          </li>
 
-          <li class="nav-item home-box"  routerLinkActive="active" *ngIf='position=="B"'>
-            <a class="nav-link" href="#"  routerLink="/managementCenter"  >
-              <i class="fas fa-fw fa-stream"></i>
-              <span>管理中心</span></a>
-          </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-          <li class="nav-item home-box"  routerLinkActive="active"  *ngIf='position!="B"'>
-            <a class="nav-link" href="#"  routerLink="/employeeManagement" [queryParams]='obj' >
-              <i class="fas fa-fw fa-stream"></i>
-              <span>管理中心</span>
-            </a>
-           
-          </li>
-  
-      
-          <!-- Divider -->
-          <hr class="sidebar-divider d-none d-md-block home-box">
-      
-          <!-- Sidebar Toggler (Sidebar) -->
-          <!-- <div class="text-center d-none d-md-inline ">
+
+    <!-- Nav Item - Charts -->
+    <li class="nav-item home-box" routerLinkActive="active">
+      <a class="nav-link" href="#" routerLink="/storeHome">
+        <i class="fas fa-fw fa-store"></i>
+        <span>店铺首页</span></a>
+    </li>
+
+    <!-- Nav Item - Charts -->
+    <li class="nav-item home-box" routerLinkActive="active">
+      <a class="nav-link" href="#" routerLink="/quotationCenter">
+        <i class="fas fa-fw fa-newspaper"></i>
+        <span>报价中心&nbsp;</span>
+        <span class="badge badge-danger" *ngIf='isread=="N"'>{{quotereadnum}}</span>
+      </a>
+    </li>
+
+    <li class="nav-item home-box" routerLinkActive="active">
+      <a class="nav-link" href="#" routerLink="/orderManagement">
+        <i class="fas fa-fw fa-clipboard-list"></i>
+        <span>订单管理&nbsp;</span>
+        <span class="badge badge-danger" *ngIf='oread=="N"'>{{ordernum}}</span>
+      </a>
+    </li>
+
+    <li class="nav-item home-box" routerLinkActive="active">
+      <a class="nav-link" href="#" routerLink="/returnsManagement">
+        <i class="fas fa-fw fa-user icon-fa"></i>
+        <span>退货管理&nbsp;</span>
+        <span class="badge badge-danger" *ngIf='risread=="N"'>{{returnnum}}</span></a>
+    </li>
+
+    <li class="nav-item home-box" routerLinkActive="active" *ngIf='position=="B"'>
+      <a class="nav-link" href="#" routerLink="/managementCenter">
+        <i class="fas fa-fw fa-stream"></i>
+        <span>管理中心</span></a>
+    </li>
+
+    <li class="nav-item home-box" routerLinkActive="active" *ngIf='position!="B"'>
+      <a class="nav-link" href="#" routerLink="/employeeManagement" [queryParams]='obj'>
+        <i class="fas fa-fw fa-stream"></i>
+        <span>管理中心</span>
+      </a>
+
+    </li>
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block home-box">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <!-- <div class="text-center d-none d-md-inline ">
             <button class="rounded-circle border-0" id="sidebarToggle" (click)="toggleSidebar()"></button>
           </div> -->
-      
-        </ul>
-        <!-- End of Sidebar -->
-      
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-      
-          <!-- Main Content -->
-          <div id="content" class="main-content">
-      
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar  static-top shadow">
-      
-              <!-- Sidebar Toggle (Topbar) -->
-              <button id="sidebarToggleTop" (click)="toggleSidebar()" class="btn btn-link d-md-none rounded-circle mr-3">
-                <i class="fa fa-bars"></i>
-              </button>
-      
-              <!-- Topbar Search -->
-              <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+
+  </ul>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content" class="main-content">
+
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand navbar-light bg-white topbar  static-top shadow">
+
+        <!-- Sidebar Toggle (Topbar) -->
+        <button id="sidebarToggleTop" (click)="toggleSidebar()" class="btn btn-link d-md-none rounded-circle mr-3">
+          <i class="fa fa-bars"></i>
+        </button>
+
+        <!-- Topbar Search -->
+        <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
                   <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                     aria-label="Search" aria-describedby="basic-addon2">
@@ -120,17 +113,17 @@
                 </div>
               </form>
        -->
-              <!-- Topbar Navbar -->
-              <ul class="navbar-nav ml-auto">
-      
-                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                <!-- <li class="nav-item dropdown no-arrow d-sm-none">
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto">
+
+          <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+          <!-- <li class="nav-item dropdown no-arrow d-sm-none">
                   <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-search fa-fw"></i>
                   </a> -->
-                  <!-- Dropdown - Messages -->
-                  <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+          <!-- Dropdown - Messages -->
+          <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                     aria-labelledby="searchDropdown">
                     <form class="form-inline mr-auto w-100 navbar-search">
                       <div class="input-group">
@@ -145,17 +138,17 @@
                     </form>
                   </div>
                 </li> -->
-      
-                <!-- Nav Item - Alerts -->
-                <!-- <li class="nav-item dropdown no-arrow mx-1">
+
+          <!-- Nav Item - Alerts -->
+          <!-- <li class="nav-item dropdown no-arrow mx-1">
                   <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-bell fa-fw"></i> -->
-                    <!-- Counter - Alerts -->
-                    <!-- <span class="badge badge-danger badge-counter">3+</span>
+          <!-- Counter - Alerts -->
+          <!-- <span class="badge badge-danger badge-counter">3+</span>
                   </a> -->
-                  <!-- Dropdown - Alerts -->
-                  <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+          <!-- Dropdown - Alerts -->
+          <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                     aria-labelledby="alertsDropdown">
                     <h6 class="dropdown-header">
                       Alerts Center
@@ -171,7 +164,7 @@
                         <span class="font-weight-bold">A new monthly report is ready to download!</span>
                       </div>
                     </a> -->
-                    <!-- <a class="dropdown-item d-flex align-items-center" href="#">
+          <!-- <a class="dropdown-item d-flex align-items-center" href="#">
                       <div class="mr-3">
                         <div class="icon-circle bg-success">
                           <i class="fas fa-donate text-white"></i>
@@ -196,17 +189,17 @@
                     <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                   </div>
                 </li> -->
-      
-                <!-- Nav Item - Messages -->
-                <!-- <li class="nav-item dropdown no-arrow mx-1">
+
+          <!-- Nav Item - Messages -->
+          <!-- <li class="nav-item dropdown no-arrow mx-1">
                   <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-envelope fa-fw"></i>
                     <!-- Counter - Messages -->
-                    <!-- <span class="badge badge-danger badge-counter">7</span>
+          <!-- <span class="badge badge-danger badge-counter">7</span>
                   </a> -->
-                  <!-- Dropdown - Messages -->
-                  <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+          <!-- Dropdown - Messages -->
+          <!-- <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                     aria-labelledby="messagesDropdown">
                     <h6 class="dropdown-header">
                       Message Center
@@ -258,21 +251,23 @@
                     <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                   </div>
                 </li> -->
-                <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
-      
-                <!-- Nav Item - User Information -->
-                <li class="nav-item dropdown no-arrow">
-                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{operatorinfo.enterprise.name}}</span>
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{operatorinfo.name}}</span>
-                    <img class="img-profile rounded-circle" *ngIf='operatorinfo.enterprise.logo!=""' src="{{uploadpath}}enterprise/{{operatorinfo.enterprise.logo}}">
-                    <img class="img-profile rounded-circle" *ngIf='operatorinfo.enterprise.logo==""' src="{{uploadpath}}resource/{{res.touxiang}}">
+          <!-- <div class="topbar-divider d-none d-sm-block"></div> -->
 
-                  </a>
-                  <!-- Dropdown - User Information -->
-                  <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <!-- <a class="dropdown-item" href="#">
+          <!-- Nav Item - User Information -->
+          <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{operatorinfo.enterprise.name}}</span>
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{operatorinfo.name}}</span>
+              <img class="img-profile rounded-circle" *ngIf='operatorinfo.enterprise.logo!=""'
+                src="{{uploadpath}}enterprise/{{operatorinfo.enterprise.logo}}">
+              <img class="img-profile rounded-circle" *ngIf='operatorinfo.enterprise.logo==""'
+                src="{{uploadpath}}resource/{{res.touxiang}}">
+
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+              <!-- <a class="dropdown-item" href="#">
                       <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                       个人设置
                     </a>
@@ -285,64 +280,63 @@
                       操作日志
                     </a>
                     <div class="dropdown-divider"></div> -->
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                      退出系统
-                    </a>
-                  </div>
-                </li>
-      
-              </ul>
-      
-            </nav>
-            <!-- End of Topbar -->
-      
-            <router-outlet></router-outlet>
-      
-      
-            <!-- /.container-fluid -->
-      
-          </div>
-          <!-- End of Main Content -->
-      
-          <!-- Footer -->
-          <footer class="sticky-footer bg-white main-footer">
-            <div class="container my-auto">
-              <div class="copyright text-center my-auto">
-                <span>Copyright &copy; {{instinfo.companyname}} 2019</span>
-              </div>
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                退出系统
+              </a>
             </div>
-          </footer>
-          <!-- End of Footer -->
-      
-        </div>
-        <!-- End of Content Wrapper -->
-      
-      </div>
-      <!-- End of Page Wrapper -->
-      
-      <!-- Scroll to Top Button-->
-      <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-      </a>
-      
-      <!-- Logout Modal-->
-      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">确定退出吗？</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">如果确定退出当前会话，请点击下方“退出”。</div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
-              <a class="btn btn-primary" href="#" routerLink='/login'  data-dismiss="modal">退出</a>
-            </div>
-          </div>
+          </li>
+
+        </ul>
+
+      </nav>
+      <!-- End of Topbar -->
+
+      <router-outlet></router-outlet>
+
+
+      <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white main-footer">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>Copyright &copy; {{instinfo.companyname}} 2019</span>
         </div>
       </div>
-      
+    </footer>
+    <!-- End of Footer -->
+
+  </div>
+  <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">确定退出吗？</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">如果确定退出当前会话，请点击下方“退出”。</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+        <a class="btn btn-primary" href="#" routerLink='/login' data-dismiss="modal">退出</a>
+      </div>
+    </div>
+  </div>
+</div>
