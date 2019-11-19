@@ -141,8 +141,14 @@ class Content extends AppBase {
     var sumprice = this.Base.getMyData().sumprice;
     var arr = this.Base.getMyData().alllist;
     var addressinfo = this.Base.getMyData().addressinfo;
-    console.log(this.Base.getMyData().employeeinfo.id, "啦啦啦啦啦啦啦啦");
+    var types=this.Base.options.xuan;
 
+    if (types=='F'){
+     var needinvoice = 'N';
+    }else{
+      var needinvoice = 'Y';
+    }
+  //  console.log(this.Base.getMyData().employeeinfo.id, "啦啦啦啦啦啦啦啦");
 
     if (addressinfo==undefined){
      wx.showToast({
@@ -153,7 +159,6 @@ class Content extends AppBase {
      }
 
     // return;
-    
     wx.showModal({
       title: '提交',
       content: '确认提交订单？',
@@ -164,32 +169,29 @@ class Content extends AppBase {
       confirmColor: '#2699EC',
       success: function(res) {
         if (res.confirm) {
-
-
           orderapi.createorder({
             employee_id: that.Base.getMyData().employeeinfo.id,
-           // ent_id: that.Base.getMyData().employeeinfo.enterprise.id,
+            // ent_id: that.Base.getMyData().employeeinfo.enterprise.id,
             gongsi: that.Base.getMyData().employeeinfo.id,
             //fahuo_id:that.Base.
             vin: that.Base.options.vin,
             carname: that.Base.options.carmodel,
             quote_id: that.Base.options.id,
             receiver: addressinfo.name,
+            needinvoice: needinvoice,
             receivecontact: addressinfo.phonenumber,
             receiveaddress: addressinfo.region + addressinfo.address,
             totalamount: sumprice,
           }, (createorder)=>{
-            wx.reLaunch({
+            wx.redirectTo({
               url: '/pages/waitpay/waitpay?id=' + that.Base.options.id + '&json=' + JSON.stringify(arr)
             })
            // that.Base.setMyData({ createorder})
-          })
-
+          }) 
           // for (var i = 0; i < arr.length; i++) {
           //   var list = {
           //     orderno: '',
-          //     enterprise_id: arr[i].id,
-              
+          //     enterprise_id: arr[i].id, 
           //     totalamount: arr[i].pp,
           //     vin: that.Base.options.vin,
           //     carname: that.Base.options.carmodel,
@@ -199,12 +201,8 @@ class Content extends AppBase {
           //     receiveaddress: addressinfo.region + addressinfo.address,
           //     order_status: 'W',
           //     status: 'A'
-          //   }
-
-          //   that.submitlist(list, i);
-
-
-
+          //   } 
+          //   that.submitlist(list, i); 
           // }
 
         }

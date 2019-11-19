@@ -321,7 +321,7 @@ class Content extends AppBase {
 
     // return;
     wx.navigateTo({
-      url: '/pages/orderdetail/orderdetail?json=' + JSON.stringify(linjian) + '&carmodel=' + this.Base.options.carmodel + '&vin=' + this.Base.options.vin + '&id=' + this.Base.options.id
+      url: '/pages/orderdetail/orderdetail?json=' + JSON.stringify(linjian) + '&carmodel=' + this.Base.options.carmodel + '&vin=' + this.Base.options.vin + '&id=' + this.Base.options.id+'&xuan='+this.Base.options.xuan
     })
 
   }

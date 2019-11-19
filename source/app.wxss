@@ -142,7 +142,7 @@ view, navigator, input, text, textarea {
 }
 
 .bg-primary {
-  background: #2699ec;
+  background: #143779;
 }
 
 .bg-green {

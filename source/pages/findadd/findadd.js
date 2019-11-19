@@ -33,6 +33,13 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var carapi=new CarApi();
+    carapi.pinzhilist({ orderby: 'r_main.seq' }, (pinzhilist) => {
+      for (var i = 0; i < pinzhilist.length;i++){
+        pinzhilist[i].check=false;
+      }
+      this.Base.setMyData({ pinzhilist })
+    })
+ 
     if (this.Base.getMyData().list==undefined){
       var json = JSON.parse(this.Base.options.json);
       this.Base.setMyData({
@@ -44,7 +51,7 @@ class Content extends AppBase {
         json
       })
     }
- 
+   
 
   }
 
@@ -118,95 +125,48 @@ class Content extends AppBase {
 
   bindfapiao(e) {
     var fapiaoed = e.currentTarget.id;
-    if (fapiaoed == 'Y') {
-      this.Base.setMyData({
-        fapiao: 'N'
-      })
-    }
-    if (fapiaoed == 'N') {
-      this.Base.setMyData({
-        fapiao: 'Y'
-      })
-    }
+  //  console.log('0000', fapiaoed);
+
+    this.Base.setMyData({
+      fapiao: fapiaoed
+    })
 
   }
   //多选
   bindchose(e) {
-    var chose = e.currentTarget.dataset.chose;
-    var xza = this.Base.getMyData().chose;
-    if (xza == 'A') {
-      this.Base.setMyData({
-        chose: '',
-      })
-    } else {
-      this.Base.setMyData({
-        chose: chose,
-      })
-    }
+
+    var id = e.currentTarget.id;
+
+    var pinzhilist = this.Base.getMyData().pinzhilist;
+
+    if (pinzhilist[id].check == true){
+      pinzhilist[id].check = false;
+}else{
+      pinzhilist[id].check = true;
+}
+   
+    this.Base.setMyData({ pinzhilist});
+ 
   }
 
-  bindxuanb(e) {
-    var xuanb = e.currentTarget.dataset.xuanb;
-    var xzb = this.Base.getMyData().xuanb;
-    if (xzb == 'B') {
-      this.Base.setMyData({
-        xuanb: '',
-      })
-    } else {
-      this.Base.setMyData({
-        xuanb: xuanb,
-      })
-    }
-  }
-  bindxuanc(e) {
-    var xuanc = e.currentTarget.dataset.xuanc;
-    var xzc = this.Base.getMyData().xuanc;
-    if (xzc == 'C') {
-      this.Base.setMyData({
-        xuanc: '',
-      })
-    } else {
-      this.Base.setMyData({
-        xuanc: xuanc,
-      })
-    }
-  }
-  bindxuand(e) {
-    var xuand = e.currentTarget.dataset.xuand;
-    var xzd = this.Base.getMyData().xuand;
-    if (xzd == 'D') {
-      this.Base.setMyData({
-        xuand: '',
-      })
-    } else {
-      this.Base.setMyData({
-        xuand: xuand,
-      })
-    }
-  }
-  bindxuane(e) {
-    var xuane = e.currentTarget.dataset.xuane;
-    var xze = this.Base.getMyData().xuane;
-    if (xze == 'E') {
-      this.Base.setMyData({
-        xuane: '',
-      })
-    } else {
-      this.Base.setMyData({
-        xuane: xuane,
-      })
-    }
-  }
-
+  
 
 
   bindsubmit(e) {
-    var that = this;
-    // invoice_demand
+    var that = this; 
     var shibie = this.Base.getMyData().json; 
     var fapiao = this.Base.getMyData().fapiao;
- 
-    console.log(shibie);
+    var pinzhilist=this.Base.getMyData().pinzhilist;
+    var arr=[];
+    for (var i = 0; i < pinzhilist.length;i++){
+      if (pinzhilist[i].check==true){
+           arr.push(pinzhilist[i].name)
+         }
+    }
+    var pinzhi = arr;
+    //console.log(arr);
+ //return;
+    //console.log(shibie);
 
     //return;
 
@@ -234,6 +194,7 @@ class Content extends AppBase {
             carmodel: that.Base.options.biaoti,
             vincode: that.Base.options.vin, 
             invoice_demand: fapiao,
+            pinzhi: pinzhi,
             status: 'A'
           }, (create) => {
 

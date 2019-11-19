@@ -23,6 +23,7 @@
 
 
     <view class="  flex-row flex-center">
+    
       <view class="txt-black txt-bold h5 ">开票</view>
       <image wx:if="{{xuan=='F'}}" id="F" class='img ' src='{{uploadpath}}resource/{{res.bukai}}' bindtap="bindfapiao"></image>
       <image wx:if="{{xuan=='S'}}" id="S" class='img' src='{{uploadpath}}resource/{{res.kaifapiao}}' bindtap="bindfapiao"></image>
@@ -73,9 +74,9 @@
     <view class="padding-20 flex-row flex-center">
         
         <image src="{{uploadpath}}resource/{{res.yes}}" id="{{index}}" data-type="{{false}}" bindtap="quanxuan" wx:if='{{item.allcheck==true}}' class="icon margin-top-6"></image>
-        <image src="{{uploadpath}}resource/{{res.no}}" id="{{index}}" data-type="{{true}}" bindtap="quanxuan" wx:if='{{item.allcheck==false}}' class="icon margin-top-6"></image>
+        <image src="{{uploadpath}}resource/{{res.notcheck}}" id="{{index}}" data-type="{{true}}" bindtap="quanxuan" wx:if='{{item.allcheck==false}}' class="icon margin-top-6"></image>
 
-        <view class="flex-1">
+        <view class="flex-1 margin-left-20">
           <view class="txt-white"> {{item.enterprise_name}}</view>
           <view class="txt-white h5 margin-top-20"> {{item.address}}</view>
         </view>
@@ -84,8 +85,8 @@
           
         </view>
 
-        <image  src="{{uploadpath}}resource/{{res.upjiantou}}" id="{{index}}" bindtap="shoucang" data-type="{{false}}" wx:if='{{item.show==true}}' class="icon"></image>
-        <image  src="{{uploadpath}}resource/{{res.arrowbot}}" id="{{index}}" bindtap="shoucang" data-type="{{true}}" wx:if='{{item.show==false}}' class="icon"></image>
+        <image  src="{{uploadpath}}resource/{{res.shang}}" id="{{index}}" bindtap="shoucang" data-type="{{false}}" wx:if='{{item.show==true}}' class="icon margin-right-20"></image>
+        <image  src="{{uploadpath}}resource/{{res.arrowbot}}" id="{{index}}" bindtap="shoucang" data-type="{{true}}" wx:if='{{item.show==false}}' class="icon margin-right-20"></image>
 
 
     </view>
@@ -225,8 +226,7 @@
         <view class="txt-black xiaobtn margin-left-30" bindtap="toast">福田区</view>
       </view>
 
-      <view class="flex-row margin-top-30">
-
+      <view class="flex-row margin-top-30"> 
         <view class="txt-black xiaobtn margin-left-50" bindtap="toast">坪山新区</view>
         <view class="txt-black xiaobtn margin-left-30" bindtap="toast">盐田区</view>
       </view>

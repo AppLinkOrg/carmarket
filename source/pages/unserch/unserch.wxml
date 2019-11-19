@@ -8,7 +8,7 @@
 
   <view class=" ">
     <image class="icon-50 radius-20" hidden="{{one}}" mode="aspectFill" src="{{uploadpath}}resource/{{res.upload}}" bindtap="bindupimg"></image>
-    <image class="icon-50 radius-20" hidden="{{!one}}" mode="aspectFill" src="{{uploadpath}}quote/{{imageone}}" bindtap="bindupimg"  bindlongtap="viewPhoto" id="{{uploadpath}}quote/{{imageone}}"></image>
+    <image class="icon-50 radius-20" hidden="{{!one}}" mode="aspectFill" src="{{uploadpath}}quote/{{imageone}}" bindtap="bindupimg" bindlongtap="viewPhoto" id="{{uploadpath}}quote/{{imageone}}"></image>
     <view class="flex-row">
       <view class="txt-black">铭牌</view>
       <view class="txt-red">(必填)</view>
@@ -17,7 +17,7 @@
   <view class="flex-1"></view>
   <view class=" ">
     <image class="icon-50" hidden="{{two}}" mode="aspectFill" src="{{uploadpath}}resource/{{res.upload}}" bindtap="binduptwo"></image>
-    <image class="icon-50" hidden="{{!two}}" mode="aspectFill" src="{{uploadpath}}quote/{{imagetwo}}" bindtap="binduptwo"  bindlongtap="viewPhoto" id="{{uploadpath}}quote/{{imagetwo}}"></image>
+    <image class="icon-50" hidden="{{!two}}" mode="aspectFill" src="{{uploadpath}}quote/{{imagetwo}}" bindtap="binduptwo" bindlongtap="viewPhoto" id="{{uploadpath}}quote/{{imagetwo}}"></image>
     <view class="flex-row">
       <view class="txt-black">车头</view>
       <view class="txt-red">(必填)</view>
@@ -26,7 +26,7 @@
   <view class="flex-1"></view>
   <view class=" ">
     <image class="icon-50" hidden="{{three}}" mode="aspectFill" src="{{uploadpath}}resource/{{res.upload}}" bindtap="bindupthree"></image>
-    <image class="icon-50" hidden="{{!three}}" mode="aspectFill" src="{{uploadpath}}quote/{{imagethree}}" bindtap="bindupthree"  bindlongtap="viewPhoto" id="{{uploadpath}}quote/{{imagethree}}"></image>
+    <image class="icon-50" hidden="{{!three}}" mode="aspectFill" src="{{uploadpath}}quote/{{imagethree}}" bindtap="bindupthree" bindlongtap="viewPhoto" id="{{uploadpath}}quote/{{imagethree}}"></image>
     <view class="flex-row">
       <view class="txt-black">车尾</view>
       <view class="txt-red">(必填)</view>
@@ -35,7 +35,7 @@
 
 </view>
 
-   
+
 <view class='flex-row flex-center flex-wrap'>
 
   <view class='margin-40 flex-row flex-top' wx:for="{{images}}" wx:key="k" wx:for-index="idx" style=" ">
@@ -51,7 +51,7 @@
 
 </view>
 
- 
+
 
 <view class="bottom"></view>
 <view class='flex-row  margin-top-30'>
@@ -78,17 +78,17 @@
 <view class="bg-white margin-top-20">
   <view class="flex-row margin-top-20">
     <view class="txt-black txt-bold margin-left-30 margin-right-10">发票</view>
- 
-    <view class="margin-left-20 flex-row flex-center"> 
-      <image wx:if="{{fapiao=='N'}}"   class="icon" src="{{uploadpath}}resource/{{res.checking}}"  ></image>
+
+    <view class="margin-left-20 flex-row flex-center">
+      <image wx:if="{{fapiao=='N'}}" class="icon" src="{{uploadpath}}resource/{{res.checking}}"></image>
       <image wx:if="{{fapiao=='Y'}}" id="N" class="icon" src="{{uploadpath}}resource/{{res.nocheck}}" bindtap="bindfapiao"></image>
-       <view class="h5 margin-left-10">不开发票</view>
+      <view class="h5 margin-left-10">不开发票</view>
     </view>
 
-<view style="width:100rpx"></view>
+    <view style="width:100rpx"></view>
 
-    <view class="  flex-row flex-center"> 
-      <image wx:if="{{fapiao=='Y'}}"   class="icon" src="{{uploadpath}}resource/{{res.checking}}"  ></image>
+    <view class="  flex-row flex-center">
+      <image wx:if="{{fapiao=='Y'}}" class="icon" src="{{uploadpath}}resource/{{res.checking}}"></image>
       <image wx:if="{{fapiao=='N'}}" id="Y" class="icon" src="{{uploadpath}}resource/{{res.nocheck}}" bindtap="bindfapiao"></image>
       <view class="h5 margin-left-10">发票</view>
     </view>

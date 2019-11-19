@@ -24,7 +24,7 @@ class Content extends AppBase {
   onLoad(options) {
 
     this.Base.Page = this;
-     options.id = 5;
+     //options.id = 10;
     super.onLoad(options);
     this.Base.setMyData({
       xuan: 'F',
@@ -127,7 +127,16 @@ class Content extends AppBase {
 
 
   bindfapiao(e) {
-    var xuan = e.currentTarget.id
+    var xuan = e.currentTarget.id;
+    var quoteinfo=this.Base.getMyData().quoteinfo;
+    if (quoteinfo.invoice_demand_value=='N'){
+      wx.showToast({
+        title: '未要求发票',
+        icon:'none'
+      })
+      //this.Base.toast('未要求发票');
+      return;
+    }
     if (xuan == 'S') {
       this.Base.setMyData({
         xuan: 'F'
@@ -199,8 +208,19 @@ class Content extends AppBase {
     
     if (check==false){
       enterpriselist[index].qtylist[sx].check = true;
+      var qtylist = enterpriselist[index].qtylist;
+      var leng=0;
+      for (var i = 0; i < qtylist.length;i++){
+        if (qtylist[i].check==true){
+          leng++; 
+          if (enterpriselist[index].qtylist.length == leng){
+            enterpriselist[index].allcheck = true;
+          } 
+        }
+      }
     }else{
       enterpriselist[index].qtylist[sx].check = false;
+      enterpriselist[index].allcheck=false;
     }
  
     this.Base.setMyData({
@@ -284,9 +304,15 @@ class Content extends AppBase {
      //return;
     var shopcar = this.Base.getMyData().shopcar;
     var emp_id = this.Base.getMyData().employeeinfo.enterprise.id;
+    var xuan = this.Base.getMyData().xuan;
     //var aaa=[];
     for (var i = 0; i < shopcar.length; i++) {
      // console.log(emp_id, '000', this.Base.getMyData().employeeinfo.id);
+      if (xuan=='F'){
+        var price = shopcar[i].price;
+     }else{
+        var price = shopcar[i].rateprice;
+     }
       var list = {
         //supplier: shopcar[i].enterprise_id,
 
@@ -301,7 +327,7 @@ class Content extends AppBase {
         parts: shopcar[i].name,
         mcid: shopcar[i].partnubmer,
         quality: shopcar[i].quality,
-        price: shopcar[i].price,
+        price: price,
         qty: shopcar[i].qty,
         standby_time: shopcar[i].standby_time,
         guarantee:shopcar[i].guarantee,
@@ -327,7 +353,7 @@ class Content extends AppBase {
     }, i * 300)
     
     wx.navigateTo({
-      url: '/pages/shopcar/shopcar?id=' + this.Base.options.id + '&carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode
+      url: '/pages/shopcar/shopcar?id=' + this.Base.options.id + '&carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode+'&xuan='+this.Base.getMyData().xuan
     })
 
   }

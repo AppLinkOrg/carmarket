@@ -18,7 +18,7 @@ class Content extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
-    //options.id=1;
+    // options.id=11;
     super.onLoad(options);
   }
   onMyShow() {
@@ -90,11 +90,24 @@ class Content extends AppBase {
       confirmColor: '#2699EC',
       success: function(res) {
         if (res.confirm) {
+          wx.showLoading({
+            title: '正在付款~',
+          })
           console.log(that.Base.getMyData().employeeinfo.enterprise.id, "-996")
           //return;
  
 
           for (var i = 0; i < mylist.length; i++) {
+
+            var list = {
+              enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
+              employee_id: that.Base.getMyData().employeeinfo.id,
+              amount: mylist[i].totalamount,
+              type: 'G',
+              enterprise_id2: mylist[i].enterprise_id,
+              employee_id2: mylist[i].employee_id,
+              type2: 'S'
+            }
 
             orderapi.updatestatus({
               id: mylist[i].id,
@@ -107,32 +120,10 @@ class Content extends AppBase {
               em_id: mylist[i].employee_id,
               money: mylist[i].totalamount
             }, (updatemoney) => {
-
-
-
+ 
             })
-
-
-            var list = {
-              enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
-              employee_id: that.Base.getMyData().employeeinfo.id,
-              amount: mylist[i].totalamount,
-              type: 'G',
-              enterprise_id2: mylist[i].enterprise_id,
-              employee_id2: mylist[i].employee_id, 
-              type2: 'S'
-            }
-            // var list2 = {
-            //   enterprise_id: mylist[i].enterprise_id,
-            //   employee_id: mylist[i].employee_id,
-            //   amount: mylist[i].totalamount,
-            //   type: 'S'
-            // }
-            that.bindinsert(list, i);
-
-
+  
            // that.bindinsert2(list2, i)
-
  
             orderapi.editquotation({
               quotecompan_id: mylist[i].quotecompan_id,
@@ -151,13 +142,10 @@ class Content extends AppBase {
               console.log(editquotestatus, 'ooooo')
             })
 
-              wx.reLaunch({
-                url: '/pages/order/order',
-              })
+            that.bindinsert(list, i);
 
           }
-
-
+ 
         }
       }
     })
@@ -173,6 +161,13 @@ class Content extends AppBase {
         console.log(updatestatus, '-9961')
       }) 
     }, i * 300)
+
+    setTimeout(() => {
+      wx.hideLoading();
+      wx.reLaunch({
+        url: '/pages/order/order',
+      })
+    }, i * 500)
  
   }
 
