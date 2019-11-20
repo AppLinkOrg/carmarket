@@ -11,15 +11,23 @@ import {
 import {
   OrderApi
 } from "../../apis/order.api.js";
-
+import {
+  AddressApi
+} from "../../apis/address.api.js";
 
 class Content extends AppBase {
   constructor() {
     super();
   }
+
+  setPageTitle() {
+    wx.setNavigationBarTitle({
+      title: '提交订单',
+    });
+  }
   onLoad(options) {
     this.Base.Page = this;
-    //options.id = 24;
+     //options.id = 11;
     super.onLoad(options);
     this.Base.setMyData({
       //num: 0,
@@ -33,6 +41,30 @@ class Content extends AppBase {
     var price = 0;
     var num = 0;
     var orderapi = new OrderApi();
+ 
+    if (this.Base.getMyData().info != undefined) {
+      this.Base.setMyData({
+        addressinfo: this.Base.getMyData().info
+      })
+    } else {
+      var addressapi = new AddressApi();
+      addressapi.addresslist({
+
+      }, (addresslist) => {
+
+        var address = addresslist.filter((item, idx) => {
+          return item.morenaddress_value == 'Y';
+        })
+
+         
+        this.Base.setMyData({
+          addressinfo: address[0]
+        })
+
+      })
+    }
+
+
     orderapi.shopcarlist({
       quote_id: this.Base.options.id,
       status: 'A'
@@ -42,7 +74,7 @@ class Content extends AppBase {
 
       for (var i = 0; i < shopcarlist.length; i++) {
         //shopcarlist[i].check = false;
-        if (shopcarlist[i].ck_value == 'Y') {
+        if (shopcarlist[i].status == 'A') {
           num++;
           price += (parseInt(shopcarlist[i].price) * parseInt(shopcarlist[i].qty))
         }
@@ -84,151 +116,7 @@ class Content extends AppBase {
   }
 
 
-  bindchoose(e) {
-    var alllist = this.Base.getMyData().alllist;
-    var id = e.currentTarget.id;
-    var qtylist = alllist[id].name;
-    //  var num = this.Base.getMyData().num;
-    var allprice = this.Base.getMyData().allprice;
-    var chosse = this.Base.getMyData().chosse;
-    //console.log(qtylist+"ddd")
 
-
-    if (alllist[id].allcheck == false) {
-      for (var i = 0; i < qtylist.length; i++) {
-        qtylist[i].check = true;
-      }
-
-      alllist[id].allcheck = true;
-    } else {
-      for (var i = 0; i < qtylist.length; i++) {
-        qtylist[i].check = false;
-      }
-      alllist[id].allcheck = false;
-      this.Base.setMyData({
-        chosse: 1
-      })
-    }
-
-
-    for (var a = 0; a < qtylist.length; a++) {
-      if (qtylist[a].check == true) {
-        allprice += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
-        //  num++;
-        //console.log(num);
-      } else {
-        allprice -= parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
-        //   num--
-      }
-    }
-
-    this.Base.setMyData({
-      alllist: alllist,
-      //  num,
-      allprice
-    })
-
-    console.log("ddd")
-
-  }
-
-
-  bindcheck(e) {
-    var alllist = this.Base.getMyData().alllist;
-    var idx = e.currentTarget.id;
-    var carid = e.currentTarget.dataset.carid;
-    var index = e.currentTarget.dataset.index;
-    var qtylist = alllist[index].name;
-    var checking = qtylist[idx].ck_value;
-    var orderapi = new OrderApi();
-    var chosse = this.Base.getMyData().chosse;
-    var num = 0;
-    var allprice = 0;
-
-    if (checking == "Y") {
-      this.Base.setMyData({
-        chosse: 1
-      });
-      orderapi.updatecheck({
-        ck: 'N',
-        id: carid
-      }, (updatecheck) => {
-        this.onMyShow();
-        // this.Base.setMyData({})
-      })
-
-      alllist[index].name[idx].check = false;
-      alllist[index].allcheck = false;
-    } else {
-      orderapi.updatecheck({
-        ck: 'Y',
-        id: carid
-      }, (updatecheck) => {
-        // this.Base.setMyData({})
-        this.onMyShow();
-      })
-      alllist[index].name[idx].check = true
-    }
-
-    for (var m = 0; m < alllist.length; m++) {
-      var qtylist = alllist[m].name;
-      for (var a = 0; a < qtylist.length; a++) {
-        if (qtylist[a].ck_value == 'Y') {
-          //var num = qtylist.length;
-          allprice += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
-          num++;
-          //console.log(qtylist.length);
-        }
-      }
-    }
-
-
-
-    this.Base.setMyData({
-      // alllist,
-      num,
-      allprice
-    })
-
-    //console.log(checking,"pp")
-
-  }
-
-  bindallcheck(e) {
-    var type = e.currentTarget.id;
-    var alllist = this.Base.getMyData().alllist;
-    //var num = 0;
-    var allprice = 0;
-
-    for (var m = 0; m < alllist.length; m++) {
-      var qtylist = alllist[m].name;
-      if (type == 2) {
-        alllist[m].allcheck = true;
-      } else {
-        alllist[m].allcheck = false;
-      }
-
-      for (var a = 0; a < qtylist.length; a++) {
-        if (type == 2) {
-          qtylist[a].check = true;
-        } else {
-          qtylist[a].check = false;
-        }
-        if (qtylist[a].check == true) {
-          //var num = qtylist.length;
-          allprice += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
-          // num++;
-          //console.log(qtylist.length);
-        }
-      }
-    }
-
-    this.Base.setMyData({
-      chosse: type,
-      alllist,
-      allprice
-    })
-  }
 
 
   bindjisuan(e) {
@@ -242,10 +130,7 @@ class Content extends AppBase {
     var allprice = 0;
 
     // console.log("类型:" + name, 'id:', id,"来来来", index)
-
-
-
-
+ 
     if (name == 'jian') {
       if (alllist[index].name[idx].qty > 1) {
         orderapi.updateqty({
@@ -256,7 +141,7 @@ class Content extends AppBase {
         })
       } else {
         wx.showToast({
-          title: '数量至少为1',
+          title: '不能再减少了哦',
           icon: 'none'
         })
       }
@@ -274,7 +159,7 @@ class Content extends AppBase {
     for (var m = 0; m < alllist.length; m++) {
       var qtylist = alllist[m].name;
       for (var a = 0; a < qtylist.length; a++) {
-        if (qtylist[a].check == true) {
+        if (qtylist[a].status == 'A') {
           //var num = qtylist.length;
           allprice += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
           //console.log(qtylist.length);
@@ -289,84 +174,110 @@ class Content extends AppBase {
     })
   }
 
-  bindjiesuan() {
-    var lista = this.Base.getMyData().alllist;
+ 
 
-    var linjian = [];
 
-    for (var i = 0; i < lista.length; i++) {
-      var list = lista[i].name;
-
-      for (var j = 0; j < list.length; j++) {
-        if (list[j].ck_value == 'Y') {
-          linjian.push(list[j]);
-        }
-      }
-
+  submit(e) {
+    var that = this;
+    var orderapi = new OrderApi(); 
+    var arr = this.Base.getMyData().alllist;
+    var addressinfo = this.Base.getMyData().addressinfo;
+    var types = this.Base.options.xuan;
+console.log(types,'来来来');
+    if (types == 'F') {
+      var needinvoice = 'N';
+    } else {
+      var needinvoice = 'Y';
     }
+ 
 
-    this.Base.setMyData({
-      linjian
-    })
-    
-    var ljlist = this.Base.getMyData().linjian;
-    console.log(ljlist, ljlist.length, 'pppppppp')
-
-    if (ljlist.length == 0) {
-      this.Base.toast('请选择零件~');
+    if (addressinfo == undefined) {
+      wx.showToast({
+        title: '请先选择地址!',
+        icon: 'none'
+      })
       return;
     }
-
-   // return;
-
-    // return;
-    wx.navigateTo({
-      url: '/pages/orderdetail/orderdetail?json=' + JSON.stringify(linjian) + '&carmodel=' + this.Base.options.carmodel + '&vin=' + this.Base.options.vin + '&id=' + this.Base.options.id+'&xuan='+this.Base.options.xuan
-    })
-
-  }
-
-
-
-  deleteshop(e) {
-    var id = e.currentTarget.id;
-    var orderapi = new OrderApi();
-    var that =this;
-
+ 
     wx.showModal({
-      title: '删除？',
-      content: '确认删除该商品?',
+      title: '提交',
+      content: '确认提交订单？',
       showCancel: true,
       cancelText: '取消',
       cancelColor: '#EE2222',
       confirmText: '确定',
       confirmColor: '#2699EC',
-      success: function(res) {
+      success: function (res) {
         if (res.confirm) {
-          orderapi.deleteshop({
-            id: id
-          }, (deleteshop) => {
-           that.onMyShow();
+
+        //  var employee_id= that.Base.getMyData().employeeinfo.id,
+        //    gongsi =  that.Base.getMyData().employeeinfo.id,
+        //    vin =  that.Base.options.vin,
+        //    carname =  that.Base.options.carmodel,
+        //    quote_id =  that.Base.options.id,
+        //    receiver =  addressinfo.name,
+        //    needinvoice =  needinvoice,
+        //    receivecontact =  addressinfo.phonenumber,
+        //    receiveaddress =  addressinfo.region + addressinfo.address;
+
+          //  console.log(
+          //    employee_id, '/', gongsi, '/', vin, '/', carname, '/', quote_id, '/', receiver, '/', needinvoice, '/', receivecontact, '/', receiveaddress
+
+          //  ) 
+
+          orderapi.createorder({
+            employee_id: that.Base.getMyData().employeeinfo.id, 
+            gongsi: that.Base.getMyData().employeeinfo.id, 
+             vin: that.Base.options.vin,
+            // vin: '123456',
+            carname: that.Base.options.carmodel,
+            // carname: '看六角恐龙',
+            quote_id: that.Base.options.id,
+            receiver: addressinfo.name,
+            needinvoice: needinvoice,
+            receivecontact: addressinfo.phonenumber,
+            receiveaddress: addressinfo.region + addressinfo.address,
+            
+          }, (createorder) => {
+            console.log(createorder);
+            that.Base.setMyData({ createorder: createorder})
+
+            wx.redirectTo({
+              url: '/pages/waitpay/waitpay?id=' + that.Base.options.id 
+            })
+              // + '&json=' + JSON.stringify(arr)
           })
+ 
         }
       }
     })
 
   }
 
+ 
 
+  bindaddress(e) {
+    wx.navigateTo({
+      url: '/pages/address/address?ad=1' 
+    })
+  }
+ 
 
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
-body.bindjiesuan = content.bindjiesuan;
+// body.bindjiesuan = content.bindjiesuan;
 body.bindjisuan = content.bindjisuan;
 
-body.deleteshop = content.deleteshop;
+// body.deleteshop = content.deleteshop; 
 
-body.bindchoose = content.bindchoose;
-body.bindcheck = content.bindcheck;
-body.bindallcheck = content.bindallcheck;
+body.submit = content.submit;
+
+body.bindaddress = content.bindaddress; 
+
+// body.bindchoose = content.bindchoose;
+// body.bindcheck = content.bindcheck;
+// body.bindallcheck = content.bindallcheck;
 Page(body)

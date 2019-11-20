@@ -1,13 +1,16 @@
 /* pages/obligations/obligations.wxss */
-.bott{
+Page {
+  background: rgb(235, 235, 235);
+}
+.bott {
   bottom: 0;
   position: fixed;
-  width: 100vw;
+  width: 100vw; 
 }
-.bgjie{
-   background: linear-gradient(to right, rgb(228, 46, 46) , rgb(255, 72, 0));
-   height: 80rpx;
-   line-height: 80rpx;
-   width: 220rpx; 
-   border-radius: 40rpx;
+.bgjie {
+  background: linear-gradient(to right, rgb(228, 46, 46), rgb(255, 72, 0));
+  height: 70rpx;
+  line-height: 70rpx;
+  width: 210rpx; 
+  border-radius: 40rpx;
 }

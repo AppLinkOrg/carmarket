@@ -76,7 +76,7 @@ class Content extends AppBase {
     
     //不需要页面更新
     prevPage.setData({
-      json: json
+      json: json,select:true
     })
     wx.navigateBack({
       

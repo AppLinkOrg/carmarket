@@ -34,25 +34,29 @@ class Content extends AppBase {
       sum: 0,
       quantity: 0
     })
+
   }
   onMyShow() {
     var that = this;
     var instapi = new InstApi();
     var orderapi = new OrderApi();
-
     this.Base.setMyData({ quantity: 0, sum:0});
+
+
+
+
+
 
     orderapi.quoteinfo({
       id: this.Base.options.id
     }, (quoteinfo) => {
       var etplist = {};
-      var fittingsitem = quoteinfo.fittingsitem;
-
-      for (var i = 0; i < fittingsitem.length; i++) {
-
+      var fittingsitem = quoteinfo.fittingsitem; 
+      for (var i = 0; i < fittingsitem.length; i++) { 
         var quoteitems = fittingsitem[i].quoteitems;
         for (var j = 0; j < quoteitems.length; j++) {
           quoteitems[j].check = false;
+
           quoteitems[j].show = false;
 
           var list = quoteitems[j];
@@ -86,10 +90,16 @@ class Content extends AppBase {
         }
  
       }
+
+      orderapi.deleteshop({
+        id: quoteinfo.id
+      }, (deleteshop) => {
+      })
   
       this.Base.setMyData({
         quoteinfo, enterpriselist, price
       });
+
     });
 
   }
@@ -305,18 +315,16 @@ class Content extends AppBase {
     var shopcar = this.Base.getMyData().shopcar;
     var emp_id = this.Base.getMyData().employeeinfo.enterprise.id;
     var xuan = this.Base.getMyData().xuan;
-    //var aaa=[];
+  
     for (var i = 0; i < shopcar.length; i++) {
-     // console.log(emp_id, '000', this.Base.getMyData().employeeinfo.id);
+   
       if (xuan=='F'){
         var price = shopcar[i].price;
      }else{
         var price = shopcar[i].rateprice;
      }
       var list = {
-        //supplier: shopcar[i].enterprise_id,
-
-        
+       
         enterprise_id: shopcar[i].enterprise_id,
         supplier: emp_id,
         baojia: this.Base.getMyData().employeeinfo.id,
@@ -346,16 +354,15 @@ class Content extends AppBase {
     var orderapi = new OrderApi();
     setTimeout(() => {
       orderapi.addshopcar(json, (addshopcar) => {
-
       })
-
- 
     }, i * 300)
-    
-    wx.navigateTo({
-      url: '/pages/shopcar/shopcar?id=' + this.Base.options.id + '&carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode+'&xuan='+this.Base.getMyData().xuan
-    })
 
+    setTimeout(() => {
+      wx.navigateTo({
+        url: '/pages/shopcar/shopcar?id=' + this.Base.options.id + '&carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode + '&xuan=' + this.Base.getMyData().xuan
+      })
+    }, i * 500)
+      
   }
 
   toast(e){

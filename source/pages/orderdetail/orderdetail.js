@@ -141,22 +141,22 @@ class Content extends AppBase {
     var sumprice = this.Base.getMyData().sumprice;
     var arr = this.Base.getMyData().alllist;
     var addressinfo = this.Base.getMyData().addressinfo;
-    var types=this.Base.options.xuan;
+    var types = this.Base.options.xuan;
 
-    if (types=='F'){
-     var needinvoice = 'N';
-    }else{
+    if (types == 'F') {
+      var needinvoice = 'N';
+    } else {
       var needinvoice = 'Y';
     }
-  //  console.log(this.Base.getMyData().employeeinfo.id, "啦啦啦啦啦啦啦啦");
+    //  console.log(this.Base.getMyData().employeeinfo.id, "啦啦啦啦啦啦啦啦");
 
-    if (addressinfo==undefined){
-     wx.showToast({
-       title: '请先选择地址!',
-       icon:'none'
-     })
-     return;
-     }
+    if (addressinfo == undefined) {
+      wx.showToast({
+        title: '请先选择地址!',
+        icon: 'none'
+      })
+      return;
+    }
 
     // return;
     wx.showModal({
@@ -182,28 +182,14 @@ class Content extends AppBase {
             receivecontact: addressinfo.phonenumber,
             receiveaddress: addressinfo.region + addressinfo.address,
             totalamount: sumprice,
-          }, (createorder)=>{
+          }, (createorder) => {
             wx.redirectTo({
               url: '/pages/waitpay/waitpay?id=' + that.Base.options.id + '&json=' + JSON.stringify(arr)
             })
-           // that.Base.setMyData({ createorder})
-          }) 
-          // for (var i = 0; i < arr.length; i++) {
-          //   var list = {
-          //     orderno: '',
-          //     enterprise_id: arr[i].id, 
-          //     totalamount: arr[i].pp,
-          //     vin: that.Base.options.vin,
-          //     carname: that.Base.options.carmodel,
-          //     quote_id: that.Base.options.id,
-          //     receiver: addressinfo.name,
-          //     receivecontact: addressinfo.phonenumber,
-          //     receiveaddress: addressinfo.region + addressinfo.address,
-          //     order_status: 'W',
-          //     status: 'A'
-          //   } 
-          //   that.submitlist(list, i); 
-          // }
+          })
+
+
+
 
         }
       }
@@ -212,7 +198,7 @@ class Content extends AppBase {
   }
 
   submitlist(json, i) {
- 
+
     var that = this;
     var orderapi = new OrderApi();
     var id = [];
@@ -221,18 +207,18 @@ class Content extends AppBase {
       orderapi.settle(json, (settle) => {})
 
     }, i * 300)
-    
+
     //   wx.hideLoading();
     //   wx.showToast({
     //     title: '订单提交成功',
     //     icon: 'none'
     //   })
-    
+
     wx.navigateTo({
       url: '/pages/waitpay/waitpay?id=' + this.Base.options.id
     })
     // setTimeout(() => {
-      
+
     //   wx.hideLoading();
     //   wx.showToast({
     //     title: '订单提交成功',
@@ -244,7 +230,7 @@ class Content extends AppBase {
     //   url: '/pages/jiaoyisuccess/jiaoyisuccess'
     // })
 
- 
+
   }
 
   bindaddress(e) {

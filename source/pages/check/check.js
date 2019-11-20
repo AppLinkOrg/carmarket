@@ -23,32 +23,14 @@ class Content extends AppBase {
     super.onLoad(options);
 
     this.Base.setMyData({
-
-      // biaoti: "福特EDGE CED 2015-2015年2.0L EcoBoost (240PS)6速自动变速箱6F中档范围",
-      // brandCode: "ford",
-      // mcid: "ZD18dns9JT89XFpbQFxRPWI%3D",
-      // vin: "LVSHFCAC2FH007377",
-
+ 
       vin: this.Base.options.vin,
       brandCode: this.Base.options.brandCode,
       mcid: this.Base.options.mcid,
       biaoti: this.Base.options.biaoti,
-
-      //// addlist:[]
-
+ 
     })
-    if (this.Base.getMyData().json != undefined) {
-      console.log('看两节课靠家里')
-      var addlist = JSON.parse(this.Base.getMyData().json);
-      this.Base.setMyData({
-        addlist
-      })
-    } else {
-      console.log('来看看了')
-      this.Base.setMyData({
-        addlist: []
-      })
-    }
+
 
     //this.bindpart();
 
@@ -57,6 +39,23 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var carapi = new CarApi();
+
+    if (this.Base.getMyData().json != undefined) {
+      console.log('看两节课靠家里')
+      var addlist = JSON.parse(this.Base.getMyData().json);
+      var select = this.Base.getMyData().check;
+
+ 
+      this.Base.setMyData({
+        addlist: addlist
+      })
+
+    } else {
+      console.log('来看看了')
+      this.Base.setMyData({
+        addlist: []
+      })
+    }
 
     // carapi.searchhistory({}, (searchhistory) => {
     //   this.Base.setMyData({

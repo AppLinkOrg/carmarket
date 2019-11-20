@@ -16,41 +16,25 @@ class Content extends AppBase {
   constructor() {
     super();
   }
+
+  setPageTitle() {
+    wx.setNavigationBarTitle({
+      title: '等待付款',
+    });
+  }
+
   onLoad(options) {
     this.Base.Page = this;
     // options.id=11;
     super.onLoad(options);
   }
+ 
+
   onMyShow() {
     var that = this;
     var sumprice = 0;
     var orderapi = new OrderApi();
-    // var shopcarlist = JSON.parse(this.Base.options.json);
-
-
-    //var alllist = [];
-
-    // for (var i = 0; i < shopcarlist.length; i++) {
-    //   var list = shopcarlist[i]
-    //   for(let key of list.name){
-    //     alllist.push({
-    //       quote_id: key.quote_id,
-    //       quotecompan_id: key.enterprise_id
-    //     })
-    //   }
-    // }
-
-
-    // this.Base.setMyData({
-    //   alllist
-    //})
-
-
-    // console.log(shopcarlist,'555555555555');
-    // console.log(alllist, 'eeee');
-
-    //  console.log(this.Base.options.id,"1111111")
-
+  
     orderapi.mylist({
       quote_id: this.Base.options.id,
       order_status: 'W'
@@ -71,15 +55,7 @@ class Content extends AppBase {
     var that = this;
     var orderapi = new OrderApi();
     var mylist = this.Base.getMyData().mylist;
-
-    console.log(this.Base.getMyData().employeeinfo.enterprise.id, "-996")
-    //return;
-
-
-    // var arr = this.Base.getMyData().alllist;
-
-    // console.log(arr,'arr')
-
+ 
     wx.showModal({
       title: '付款',
       content: '确认付款？',
@@ -93,9 +69,7 @@ class Content extends AppBase {
           wx.showLoading({
             title: '正在付款~',
           })
-          console.log(that.Base.getMyData().employeeinfo.enterprise.id, "-996")
-          //return;
- 
+      
 
           for (var i = 0; i < mylist.length; i++) {
 
