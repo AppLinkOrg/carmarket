@@ -310,8 +310,10 @@ class Content extends AppBase {
 
   addcar(e) {
     var that =this;
-   // console.log(this.Base.getMyData().employeeinfo.enterprise.id)
+
+     // console.log(this.Base.getMyData().employeeinfo.enterprise.id)
      //return;
+
     var shopcar = this.Base.getMyData().shopcar;
     var emp_id = this.Base.getMyData().employeeinfo.enterprise.id;
     var xuan = this.Base.getMyData().xuan;
@@ -348,7 +350,7 @@ class Content extends AppBase {
 
   }
 
-  carshoplist(json, i) {
+  carshoplist(json, i) {  //待删除!!!!!!!!!!!!!!!!!!!!
 
     var that = this;
     var orderapi = new OrderApi();
