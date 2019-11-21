@@ -31,15 +31,15 @@
 
     <view class="flex-1"></view>
 
-    <view class="flex-row flex-center  ">
-      <view class="txt-black txt-bold   h5">距离最近</view>
+    <view class="flex-row flex-center " bindtap="orderbyD">
+      <view class="{{sortby=='D'?'txt-primary':'txt-black'}} txt-bold   h5">距离最近</view>
       <image class="icon-10 margin-left-10" src="{{uploadpath}}resource/{{res.jiantou}}"></image>
     </view>
 
     <view class="flex-1"></view>
 
-    <view class="flex-row flex-center  ">
-      <view class="txt-black txt-bold   h5">价格最低</view>
+    <view class="flex-row flex-center  " bindtap="orderbyP"> 
+      <view class="{{sortby=='P'?'txt-primary':'txt-black'}} txt-bold   h5">价格最低</view>
       <image class="icon-10 margin-left-10" src="{{uploadpath}}resource/{{res.jiantou}}"></image>
     </view>
 
@@ -69,7 +69,7 @@
     <view class="margin-top txt-primary">待报价...</view>
   </view>
 
-  <view class="blueblock {{index>0?'margin-top':''}}" style="background:#143779" wx:for='{{enterpriselist}}' wx:key='s' wx:for-index='index'>
+  <view class="blueblock {{index>0?'margin-top':''}}" style="background:#143779" wx:for='{{enterpriselist}}' wx:key='s' wx:for-index='index' hidden="{{fdistrict[item.district_id]!='Y'}}">
 
     <view class="padding-20 flex-row flex-center">
         
@@ -78,7 +78,10 @@
 
         <view class="flex-1 margin-left-20">
           <view class="txt-white"> {{item.enterprise_name}}</view>
-          <view class="txt-white h5 margin-top-20"> {{item.address}}</view>
+           <view class="flex-row margin-top-20">
+            <view class="txt-white h5 flex-1"> {{item.address}}</view>
+            <view class="txt-white h6 "> {{item.mile}}</view>
+          </view>
         </view>
 
         <view>
@@ -209,11 +212,10 @@
       <image class='icon-25 margin-right-30 margin-top-30' src='{{uploadpath}}resource/{{res.delect}}' bindtap="binddelect"></image>
     </view>
 
-    <view class="margin-top-20">
+    <view class="margin-top-20" wx:if="{{districtlist.length>0}}">
       <view class="margin-left-20">地区筛选</view>
-      <view class="flex-row margin-top-30">
-        <view class="txt-black xiaobtn margin-left-50" bindtap="toast">罗湖区</view>
-        <view class="txt-black xiaobtn margin-left-30" bindtap="toast">龙岗区</view>
+      <view class="flex-row flex-wrap margin-top-30">
+        <view class="txt-black xiaobtn {{fdistrict[item.id]=='Y'?'xiaobtn-a':''}} margin-left-50 margin-top-30" wx:for="{{districtlist}}" bindtap="toast" id="{{item.id}}" >{{item.name}}</view>
       </view>
 
     </view>

@@ -6,6 +6,9 @@ import {
   ApiConfig
 } from "../../apis/apiconfig";
 import {
+  ApiUtil
+} from "../../apis/apiutil.js";
+import {
   InstApi
 } from "../../apis/inst.api.js";
 import {
@@ -32,7 +35,10 @@ class Content extends AppBase {
       id: 0,
       shopcar: [],
       sum: 0,
-      quantity: 0
+      quantity: 0,
+      sortby: "D",
+      districtlist: [],
+      fdistrict: []
     })
 
   }
@@ -40,68 +46,21 @@ class Content extends AppBase {
     var that = this;
     var instapi = new InstApi();
     var orderapi = new OrderApi();
-    this.Base.setMyData({ quantity: 0, sum:0});
 
-
-
-
-
-
-    orderapi.quoteinfo({
-      id: this.Base.options.id
-    }, (quoteinfo) => {
-      var etplist = {};
-      var fittingsitem = quoteinfo.fittingsitem; 
-      for (var i = 0; i < fittingsitem.length; i++) { 
-        var quoteitems = fittingsitem[i].quoteitems;
-        for (var j = 0; j < quoteitems.length; j++) {
-          quoteitems[j].check = false;
-
-          quoteitems[j].show = false;
-
-          var list = quoteitems[j];
-          if (!etplist[list.enterprise_id]) {
-            etplist[list.enterprise_id] = [];
-          }
-          etplist[list.enterprise_id].push(list)
-        }
-
-        var enterpriselist = [];
-
-        var price = 0;
- 
-        for (var key in etplist) {
-
-          for (var a in etplist[key]) {
-            enterpriselist.push({ id: key, allcheck:false,show:false, enterprise_name: etplist[key][a].edt_name, address: etplist[key][a].edt_address, qtylist: etplist[key] })
-            break;
-          }
-
-          for (var s in etplist[key]) {
-
-            if(this.Base.getMyData().xuan=='F'){
-              price += (parseInt(etplist[key][s].price) * parseInt(etplist[key][s].qty))
-            }else{
-              price += (parseInt(etplist[key][s].rateprice) * parseInt(etplist[key][s].qty))
-            }
-            
-          }
-
-        }
- 
-      }
-
-      orderapi.deleteshop({
-        id: quoteinfo.id
-      }, (deleteshop) => {
-      })
-  
-      this.Base.setMyData({
-        quoteinfo, enterpriselist, price
+    this.Base.setMyData({ quantity: 0, sum: 0 });
+    try {
+      var myaddress = this.Base.getMyData().myaddress;
+      var city_id = myaddress.ad_info.adcode.substr(0, 4) + "00";
+      orderapi.districtlist({ city_id }, (districtlist) => {
+        var fdistrict = [];
+        for (var i = 0; i < districtlist.length; i++) {
+          fdistrict[districtlist[i]["id"]] = "Y";
+        } 
+        this.Base.setMyData({ districtlist, fdistrict });
       });
-
-    });
-
+    } catch (ex) {
+    }
+    this.refreshdata();
   }
 
   setPageTitle(instinfo) {
@@ -126,7 +85,7 @@ class Content extends AppBase {
   bindchakan(e) {
     var chakan = e.currentTarget.dataset.chakan;
 
-    this.onMyShow();
+    this.refreshdata();
  
     this.Base.setMyData({
       chakan: chakan, quantity:0,sum:0
@@ -368,12 +327,10 @@ class Content extends AppBase {
   }
 
   toast(e){
-    wx.showModal({
-      title: 'ERRO',
-      content: 'Unable to get the current location temporarily, please check whether the interface is correct！',
-      showCancel: false,
-      confirmText: "cancel", 
-    })
+    var id = e.currentTarget.id;
+    var fdistrict = this.Base.getMyData().fdistrict;
+    fdistrict[id] = fdistrict[id] != "Y" ? "Y" : "N";
+    this.Base.setMyData({ fdistrict });
   }
 
   tocar(e){
@@ -419,7 +376,84 @@ class Content extends AppBase {
     this.Base.setMyData({ enterpriselist });
 
   }
+  refreshdata() {
+    var mylat = this.Base.getMyData().mylat;
+    var mylng = this.Base.getMyData().mylng;
+    var sortby = this.Base.getMyData().sortby;
 
+    var orderapi = new OrderApi();
+
+    orderapi.quoteinfo({
+      id: this.Base.options.id,
+      mylat, mylng,
+      sortby: sortby
+    }, (quoteinfo) => {
+      var etplist = {};
+      var fittingsitem = quoteinfo.fittingsitem;
+      for (var i = 0; i < fittingsitem.length; i++) {
+        var quoteitems = fittingsitem[i].quoteitems;
+        for (var j = 0; j < quoteitems.length; j++) {
+          quoteitems[j].check = false;
+
+          quoteitems[j].show = false;
+
+          var list = quoteitems[j];
+          if (!etplist[list.enterprise_id]) {
+            etplist[list.enterprise_id] = [];
+          }
+          etplist[list.enterprise_id].push(list)
+        }
+
+        var enterpriselist = [];
+
+        var price = 0;
+
+        for (var key in etplist) {
+
+          for (var a in etplist[key]) {
+            var lat = etplist[key][a].edt_lat;
+            var lng = etplist[key][a].edt_lng;
+
+            var distance = ApiUtil.GetDistance(mylat, mylng, lat, lng);
+            var mile = ApiUtil.GetMileTxt(distance);
+            enterpriselist.push({ id: key, allcheck: false, show: false, enterprise_name: etplist[key][a].edt_name, address: etplist[key][a].edt_address, qtylist: etplist[key], 
+              district_id: etplist[key][a].district_id, mile })
+            break;
+          }
+
+          for (var s in etplist[key]) {
+
+            if (this.Base.getMyData().xuan == 'F') {
+              price += (parseInt(etplist[key][s].price) * parseInt(etplist[key][s].qty))
+            } else {
+              price += (parseInt(etplist[key][s].rateprice) * parseInt(etplist[key][s].qty))
+            }
+
+          }
+
+        }
+
+      }
+
+      orderapi.deleteshop({
+        id: quoteinfo.id
+      }, (deleteshop) => {
+      })
+
+      this.Base.setMyData({
+        quoteinfo, enterpriselist, price
+      });
+
+    });
+  }
+  orderbyD() {
+    this.Base.setMyData({ sortby: "D" });
+    this.refreshdata();
+  }
+  orderbyP() {
+    this.Base.setMyData({ sortby: "P" });
+    this.refreshdata();
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -447,4 +481,7 @@ body.statisticsone = content.statisticsone;
 body.quanxuan = content.quanxuan; 
 body.shoucang = content.shoucang; 
 
+body.refreshdata = content.refreshdata;
+body.orderbyD = content.orderbyD;
+body.orderbyP = content.orderbyP;
 Page(body)
