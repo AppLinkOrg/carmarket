@@ -54,6 +54,7 @@ class Content extends AppBase {
       orderapi.districtlist({ city_id }, (districtlist) => {
         var fdistrict = [];
         for (var i = 0; i < districtlist.length; i++) {
+          districtlist[i]["id"] = Number(districtlist[i]["id"].substr(4, 2));
           fdistrict[districtlist[i]["id"]] = "Y";
         } 
         this.Base.setMyData({ districtlist, fdistrict });
@@ -417,7 +418,7 @@ class Content extends AppBase {
             var distance = ApiUtil.GetDistance(mylat, mylng, lat, lng);
             var mile = ApiUtil.GetMileTxt(distance);
             enterpriselist.push({ id: key, allcheck: false, show: false, enterprise_name: etplist[key][a].edt_name, address: etplist[key][a].edt_address, qtylist: etplist[key], 
-              district_id: etplist[key][a].district_id, mile })
+              district_id: Number(etplist[key][a].district_id.substr(4, 2)), mile })
             break;
           }
 
