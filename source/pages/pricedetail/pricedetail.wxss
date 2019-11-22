@@ -51,10 +51,10 @@ Page {
 }
 
 .left {
-  width: 40vw;
+  width: 48vw;
   height: 100vh;
   position: fixed;
-  z-index: 10;
+  z-index: 110;
   top: 0;
   left: 0;
   bottom: 0;
@@ -63,10 +63,10 @@ Page {
 }
 
 .dialog-box {
-  width: 60vw;
+  width: 52vw;
   height: 100vh;
   position: fixed;
-  z-index: 10;
+  z-index: 110;
   top: 0;
   bottom: 0;
   right: 0;
@@ -74,19 +74,14 @@ Page {
 }
 
 .xiaobtn {
-  border: 1rpx black solid;
+  border: 2rpx black solid;
+  border-radius: 10rpx;
   width: 150rpx;
   height: 60rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10rpx;
+  line-height: 60rpx;
 }
 
-.xiaobtn-a {
-  border: 1rpx #e92a11 solid;
-  color: #e92a11;
-}
+ 
 
 .border {
   border: 4rpx solid white;

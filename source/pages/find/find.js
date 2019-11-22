@@ -46,11 +46,16 @@ class Content extends AppBase {
   
   }
 
+
+
   bindvalue(e) {
      console.log(e);
 
+    var uppercase = (e.detail.value).toUpperCase();
+    console.log(uppercase);
+    //return;
     this.Base.setMyData({
-      vin: e.detail.value, count: e.detail.cursor
+      vin: uppercase, count: e.detail.cursor
     })
 
   }

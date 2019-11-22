@@ -12,9 +12,7 @@
     </view>
 
   </view>
-
-
-
+  
   <view class="flex-row flex-center margin-top-10 margin-left-30">
     <view class="h5 txt-black  ">{{item.mid}}</view>
     <image src="{{uploadpath}}resource/{{res.suolve}}" id="{{item.img}}" bindtap="viewPhoto" class="icon margin-left-30"></image>
@@ -35,9 +33,14 @@
     </view>
 
     <!-- bindinput="bindbeizhu" -->
-    <view class=" bg">
+    
+    <view class=" bg ">
       <input class="margin-left-20 h5 " bindtap="bindimg" disabled="{{true}}" value="{{item.beizhu}}" placeholder="可输入备注" id="{{idx}}"></input>
     </view>
+   <view class="flex-1"></view>
+   <view class="padding-10" bindtap="clearfits" id="{{idx}}">   
+    <image src="{{uploadpath}}resource/{{res.junkbox}}" class="icon"></image>
+     </view>
 
   </view>
 </view>

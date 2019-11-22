@@ -1,1 +1,9 @@
-<view class="flex-row flex-column txt-black margin-top">帮助中心</view>
+
+<view class="flex-row flex-column">
+<textarea maxlength="-1" class="padding-20 block bg-white margin-30 h5" bindinput="bindinput" placeholder="请输入您的反馈意见"></textarea>
+</view>
+
+<view style="height:50rpx;"></view>
+
+<view class="padding-40 bg-primary txt-white text-center bottom-block" bindtap="submit">提交</view>
+ 

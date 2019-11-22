@@ -40,12 +40,12 @@ class Content extends AppBase {
     var that = this;
     var carapi = new CarApi();
 
+     
     if (this.Base.getMyData().json != undefined) {
       console.log('看两节课靠家里')
       var addlist = JSON.parse(this.Base.getMyData().json);
-      var select = this.Base.getMyData().check;
+      var select = this.Base.getMyData().check; 
 
- 
       this.Base.setMyData({
         addlist: addlist
       })
@@ -55,6 +55,14 @@ class Content extends AppBase {
       this.Base.setMyData({
         addlist: []
       })
+    }
+
+    if (this.Base.getMyData().groupslist!=null){
+      var groupslist = this.Base.getMyData().groupslist;
+      for (var i = 0; i < groupslist.length; i++) {
+        groupslist[i].check = true;
+      }
+      this.Base.setMyData({ groupslist});
     }
 
     // carapi.searchhistory({}, (searchhistory) => {
@@ -196,6 +204,12 @@ class Content extends AppBase {
     var vin = this.Base.options.vin,
       biaoti = this.Base.options.biaoti
     // var groupslist = this.Base.getMyData().groupslist;
+
+    if (this.Base.getMyData().addlist.length==0){
+    this.Base.toast('请选择零件');
+    return;
+    }
+
     wx.navigateTo({
       url: '/pages/findadd/findadd?json=' + JSON.stringify(this.Base.getMyData().addlist) + '&biaoti=' + biaoti + '&vin=' + vin
       // success: function (res) {

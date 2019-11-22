@@ -39,9 +39,10 @@ class Content extends AppBase {
       }
       this.Base.setMyData({ pinzhilist })
     })
- 
+   // console.log(JSON.parse(this.Base.options.json),'999');
     if (this.Base.getMyData().list==undefined){
       var json = JSON.parse(this.Base.options.json);
+
       this.Base.setMyData({
         json
       })
@@ -125,7 +126,7 @@ class Content extends AppBase {
 
   bindfapiao(e) {
     var fapiaoed = e.currentTarget.id;
-  //  console.log('0000', fapiaoed);
+   //  console.log('0000', fapiaoed);
 
     this.Base.setMyData({
       fapiao: fapiaoed
@@ -141,9 +142,9 @@ class Content extends AppBase {
 
     if (pinzhilist[id].check == true){
       pinzhilist[id].check = false;
-}else{
+   }else{
       pinzhilist[id].check = true;
-}
+   }
    
     this.Base.setMyData({ pinzhilist});
  
@@ -165,7 +166,7 @@ class Content extends AppBase {
     }
     var pinzhi = arr;
     //console.log(arr);
- //return;
+   //return;
     //console.log(shibie);
 
     //return;
@@ -219,7 +220,7 @@ class Content extends AppBase {
                 Sprice: shibie[i].cost_price,
                 status: 'A'
               }
-              that.fitting(list, i)
+              that.fitting(list, i, shibie.length)
  
              
 
@@ -234,7 +235,7 @@ class Content extends AppBase {
 
   }
 
-  fitting(json, i) {
+  fitting(json, i,length) {
     var that = this;
     var orderapi = new OrderApi();
     setTimeout(() => {
@@ -243,18 +244,23 @@ class Content extends AppBase {
           addfittings
         }) 
       })
+      if (i + 1 == length){
+        wx.hideLoading();
+        wx.reLaunch({
+          url: '/pages/price/price',
+        })
+      }
+      
       
     }, i * 300)
 
-    setTimeout(() => {
-      wx.hideLoading();
-      wx.reLaunch({
-        url: '/pages/price/price',
-      })
-    }, json.length * 500)
-   
- 
+  }
 
+  clearfits(e){
+   var idx=e.currentTarget.id;
+    var json = this.Base.getMyData().json;
+    json.splice(idx,1)
+    this.Base.setMyData({ json})
   }
 
 
@@ -268,6 +274,7 @@ body.bindsubmit = content.bindsubmit;
 
 body.fitting = content.fitting; 
 
+body.clearfits = content.clearfits; 
 
 body.bindadd = content.bindadd;
 body.bindfapiao = content.bindfapiao;

@@ -768,8 +768,7 @@ button[disabled][type=primary] {
 
 .null_icon1 {
   height: 200rpx;
-  width: 240rpx;
-  margin-left: 20rpx;
+  width: 200rpx; 
 }
 
 

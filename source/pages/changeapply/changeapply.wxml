@@ -1,10 +1,37 @@
+<view class="    bg-white  ">
+
+  <view class=' flex-row margin-top  '>
+    <view class='borderleft'></view>
+    <view class='margin-left-10 txt-black txt-bold'>退换信息</view>
+  </view>
+
+  <view class="flex-row  flex-center margin-top-20 margin-left-30" style=" ">
+    <view class="h5" style="width:200rpx;">订单编号：</view>
+    <view class="h5">{{change.orderno}}</view>
+  </view>
+
+  <view class="flex-row flex-center margin-top-20 margin-left-30" style=" ">
+    <view class="h5" style="width:200rpx;">VIN:</view>
+    <view class="h5">{{change.vin}}</view>
+  </view>
+
+  <view class="flex-row flex-top margin-top-20 margin-left-30" style=" ">
+    <view class="h5" style="width:200rpx;">车型:</view>
+    <view class="h5 flex-1">{{change.carname}}</view>
+  </view>
+
+</view>
+
+
+
+
 <view class=' flex-row margin-top  '>
   <view class='borderleft'></view>
   <view class='margin-left-10 txt-black txt-bold'>退换信息</view>
 </view>
 
-<view class="flex-row flex-bottom margin-30">
-  <view class="">手机号码： </view> 
+<view class="flex-row flex-center margin-30">
+  <view class="h5">手机号码： </view>
   <input class="h5" placeholder="请输入你的手机号码" bindinput="bindphone" maxlength="11" type="number"></input>
 </view>
 
@@ -17,56 +44,70 @@
   <view class='borderleft'></view>
   <view class='margin-left-10 txt-black txt-bold'>选择配件</view>
 </view>
-<view class='flex-row flex-wrap margin-top-20'>
+
+
+
+
+
+
+<!-- <view class='flex-row flex-wrap margin-top-20'>
   <view class='txt-black margin-left-30'>订单编号：</view>
   <view class='txt-black '>{{change.orderno}}</view>
 </view>
 <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
   <view class='txt-black '>订单时间：</view>
   <view class='txt-black '>{{change.order_time_formatting}}</view>
-</view>
+</view> -->
 
-<view class='flex-row' wx:for="{{change.orderitem}}" wx:key='s' wx:for-index='idx'>
+<view class='flex-row flex-center margin-top' wx:for="{{change.orderitem}}" wx:key='s' wx:for-index='idx'>
+
   <view class='margin-left-30 '>
-    <image wx:if="{{item.check==false}}" bindtap="bindxuanze" data-id="{{idx}}" class='icon-25 margin-top' src='{{uploadpath}}resource/{{res.no}}'></image>
-    <image wx:if="{{item.check==true}}" bindtap="bindxuanze" data-id="{{idx}}" class='icon-25 margin-top' src='{{uploadpath}}resource/{{res.zhong}}'></image>
-
+    <image wx:if="{{item.check==false}}" bindtap="bindxuanze" data-id="{{idx}}" class='icon  ' src='{{uploadpath}}resource/{{res.nocheck}}'></image>
+    <image wx:if="{{item.check==true}}" bindtap="bindxuanze" data-id="{{idx}}" class='icon  ' src='{{uploadpath}}resource/{{res.checking}}'></image>
   </view>
 
-  <view class='margin-left-30 '>
-    <view class=' txt-black marg'>{{item.parts}}</view>
+  <view class='margin-left-10 '>
+    <view class=' txt-black marg margin-left-10 txt-bold'>{{item.parts}}</view>
+
     <view class='flex-row  margin-top-10 '>
-      <view class=''>品质：</view>
-      <view class=''>{{item.quality }}</view>
+      <view class=''>【{{item.quality }}】</view>
+      <view class="margin-left-10 txt-red txt-bold">￥{{item.price}}</view>
     </view>
-    <view class='flex-row flex-wrap margin-bottom-20'>
+
+    <!-- <view class='flex-row flex-wrap margin-top-20  '>
       <view class=''>单价：</view>
       <view class='txt-red'>{{item.price}}元</view>
-    </view>
+    </view> -->
+    <view style="height:40rpx;"></view>
   </view>
+
   <view class="flex-1"></view>
-  <view class="flex-row margin-top">
-    <view class=''>
-      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}' data-type="jian" id="{{idx}}" bindtap='bindadd'></image>
-    </view>
-    <view class='txt-blue margin-left-30 margin-right-30'>{{item.qty}}</view>
-    <view class='margin-right-20'>
-      <image class='icon-25 ' src='{{uploadpath}}resource/{{res.add}}' data-type="jia" id="{{idx}}" bindtap='bindadd'></image>
-    </view>
+
+  <view class="flex-row  flex-center">
+
+    <image class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}' data-type="jian" id="{{idx}}" bindtap='bindadd'></image>
+    <view class='  text-center h5 txt-bold' style="width:80rpx;">{{item.qty}}</view>
+    <image class='icon-25 margin-right-20' src='{{uploadpath}}resource/{{res.add}}' data-type="jia" id="{{idx}}" bindtap='bindadd'></image>
+
   </view>
+
+
 </view>
 
 <view class='bott margin-top-20 margin-bottom-20'></view>
 <view class='flex-row  '>
-  <image wx:if="{{quan=='B'}}" id="B" class='icon-25 margin-left-30' src='{{uploadpath}}resource/{{res.no}}' bindtap="bindall"></image>
+  <image wx:if="{{quan=='B'}}" id="B" class='icon margin-left-30' src='{{uploadpath}}resource/{{res.nocheck}}' bindtap="bindall"></image>
 
-  <image wx:if="{{quan=='Q'}}" id="Q" class='icon-25 margin-left-30' src='{{uploadpath}}resource/{{res.zhong}}' bindtap="bindall"></image>
-  
+  <image wx:if="{{quan=='Q'}}" id="Q" class='icon margin-left-30' src='{{uploadpath}}resource/{{res.checking}}' bindtap="bindall"></image>
+
   <view class="margin-left-10">全选</view>
 
   <view class="flex-1"></view>
   <view class=' txt-black'>总计：</view>
-  <view class='txt-red margin-right-30'>-￥{{price}}元</view>
+  <view class='txt-red margin-right-30 txt-bold'>￥{{price}}元</view>
 </view>
+
+
+
 <view class='bott margin-top-20 margin-bottom-20'></view>
 <view class="btn-btn" bindtap='bindsubmit'>提交</view>

@@ -23,11 +23,11 @@ class Content extends AppBase {
   constructor() {
     super();
   }
-  
+
   onLoad(options) {
 
     this.Base.Page = this;
-     //options.id = 10;
+    //options.id = 11;
     super.onLoad(options);
     this.Base.setMyData({
       xuan: 'F',
@@ -47,20 +47,27 @@ class Content extends AppBase {
     var instapi = new InstApi();
     var orderapi = new OrderApi();
 
-    this.Base.setMyData({ quantity: 0, sum: 0 });
+    this.Base.setMyData({
+      quantity: 0,
+      sum: 0
+    });
     try {
       var myaddress = this.Base.getMyData().myaddress;
       var city_id = myaddress.ad_info.adcode.substr(0, 4) + "00";
-      orderapi.districtlist({ city_id }, (districtlist) => {
+      orderapi.districtlist({
+        city_id
+      }, (districtlist) => {
         var fdistrict = [];
         for (var i = 0; i < districtlist.length; i++) {
           districtlist[i]["id"] = Number(districtlist[i]["id"].substr(4, 2));
           fdistrict[districtlist[i]["id"]] = "Y";
-        } 
-        this.Base.setMyData({ districtlist, fdistrict });
+        }
+        this.Base.setMyData({
+          districtlist,
+          fdistrict
+        });
       });
-    } catch (ex) {
-    }
+    } catch (ex) {}
     this.refreshdata();
   }
 
@@ -80,16 +87,18 @@ class Content extends AppBase {
   binddelect() {
     this.Base.setMyData({
       showModal: false
-    }) 
+    })
   }
 
   bindchakan(e) {
     var chakan = e.currentTarget.dataset.chakan;
 
     this.refreshdata();
- 
+
     this.Base.setMyData({
-      chakan: chakan, quantity:0,sum:0
+      chakan: chakan,
+      quantity: 0,
+      sum: 0
     })
 
   }
@@ -98,11 +107,11 @@ class Content extends AppBase {
 
   bindfapiao(e) {
     var xuan = e.currentTarget.id;
-    var quoteinfo=this.Base.getMyData().quoteinfo;
-    if (quoteinfo.invoice_demand_value=='N'){
+    var quoteinfo = this.Base.getMyData().quoteinfo;
+    if (quoteinfo.invoice_demand_value == 'N') {
       wx.showToast({
         title: '未要求发票',
-        icon:'none'
+        icon: 'none'
       })
       //this.Base.toast('未要求发票');
       return;
@@ -137,7 +146,7 @@ class Content extends AppBase {
     var quoteinfo = this.Base.getMyData().quoteinfo;
     var fittingsitem = quoteinfo.fittingsitem;
     var quoteitems = fittingsitem[index].quoteitems;
- 
+
     // var checking = fittingsitem[index].quoteitems[sx].check;
 
     for (var i = 0; i < quoteitems.length; i++) { //将所有选中状态设为未选
@@ -167,37 +176,37 @@ class Content extends AppBase {
 
   }
 
-  bindcheckone(e){
+  bindcheckone(e) {
     var enterprise_id = e.currentTarget.dataset.enterprise_id;
     var index = e.currentTarget.dataset.index;
     var sx = e.currentTarget.dataset.sx;
     var enterpriselist = this.Base.getMyData().enterpriselist;
     var check = enterpriselist[index].qtylist[sx].check;
 
-    
-    
-    if (check==false){
+
+
+    if (check == false) {
       enterpriselist[index].qtylist[sx].check = true;
       var qtylist = enterpriselist[index].qtylist;
-      var leng=0;
-      for (var i = 0; i < qtylist.length;i++){
-        if (qtylist[i].check==true){
-          leng++; 
-          if (enterpriselist[index].qtylist.length == leng){
+      var leng = 0;
+      for (var i = 0; i < qtylist.length; i++) {
+        if (qtylist[i].check == true) {
+          leng++;
+          if (enterpriselist[index].qtylist.length == leng) {
             enterpriselist[index].allcheck = true;
-          } 
+          }
         }
       }
-    }else{
+    } else {
       enterpriselist[index].qtylist[sx].check = false;
-      enterpriselist[index].allcheck=false;
+      enterpriselist[index].allcheck = false;
     }
- 
+
     this.Base.setMyData({
       enterpriselist: enterpriselist
     })
 
- 
+
     this.statisticsone();
   }
 
@@ -215,12 +224,12 @@ class Content extends AppBase {
           shopcar.push(quoteitems[a]);
           quantity++;
 
-          if(this.Base.getMyData().xuan=='F'){
-            sum += parseInt(quoteitems[a].price);
-          }else{
-            sum += parseInt(quoteitems[a].rateprice);
+          if (this.Base.getMyData().xuan == 'F') {
+            sum += parseInt(quoteitems[a].price) * parseInt(quoteitems[a].qty);
+          } else {
+            sum += parseInt(quoteitems[a].rateprice) * parseInt(quoteitems[a].qty);
           }
-          
+
         }
       }
     }
@@ -234,7 +243,7 @@ class Content extends AppBase {
   }
 
   statisticsone() { //选中零件统计
-   //return;
+    //return;
     var enterpriselist = this.Base.getMyData().enterpriselist;
 
     var shopcar = [];
@@ -250,9 +259,9 @@ class Content extends AppBase {
           quantity++;
           // sum += parseInt(qtylist[a].price);
           if (this.Base.getMyData().xuan == 'F') {
-            sum += parseInt(qtylist[a].price);
+            sum += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
           } else {
-            sum += parseInt(qtylist[a].rateprice);
+            sum += parseInt(qtylist[a].rateprice) * parseInt(qtylist[a].qty);
           }
         }
       }
@@ -269,24 +278,26 @@ class Content extends AppBase {
 
 
   addcar(e) {
-    var that =this;
-
-     // console.log(this.Base.getMyData().employeeinfo.enterprise.id)
-     //return;
+    var that = this;
+    wx.showLoading({
+      title: '提交中...',
+    })
+    // console.log(this.Base.getMyData().employeeinfo.enterprise.id)
+    //return;
 
     var shopcar = this.Base.getMyData().shopcar;
     var emp_id = this.Base.getMyData().employeeinfo.enterprise.id;
     var xuan = this.Base.getMyData().xuan;
-  
+
     for (var i = 0; i < shopcar.length; i++) {
-   
-      if (xuan=='F'){
+
+      if (xuan == 'F') {
         var price = shopcar[i].price;
-     }else{
+      } else {
         var price = shopcar[i].rateprice;
-     }
+      }
       var list = {
-       
+
         enterprise_id: shopcar[i].enterprise_id,
         supplier: emp_id,
         baojia: this.Base.getMyData().employeeinfo.id,
@@ -300,67 +311,80 @@ class Content extends AppBase {
         price: price,
         qty: shopcar[i].qty,
         standby_time: shopcar[i].standby_time,
-        guarantee:shopcar[i].guarantee,
-        sendcar_time:shopcar[i].sendcar_time,
+        guarantee: shopcar[i].guarantee,
+        sendcar_time: shopcar[i].sendcar_time,
         status: 'A'
       }
-      this.carshoplist(list, i);
+      this.carshoplist(list, i, shopcar.length);
 
     }
 
   }
 
-  carshoplist(json, i) {  //待删除!!!!!!!!!!!!!!!!!!!!
+  carshoplist(json, i, length) {
 
     var that = this;
     var orderapi = new OrderApi();
+    var a = 0;
     setTimeout(() => {
-      orderapi.addshopcar(json, (addshopcar) => {
-      })
+      //  console.log('uuu');
+      orderapi.addshopcar(json, (addshopcar) => {})
+
+      //  console.log(i, '噢噢噢');
+
+      if (i + 1 == length) {
+        wx.hideLoading();
+        wx.navigateTo({
+          url: '/pages/shopcar/shopcar?id=' + this.Base.options.id + '&carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode + '&xuan=' + this.Base.getMyData().xuan
+        })
+
+      }
+
     }, i * 300)
 
-    setTimeout(() => {
-      wx.navigateTo({
-        url: '/pages/shopcar/shopcar?id=' + this.Base.options.id + '&carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode + '&xuan=' + this.Base.getMyData().xuan
-      })
-    }, i * 500)
-      
+
+
+
   }
 
-  toast(e){
+  toast(e) {
     var id = e.currentTarget.id;
     var fdistrict = this.Base.getMyData().fdistrict;
     fdistrict[id] = fdistrict[id] != "Y" ? "Y" : "N";
-    this.Base.setMyData({ fdistrict });
+    this.Base.setMyData({
+      fdistrict
+    });
   }
 
-  tocar(e){
-    var that =this;
+  tocar(e) {
+    var that = this;
     wx.navigateTo({
       url: '/pages/shopcar/shopcar?id=' + this.Base.options.id + '&carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode
     })
   }
 
-  quanxuan(e){
-    var type=e.currentTarget.dataset.type;
-    var idx=e.currentTarget.id;
+  quanxuan(e) {
+    var type = e.currentTarget.dataset.type;
+    var idx = e.currentTarget.id;
 
     var enterpriselist = this.Base.getMyData().enterpriselist;
-    console.log(type,idx);
+    console.log(type, idx);
 
     enterpriselist[idx].allcheck = type;
 
     var qtylist = enterpriselist[idx].qtylist;
 
-    for (var i = 0; i < qtylist.length;i++){
-      qtylist[i].check = type 
+    for (var i = 0; i < qtylist.length; i++) {
+      qtylist[i].check = type
     }
     this.statisticsone();
-    this.Base.setMyData({ enterpriselist});
+    this.Base.setMyData({
+      enterpriselist
+    });
 
-  
+
   }
-  shoucang(e){
+  shoucang(e) {
     var type = e.currentTarget.dataset.type;
     var idx = e.currentTarget.id;
 
@@ -374,7 +398,9 @@ class Content extends AppBase {
     for (var i = 0; i < qtylist.length; i++) {
       qtylist[i].show = type
     }
-    this.Base.setMyData({ enterpriselist });
+    this.Base.setMyData({
+      enterpriselist
+    });
 
   }
   refreshdata() {
@@ -386,7 +412,8 @@ class Content extends AppBase {
 
     orderapi.quoteinfo({
       id: this.Base.options.id,
-      mylat, mylng,
+      mylat,
+      mylng,
       sortby: sortby
     }, (quoteinfo) => {
       var etplist = {};
@@ -407,30 +434,40 @@ class Content extends AppBase {
 
         var enterpriselist = [];
 
-        var price = 0;
+        // var price = 0;
+        // var allprice = 0;
 
         for (var key in etplist) {
 
           for (var a in etplist[key]) {
             var lat = etplist[key][a].edt_lat;
-            var lng = etplist[key][a].edt_lng;
-
+            var lng = etplist[key][a].edt_lng; 
             var distance = ApiUtil.GetDistance(mylat, mylng, lat, lng);
             var mile = ApiUtil.GetMileTxt(distance);
-            enterpriselist.push({ id: key, allcheck: false, show: false, enterprise_name: etplist[key][a].edt_name, address: etplist[key][a].edt_address, qtylist: etplist[key], 
-              district_id: Number(etplist[key][a].district_id.substr(4, 2)), mile })
+ 
+            enterpriselist.push({
+              id: key,
+              allcheck: false,
+              show: false, 
+              enterprise_name: etplist[key][a].edt_name,
+              address: etplist[key][a].edt_address,
+              qtylist: etplist[key],
+              district_id: Number(etplist[key][a].district_id.substr(4, 2)),
+              mile
+            })
+
             break;
           }
 
-          for (var s in etplist[key]) {
+          // for (var s in etplist[key]) {
 
-            if (this.Base.getMyData().xuan == 'F') {
-              price += (parseInt(etplist[key][s].price) * parseInt(etplist[key][s].qty))
-            } else {
-              price += (parseInt(etplist[key][s].rateprice) * parseInt(etplist[key][s].qty))
-            }
-
-          }
+          //   if (this.Base.getMyData().xuan == 'F') {
+          //     price += (parseInt(etplist[key][s].price) * parseInt(etplist[key][s].qty))
+          //   } else {
+          //     price += (parseInt(etplist[key][s].rateprice) * parseInt(etplist[key][s].qty))
+          //   }
+             
+          // }
 
         }
 
@@ -438,21 +475,25 @@ class Content extends AppBase {
 
       orderapi.deleteshop({
         id: quoteinfo.id
-      }, (deleteshop) => {
-      })
-
+      }, (deleteshop) => {})
+ 
       this.Base.setMyData({
-        quoteinfo, enterpriselist, price
+        quoteinfo,
+        enterpriselist
       });
 
     });
   }
   orderbyD() {
-    this.Base.setMyData({ sortby: "D" });
+    this.Base.setMyData({
+      sortby: "D"
+    });
     this.refreshdata();
   }
   orderbyP() {
-    this.Base.setMyData({ sortby: "P" });
+    this.Base.setMyData({
+      sortby: "P"
+    });
     this.refreshdata();
   }
 }
@@ -464,23 +505,23 @@ body.bindfapiao = content.bindfapiao;
 body.bindchakan = content.bindchakan;
 
 body.tocar = content.tocar;
-body.addcar = content.addcar; 
+body.addcar = content.addcar;
 
 body.carshoplist = content.carshoplist;
 
-body.bindcheck = content.bindcheck; 
+body.bindcheck = content.bindcheck;
 body.bindcheckone = content.bindcheckone;
 
 body.bindshai = content.bindshai;
 body.binddelect = content.binddelect;
 
-body.statistics = content.statistics; 
+body.statistics = content.statistics;
 
 body.toast = content.toast;
- 
+
 body.statisticsone = content.statisticsone;
-body.quanxuan = content.quanxuan; 
-body.shoucang = content.shoucang; 
+body.quanxuan = content.quanxuan;
+body.shoucang = content.shoucang;
 
 body.refreshdata = content.refreshdata;
 body.orderbyD = content.orderbyD;

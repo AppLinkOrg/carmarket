@@ -18,15 +18,14 @@ class Content extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
-    //options.id=5;
+    //options.id=1;
     super.onLoad(options);
   }
   onMyShow() {
     var that = this;
     var instapi = new InstApi();
     var orderapi = new OrderApi();
-
-
+ 
     orderapi.detail({
       id: this.Base.options.id,
     }, (yiwancheng) => {

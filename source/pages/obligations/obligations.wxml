@@ -8,7 +8,7 @@
 
 <view class=" bg-white  padding-20   flex-row flex-center"  >
 
-  <image class='icon-25 margin-right-20 ' src='{{uploadpath}}resource/{{res.zuobiao}}'></image>
+  <image class='icon-30 margin-right-20 ' src='{{uploadpath}}resource/{{res.zuobiao}}'></image>
   <view class=" flex-1">
     <view class=" flex-row flex-bottom">
       <view class="txt-black  ">{{detail.receiver}}</view>
@@ -25,7 +25,7 @@
 
 
   <view class="flex-row flex-center padding-20">
-    <image src="{{uploadpath}}resource/{{res.store}}" class="icon-25 margin-right-20"></image>
+    <image src="{{uploadpath}}resource/{{res.store}}" class="icon-30 margin-right-20"></image>
     <view class="txt-black">{{detail.enterprise_id_name}}</view>
   </view>
 
@@ -59,28 +59,25 @@
   <view class="flex-1 txt-black h5 txt-bold">订单信息</view>
 
   <view class="flex-row flex-center margin-top-20" style=" ">
-    <view class="h6" style="width:200rpx;">订单编号：</view>
-    <view class="h6">{{detail.orderno}}</view>
+    <view class="h5" style="width:200rpx;">订单编号：</view>
+    <view class="h5">{{detail.orderno}}</view>
   </view>
 
   <view class="flex-row flex-center margin-top-20" style=" ">
-    <view class="h6" style="width:200rpx;">VIN:</view>
-    <view class="h6">{{detail.vin}}</view>
+    <view class="h5" style="width:200rpx;">VIN:</view>
+    <view class="h5">{{detail.vin}}</view>
   </view>
 
     <view class="flex-row flex-top margin-top-20" style=" ">
-    <view class="h6" style="width:200rpx;">车型:</view>
-    <view class="h6 flex-1">{{detail.carname}}</view>
+    <view class="h5" style="width:200rpx;">车型:</view>
+    <view class="h5 flex-1">{{detail.carname}}</view>
   </view>
 
   <view class="flex-row flex-center margin-top-20" style=" ">
-    <view class="h6" style="width:200rpx;">创建时间：</view>
-    <view class="h6">{{detail.order_time}}</view>
+    <view class="h5" style="width:200rpx;">创建时间：</view>
+    <view class="h5">{{detail.order_time}}</view>
   </view>
-
-
-
-
+ 
 
 </view>
 

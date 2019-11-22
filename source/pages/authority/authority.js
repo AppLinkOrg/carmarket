@@ -9,8 +9,8 @@ import {
   InstApi
 } from "../../apis/inst.api.js";
 import {
-  ConsumeApi
-} from "../../apis/consume.api.js";
+  EnterpriseApi
+} from "../../apis/enterprise.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -27,25 +27,20 @@ class Content extends AppBase {
   }
   onMyShow() {
     var that = this;
-    var consumeapi = new ConsumeApi();
-    consumeapi.list({
-    }, (shang) => {
+    var enterpriseapi = new EnterpriseApi();
+    enterpriseapi.allenterprise({
+      enterprise_id: this.Base.getMyData().employeeinfo.enterprise.id, position:'C'
+    }, (list) => {
       this.Base.setMyData({
-        shang
+        list
       });
     });
-
-    consumeapi.list({
-    }, (xia) => {
-      this.Base.setMyData({
-        xia
-      });
-    });
+ 
   }
 
   setPageTitle(instinfo) {
     wx.setNavigationBarTitle({
-      title: "我的权限",
+      title: "我的下级",
     })
   }
 

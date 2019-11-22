@@ -25,7 +25,7 @@ class Content extends AppBase {
 
   onLoad(options) {
     this.Base.Page = this;
-    // options.id=11;
+    //options.id=2;
     super.onLoad(options);
   }
  
@@ -40,8 +40,9 @@ class Content extends AppBase {
       order_status: 'W'
     }, (mylist) => {
 
-      for (var i = 0; i < mylist.length; i++) {
-        sumprice += parseFloat(mylist[i].totalamount);
+      for (var i = 0; i < mylist.length; i++) { 
+
+        sumprice += parseFloat(mylist[i].totalamount)  ;
       }
 
       this.Base.setMyData({

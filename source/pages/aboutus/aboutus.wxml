@@ -1,1 +1,7 @@
-<view class="flex-row flex-column txt-black margin-top">关于我们</view>
+<view style="height:122rpx"></view>
+<view class="flex-row flex-column">
+  <image src="{{uploadpath}}aboutus/{{aboutus.logo}}" class="icon"></image> 
+  <text decode="{{true}}" space="emsp" class="h5 txt-black" style="padding:34rpx;opacity:0.6;line-height:48rpx;">  {{aboutus.summary}}</text>
+</view>
+
+<!-- <view class="banquan text-center" > </view> -->
