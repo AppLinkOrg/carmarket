@@ -251,6 +251,8 @@ export class QuotationDetailsComponent extends AppBase  {
 
   baojia=true
 
+
+
   saveQuote(enterprise_id){
      
 
@@ -258,7 +260,58 @@ export class QuotationDetailsComponent extends AppBase  {
     
       console.log(this.baojia,'baojai')
         this.baojia=false;
+
+
+        var data = [];
+        for(let i = 0; i < this.list.length; i++) {
+          if(!data[this.list[i].fittings_id]) {
+              var arr = [];
+              arr.push(this.list[i]);
+              data[this.list[i].fittings_id] = arr;
+          }else {
+              data[this.list[i].fittings_id].push(this.list[i])
+          }
+      }
+
+      console.log(data,'data')
+      var minprice = [];
+      var maxprice=[];
+      for(let f_id of data){
+        console.log(f_id,'尽快尽快尽快')
+        if(f_id!=undefined){
+          var ddd = f_id.sort(function(a,b){
+            return a.price-b.price
+          })
+          minprice[ddd[0].fittings_id] = ddd[0].price
+          maxprice[ddd[0].fittings_id] = ddd[ddd.length-1].price
+          console.log(ddd,'嘻嘻嘻')
+        }
+       
+      }
+      console.log(minprice,'uuuu')
+      var minmoney=0
+      var maxmoney=0
+      for(let pp of minprice){
+        console.log(pp,'积分三')
+        if(pp!=undefined){
+          minmoney+=pp
+        }
+      }
+
+      for(let pp of maxprice){
+        console.log(pp,'积分三')
+        if(pp!=undefined){
+          maxmoney+=pp
+        }
+      }
+      console.log(minmoney,'min')
+      console.log(maxmoney,'max')
+        
+
         for(let i=0;i<this.list.length;i++){
+
+          console.log(this.list[i].fittings_id,'斤斤计较')
+         
 
           var lists = {
             fittings_id: (this.list[i].fittings_id), 
@@ -276,6 +329,11 @@ export class QuotationDetailsComponent extends AppBase  {
             rateprice:(this.list[i].rateprice),
             enterprise_id: enterprise_id,
             employee_id: this.employee_id,
+            minprice:minmoney,
+            maxprice:maxmoney,
+            minrate:(minmoney+minmoney*Number(this.rate)/100),
+            maxrate:(maxmoney+maxmoney*Number(this.rate)/100),
+
           }
           console.log(this.employee_id,'aaaa')
 
@@ -293,6 +351,12 @@ export class QuotationDetailsComponent extends AppBase  {
       }
     
       
+  }
+
+  compare(pro){
+    return function(a,b){
+      return a[pro]-b[pro]
+    }
   }
 
   fitting(json,i){

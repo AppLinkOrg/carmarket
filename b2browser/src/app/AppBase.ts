@@ -136,74 +136,11 @@ export class AppBase implements OnInit {
 
   
     onMyLoad() {
-        var a = this.orderapi
-        a.quotelist({}).then((list: any) => {
-            console.log(list,'list')
-    
-            a.quotationlist({quotecompan_id:this.operatorinfo.enterprise_id,quoteper:this.operatorinfo.id}).then((quotationlist:any)=>{
-              if(quotationlist.length==0){
-                for (let item of list) {
-        
-                  if(item.quotestatus=='Q'){
-                        
-                        item.quote_id = item.id
-                        item.quoteper = this.operatorinfo.id
-                        item.quotecompan_id = this.operatorinfo.enterprise_id
-                   
-                        if(item.invoice_demand!=""){
-                          item.invoice_demand =item.invoice_demand
-                        }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){
-                          item.invoice_demand =item.invoice_demand_value
-                        }
-                        
-                          a.addquotation(item).then((addquotation:any)=>{
-                            console.log(addquotation,'addquotation')
-                          })
-                        
-                    }
-                }
-              }else {
-                  for (let item of list) {
-        
-                    if(item.quotestatus=='Q' || item.quotestatus=="W"){
-                          if(this.notinignore4(item,quotationlist)){
-                            item.quote_id = item.id
-                            item.quoteper = this.operatorinfo.id
-                            item.quotecompan_id = this.operatorinfo.enterprise_id
-                             item.quotestatus = "Q"
-                            if(item.invoice_demand!=""){
-                              item.invoice_demand =item.invoice_demand
-                            }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){
-                              item.invoice_demand =item.invoice_demand_value
-                            }
-    
-                            a.addquotation(item).then((addquotation:any)=>{
-                              console.log(addquotation,'addquotation')
-                            })
-                          }
-                         
-                      }
-                  }
-               
-              }
-             
-            })
-                
-           
-        })
+     
       
     }
 
-    notinignore4(item,arr){
-        for(let yiitem of arr){
-          if(yiitem.quote_id==item.id){
-            if(yiitem.quotecompan_id==this.operatorinfo.enterprise_id && yiitem.quoteper==this.operatorinfo.id){
-              return false
-            }
-          }
-        }
-        return true;
-      }
+ 
 
     getInstInfo() {
 
