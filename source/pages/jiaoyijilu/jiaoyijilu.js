@@ -27,7 +27,7 @@ class Content extends AppBase {
     var id = this.Base.options.id;
     var orderApi = new OrderApi();
     orderApi.consumelist({
-      enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id
+      employee_id: that.Base.getMyData().employeeinfo.id
     }, (list) => {
       console.log(list, 'ooooo')
       this.Base.setMyData({

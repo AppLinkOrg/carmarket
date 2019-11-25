@@ -11,16 +11,22 @@
 }
 
 .gbtn {
-  height: 90rpx;
-  width: 240rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 60rpx;
+  width: 180rpx;
+   line-height: 60rpx;
   border-radius: 10rpx;
 }
 
-.mar{
-  margin-left: 20rpx;
-  margin-top: 35rpx;
-  margin-bottom: 35rpx;
+.margin-block{
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 2rpx solid rgb(228, 227, 227);
+}
+.under-block{
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx; 
 }

@@ -137,7 +137,7 @@ export class AddressApi{
         })
     }
 
-    updateaddress(json, callback, showLoading = true) {
+    clearaddress(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -146,7 +146,7 @@ export class AddressApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'address/updateaddress',
+            url: ApiConfig.GetApiUrl() + 'address/clearaddress',
             data: json,
             method: 'POST',
             dataType: 'json',
@@ -169,7 +169,7 @@ export class AddressApi{
         })
     }
 
-    clearaddress(json, callback, showLoading = true) {
+    updateaddress(json, callback, showLoading = true) {
 
         if (showLoading)
             ApiConfig.ShowLoading();
@@ -178,7 +178,7 @@ export class AddressApi{
         console.log(header);
         console.log(json);
         wx.request({
-            url: ApiConfig.GetApiUrl() + 'address/clearaddress',
+            url: ApiConfig.GetApiUrl() + 'address/updateaddress',
             data: json,
             method: 'POST',
             dataType: 'json',

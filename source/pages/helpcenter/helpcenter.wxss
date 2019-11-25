@@ -1,1 +1,13 @@
 /* pages/helpcenter/helpcenter.wxss */
+Page{
+  background: rgb(233, 232, 232);
+}
+.block{
+  border: 2rpx solid rgb(228, 228, 228);
+  border-radius: 20rpx;
+}
+ .bottom-block{
+   position: fixed;
+   bottom: 0;
+   width: 90vw;
+ }

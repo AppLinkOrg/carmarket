@@ -16,6 +16,12 @@ class Content extends AppBase {
   constructor() {
     super();
   }
+
+  setPageTitle() {
+    wx.setNavigationBarTitle({
+      title: '待付款',
+    });
+  }
   onLoad(options) {
     this.Base.Page = this;
     //options.id=1;
@@ -39,7 +45,7 @@ class Content extends AppBase {
     var that = this;
     var orderapi = new OrderApi();
     var price = e.currentTarget.id;
-    var mylist = this.Base.getMyData().mylist;
+    var detail = this.Base.getMyData().detail;
 
     wx.showModal({
       title: '购买',
@@ -55,6 +61,7 @@ class Content extends AppBase {
             id: that.Base.getMyData().employeeinfo.enterprise.id,
             money: price
           }, (updatemoney) => {
+
             orderapi.updatestatus({
               id: that.Base.options.id,
               order_status: "L"
@@ -62,10 +69,24 @@ class Content extends AppBase {
 
             })
 
-            wx.navigateBack({
+            var list = {
+              enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
+              employee_id: that.Base.getMyData().employeeinfo.id,
+              amount: detail.totalamount,
+              type: 'G',
+              enterprise_id2: detail.enterprise_id,
+              employee_id2: detail.employee_id,
+              type2: 'S'
+            }
+
+            orderapi.addconsume(list, (addconsume) => {
+
+              wx.navigateBack({ 
+
+              })
 
             })
-
+   
           })
         }
       }

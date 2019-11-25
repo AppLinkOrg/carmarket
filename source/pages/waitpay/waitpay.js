@@ -16,48 +16,33 @@ class Content extends AppBase {
   constructor() {
     super();
   }
+
+  setPageTitle() {
+    wx.setNavigationBarTitle({
+      title: '等待付款',
+    });
+  }
+
   onLoad(options) {
     this.Base.Page = this;
-    //options.id=1;
+    //options.id=2;
     super.onLoad(options);
   }
+ 
+
   onMyShow() {
     var that = this;
     var sumprice = 0;
     var orderapi = new OrderApi();
-    // var shopcarlist = JSON.parse(this.Base.options.json);
-
-
-    //var alllist = [];
-
-    // for (var i = 0; i < shopcarlist.length; i++) {
-    //   var list = shopcarlist[i]
-    //   for(let key of list.name){
-    //     alllist.push({
-    //       quote_id: key.quote_id,
-    //       quotecompan_id: key.enterprise_id
-    //     })
-    //   }
-    // }
-
-
-    // this.Base.setMyData({
-    //   alllist
-    //})
-
-
-    // console.log(shopcarlist,'555555555555');
-    // console.log(alllist, 'eeee');
-
-    //  console.log(this.Base.options.id,"1111111")
-
+  
     orderapi.mylist({
       quote_id: this.Base.options.id,
       order_status: 'W'
     }, (mylist) => {
 
-      for (var i = 0; i < mylist.length; i++) {
-        sumprice += parseFloat(mylist[i].totalamount);
+      for (var i = 0; i < mylist.length; i++) { 
+
+        sumprice += parseFloat(mylist[i].totalamount)  ;
       }
 
       this.Base.setMyData({
@@ -71,15 +56,7 @@ class Content extends AppBase {
     var that = this;
     var orderapi = new OrderApi();
     var mylist = this.Base.getMyData().mylist;
-
-    console.log(this.Base.getMyData().employeeinfo.enterprise.id, "-996")
-    //return;
-
-
-    // var arr = this.Base.getMyData().alllist;
-
-    // console.log(arr,'arr')
-
+ 
     wx.showModal({
       title: '付款',
       content: '确认付款？',
@@ -90,11 +67,22 @@ class Content extends AppBase {
       confirmColor: '#2699EC',
       success: function(res) {
         if (res.confirm) {
-          console.log(that.Base.getMyData().employeeinfo.enterprise.id, "-996")
-          //return;
- 
+          wx.showLoading({
+            title: '正在付款~',
+          })
+      
 
           for (var i = 0; i < mylist.length; i++) {
+
+            var list = {
+              enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
+              employee_id: that.Base.getMyData().employeeinfo.id,
+              amount: mylist[i].totalamount,
+              type: 'G',
+              enterprise_id2: mylist[i].enterprise_id,
+              employee_id2: mylist[i].employee_id,
+              type2: 'S'
+            }
 
             orderapi.updatestatus({
               id: mylist[i].id,
@@ -107,32 +95,10 @@ class Content extends AppBase {
               em_id: mylist[i].employee_id,
               money: mylist[i].totalamount
             }, (updatemoney) => {
-
-
-
+ 
             })
-
-
-            var list = {
-              enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
-              employee_id: that.Base.getMyData().employeeinfo.id,
-              amount: mylist[i].totalamount,
-              type: 'G',
-              enterprise_id2: mylist[i].enterprise_id,
-              employee_id2: mylist[i].employee_id, 
-              type2: 'S'
-            }
-            // var list2 = {
-            //   enterprise_id: mylist[i].enterprise_id,
-            //   employee_id: mylist[i].employee_id,
-            //   amount: mylist[i].totalamount,
-            //   type: 'S'
-            // }
-            that.bindinsert(list, i);
-
-
+  
            // that.bindinsert2(list2, i)
-
  
             orderapi.editquotation({
               quotecompan_id: mylist[i].quotecompan_id,
@@ -151,13 +117,10 @@ class Content extends AppBase {
               console.log(editquotestatus, 'ooooo')
             })
 
-              wx.reLaunch({
-                url: '/pages/order/order',
-              })
+            that.bindinsert(list, i);
 
           }
-
-
+ 
         }
       }
     })
@@ -173,6 +136,13 @@ class Content extends AppBase {
         console.log(updatestatus, '-9961')
       }) 
     }, i * 300)
+
+    setTimeout(() => {
+      wx.hideLoading();
+      wx.reLaunch({
+        url: '/pages/order/order',
+      })
+    }, i * 500)
  
   }
 

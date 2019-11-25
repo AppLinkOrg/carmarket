@@ -4,22 +4,39 @@
 
 .btn0ne {
   background-color: rgb(187, 187, 187);
-  height: 120rpx;
-  width: 60%;  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100rpx;
+   
+  width: 70%;   
   
 }
 
 .btnTwo {
   background-color: #143779;
-  height: 120rpx;
-  width: 40%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 110rpx;
+  line-height: 110rpx;
+  width: 30%;
+  
 }
 .weizhi{
   position: fixed;
   bottom: 0;
 }
+
+
+
+Page {
+  background: rgb(235, 235, 235);
+}
+.bott {
+  bottom: 0;
+  position: fixed;
+  width: 100vw; 
+}
+.bgjie {
+  background: linear-gradient(to right, rgb(228, 46, 46), rgb(255, 72, 0));
+  height: 70rpx;
+  line-height: 70rpx;
+  width: 210rpx; 
+  border-radius: 40rpx;
+}
+

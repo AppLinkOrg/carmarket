@@ -1,12 +1,14 @@
-<view class="bg-btn ">
-  <view class="flex-row margin-left-10 margin-bottom-20">
-    <image class='margin-top icon-60 radius-50%;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
-    <view class=" margin-top-60  ">
-      <view class="txt-white margin-left-20">{{employeeinfo.name}}</view>
-      <view class="txt-white flex-row  margin-left-20">{{employeeinfo.enterprise.name}}</view>
+<view class="bg-btn padding-20">
+  <view class="flex-row  flex-center">
+
+    <image class='icon-60 radius-50;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
+
+    <view class="margin-left-20">
+     <view class="txt-white h4  ">{{employeeinfo.enterprise.name}}</view>
+      <view class="txt-white  h5 margin-top-10">{{employeeinfo.name}}【{{employeeinfo.position=='B'?'老板':'员工'}}】</view> 
     </view>
-    <view class='flex-1'></view>
-    <image class='icon-17 margin-right-40 margin-top-80 ' bindtap='bindright' src='{{uploadpath}}resource/{{res.whiteright}}'></image>
+
+    <!-- <image class='icon-17 margin-right-40 margin-top-80 ' bindtap='bindright' src='{{uploadpath}}resource/{{res.whiteright}}'></image> -->
   </view>
 </view>
 
@@ -15,89 +17,68 @@
   <view class='margin-left-10 txt-black txt-bold'>账户余额</view>
 </view>
 
-<view class='flex-row margin-top-30'>
-  <view class='margin-top-10 margin-left-50 h3 txt-orange txt-bold'>{{employeeinfo.enterprise.account_money}}</view>
-  <view class='h5 txt-black margin-left-30 margin-top-20'>威币</view>
-  <view class='flex-1'></view>
-  <view class='bg-btn  gbtn margin-right-20' bindtap="bindaccount">查看明细</view>
+<view class='flex-row flex-center margin-top-30'>
+  <view class=' margin-left-50 h3 txt-orange txt-bold'>{{employeeinfo.enterprise.account_money}}</view>
+  <view class='h5 txt-black margin-left-30  flex-1'>威币</view>
+
+
+
+  <view class='bg-btn text-center  gbtn margin-right-40' wx:if='{{employeeinfo.position=="B"}}' bindtap="bindaccount">查看明细</view>
+
+
 </view>
 <!-- <view class='h5 txt-black margin-left-50  '>账户余额</view> -->
 <view class='bott margin-top-20'></view>
 
 
-<view class="flex-wrap  flex-center ">
-
-  <view class='flex-row xia ' bindtap="bindorder">
-    <view class="mar">
-      <image class='icon ' src='{{uploadpath}}resource/{{res.order}}'></image>
-    </view>
-    <view class=' mar txt-black txt-bold'>我的订单</view>
-    <view class='flex-1'></view>
-    <image class='icon-17 margin-right-20 margin-top' src='{{uploadpath}}resource/{{res.smallright}}' ></image>
-  </view>
-
-  <view class='flex-row xia' bindtap="bindaddress">
-    <view class="mar">
-      <image class='icon ' src='{{uploadpath}}resource/{{res.address}}'></image>
-    </view>
-    <view class=' mar txt-black txt-bold'>我的地址</view>
-    <view class='flex-1'></view>
-    <image class='icon-17 margin-right-20 margin-top' src='{{uploadpath}}resource/{{res.smallright}}' ></image>
-  </view>
 
 
-  <view class='flex-row xia' bindtap="bindauth">
-    <view class="mar">
-      <image class='icon ' src='{{uploadpath}}resource/{{res.authority}}'></image>
-    </view>
-    <view class=' mar txt-black txt-bold'>我的下级</view>
-    <view class='flex-1'></view>
-    <image class='icon-17 margin-right-20 margin-top' src='{{uploadpath}}resource/{{res.smallright}}' ></image>
-  </view>
+<view class='flex-row  flex-center margin-block' bindtap="bindorder">
+  <image class='icon ' src='{{uploadpath}}resource/{{res.order}}'></image>
+  <view class=' flex-1 margin-left-20  txt-black txt-bold'>我的订单</view>
+  <image class='icon-17    ' src='{{uploadpath}}resource/{{res.smallright}}'></image>
+</view>
+
+<view class='flex-row flex-center margin-block' bindtap="bindaddress">
+  <image class='icon ' src='{{uploadpath}}resource/{{res.address}}'></image>
+  <view class=' flex-1 margin-left-20 txt-black txt-bold'>我的地址</view>
+  <image class='icon-17    ' src='{{uploadpath}}resource/{{res.smallright}}'></image>
+</view>
 
 
-  <view class='flex-row xia' bindtap="bindjilu"  id='{{list.employee_id}}'>
-    <view class="mar">
-      <image class='icon ' src='{{uploadpath}}resource/{{res.account}}'></image>
-    </view>
-    <view class=' mar txt-black txt-bold'>交易记录</view>
-    <view class='flex-1'></view>
-    <image class='icon-17 margin-right-20 margin-top' src='{{uploadpath}}resource/{{res.smallright}}' ></image>
-  </view>
+<view class='flex-row flex-center margin-block' bindtap="bindauth" wx:if='{{employeeinfo.position=="B"}}'>
+  <image class='icon ' src='{{uploadpath}}resource/{{res.authority}}'></image>
+  <view class=' flex-1 margin-left-20 txt-black txt-bold'>我的下级</view>
+  <image class='icon-17    ' src='{{uploadpath}}resource/{{res.smallright}}'></image>
+</view>
 
-  <view  class='flex-row  xia' bindtap="bindchange">
-    <view class="mar">
-      <image class='icon' src='{{uploadpath}}resource/{{res.change}}'></image>
-    </view>
-    <view class=' mar txt-black txt-bold'>配件退货</view>
-    <view class='flex-1'></view>
-    <image class='icon-17 margin-right-20 margin-top' src='{{uploadpath}}resource/{{res.smallright}}' ></image>
-  </view>
 
-  <view  class='flex-row  xia' bindtap="bindaboutus">
-    <view class="mar">
-      <image class='icon' src='{{uploadpath}}resource/{{res.about}}'></image>
-    </view>
-    <view class=' mar txt-black txt-bold'>关于我们</view>
-    <view class='flex-1'></view>
-    <image class='icon-17 margin-right-20 margin-top' src='{{uploadpath}}resource/{{res.smallright}}' ></image>
-  </view>
+<view class='flex-row flex-center margin-block' bindtap="bindjilu" id='{{list.employee_id}}'>
+  <image class='icon ' src='{{uploadpath}}resource/{{res.account}}'></image>
+  <view class=' flex-1 margin-left-20 txt-black txt-bold'>交易记录</view>
+  <image class='icon-17    ' src='{{uploadpath}}resource/{{res.smallright}}'></image>
+</view>
 
-  <view  class='flex-row  xia' bindtap="bindhelp">
-    <view class="mar">
-      <image class='icon' src='{{uploadpath}}resource/{{res.help}}'></image>
-    </view>
-    <view class=' mar txt-black txt-bold'>帮助反馈</view>
-    <view class='flex-1'></view>
-    <image class='icon-17 margin-right-20 margin-top' src='{{uploadpath}}resource/{{res.smallright}}' ></image>
-  </view>
+<view class='flex-row  flex-center margin-block' bindtap="bindchange">
+  <image class='icon' src='{{uploadpath}}resource/{{res.change}}'></image>
+  <view class=' flex-1 margin-left-20 txt-black txt-bold'>配件退货</view>
+  <image class='icon-17    ' src='{{uploadpath}}resource/{{res.smallright}}'></image>
+</view>
 
-  <view class='flex-row  xia ' bindtap="logout">
-    <view class="mar">
-      <image class='icon' src='{{uploadpath}}resource/{{res.outlogin}}'></image>
-    </view>
-    <view class=' mar txt-black txt-bold'>退出登录</view>
-    <view class='flex-1'></view>
-    <image class='icon-17 margin-right-20 margin-top' src='{{uploadpath}}resource/{{res.smallright}}' ></image>
-  </view>
+<view class='flex-row  flex-center margin-block' bindtap="bindaboutus">
+  <image class='icon' src='{{uploadpath}}resource/{{res.about}}'></image>
+  <view class=' flex-1 margin-left-20 txt-black txt-bold'>关于我们</view>
+  <image class='icon-17    ' src='{{uploadpath}}resource/{{res.smallright}}'></image>
+</view>
+
+<view class='flex-row  flex-center margin-block' bindtap="bindhelp">
+  <image class='icon' src='{{uploadpath}}resource/{{res.help}}'></image>
+  <view class=' flex-1 margin-left-20 txt-black txt-bold'>帮助反馈</view>
+  <image class='icon-17    ' src='{{uploadpath}}resource/{{res.smallright}}'></image>
+</view>
+
+<view class='flex-row  flex-center under-block ' bindtap="logout">
+  <image class='icon' src='{{uploadpath}}resource/{{res.outlogin}}'></image>
+  <view class=' flex-1 margin-left-20 txt-black txt-bold'>退出登录</view>
+  <image class='icon-17     ' src='{{uploadpath}}resource/{{res.smallright}}'></image>
 </view>

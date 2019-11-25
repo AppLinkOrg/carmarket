@@ -11,45 +11,63 @@
 
 </view> -->
 
-<view class="box" wx:for='{{alllist}}' wx:key='key' wx:for-index='index'>
-  <view class="flex-row margin-top-20">
-    <image class="icon" src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.allcheck==true}}' bindtap="bindchoose" id="{{index}}"></image>
-    <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.allcheck==false}}' class="icon" bindtap="bindchoose" id="{{index}}"></image>
+<view class=" bg-white margin-20 padding-20 radius-20 flex-row flex-center" bindtap="bindaddress">
 
-    <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.store}}"></image>
-    <view class="margin-left-10 txt-bold txt-black">{{item.enterprise_name}}</view>
-    <!-- <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.smile}}"></image> -->
+  <image class='icon-25 margin-right-20 ' src='{{uploadpath}}resource/{{res.zuobiao}}'></image>
+  <view class=" flex-1">
+    <view class=" flex-row flex-bottom">
+      <view class="txt-black  ">{{addressinfo.name}}</view>
+      <view class="  margin-left-30  h5">{{addressinfo.phonenumber}}</view>
+
+      <view class="txt-red" wx:if='{{addressinfo==undefined}}'>请选择地址!</view>
+      <!-- <view class="margin-left-30"></view> -->
+
+    </view>
+    <view class="txt-black h5 margin-top-10">{{addressinfo.region}}{{addressinfo.address}}</view>
 
   </view>
+  <image class='icon margin-right-20 ' src='{{uploadpath}}resource/{{res.smallright}}'></image>
+
+</view>
 
 
-  <view class="padding-20" wx:for='{{item.name}}' wx:for-index='idx' wx:key='k' style="border-top:2rpx solid black">
+<view class="box padding-20" wx:for='{{alllist}}' wx:key='key' wx:for-index='index'>
 
-    <view class="flex-row flex-center">
-      <view>{{idx+1}}、</view>
-      <view class="margin-left-10 txt-bold black flex-1">{{item.fittings_name}}</view>
-       
-      <image class="icon   margin-right-30" id="{{item.id}}" bindtap="deleteshop" src="{{uploadpath}}resource/{{res.quchu}}"></image>
+  <view class="flex-row flex-center ">
+    <!-- <image class="icon" src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.allcheck==true}}' bindtap="bindchoose" id="{{index}}"></image>
+    <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.allcheck==false}}' class="icon" bindtap="bindchoose" id="{{index}}"></image> -->
+    <image class="icon-25   " src="{{uploadpath}}resource/{{res.store}}"></image>
+    <view class="margin-left-10  txt-black">{{item.enterprise_name}}</view>
+  </view>
+
+  <view class="margin-top-20" wx:for='{{item.name}}' wx:for-index='idx' wx:key='k' style=" ">
+
+    <view class="flex-row flex-top">
+      <view class="txt-black">{{idx+1}}.</view>
+      <view class="txt-bold txt-black flex-1 margin-left-10">{{item.fittings_name}}</view>
+      <!-- <image class="icon   margin-right-30" id="{{item.id}}" bindtap="deleteshop" src="{{uploadpath}}resource/{{res.quchu}}"></image> -->
+
     </view>
 
-    <view class="flex-row margin-top-20">
-
-      <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{item.ck_value=="Y"}}' class="icon" bindtap="bindcheck" id="{{idx}}" data-index="{{index}}" data-carid="{{item.id}}"></image>
-      <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{item.ck_value=="N"}}' class="icon" bindtap="bindcheck" id="{{idx}}" data-index="{{index}}"  data-carid="{{item.id}}"></image>
-
-      <view class="yuan margin-left-10 margin-bottom-20">
-        <view class="h5 padding-left-10 padding-right-10 h6">{{item.quality}}</view>
-      </view>
+    <view class="flex-row flex-bottom margin-top-20 margin-left-20">
+      <view class=" h6">【{{item.quality}}】</view>
+      <view class="txt-red txt-bold margin-left-20">￥{{item.price}}</view>
+      <view class="h6 margin-left-10">x1</view>
     </view>
 
-    <view class="flex-row margin-left-50 ">
-      <view class="txt-red margin-left-20">￥{{item.price}}</view>
+    <view class="flex-row  margin-top-30 margin-left-30">
+      <view class="txt-black">购买数量</view>
       <view class="flex-1"></view>
-      <image class="icon-15 margin-top-10 margin-right-10" src="{{uploadpath}}resource/{{res.jian}}" bindtap="bindjisuan" data-name="jian" id="{{item.id}}" data-index="{{index}}" data-idx="{{idx}}"></image>
+
+      <view class="jimg text-center" bindtap="bindjisuan" data-name="jian" id="{{item.id}}" data-index="{{index}}" data-idx="{{idx}}">-</view>
+
       <view class="flex-row flex-column num">{{item.qty}}</view>
-      <image class="icon-15 margin-top-10 margin-left-10  margin-right-30 " src="{{uploadpath}}resource/{{res.jia}}" bindtap="bindjisuan" data-name="jia" id="{{item.id}}" data-index="{{index}}" data-idx="{{idx}}"></image>
+
+      <view class="jimg2 text-center" bindtap="bindjisuan" data-name="jia" id="{{item.id}}" data-index="{{index}}" data-idx="{{idx}}">+</view>
+
     </view>
 
+    <view style="height:40rpx;"></view>
 
 
   </view>
@@ -64,12 +82,18 @@
 
 <view class="bg-white bott">
   <view class="flex-row flex-center padding-20">
-    <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{chosse==2}}' id="1" class="icon" bindtap="bindallcheck"></image>
+    <!-- <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{chosse==2}}' id="1" class="icon" bindtap="bindallcheck"></image>
     <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{chosse==1}}' id="2" class="icon" bindtap="bindallcheck"></image>
-    <view class=" margin-left-10">全选</view>
+    <view class=" margin-left-10">全选</view> -->
     <view class="flex-1"></view>
     <view class="txt-black ">合计：</view>
-    <view class="txt-red  margin-right-30">¥{{price}}</view>
-    <view class="bgjie txt-white" bindtap="bindjiesuan">去结算({{num}})</view>
+
+    <view class="flex-row flex-bottom margin-right-30">
+      <view class="h6 txt-red">¥</view>
+      <view class="txt-red margin-left-10  ">{{price}}</view>
+    </view>
+
+    <view class="bgjie text-center txt-white" bindtap="submit">提交订单({{num}})</view>
   </view>
+  <view style="height:20rpx;"></view>
 </view>

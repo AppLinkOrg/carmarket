@@ -19,7 +19,7 @@ class Content extends AppBase {
   }
 
   bindagree(e){
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/agreement/agreement',
     })
   }

@@ -14,13 +14,19 @@ page {
   justify-content: center;
 }
 
-.btn {
-  border: 1rpx solid #cecece;
-  height: 65rpx;
-  width: 200rpx;
+.btns {
+  border: 2rpx solid #143779;
+  line-height: 50rpx; 
+  min-width: 30rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
   border-radius: 40rpx;
 }
 
+.bg{
+  border-radius: 10rpx;
+  background: rgb(216, 216, 216);
+}
 .button {
   
   position: fixed;

@@ -47,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 32,
+			"current": 37,
 			"list": [
 				{
 					"id": -1,
@@ -277,6 +277,41 @@
 					"id": -1,
 					"name": "pages/address/address",
 					"pathName": "pages/address/address",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/obligations/obligations",
+					"pathName": "pages/obligations/obligations",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/authority/authority",
+					"pathName": "pages/authority/authority",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/waitsend/waitsend",
+					"pathName": "pages/waitsend/waitsend",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/success/success",
+					"pathName": "pages/success/success",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/helpcenter/helpcenter",
+					"pathName": "pages/helpcenter/helpcenter",
 					"scene": null
 				}
 			]

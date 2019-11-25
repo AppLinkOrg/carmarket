@@ -22,6 +22,7 @@
     <image class='icon-25 margin-right-20' bindtap="clickvin" src='{{uploadpath}}resource/{{res.cream}}'></image>
 
     <!-- <view class='flex-row flex-column flex-1 txt-black txt-bold'>手动输入17位车架号查询</view> -->
+    
   </view>
 
 </view>
@@ -29,7 +30,7 @@
 <view class=' flex-row '>
   <view class='flex-row  '>
     <view class='borderleft'></view>
-    <view class=' margin-left-20'>历史搜索</view>
+    <view class=' margin-left-20'>历史搜索{{vin}}</view>
   </view>
 
   <view class="flex-1"></view>

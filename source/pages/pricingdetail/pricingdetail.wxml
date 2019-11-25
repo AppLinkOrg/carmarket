@@ -136,6 +136,8 @@
   </view>
 </view>
 
+
+
 <view class="flex-row">
   <view class="left" wx:if="{{showModal==true}}"></view>
   <view class="dialog-box " wx:if="{{showModal==true}}">
@@ -155,46 +157,3 @@
 </view>
 
 
-
-<!-- <view wx:for="{{userbaojia}}" wx:key="k">
-    <view class='bg' style=' height:190rpx; width:95%;'>
-      <view class='margin-top-10 margin-left-20 txt-white'>{{item.enterprise_id_name}}</view>
-      <view class='flex-row flex-wrap margin-top-10'>
-        <view class='flex-1 flex-row flex-center'>
-          <image class='icon-25 margin-left-20' src='{{uploadpath}}resource/{{res.renzheng}}'></image>
-          <view class='h5 txt-white margin-left-10'>已认证</view>
-        </view>
-        <view class='flex-1 flex-row flex-center'>
-          <image class='icon-25 ' src='{{uploadpath}}resource/{{res.tuihuan}}'></image>
-          <view class='h5 txt-white margin-left-10'>包退换</view>
-        </view>
-        <view class=' flex-row flex-bottom'>
-          <view class='h2 txt-bold txt-orange '>{{item.amount}}</view>
-          <view class='h5 txt-bold txt-orange margin-left-10 margin-right-10'>威币</view>
-        </view>
-      </view>
-      <view class='flex-row flex-column'>
-        <image class='icon-25 margin-bottom-10 ' src='{{uploadpath}}resource/{{res.up}}' data-check='{{item.id}}' bindtap="binddianji"></image>
-      </view>
-    </view>
-
-    <view wx:if="{{check==item.id}}">
-      <view class='bg-white margin-left-20 margin-top-5' style=' height:170rpx; width:95%;' wx:for="{{item.quoteitems}}" wx:key="key">
-        <view class='margin-top-20 margin-left-20 txt-black'>{{item.name}}</view>
-        <view class='flex-row flex-wrap margin-top-10 margin-left-20'>
-          <view class='h5'>品质：</view>
-          <view class='h5'>{{}}</view>
-        </view>
-        <view class='flex-row flex-wrap margin-left-20'>
-          <view class='h5'>单价：</view>
-          <view class='txt-red h5'>{{item.price}}元</view>
-          <view class='flex-1'></view>
-          <view class='h5'>发货数量：</view>
-          <view class='h5 margin-right-20'>{{item.qty}}</view>
-        </view>
-      </view>
-      <view class='queren margin-left-20 margin-right-20 margin-bottom-20' bindtap="bindqueren">选择该供应商进行交易</view>
-    </view>
-  </view> -->
-
-<!-- <view class='queren margin-left-20 margin-right-20' bindtap="bindqueren">选择该供应商进行交易</view> -->

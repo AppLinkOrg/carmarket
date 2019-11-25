@@ -19,9 +19,10 @@
 <!--未报价-->
 <view class=" "  >
 
-  <view wx:if="{{quotelist.length==0 }}" class='flex-row flex-column'>
-    <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullprice}}'></image>
-    <view class='txt-bold'>暂时没有相关报价单</view>
+  <view wx:if="{{quotelist.length==0}}" class='flex-row flex-column'>
+    <view style="height:100rpx;"></view>
+    <image class='null_icon1   ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
+    <view class='margin-top-20'>暂无相关订单~</view>
   </view>
 
   <view class=' box white-block padding-20 {{seq>0?"margin-top-20":""}}' wx:for="{{quotelist}}" wx:key='k' wx:for-index='seq'>

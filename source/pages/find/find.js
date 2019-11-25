@@ -46,11 +46,16 @@ class Content extends AppBase {
   
   }
 
+
+
   bindvalue(e) {
      console.log(e);
 
+    var uppercase = (e.detail.value).toUpperCase();
+    console.log(uppercase);
+    //return;
     this.Base.setMyData({
-      vin: e.detail.value, count: e.detail.cursor
+      vin: uppercase, count: e.detail.cursor
     })
 
   }
@@ -95,13 +100,12 @@ class Content extends AppBase {
       confirmText: "确认",
       success: function(res) {
         if (res.confirm) {
-          carapi.clearallsearch({}, (clearallsearch) => {
+          carapi.clearallsearch({ employee_id:that.Base.getMyData().employeeinfo.id}, (clearallsearch) => {
             console.log(clearallsearch);
             that.onMyShow();
           });
-        } else {
+        }  
 
-        }
       }
     })
   }

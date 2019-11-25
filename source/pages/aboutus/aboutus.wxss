@@ -1,1 +1,12 @@
 /* pages/aboutus/aboutus.wxss */
+.icon {
+  width: 144rpx;
+  height: 144rpx; 
+}
+.banquan{
+  font-size: 20rpx;
+  position: fixed;
+  color: #999BA1;
+  bottom: 5%;
+  width: 100vw
+}

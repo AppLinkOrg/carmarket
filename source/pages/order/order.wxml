@@ -30,10 +30,13 @@
 
 <!--待付款-->
 <view class="" wx:if="{{order=='A'}}">
+
   <view wx:if="{{daifukuan.length==0}}" class='flex-row flex-column'>
-    <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
-    <view class=''>暂时没有相关订单</view>
+    <view style="height:100rpx;"></view>
+    <image class='null_icon1   ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
+    <view class='margin-top-20'>暂无相关订单~</view>
   </view>
+
   <view class='box padding-30' wx:for="{{daifukuan}}" wx:key="k">
 
 
@@ -59,9 +62,11 @@
 
 <!--待发货-->
 <view class="" wx:if="{{order=='B'}}">
-  <view class='flex-row flex-column' wx:if="{{mylist.length==0}}">
-    <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
-    <view class=''>暂时没有相关订单</view>
+
+  <view wx:if="{{daifahuo.length==0}}" class='flex-row flex-column'>
+    <view style="height:100rpx;"></view>
+    <image class='null_icon1   ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
+    <view class='margin-top-20'>暂无相关订单~</view>
   </view>
 
   <view class='box padding-30' wx:for="{{daifahuo}}" wx:key="k">
@@ -89,9 +94,10 @@
 <!--待收货-->
 
 <view wx:if="{{order=='C'}}">
-  <view class='flex-row flex-column' wx:if="{{mylist.length==0}}">
-    <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
-    <view class=''>暂时没有相关订单</view>
+  <view wx:if="{{daishouhuo.length==0}}" class='flex-row flex-column'>
+    <view style="height:100rpx;"></view>
+    <image class='null_icon1   ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
+    <view class='margin-top-20'>暂无相关订单~</view>
   </view>
 
   <view class='box padding-30' wx:for="{{daishouhuo}}" wx:key="k">
@@ -120,9 +126,10 @@
 
 <!--已完成-->
 <view wx:if="{{order=='D'}}">
-  <view class='flex-row flex-column' wx:if="{{mylist.length==0}}">
-    <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
-    <view class=''>暂时没有相关订单</view>
+  <view wx:if="{{yiwancheng.length==0}}" class='flex-row flex-column'>
+    <view style="height:100rpx;"></view>
+    <image class='null_icon1   ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
+    <view class='margin-top-20'>暂无相关订单~</view>
   </view>
 
   <view class='box padding-30' wx:for="{{yiwancheng}}" wx:key="k">
@@ -141,7 +148,7 @@
     <view class='flex-row flex-center margin-top-20'>
       <view class='h5'>{{item.order_time_formatting}}</view>
       <view class='flex-1'></view>
-      <view class='orpay txt-white text-center h6' wx:if='{{item.order_status=="N"}}' bindtap="totuihuan" id="{{item.id}}" >申请退换</view>
+      <view class='orpay txt-white text-center h6' wx:if='{{item.order_status=="N"}}' bindtap="totuihuan" id="{{item.id}}">申请退换</view>
     </view>
 
 
@@ -152,9 +159,10 @@
 
 <!--已取消-->
 <view wx:if="{{order=='E'}}">
-  <view class='flex-row flex-column' wx:if="{{mylist.length==0}}">
-    <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
-    <view class=''>暂时没有相关订单</view>
+  <view wx:if="{{yiquxiao.length==0}}" class='flex-row flex-column'>
+    <view style="height:100rpx;"></view>
+    <image class='null_icon1   ' src='{{uploadpath}}resource/{{res.nullorder}}'></image>
+    <view class='margin-top-20'>暂无相关订单~</view>
   </view>
 
   <view class='box padding-30' wx:for="{{yiquxiao}}" wx:key="a">
@@ -177,7 +185,7 @@
     </view>
 
   </view>
- 
+
 </view>
 
 
