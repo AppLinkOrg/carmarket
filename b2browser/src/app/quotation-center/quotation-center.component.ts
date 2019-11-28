@@ -64,54 +64,54 @@ export class QuotationCenterComponent extends AppBase {
       a.quotelist({}).then((list: any) => {
         console.log(list,'list')
 
-        a.quotationlist({quotecompan_id:this.enterprise_id,quoteper:this.employee_id}).then((quotationlist:any)=>{
-          if(quotationlist.length==0){
-            for (let item of list) {
+        // a.quotationlist({quotecompan_id:this.enterprise_id,quoteper:this.employee_id}).then((quotationlist:any)=>{
+        //   if(quotationlist.length==0){
+        //     for (let item of list) {
     
-              if(item.quotestatus=='Q'){
+        //       if(item.quotestatus=='Q'){
                     
-                    item.quote_id = item.id
-                    item.quoteper = this.employee_id
-                    item.quotecompan_id = this.enterprise_id
+        //             item.quote_id = item.id
+        //             item.quoteper = this.employee_id
+        //             item.quotecompan_id = this.enterprise_id
                
-                    if(item.invoice_demand!=""){
-                      item.invoice_demand =item.invoice_demand
-                    }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){
-                      item.invoice_demand =item.invoice_demand_value
-                    }
+        //             if(item.invoice_demand!=""){
+        //               item.invoice_demand =item.invoice_demand
+        //             }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){
+        //               item.invoice_demand =item.invoice_demand_value
+        //             }
                     
-                      a.addquotation(item).then((addquotation:any)=>{
-                        console.log(addquotation,'addquotation')
-                      })
+        //               a.addquotation(item).then((addquotation:any)=>{
+        //                 console.log(addquotation,'addquotation')
+        //               })
                     
-                }
-            }
-          }else {
-              for (let item of list) {
+        //         }
+        //     }
+        //   }else {
+        //       for (let item of list) {
     
-                if(item.quotestatus=='Q' || item.quotestatus=="W"){
-                      if(this.notinignore4(item,quotationlist)){
-                        item.quote_id = item.id
-                        item.quoteper = this.employee_id
-                        item.quotecompan_id = this.enterprise_id
-                         item.quotestatus = "Q"
-                        if(item.invoice_demand!=""){
-                          item.invoice_demand =item.invoice_demand
-                        }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){
-                          item.invoice_demand =item.invoice_demand_value
-                        }
+        //         if(item.quotestatus=='Q' || item.quotestatus=="W"){
+        //               if(this.notinignore4(item,quotationlist)){
+        //                 item.quote_id = item.id
+        //                 item.quoteper = this.employee_id
+        //                 item.quotecompan_id = this.enterprise_id
+        //                  item.quotestatus = "Q"
+        //                 if(item.invoice_demand!=""){
+        //                   item.invoice_demand =item.invoice_demand
+        //                 }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){
+        //                   item.invoice_demand =item.invoice_demand_value
+        //                 }
 
-                        a.addquotation(item).then((addquotation:any)=>{
-                          console.log(addquotation,'addquotation')
-                        })
-                      }
+        //                 a.addquotation(item).then((addquotation:any)=>{
+        //                   console.log(addquotation,'addquotation')
+        //                 })
+        //               }
                      
-                  }
-              }
+        //           }
+        //       }
            
-          }
+        //   }
          
-        })
+        // })
             
             
 

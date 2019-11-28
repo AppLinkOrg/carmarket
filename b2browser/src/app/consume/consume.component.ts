@@ -57,6 +57,8 @@ export class ConsumeComponent extends AppBase  {
         }
 
       })
+    }else {
+      this.consumelist = this.templist
     }
   }
 
