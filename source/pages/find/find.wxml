@@ -14,7 +14,7 @@
 
     <image class='icon-17 margin-left-20' src='{{uploadpath}}resource/{{res.search}}'></image>
 
-    <input class="flex-1 margin-left-10 padding-right-20" maxlength="17" value="{{vin}}" placeholder="手动输入17位车架号" bindconfirm="bindsearch" bindinput="bindvalue"></input>
+    <input style=" " class="flex-1 margin-left-10 padding-right-20" maxlength="17" value="{{vin.toUpperCase}}" placeholder="手动输入17位车架号" bindconfirm="bindsearch" bindinput="bindvalue"></input>
  
  
     <view class="margin-right-20 h6 txt-bold">{{count}}/17</view>
@@ -30,7 +30,7 @@
 <view class=' flex-row '>
   <view class='flex-row  '>
     <view class='borderleft'></view>
-    <view class=' margin-left-20'>历史搜索{{vin}}</view>
+    <view class=' margin-left-20'>历史搜索</view>
   </view>
 
   <view class="flex-1"></view>

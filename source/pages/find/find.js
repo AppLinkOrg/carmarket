@@ -49,13 +49,13 @@ class Content extends AppBase {
 
 
   bindvalue(e) {
-     console.log(e);
-
-    var uppercase = (e.detail.value).toUpperCase();
-    console.log(uppercase);
+    //  console.log(e);
+    //var uppercase = (e.detail.value).toUpperCase();
+    // console.log(uppercase);
     //return;
+
     this.Base.setMyData({
-      vin: uppercase, count: e.detail.cursor
+      vin: e.detail.value, count: e.detail.cursor
     })
 
   }
@@ -67,6 +67,16 @@ class Content extends AppBase {
     carapi.vin({
       vin: vin
     }, (res) => {
+
+      console.log(res,'嗷嗷嗷');
+
+      if (res.code == '4001' || res.code == 4001   ){
+           wx.showToast({
+             title: '无法识别该车架号,请用(无识别查找)',
+             icon:'none'
+           })
+        return;
+      }
       var vin = res.data.vin,
         brandCode = res.data.brandCode,
         mcid = res.data.mcid,

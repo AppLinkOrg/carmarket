@@ -79,7 +79,11 @@
       <image src="{{uploadpath}}resource/{{res.notcheck}}" id="{{index}}" data-type="{{true}}" bindtap="quanxuan" wx:if='{{item.allcheck==false}}' class="icon margin-top-6"></image>
 
       <view class="flex-1 margin-left-20">
-        <view class="txt-white"> {{item.enterprise_name}}</view>
+      <view class="flex-row flex-bottom">
+        <view class="txt-white margin-right-10"> {{item.enterprise_name}}</view>
+        <view class="txt-white h5" wx:if='{{xuan=="F"}}'>(总价:￥{{item.minprice}}~￥{{item.maxprice}})</view>
+        <view class="txt-white h5" wx:if='{{xuan=="S"}}'>(总价:￥{{item.minrate}}~￥{{item.maxrate}})</view>
+      </view>
         <view class="flex-row margin-top-20">
           <view class="txt-white h5 flex-1"> {{item.address}}</view>
           <!--距离 <view class="txt-white h6 "> {{item.mile}}</view> -->
@@ -92,8 +96,7 @@
 
       <image src="{{uploadpath}}resource/{{res.shang}}" id="{{index}}" bindtap="shoucang" data-type="{{false}}" wx:if='{{item.show==true}}' class="icon margin-right-20"></image>
       <image src="{{uploadpath}}resource/{{res.arrowbot}}" id="{{index}}" bindtap="shoucang" data-type="{{true}}" wx:if='{{item.show==false}}' class="icon margin-right-20"></image>
-
-
+ 
     </view>
 
     <view wx:if='{{item.show==false}}' class="bg-white  padding-20  border_top" wx:for-index='idx' wx:for='{{item.qtylist}}' wx:key='e'>
