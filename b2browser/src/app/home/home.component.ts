@@ -91,6 +91,10 @@ export class HomeComponent extends AppBase {
         return
       }
       console.log("进来了");
+      console.log(333333)
+      console.log(employeeinfo)
+      console.log(employeeinfo.enterprise_id,employeeinfo.id)
+      console.log(44444444)
       
       var a = this.orderapi
       a.quotelist({}).then((list: any) => {
@@ -103,8 +107,8 @@ export class HomeComponent extends AppBase {
                 if(item.quotestatus=='Q'){
                       
                       item.quote_id = item.id
-                      item.quoteper = this.operatorinfo.id
-                      item.quotecompan_id = this.operatorinfo.enterprise_id
+                      item.quoteper = employeeinfo.id
+                      item.quotecompan_id = employeeinfo.enterprise_id
                  
                       if(item.invoice_demand!=""){
                         item.invoice_demand =item.invoice_demand
@@ -124,8 +128,8 @@ export class HomeComponent extends AppBase {
                   if(item.quotestatus=='Q' || item.quotestatus=="W"){
                         if(this.notinignore4(item,quotationlist)){
                           item.quote_id = item.id
-                          item.quoteper = this.operatorinfo.id
-                          item.quotecompan_id = this.operatorinfo.enterprise_id
+                          item.quoteper = employeeinfo.id
+                          item.quotecompan_id = employeeinfo.enterprise_id
                            item.quotestatus = "Q"
                           if(item.invoice_demand!=""){
                             item.invoice_demand =item.invoice_demand
@@ -200,6 +204,11 @@ export class HomeComponent extends AppBase {
 
         this.obj = employeeinfo
 
+        console.log(1111111)
+        console.log(employeeinfo)
+        console.log(employeeinfo.enterprise_id,employeeinfo.id)
+        console.log(22225222)
+
 
         var a = this.orderapi
         a.quotelist({}).then((list: any) => {
@@ -212,8 +221,8 @@ export class HomeComponent extends AppBase {
                   if(item.quotestatus=='Q'){
                         
                         item.quote_id = item.id
-                        item.quoteper = this.operatorinfo.id
-                        item.quotecompan_id = this.operatorinfo.enterprise_id
+                        item.quoteper = employeeinfo.id
+                        item.quotecompan_id = employeeinfo.enterprise_id
                    
                         if(item.invoice_demand!=""){
                           item.invoice_demand =item.invoice_demand
@@ -233,8 +242,8 @@ export class HomeComponent extends AppBase {
                     if(item.quotestatus=='Q' || item.quotestatus=="W"){
                           if(this.notinignore4(item,quotationlist)){
                             item.quote_id = item.id
-                            item.quoteper = this.operatorinfo.id
-                            item.quotecompan_id = this.operatorinfo.enterprise_id
+                            item.quoteper = employeeinfo.id
+                            item.quotecompan_id = employeeinfo.enterprise_id
                              item.quotestatus = "Q"
                             if(item.invoice_demand!=""){
                               item.invoice_demand =item.invoice_demand
