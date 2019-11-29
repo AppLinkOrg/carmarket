@@ -126,9 +126,10 @@ class Content extends AppBase {
         xuan: 'S'
       })
     }
+    this.statistics();
     this.onMyShow();
 
-    this.statistics();
+    
   }
 
   onShareAppMessage() {
@@ -336,8 +337,7 @@ class Content extends AppBase {
         wx.hideLoading();
         wx.navigateTo({
           url: '/pages/shopcar/shopcar?id=' + this.Base.options.id + '&carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode + '&xuan=' + this.Base.getMyData().xuan
-        })
-
+        }) 
       }
 
     }, i * 300)
@@ -451,6 +451,10 @@ class Content extends AppBase {
               show: false, 
               enterprise_name: etplist[key][a].edt_name,
               address: etplist[key][a].edt_address,
+              maxprice: etplist[key][a].maxprice,
+              minprice: etplist[key][a].minprice,
+              maxrate: etplist[key][a].maxrate,
+              minrate: etplist[key][a].minrate,
               qtylist: etplist[key],
               district_id: Number(etplist[key][a].district_id.substr(4, 2)),
               mile
