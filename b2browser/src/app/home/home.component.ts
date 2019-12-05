@@ -90,6 +90,8 @@ export class HomeComponent extends AppBase {
         this.router.navigate(["login"]);
         return
       }
+      this.employee_id = employeeinfo.id;
+      this.enterprise_id = employeeinfo.enterprise_id
       console.log("进来了");
       console.log(333333)
       console.log(employeeinfo)
@@ -306,7 +308,7 @@ export class HomeComponent extends AppBase {
   notinignore4(item,arr){
     for(let yiitem of arr){
       if(yiitem.quote_id==item.id){
-        if(yiitem.quotecompan_id==this.operatorinfo.enterprise_id && yiitem.quoteper==this.operatorinfo.id){
+        if(yiitem.quotecompan_id==this.enterprise_id && yiitem.quoteper==this.employee_id){
           return false
         }
       }

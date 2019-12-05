@@ -222,7 +222,7 @@
                                         </td>
                                         <td>
                                             <!-- <div class="table-box">{{item.standby_time}}</div> -->
-                                            <input type="text" class="table-box" [(ngModel)]='item.standby_time'>
+                                            <input type="text" class="table-box" [(ngModel)]='item.standby_time' >
                                         </td>
                                         <td>
                                             <!-- <div class="table-box">{{item.guarantee}}</div> -->
@@ -252,7 +252,7 @@
                                             <td>{{list.quality}}</td>
                                             <td>{{list.standby_time}}</td>
                                             <td>{{list.guarantee}}</td>
-                                            <td><div *ngIf='rate!="无"'>{{list.rateprice}}</div><div *ngIf='rate=="无"'>{{list.price}}</div></td>
+                                            <td><div *ngIf='rate!=0'>{{list.rateprice}}</div><div *ngIf='rate==0'>{{list.price}}</div></td>
                                             <td>{{list.sendcar_time}}</td>
                                             <td class="text-center">
                                                 <div style='min-width: 86px'>
@@ -265,6 +265,39 @@
                                     </ng-container>
                                         
 
+                                    <div class="modal fade" tabindex="-1" role="dialog" id="myModal3">
+                                        <div class="modal-dialog" *ngIf='baojia==true'>
+                                            <div class="modal-content">
+                                            <!-- <div class="modal-header">
+                                              <h4 class="modal-title">提交报价提示</h4>
+                                              <button type="button" class="close" data-dismiss="modal">×</button>
+                                            </div> -->
+                                            <div class="modal-body">
+                                             您的报价为填完，请继续填写
+                                            </div>
+                                            <!-- <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                              <button type="button" class="btn btn-primary "  data-dismiss="modal">去报价</button>
+                                            </div> -->
+                                            </div>
+                                          </div>
+                                
+                                          <div class="modal-dialog"  *ngIf='baojia==false'>
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h4 class="modal-title">提交报价</h4>
+                                              <button type="button" class="close" data-dismiss="modal">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                              确定要提交报价吗？
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                              <button type="button" class="btn btn-primary " (click)="saveQuote(operatorinfo.enterprise.id)"  data-dismiss="modal">确定</button>
+                                            </div>
+                                            </div>
+                                          </div>
+                                      </div>
 
                                 </tbody>
                             </table>
@@ -291,38 +324,5 @@
     </div>
 
 
-    <div class="modal fade" tabindex="-1" role="dialog" id="myModal3">
-        <div class="modal-dialog" *ngIf='baojia==true'>
-            <div class="modal-content">
-            <!-- <div class="modal-header">
-              <h4 class="modal-title">提交报价提示</h4>
-              <button type="button" class="close" data-dismiss="modal">×</button>
-            </div> -->
-            <div class="modal-body">
-              您的报价为空，最少要新增一条报价！！
-            </div>
-            <!-- <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-              <button type="button" class="btn btn-primary "  data-dismiss="modal">去报价</button>
-            </div> -->
-            </div>
-          </div>
-
-          <div class="modal-dialog"  *ngIf='baojia==false'>
-            <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">提交报价提示</h4>
-              <button type="button" class="close" data-dismiss="modal">×</button>
-            </div>
-            <div class="modal-body">
-              确定要提交报价吗？
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-              <button type="button" class="btn btn-primary " (click)="saveQuote(operatorinfo.enterprise.id)"  data-dismiss="modal">确定</button>
-            </div>
-            </div>
-          </div>
-      </div>
 
 </div>
