@@ -265,10 +265,17 @@ export class QuotationDetailsComponent extends AppBase {
     }
     return true
   }
+  baojias(){
+    if(this.baojia==true){
+      this.baojia = !this.baojia;
+    }
+   
+  }
   enterprise_id=""
   saveQuote(enterprise_id) {
     this.enterprise_id = enterprise_id
-    this.baojia = false;
+    
+   
     // console.log(item, 'kkkkk');
     console.log(this.fittinglist, 'yyyyyy');
     var aa = 0
@@ -317,11 +324,15 @@ export class QuotationDetailsComponent extends AppBase {
         aa++;
         this.list.push(addList);
         console.log('不为空哦')
+      }else {
+        console.log('有报价没填完')
       }
 
     }
     console.log(aa);
     //return;
+    this.bb = true;
+    this.baojia = false;
     if (aa == this.fittinglist.length) {
 
     this.tijiao();
@@ -329,22 +340,18 @@ export class QuotationDetailsComponent extends AppBase {
     }else {
       console.log()
 
+      if(this.list.length==0){
+        this.baojia = true;
+        this.bb = false;
+        return
+      }
+
       for(let item of this.fittinglist){
-        var vv = {
-          quality:item.quality,
-          standby_time:item.standby_time,
-          guarantee:item.guarantee,
-          price: item.price,
-          sendcar_time: item.sendcar_time
+        if(this.kong(item,this.list)){
+          this.baojia = true;
+          this.bb = true;
+          return
         }
-      
-      //  if(this.kong(vv)){
-      //    console.log('hjgkhsadj')
-      //     this.tijiao();
-      //  }else {
-      //   // this.baojia = true;
-      //   // return;
-      //  }
      
       }
       this.tijiao();
@@ -353,11 +360,24 @@ export class QuotationDetailsComponent extends AppBase {
 
     
   }
+  bb=true;
+  kong(json,arr){
+    // quality: item.quality,
+    // standby_time: item.standby_time,
+    // guarantee: item.guarantee,
+    // price: item.price,
+    // sendcar_time: item.sendcar_time,
+    // if(json.quality!=""&&json.standby_time!=''&&json.guarantee!=""&&json.price!=""&&json.sendcar_time!=''){
 
-  kong(json){
-    for(let ii in json){
-      if(json[ii]!=""){
-        return true
+    // }
+    console.log(json,'json')
+    for(let ii of arr){
+      if(json.fittings_id!=ii.fittings_id){
+        if(!(json.quality==""&&json.standby_time==''&&json.guarantee==""&&json.price==""&&json.sendcar_time=='')){
+          return true
+        }else if(json.quality==""||json.standby_time==''||json.guarantee==""||json.price==""||json.sendcar_time==''){
+          return false
+        }
       }
     }
     return false

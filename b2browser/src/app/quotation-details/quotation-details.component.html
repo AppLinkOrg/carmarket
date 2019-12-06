@@ -268,17 +268,17 @@
                                     <div class="modal fade" tabindex="-1" role="dialog" id="myModal3">
                                         <div class="modal-dialog" *ngIf='baojia==true'>
                                             <div class="modal-content">
-                                            <!-- <div class="modal-header">
+                                            <div class="modal-header">
                                               <h4 class="modal-title">提交报价提示</h4>
                                               <button type="button" class="close" data-dismiss="modal">×</button>
-                                            </div> -->
-                                            <div class="modal-body">
-                                             您的报价为填完，请继续填写
                                             </div>
-                                            <!-- <div class="modal-footer">
-                                              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                                              <button type="button" class="btn btn-primary "  data-dismiss="modal">去报价</button>
-                                            </div> -->
+                                            <div class="modal-body">
+                                             您的报价未填完，是否继续填写，确认无误后，请提交报价
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-default" *ngIf='bb' (click)="saveQuote(operatorinfo.enterprise.id)">提交报价</button>
+                                              <button type="button" class="btn btn-primary "  data-dismiss="modal">继续填写</button>
+                                            </div>
                                             </div>
                                           </div>
                                 
@@ -316,7 +316,7 @@
         <div class="col-lg-12">
         <div class="card show mb-4">
                 <div class="card-body flex-row box-auto flex-bottom">
-                <button class="btn btn-primary padding-left-50 padding-right-50"  data-toggle="modal" data-target="#myModal3" ><a>提交报价</a></button>
+                <button class="btn btn-primary padding-left-50 padding-right-50"  data-toggle="modal" data-target="#myModal3" (click)='baojias()'><a>提交报价</a></button>
                 </div>
         </div> 
         </div>
