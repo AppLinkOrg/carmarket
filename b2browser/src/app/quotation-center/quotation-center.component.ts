@@ -761,9 +761,9 @@ export class QuotationCenterComponent extends AppBase {
     this.list = [];
     this.pageList = [];
     this.isquote = false;
-    this.isshow = true
+    this.isshow = true;
     this.exp = true;
-    let current = e.target
+    let current = e.target;
     current.classList.add('btn-active')
     let others = e.target.parentElement.childNodes
 
@@ -796,23 +796,45 @@ export class QuotationCenterComponent extends AppBase {
           this.pagination(this.list,this.length)
         })
       }else {
-        let result = []
+        let result = [];
+        result = yiquotelist;
         a.quotationlist({quoteenterprise_id: this.enterprise_id,quoteper:this.employee_id}).then((quotelist:any)=>{
           console.log(quotelist,'quotelsit')
+          
+      a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
+        // this.ignore = ignore
+
+        console.log(ignore, 'ignore')
+        console.log(ignore.length, 'ignore.length')
+        if(ignore.length==0){
+          for(let item of quotelist){
+            result.push(item);
+          }
+          
+        }else {
           for(let item of quotelist){
             if(item.quotestatus=='Q'){
-              console.log(item,'item')
-              result.push(this.panduan(item,yiquotelist)) 
+            if(this.notinignore(item,ignore)){
+
+              result.push(item);
+            }
+             
           }
         }
-  
-          this.list = result
+        }
+
+        this.list = result
           for (let i = 0; i < this.list.length; i++) {
             this.list[i].index = i
           }
-          console.log()
+          console.log(this.list,'list')
           this.length = this.list.length
           this.pagination(this.list,this.length)
+       
+      })
+          
+  
+          
         })
       }
      
@@ -824,10 +846,14 @@ export class QuotationCenterComponent extends AppBase {
   panduan(item,yiquote){
     for(let yiitem of yiquote){
       if(item.quote_id==yiitem.quote_id){
+        console.log('1111')
         return yiitem
+      }else {
+        console.log('222')
+        return item
       }
     }
-    return item
+   
   }
 
 

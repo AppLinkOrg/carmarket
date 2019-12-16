@@ -122,15 +122,17 @@ export class AppBase implements OnInit {
         }
     }
     checktime(){
-       
-        let nowtime = (new Date()).getTime();
-        let oldtime = window.localStorage.getItem("oldtime");
-
-        if(nowtime > Number(oldtime)  ){
-            
-            var al = alert("长时间不操作，请重新登录！")
-            this.navigate('/login');
+        if(this.isLoginPage==true){
+            let nowtime = (new Date()).getTime();
+            let oldtime = window.localStorage.getItem("oldtime");
+    
+            if(nowtime > Number(oldtime)  ){
+                
+                var al = alert("长时间不操作，请重新登录！")
+                this.navigate('/login');
+            }
         }
+        
 
     }
 
