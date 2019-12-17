@@ -346,14 +346,14 @@ export class QuotationDetailsComponent extends AppBase {
         return
       }
 
-      for(let item of this.fittinglist){
-        if(this.kong(item,this.list)){
-          this.baojia = true;
-          this.bb = true;
-          return
-        }
+      // for(let item of this.fittinglist){
+      //   if(this.kong(item,this.list)){
+      //     this.baojia = true;
+      //     this.bb = true;
+      //     return
+      //   }
      
-      }
+      // }
       this.tijiao();
      
     }

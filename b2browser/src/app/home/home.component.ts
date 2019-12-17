@@ -308,9 +308,13 @@ export class HomeComponent extends AppBase {
   notinignore4(item,arr){
     for(let yiitem of arr){
       if(yiitem.quote_id==item.id){
+        if(yiitem.quotestatus=='W'){
+          return false
+        }
         if(yiitem.quotecompan_id==this.enterprise_id && yiitem.quoteper==this.employee_id){
           return false
         }
+        
       }
     }
     return true;
