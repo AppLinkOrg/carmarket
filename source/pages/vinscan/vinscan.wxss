@@ -19,5 +19,5 @@
 .iconbg{
   background: black;
   padding:20rpx;
-  border-radius: 50%;
+  border-radius: 60rpx;
 }

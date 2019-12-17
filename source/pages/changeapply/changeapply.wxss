@@ -19,4 +19,8 @@
   bottom: 0;
   position: fixed;
 }
+.ip:hover{
+  width: 70vw;
+  border: 1px solid #ccc;
+}
  

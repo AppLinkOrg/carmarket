@@ -41,12 +41,17 @@ class Content extends AppBase {
       title: "我的账户",
     })
   }
+  todetails(e) {
+    wx.navigateTo({
+      url: '/pages/success/success?id=' + e.currentTarget.id,
 
+    })
+  }
 
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
-
+body.todetails = content.todetails;
 Page(body)

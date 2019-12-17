@@ -32,7 +32,7 @@
 
 <view class="flex-row flex-center margin-30">
   <view class="h5">手机号码： </view>
-  <input class="h5" placeholder="请输入你的手机号码" bindinput="bindphone" maxlength="11" type="number"></input>
+  <input class="h5 ip" placeholder="请输入你的手机号码" bindinput="bindphone" maxlength="11" type="number"></input>
 </view>
 
 <view class="tex">
@@ -59,7 +59,7 @@
   <view class='txt-black '>{{change.order_time_formatting}}</view>
 </view> -->
 
-<view class='flex-row flex-center margin-top' wx:for="{{change.orderitem}}" wx:key='s' wx:for-index='idx'>
+<view class='flex-row flex-center margin-top' wx:for="{{change.orderitem}}" wx:key='s' wx:for-index='idx' style='border-bottom: 1px solid #ccc;'>
 
   <view class='margin-left-30 '>
     <image wx:if="{{item.check==false}}" bindtap="bindxuanze" data-id="{{idx}}" class='icon  ' src='{{uploadpath}}resource/{{res.nocheck}}'></image>

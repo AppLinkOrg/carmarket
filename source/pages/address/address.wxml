@@ -3,7 +3,7 @@
   <view class=''>亲，您还没有收货地址哦</view>
 </view>
 
-<view wx:for="{{addresslist}}"  class="flex-row flex-center padding-20">
+<view wx:for="{{addresslist}}"  class="flex-row flex-center padding-20" style='border-bottom: 1px solid #ccc;'>
 
 
   <view class="flex-1" bindtap="bindchuandizhi" id="{{item.id}}">

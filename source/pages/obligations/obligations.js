@@ -74,6 +74,7 @@ class Content extends AppBase {
               employee_id: that.Base.getMyData().employeeinfo.id,
               amount: detail.totalamount,
               type: 'G',
+              order_id: detail.id,
               enterprise_id2: detail.enterprise_id,
               employee_id2: detail.employee_id,
               type2: 'S'

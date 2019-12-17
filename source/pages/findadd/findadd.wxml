@@ -1,4 +1,4 @@
-<view class="bg-white padding-20" wx:for='{{json}}' wx:key='k' wx:for-index='idx'>
+<view class="bg-white padding-20" wx:for='{{json}}' wx:key='k' wx:for-index='idx'style='border-bottom: 1px solid #ccc;'>
   <view class=" flex-row flex-top margin-top-30">
     <view class=" txt-bold txt-black ">{{idx+1}}、</view>
     <view class=" txt-bold txt-black h5 flex-1">{{item.name}}</view>
@@ -55,7 +55,7 @@
 </view>
 
 
-<view class="bg-white margin-top-20">
+<view class="bg-white margin-top-20" >
 
   <view class="flex-row margin-top-20">
     <view class="txt-black txt-bold margin-left-30 margin-right-10">发票</view>
