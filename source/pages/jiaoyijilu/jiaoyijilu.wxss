@@ -1,7 +1,11 @@
 page {
-  background-color: rgb(241, 241, 241);
+  /* background-color: rgb(241, 241, 241); */
 }
 
-.row{
+.row {
   border-bottom: 1rpx solid #ddd;
 }
+.txt{
+  line-height: 70rpx;
+}
+

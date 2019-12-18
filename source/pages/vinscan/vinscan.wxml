@@ -14,13 +14,13 @@
   <cover-view class="flex-row " style="width:100%;margin-top:30vh;" >
     <cover-view bindtap="upload" class="margin-left iconbg flex-row flex-center">
       <cover-image class="icon-25" src="{{uploadpath}}resource/{{res.uploadvin}}"  ></cover-image>
-      <cover-view class='txt-white'>相册</cover-view>
+      <cover-view class='txt-white padding-10'>相册</cover-view>
     </cover-view>
     <cover-view  class="flex-1"></cover-view>
 
     <cover-view  bindtap="write" class="margin-right iconbg flex-row flex-center">
       <cover-image  src="{{uploadpath}}resource/{{res.manualvin}}" class="icon-25 "></cover-image>
-      <cover-view class='h5 txt-white '>手动输入</cover-view>
+      <cover-view class='h5 txt-white padding-10 '>手动输入</cover-view>
     </cover-view>
 
   </cover-view>

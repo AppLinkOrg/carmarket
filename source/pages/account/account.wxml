@@ -21,7 +21,7 @@
       <view class='margin-left-10 txt-black txt-bold'>交易记录</view>
     </view>
 
-    <view class="flex-row flex-center bg-purple margin-20" wx:for="{{list}}" bindtap='todetails' id='{{item.order_id}}'>
+    <view class="flex-row flex-center bg-gray margin-20 yuan" wx:for="{{list}}" bindtap='todetails' id='{{item.order_id}}'>
       <view class="txt-black margin-left-30 margin-top-30 flex-1">
         {{item.employee_name}}
         <view class="txt-black  margin-bottom-20">{{item.consume_time}}</view>
