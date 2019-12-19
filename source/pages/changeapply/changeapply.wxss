@@ -1,9 +1,10 @@
 .tex {
   height: 220rpx;
   width: 92%;
-  border-radius: 10rpx;
+  border-radius: 20rpx;
   margin-left: 30rpx;
   margin-right: 30rpx;
+  padding-left:20rpx; 
   background-color: rgb(243, 243, 243);
 }
 
@@ -19,4 +20,11 @@
   bottom: 0;
   position: fixed;
 }
- 
+
+.ip {
+  width: 65vw;
+  border: 1px solid #ccc;
+  border-radius: 10rpx;
+  margin-left: 10rpx;
+  padding: 10rpx;
+}

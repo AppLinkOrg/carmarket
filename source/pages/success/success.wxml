@@ -110,7 +110,7 @@
     <view class="txt-black">{{yiwancheng.enterprise_id_name}}</view>
   </view>
 
-  <view class="margin-20" wx:for='{{yiwancheng.orderitem}}' wx:for-index='idx' wx:key='k' style=" ">
+  <view class="margin-20" wx:for='{{yiwancheng.orderitem}}' wx:for-index='idx' wx:key='k' style="border-bottom:1px solid #ccc">
 
     <view class="flex-row flex-top">
       <view class="txt-black">{{idx+1}}.</view>

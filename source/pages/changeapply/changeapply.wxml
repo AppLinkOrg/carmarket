@@ -6,24 +6,24 @@
   </view>
 
   <view class="flex-row  flex-center margin-top-20 margin-left-30" style=" ">
-    <view class="h5" style="width:200rpx;">订单编号：</view>
-    <view class="h5">{{change.orderno}}</view>
+    <view class="h5" style="">订单编号：</view>
+    <view class="h5 margin-left-20">{{change.orderno}}</view>
   </view>
 
   <view class="flex-row flex-center margin-top-20 margin-left-30" style=" ">
-    <view class="h5" style="width:200rpx;">VIN:</view>
-    <view class="h5">{{change.vin}}</view>
+    <view class="h5" style="">VIN:</view>
+    <view class="h5 margin-left-20">{{change.vin}}</view>
   </view>
 
   <view class="flex-row flex-top margin-top-20 margin-left-30" style=" ">
-    <view class="h5" style="width:200rpx;">车型:</view>
-    <view class="h5 flex-1">{{change.carname}}</view>
+    <view class="h5" style="">车型:</view>
+    <view class="h5 margin-left-20 flex-1">{{change.carname}}</view>
   </view>
 
 </view>
 
 
-
+<view class="bott margin-top"></view>
 
 <view class=' flex-row margin-top  '>
   <view class='borderleft'></view>
@@ -32,11 +32,11 @@
 
 <view class="flex-row flex-center margin-30">
   <view class="h5">手机号码： </view>
-  <input class="h5" placeholder="请输入你的手机号码" bindinput="bindphone" maxlength="11" type="number"></input>
+  <input class="h5 ip" placeholder="请输入你的手机号码" bindinput="bindphone" maxlength="11" type="number"></input>
 </view>
 
 <view class="tex">
-  <textarea class="h5 margin-left-10 margin-top-10" value="{{content}}" bindinput="bindcon" placeholder="为了帮我们做更好，请尽可能详细描述您的退换货原因，并提交后台，我们平台收到后将尽快处理"></textarea>
+  <textarea class="h5 margin-left-10 margin-top-10" style='width:97%' value="{{content}}" bindinput="bindcon" placeholder="为了帮我们做更好，请尽可能详细描述您的退换货原因，并提交后台，我们平台收到后将尽快处理"></textarea>
 </view>
 <view class="bott margin-top"></view>
 
@@ -59,7 +59,7 @@
   <view class='txt-black '>{{change.order_time_formatting}}</view>
 </view> -->
 
-<view class='flex-row flex-center margin-top' wx:for="{{change.orderitem}}" wx:key='s' wx:for-index='idx'>
+<view class='flex-row flex-center margin-top' wx:for="{{change.orderitem}}" wx:key='s' wx:for-index='idx' style='border-bottom: 1px solid #ccc;'>
 
   <view class='margin-left-30 '>
     <image wx:if="{{item.check==false}}" bindtap="bindxuanze" data-id="{{idx}}" class='icon  ' src='{{uploadpath}}resource/{{res.nocheck}}'></image>

@@ -20,4 +20,7 @@
   margin-top: 230rpx;
 }
 
+.yuan{
+  border-radius:15rpx;
+}
 
