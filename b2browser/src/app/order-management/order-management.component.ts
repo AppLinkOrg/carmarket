@@ -50,7 +50,7 @@ export class OrderManagementComponent extends AppBase  {
   employee_id=''
   em_id=""
   onMyShow(){
-    let oldtime = (new Date()).getTime() +  10*60*1000;
+    let oldtime = (new Date()).getTime() +  5*24*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
     var a = this.orderApi
 
