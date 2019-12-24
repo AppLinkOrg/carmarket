@@ -14,7 +14,7 @@
 
     <image class='icon-17 margin-left-20' src='{{uploadpath}}resource/{{res.search}}'></image>
 
-    <input style=" " class="flex-1 margin-left-10 padding-right-20" maxlength="17" value="{{vin.toUpperCase}}" placeholder="手动输入17位车架号" bindconfirm="bindsearch" bindinput="bindvalue"></input>
+    <input style=" " class="flex-1 margin-left-10 padding-right-20" maxlength="17" value="{{vin}}" placeholder="手动输入17位车架号" bindconfirm="bindsearch" bindinput="bindvalue"></input>
  <!-- LVSFFSAFX7F003683 -->
  
     <view class="margin-right-20 h6 txt-bold">{{count}}/17</view>
@@ -42,8 +42,8 @@
 
 
 <block wx:for="{{searchhistory}}" wx:key="k">
-<view class='he'>
-  <view class='margin-left-30 margin-top-35 h5 txt-black' bindtap="bindcheck" id="{{item.vin}}">{{item.carrecord}}</view>
+<view class='he'bindtap="bindcheck"  id="{{item.vin}}">
+  <view class='margin-left-30 margin-top-35 h5 txt-black' >{{item.carrecord}}</view>
   <view class='flex-row' style='padding-bottom:20rpx;'>
     <view class=" margin-top-35 margin-left-30 h5 txt-black flex-row">{{item.vin}} </view>
     <view class='flex-1'></view>

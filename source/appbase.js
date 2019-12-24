@@ -142,6 +142,7 @@ export class AppBase {
 
 
   }
+
   gotoOpenUserInfoSetting() {
     var that = this;
     wx.showModal({
@@ -159,9 +160,11 @@ export class AppBase {
       }
     })
   }
+
   setBasicInfo() {
     var that = this;
   }
+  
   onReady() {
     console.log("onReady");
   }
@@ -203,6 +206,7 @@ export class AppBase {
 
 
   }
+
   checkPermission() {
 
     var enterpriseApi = new EnterpriseApi();

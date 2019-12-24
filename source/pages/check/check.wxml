@@ -36,7 +36,7 @@
     <view class="txt-black  ">请选择</view>
     <block wx:for="{{groupslist}}" wx:key="k" wx:for-index='idx' wx:if='{{item.check==true}}'>
       <view class="txt-red  margin-top-20" data-img='{{item.url}}' id="{{idx}}" data-mid="{{item.pid}}" data-name="{{item.label}}" bindtap="bindadd">{{item.label}}</view>
-      <view class="h6" id="{{idx}}" data-img='{{item.url}}' data-mid="{{item.pid}}" data-name="{{item.label}}" bindtap="bindadd">({{item.pid}})</view>
+      <view class="h6" id="{{idx}}" wx:if='{{item.pid!=""}}' data-img='{{item.url}}' data-mid="{{item.pid}}" data-name="{{item.label}}" bindtap="bindadd">({{item.pid}})</view>
       <view class="bot"></view>
     </block>
   </scroll-view>

@@ -70,7 +70,6 @@ class Content extends AppBase {
           wx.showLoading({
             title: '正在付款~',
           })
-      
 
           for (var i = 0; i < mylist.length; i++) {
 
@@ -87,8 +86,11 @@ class Content extends AppBase {
 
             orderapi.updatestatus({
               id: mylist[i].id,
-              order_status: "L"
-            }, (updatestatus) => {})
+              order_status: "L",
+              quote_id: that.Base.options.id
+            }, (updatestatus) => {
+
+            })
 
             orderapi.updatemoney({
               id: that.Base.getMyData().employeeinfo.enterprise.id,
