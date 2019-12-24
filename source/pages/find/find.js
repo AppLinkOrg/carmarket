@@ -49,13 +49,13 @@ class Content extends AppBase {
 
 
   bindvalue(e) {
-    //  console.log(e);
+   
     //var uppercase = (e.detail.value).toUpperCase();
     // console.log(uppercase);
     //return;
 
     this.Base.setMyData({
-      vin: e.detail.value, count: e.detail.cursor
+      vin: (e.detail.value).toUpperCase(), count: e.detail.cursor
     })
 
   }
@@ -70,11 +70,18 @@ class Content extends AppBase {
 
       console.log(res,'嗷嗷嗷');
 
-      if (res.code == '4001' || res.code == 4001   ){
+      if (res.code == '4001' || res.code == 4001 ){
            wx.showToast({
              title: '无法识别该车架号,请用(无识别查找)',
              icon:'none'
            })
+        return;
+      }
+      if (res.code == 400) {
+        wx.showToast({
+          title: '暂时无法识别,请用(无识别查找)',
+          icon: 'none'
+        })
         return;
       }
       var vin = res.data.vin,
@@ -137,12 +144,20 @@ class Content extends AppBase {
         that.Base.info(res.msg);
         return;
       }
+      if (res.code == 400) {
+        wx.showToast({
+          title: '暂时无法识别,请用(无识别查找)',
+          icon: 'none'
+        })
+        return;
+      }
       if (res.code == 1) {
         wx.navigateTo({
           url: '/pages/check/check?vin=' + vin + '&biaoti=' + biaoti + '&brandCode=' + brandCode + '&mcid=' + mcid,
         })
         that.onMyShow();
       }
+      
     })
  
   }

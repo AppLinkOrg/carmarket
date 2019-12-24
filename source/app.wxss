@@ -523,9 +523,11 @@ button[disabled][type=primary] {
 }
 
 .margin-left-5 {
-  margin-left: 5rpx;
+  margin-left: 4rpx;
 }
-
+.margin-left-6 {
+  margin-left: 6rpx;
+}
 .margin-left-10 {
   margin-left: 10rpx;
 }

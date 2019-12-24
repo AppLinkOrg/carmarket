@@ -99,24 +99,48 @@ class Content extends AppBase {
     var vin = this.Base.getMyData().vin;
     var brandCode = this.Base.getMyData().brandCode
     var mcid = this.Base.getMyData().mcid;
+    
 
     // console.log(search_key, vin, brandCode, mcid)
     //return;
-
+   
     carapi.partsearch({
       vin: vin,
       brandCode: brandCode,
       mcid: mcid,
       search_key: search_key
     }, (groups) => {
-      var groulist = groups.data;
-      for (var i = 0; i < groulist.length; i++) {
-        groulist[i].check = true;
+      var groupslist=[];
+      var list = {
+        label: search_key,
+        sale_price:'',
+        mill:'',
+        parttype:'',
+        pid:'',
+        check: true
+      };
+      if (groups.data.length==0){
+        groupslist.push(list);
+        console.log(groupslist,'理论')
+        wx.hideLoading();
+        this.Base.setMyData({ groupslist: groupslist})
+      }else{
+        
+        var groulist = groups.data;
+        for (var i = 0; i < groulist.length; i++) {
+          groulist[i].check = true;
+        }
+        wx.hideLoading();
+        this.Base.setMyData({
+          groupslist: groups.data
+        })
       }
-      wx.hideLoading();
-      this.Base.setMyData({
-        groupslist: groups.data
-      })
+
+       
+
+      console.log(groups, '渣渣', groups.data.length,'渣渣')
+
+      
     })
 
   }
@@ -165,24 +189,41 @@ class Content extends AppBase {
       pid: mid,
       brandCode: this.Base.getMyData().brandCode
     }, (ret) => {
-
-      console.log(ret.data[0])
+     
+      console.log(ret.data[0], ret,'领了')
  
       groupslist[idx].check = false;
 
-      var list = {
-        id: idx,
-        name: name,
-        num: 1,
-        img: img,
-        brandCode: this.Base.getMyData().brandCode,
-        cost_price: ret.data[0].sale_price,      //销售价
-        mill: ret.data[0].mill,      //厂商
-        parttype: ret.data[0].parttype,    //零件类型
-        mid: mid,       //零件号
-        beizhu: '',
-        photo: ''
-      };
+      if (ret.code==0){
+        var list = {
+          id: idx,
+          name: name,
+          num: 1,
+          img: img,
+          brandCode: this.Base.getMyData().brandCode,
+          cost_price: 0,      //销售价
+          mill: '',      //厂商
+          parttype: '',    //零件类型
+          mid: '',       //零件号
+          beizhu: '',
+          photo: ''
+        };
+      }else{
+        var list = {
+          id: idx,
+          name: name,
+          num: 1,
+          img: img,
+          brandCode: this.Base.getMyData().brandCode,
+          cost_price: ret.data[0].sale_price,      //销售价
+          mill: ret.data[0].mill,      //厂商
+          parttype: ret.data[0].parttype,    //零件类型
+          mid: mid,       //零件号
+          beizhu: '',
+          photo: ''
+        };
+      }
+     
 
       console.log(idx, "设置的顺序");
 

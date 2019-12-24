@@ -79,11 +79,11 @@
       <image src="{{uploadpath}}resource/{{res.notcheck}}" id="{{index}}" data-type="{{true}}" bindtap="quanxuan" wx:if='{{item.allcheck==false}}' class="icon margin-top-6"></image>
 
       <view class="flex-1 margin-left-20">
-      <view class="flex-row flex-bottom">
-        <view class="txt-white margin-right-10"> {{item.enterprise_name}}</view>
-        <view class="txt-white h5" wx:if='{{xuan=="F"}}'>(总价:￥{{item.minprice}}~￥{{item.maxprice}})</view>
-        <view class="txt-white h5" wx:if='{{xuan=="S"}}'>(总价:￥{{item.minrate}}~￥{{item.maxrate}})</view>
-      </view>
+        <view class="flex-row flex-bottom">
+          <view class="txt-white margin-right-10"> {{item.enterprise_name}}</view>
+          <view class="txt-white h5" wx:if='{{xuan=="F"}}'>(总价:￥{{item.minprice}}~￥{{item.maxprice}})</view>
+          <view class="txt-white h5" wx:if='{{xuan=="S"}}'>(总价:￥{{item.minrate}}~￥{{item.maxrate}})</view>
+        </view>
         <view class="flex-row margin-top-20">
           <view class="txt-white h5 flex-1"> {{item.address}}</view>
           <!--距离 <view class="txt-white h6 "> {{item.mile}}</view> -->
@@ -96,7 +96,7 @@
 
       <image src="{{uploadpath}}resource/{{res.shang}}" id="{{index}}" bindtap="shoucang" data-type="{{false}}" wx:if='{{item.show==true}}' class="icon margin-right-20"></image>
       <image src="{{uploadpath}}resource/{{res.arrowbot}}" id="{{index}}" bindtap="shoucang" data-type="{{true}}" wx:if='{{item.show==false}}' class="icon margin-right-20"></image>
- 
+
     </view>
 
     <view wx:if='{{item.show==false}}' class="bg-white  padding-20  border_top" wx:for-index='idx' wx:for='{{item.qtylist}}' wx:key='e'>
@@ -110,18 +110,28 @@
         <view style=" " class="margin-left-20 flex-1">
 
           <view class="flex-row flex-bottom ">
-            <view class=" txt-red txt-bold" wx:if='{{xuan=="F"}}'>￥{{item.price}}</view>
-            <view class=" txt-red txt-bold" wx:if='{{xuan=="S"}}'>￥{{item.rateprice}}</view>
-            <view class="h6 margin-left-20 ">x{{item.qty}}</view>
+            <!-- <view class=" txt-red txt-bold" wx:if='{{xuan=="F"}}'>￥{{item.price}}</view>
+            <view class=" txt-red txt-bold" wx:if='{{xuan=="S"}}'>￥{{item.rateprice}}</view> -->
+
+            <view class=" txt-bold">{{item.fit_name}}</view>
+
             <view class="h6 margin-left-30  ">(4S价:￥{{item.Sprice}})</view>
 
             <view class="h6 margin-left-20" wx:if='{{item.mcid!=""}}'>{{item.mcid}}</view>
           </view>
 
           <view class="flex-row flex-top margin-top-10">
-            <view class="h5   ">品质：【{{item.quality}}】</view>
-            <view class="h5 txt-black flex-1 margin-left-10">{{item.fit_name}} </view>
+            <!-- <view class="h5   ">品质：【{{item.quality}}】</view> -->
+            <view class="h5  txt-bold   txt-red" wx:if='{{xuan=="F"}}'>￥{{item.price}}</view>
+            <view class="h5  txt-red txt-bold  " wx:if='{{xuan=="S"}}'>￥{{item.price}}</view>
+            <view class="h6 margin-left-20 ">x{{item.qty}}</view>
+          </view>
 
+          <view class="flex-row flex-center margin-top-10"> 
+            <view class="h6 " >{{item.quality}} | </view>
+            <view class="h6 margin-left-6" >{{item.standby_time}} |</view>
+            <view class="h6 margin-left-6" >{{item.guarantee}} |</view>
+            <view class="h6 margin-left-6">{{item.sendcar_time}}</view>
           </view>
 
 
@@ -139,7 +149,7 @@
     <view class="txt-white ">零件数：{{item.qtylist.length}}</view>
     <view class="txt-white ">总价：{{item.qtylist.length}}</view>
     </view> -->
-    
+
 
   </view>
 
@@ -200,6 +210,14 @@
             <view class="h5 txt-black">{{item.edt_address}}</view>
           </view>
 
+          
+          <view class="flex-row flex-center margin-top-10"> 
+            <view class="h6 " >{{item.quality}} | </view>
+            <view class="h6 margin-left-6" >{{item.standby_time}} |</view>
+            <view class="h6 margin-left-6" >{{item.guarantee}} |</view>
+            <view class="h6 margin-left-6">{{item.sendcar_time}}</view>
+          </view>
+
           <view class="h6 margin-top-20" wx:if='{{item.remarks_infor!=""}}'>备注：{{item.remarks_infor}}</view>
         </view>
 
@@ -224,7 +242,7 @@
 
 
       <view class="flex-row flex-center padding-20">
-        <view class="txt-bold txt-black  flex-1">地区筛选</view> 
+        <view class="txt-bold txt-black  flex-1">地区筛选</view>
         <image class='icon-25   ' src='{{uploadpath}}resource/{{res.delect}}' bindtap="binddelect"></image>
       </view>
 

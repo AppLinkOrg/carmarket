@@ -64,7 +64,8 @@ class Content extends AppBase {
 
             orderapi.updatestatus({
               id: that.Base.options.id,
-              order_status: "L"
+              order_status: "L",
+              quote_id: detail.quote_id
             }, (updatestatus) => {
 
             })
