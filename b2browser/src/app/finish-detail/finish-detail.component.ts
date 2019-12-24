@@ -31,7 +31,7 @@ export class FinishDetailComponent extends AppBase  {
 
   onMyShow(){
     
-    let oldtime = (new Date()).getTime() +  10*60*1000;
+    let oldtime = (new Date()).getTime() +  5*24*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
     
     this.activeRoute.queryParams.subscribe(queryParams=>{
