@@ -7,7 +7,7 @@
 
     <view class="txt-black  margin-bottom-20 margin-top-20 margin-left-30">{{item.consume_time}}</view>
     <view class="flex-1"></view>
-    <view class="txt-black  margin-right-20">-￥{{item.amount}}威币</view>
+    <view class="txt-black  margin-right-20">-￥{{item.amount}}额度</view>
 
   </view>
   <view class="margin-bottom-20"></view>

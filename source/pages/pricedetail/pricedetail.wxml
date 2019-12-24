@@ -71,7 +71,7 @@
     <view class="margin-top txt-primary">待报价...</view>
   </view>
 
-  <view class="blueblock {{index>0?'margin-top':''}}" style="background:#143779" wx:for='{{enterpriselist}}' wx:key='s' wx:for-index='index' hidden="{{fdistrict[item.district_id]!='Y'}}">
+  <view class="blueblock {{index>0?'margin-top':''}}" style="background:#566E8C" wx:for='{{enterpriselist}}' wx:key='s' wx:for-index='index' hidden="{{fdistrict[item.district_id]!='Y'}}">
 
     <view class="padding-20 flex-row flex-center">
 

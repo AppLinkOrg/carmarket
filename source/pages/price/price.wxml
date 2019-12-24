@@ -40,7 +40,7 @@
       </view>
 
       <view class="h5 txt-gray txt-bold margin-top-10">{{item.carmodel}}</view>
-      <view class="h5 margin-top-10  ">{{item.quote_time}}</view>
+      <view class="h5 margin-top-10 ">{{item.quote_time}}</view>
 
 
     </view>

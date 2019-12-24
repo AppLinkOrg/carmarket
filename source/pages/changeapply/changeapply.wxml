@@ -90,7 +90,7 @@
     <image class='icon-25 margin-right-20' src='{{uploadpath}}resource/{{res.add}}' data-type="jia" id="{{idx}}" bindtap='bindadd'></image>
 
   </view>
-
+    
 
 </view>
 

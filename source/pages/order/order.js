@@ -60,7 +60,8 @@ class Content extends AppBase {
     })
 
     orderapi.mylist({
-      order_status: 'E', baojia: this.Base.getMyData().emp_id
+      //order_status: 'E', 
+      //baojia: this.Base.getMyData().emp_id
     }, (yiquxiao) => {
       this.Base.setMyData({
         yiquxiao

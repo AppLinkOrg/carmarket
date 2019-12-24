@@ -19,7 +19,7 @@
 
 <view class='flex-row flex-center margin-top-30'>
   <view class=' margin-left-50 h3 txt-orange txt-bold'>{{employeeinfo.enterprise.account_money}}</view>
-  <view class='h5 txt-black margin-left-30  flex-1'>威币</view>
+  <view class='h5 txt-black margin-left-30  flex-1'>额度</view>
 
 
 

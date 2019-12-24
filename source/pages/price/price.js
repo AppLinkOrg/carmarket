@@ -45,12 +45,16 @@ class Content extends AppBase {
 
 
     orderapi.quotelist({
-        employee_id: this.Base.getMyData().emp_id
-    }, (quotelist) => {
+      employee_id: this.Base.getMyData().emp_id
+        }, (quotelist) => {
+          for(var i=0;i<quotelist.length;i++){
+            quotelist[i].quote_time = this.timeindex(quotelist[i].quote_time)
+          }
       this.Base.setMyData({
         quotelist
       })
     })
+
 
     // orderapi.quotelist({
     //   quotestatus: 'Q', employee_id: this.Base.getMyData().emp_id
@@ -80,6 +84,12 @@ class Content extends AppBase {
     // })
 
 
+  }
+
+  timeindex(date) {
+    date=date.replace(/-/g,'/');
+    date=date.slice(5,16);
+    return date
   }
   
   pricedetail(e) {
@@ -171,4 +181,5 @@ body.bindcheck = content.bindcheck;
 body.bindtrue = content.bindtrue;
 body.bindquxiao = content.bindquxiao; 
 body.bindshanchu = content.bindshanchu;
+body.timeindex = content.timeindex;
 Page(body)

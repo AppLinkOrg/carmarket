@@ -82,7 +82,7 @@
       <view class="txt-black margin-top-30">求购订单支付</view>
       <view class="h1-2 txt-red margin-top margin-bottom-40">￥</view>
       <view class="margin-bottom-40">从我的账户中扣除此次订单金额</view>
-      <button class="qw" bindtap="confirm">确认支付￥威币</button>
+      <button class="qw" bindtap="confirm">确认支付￥额度</button>
     </view>
   </view>
 </view>

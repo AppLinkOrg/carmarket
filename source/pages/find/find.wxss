@@ -35,5 +35,8 @@
   margin-left: 380rpx;
   bottom: 5px;
 }
-
+.he{
+  border-bottom: 1rpx solid #ccc;
+  font-weight: bold;
+}
  

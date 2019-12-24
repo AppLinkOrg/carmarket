@@ -218,7 +218,7 @@ view, navigator, input, text, textarea {
 }
 
 .bg-bt {
-  background: #143779;
+  background: #566E8C;
 
 }
 

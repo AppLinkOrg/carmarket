@@ -39,6 +39,9 @@ class Content extends AppBase {
     });
 
     carapi.searchhistory({}, (searchhistory) => {
+      for(var i=0;i<searchhistory.length;i++){
+        searchhistory[i].created_date = this.gettime(searchhistory[i].created_date)
+      }
       this.Base.setMyData({
         searchhistory
       });
@@ -46,7 +49,11 @@ class Content extends AppBase {
   
   }
 
-
+gettime(date){
+  date = date.replace(/-/g,'/');
+  date = date.slice(5,16);
+  return date
+}
 
   bindvalue(e) {
     //  console.log(e);
@@ -80,7 +87,8 @@ class Content extends AppBase {
       var vin = res.data.vin,
         brandCode = res.data.brandCode,
         mcid = res.data.mcid,
-        biaoti = res.title[0] + res.title[1] + res.title[2] + res.title[3] + res.title[4]
+        // biaoti = res.title[0] + res.title[1] + res.title[2] + res.title[3] + res.title[4]
+        biaoti=res.data.model_name
       if (res.code == 0) {
         that.Base.info(res.msg);
         return;
@@ -132,7 +140,8 @@ class Content extends AppBase {
       var vin = res.data.vin,
         brandCode = res.data.brandCode,
         mcid = res.data.mcid,
-        biaoti = res.title[0] + res.title[1] + res.title[2] + res.title[3] + res.title[4]
+        biaoti = res.data.model_name
+        // biaoti = res.title[0] + res.title[1] + res.title[2] + res.title[3] + res.title[4]
       if (res.code == 0) {
         that.Base.info(res.msg);
         return;
@@ -179,4 +188,6 @@ body.bindcheck = content.bindcheck;
 body.bindunable = content.bindunable;
 body.bindsearch = content.bindsearch;
 body.bindvalue = content.bindvalue;
+body.gettime = content.gettime;
+
 Page(body)

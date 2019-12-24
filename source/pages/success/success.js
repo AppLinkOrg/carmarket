@@ -28,6 +28,7 @@ class Content extends AppBase {
  
     orderapi.detail({
       id: this.Base.options.id,
+     // id: 1,
     }, (yiwancheng) => {
       this.Base.setMyData({
         yiwancheng

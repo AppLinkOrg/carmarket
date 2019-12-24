@@ -20,10 +20,10 @@
   <view class=''>暂无下级哦</view>
 </view>
 
-<view class="flex-row margin-left-10 margin-bottom-10" wx:for="{{list}}">
+<view class="flex-row margin-left-10 margin-bottom-10" wx:for="{{list}}" style='border-bottom:1rpx solid #ccc;padding:15rpx;'>
   <image class='icon-60 margin-left-20 margin-top-20 radius-50%;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
   <view class=" margin-top  ">
     <view class="txt-black margin-left-20 ">{{item.name}}【{{item.position=='B'?'老板':'员工'}}】</view>
-    <view class="txt-black flex-row margin-top-10  margin-left-20">成交额：{{item.amountsum==''?'0':'item.amountsum'}}威币</view>
+    <view class="txt-black flex-row margin-top-10  margin-left-20">成交额：{{item.amountsum==''?'0':'item.amountsum'}}额度</view>
   </view>
 </view>

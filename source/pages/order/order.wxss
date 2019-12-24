@@ -20,5 +20,5 @@ Page{
   line-height: 50rpx;
   background-color: rgb(247, 120, 47);
   border-radius: 10rpx; 
-
+  text-align: center;
 }
