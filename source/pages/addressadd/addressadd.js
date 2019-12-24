@@ -153,12 +153,14 @@ class Content extends AppBase {
                 phonenumber: phone,
                 region: city,
                 address: address,
-                morenaddress: check
+                morenaddress: check 
               }, (edit) => {
                 that.Base.setMyData({
                   edit
                 });
               });
+
+
 
             })
 
