@@ -38,6 +38,9 @@ class Content extends AppBase {
     orderapi.mylist({
       order_status: 'L', baojia: this.Base.getMyData().emp_id
     }, (daifahuo) => {
+      for(var i=0;i<daifahuo.length;i++){
+        daifahuo[i].order_time_formatting=this.gettime(daifahuo[i].order_time_formatting)
+      }
       this.Base.setMyData({
         daifahuo
       })
@@ -63,12 +66,20 @@ class Content extends AppBase {
       //order_status: 'E', 
       //baojia: this.Base.getMyData().emp_id
     }, (yiquxiao) => {
+      for(var i=0;i<yiquxiao.length;i++){
+        yiquxiao[i].updated_date = this.gettime(yiquxiao[i].updated_date)
+      }
       this.Base.setMyData({
         yiquxiao
       })
     })
 
 
+  }
+  gettime(date) {
+    date = date.replace(/-/g, '/');
+    date = date.slice(5, 10);
+    return date
   }
 
   setPageTitle() {
@@ -204,4 +215,5 @@ body.bindtobuy = content.bindtobuy;
 body.bindsend = content.bindsend;
 body.bindsuccess = content.bindsuccess;
 body.bindapply = content.bindapply;
+body.gettime=content.gettime;
 Page(body)

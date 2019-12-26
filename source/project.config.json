@@ -47,7 +47,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 39,
+			"current": 40,
 			"list": [
 				{
 					"id": -1,
@@ -326,6 +326,13 @@
 					"id": -1,
 					"name": "查看报价单",
 					"pathName": "pages/pricedetail/pricedetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的订单",
+					"pathName": "pages/order/order",
 					"scene": null
 				}
 			]
