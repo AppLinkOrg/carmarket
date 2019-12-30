@@ -30,6 +30,9 @@ class Content extends AppBase {
     orderapi.mylist({
       order_status: 'W', baojia: this.Base.getMyData().emp_id
     }, (daifukuan) => {
+      for (var i = 0; i < daifukuan.length; i++) {
+        daifukuan[i].order_time_formatting = this.gettime(daifukuan[i].order_time_formatting)
+      }
       this.Base.setMyData({
         daifukuan
       })
@@ -49,25 +52,32 @@ class Content extends AppBase {
     orderapi.mylist({
       order_status: 'M', baojia: this.Base.getMyData().emp_id
     }, (daishouhuo) => {
+      for (var i = 0; i < daishouhuo.length; i++) {
+        daishouhuo[i].order_time_formatting = this.gettime(daishouhuo[i].order_time_formatting)
+      }
       this.Base.setMyData({
         daishouhuo
       })
+    
     })
 
     orderapi.mylist({
       order_status: 'N,R,Y', baojia: this.Base.getMyData().emp_id
     }, (yiwancheng) => {
+      for (var i = 0; i < yiwancheng.length; i++) {
+        yiwancheng[i].order_time_formatting = this.gettime(yiwancheng[i].order_time_formatting)
+      }
       this.Base.setMyData({
         yiwancheng
       })
     })
 
     orderapi.mylist({
-      //order_status: 'E', 
-      //baojia: this.Base.getMyData().emp_id
+      order_status: 'E', 
+      baojia: this.Base.getMyData().emp_id
     }, (yiquxiao) => {
       for(var i=0;i<yiquxiao.length;i++){
-        yiquxiao[i].updated_date = this.gettime(yiquxiao[i].updated_date)
+        yiquxiao[i].order_time_dateformat = this.gettime(yiquxiao[i].order_time_dateformat)
       }
       this.Base.setMyData({
         yiquxiao
