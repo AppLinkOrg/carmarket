@@ -510,23 +510,29 @@ export class QuotationCenterComponent extends AppBase {
 
   ignoreHandle(item) {
     this.list = [];
+    console.log(item,'已忽略')
     this.pageList = [];
     // item.quote_id = item.id
     item.ignorestatus = 'Y'
     item.quoteemployee_id = this.employee_id
     item.quoteenterprise_id = this.enterprise_id
     console.log(item)
+    this.orderApi.editisread({quote_id:item.quote_id,enterprise_id:this.enterprise_id,employee_id:this.employee_id }).then((ret)=>{
+      console.log(ret,'改改了')
+      if(ret){
+        this.orderApi.addignore(item).then((searchignore: any) => {
 
-
-    this.orderApi.addignore(item).then((searchignore: any) => {
-
-      if (searchignore.code == "0") {
-
-        this.onMyShow()
-
-
+          if (searchignore.code == "0") {
+    
+            this.onMyShow()
+    
+    
+          }
+        })
       }
     })
+
+   
 
   }
 

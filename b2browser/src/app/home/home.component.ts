@@ -61,7 +61,7 @@ export class HomeComponent extends AppBase {
       setInterval(() => {
         
         this.update(aa);
-      }, 10 * 1000);
+      }, 3 * 1000);
 
 
     })
@@ -111,6 +111,7 @@ export class HomeComponent extends AppBase {
                       item.quote_id = item.id
                       item.quoteper = employeeinfo.id
                       item.quotecompan_id = employeeinfo.enterprise_id
+                      item.pinzhi = item.pinzhi;
                  
                       if(item.invoice_demand!=""){
                         item.invoice_demand =item.invoice_demand
@@ -132,7 +133,8 @@ export class HomeComponent extends AppBase {
                           item.quote_id = item.id
                           item.quoteper = employeeinfo.id
                           item.quotecompan_id = employeeinfo.enterprise_id
-                           item.quotestatus = "Q"
+                           item.quotestatus = "Q";
+                           item.pinzhi = item.pinzhi;
                           if(item.invoice_demand!=""){
                             item.invoice_demand =item.invoice_demand
                           }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){
@@ -225,7 +227,7 @@ export class HomeComponent extends AppBase {
                         item.quote_id = item.id
                         item.quoteper = employeeinfo.id
                         item.quotecompan_id = employeeinfo.enterprise_id
-                   
+                        item.pinzhi = item.pinzhi;
                         if(item.invoice_demand!=""){
                           item.invoice_demand =item.invoice_demand
                         }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){
@@ -246,7 +248,8 @@ export class HomeComponent extends AppBase {
                             item.quote_id = item.id
                             item.quoteper = employeeinfo.id
                             item.quotecompan_id = employeeinfo.enterprise_id
-                             item.quotestatus = "Q"
+                             item.quotestatus = "Q";
+                             item.pinzhi = item.pinzhi;
                             if(item.invoice_demand!=""){
                               item.invoice_demand =item.invoice_demand
                             }else if(item.invoice_demand=="" &&item.invoice_demand_value!=""){

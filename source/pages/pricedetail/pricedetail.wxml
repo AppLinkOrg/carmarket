@@ -185,7 +185,7 @@
       待报价...
     </view>
 
-    <view class="bg-white  padding-20  " style="{{index>0?'border-top:2rpx solid #E5E5E5':''}}" wx:for-index='index' wx:for='{{item.quoteitems}}' wx:key='s'>
+    <view class="bg-white  padding-20  " hidden="{{fdistrict[item.districtss_id]!='Y'}}" style="{{index>0?'border-top:2rpx solid #E5E5E5':''}}" wx:for-index='index' wx:for='{{item.quoteitems}}' wx:key='s'>
 
       <view class=" flex-row flex-center" bindtap="bindcheck" data-fittings_id="{{item.fittings_id}}" data-name='{{item.name}}{{item.quality}}' id="{{item.id}}" data-index='{{idx}}' data-sx="{{index}}">
 
