@@ -737,12 +737,31 @@ export class QuotationCenterComponent extends AppBase {
       if(yiquotelist.length==0){
         let result = []
         a.quotationlist({quotecompan_id:this.enterprise_id,quoteper:this.employee_id}).then((quotelist:any)=>{
-          for(let item of quotelist){
-            if(item.quotestatus=='Q'){
-              result.push(item)
+          // for(let item of quotelist){
+          //   if(item.quotestatus=='Q'){
+          //     result.push(item)
+          //   }
+          // }
+          a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
+            if(ignore.length==0){
+              for(let item of quotelist){
+                if(item.quotestatus=='Q'){
+                result.push(item);
+                }
+              }
+              
+            }else {
+              for(let item of quotelist){
+                if(item.quotestatus=='Q'){
+                // if(this.panduan(item,ignore)){
+    
+                  result.push(this.panduan(item,ignore));
+                // }
+                 
+              }
             }
-          }
-  
+            }
+          })
           this.list = result
           for (let i = 0; i < this.list.length; i++) {
             this.list[i].index = i
@@ -763,16 +782,18 @@ export class QuotationCenterComponent extends AppBase {
         console.log(ignore.length, 'ignore.length')
         if(ignore.length==0){
           for(let item of quotelist){
+            if(item.quotestatus=='Q'){
             result.push(item);
+            }
           }
           
         }else {
           for(let item of quotelist){
             if(item.quotestatus=='Q'){
-            if(this.notinignore(item,ignore)){
+            // if(this.panduan(item,ignore))
 
-              result.push(item);
-            }
+              result.push(this.panduan(item,ignore));
+            // }
              
           }
         }
