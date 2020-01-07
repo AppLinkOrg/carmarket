@@ -737,20 +737,23 @@ export class QuotationCenterComponent extends AppBase {
       if(yiquotelist.length==0){
         let result = []
         a.quotationlist({quotecompan_id:this.enterprise_id,quoteper:this.employee_id}).then((quotelist:any)=>{
+          console.log(quotelist)
           // for(let item of quotelist){
           //   if(item.quotestatus=='Q'){
           //     result.push(item)
           //   }
           // }
           a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
+            console.log(ignore)
             if(ignore.length==0){
               for(let item of quotelist){
                 if(item.quotestatus=='Q'){
-                result.push(item);
+                   result.push(item);
                 }
               }
               
             }else {
+              result=ignore;
               for(let item of quotelist){
                 if(item.quotestatus=='Q'){
                 // if(this.panduan(item,ignore)){
@@ -759,15 +762,17 @@ export class QuotationCenterComponent extends AppBase {
                 // }
                  
               }
+              
             }
             }
+            this.list = result
+            for (let i = 0; i < this.list.length; i++) {
+              this.list[i].index = i
+            }
+            this.length = this.list.length
+            this.pagination(this.list,this.length)
           })
-          this.list = result
-          for (let i = 0; i < this.list.length; i++) {
-            this.list[i].index = i
-          }
-          this.length = this.list.length
-          this.pagination(this.list,this.length)
+         
         })
       }else {
         let result = [];
@@ -788,6 +793,9 @@ export class QuotationCenterComponent extends AppBase {
           }
           
         }else {
+          for(let iignore of ignore){
+            result.push(iignore)
+          }
           for(let item of quotelist){
             if(item.quotestatus=='Q'){
             // if(this.panduan(item,ignore))

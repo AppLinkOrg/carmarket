@@ -260,6 +260,7 @@ export class QuotationDetailsComponent extends AppBase {
   checkkong(josn) {
     for (let key in josn) {
       if (josn[key] == '') {
+        console.log(key,josn[key],'333')
         return false
       }
     }
@@ -313,7 +314,7 @@ export class QuotationDetailsComponent extends AppBase {
         guarantee: item.guarantee,
         price: item.price,
         sendcar_time: item.sendcar_time,
-        rateprice: item.rateprice,
+        rateprice:'1',
         // count: item.count,
         rate: this.rate,
         pinzhi: item.pinzhi
@@ -321,6 +322,7 @@ export class QuotationDetailsComponent extends AppBase {
       console.log(addList, 'uuuu')
 
       if (this.checkkong(addList)) {
+        addList.rateprice=item.rateprice,
         aa++;
         this.list.push(addList);
         console.log('不为空哦')
@@ -334,17 +336,12 @@ export class QuotationDetailsComponent extends AppBase {
     this.bb = true;
     this.baojia = false;
     if (aa == this.fittinglist.length) {
-
+      console.log(this.list,'list')
     this.tijiao();
 
-    }else {
-      console.log()
-
-      if(this.list.length==0){
-        this.baojia = true;
-        this.bb = false;
-        return
-      }
+    }
+    else {
+      console.log(this.list,'too');
 
       // for(let item of this.fittinglist){
       //   if(this.kong(item,this.list)){
@@ -352,8 +349,24 @@ export class QuotationDetailsComponent extends AppBase {
       //     this.bb = true;
       //     return
       //   }
-     
       // }
+
+    //   console.log()
+
+    //   if(this.list.length==0){
+    //     this.baojia = true;
+    //     this.bb = false;
+    //     return
+    //   }
+
+    //   // for(let item of this.fittinglist){
+    //   //   if(this.kong(item,this.list)){
+    //   //     this.baojia = true;
+    //   //     this.bb = true;
+    //   //     return
+    //   //   }
+     
+    //   // }
       this.tijiao();
      
     }
