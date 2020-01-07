@@ -26,7 +26,8 @@
         {{item.employee_name}}
         <view class="txt-black  margin-bottom-20">{{item.consume_time}}</view>
       </view>
-      <view class="txt-black  margin-right-20">-￥{{item.amount}}额度</view>
+      <view class="txt-black  margin-right-20" wx:if="{{item.type=='G'}}">-￥{{item.amount}}额度</view>
+      <view class="txt-black  margin-right-20" wx:if="{{item.type=='R'}}">+￥{{item.amount}}额度</view>
     </view>
 
 

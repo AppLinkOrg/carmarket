@@ -123,7 +123,7 @@
           <view class="flex-row flex-top margin-top-10">
             <!-- <view class="h5   ">品质：【{{item.quality}}】</view> -->
             <view class="h5  txt-bold   txt-red" wx:if='{{xuan=="F"}}'>￥{{item.price}}</view>
-            <view class="h5  txt-red txt-bold  " wx:if='{{xuan=="S"}}'>￥{{item.price}}</view>
+            <view class="h5  txt-red txt-bold"  wx:if='{{xuan=="S"}}'>￥{{item.rateprice}}</view>
             <view class="h6 margin-left-20 ">x{{item.qty}}</view>
           </view>
 

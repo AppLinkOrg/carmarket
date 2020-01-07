@@ -55,7 +55,7 @@ export class ReturnsDetailComponent extends AppBase  {
   
   saveQuote(item){
     var that = this
-    console.log(item)
+    console.log(item,'hhhhhhhhh')
     console.log(this.operatorinfo)
     if(item.orderstatus=='R'){
 
@@ -68,16 +68,17 @@ export class ReturnsDetailComponent extends AppBase  {
       })
 
     }else if(item.orderstatus=='I'){
-      that.orderApi.addxiaofei({type:"R",amount:item.return_money,enterprise_id:this.operatorinfo.enterprise_id,employee_id:this.operatorinfo.id}).then((addconsume)=>{
+      that.orderApi.addxiaofei({type:"R",amount:item.return_money,enterprise_id:item.enterprise_id,employee_id:item.employee_id,order_id:item.order_id,returnemp_id:this.operatorinfo.id}).then((addconsume)=>{
         console.log(addconsume,'aaaa')
         if(addconsume){
           that.memberApi.editenterprise({id:item.enterprise_id,account_money:item.return_money}).then((editenterprise)=>{
             if(editenterprise){
-              that.orderApi.updatemoney({id:this.operatorinfo.enterprise_id,money:item.return_money}).then(()=>{
+              console.log(this.operatorinfo.enterprise_id)
+              that.orderApi.updatemoney({ent_id:this.operatorinfo.enterprise_id,money:item.return_money}).then(()=>{
 
               })
 
-              that.orderApi.addxiaofei({type:"R",amount:item.return_money,enterprise_id:item.enterprise_id}).then(()=>{
+              that.orderApi.addxiaofei({type:"R",amount:item.return_money,enterprise_id:this.operatorinfo.enterprise_id,employee_id:this.operatorinfo.id,order_id:item.order_id}).then(()=>{
 
               })
               that.memberApi.editmoney({id:this.operatorinfo.id,sales_volume:item.return_money}).then((editmoney)=>{

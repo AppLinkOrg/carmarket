@@ -180,6 +180,8 @@
 <view class='flex-row margin-top weizhi'  > 
     <view class=' padding-top-10 h5 txt-white text-center btn0ne' > 如果商品存在质量问题可申请退换，但是原厂的产品恕不退换 
   </view>
-  <view class='btnTwo txt-white text-center' bindtap='bindapply' id="{{yiwancheng.id}}">申请退换</view>
+  <!-- <view class='btnTwo txt-white text-center' bindtap='bindapply' id="{{yiwancheng.id}}">申请退换</view> -->
+  <view class='btnTwoS txt-white text-center' wx:if='{{yiwancheng.order_status=="R"}}' id="{{yiwancheng.id}}">退货中</view>
+  <view class='btnTwoS txt-white text-center' wx:if='{{yiwancheng.order_status=="Y"}}' id="{{yiwancheng.id}}">已退货</view>
 
 </view>

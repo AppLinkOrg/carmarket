@@ -104,7 +104,7 @@ class Content extends AppBase {
         // }
 
       }
-
+      price = price.toFixed(2)
       this.Base.setMyData({
         shopcarlist,
         alllist,

@@ -80,7 +80,9 @@ export class QuotationCenterComponent extends AppBase {
 
               a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
                 console.log(list, 'lsit')
-
+                list = list.filter(item=>{
+                  return item.quote_id!='';
+                })
                   for (let item of list) {
                     if (item.quotestatus == 'Q') {
     
@@ -121,6 +123,9 @@ export class QuotationCenterComponent extends AppBase {
 
               a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
                 console.log(list, 'bbb')
+                list =  list.filter(item=>{
+                  return item.quote_id!=''
+                })
                 var result = [];
                 for (let item of list) {
                   if (item.quotestatus === 'Q') {
@@ -173,6 +178,9 @@ export class QuotationCenterComponent extends AppBase {
 
               a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
                 console.log(list, 'list')
+                list = list.filter(item=>{
+                  return item.quote_id!=''
+                })
                 var result = [];
                   for (let item of list) {
                     if (item.quotestatus == 'Q') {
@@ -221,6 +229,9 @@ export class QuotationCenterComponent extends AppBase {
 
               a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
                 console.log(list, 'list')
+                list = list.filter(item=>{
+                  return item.quote_id!=''
+                })
                 var result = [];
                 for (let item of list) {
                   if (item.quotestatus === 'Q') {
@@ -737,6 +748,9 @@ export class QuotationCenterComponent extends AppBase {
       if(yiquotelist.length==0){
         let result = []
         a.quotationlist({quotecompan_id:this.enterprise_id,quoteper:this.employee_id}).then((quotelist:any)=>{
+          quotelist =  quotelist.filter(item=>{
+            return item.quote_id!=''
+          })
           console.log(quotelist)
           // for(let item of quotelist){
           //   if(item.quotestatus=='Q'){
@@ -777,8 +791,14 @@ export class QuotationCenterComponent extends AppBase {
       }else {
         let result = [];
         result = yiquotelist;
-        a.quotationlist({quoteenterprise_id: this.enterprise_id,quoteper:this.employee_id}).then((quotelist:any)=>{
+        a.quotationlist({quoteenterprise_id: this.enterprise_id,quoteper:this.employee_id,}).then((quotelist:any)=>{
+          quotelist = quotelist.filter(item=>{
+            return item.quote_id!=''
+          })
           console.log(quotelist,'quotelsit')
+          quotelist.filter(item=>{
+            item.quote_id>0
+          })
           
       a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
         // this.ignore = ignore

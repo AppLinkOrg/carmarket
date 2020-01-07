@@ -15,8 +15,15 @@
   height: 110rpx;
   line-height: 110rpx;
   width: 30%;
-  
 }
+
+.btnTwoS {
+  background-color: #CCCCCC;
+  height: 110rpx;
+  line-height: 110rpx;
+  width: 30%;
+}
+
 .weizhi{
   position: fixed;
   bottom: 0;

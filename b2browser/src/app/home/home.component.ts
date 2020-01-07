@@ -751,7 +751,7 @@ export class HomeComponent extends AppBase {
         if(yiitem.quote_id==item.id && yiitem.quotestatus=='W'){
           return false
         }
-      if (yiitem.quote_id !='0') {
+      if (yiitem.quote_id =='0') {
         return false
       }
 
