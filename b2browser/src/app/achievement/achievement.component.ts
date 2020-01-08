@@ -57,7 +57,7 @@ export class AchievementComponent extends AppBase  {
 
 
   onMyShow(){
-    let oldtime = (new Date()).getTime() + 5*24*60*60*1000;
+    let oldtime = (new Date()).getTime() + 6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
       this.getmsg();
       
@@ -115,11 +115,11 @@ export class AchievementComponent extends AppBase  {
 
       this.pageList = []
       this.enterpriseApi.allenterprise({ name: item.userName, mobile: item.mobile }).then((allenterprise:any)=>{
-        console.log(allenterprise)
+        console.log(allenterprise,'ppp')
       
        
           for(let i=0;i<allenterprise.length;i++){
-            console.log(allenterprise[i])
+            console.log(allenterprise[i],'lll')
 
             this.orderApi.mylist({  enterprise_id:allenterprise[i].enterprise_id, employee_id: allenterprise[i].id, orderno: item.orderno}).then((order)=>{
               
@@ -180,7 +180,7 @@ export class AchievementComponent extends AppBase  {
 
               this.length = this.order.length
               this.pagination(this.order,this.length)
-              console.log(this.order)
+              console.log(this.order,'ooo')
         
             })
   
@@ -248,7 +248,7 @@ export class AchievementComponent extends AppBase  {
 
               this.length = this.order.length
               this.pagination(this.order,this.length)
-              console.log(this.order)
+              console.log(this.order,'1111')
 
       })
 

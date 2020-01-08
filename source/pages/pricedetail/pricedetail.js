@@ -226,15 +226,15 @@ class Content extends AppBase {
           quantity++;
 
           if (this.Base.getMyData().xuan == 'F') {
-            sum += parseInt(quoteitems[a].price) * parseInt(quoteitems[a].qty);
+            sum += parseFloat(quoteitems[a].price) * parseFloat(quoteitems[a].qty);
           } else {
-            sum += parseInt(quoteitems[a].rateprice) * parseInt(quoteitems[a].qty);
+            sum += parseFloat(quoteitems[a].rateprice) * parseFloat(quoteitems[a].qty);
           }
 
         }
       }
     }
-
+    sum = sum.toFixed(2);
     this.Base.setMyData({
       sum,
       quantity,
@@ -260,14 +260,14 @@ class Content extends AppBase {
           quantity++;
           // sum += parseInt(qtylist[a].price);
           if (this.Base.getMyData().xuan == 'F') {
-            sum += parseInt(qtylist[a].price) * parseInt(qtylist[a].qty);
+            sum += parseFloat(qtylist[a].price) * parseFloat(qtylist[a].qty);
           } else {
-            sum += parseInt(qtylist[a].rateprice) * parseInt(qtylist[a].qty);
+            sum += parseFloat(qtylist[a].rateprice) * parseFloat(qtylist[a].qty);
           }
         }
       }
     }
-
+    sum = sum.toFixed(2);
     this.Base.setMyData({
       sum,
       quantity,

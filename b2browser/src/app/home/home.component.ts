@@ -51,18 +51,19 @@ export class HomeComponent extends AppBase {
   isread = 'Y'
   onMyShow() {
 
-    let oldtime = (new Date()).getTime() + 5 * 24 * 60 * 60 * 1000;
+    let oldtime = (new Date()).getTime() + 6*60*60*1000;
     window.localStorage.setItem('oldtime', oldtime.toString())
 
     this.activeRoute.queryParams.subscribe((aa) => {
 
       this.update(aa);
-
+      this.getquot();
       setInterval(() => {
 
         this.update(aa);
         this.getquot();
-      }, 8 * 1000);
+
+      }, 20 * 1000);
 
 
 
@@ -338,6 +339,7 @@ export class HomeComponent extends AppBase {
           if (ret.quote > '0') {
             this.isread = 'N';
             this.quotereadnum = ret.quote;
+            // this.quotereadnum = '加载中';
           } else {
             this.isread = 'Y';
           }
@@ -345,6 +347,8 @@ export class HomeComponent extends AppBase {
           if (ret.order > '0') {
             this.oread = 'N';
             this.ordernum = ret.order;
+            // this.ordernum =  '加载中';
+           
           } else {
             this.oread = 'Y';
           }
@@ -352,6 +356,7 @@ export class HomeComponent extends AppBase {
           if (ret.return > '0') {
             this.risread = 'N';
             this.returnnum = ret.return;
+            // this.returnnum = '加载中';
           } else {
             this.risread = 'Y';
           }

@@ -28,7 +28,7 @@ class Content extends AppBase {
     var orderapi = new OrderApi();
  
     orderapi.mylist({
-      order_status: 'W', baojia: this.Base.getMyData().emp_id
+      order_status: 'W', baojia: this.Base.getMyData().emp_id, orderby:'r_main.orderno desc'
     }, (daifukuan) => {
       for (var i = 0; i < daifukuan.length; i++) {
         daifukuan[i].order_time_formatting = this.gettime(daifukuan[i].order_time_formatting)
@@ -39,7 +39,7 @@ class Content extends AppBase {
     })
 
     orderapi.mylist({
-      order_status: 'L', baojia: this.Base.getMyData().emp_id
+      order_status: 'L', baojia: this.Base.getMyData().emp_id, orderby: 'r_main.orderno desc'
     }, (daifahuo) => {
       for(var i=0;i<daifahuo.length;i++){
         daifahuo[i].order_time_formatting=this.gettime(daifahuo[i].order_time_formatting)
@@ -50,7 +50,7 @@ class Content extends AppBase {
     })
 
     orderapi.mylist({
-      order_status: 'M', baojia: this.Base.getMyData().emp_id
+      order_status: 'M', baojia: this.Base.getMyData().emp_id, orderby: 'r_main.orderno desc'
     }, (daishouhuo) => {
       for (var i = 0; i < daishouhuo.length; i++) {
         daishouhuo[i].order_time_formatting = this.gettime(daishouhuo[i].order_time_formatting)
@@ -62,7 +62,7 @@ class Content extends AppBase {
     })
 
     orderapi.mylist({
-      order_status: 'N,R,Y', baojia: this.Base.getMyData().emp_id
+      order_status: 'N,R,Y,I', baojia: this.Base.getMyData().emp_id, orderby: 'r_main.orderno desc'
     }, (yiwancheng) => {
       for (var i = 0; i < yiwancheng.length; i++) {
         yiwancheng[i].order_time_formatting = this.gettime(yiwancheng[i].order_time_formatting)
@@ -74,7 +74,7 @@ class Content extends AppBase {
 
     orderapi.mylist({
       order_status: 'E', 
-      baojia: this.Base.getMyData().emp_id
+      baojia: this.Base.getMyData().emp_id, orderby: 'r_main.orderno desc'
     }, (yiquxiao) => {
       for(var i=0;i<yiquxiao.length;i++){
         yiquxiao[i].order_time_dateformat = this.gettime(yiquxiao[i].order_time_dateformat)

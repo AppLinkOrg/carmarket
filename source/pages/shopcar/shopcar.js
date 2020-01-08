@@ -76,7 +76,7 @@ class Content extends AppBase {
         //shopcarlist[i].check = false;
         if (shopcarlist[i].status == 'A') {
           num++;
-          price += (parseInt(shopcarlist[i].price) * parseInt(shopcarlist[i].qty))
+          price += (parseFloat(shopcarlist[i].price) * parseFloat(shopcarlist[i].qty))
         }
         var list = shopcarlist[i]
         if (!etplist[list.enterprise_id]) {

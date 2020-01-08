@@ -50,7 +50,7 @@ export class OrderManagementComponent extends AppBase  {
   employee_id=''
   em_id=""
   onMyShow(){
-    let oldtime = (new Date()).getTime() +  5*24*60*60*1000;
+    let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
     var a = this.orderApi
 
@@ -83,7 +83,7 @@ export class OrderManagementComponent extends AppBase  {
           this.list = []
           this.pageList = []
           for(let j=0;j<mylist.length;j++){
-            if(mylist[j].order_status != 'R' && mylist[j].order_status != 'Y'){
+            if(mylist[j].order_status != 'R' && mylist[j].order_status != 'Y' && mylist[j].order_status != 'I'){
               this.enterpriseApi.getemployeeinfo({id:mylist[j].baojia}).then((getemployeeinfo:any)=>{
                 console.log(getemployeeinfo,'嘻嘻嘻嘻嘻')
                 mylist[j].baojiaperson = getemployeeinfo.name

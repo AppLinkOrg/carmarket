@@ -41,7 +41,7 @@ export class QuotationDetailsComponent extends AppBase {
 
 
   onMyShow() {
-    let oldtime = (new Date()).getTime() + 5*24*60*60*1000;
+    let oldtime = (new Date()).getTime() + 6*60*60*1000;
     window.localStorage.setItem('oldtime', oldtime.toString())
     var a = this.orderApi
 
@@ -266,20 +266,9 @@ export class QuotationDetailsComponent extends AppBase {
     }
     return true
   }
+  aa=0
   baojias(){
-    if(this.baojia==true){
-      this.baojia = !this.baojia;
-    }
-   
-  }
-  enterprise_id=""
-  saveQuote(enterprise_id) {
-    this.enterprise_id = enterprise_id
-    
-   
-    // console.log(item, 'kkkkk');
-    console.log(this.fittinglist, 'yyyyyy');
-    var aa = 0
+
     for (let item of this.fittinglist) {
      
       if (item.partnubmer == "") {
@@ -323,7 +312,7 @@ export class QuotationDetailsComponent extends AppBase {
 
       if (this.checkkong(addList)) {
         addList.rateprice=item.rateprice,
-        aa++;
+        this.aa++;
         this.list.push(addList);
         console.log('不为空哦')
       }else {
@@ -331,11 +320,31 @@ export class QuotationDetailsComponent extends AppBase {
       }
 
     }
-    console.log(aa);
+
+    if(this.baojia==true){
+      this.baojia = !this.baojia;
+    }
+
+    if(this.list.length==0){
+      this.baojia=true;
+      this.bb = false;
+    }
+   
+  }
+  enterprise_id=""
+  saveQuote(enterprise_id) {
+    this.enterprise_id = enterprise_id
+    
+   
+    // console.log(item, 'kkkkk');
+    console.log(this.fittinglist, 'yyyyyy');
+    // var aa = 0
+    
+    // console.log(aa);
     //return;
     this.bb = true;
     this.baojia = false;
-    if (aa == this.fittinglist.length) {
+    if (this.aa == this.fittinglist.length) {
       console.log(this.list,'list')
     this.tijiao();
 

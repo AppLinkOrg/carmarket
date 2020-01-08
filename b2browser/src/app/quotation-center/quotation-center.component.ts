@@ -43,14 +43,15 @@ export class QuotationCenterComponent extends AppBase {
 
   distinctlist = null;
 
-  enterprise_id = ''
-  enterprise_id_name = ''
-  employee_id = ''
-  employee_id_name = ''
+  enterprise_id = '';
+  enterprise_id_name = '';
+  employee_id = '';
+  employee_id_name = '';
 
+ 
   onMyShow() {
 
-    let oldtime = (new Date()).getTime() +  5*24*60*60*1000;
+    let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
     var a = this.orderApi;
 
@@ -61,240 +62,21 @@ export class QuotationCenterComponent extends AppBase {
       this.employee_id_name = employeeinfo.name
       this.enterprise_id_name = employeeinfo.enterprise.name
 
-      a.quotelist({}).then((list: any) => {
-        console.log(list,'list')
-
-
-      a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
-        // this.ignore = ignore
-
-        console.log(ignore, 'ignore')
-        console.log(ignore.length, 'ignore.length')
-
-        if (ignore.length == 0) {
-          a.yiquotelist({quoteenterprise_id: this.enterprise_id}).then((yiquotelist:any)=>{
-            console.log(yiquotelist,'yiquotelist')
-            console.log(yiquotelist.length,'yiquotelist.length')
-
-            if(yiquotelist.length == 0){
-
-              a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
-                console.log(list, 'lsit')
-                list = list.filter(item=>{
-                  return item.quote_id!='';
-                })
-                  for (let item of list) {
-                    if (item.quotestatus == 'Q') {
-    
-                      item.photoLen = 0
-                      console.log(item)
-      
-                      if (item.frontofcar != '' && item.frontofcar!="undefined") {
-                        item.photoLen++
-                      }
-                      if (item.namesplate != ''&& item.namesplate!="undefined") {
-                        item.photoLen++
-                      }
-                      if (item.rearofcar != ''&& item.rearofcar!="undefined") {
-                        item.photoLen++
-                      }
-                      if (item.photo1 != ''&& item.photo1!="undefined") {
-                        var arr =  item.photo1.split(/[, ，]/)
-                        item.photoLen +=arr.length
-                      }
-                      // if (item.photo2 != ''&& item.photo2!="undefined") {
-                      //   item.photoLen++
-                      // }
-                      this.list.push(item)
-                    }
-                  }
-                  this.list = this.list.sort(this.compare("quote_time_timespan"))
-        
-                  for (let i = 0; i < this.list.length; i++) {
-                    this.list[i].index = i
-                  }
-      
-                  this.length = this.list.length;
-                  this.pagination(this.list, this.length);
-                  console.log(this.list)
-
-              })
-            }else {
-
-              a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
-                console.log(list, 'bbb')
-                list =  list.filter(item=>{
-                  return item.quote_id!=''
-                })
-                var result = [];
-                for (let item of list) {
-                  if (item.quotestatus === 'Q') {
-                    if (this.notinignore2(item, yiquotelist)) {
-
-                      item.photoLen = 0
-                      if (item.frontofcar != '' && item.frontofcar !="undefined") {
-                        item.photoLen++
-                      }
-                      if (item.namesplate != '' && item.namesplate !="undefined") {
-                        item.photoLen++
-                      }
-                      if (item.rearofcar != '' && item.rearofcar !="undefined") {
-                        item.photoLen++
-                      }
-                      if (item.photo1 != '' && item.photo1 !="undefined") {
-                        var arr =  item.photo1.split(/[, ，]/)
-                        item.photoLen +=arr.length
-                      }
-                      // if (item.photo2 != '' && item.photo2 !="undefined") {
-                      //   item.photoLen++
-                      // }
-
-                      result.push(item);
-                    }
-                  }
-    
-                }
-    
-                this.list = result.sort(this.compare("quote_time_timespan"));
-    
-                for (let i = 0; i < this.list.length; i++) {
-                  this.list[i].index = i
-                }
-    
-                this.length = this.list.length;
-                this.pagination(this.list, this.length);
-    
-              });
-            }
-    
-          })
-
-        } else {
-
-          a.yiquotelist({quoteenterprise_id: this.enterprise_id}).then((yiquotelist:any)=>{
-            console.log(yiquotelist,'yyyyy')
-
-            if(yiquotelist.length == 0){
-
-              a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
-                console.log(list, 'list')
-                list = list.filter(item=>{
-                  return item.quote_id!=''
-                })
-                var result = [];
-                  for (let item of list) {
-                    if (item.quotestatus == 'Q') {
-    
-                      if (this.notinignore2(item, ignore)) {
-                        item.photoLen = 0
-                        console.log(item)
-        
-                        if (item.frontofcar != '' && item.frontofcar !="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.namesplate != '' && item.namesplate !="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.rearofcar != '' && item.rearofcar !="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.photo1 != '' && item.photo1 !="undefined") {
-                          var arr =  item.photo1.split(/[, ，]/)
-                          item.photoLen += arr.length
-                        }
-                        // if (item.photo2 != '' && item.photo2 !="undefined") {
-                        //   item.photoLen++
-                        // }
-                        result.push(item);
-
-                      }
-                      
-                     
-                      // this.list.push(item)
-                    
-                    }
-                  }
-                  this.list = result.sort(this.compare("quote_time_timespan"));
-        
-                  for (let i = 0; i < this.list.length; i++) {
-                    this.list[i].index = i
-                  }
-      
-                  this.length = this.list.length;
-                  this.pagination(this.list, this.length);
-                  console.log(this.list)
-
-              })
-            }else {
-
-              a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
-                console.log(list, 'list')
-                list = list.filter(item=>{
-                  return item.quote_id!=''
-                })
-                var result = [];
-                for (let item of list) {
-                  if (item.quotestatus === 'Q') {
-                    item.photoLen = 0
-                    
-                    if (item.frontofcar != '' && item.frontofcar !="undefined") {
-                      item.photoLen++
-                    }
-                    if (item.namesplate != '' && item.namesplate !="undefined") {
-                      item.photoLen++
-                    }
-                    if (item.rearofcar != '' && item.rearofcar !="undefined") {
-                      item.photoLen++
-                    }
-                    if (item.photo1 != '' && item.photo1 !="undefined") {
-                      var arr =  item.photo1.split(/[, ，]/)
-                      item.photoLen +=arr.length
-                    }
-                    // if (item.photo2 != '' && item.photo2 !="undefined") {
-                    //   item.photoLen++
-                    // }
-
-                    console.log('尽快发货方')
-                    console.log(this.notinignore2(item, yiquotelist),'jjjjdddddd')
-                    if (this.notinignore2(item, yiquotelist)) {
-                      console.log('斤斤计较')
-                      if (this.notinignore2(item, ignore)) {
-                        console.log('jjjjj')
-                        result.push(item);
-                      }
-                    }
-                      
-                  }
-    
-                }
-                console.log(result,'kkkkk')
-    
-                this.list = result.sort(this.compare("quote_time_timespan"));
-    
-                for (let i = 0; i < this.list.length; i++) {
-                  this.list[i].index = i
-                }
-    
-                this.length = this.list.length;
-                this.pagination(this.list, this.length);
-    
-              });
-            }
-    
-          })
-
-        }
-
-      })
-
-    })
+      this.quoteHandle();
     
       a.distinctlist({}).then((distinctlist: any) => {
         console.log(distinctlist, "33333")
         this.distinctlist = distinctlist
       })
 
-
+      
+      setInterval(() => {
+        if(this.aa==1){
+          this.quoteHandle();
+        }
+      
+        console.log(11122334455)
+    }, 10*1000);
     })
 
 
@@ -303,7 +85,21 @@ export class QuotationCenterComponent extends AppBase {
 
 
   }
-
+aa=1;
+  change(e){
+    this.aa = e;
+    if(e==1){
+      this.quoteHandle();
+    }else if(e==2){
+      this.quotedPrice();
+    }else if(e==3){
+      this.neglected();
+    }else if(e==4){
+      this.expired();
+    }else if(e==5){
+      this.allQuote()
+    }
+  }
   compare(pro){
     return function(a,b){
       return b[pro]-a[pro]
@@ -552,26 +348,290 @@ export class QuotationCenterComponent extends AppBase {
   }
 
 
+  daibaolen=0;
+  yibaolen=0;
+  yihulen=0;
+  yishilen=0;
+  alllen=0;
 
   // 待报价
-  quoteHandle(e) {
+  quoteHandle() {
     this.list = [];
     this.pageList = [];
     this.isquote = true;
     this.isshow = false
-
+    // this.daibaolen=0;
+    // this.yibaolen=0;
+    // this.yihulen=0;
+    // this.yishilen=0;
+    // this.alllen=0;
     this.exp = true;
-    let current = e.target
-    current.classList.add('btn-active')
-    let others = e.target.parentElement.childNodes
+    // let current = e.target
+    // current.classList.add('btn-active')
+    // let others = e.target.parentElement.childNodes
 
-    for (let i = 0; i < others.length; i++) {
-      if (others[i] != current) {
-        others[i].classList.remove('btn-active')
-      }
-    }
+    // for (let i = 0; i < others.length; i++) {
+    //   if (others[i] != current) {
+    //     others[i].classList.remove('btn-active')
+    //   }
+    // }
+var a = this.orderApi;
+    a.quotelist({}).then((list: any) => {
+       
+      console.log(list,'list')
 
-    this.onMyShow()
+        a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
+          // this.ignore = ignore
+          this.yihulen=ignore.length;
+          console.log(ignore, 'ignore')
+          console.log(ignore.length, 'ignore.length')
+  
+          if (ignore.length == 0) {
+            a.yiquotelist({quoteenterprise_id: this.enterprise_id}).then((yiquotelist:any)=>{
+              console.log(yiquotelist,'yiquotelist')
+              console.log(yiquotelist.length,'yiquotelist.length')
+              
+              if(yiquotelist.length == 0){
+  
+                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
+                  console.log(list, 'lsit')
+                  list = list.filter(item=>{
+                    return item.quote_id!='';
+                  })
+                    for (let item of list) {
+                      if (item.quotestatus == 'Q') {
+      
+                        item.photoLen = 0
+                        console.log(item)
+        
+                        if (item.frontofcar != '' && item.frontofcar!="undefined") {
+                          item.photoLen++
+                        }
+                        if (item.namesplate != ''&& item.namesplate!="undefined") {
+                          item.photoLen++
+                        }
+                        if (item.rearofcar != ''&& item.rearofcar!="undefined") {
+                          item.photoLen++
+                        }
+                        if (item.photo1 != ''&& item.photo1!="undefined") {
+                          var arr =  item.photo1.split(/[, ，]/)
+                          item.photoLen +=arr.length
+                        }
+                        // if (item.photo2 != ''&& item.photo2!="undefined") {
+                        //   item.photoLen++
+                        // }
+                        this.list.push(item)
+                      }
+                    }
+                    this.list = this.list.sort(this.compare("quote_time_timespan"))
+          
+                    for (let i = 0; i < this.list.length; i++) {
+                      this.list[i].index = i
+                    }
+                    this.daibaolen = this.list.length;
+                    this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                    this.length = this.list.length;
+                    this.pagination(this.list, this.length);
+                    console.log(this.list)
+  
+                })
+              }else {
+                var yibao=[];
+                var shi=[];
+                yiquotelist.filter(item=>{
+                  if(item.invalid=='是'){
+                    // this.yishilen ++ ;
+                    shi.push(item);
+                  }else if(item.invalid=='否'){
+                    // this.yibaolen ++;
+                    yibao.push(item);
+                  }
+                })
+                this.yibaolen=yibao.length;
+                this.yishilen=shi.length
+                // this.yibaolen = yiquotelist.length;
+                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
+                  console.log(list, 'bbb')
+                  list =  list.filter(item=>{
+                    return item.quote_id!=''
+                  })
+                  var result = [];
+                  for (let item of list) {
+                    if (item.quotestatus === 'Q') {
+                      if (this.notinignore2(item, yiquotelist)) {
+  
+                        item.photoLen = 0
+                        if (item.frontofcar != '' && item.frontofcar !="undefined") {
+                          item.photoLen++
+                        }
+                        if (item.namesplate != '' && item.namesplate !="undefined") {
+                          item.photoLen++
+                        }
+                        if (item.rearofcar != '' && item.rearofcar !="undefined") {
+                          item.photoLen++
+                        }
+                        if (item.photo1 != '' && item.photo1 !="undefined") {
+                          var arr =  item.photo1.split(/[, ，]/)
+                          item.photoLen +=arr.length
+                        }
+                        // if (item.photo2 != '' && item.photo2 !="undefined") {
+                        //   item.photoLen++
+                        // }
+  
+                        result.push(item);
+                      }
+                    }
+      
+                  }
+      
+                  this.list = result.sort(this.compare("quote_time_timespan"));
+                  this.daibaolen = this.list.length
+                  for (let i = 0; i < this.list.length; i++) {
+                    this.list[i].index = i
+                  }
+                  this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                  this.length = this.list.length;
+                  this.pagination(this.list, this.length);
+      
+                });
+              }
+      
+            })
+  
+          } else {
+  
+            a.yiquotelist({quoteenterprise_id: this.enterprise_id}).then((yiquotelist:any)=>{
+              console.log(yiquotelist,'yyyyy')
+              // this.yibaolen = yiquotelist.length;
+              if(yiquotelist.length == 0){
+  
+                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
+                  console.log(list, 'list')
+                  list = list.filter(item=>{
+                    return item.quote_id!=''
+                  })
+                  var result = [];
+                    for (let item of list) {
+                      if (item.quotestatus == 'Q') {
+      
+                        if (this.notinignore2(item, ignore)) {
+                          item.photoLen = 0
+                          console.log(item)
+          
+                          if (item.frontofcar != '' && item.frontofcar !="undefined") {
+                            item.photoLen++
+                          }
+                          if (item.namesplate != '' && item.namesplate !="undefined") {
+                            item.photoLen++
+                          }
+                          if (item.rearofcar != '' && item.rearofcar !="undefined") {
+                            item.photoLen++
+                          }
+                          if (item.photo1 != '' && item.photo1 !="undefined") {
+                            var arr =  item.photo1.split(/[, ，]/)
+                            item.photoLen += arr.length
+                          }
+                          // if (item.photo2 != '' && item.photo2 !="undefined") {
+                          //   item.photoLen++
+                          // }
+                          result.push(item);
+  
+                        }
+                        
+                       
+                        // this.list.push(item)
+                      
+                      }
+                    }
+                    this.list = result.sort(this.compare("quote_time_timespan"));
+                    this.daibaolen = this.list.length;
+                    for (let i = 0; i < this.list.length; i++) {
+                      this.list[i].index = i
+                    }
+                    this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                    this.length = this.list.length;
+                    this.pagination(this.list, this.length);
+                    console.log(this.list)
+  
+                })
+              }else {
+                var shi=[];
+                var yibao=[];
+                yiquotelist.filter(item=>{
+                  if(item.invalid=='是'){
+                    // this.yishilen ++ ;
+                    shi.push(item);
+                  }else if(item.invalid=='否'){
+                    // this.yibaolen ++;
+                    yibao.push(item);
+                  }
+                })
+                this.yibaolen=yibao.length;
+                this.yishilen=shi.length
+                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
+                  console.log(list, 'list')
+                  list = list.filter(item=>{
+                    return item.quote_id!=''
+                  })
+                  var result = [];
+                  for (let item of list) {
+                    if (item.quotestatus === 'Q') {
+                      item.photoLen = 0
+                      
+                      if (item.frontofcar != '' && item.frontofcar !="undefined") {
+                        item.photoLen++
+                      }
+                      if (item.namesplate != '' && item.namesplate !="undefined") {
+                        item.photoLen++
+                      }
+                      if (item.rearofcar != '' && item.rearofcar !="undefined") {
+                        item.photoLen++
+                      }
+                      if (item.photo1 != '' && item.photo1 !="undefined") {
+                        var arr =  item.photo1.split(/[, ，]/)
+                        item.photoLen +=arr.length
+                      }
+                      // if (item.photo2 != '' && item.photo2 !="undefined") {
+                      //   item.photoLen++
+                      // }
+  
+                      console.log('尽快发货方')
+                      console.log(this.notinignore2(item, yiquotelist),'jjjjdddddd')
+                      if (this.notinignore2(item, yiquotelist)) {
+                        console.log('斤斤计较')
+                        if (this.notinignore2(item, ignore)) {
+                          console.log('jjjjj')
+                          result.push(item);
+                        }
+                      }
+                        
+                    }
+      
+                  }
+                  console.log(result,'kkkkk')
+      
+                  this.list = result.sort(this.compare("quote_time_timespan"));
+                  this.daibaolen = this.list.length;
+                  for (let i = 0; i < this.list.length; i++) {
+                    this.list[i].index = i
+                  }
+                  this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                  this.length = this.list.length;
+                  this.pagination(this.list, this.length);
+      
+                });
+              }
+      
+            })
+  
+          }
+  
+        })
+  
+
+   
+  })
+
 
 
 
@@ -580,21 +640,21 @@ export class QuotationCenterComponent extends AppBase {
 
 
   // 已忽略
-  neglected(e) {
+  neglected() {
     this.list = [];
     this.pageList = [];
     this.isshow = false
     this.isquote = false;
     this.exp = true;
-    let current = e.target
-    current.classList.add('btn-active')
-    let others = e.target.parentElement.childNodes
+    // let current = e.target
+    // current.classList.add('btn-active')
+    // let others = e.target.parentElement.childNodes
 
-    for (let i = 0; i < others.length; i++) {
-      if (others[i] != current) {
-        others[i].classList.remove('btn-active')
-      }
-    }
+    // for (let i = 0; i < others.length; i++) {
+    //   if (others[i] != current) {
+    //     others[i].classList.remove('btn-active')
+    //   }
+    // }
 
     this.orderApi.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
       this.list = ignore;
@@ -613,22 +673,22 @@ export class QuotationCenterComponent extends AppBase {
 
   exp=true
   // 已过期
-  expired(e) {
+  expired() {
 
     this.list = [];
     this.pageList = [];
     this.isquote = false;
     this.isshow = false
     this.exp = false;
-    let current = e.target
-    current.classList.add('btn-active')
-    let others = e.target.parentElement.childNodes
+    // let current = e.target
+    // current.classList.add('btn-active')
+    // let others = e.target.parentElement.childNodes
 
-    for (let i = 0; i < others.length; i++) {
-      if (others[i] != current) {
-        others[i].classList.remove('btn-active')
-      }
-    }
+    // for (let i = 0; i < others.length; i++) {
+    //   if (others[i] != current) {
+    //     others[i].classList.remove('btn-active')
+    //   }
+    // }
 
    
 
@@ -656,21 +716,21 @@ export class QuotationCenterComponent extends AppBase {
   }
 
   // 已报价
-  quotedPrice(e) {
+  quotedPrice() {
     this.list = [];
     this.pageList = [];
     this.isquote = false;
     this.isshow = false
     this.exp = true;
-    let current = e.target
-    current.classList.add('btn-active')
-    let others = e.target.parentElement.childNodes
+    // let current = e.target
+    // current.classList.add('btn-active')
+    // let others = e.target.parentElement.childNodes
 
-    for (let i = 0; i < others.length; i++) {
-      if (others[i] != current) {
-        others[i].classList.remove('btn-active')
-      }
-    }
+    // for (let i = 0; i < others.length; i++) {
+    //   if (others[i] != current) {
+    //     others[i].classList.remove('btn-active')
+    //   }
+    // }
 
 
     this.orderApi.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((list: any) => {
@@ -722,22 +782,22 @@ export class QuotationCenterComponent extends AppBase {
   }
 
   // 全部
-  allQuote(e) {
+  allQuote() {
     console.log(event)
     this.list = [];
     this.pageList = [];
     this.isquote = false;
     this.isshow = true;
     this.exp = true;
-    let current = e.target;
-    current.classList.add('btn-active')
-    let others = e.target.parentElement.childNodes
+    // let current = e.target;
+    // current.classList.add('btn-active')
+    // let others = e.target.parentElement.childNodes
 
-    for (let i = 0; i < others.length; i++) {
-      if (others[i] != current) {
-        others[i].classList.remove('btn-active')
-      }
-    }
+    // for (let i = 0; i < others.length; i++) {
+    //   if (others[i] != current) {
+    //     others[i].classList.remove('btn-active')
+    //   }
+    // }
 
     var a = this.orderApi
     

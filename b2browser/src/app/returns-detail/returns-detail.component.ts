@@ -33,7 +33,7 @@ export class ReturnsDetailComponent extends AppBase  {
   returnstatus = ''
   
   onMyShow(){
-    let oldtime = (new Date()).getTime() +  5*24*60*60*1000;
+    let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
     this.activeRoute.queryParams.subscribe(queryParams=>{
       this.id = queryParams.id
@@ -60,21 +60,21 @@ export class ReturnsDetailComponent extends AppBase  {
     if(item.orderstatus=='R'){
 
       item.orderstatus = 'I'
-      this.orderApi.updatereturnstatus({id:item.id,orderstatus:item.orderstatus}).then((updatereturnstatus:any)=>{
+      this.orderApi.updatereturnstatus({id:item.id,orderstatus:item.orderstatus,order_id:item.order_id}).then((updatereturnstatus:any)=>{
         console.log(updatereturnstatus)
-        if(updatereturnstatus.code=='0'){
+        // if(updatereturnstatus.code=='0'){
           this.navigate('returnsManagement')
-        }
+        // }
       })
 
     }else if(item.orderstatus=='I'){
       that.orderApi.addxiaofei({type:"R",amount:item.return_money,enterprise_id:item.enterprise_id,employee_id:item.employee_id,order_id:item.order_id,returnemp_id:this.operatorinfo.id}).then((addconsume)=>{
         console.log(addconsume,'aaaa')
         if(addconsume){
-          that.memberApi.editenterprise({id:item.enterprise_id,account_money:item.return_money}).then((editenterprise)=>{
+          that.memberApi.editenterprise({id:this.operatorinfo.enterprise_id,account_money:item.return_money}).then((editenterprise)=>{
             if(editenterprise){
               console.log(this.operatorinfo.enterprise_id)
-              that.orderApi.updatemoney({ent_id:this.operatorinfo.enterprise_id,money:item.return_money}).then(()=>{
+              that.orderApi.updatemoney({ent_id:item.enterprise_id,money:item.return_money}).then(()=>{
 
               })
 
@@ -84,11 +84,11 @@ export class ReturnsDetailComponent extends AppBase  {
               that.memberApi.editmoney({id:this.operatorinfo.id,sales_volume:item.return_money}).then((editmoney)=>{
                 if(editmoney){
                   item.orderstatus='Y'
-                  that.orderApi.updatereturnstatus({id:item.id,orderstatus:item.orderstatus}).then((updatereturnstatus:any)=>{
+                  that.orderApi.updatereturnstatus({id:item.id,orderstatus:item.orderstatus,order_id:item.order_id}).then((updatereturnstatus:any)=>{
                     console.log(updatereturnstatus)
-                    if(updatereturnstatus.code=='0'){
+                    // if(updatereturnstatus.code=='0'){
                       that.navigate('returnsManagement')
-                    }
+                    // }
                   })
                 }
               })

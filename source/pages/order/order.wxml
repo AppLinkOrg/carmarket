@@ -175,6 +175,7 @@
         <view class="h5">{{item.orderno}}</view> -->
         <view class='flex-1'></view>
         <view class=' txt-bold h5'>已完成</view>
+        
       </view>
    <view class='flex-row flex-center flex-wrap margin-top-10'>
       <view wx:for="{{item.orderitem}}" class='txt-black h5 ' wx:key="g" wx:for-index='idx'>{{idx==0?'':'、'}}{{item.parts}}</view>
@@ -187,7 +188,9 @@
       <view class='flex-1'></view>
       <view class='h5'></view>
       <view class="h5">{{item.orderno}}</view>
+      
       <view class='flex-1'></view>
+      <view class=' txt-bold h5' wx:if='{{item.order_status!="N"}}'>{{item.order_status_name}}</view>
       <view class='orpay txt-white text-center h6' wx:if='{{item.order_status=="N"}}' bindtap="totuihuan" id="{{item.id}}">申请退换</view>
     </view>
 

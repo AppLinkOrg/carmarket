@@ -14,11 +14,11 @@
             <div class="card-body">
               <div class="margin-bottom-20" role="group" aria-label="...">
                       
-                  <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='quoteHandle($event)'>待报价</button>
-                  <button type="button" class="btn-default no-border border-tlb  padding-left-40 padding-right-40 txt-d-gray" (click)='quotedPrice($event)'>已报价</button>                    
-                  <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='neglected($event)'>已忽略</button>           
-                  <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='expired($event)'>已失效</button>           
-                  <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray" (click)='allQuote($event)'>全部</button> 
+                  <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{aa==1?'btn-active':''}}" (click)='change(1)'>待报价 {{daibaolen}}</button>
+                  <button type="button" class="btn-default no-border border-tlb  padding-left-40 padding-right-40 txt-d-gray {{aa==2?'btn-active':''}}" (click)='change(2)'>已报价 {{yibaolen}}</button>                    
+                  <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{aa==3?'btn-active':''}}" (click)='change(3)'>已忽略 {{yihulen}}</button>           
+                  <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{aa==4?'btn-active':''}}" (click)='change(4)'>已失效 {{yishilen}}</button>           
+                  <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{aa==5?'btn-active':''}}" (click)='change(5)'>全部 {{alllen}}</button> 
                 
                   
               </div>

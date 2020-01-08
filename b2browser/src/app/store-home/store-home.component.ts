@@ -43,7 +43,7 @@ export class StoreHomeComponent extends AppBase  {
  employee_id=''
 
   onMyShow(){
-    let oldtime = (new Date()).getTime() +  5*24*60*60*1000;
+    let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString());
     var a = this.orderApi
 
@@ -67,64 +67,75 @@ export class StoreHomeComponent extends AppBase  {
         a.mylist({ enterprise_id: this.enterprise_id,employee_id:this.employee_id }).then((mylist:any)=>{
           
           console.log(mylist)
-          
-          for(let i=0;i<mylist.length;i++){
-            let day = new Date()
-            let year = day.getFullYear()
-            let  month :any = (day.getMonth()+1)
-            let date :any = day.getDate()
+          a.returnlist({ gongsi: this.enterprise_id,baojia:this.employee_id,orderstatus:'Y'}).then((returnlist:any)=>{
+            console.log(returnlist)
+         
+            for(let i=0;i<mylist.length;i++){
+              let day = new Date()
+              let year = day.getFullYear()
+              let  month :any = (day.getMonth()+1)
+              let date :any = day.getDate()
 
-            month = month < 10 ? '0'+ month : month
-            date = date < 10  ? '0'+ date : date
-            this.today_time = year+ "-" + month + "-" + date;
-            this.year_mon = year+ "-" + month 
+              month = month < 10 ? '0'+ month : month
+              date = date < 10  ? '0'+ date : date
+              this.today_time = year+ "-" + month + "-" + date;
+              this.year_mon = year+ "-" + month 
 
-            let index = mylist[i].order_time.indexOf('-')
+              let index = mylist[i].order_time.indexOf('-')
+              
+              mylist[i].order_time = mylist[i].order_time.substring(0,index+3)
+              
             
-            mylist[i].order_time = mylist[i].order_time.substring(0,index+3)
-            
-          
-            if(mylist[i].order_time == this.year_mon){
+              if(mylist[i].order_time == this.year_mon){
 
-              // this.monOrder ++ 
-              // this.monList.push(mylist[i])
-              // this.monIncome = this.getIncome(this.monList)
-          
-              if(mylist[i].order_time_dateformat ==  this.today_time){
-                if(mylist[i].order_status != 'R' && mylist[i].order_status != 'Y'){
+                // this.monOrder ++ 
+                // this.monList.push(mylist[i])
+                // this.monIncome = this.getIncome(this.monList)
+            
+                if(mylist[i].order_time_dateformat ==  this.today_time){
                   this.count ++ 
-                  this.list.push(mylist[i])
-                  this.totalIncome = this.getIncome(this.list)
+                  // if(mylist[i].order_status != 'R' && mylist[i].order_status != 'Y'){
+                    
+                    this.list.push(mylist[i])
+                    this.totalIncome = this.getIncome(this.list,returnlist)
+                  // }
                 }
-              }
-
-              if(mylist[i].order_status != 'R' && mylist[i].order_status != 'Y'){
                 this.monOrder ++ 
-                this.monList.push(mylist[i])
-                this.monIncome = this.getIncome(this.monList)
+                // if(mylist[i].order_status != 'R' && mylist[i].order_status != 'Y'){
+                 
+                  this.monList.push(mylist[i])
+                  this.monIncome = this.getIncome(this.monList,returnlist)
+                // }
+
+              }
+              if(mylist[i].order_status == 'L'){
+                this.goods ++
+              }
+
+              if(mylist[i].order_status == 'R'){
+                this.returnGoods ++ 
               }
 
             }
-            if(mylist[i].order_status == 'L'){
-              this.goods ++
-            }
-
-            if(mylist[i].order_status == 'R'){
-              this.returnGoods ++ 
-            }
-
-          }
+          })
         })
+       
 
     })
 
   }
 
-  getIncome(list){
+  getIncome(list,returnlist){
     let income = 0
     for(let i=0;i<list.length;i++){
-      income += Number( list[i].totalamount)
+      income += Number( list[i].totalamount);
+      for(let item of returnlist){
+        if(list[i].id==item.order_id){
+          income -= Number(item.return_money);
+        }
+      }
     }
+    
     return income
   }
 

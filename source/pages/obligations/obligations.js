@@ -46,7 +46,7 @@ class Content extends AppBase {
     var orderapi = new OrderApi();
     var price = e.currentTarget.id;
     var detail = this.Base.getMyData().detail;
-
+    console.log(detail.totalamount,'price')
     wx.showModal({
       title: '购买',
       content: '确认购买？',
@@ -59,7 +59,8 @@ class Content extends AppBase {
         if (res.confirm) {
           orderapi.updatemoney({
             id: that.Base.getMyData().employeeinfo.enterprise.id,
-            money: price
+            money: detail.totalamount,
+            em_id: detail.employee_id
           }, (updatemoney) => {
 
             orderapi.updatestatus({

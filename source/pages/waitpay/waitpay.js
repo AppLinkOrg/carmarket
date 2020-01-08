@@ -44,7 +44,7 @@ class Content extends AppBase {
 
         sumprice += parseFloat(mylist[i].totalamount)  ;
       }
-
+      sumprice = sumprice.toFixed(2);
       this.Base.setMyData({
         mylist,
         sumprice

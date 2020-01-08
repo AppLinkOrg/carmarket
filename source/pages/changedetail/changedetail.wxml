@@ -25,7 +25,8 @@
   </view>
   <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
     <view class='txt-black '>退货原因：</view>
-    <view class='txt-black '>{{info.remarks}}</view>
+    <view class='txt-black ' wx:if='{{info.remarks=="undefined"}}'>无</view>
+    <view class='txt-black ' wx:if='{{info.remarks!="undefined"}}'>{{info.remarks}}</view>
   </view>
   <view class="bottone margin-top"></view>
 
