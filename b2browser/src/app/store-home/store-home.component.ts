@@ -41,7 +41,7 @@ export class StoreHomeComponent extends AppBase  {
 
  enterprise_id = ''
  employee_id=''
-
+ yituihuoGoods=0;
   onMyShow(){
     let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString());
@@ -116,6 +116,10 @@ export class StoreHomeComponent extends AppBase  {
                 this.returnGoods ++ 
               }
 
+              if(mylist[i].order_status == 'Y'){
+                this.yituihuoGoods ++ 
+              }
+              
             }
           })
         })
@@ -148,12 +152,22 @@ export class StoreHomeComponent extends AppBase  {
     })
   }
 
-  applyGoods(){
-    this.router.navigate(['returnsManagement'],{
-      queryParams: {
-        status: 'R'
-      }
-    })
+  applyGoods(flag){
+    console.log(flag)
+    if(flag){
+      this.router.navigate(['returnsManagement'],{
+        queryParams: {
+          status: 'R'
+        }
+      })
+    }else {
+      this.router.navigate(['returnsManagement'],{
+        queryParams: {
+          status: 'Y'
+        }
+      })
+    }
+   
   }
 
   todayOrder(){

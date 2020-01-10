@@ -140,7 +140,7 @@ export class QuotationDetailsComponent extends AppBase {
 
     if (this.rate == '') {
       this.rate = '0';
-      // item.rateprice = 0;
+      item.rateprice = item.price;
     }
 
     var addList = {
@@ -288,7 +288,7 @@ export class QuotationDetailsComponent extends AppBase {
 
       if (this.rate == '') {
         this.rate = '0';
-        item.rateprice = 0;
+        item.rateprice = item.price;
       }
 
 

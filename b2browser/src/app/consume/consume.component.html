@@ -21,13 +21,22 @@
             <div class="col-lg-12">
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
-                    <div style="margin-top: 50px;margin-left: 50px;">
+                    <div class="flex-row flex-center" style="margin-top: 50px;margin-left: 50px;">
                         <span > 姓名:</span> 
                         <select class="margin-left text-center" [(ngModel)]="name" name="id" (ngModelChange)="changcode()" style="width: 90px;">
                             <option value="">请选择</option>
                             <option   #id  *ngFor='let item of allenterprise;let i=index'>{{item.name}}</option>
                         </select>
                         <!-- <span class="reset" (click)='reset()'>重置</span> -->
+                        <div style="width:30px; height:10px;"></div>
+                        <span> 日期:</span> 
+                        <input  type="date"  class="input-box border-gray-1 text-center margin-left"  name='shijian' [(ngModel)]='shijian' (ngModelChange)="changcode2()">
+
+                        <div class="flex-row flex-center">
+                            <div class="reset" (click)='search()'>查询</div>
+                            <div class="reset" (click)='reset()'>重置</div>
+
+                        </div>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">

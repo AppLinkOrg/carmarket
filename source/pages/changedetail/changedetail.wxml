@@ -4,7 +4,7 @@
       <image class='icon-25 ' src='{{uploadpath}}resource/{{res.waittui}}'></image>
       <view class='txt-white h4 margin-left-10 margin-bottom-20'>{{info.orderstatus_name}}</view>
     </view>
-    <view class='margin-bottom-40  txt-white '>退货申请已发出，请等待供应商确认！</view>
+    <view class='margin-bottom-40  txt-white '>退货已完成！</view>
   </view>
   <view class=' flex-row margin-top  '>
     <view class='borderleft'></view>
@@ -21,7 +21,8 @@
   </view>
   <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
     <view class='txt-black '>手机号码：</view>
-    <view class='txt-black '>{{info.receivecontact}}</view>
+    <view class='txt-black ' wx:if='{{info.receivecontact=="undefined"}}'>无</view>
+    <view class='txt-black ' wx:if='{{info.receivecontact!="undefined"}}'>{{info.receivecontact}}</view>
   </view>
   <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
     <view class='txt-black '>退货原因：</view>

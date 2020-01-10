@@ -84,7 +84,7 @@ class Content extends AppBase {
       })
     })
 
-
+  
   }
   gettime(date) {
     date = date.replace(/-/g, '/');
@@ -139,12 +139,28 @@ class Content extends AppBase {
     this.Base.setMyData({
       order: orderid
     });
+    this.onMyShow();
   }
 
 
   bindquxiao(e) {
     var that = this;
     var orderapi = new OrderApi();
+    console.log(e)
+    console.log(this.Base.getMyData().daifahuo)
+    var daifahuo = this.Base.getMyData().daifahuo;
+    var id = e.currentTarget.id;
+    var price = 0;
+    for (var i = 0; i < daifahuo.length;i++){
+      if (id == daifahuo[i].id){
+        for (var j = 0; j < daifahuo[i].orderitem.length;j++){
+          price += parseFloat(daifahuo[i].orderitem[j].price);
+        }
+      }
+    }
+
+    if (price>0){
+      
     wx.showModal({
       title: '取消订单',
       content: '确认取消订单？',
@@ -156,18 +172,29 @@ class Content extends AppBase {
       success: function(res) {
         if (res.confirm) {
 
-          orderapi.updatestatus({
-            id: e.currentTarget.id,
-            order_status: "E"
-          }, (updatestatus) => {
-            that.onMyShow();
+          orderapi.updatemoney({
+            ent_id: that.Base.getMyData().employeeinfo.enterprise.id,
+            money: price,
+          }, (updatemoney) => {
+
+            orderapi.updatestatus({
+              id: e.currentTarget.id,
+              order_status: "E"
+            }, (updatestatus) => {
+              that.onMyShow();
+            })
+
           })
+
+         
+          
+
         }
       }
     })
 
 
-
+    }
 
   }
 

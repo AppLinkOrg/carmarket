@@ -107,7 +107,7 @@
   <view class='txt-red margin-right-30 txt-bold'>￥{{price}}元</view>
 </view>
 
-
-
 <view class='bott margin-top-20 margin-bottom-20'></view>
+<view style="height:120rpx"></view>
+
 <view class="btn-btn" bindtap='bindsubmit'>提交</view>

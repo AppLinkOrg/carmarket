@@ -83,7 +83,10 @@ export class OrderManagementComponent extends AppBase  {
           this.list = []
           this.pageList = []
           for(let j=0;j<mylist.length;j++){
-            if(mylist[j].order_status != 'R' && mylist[j].order_status != 'Y' && mylist[j].order_status != 'I'){
+            // if(mylist[j].order_status != 'R' && mylist[j].order_status != 'Y' && mylist[j].order_status != 'I'){
+              if(mylist[j].order_status == 'R' || mylist[j].order_status == 'Y' || mylist[j].order_status == 'I'){
+                mylist[j].order_status_name = '已完成';
+              }
               this.enterpriseApi.getemployeeinfo({id:mylist[j].baojia}).then((getemployeeinfo:any)=>{
                 console.log(getemployeeinfo,'嘻嘻嘻嘻嘻')
                 mylist[j].baojiaperson = getemployeeinfo.name
@@ -160,7 +163,7 @@ export class OrderManagementComponent extends AppBase  {
                
               
   
-            }
+            // }
           
           }
           

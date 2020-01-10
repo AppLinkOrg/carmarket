@@ -103,12 +103,21 @@
                   </div>
                 </div>
               <div class="col-xl-3  cursor-po"> 
-                <div (click)='applyGoods()'>
+                <div (click)='applyGoods(true)'>
                   <img src="{{uploadpath}}resource/{{res.returngoods}}" class="icon-40 margin-right-10"/> 
                    客户申请退货：
                    <span>{{returnGoods}}</span>
                 </div>
               </div>
+
+              <div class="col-xl-3  cursor-po"> 
+                <div (click)='applyGoods(false)'>
+                  <img src="{{uploadpath}}resource/{{res.yituihuo}}" class="icon-40 margin-right-10"/> 
+                   已退货：
+                   <span>{{yituihuoGoods}}</span>
+                </div>
+                </div>
+
             </div>
           </div>
         </div>
