@@ -31,9 +31,52 @@ class Content extends AppBase {
      // id: 1,
     }, (yiwancheng) => {
       this.Base.setMyData({
-        yiwancheng
+        yiwancheng, orderlijian: yiwancheng.orderitem
       });
+      this.getreturn(yiwancheng.orderitem, yiwancheng);
     });
+  }
+
+  getreturn(orderlijian, yiwancheng){
+    var orderapi = new OrderApi();
+    console.log(orderlijian,'orderlijian');
+    // var yiwancheng=this.Base.getMyData().yiwancheng;
+    var lijian = [];
+    orderapi.returnlist({ order_id: this.Base.options.id }, (returndetail)=>{
+      console.log(returndetail,'getreturn');
+      if (returndetail.length>0){
+        returndetail.filter((item) => {
+          lijian = item.returnitem;
+          
+        })
+
+
+        if (orderlijian.length == lijian.length) {
+          var yiquantuohuo = true;
+        }
+        if (orderlijian.length > lijian.length) {
+          var weiquantuohuo = false;
+          // for (var i = 0; i < orderlijian.length; i++) {
+          //   for (var j = 0; j < lijian.length; j++) {
+          //     if (orderlijian[i].parts == lijian[j].name) {
+          //       yiwancheng.orderitem.splice(i, 1);
+          //     }
+          //   }
+          // }
+        }
+        this.Base.setMyData({ lijian, yiquantuohuo, weiquantuohuo })
+
+
+      }else {
+        this.Base.setMyData({
+          weiquantuohuo:false,
+          
+        })
+      }
+      
+      
+    })
+
   }
 
   bindapply(e) {
@@ -56,4 +99,5 @@ var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindapply = content.bindapply;
+body.getreturn = content.getreturn;
 Page(body)

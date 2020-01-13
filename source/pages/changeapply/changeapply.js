@@ -41,13 +41,56 @@ class Content extends AppBase {
         list[i].check = false;
         list[i].shuliang = list[i].qty;
       }
-
-      this.Base.setMyData({
-        change
-      });
-
+      
+      // this.Base.setMyData({
+      //   change
+      // });
+      this.getreturn(list, change)
     });
   }
+
+  getreturn(orderlijian, change) {
+    var orderapi = new OrderApi();
+    console.log(orderlijian, 'orderlijian');
+    var lijian = [];
+    // var change = this.Base.getMyData().change;
+    console.log(change,'change')
+    orderapi.returnlist({ order_id: this.Base.options.id}, (returndetail) => {
+      console.log(returndetail, 'getreturn');
+      if (returndetail.length > 0) {
+        returndetail.filter((item) => {
+          // var lijian =item.returnitem;
+         
+            for (var i = 0; i < orderlijian.length; i++) {
+              for (var k = 0; k < item.returnitem.length; k++) {
+                if (orderlijian[i].parts == item.returnitem[k].name) {
+
+                  if (orderlijian[i].qty > item.returnitem[k].qty){
+                    change.orderitem[i].qty = orderlijian[i].qty - item.returnitem[k].qty
+                  } else {
+                    change.orderitem.splice(i, 1);
+                  }
+                  
+                }
+              }
+            }
+          
+        })
+        console.log(lijian)
+         
+        
+        this.Base.setMyData({ change})
+
+
+      }else {
+        this.Base.setMyData({ change})
+      }
+
+
+    })
+
+  }
+
  
   bindxuanze(e) {
     var change = this.Base.getMyData().change;
@@ -152,85 +195,102 @@ class Content extends AppBase {
     var change = this.Base.getMyData().change;
     var shibie = change.orderitem;
 
-    //console.log(shibie);
-    //return;
-
-    wx.showModal({
-      title: '提交',
-      content: '确认提交退货申请？',
-      showCancel: true,
-      cancelText: '取消',
-      cancelColor: '#EE2222',
-      confirmText: '确定',
-      confirmColor: '#2699EC',
-      success: function (res) {
-        if (res.confirm) {
-
-
-          // wx.showLoading({
-          //   title: '提交中',
-          //   mask: true
-          // })
+  
+    // console.log(shibie);
+    // return;
+    if(this.checkno(shibie)){
+      wx.showModal({
+        title: '提交',
+        content: '确认提交退货申请？',
+        showCancel: true,
+        cancelText: '取消',
+        cancelColor: '#EE2222',
+        confirmText: '确定',
+        confirmColor: '#2699EC',
+        success: function (res) {
+          if (res.confirm) {
 
 
-          var orderapi = new OrderApi();
+            // wx.showLoading({
+            //   title: '提交中',
+            //   mask: true
+            // })
 
-          orderapi.addtuihuo({ 
-            order_id: change.id,
-           // enterprise_id: change.enterprise_id,
-            // enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
-            // employee_id: change.employee_id,
 
-            baojia: change.employee_id,
-            gongsi: change.enterprise_id,
+            var orderapi = new OrderApi();
 
-            enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
-            employee_id: that.Base.getMyData().employeeinfo.id,
-            
-            remarks: that.Base.getMyData().content,
-            carmodel: change.carname,
-            return_money: that.Base.getMyData().price,
-            receivecontact: that.Base.getMyData().phone,
-            orderstatus: 'R',
-            status:'A'
-          }, (addtuihuo) => { 
+            orderapi.addtuihuo({
+              order_id: change.id,
+              // enterprise_id: change.enterprise_id,
+              // enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
+              // employee_id: change.employee_id,
 
-            orderapi.updatestatus({
-              id: that.Base.options.id,
-              order_status: "R"
-            }, (updatestatus) => {
-             
-            })
- 
-            that.Base.setMyData({
-              addtuihuo
-            }) 
-            
-            for (var i = 0; i < shibie.length; i++) { 
-              if (shibie[i].check==true){
-                var list = {
-                  tuihuo_id: addtuihuo.return,
-                  name: shibie[i].parts,
-                  photo: shibie[i].photo,
-                  qty: shibie[i].qty,
-                  price: shibie[i].price,
-                  quality: shibie[i].quality,
-                  mcid: shibie[i].mcid,
-                  stand_time: shibie[i].standby_time,
-                  guarantee: shibie[i].guarantee,
-                  remark: shibie[i].sendcar_time,
-                  status: 'A'
+              baojia: change.employee_id,
+              gongsi: change.enterprise_id,
+
+              enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
+              employee_id: that.Base.getMyData().employeeinfo.id,
+
+              remarks: that.Base.getMyData().content,
+              carmodel: change.carname,
+              return_money: that.Base.getMyData().price,
+              receivecontact: that.Base.getMyData().phone,
+              orderstatus: 'R',
+              status: 'A'
+            }, (addtuihuo) => {
+
+              orderapi.updatestatus({
+                id: that.Base.options.id,
+                order_status: "R"
+              }, (updatestatus) => {
+
+              })
+
+              that.Base.setMyData({
+                addtuihuo
+              })
+
+              for (var i = 0; i < shibie.length; i++) {
+                if (shibie[i].check == true) {
+                  var list = {
+                    tuihuo_id: addtuihuo.return,
+                    name: shibie[i].parts,
+                    photo: shibie[i].photo,
+                    qty: shibie[i].qty,
+                    price: shibie[i].price,
+                    quality: shibie[i].quality,
+                    mcid: shibie[i].mcid,
+                    stand_time: shibie[i].standby_time,
+                    guarantee: shibie[i].guarantee,
+                    remark: shibie[i].sendcar_time,
+                    status: 'A'
+                  }
+                  that.fitting(list, i)
                 }
-                that.fitting(list, i) 
-              } 
-            } 
-          }) 
+              }
+            })
+          }
         }
-      }
-    });
+      });
 
+    }else {
+      wx.showToast({
+        title: '请选择退货的零件！',
+        icon: 'none'
+      })
+      return
+    }
+
+    
   }
-
+  checkno(arr){
+    for(var i=0;i<arr.length;i++){
+      if(arr[i].check==true){
+        return true
+      }
+    }
+    return false
+  }
   fitting(json, i) {
     var that = this;
     var orderapi = new OrderApi();
@@ -280,5 +340,7 @@ body.bindphone = content.bindphone;
 body.bindxuanze = content.bindxuanze;
 body.bindall = content.bindall;
 body.bindreduce = content.bindreduce;
-body.bindadd = content.bindadd;
+body.bindadd = content.bindadd; 
+body.checkno = content.checkno; 
+body.getreturn = content.getreturn;
 Page(body)

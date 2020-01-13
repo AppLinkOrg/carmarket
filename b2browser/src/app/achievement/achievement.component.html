@@ -31,7 +31,7 @@
                                         <span class="txt-black padding-four-words margin-right-20">员工姓名</span>
                                         <!-- <input type="text" class="input-box border-gray-1 text-center" name='userName'  [(ngModel)]="obj.userName" > -->
                                         <select name="userName" class="input-box" [(ngModel)]="obj.userName">
-                                            <option aria-checked="true"></option>
+                                            <option aria-checked="true">全部</option>
                                             <option *ngFor='let item of allenterprise'>{{item.name}}</option>
                                         </select>
                                     </div> 

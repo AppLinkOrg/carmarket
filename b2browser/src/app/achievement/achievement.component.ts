@@ -6,7 +6,7 @@ import { InstApi } from 'src/providers/inst.api';
 import { OrderApi } from 'src/providers/order.api';
 import { EnterpriseApi } from 'src/providers/enterprise.api';
 import { all } from 'q';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { THIS_EXPR, ThrowStmt } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-achievement',
@@ -54,7 +54,7 @@ export class AchievementComponent extends AppBase  {
   selPage = 1;
   data = null;
   setData = null;
-
+  temporder=null;
 
   onMyShow(){
     let oldtime = (new Date()).getTime() + 6*60*60*1000;
@@ -62,20 +62,58 @@ export class AchievementComponent extends AppBase  {
       this.getmsg();
       
 
-    
+      
   }
 
   getmsg(){
     console.log(this.operatorinfo.enterprise_id)
     this.enterpriseApi.allenterprise({enterprise_id:this.params.enterprise_id}).then((allenterprise:any)=>{
       console.log(allenterprise)
-      this.allenterprise = allenterprise
+      this.allenterprise = allenterprise;
+      // for(var i=0;i<allenterprise.length;i++){
+        
+        this.orderApi.mylist({  enterprise_id:this.params.enterprise_id}).then((order:any)=>{
+          console.log(order,'order');
+
+          
+          this.pageList=[];
+          this.order = order.filter((item,idx)=>{
+            if(item.order_status=='N' || item.order_status == 'Y' || item.order_status=='R') {
+              this.totalMoney += parseFloat(item.totalamount);
+              item.index = idx
+              return item
+            }
+           
+          });
+         
+          this.temporder=order;
+          this.length = this.order.length;
+          this.pagination(this.order,this.length);
+          console.log(this.order,'ooo');
+          console.log(this.totalMoney);
+          this.getreturnorder();
+        })
+      // }
+     
     })
+  }
+  returnlist
+  getreturnorder(){
+    
+      this.orderApi.returnlist({gongsi:this.params.enterprise_id}).then((returnlist:any)=>{
+          console.log(returnlist)
+          this.returnlist = returnlist.filter((item)=>{
+            this.totalMoney -= parseFloat(item.return_money);
+            return item
+          })
+          console.log(this.totalMoney,'lll')
+      })  
+    
   }
 
   reset(){
     this.obj = {
-      userName: '',
+      userName: '全部',
       mobile: '',
       orderno: '',
       start_time: '',
@@ -88,15 +126,22 @@ export class AchievementComponent extends AppBase  {
     for(let k=1;k<toggleBtns.length;k++){
       toggleBtns[k].classList.remove('btn-active')
     }
-    this.totalMoney = 0
-    this.order = []
-    this.pageList = []
-    this.length = 0
-    this.pagination(this.order,this.length)
+    // this.totalMoney = 0
+    // this.order = []
+    // this.pageList = []
+    // this.length = 0
+    // this.pagination(this.order,this.length)
+    this.getmsg();
     
   }
 
-
+  checkorderno(item,arr){
+    for(let iitem of arr){
+      if(item.orderno == iitem.order_orderno){
+        this.totalMoney -= parseFloat(iitem.return_money);
+      }
+    }
+  }
   search(item){
     this.order = []
     this.totalMoney = 0
@@ -108,7 +153,10 @@ export class AchievementComponent extends AppBase  {
       toggleBtns[k].classList.remove('btn-active')
     }
 
-    console.log(toggleBtns)
+    console.log(toggleBtns);
+    if(item.userName=='全部'){
+      this.getmsg();
+    }
 
     console.log(item)
     if(item.userName!='' || item.mobile != ''){
@@ -120,6 +168,7 @@ export class AchievementComponent extends AppBase  {
        
           for(let i=0;i<allenterprise.length;i++){
             console.log(allenterprise[i],'lll')
+
 
             this.orderApi.mylist({  enterprise_id:allenterprise[i].enterprise_id, employee_id: allenterprise[i].id, orderno: item.orderno}).then((order)=>{
               
@@ -156,8 +205,10 @@ export class AchievementComponent extends AppBase  {
               console.log(tOrder)
               
               for(let j=0;j<tOrder.length;j++){
+                
+                
                 if(tOrder[j].order_status == 'N' ){
-                  this.totalMoney =  parseInt(tOrder[j].totalamount)
+                 
                   this.order.push(tOrder[j])
                 }
 
@@ -167,7 +218,7 @@ export class AchievementComponent extends AppBase  {
                 }
 
                 if(tOrder[j].order_status == 'Y'){
-                  this.totalMoney =  parseInt(tOrder[j].totalamount)
+                 
                   tOrder[j].order_status_name = '已退款'
                   this.order.push(tOrder[j])
                 }
@@ -175,7 +226,10 @@ export class AchievementComponent extends AppBase  {
               }
 
               for(let k=0;k<this.order.length;k++){
-                this.order[k].index = k
+                this.order[k].index = k;
+                this.totalMoney += parseFloat(this.order[k].totalamount);
+
+                 this.checkorderno(this.order[k],this.returnlist)
               }
 
               this.length = this.order.length
@@ -224,8 +278,9 @@ export class AchievementComponent extends AppBase  {
               }
 
               for(let j=0;j<tOrder.length;j++){
+               
                 if(tOrder[j].order_status == 'N' ){
-                  this.totalMoney = tOrder[j].totalamount
+                 
                   this.order.push(tOrder[j])
                 }
 
@@ -235,7 +290,7 @@ export class AchievementComponent extends AppBase  {
                 }
 
                 if(tOrder[j].order_status == 'Y'){
-                  this.totalMoney = tOrder[j].totalamount
+                  
                   tOrder[j].order_status_name = '已退款'
                   this.order.push(tOrder[j])
                 }
@@ -243,7 +298,10 @@ export class AchievementComponent extends AppBase  {
               }
 
               for(let k=0;k<this.order.length;k++){
-                this.order[k].index = k
+                this.order[k].index = k;
+                this.totalMoney += parseFloat(this.order[k].totalamount);
+
+                this.checkorderno(this.order[k],this.returnlist)
               }
 
               this.length = this.order.length

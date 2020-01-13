@@ -177,12 +177,24 @@ class Content extends AppBase {
             money: price,
           }, (updatemoney) => {
 
+            orderapi.addxiaofei({
+              type: 'E',
+              amount:price,
+              enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
+              employee_id:that.Base.getMyData().employeeinfo.id,
+              order_id: e.currentTarget.id,
+            }, (addxiaofei) => {
+
+           
+
             orderapi.updatestatus({
               id: e.currentTarget.id,
               order_status: "E"
             }, (updatestatus) => {
               that.onMyShow();
             })
+
+              })
 
           })
 

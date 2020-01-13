@@ -64,15 +64,27 @@ export class SendGoodsDetailComponent extends AppBase  {
    
 
   }
+  ifquxiao(){
+    this.orderApi.detail({ id: this.id }).then((detailList:any)=>{
 
-  changeStatus(){
-    this.list.order_status = "M"
-    this.orderApi.updatestatus({id: this.list.id, order_status: this.list.order_status, status: 'A'}).then((updatestatus:any)=>{
-   
-      if(updatestatus.code == 0){
-        this.router.navigate(['receiveGoodsDetail'],{ queryParams: { id: this.id }});
+      if(detailList.order_status=="E"){
+          this.quxiao=true;
       }
     })
+  }
+  quxiao=false
+  changeStatus(){
+
+
+      this.list.order_status = "M"
+      this.orderApi.updatestatus({id: this.list.id, order_status: this.list.order_status, status: 'A'}).then((updatestatus:any)=>{
+     
+        if(updatestatus.code == 0){
+          this.router.navigate(['receiveGoodsDetail'],{ queryParams: { id: this.id }});
+        }
+      })
+   
+   
   }
 
   print(){

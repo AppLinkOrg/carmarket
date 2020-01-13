@@ -282,7 +282,7 @@
                                              您的报价未填完，请继续填写
                                             </div>
                                             <div class="modal-footer">
-                                              <button type="button" class="btn btn-default" *ngIf='bb' (click)="saveQuote(operatorinfo.enterprise.id)">提交报价</button>
+                                              <button type="button" class="btn btn-default" *ngIf='bb' (click)="saveQuote(operatorinfo.enterprise.id)" data-dismiss="modal">提交报价</button>
                                               <button type="button" class="btn btn-primary "  data-dismiss="modal">继续填写</button>
                                             </div>
                                             </div>
@@ -315,7 +315,7 @@
                                             </div>
                                             <div class="modal-footer">
                                               <!-- <button type="button" class="btn btn-default" *ngIf='bb' (click)="saveQuote(operatorinfo.enterprise.id)">提交报价</button> -->
-                                              <button type="button" class="btn btn-primary "  routerLink='/quotationCenter'>确定</button>
+                                              <button type="button" class="btn btn-primary "  routerLink='/quotationCenter' data-dismiss="modal">确定</button>
                                             </div>
                                             </div>
                                           </div>

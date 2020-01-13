@@ -42,6 +42,7 @@ export class StoreHomeComponent extends AppBase  {
  enterprise_id = ''
  employee_id=''
  yituihuoGoods=0;
+ yiwanchengGoods=0;
   onMyShow(){
     let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString());
@@ -109,15 +110,21 @@ export class StoreHomeComponent extends AppBase  {
 
               }
               if(mylist[i].order_status == 'L'){
-                this.goods ++
+                this.goods ++;
               }
 
               if(mylist[i].order_status == 'R'){
-                this.returnGoods ++ 
+                this.yiwanchengGoods++;
+                this.returnGoods ++ ;
               }
 
               if(mylist[i].order_status == 'Y'){
-                this.yituihuoGoods ++ 
+                this.yiwanchengGoods++;
+                this.yituihuoGoods ++ ;
+              }
+
+              if(mylist[i].order_status == 'N'){
+                this.yiwanchengGoods++;
               }
               
             }
