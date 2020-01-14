@@ -58,14 +58,14 @@
                         <button class="btn btn-primary" (click)='tiaozhuan5(item)'><a>查看详情</a></button><br>
                     </div>
                     <div *ngIf='operation=="R"'>
-                        <button class="btn btn-primary" (click)='tiaozhuan(item.id)'><a>立即发货</a></button>
+                        <button class="btn btn-primary" (click)='tiaozhuan(item)'><a>立即发货</a></button>
                     </div>
                     <div *ngIf='operation=="S"'>
-                        <button class="btn btn-primary" (click)='tiaozhuan2(item.id)'><a>查看详情</a></button><br>
+                        <button class="btn btn-primary" (click)='tiaozhuan2(item)'><a>查看详情</a></button><br>
                         <span class="txt-orange">等待买家收货</span>
                     </div>
                     <div *ngIf='operation=="F"'>
-                        <button class="btn btn-primary" (click)='tiaozhuan3(item.id)'><a>查看详情</a></button><br>
+                        <button class="btn btn-primary" (click)='tiaozhuan3(item)'><a>查看详情</a></button><br>
                         <span class="txt-green">交易成功</span>
                     </div>
                   </td>

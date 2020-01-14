@@ -149,18 +149,17 @@ export class EmployeeManagementComponent extends AppBase  {
       for(let i=0;i<this.tempOrder.length;i++){
 
         if(this.tempOrder[i].order_status == 'N' ){
-          this.totalMoney += parseInt( this.tempOrder[i].totalamount)
+          this.totalMoney += parseFloat( this.tempOrder[i].totalamount)
           tOrder.push(this.tempOrder[i])
         }
 
         if(this.tempOrder[i].order_status == 'R'){
-          this.tempOrder[i].order_status_name = '待退款'
+          this.totalMoney += parseFloat( this.tempOrder[i].totalamount)
           tOrder.push(this.tempOrder[i])
         }
 
         if(this.tempOrder[i].order_status == 'Y'){
-          this.tempOrder[i].order_status_name = '已退款'
-          this.totalMoney -= parseInt( this.tempOrder[i].totalamount)
+          this.totalMoney += parseFloat( this.tempOrder[i].totalamount)
           tOrder.push(this.tempOrder[i])
         }
       }
@@ -173,7 +172,8 @@ export class EmployeeManagementComponent extends AppBase  {
         }
 
         this.length = this.order.length
-        this.pagination(this.order,this.length)
+        this.pagination(this.order,this.length);
+        this.getreturnorder();
       }
      
 
@@ -439,18 +439,19 @@ export class EmployeeManagementComponent extends AppBase  {
       for(let i=0;i<this.tempOrder.length;i++){
 
         if(this.tempOrder[i].order_status == 'N' ){
-          this.totalMoney += parseInt( this.tempOrder[i].totalamount)
+          this.totalMoney += parseFloat( this.tempOrder[i].totalamount)
           tOrder.push(this.tempOrder[i])
         }
 
         if(this.tempOrder[i].order_status == 'R'){
-          this.tempOrder[i].order_status_name = '待退款'
+          this.tempOrder[i].order_status_name = '已完成';
+          this.totalMoney += parseFloat( this.tempOrder[i].totalamount)
           tOrder.push(this.tempOrder[i])
         }
 
         if(this.tempOrder[i].order_status == 'Y'){
-          this.tempOrder[i].order_status_name = '已退款'
-          this.totalMoney -= parseInt( this.tempOrder[i].totalamount)
+          this.tempOrder[i].order_status_name = '已完成'
+          this.totalMoney += parseFloat( this.tempOrder[i].totalamount)
           tOrder.push(this.tempOrder[i])
         }
       }
@@ -462,8 +463,8 @@ export class EmployeeManagementComponent extends AppBase  {
           this.order[k].index = k
         }
 
-        this.length = this.order.length
-        this.pagination(this.order,this.length)
+        
+        this.getreturnorder();
       }
      
 
@@ -472,11 +473,37 @@ export class EmployeeManagementComponent extends AppBase  {
 
 
   }
-
+  returnlist
+  getreturnorder(){
+    
+      this.orderApi.returnlist({gongsi:this.enterprise_id,baojia:this.employee_id}).then((returnlist:any)=>{
+          console.log(returnlist)
+          this.returnlist = returnlist.filter((item)=>{
+            this.totalMoney -= parseFloat(item.return_money);
+            if(item.orderstatus=='Y' || item.orderstatus=='R'){
+              item.order_status_name = item.orderstatus_name;
+              item.orderno=item.order_orderno;
+              item.receiver=item.order_receiver;
+              item.finish_time=item.return_time;
+              item.totalamount=item.return_money;
+              this.order.push(item)
+            }
+            return item
+          })
+          for(let k=0;k<this.order.length;k++){
+            this.order[k].index = k
+          }
+  
+          this.length = this.order.length
+        this.pagination(this.order,this.length);
+          console.log(this.totalMoney,'lll')
+      })  
+    
+  }
   myAll(event){
     console.log(this.order)
     this.pageList = []
-
+    this.bb=false;
     event.target.classList.add('btn-active')
     var others = event.target.parentElement.children
     for(let i=1;i<others.length;i++){
@@ -485,7 +512,27 @@ export class EmployeeManagementComponent extends AppBase  {
 
     if(this.order != null){
 
-      this.order = this.order
+      let finOrder = this.order.filter((item)=>{
+        if(item.order_status == 'N' || item.order_status == 'Y' || item.order_status == 'R'){
+          item.order_status_name='已完成';
+          return item
+        }
+         
+      })
+
+      this.returnlist.filter((item)=>{
+        if(item.orderstatus == 'Y' || item.orderstatus == 'R'){
+          item.order_status_name=item.orderstatus_name;
+          finOrder.push(item);
+        }
+        
+      })
+
+      for(let k=0;k<finOrder.length;k++){
+        finOrder[k].index = k;
+      }
+
+      this.order =finOrder
       this.length = this.order.length
       this.pagination(this.order,this.length)
       console.log(this.order)
@@ -497,7 +544,7 @@ export class EmployeeManagementComponent extends AppBase  {
   myfinish(event){
     console.log(this.order)
     this.pageList = []
-
+    this.bb=false;
     event.target.classList.add('btn-active')
     var others = event.target.parentElement.children
     for(let i=2;i<others.length;i++){
@@ -507,11 +554,12 @@ export class EmployeeManagementComponent extends AppBase  {
 
     if(this.order != null){
       let finOrder = this.order.filter((item)=>{
-        return item.order_status == 'N'
+        return item.order_status == 'N' || item.order_status == 'Y' || item.order_status == 'R'
       })
 
       for(let k=0;k<finOrder.length;k++){
-        finOrder[k].index = k
+        finOrder[k].index = k;
+        finOrder[k].order_status_name='已完成';
       }
   
       this.length = finOrder.length
@@ -526,7 +574,7 @@ export class EmployeeManagementComponent extends AppBase  {
 
   myreturn(event){
     this.pageList = []
-    
+    this.bb=true;
     console.log(this.order)
 
     event.target.classList.add('btn-active')
@@ -537,12 +585,17 @@ export class EmployeeManagementComponent extends AppBase  {
     others[others.length-1].classList.remove('btn-active')
 
     if(this.order != null){
-      let reOrder = this.order.filter((item)=>{
-        return item.order_status == 'R'
+      let reOrder = this.returnlist.filter((item)=>{
+        return item.orderstatus == 'R'
       })
 
       for(let k=0;k<reOrder.length;k++){
-        reOrder[k].index = k
+        reOrder[k].index = k;
+        reOrder[k].orderno=reOrder[k].order_orderno;
+        reOrder[k].receiver=reOrder[k].order_receiver;
+        reOrder[k].finish_time=reOrder[k].return_time;
+        reOrder[k].totalamount=reOrder[k].return_money;
+        reOrder[k].order_status_name='待退款';
       }
       
       this.length = reOrder.length
@@ -553,11 +606,11 @@ export class EmployeeManagementComponent extends AppBase  {
  
    
   }
-
+bb=false;
   myyitui(event){
     console.log(this.order)
     this.pageList = []
-
+    this.bb=true;
     event.target.classList.add('btn-active')
     var others = event.target.parentElement.children
     for(let i=0;i<others.length-1;i++){
@@ -566,13 +619,18 @@ export class EmployeeManagementComponent extends AppBase  {
 
 
     if(this.order != null){
-      let yiOrder = this.order.filter((item)=>{
-        return item.order_status == 'Y'
+      let yiOrder = this.returnlist.filter((item)=>{
+        return item.orderstatus == 'Y'
       })
 
       
       for(let k=0;k<yiOrder.length;k++){
-        yiOrder[k].index = k
+        yiOrder[k].index = k;
+        yiOrder[k].orderno=yiOrder[k].order_orderno;
+        yiOrder[k].receiver=yiOrder[k].order_receiver;
+        yiOrder[k].finish_time=yiOrder[k].return_time;
+        yiOrder[k].totalamount=yiOrder[k].return_money;
+        yiOrder[k].order_status_name='已退货';
       }
       
 
@@ -591,16 +649,21 @@ export class EmployeeManagementComponent extends AppBase  {
 
     console.log(item)
     console.log(this.order)
-    this.order = []
+    this.order = [];
+    this.returnlist=[];
+    this.totalMoney = 0
 
     this.orderApi.mylist({enterprise_id: this.enterprise_id,employee_id:this.employee_id }).then((order:any)=>{
       console.log(order)
+    this.orderApi.returnlist({gongsi:this.enterprise_id,baojia:this.employee_id}).then((returnlist:any)=>{
+
     
         
         this.tempOrder = order
         let tOrder = []
         this.pageList = []
         this.length = []
+        
       
         for(let i=0;i<this.tempOrder.length;i++){
 
@@ -666,23 +729,54 @@ export class EmployeeManagementComponent extends AppBase  {
         console.log(this.tempOrder)
         console.log(tOrder)
 
-   
-        for(let k=0;k<tOrder.length;k++){
-          tOrder[k].index = k
+        for(let reitem of returnlist){
+          if(this.checklist(reitem,tOrder)){
+              
+              reitem.order_status_name = reitem.orderstatus_name;
+              reitem.orderno=reitem.order_orderno;
+              reitem.receiver=reitem.order_receiver;
+              reitem.finish_time=reitem.return_time;
+              reitem.totalamount=reitem.return_money;
+              this.returnlist.push(reitem);
+          }
         }
+      
+        for(let k=0;k<tOrder.length;k++){
+          tOrder[k].index = k;
+          this.totalMoney += parseFloat(tOrder[k].totalamount);
+          this.checkorderno(tOrder[k],this.returnlist)
+        }
+
+        tOrder = tOrder.concat(this.returnlist);
+          for(let k=0;k<tOrder.length;k++){
+            tOrder[k].index = k;
+          }
 
         this.order = tOrder
 
         this.length = tOrder.length
         this.pagination(tOrder,this.length)
         console.log(this.order)
-  
+      })
       })
 
    
   }
  
-
+  checkorderno(item,arr){
+    for(let iitem of arr){
+      if(item.orderno == iitem.order_orderno){
+        this.totalMoney -= parseFloat(iitem.return_money);
+      }
+    }
+  }
+  checklist(item,arr){
+    for(let iitem of arr){
+      if(item.order_id==iitem.id){
+        return true;
+      }
+    }
+  }
   pagination(list,length){
     this.pageSize = 10;
     // if()

@@ -49,13 +49,15 @@ export class OrderManagementComponent extends AppBase  {
   enterprise_id=''
   employee_id=''
   em_id=""
+  emm_id=''
   onMyShow(){
     let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
     var a = this.orderApi
 
     this.activeRoute.queryParams.subscribe(query=>{
-     
+        console.log(query);
+        this.emm_id=query.emm_id
       this.getstatus = query.stauts
       this.order_time_dateformat = query.order_time_dateformat
       this.month_time = query.month_time
@@ -68,12 +70,12 @@ export class OrderManagementComponent extends AppBase  {
         this.enterprise_id = employeeinfo.enterprise_id
         this.em_id = employeeinfo.id
 
-        if(employeeinfo.power == 'Y'){
+        if( this.emm_id!=undefined && this.emm_id!=''){
           console.log('aaa')
-          this.employee_id = ''
+          this.employee_id = '';
         }else{
           console.log('bb')
-          this.employee_id = employeeinfo.id
+          this.employee_id = employeeinfo.id;
         }
        
 
@@ -363,104 +365,120 @@ export class OrderManagementComponent extends AppBase  {
     }
 
 
-  tiaozhuan(itemId){
-    this.orderApi.editisread({order_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
-      console.log(ret,'改改了')
-      if(ret){
-        this.router.navigate(['sendGoodsDetail'],{
-          queryParams: {
-            id: itemId
-          }
-        })
-      }
-    })
+  tiaozhuan(item){
+    console.log(item)
+    if(this.em_id==item.employee_id){
+      this.orderApi.editisread({order_id:item.id,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
+        console.log(ret,'改改了')
+        if(ret){
+          this.router.navigate(['sendGoodsDetail'],{
+            queryParams: {
+              id: item.id
+            }
+          })
+        }
+      })
+    }
+    
       
       
 
     
   }
 
-  tiaozhuan2(itemId){
-    this.orderApi.editisread({order_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
+  tiaozhuan2(item){
+    console.log(item)
+    if(this.em_id==item.employee_id){
+    this.orderApi.editisread({order_id:item.id,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
       console.log(ret,'改改了')
       if(ret){
         this.router.navigate(['receiveGoodsDetail'],{
           queryParams: {
-            id: itemId
+            id: item.id
           }
         })
       }
     })
-
+  }
    
   }
 
-  tiaozhuan3(itemId){
-    this.orderApi.editisread({order_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
+  tiaozhuan3(item){
+    console.log(item)
+    if(this.em_id==item.employee_id){
+    this.orderApi.editisread({order_id:item.id,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
       console.log(ret,'改改了')
       if(ret){
         this.router.navigate(['finishDetail'],{
           queryParams: {
-            id: itemId
+            id: item.id
           }
         })
       }
     })
-   
+  }
   }
 
-  tiaozhuan4(itemId){
-    this.orderApi.editisread({order_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
+  tiaozhuan4(item){
+    if(this.em_id==item.employee_id){
+    this.orderApi.editisread({order_id:item.id,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
       console.log(ret,'改改了')
       if(ret){
         this.router.navigate(['cancelDetail'],{
           queryParams: {
-            id: itemId
+            id: item.id
           }
         })
       }
     })
-    
+  }
   }
 
-  tiaozhuan5(itemId){
-    this.orderApi.editisread({order_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
-      console.log(ret,'改改了')
-      if(ret){
-        this.router.navigate(['waiting'],{
-          queryParams: {
-            id: itemId
-          }
-        })
-      }
-    })
+  tiaozhuan5(item){
+    if(this.em_id==item.employee_id){
+      this.orderApi.editisread({order_id:item.id,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
+        console.log(ret,'改改了')
+        if(ret){
+          this.router.navigate(['waiting'],{
+            queryParams: {
+              id: item.id
+            }
+          })
+        }
+      })
+    }
+   
     
   }
 
 
   detailStatus(item){
-   
-    if(item.order_status_name == '待发货'){
+      console.log(item,this.em_id)
+    if(this.em_id==item.employee_id){
+      if(item.order_status_name == '待发货'){
 
-      this.tiaozhuan(item.id);
-
-    }else if(item.order_status_name == '待收货'){
-
-      this.tiaozhuan2(item.id)
-
-    }else if(item.order_status_name == '已完成'){
-
-      this.tiaozhuan3(item.id) 
-
-    }else if(item.order_status_name == '已取消'){
-
-      this.tiaozhuan4(item.id);
-
-    }else if(item.order_status_name == '待付款'){
-
-      this.tiaozhuan5(item.id);
-
+        this.tiaozhuan(item);
+  
+      }else if(item.order_status_name == '待收货'){
+  
+        this.tiaozhuan2(item)
+  
+      }else if(item.order_status_name == '已完成'){
+  
+        this.tiaozhuan3(item) 
+  
+      }else if(item.order_status_name == '已取消'){
+  
+        this.tiaozhuan4(item);
+  
+      }else if(item.order_status_name == '待付款'){
+  
+        this.tiaozhuan5(item);
+  
+      }
     }
+   
+    
 
   }
 

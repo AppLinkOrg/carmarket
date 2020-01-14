@@ -43,6 +43,7 @@ export class StoreHomeComponent extends AppBase  {
  employee_id=''
  yituihuoGoods=0;
  yiwanchengGoods=0;
+ emm_id='';
   onMyShow(){
     let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString());
@@ -55,14 +56,22 @@ export class StoreHomeComponent extends AppBase  {
 
     this.enterpriseApi.employeeinfo({ }).then((employeeinfo:any)=>{
       console.log(employeeinfo)
-      this.enterprise_id = employeeinfo.enterprise_id
-      
-      if(employeeinfo.power == 'Y'){
+      this.enterprise_id = employeeinfo.enterprise_id;
+      // if(employeeinfo.power == 'Y'){
+      //   console.log('aaa')
+      //   this.employee_id = 'a';
+      // }else{
+      //   console.log('bb')
+      //   this.employee_id = employeeinfo.id
+      // }
+
+      if(employeeinfo.position == 'B'){
         console.log('aaa')
-        this.employee_id = ''
+        this.employee_id = '';
+        this.emm_id='a';
       }else{
         console.log('bb')
-        this.employee_id = employeeinfo.id
+        this.employee_id = employeeinfo.id;
       }
 
         a.mylist({ enterprise_id: this.enterprise_id,employee_id:this.employee_id }).then((mylist:any)=>{
@@ -94,14 +103,44 @@ export class StoreHomeComponent extends AppBase  {
                 // this.monIncome = this.getIncome(this.monList)
             
                 if(mylist[i].order_time_dateformat ==  this.today_time){
-                  this.count ++ 
+                  
                   // if(mylist[i].order_status != 'R' && mylist[i].order_status != 'Y'){
-                    
+                    if(mylist[i].order_status == 'L'){
+                      this.goods ++;
+                    }
+                    if(mylist[i].order_status == 'R'){
+                      this.returnGoods ++ ;
+                      this.yiwanchengGoods ++ ;
+                    }
+      
+                    if(mylist[i].order_status == 'Y'){
+                      this.yituihuoGoods ++ ;
+                      this.yiwanchengGoods ++ ;
+                    }
+      
+                    if(mylist[i].order_status == 'N'){
+                      this.yiwanchengGoods ++ ;
+                    }
                     this.list.push(mylist[i])
                     this.totalIncome = this.getIncome(this.list,returnlist)
                   // }
                 }
-                this.monOrder ++ 
+
+                if(mylist[i].order_status == 'R'){
+
+                  this.monOrder ++  ;
+                }
+  
+                if(mylist[i].order_status == 'Y'){
+     
+                  this.monOrder ++  ;
+                }
+  
+                if(mylist[i].order_status == 'N'){
+                  this.monOrder ++  ;
+                }
+
+                
                 // if(mylist[i].order_status != 'R' && mylist[i].order_status != 'Y'){
                  
                   this.monList.push(mylist[i])
@@ -109,22 +148,20 @@ export class StoreHomeComponent extends AppBase  {
                 // }
 
               }
-              if(mylist[i].order_status == 'L'){
-                this.goods ++;
-              }
+             
 
               if(mylist[i].order_status == 'R'){
-                this.yiwanchengGoods++;
-                this.returnGoods ++ ;
+                this.count ++;
+                
               }
 
               if(mylist[i].order_status == 'Y'){
-                this.yiwanchengGoods++;
-                this.yituihuoGoods ++ ;
+                this.count ++ ;
+              
               }
 
               if(mylist[i].order_status == 'N'){
-                this.yiwanchengGoods++;
+                this.count ++ ;
               }
               
             }
@@ -154,7 +191,8 @@ export class StoreHomeComponent extends AppBase  {
    
     this.router.navigate(['orderManagement'],{
       queryParams: {
-        stauts: 'L'
+        stauts: 'L',
+        emm_id:this.emm_id
       }
     })
   }
@@ -164,13 +202,15 @@ export class StoreHomeComponent extends AppBase  {
     if(flag){
       this.router.navigate(['returnsManagement'],{
         queryParams: {
-          status: 'R'
+          status: 'R',
+          emm_id:this.emm_id
         }
       })
     }else {
       this.router.navigate(['returnsManagement'],{
         queryParams: {
-          status: 'Y'
+          status: 'Y',
+          emm_id:this.emm_id
         }
       })
     }
@@ -180,7 +220,7 @@ export class StoreHomeComponent extends AppBase  {
   todayOrder(){
     this.router.navigate(['orderManagement'],{
       queryParams: {
-        order_time_dateformat: this.today_time
+        emm_id: this.emm_id
       }
     })
   }
@@ -190,13 +230,15 @@ export class StoreHomeComponent extends AppBase  {
     if(this.position =='B'){
       this.router.navigate(['managementCenter'],{
         queryParams: {
-          stauts: 'L'
+          stauts: 'L',
+          emm_id:this.emm_id
         }
       })
     }else{
       this.router.navigate(['employeeManagement'],{
         queryParams: {
-          stauts: 'L'
+          stauts: 'L',
+          emm_id:this.emm_id
         }
       })
     }
@@ -207,7 +249,8 @@ export class StoreHomeComponent extends AppBase  {
   monthOrder(){
     this.router.navigate(['orderManagement'],{
       queryParams: {
-        month_time: this.year_mon
+        month_time: this.year_mon,
+        emm_id: this.emm_id
       }
     })
   }
@@ -216,13 +259,15 @@ export class StoreHomeComponent extends AppBase  {
     if(this.position =='B'){
       this.router.navigate(['managementCenter'],{
         queryParams: {
-          stauts: 'L'
+          stauts: 'L',
+          emm_id:this.emm_id
         }
       })
     }else{
       this.router.navigate(['employeeManagement'],{
         queryParams: {
-          stauts: 'L'
+          stauts: 'L',
+          emm_id:this.emm_id
         }
       })
     }

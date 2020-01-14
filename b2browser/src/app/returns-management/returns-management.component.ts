@@ -42,7 +42,8 @@ export class ReturnsManagementComponent extends AppBase  {
 
   enterprise_id = ''
   employee_id=''
-  em_id=""
+  em_id="";
+  emm_id=''
   onMyShow(){
     let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
@@ -51,7 +52,7 @@ export class ReturnsManagementComponent extends AppBase  {
 
     this.activeRoute.queryParams.subscribe(query=>{
       console.log(query)
-     
+      this.emm_id = query.emm_id
       this.status = query.status
       console.log(this.status)
       this.pageList = []
@@ -62,7 +63,7 @@ export class ReturnsManagementComponent extends AppBase  {
         this.enterprise_id = employeeinfo.enterprise_id
         this.em_id = employeeinfo.id
         
-        if(employeeinfo.power == 'Y'){
+        if( this.emm_id!=undefined && this.emm_id!=''){
           console.log('aaa')
           this.employee_id = ''
         }else{
@@ -244,18 +245,18 @@ export class ReturnsManagementComponent extends AppBase  {
   }
 
   tiaozhuan(item){
-    
-    this.orderApi.editisread({return_id:item,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
+    if(this.em_id==item.baojia){
+    this.orderApi.editisread({return_id:item.id,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
       console.log(ret,'改改了')
       if(ret){
         this.router.navigate(['returnsDetail'],{
           queryParams: {
-            id:item
+            id:item.id
           }
         })
       }
     })
-    
+  }
   }
 
   

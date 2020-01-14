@@ -81,6 +81,7 @@
                                                     <tr>
                                                     <th>序号</th>
                                                     <th>订单编号</th>
+                                                    <th *ngIf='bb==true'>退货编号</th>
                                                     <th>客户名称</th>
                                                     <th>交易完成时间</th>
                                                     <th>交易金额</th>
@@ -91,6 +92,7 @@
                                                     <tr *ngFor='let item of data'>
                                                        <td>{{item.index+1}}</td>
                                                        <td>{{item.orderno}}</td>
+                                                       <td *ngIf='bb==true'>{{item.returnno}}</td>
                                                        <td>{{item.receiver}}</td>
                                                        <td>{{item.finish_time}}</td>
                                                        <td>{{item.totalamount}}</td>
