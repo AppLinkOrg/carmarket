@@ -83,6 +83,7 @@
           <view class="txt-white margin-right-10"> {{item.enterprise_name}}</view>
           <view class="txt-white h5" wx:if='{{xuan=="F"}}'>(总价:￥{{item.minprice}}~￥{{item.maxprice}})</view>
           <view class="txt-white h5" wx:if='{{xuan=="S"}}'>(总价:￥{{item.minrate}}~￥{{item.maxrate}})</view>
+          <image src="{{uploadpath}}resource/{{res.call}}" class="icon margin-left-10" bindtap="lianxi" data-mobile="{{item.em_mobile}}"></image>
         </view>
         <view class="flex-row margin-top-20">
           <view class="txt-white h5 flex-1"> {{item.address}}</view>
@@ -201,6 +202,7 @@
 
             <view class="h6 margin-left-20 ">x{{item.qty}}</view>
             <view class="flex-1"></view>
+            <image src="{{uploadpath}}resource/{{res.call2}}" class="icon margin-right-10" bindtap="lianxi" data-mobile='{{item.em_mobile}}'></image>
             <view class="h5 txt-bold txt-black">{{item.edt_name}}</view>
           </view>
 

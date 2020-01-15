@@ -49,7 +49,8 @@ export class OrderManagementComponent extends AppBase  {
   enterprise_id=''
   employee_id=''
   em_id=""
-  emm_id=''
+  emm_id='';
+  cc='';
   onMyShow(){
     let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
@@ -58,7 +59,8 @@ export class OrderManagementComponent extends AppBase  {
     this.activeRoute.queryParams.subscribe(query=>{
         console.log(query);
         this.emm_id=query.emm_id
-      this.getstatus = query.stauts
+      this.getstatus = query.stauts;
+      this.cc=query.bb;
       this.order_time_dateformat = query.order_time_dateformat
       this.month_time = query.month_time
       console.log(this.getstatus)
@@ -168,6 +170,11 @@ export class OrderManagementComponent extends AppBase  {
             // }
           
           }
+
+          if(this.cc!=undefined){
+            this.bb=Number(this.cc);
+            this.change(this.bb);
+          }
           
           
         })
@@ -183,11 +190,27 @@ export class OrderManagementComponent extends AppBase  {
 
   }
 
-  
 
+  bb=1
+  change(e){
+    this.bb=e;
+    if(e==1){
+      this.allGoos();
+    }else if(e==2){
+      this.returnGoods();
+    }else if(e==3){
+      this.receiveGoods();
+    }else if(e==4){
+      this.finish();
+    }else if(e==5){
+      this.cancel();
+    }else if(e==6){
+      this.waiting();
+    }
+  }
 
     // 全部
-    allGoos(event){
+    allGoos(){
      
       this.pageList = []
       this.length = null
@@ -198,12 +221,12 @@ export class OrderManagementComponent extends AppBase  {
       this.month_time = null
       
 
-      var others = event.target.parentElement.children
+      // var others = event.target.parentElement.children
     
-      for(let i=1;i<others.length;i++){
-        others[i].classList.remove('btn-active')
-      }
-      event.target.classList.add('btn-active')
+      // for(let i=1;i<others.length;i++){
+      //   others[i].classList.remove('btn-active')
+      // }
+      // event.target.classList.add('btn-active')
 
       this.list = this.list
       this.length = this.list.length
@@ -212,19 +235,19 @@ export class OrderManagementComponent extends AppBase  {
     }
 
     // 待发货
-    returnGoods(event){
+    returnGoods(){
      
       this.pageList = []
       this.length = []
       this.operation = 'R'
       this.isshow = false
 
-      event.target.classList.add('btn-active')
-      var others = event.target.parentElement.children
-      for(let i=2;i<others.length;i++){
-        others[i].classList.remove('btn-active')
-      }
-      others[0].classList.remove('btn-active')
+      // event.target.classList.add('btn-active')
+      // var others = event.target.parentElement.children
+      // for(let i=2;i<others.length;i++){
+      //   others[i].classList.remove('btn-active')
+      // }
+      // others[0].classList.remove('btn-active')
    
       if(this.list!=null){
         let reGoods = this.list.filter((itme)=>{
@@ -244,19 +267,19 @@ export class OrderManagementComponent extends AppBase  {
     }
 
     // 待收货
-    receiveGoods(event){
+    receiveGoods(){
      
       this.pageList = []
       this.operation = 'S'
       this.isshow = false
 
-      event.target.classList.add('btn-active')
-      var others = event.target.parentElement.children
-      for(let i=3;i<others.length;i++){
-        others[i].classList.remove('btn-active')
-      }
-      others[0].classList.remove('btn-active')
-      others[1].classList.remove('btn-active')
+      // event.target.classList.add('btn-active')
+      // var others = event.target.parentElement.children
+      // for(let i=3;i<others.length;i++){
+      //   others[i].classList.remove('btn-active')
+      // }
+      // others[0].classList.remove('btn-active')
+      // others[1].classList.remove('btn-active')
 
   
       if(this.list!=null){
@@ -275,20 +298,20 @@ export class OrderManagementComponent extends AppBase  {
     }
 
       //已完成
-    finish(event){
+    finish(){
      
       this.pageList = []
       this.operation = 'A'
       this.isshow = false
 
-      event.target.classList.add('btn-active')
-      var others = event.target.parentElement.children
-      for(let i=4;i<others.length;i++){
-        others[i].classList.remove('btn-active')
-      }
-      others[0].classList.remove('btn-active')
-      others[1].classList.remove('btn-active')
-      others[2].classList.remove('btn-active')
+      // event.target.classList.add('btn-active')
+      // var others = event.target.parentElement.children
+      // for(let i=4;i<others.length;i++){
+      //   others[i].classList.remove('btn-active')
+      // }
+      // others[0].classList.remove('btn-active')
+      // others[1].classList.remove('btn-active')
+      // others[2].classList.remove('btn-active')
 
 
       if(this.list!=null){
@@ -307,17 +330,17 @@ export class OrderManagementComponent extends AppBase  {
     }
 
       // 已取消
-    cancel(event){
+    cancel(){
       this.pageList = []
       this.operation = 'A'
       this.isshow = false
 
-      event.target.classList.add('btn-active')
-      var others = event.target.parentElement.children
-      for(let i=0;i<others.length-2;i++){
-        others[i].classList.remove('btn-active')
-      }
-      others[others.length-1].classList.remove('btn-active')
+      // event.target.classList.add('btn-active')
+      // var others = event.target.parentElement.children
+      // for(let i=0;i<others.length-2;i++){
+      //   others[i].classList.remove('btn-active')
+      // }
+      // others[others.length-1].classList.remove('btn-active')
 
 
       if(this.list!=null){
@@ -335,17 +358,17 @@ export class OrderManagementComponent extends AppBase  {
 
     }
 
-    waiting(event){
+    waiting(){
      
       this.pageList = []
       this.operation = 'W'
       this.isshow = false
 
-      event.target.classList.add('btn-active')
-      var others = event.target.parentElement.children
-      for(let i=0;i<others.length-1;i++){
-        others[i].classList.remove('btn-active')
-      }
+      // event.target.classList.add('btn-active')
+      // var others = event.target.parentElement.children
+      // for(let i=0;i<others.length-1;i++){
+      //   others[i].classList.remove('btn-active')
+      // }
 
       
 

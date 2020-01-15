@@ -11,10 +11,10 @@
     
           <div class="card-body">
             <div class="margin-bottom-20" role="group" aria-label="...">
-                <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='allGoods($event)'>全部</button>
-                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='returnGoods($event)'>待退货</button>
-                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='reingGoods($event)'>退货中</button>
-                <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray" (click)='yiGoods($event)'>已退货</button>       
+                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==1?'btn-active ':''}}" (click)='change(1)'>全部</button>
+                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==2?'btn-active ':''}}" (click)='change(2)'>待退货</button>
+                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==3?'btn-active ':''}}" (click)='change(3)'>退货中</button>
+                <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==4?'btn-active ':''}}" (click)='change(4)'>已退货</button>       
             </div>
           
             <div class="table-responsive">

@@ -43,7 +43,8 @@ export class ReturnsManagementComponent extends AppBase  {
   enterprise_id = ''
   employee_id=''
   em_id="";
-  emm_id=''
+  emm_id='';
+  cc='';
   onMyShow(){
     let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
@@ -53,7 +54,8 @@ export class ReturnsManagementComponent extends AppBase  {
     this.activeRoute.queryParams.subscribe(query=>{
       console.log(query)
       this.emm_id = query.emm_id
-      this.status = query.status
+      this.status = query.status;
+      this.cc=query.bb;
       console.log(this.status)
       this.pageList = []
       this.returnlist = []
@@ -93,7 +95,12 @@ export class ReturnsManagementComponent extends AppBase  {
             }
 
             this.pagination(this.returnlist,this.length)
-            console.log(this.returnlist)
+            console.log(this.returnlist);
+            if(this.cc!=undefined){
+              this.bb = Number(this.cc);
+              this.change(this.bb)
+            }
+
           })
 
         }else {
@@ -134,21 +141,35 @@ export class ReturnsManagementComponent extends AppBase  {
     
   }
 
-  allGoods(event){
+bb=1;
+  change(e){
+    this.bb=e;
+    if(e==1){
+      this.allGoods();
+    }else if(e==2){
+      this.returnGoods();
+    }else if(e==3){
+      this.reingGoods();
+    }else if(e==4){
+      this.yiGoods();
+    }
+  }
+
+  allGoods(){
     this.pageList = []
     this.length = null
     this.isshow = true
     
-    event.target.classList.add('btn-active')
+    // event.target.classList.add('btn-active')
     
-    var others =  event.target.parentElement.childNodes
-    for(let j=0;j<others.length;j++){
-      if(others[j] != event.target){
-        others[j].classList.remove('btn-active')
-      }
-    }
+    // var others =  event.target.parentElement.childNodes
+    // for(let j=0;j<others.length;j++){
+    //   if(others[j] != event.target){
+    //     others[j].classList.remove('btn-active')
+    //   }
+    // }
 
-    this.onMyShow()
+    // this.onMyShow()
 
     this.returnlist = this.returnlist
     this.length = this.returnlist.length
@@ -156,18 +177,18 @@ export class ReturnsManagementComponent extends AppBase  {
 
   }
 
-  returnGoods(event){
+  returnGoods(){
     this.pageList = []
     this.length = null
     this.isshow = false
    
-    event.target.classList.add('btn-active')
-    var others =  event.target.parentElement.childNodes
-    for(let j=0;j<others.length;j++){
-      if(others[j] != event.target){
-        others[j].classList.remove('btn-active')
-      }
-    }
+    // event.target.classList.add('btn-active')
+    // var others =  event.target.parentElement.childNodes
+    // for(let j=0;j<others.length;j++){
+    //   if(others[j] != event.target){
+    //     others[j].classList.remove('btn-active')
+    //   }
+    // }
     
     if(this.returnlist !=null ){
       let relist = this.returnlist.filter(item=>{
@@ -184,19 +205,19 @@ export class ReturnsManagementComponent extends AppBase  {
    
   }
 
-  reingGoods(e){
+  reingGoods(){
     this.pageList = []
     this.length = null
 
     this.isshow = false
 
-    e.target.classList.add('btn-active')
-    var others =  e.target.parentElement.childNodes
-    for(let j=0;j<others.length;j++){
-      if(others[j] != e.target){
-        others[j].classList.remove('btn-active')
-      }
-    }
+    // e.target.classList.add('btn-active')
+    // var others =  e.target.parentElement.childNodes
+    // for(let j=0;j<others.length;j++){
+    //   if(others[j] != e.target){
+    //     others[j].classList.remove('btn-active')
+    //   }
+    // }
 
     if(this.returnlist !=null ){
       let relist = this.returnlist.filter(item=>{
@@ -214,19 +235,19 @@ export class ReturnsManagementComponent extends AppBase  {
 
   }
 
-  yiGoods(event){
+  yiGoods(){
     this.pageList = []
     this.length = null
 
     this.isshow = false
  
-    event.target.classList.add('btn-active')
-    var others =  event.target.parentElement.childNodes
-    for(let j=0;j<others.length;j++){
-      if(others[j] != event.target){
-        others[j].classList.remove('btn-active')
-      }
-    }
+    // event.target.classList.add('btn-active')
+    // var others =  event.target.parentElement.childNodes
+    // for(let j=0;j<others.length;j++){
+    //   if(others[j] != event.target){
+    //     others[j].classList.remove('btn-active')
+    //   }
+    // }
 
 
     if(this.returnlist !=null ){

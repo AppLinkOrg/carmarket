@@ -23,4 +23,7 @@
 .yuan{
   border-radius:15rpx;
 }
+.types {
+  color: #143779 !important;
+}
 

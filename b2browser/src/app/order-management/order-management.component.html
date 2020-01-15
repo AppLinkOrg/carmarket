@@ -11,12 +11,12 @@
 
       <div class="card-body">
         <div class="margin-bottom-20 toggleBtns" role="group" aria-label="...">
-            <button type="button" class="btn-active btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray" (click)='allGoos($event)'>全部</button>           
-            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='returnGoods($event)'>待发货</button>
-            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='receiveGoods($event)'>待收货</button>           
-            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='finish($event)'>已完成</button>           
-            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='cancel($event)'>已取消</button>   
-            <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray" (click)='waiting($event)'>待付款</button>   
+            <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==1?'btn-active ':''}}" (click)='change(1)'>全部</button>           
+            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==2?'btn-active ':''}}" (click)='change(2)'>待发货</button>
+            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==3?'btn-active ':''}}" (click)='change(3)'>待收货</button>           
+            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==4?'btn-active ':''}}" (click)='change(4)'>已完成</button>           
+            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==5?'btn-active ':''}}" (click)='change(5)'>已取消</button>   
+            <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==6?'btn-active ':''}}" (click)='change(6)'>待付款</button>   
 
         </div>
           <!-- 全部 -->

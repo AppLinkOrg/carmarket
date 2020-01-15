@@ -39,7 +39,13 @@ export class QuotationDetailsComponent extends AppBase {
   employee_id_name = ''
   enterprise_id_name = ''
 
-
+  ratetype=[
+    {id:1,name: 3},
+    {id:2,name: 6},
+    {id:3,name: 9},
+    {id:4,name: 13},
+  ];
+  selectedSite=3;
   onMyShow() {
     let oldtime = (new Date()).getTime() + 6*60*60*1000;
     window.localStorage.setItem('oldtime', oldtime.toString())
@@ -106,7 +112,9 @@ export class QuotationDetailsComponent extends AppBase {
   rate = '';
   tianxie = false;
   addQuote(item) {
-    console.log(item)
+    console.log(item);
+    console.log(this.selectedSite,'kkk')
+    // return 
 
     this.tianxie = false
 
@@ -129,19 +137,26 @@ export class QuotationDetailsComponent extends AppBase {
       item.pinzhi = '无'
     }
 
-
-
-    if (this.rate != '') {
+    if(this.quoteinfo.invoice_demand_value=='是'){
+      this.rate= this.selectedSite.toString();
       let rates = item.price * Number( this.rate) / 100;
-
       item.rateprice = item.price + rates;
-
-    }
-
-    if (this.rate == '') {
-      this.rate = '0';
+    }else {
+      this.rate='0';
       item.rateprice = item.price;
     }
+
+    // if (this.rate != '') {
+    //   let rates = item.price * Number( this.rate) / 100;
+
+    //   item.rateprice = item.price + rates;
+
+    // }
+
+    // if (this.rate == '') {
+    //   this.rate = '0';
+    //   item.rateprice = item.price;
+    // }
 
     var addList = {
       fittings_id: item.id,
@@ -279,17 +294,26 @@ export class QuotationDetailsComponent extends AppBase {
         item.pinzhi = '无'
       }
 
-      if (this.rate != '') {
-        let rates = item.price * Number(this.rate) / 100;
-
+      if(this.quoteinfo.invoice_demand_value=='是'){
+        this.rate= this.selectedSite.toString();
+        let rates = item.price * Number( this.rate) / 100;
         item.rateprice = item.price + rates;
-
-      }
-
-      if (this.rate == '') {
-        this.rate = '0';
+      }else {
+        this.rate='0';
         item.rateprice = item.price;
       }
+
+      // if (this.rate != '') {
+      //   let rates = item.price * Number(this.rate) / 100;
+
+      //   item.rateprice = item.price + rates;
+
+      // }
+
+      // if (this.rate == '') {
+      //   this.rate = '0';
+      //   item.rateprice = item.price;
+      // }
 
 
       var addList = {

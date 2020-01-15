@@ -15,13 +15,26 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var orderapi = new OrderApi();
-    orderapi.returndetail({
-      id: this.Base.options.id
-    }, (info) => {
-      this.Base.setMyData({
-        info
+    if(this.Base.options.order_id!=undefined){
+      orderapi.returnlist({
+        order_id: this.Base.options.order_id,
+      }, (returnlist) => {
+        var info = returnlist[0];
+        info.tuihuoitem = returnlist[0].returnitem
+        this.Base.setMyData({
+          info
+        });
       });
-    });
+    }else {
+      orderapi.returndetail({
+        id: this.Base.options.id
+      }, (info) => {
+        this.Base.setMyData({
+          info
+        });
+      });
+    }
+    
 
   }
 

@@ -96,7 +96,7 @@
           <div class="chart-area padding-left-50 margin-40">
             <div class="row">
               <div class="col-xl-3  cursor-po"> 
-                <div (click)='reGoods()'>
+                <div (click)='reGoods(true)'>
                   <img src="{{uploadpath}}resource/{{res.sendgoods}}" class="icon-40 margin-right-10"/>
                    待发货：
                    <span>{{goods}}</span>
@@ -119,7 +119,7 @@
                 </div>
 
                 <div class="col-xl-3  cursor-po"> 
-                  <div (click)='applyGoods(false)'>
+                  <div (click)='reGoods(false)'>
                     <img src="{{uploadpath}}resource/{{res.wancheng}}" class="icon-40 margin-right-10"/> 
                      已完成：
                      <span>{{yiwanchengGoods}}</span>

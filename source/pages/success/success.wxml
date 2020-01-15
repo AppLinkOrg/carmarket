@@ -118,7 +118,8 @@
     <view class="flex-row flex-top">
       <view class="txt-black">{{idx+1}}.</view>
       <view class="txt-bold txt-black flex-1 margin-left-10">{{item.parts}}</view>
-  
+      <view class="flex-1"></view>
+      <image wx:if='{{item.tui==true}}' src="{{uploadpath}}resource/{{res.xiaotui}}" class="icon-25 margin-right-10"></image>
     </view>
 
     <view class="flex-row flex-bottom margin-top-20 margin-left-20">

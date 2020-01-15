@@ -30,9 +30,9 @@ class Content extends AppBase {
       id: this.Base.options.id,
      // id: 1,
     }, (yiwancheng) => {
-      this.Base.setMyData({
-        yiwancheng, orderlijian: yiwancheng.orderitem
-      });
+      // this.Base.setMyData({
+      //   yiwancheng, orderlijian: yiwancheng.orderitem
+      // });
       this.getreturn(yiwancheng.orderitem, yiwancheng);
     });
   }
@@ -46,31 +46,37 @@ class Content extends AppBase {
       console.log(returndetail,'getreturn');
       if (returndetail.length>0){
         returndetail.filter((item) => {
-          lijian = item.returnitem;
-          
+          // lijian = item.returnitem;
+          for (var e = 0; e < item.returnitem.length; e++) {
+            lijian.push(item.returnitem[e])
+          }
+
         })
-
-
+       
         if (orderlijian.length == lijian.length) {
           var yiquantuohuo = true;
         }
         if (orderlijian.length > lijian.length) {
           var weiquantuohuo = false;
-          // for (var i = 0; i < orderlijian.length; i++) {
-          //   for (var j = 0; j < lijian.length; j++) {
-          //     if (orderlijian[i].parts == lijian[j].name) {
-          //       yiwancheng.orderitem.splice(i, 1);
-          //     }
-          //   }
-          // }
+        
         }
-        this.Base.setMyData({ lijian, yiquantuohuo, weiquantuohuo })
+        if(lijian.length>0){
+          for (var i = 0; i < orderlijian.length; i++) {
+            for (var j = 0; j < lijian.length; j++) {
+              if (orderlijian[i].parts == lijian[j].name) {
+                yiwancheng.orderitem[i].tui = true
+              }
+            }
+          }
+        }
+          
+        this.Base.setMyData({ lijian, yiquantuohuo, weiquantuohuo,yiwancheng })
 
 
       }else {
         this.Base.setMyData({
           weiquantuohuo:false,
-          
+          yiwancheng
         })
       }
       

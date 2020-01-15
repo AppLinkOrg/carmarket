@@ -20,6 +20,11 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
      super.onLoad(options);
+    var type = [
+      { id: 1, name: '已完成' },
+      { id: 2, name: '已退货' },
+    ];
+    this.Base.setMyData({ type, seq: 0 })
   }
 
   onMyShow() {
@@ -29,9 +34,18 @@ class Content extends AppBase {
       enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
       orderby: 'r_main.consume_time desc'
     }, (list) => {
-      console.log(list,'ooooo')
+      console.log(list,'ooooo');
+      var templist = [];
+      templist = list;
+      var ss = [];
+      for (var i = 0; i < templist.length; i++) {
+        // templist[i].consume_time = that.changetime(templist[i].consume_time);
+        if (templist[i].type == 'G') {
+          ss.push(templist[i]);
+        }
+      }
       this.Base.setMyData({
-        list
+        list: ss, templist
       });
     });
   }
@@ -48,11 +62,34 @@ class Content extends AppBase {
     })
   }
 
+  qiehuan(e) {
+    var cur = e.currentTarget.dataset.idx;
+    var templist = this.Base.getMyData().templist;
+    var list = [];
+    if (cur == 1) {
+      for (var i = 0; i < templist.length; i++) {
+        if (templist[i].type == 'R') {
+          list.push(templist[i])
+        }
+      }
+    } else {
+      for (var i = 0; i < templist.length; i++) {
+        if (templist[i].type == 'G') {
+          list.push(templist[i])
+        }
+      }
+    }
+    console.log(e)
+    this.Base.setMyData({
+      seq: cur, list
+    })
 
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow; 
 body.todetails = content.todetails;
+body.qiehuan = content.qiehuan;
 Page(body)

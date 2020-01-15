@@ -416,6 +416,7 @@ class Content extends AppBase {
       mylng,
       sortby: sortby
     }, (quoteinfo) => {
+      console.log(quoteinfo,'quot')
       var etplist = {};
       var fittingsitem = quoteinfo.fittingsitem;
       for (var i = 0; i < fittingsitem.length; i++) {
@@ -457,7 +458,9 @@ class Content extends AppBase {
               minrate: etplist[key][a].minrate,
               qtylist: etplist[key],
               district_id: Number(etplist[key][a].district_id.substr(4, 2)),
-              mile
+              mile,
+              em_mobile: etplist[key][a].em_mobile,
+              em_name: etplist[key][a].em_name,
             })
 
             break;
@@ -500,6 +503,22 @@ class Content extends AppBase {
     });
     this.refreshdata();
   }
+  lianxi(e){
+    console.log(e);
+    var mobile = e.currentTarget.dataset.mobile;
+    wx.showActionSheet({
+      itemList: ["拨打电话"],
+      success(e) {
+        console.log(e,'oooo')
+        if (e.tapIndex == 0) {
+          wx.makePhoneCall({
+            phoneNumber: mobile
+          })
+        }
+      }
+    })
+
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -530,4 +549,5 @@ body.shoucang = content.shoucang;
 body.refreshdata = content.refreshdata;
 body.orderbyD = content.orderbyD;
 body.orderbyP = content.orderbyP;
+body.lianxi = content.lianxi;
 Page(body)

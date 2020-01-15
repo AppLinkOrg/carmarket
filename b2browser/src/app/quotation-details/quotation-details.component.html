@@ -75,7 +75,11 @@
                         <div class="flex-4" >
                             <div *ngIf='quoteinfo.invoice_demand_value=="是"'>
                                 <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票税率</span>
-                                <input type="text" [(ngModel)]='rate' style="border: 1px solid #ccc; padding-left:5px;">%
+                                <!-- <input type="text" [(ngModel)]='rate' style="border: 1px solid #ccc; padding-left:5px;">% -->
+                                <select [(ngModel)]="selectedSite">
+                                    <option *ngFor='let item of ratetype' value="{{item.name}}">{{item.name}}</option>
+                                    </select>
+                                <!-- </select> -->
                             </div>
                         </div>
                     </div>

@@ -4,7 +4,8 @@
       <image class='icon-25 ' src='{{uploadpath}}resource/{{res.waittui}}'></image>
       <view class='txt-white h4 margin-left-10 margin-bottom-20'>{{info.orderstatus_name}}</view>
     </view>
-    <view class='margin-bottom-40  txt-white '>退货已完成！</view>
+    <view class='margin-bottom-40  txt-white ' wx:if='{{info.orderstatus=="Y"}}'>退货已完成！</view>
+    <view class='margin-bottom-40  txt-white ' wx:if='{{info.orderstatus=="R"}}'>正在等待卖家同意退货，请耐心等待！</view>
   </view>
   <view class=' flex-row margin-top  '>
     <view class='borderleft'></view>
@@ -14,6 +15,10 @@
   <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
     <view class='txt-black '>退货单号：</view>
     <view class='txt-black '>{{info.returnno}}</view>
+  </view>
+  <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
+    <view class='txt-black '>订单编号：</view>
+    <view class='txt-black '>{{info.order_orderno}}</view>
   </view>
   <view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
     <view class='txt-black '>退货时间：</view>

@@ -187,14 +187,25 @@ export class StoreHomeComponent extends AppBase  {
     return income
   }
 
-  reGoods(){
-   
+  reGoods(flag){
+   if(flag){
     this.router.navigate(['orderManagement'],{
       queryParams: {
-        stauts: 'L',
-        emm_id:this.emm_id
+        // stauts: 'L',
+        emm_id:this.emm_id,
+        bb:2
       }
     })
+   }else {
+    this.router.navigate(['orderManagement'],{
+      queryParams: {
+        // stauts: 'Y',
+        emm_id:this.emm_id,
+        bb:4
+      }
+    })
+   }
+   
   }
 
   applyGoods(flag){
@@ -203,14 +214,16 @@ export class StoreHomeComponent extends AppBase  {
       this.router.navigate(['returnsManagement'],{
         queryParams: {
           status: 'R',
-          emm_id:this.emm_id
+          emm_id:this.emm_id,
+          bb:2
         }
       })
     }else {
       this.router.navigate(['returnsManagement'],{
         queryParams: {
           status: 'Y',
-          emm_id:this.emm_id
+          emm_id:this.emm_id,
+          bb:4
         }
       })
     }

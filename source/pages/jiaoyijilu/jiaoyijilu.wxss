@@ -8,4 +8,7 @@ page {
 .txt{
   line-height: 70rpx;
 }
+.types {
+  color: #143779 !important;
+}
 
