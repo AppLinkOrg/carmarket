@@ -51,6 +51,14 @@ export class OrderManagementComponent extends AppBase  {
   em_id=""
   emm_id='';
   cc='';
+
+  alllen=0;
+  falen=0;
+  shoulen=0;
+  wanlen=0;
+  qulen=0;
+  fulen=0;
+
   onMyShow(){
     let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
@@ -72,7 +80,7 @@ export class OrderManagementComponent extends AppBase  {
         this.enterprise_id = employeeinfo.enterprise_id
         this.em_id = employeeinfo.id
 
-        if( this.emm_id!=undefined && this.emm_id!=''){
+        if( employeeinfo.position=='B' || employeeinfo.power=='Y'){
           console.log('aaa')
           this.employee_id = '';
         }else{
@@ -80,17 +88,39 @@ export class OrderManagementComponent extends AppBase  {
           this.employee_id = employeeinfo.id;
         }
        
-
+       
         a.mylist({ enterprise_id: this.enterprise_id,employee_id: this.employee_id }).then((mylist:any)=>{
           console.log(mylist)
-         
+        //   this.alllen=0;
+        // this.falen=0;
+        // this.shoulen=0;
+        // this.wanlen=0;
+        // this.qulen=0;
+        // this.falen=0;
           this.list = []
           this.pageList = []
           for(let j=0;j<mylist.length;j++){
-            // if(mylist[j].order_status != 'R' && mylist[j].order_status != 'Y' && mylist[j].order_status != 'I'){
-              if(mylist[j].order_status == 'R' || mylist[j].order_status == 'Y' || mylist[j].order_status == 'I'){
-                mylist[j].order_status_name = '已完成';
-              }
+            // this.alllen++;
+            if(mylist[j].order_status != 'R' && mylist[j].order_status != 'Y' && mylist[j].order_status != 'I'){
+              // if(mylist[j].order_status == 'R' || mylist[j].order_status == 'Y' || mylist[j].order_status == 'I'){
+              //   mylist[j].order_status_name = '已完成';
+                
+              // }
+              // if(mylist[j].order_status=='L'){
+              //   this.falen++;
+              // }
+              // if(mylist[j].order_status=='M'){
+              //   this.shoulen++;
+              // }
+              // if(mylist[j].order_status=='E'){
+              //   this.qulen++;
+              // }
+              // if(mylist[j].order_status=='N'){
+              //   this.wanlen++;
+              // }
+              // if(mylist[j].order_status=='W'){
+              //   this.fulen++;
+              // }
               this.enterpriseApi.getemployeeinfo({id:mylist[j].baojia}).then((getemployeeinfo:any)=>{
                 console.log(getemployeeinfo,'嘻嘻嘻嘻嘻')
                 mylist[j].baojiaperson = getemployeeinfo.name
@@ -102,21 +132,37 @@ export class OrderManagementComponent extends AppBase  {
               this.pageList = []
              
   
-              if(this.getstatus != undefined || this.order_time_dateformat != undefined || this.month_time != undefined){
+              if(this.order_time_dateformat != undefined){
                 this.pageList = []
                 
-                
+                console.log(this.order_time_dateformat,'是你了')
                 for(let i=0;i<lists.length;i++){
                   this.pageList = []
   
                   let index = lists[i].order_time.indexOf('-')
                   lists[i].order_time = lists[i].order_time.substring(0,index+3)
   
-                  if(this.getstatus == lists[i].order_status || this.order_time_dateformat == lists[i].order_time_dateformat || this.month_time == lists[i].order_time){
+                  if(this.order_time_dateformat == lists[i].order_time_dateformat){
                    
                     // this.pageList = []
                     // this.list = []
-                    this.list.push(lists[i])
+                    this.list.push(lists[i]);
+                    if(lists[i].order_status=='L'){
+                      this.falen++;
+                    }
+                    if(lists[i].order_status=='M'){
+                      this.shoulen++;
+                    }
+                    if(lists[i].order_status=='E'){
+                      this.qulen++;
+                    }
+                    if(lists[i].order_status=='N'){
+                      this.wanlen++;
+                    }
+                    if(lists[i].order_status=='W'){
+                      this.fulen++;
+                    }
+                    
                   }
                  
                 }
@@ -133,18 +179,34 @@ export class OrderManagementComponent extends AppBase  {
                console.log('kkkk')
 
                 for(let i=0;i<this.list.length;i++){
-                  this.list[i].index = i
+                  
+                  this.list[i].index = i;
+                 
                 }
                 
-      
+                this.alllen = this.list.length;
                 this.length = this.list.length
                 this.pagination(this.list,this.length)
                
               }else {
-              
+                console.log(this.order_time_dateformat,'不是你了')
                 console.log('oooo')
                 this.list.push(mylist[j])
-
+                if(mylist[j].order_status=='L'){
+                  this.falen++;
+                }
+                if(mylist[j].order_status=='M'){
+                  this.shoulen++;
+                }
+                if(mylist[j].order_status=='E'){
+                  this.qulen++;
+                }
+                if(mylist[j].order_status=='N'){
+                  this.wanlen++;
+                }
+                if(mylist[j].order_status=='W'){
+                  this.fulen++;
+                }
                 for(let a=0;a<this.list.length-1;a++){
                   for(let b=a+1; b<this.list.length;b++){
                     if(this.list[a].orderno<this.list[b].orderno){
@@ -156,9 +218,11 @@ export class OrderManagementComponent extends AppBase  {
                 }
                
                 for(let k=0;k<this.list.length;k++){
-                  this.list[k].index = k
+                  this.list[k].index = k;
+                  
+                  
                 }
-  
+                this.alllen = this.list.length
                 this.length = this.list.length
                 console.log(this.list)
              
@@ -167,7 +231,7 @@ export class OrderManagementComponent extends AppBase  {
                
               
   
-            // }
+            }
           
           }
 
@@ -390,7 +454,7 @@ export class OrderManagementComponent extends AppBase  {
 
   tiaozhuan(item){
     console.log(item)
-    if(this.em_id==item.employee_id){
+    // if(this.em_id==item.employee_id){
       this.orderApi.editisread({order_id:item.id,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
         console.log(ret,'改改了')
         if(ret){
@@ -401,7 +465,7 @@ export class OrderManagementComponent extends AppBase  {
           })
         }
       })
-    }
+    // }
     
       
       
@@ -411,7 +475,7 @@ export class OrderManagementComponent extends AppBase  {
 
   tiaozhuan2(item){
     console.log(item)
-    if(this.em_id==item.employee_id){
+    // if(this.em_id==item.employee_id){
     this.orderApi.editisread({order_id:item.id,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
       console.log(ret,'改改了')
       if(ret){
@@ -422,13 +486,13 @@ export class OrderManagementComponent extends AppBase  {
         })
       }
     })
-  }
+  // }
    
   }
 
   tiaozhuan3(item){
     console.log(item)
-    if(this.em_id==item.employee_id){
+    // if(this.em_id==item.employee_id){
     this.orderApi.editisread({order_id:item.id,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
       console.log(ret,'改改了')
       if(ret){
@@ -439,11 +503,11 @@ export class OrderManagementComponent extends AppBase  {
         })
       }
     })
-  }
+  // }
   }
 
   tiaozhuan4(item){
-    if(this.em_id==item.employee_id){
+    // if(this.em_id==item.employee_id){
     this.orderApi.editisread({order_id:item.id,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
       console.log(ret,'改改了')
       if(ret){
@@ -454,11 +518,11 @@ export class OrderManagementComponent extends AppBase  {
         })
       }
     })
-  }
+  // }
   }
 
   tiaozhuan5(item){
-    if(this.em_id==item.employee_id){
+    // if(this.em_id==item.employee_id){
       this.orderApi.editisread({order_id:item.id,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
         console.log(ret,'改改了')
         if(ret){
@@ -469,7 +533,7 @@ export class OrderManagementComponent extends AppBase  {
           })
         }
       })
-    }
+    // }
    
     
   }
@@ -477,7 +541,7 @@ export class OrderManagementComponent extends AppBase  {
 
   detailStatus(item){
       console.log(item,this.em_id)
-    if(this.em_id==item.employee_id){
+    // if(this.em_id==item.employee_id){
       if(item.order_status_name == '待发货'){
 
         this.tiaozhuan(item);
@@ -499,7 +563,7 @@ export class OrderManagementComponent extends AppBase  {
         this.tiaozhuan5(item);
   
       }
-    }
+    // }
    
     
 

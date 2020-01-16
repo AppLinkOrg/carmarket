@@ -45,6 +45,12 @@ export class ReturnsManagementComponent extends AppBase  {
   em_id="";
   emm_id='';
   cc='';
+
+  alllen=0;
+  daituilen=0;
+  yituilen=0;
+  tuizhonglen=0;
+  order_time_dateformat='';
   onMyShow(){
     let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
@@ -55,6 +61,7 @@ export class ReturnsManagementComponent extends AppBase  {
       console.log(query)
       this.emm_id = query.emm_id
       this.status = query.status;
+      this.order_time_dateformat=query.order_time_dateformat;
       this.cc=query.bb;
       console.log(this.status)
       this.pageList = []
@@ -65,35 +72,55 @@ export class ReturnsManagementComponent extends AppBase  {
         this.enterprise_id = employeeinfo.enterprise_id
         this.em_id = employeeinfo.id
         
-        if( this.emm_id!=undefined && this.emm_id!=''){
+        if( employeeinfo.position=='B' || employeeinfo.power=='Y'){
           console.log('aaa')
           this.employee_id = ''
         }else{
           console.log('bb')
           this.employee_id = employeeinfo.id
         }
-
-        if(this.status != undefined){
+        this.alllen=0;
+        this.daituilen=0;
+        this.yituilen=0;
+        this.tuizhonglen=0;
+        if( this.order_time_dateformat != undefined){
           this.pageList = []
           this.returnlist = []
 
-          a.returnlist({ gongsi: this.enterprise_id,baojia:this.employee_id, orderstatus: this.status }).then((returnlist:any)=>{
-
+          a.returnlist({ gongsi: this.enterprise_id,baojia:this.employee_id }).then((returnlist:any)=>{
+            
             this.pageList = []
             this.returnlist = []
-      
+
             console.log(returnlist)
-            this.returnlist = returnlist
+            // this.returnlist = returnlist
+            // this.length = this.returnlist.length
+
+            for(let i=0;i<returnlist.length;i++){
+              if(this.order_time_dateformat==returnlist[i].return_time_dateformat){
+                returnlist[i].index = i
+               
+                if(returnlist[i].orderstatus=='Y'){
+                  this.yituilen++;
+                }
+                if(returnlist[i].orderstatus=='R'){
+                  this.daituilen++;
+                }
+                if(returnlist[i].orderstatus=='I'){
+                  this.tuizhonglen++;
+                }
+                this.returnlist.push(returnlist[i]);
+              }
+              
+              
+              
+            }
+
+            // for(let j=0;j<this.returnlist.length;j++){
+            //   this.returnlist[j].index = j
+            // }
+            this.alllen=this.returnlist.length;
             this.length = this.returnlist.length
-
-            for(let i=0;i<this.returnlist.length;i++){
-              this.returnlist[i].index = i
-            }
-
-            for(let j=0;j<this.returnlist.length;j++){
-              this.returnlist[j].index = j
-            }
-
             this.pagination(this.returnlist,this.length)
             console.log(this.returnlist);
             if(this.cc!=undefined){
@@ -112,7 +139,7 @@ export class ReturnsManagementComponent extends AppBase  {
           a.returnlist({ gongsi: this.enterprise_id, baojia:this.employee_id,}).then((returnlist:any)=>{
             this.pageList = []
             this.returnlist = returnlist
-
+            
             console.log(returnlist,'sss')
 
             // for(let i=0;i<returnlist.length;i++){
@@ -122,7 +149,17 @@ export class ReturnsManagementComponent extends AppBase  {
             // }
 
             for(let j=0;j<this.returnlist.length;j++){
-              this.returnlist[j].index = j
+              this.alllen++;
+              this.returnlist[j].index = j;
+              if(this.returnlist[j].orderstatus=='Y'){
+                this.yituilen++;
+              }
+              if(this.returnlist[j].orderstatus=='R'){
+                this.daituilen++;
+              }
+              if(this.returnlist[j].orderstatus=='I'){
+                this.tuizhonglen++;
+              }
             }
       
             this.length = this.returnlist.length
@@ -266,7 +303,7 @@ bb=1;
   }
 
   tiaozhuan(item){
-    if(this.em_id==item.baojia){
+    // if(this.em_id==item.baojia){
     this.orderApi.editisread({return_id:item.id,enterprise_id:this.enterprise_id,employee_id:this.em_id }).then((ret)=>{
       console.log(ret,'改改了')
       if(ret){
@@ -278,7 +315,7 @@ bb=1;
       }
     })
   }
-  }
+  // }
 
   
   pagination(list,length){

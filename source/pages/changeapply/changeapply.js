@@ -239,12 +239,12 @@ class Content extends AppBase {
               status: 'A'
             }, (addtuihuo) => {
 
-              orderapi.updatestatus({
-                id: that.Base.options.id,
-                order_status: "R"
-              }, (updatestatus) => {
+              // orderapi.updatestatus({
+              //   id: that.Base.options.id,
+              //   order_status: "R"
+              // }, (updatestatus) => {
 
-              })
+              // })
 
               that.Base.setMyData({
                 addtuihuo

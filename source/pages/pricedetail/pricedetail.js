@@ -29,8 +29,13 @@ class Content extends AppBase {
     this.Base.Page = this;
      //options.id = 8;
     super.onLoad(options);
+    if(this.Base.options.fapiao=='Y'){
+      var xuan = 'S';
+    }else {
+      var xuan = 'F';
+    }
     this.Base.setMyData({
-      xuan: 'F',
+      xuan: xuan,
       chakan: 'C',
       id: 0,
       shopcar: [],
@@ -417,6 +422,12 @@ class Content extends AppBase {
       sortby: sortby
     }, (quoteinfo) => {
       console.log(quoteinfo,'quot')
+      // if (quoteinfo.invoice_demand_value=='Y'){
+      //   this.Base.setMyData({
+      //     xuan:'S'
+      //   })
+        
+      // }
       var etplist = {};
       var fittingsitem = quoteinfo.fittingsitem;
       for (var i = 0; i < fittingsitem.length; i++) {

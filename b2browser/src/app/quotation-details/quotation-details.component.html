@@ -34,7 +34,7 @@
                     <div class="flex-row"><span class="border-bottom-white border-box" style="width: 80%"></span></div>
                     <div class="flex-row">
                         <div class="flex-3">
-                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">订单编号</span><span>{{quoteinfo.quotenumber}}</span>
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">报价编号</span><span>{{quoteinfo.quotenumber}}</span>
                         </div>        
                         <div class="flex-4">
                             <span class="bg-dep-gray txt-black padding-three-words margin-right-20">车架号</span>
@@ -66,7 +66,7 @@
                     <div class="flex-row"><span class="border-bottom-white border-box" ></span></div>
                     <div class="flex-row margin-bottom-3">
                         <div class="flex-3">
-                            <span class="bg-dep-gray txt-black padding-three-words margin-right-20">报价员</span><span>{{quoteinfo.employee_id_name}}</span>
+                            <span class="bg-dep-gray txt-black padding-three-words margin-right-20">下单员</span><span>{{quoteinfo.employee_id_name}}</span>
                         </div>        
                         <div class="flex-4">
                             <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red"  *ngIf='quoteinfo.invoice_demand_value=="是"'>需要发票</span>
@@ -126,7 +126,7 @@
                                 </ul>
                                 
                                     <!-- 轮播图片 -->
-                                    <div class="carousel-inner images" style="height: 100%;">
+                                    <div class="carousel-inner images" style="height: 50%;">
                                         <div class="carousel-item active" style="height: 100%;" *ngIf='item.photo1!=""&&item.photo1!="undefined"' >
                                             <img src="{{uploadpath}}fittings/{{item.photo1}}">
                                         </div>

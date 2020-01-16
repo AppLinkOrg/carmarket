@@ -27,7 +27,7 @@
   </view>
 
   <view class=' box white-block padding-20 {{seq>0?"margin-top-20":""}}' wx:for="{{quotelist}}" wx:key='k' wx:for-index='seq'>
-    <view bindtap='pricedetail' id="{{item.id}}">
+    <view bindtap='pricedetail' id="{{item.id}}" data-fapiao="{{item.invoice_demand_value}}">
 
       <view class='flex-row '>
         <view class="  flex-1 txt-black txt-bold">报价单号：{{item.quotenumber}}</view>

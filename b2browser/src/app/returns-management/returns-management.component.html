@@ -11,10 +11,10 @@
     
           <div class="card-body">
             <div class="margin-bottom-20" role="group" aria-label="...">
-                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==1?'btn-active ':''}}" (click)='change(1)'>全部</button>
-                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==2?'btn-active ':''}}" (click)='change(2)'>待退货</button>
-                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==3?'btn-active ':''}}" (click)='change(3)'>退货中</button>
-                <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==4?'btn-active ':''}}" (click)='change(4)'>已退货</button>       
+                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==1?'btn-active ':''}}" (click)='change(1)'>全部 {{alllen}}</button>
+                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==2?'btn-active ':''}}" (click)='change(2)'>待退货 {{daituilen}}</button>
+                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==3?'btn-active ':''}}" (click)='change(3)'>退货中 {{tuizhonglen}}</button>
+                <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==4?'btn-active ':''}}" (click)='change(4)'>已退货 {{yituilen}}</button>       
             </div>
           
             <div class="table-responsive">

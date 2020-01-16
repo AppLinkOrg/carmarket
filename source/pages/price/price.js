@@ -94,8 +94,9 @@ class Content extends AppBase {
   
   pricedetail(e) {
     var id = e.currentTarget.id;
+    var fapiao = e.currentTarget.dataset.fapiao;
     wx.navigateTo({
-      url: '/pages/pricedetail/pricedetail?id=' + id,
+      url: '/pages/pricedetail/pricedetail?id=' + id + '&fapiao=' + fapiao,
     })
   }
 
@@ -103,10 +104,10 @@ class Content extends AppBase {
   bindpricing(e) {
      
     var id = e.currentTarget.id;
-     
+    
    // return;
     wx.navigateTo({
-      url: '/pages/pricingdetail/pricingdetail?id=' + id ,
+      url: '/pages/pricingdetail/pricingdetail?id=' + id 
     })
   }
 

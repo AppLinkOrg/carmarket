@@ -11,12 +11,12 @@
 
       <div class="card-body">
         <div class="margin-bottom-20 toggleBtns" role="group" aria-label="...">
-            <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==1?'btn-active ':''}}" (click)='change(1)'>全部</button>           
-            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==2?'btn-active ':''}}" (click)='change(2)'>待发货</button>
-            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==3?'btn-active ':''}}" (click)='change(3)'>待收货</button>           
-            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==4?'btn-active ':''}}" (click)='change(4)'>已完成</button>           
-            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==5?'btn-active ':''}}" (click)='change(5)'>已取消</button>   
-            <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==6?'btn-active ':''}}" (click)='change(6)'>待付款</button>   
+            <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==1?'btn-active ':''}}" (click)='change(1)'>全部 {{alllen}}</button>           
+            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==2?'btn-active ':''}}" (click)='change(2)'>待发货 {{falen}}</button>
+            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==3?'btn-active ':''}}" (click)='change(3)'>待收货 {{shoulen}}</button>           
+            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==4?'btn-active ':''}}" (click)='change(4)'>已完成 {{wanlen}}</button>           
+            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==5?'btn-active ':''}}" (click)='change(5)'>已取消 {{qulen}}</button>   
+            <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==6?'btn-active ':''}}" (click)='change(6)'>待付款 {{fulen}}</button>   
 
         </div>
           <!-- 全部 -->
@@ -28,7 +28,7 @@
                   <th>订单编号</th>
                   <th>公司名称</th>
                   <th width="30%">配件清单</th>
-                  <th>报价员</th>
+                  <th>下单员</th>
                   <th>下单时间</th>
                   <th>订单金额</th>
                   <th *ngIf='isshow'>订单状态</th>
