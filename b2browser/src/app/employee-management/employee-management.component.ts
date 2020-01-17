@@ -412,7 +412,7 @@ export class EmployeeManagementComponent extends AppBase  {
   myachievement(event){
     this.pageList = []
     this.length = []
-    
+    this.totalMoney = 0
 
     event.target.classList.add('btn-active')
     var others = event.target.parentElement.children

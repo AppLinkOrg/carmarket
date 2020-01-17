@@ -134,8 +134,8 @@ export class StoreHomeComponent extends AppBase  {
                     if(mylist[i].order_status == 'N'){
                       this.yiwanchengGoods ++ ;
                     }
-                    this.list.push(mylist[i])
-                    this.totalIncome = this.getIncome(this.list,returnlist)
+                    this.list.push(mylist[i]);
+                    this.totalIncome =Number(this.getIncome(this.list,returnlist)) 
                   }
                 }
 
@@ -157,7 +157,8 @@ export class StoreHomeComponent extends AppBase  {
                 // if(mylist[i].order_status != 'R' && mylist[i].order_status != 'Y'){
                  
                   this.monList.push(mylist[i])
-                  this.monIncome = this.getIncome(this.monList,returnlist)
+    
+                  this.monIncome = Number( this.getIncome(this.monList,returnlist))
                 // }
 
               }
@@ -189,7 +190,10 @@ export class StoreHomeComponent extends AppBase  {
   getIncome(list,returnlist){
     let income = 0
     for(let i=0;i<list.length;i++){
-      income += Number( list[i].totalamount);
+      if(list[i].order_status=='N'){
+        income += Number( list[i].totalamount);
+      }
+      
       for(let item of returnlist){
         if(list[i].id==item.order_id && item.orderstatus=='Y'){
           income -= Number(item.return_money);

@@ -46,6 +46,7 @@ class Content extends AppBase {
     var orderapi = new OrderApi();
     var price = e.currentTarget.id;
     var detail = this.Base.getMyData().detail;
+    var enmoney = this.Base.getMyData().employeeinfo.enterprise.account_money;
     console.log(detail.totalamount,'price')
     wx.showModal({
       title: '购买',
@@ -57,6 +58,15 @@ class Content extends AppBase {
       confirmColor: '#2699EC',
       success: function(res) {
         if (res.confirm) {
+
+          if (detail.totalamount > enmoney) {
+            wx.showToast({
+              title: '余额不足，请及时充值！',
+              icon: 'none'
+            })
+            return;
+          }
+
           orderapi.updatemoney({
             id: that.Base.getMyData().employeeinfo.enterprise.id,
             money: detail.totalamount,

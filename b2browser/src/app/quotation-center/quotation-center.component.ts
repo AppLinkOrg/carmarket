@@ -286,7 +286,12 @@ aa=1;
     this.imgs = this.imgs.filter((item, index) => {
 
       console.log(item.photo1,'lllll')
-       arr =  item.photo1.split(/[, ，]/)
+      if(item.photo1.indexOf(',')>-1){
+        arr =  item.photo1.split(',')
+      }else {
+        arr.push(item.photo1)
+      }
+       
         console.log(arr,'急急急')
 
         item.arr  = arr
@@ -471,7 +476,7 @@ var a = this.orderApi;
                           item.photoLen++
                         }
                         if (item.photo1 != '' && item.photo1 !="undefined") {
-                          var arr =  item.photo1.split(/[, ，]/)
+                          var arr =  item.photo1.split(',')
                           item.photoLen +=arr.length
                         }
                         // if (item.photo2 != '' && item.photo2 !="undefined") {

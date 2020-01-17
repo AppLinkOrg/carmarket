@@ -718,6 +718,7 @@ export class HomeComponent extends AppBase {
             this.list[i].quotecompan_id = this.enterprise_id;
             this.list[i].quotestatus = "Q";
             this.list[i].pinzhi = this.list[i].pinzhi;
+            this.list[i].photo1 = this.list[i].photo1;
             if (this.list[i].invoice_demand != "") {
               this.list[i].invoice_demand = this.list[i].invoice_demand;
             } else if (this.list[i].invoice_demand == "" && this.list[i].invoice_demand_value != "") {

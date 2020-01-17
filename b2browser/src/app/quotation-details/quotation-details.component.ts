@@ -46,6 +46,7 @@ export class QuotationDetailsComponent extends AppBase {
     {id:4,name: 13},
   ];
   selectedSite=3;
+  show=true;
   onMyShow() {
     let oldtime = (new Date()).getTime() + 6*60*60*1000;
     window.localStorage.setItem('oldtime', oldtime.toString())
@@ -66,7 +67,13 @@ export class QuotationDetailsComponent extends AppBase {
         // this.quoteinfo.employee_id = this.employee_id
         // this.quoteinfo.employee_id_name = this.employee_id_name
         // this.quoteinfo.enterprise_id_name = this.enterprise_id_name
-
+        if(this.quoteinfo.namesplate=='' && this.quoteinfo.frontofcar=='' && this.quoteinfo.rearofcar==''){
+          this.show=false
+        }
+        if(this.quoteinfo.photo1!='' && this.quoteinfo.photo1!=undefined){
+          var arr =  this.quoteinfo.photo1.split(',')
+          this.quoteinfo.arr = arr;
+        }
         this.fittinglist = quoteinfo.fittingsitem;
         for (let i = 0; i < quoteinfo.fittingsitem.length; i++) {
           if (quoteinfo.fittingsitem[i].quoteitems.length != 0) {
@@ -107,6 +114,14 @@ export class QuotationDetailsComponent extends AppBase {
 
 
 
+  }
+  photoshow2=false;
+  img2=[];
+  showPhoto2(){
+    this.photoshow2=true;
+    console.log(this.quoteinfo,'quo');
+  
+    
   }
 
   rate = '';

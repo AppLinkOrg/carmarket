@@ -56,7 +56,8 @@ class Content extends AppBase {
     var that = this;
     var orderapi = new OrderApi();
     var mylist = this.Base.getMyData().mylist;
- 
+    var sumprice = this.Base.getMyData().sumprice;
+    var enmoney = this.Base.getMyData().employeeinfo.enterprise.account_money;
     wx.showModal({
       title: '付款',
       content: '确认付款？',
@@ -70,6 +71,15 @@ class Content extends AppBase {
           wx.showLoading({
             title: '正在付款~',
           })
+
+          if (sumprice > enmoney){
+            wx.showToast({
+              title: '余额不足，请及时充值！',
+              icon: 'none'
+            })
+            return;
+          }
+
 
           for (var i = 0; i < mylist.length; i++) {
 
