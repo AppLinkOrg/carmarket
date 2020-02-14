@@ -4,6 +4,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { HomeComponent } from './home.component';
 import { BlankComponent } from '../blank/blank.component';
 import { StoreHomeComponent } from '../store-home/store-home.component';
+import { FindComponent } from '../find/find.component';
 import { QuotationCenterComponent } from '../quotation-center/quotation-center.component';
 import { QuotationDetailsComponent } from '../quotation-details/quotation-details.component';
 import { DetailsOfQuotedPriceComponent } from '../details-of-quoted-price/details-of-quoted-price.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
       { path: "dashboard", component: DashboardComponent },
       { path: "blank", component: BlankComponent },
       { path: "storeHome", component: StoreHomeComponent },
+      { path: "find", component: FindComponent },
       { path: "quotationCenter", component: QuotationCenterComponent },
       { path: "quotationDetails", component: QuotationDetailsComponent },
       { path: "detailsOfQuotedPrice", component: DetailsOfQuotedPriceComponent},

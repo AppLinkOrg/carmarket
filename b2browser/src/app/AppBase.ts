@@ -7,7 +7,7 @@ import { ReturnStatement } from "@angular/compiler";
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { OnInit, AfterViewInit,ElementRef} from '@angular/core';
-import { EnterpriseApi } from 'src/providers/enterprise.api';
+import { EnterpriseApi } from 'src/providers/enterprise.api'; 
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 declare let Wechat: any;
@@ -64,7 +64,7 @@ export class AppBase implements OnInit {
         public activeRoute: ActivatedRoute,
         public instApi: InstApi,
         public orderapi: OrderApi,
-        public enterpriseApi: EnterpriseApi,
+        public enterpriseApi: EnterpriseApi
     ) {
         this.activeRoute.queryParams.subscribe((params: Params) => {
             console.log(params);
