@@ -36,6 +36,7 @@ import { EmployeeManagementComponent } from './employee-management/employee-mana
 import { WaitingComponent } from './waiting/waiting.component';
 import { ConsumeComponent } from './consume/consume.component';
 import { FindComponent } from './find/find.component';
+import { FindaddComponent } from './findadd/findadd.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { FindComponent } from './find/find.component';
     LoginComponent,
     SidemenuComponent,
     FindComponent,
+    FindaddComponent,
   ],
   imports: [
     BrowserModule,

@@ -54,11 +54,10 @@ export class FindComponent  extends AppBase  {
 
 
   bindsearch(e) {
-    var that = this;
-
+     
     console.log(this.neiron);
-    return;
-    var vin = this.vin;
+    //return;
+    var vin = this.neiron;
     
     this.carApi.vin({
       vin: vin
