@@ -101,7 +101,8 @@
               "./node_modules/popper.js/dist/umd/popper.js",
               "./node_modules/bootstrap/dist/js/bootstrap.js",
               "./node_modules/startbootstrap-sb-admin-2/vendor/jquery-easing/jquery.easing.min.js",
-              "./node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"]
+              "./node_modules/startbootstrap-sb-admin-2/js/sb-admin-2.min.js"
+            ]
           }
         },
         "lint": {
@@ -130,6 +131,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "seatmap"
+    }
+  },
+  "defaultProject": "seatmap",
+  "cli": {
+    "analytics": "9f2d6326-19a3-43dc-805c-500d1db62308"
+  }
 }

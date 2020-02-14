@@ -35,12 +35,14 @@ import { AchievementComponent } from './achievement/achievement.component';
 import { EmployeeManagementComponent } from './employee-management/employee-management.component';
 import { WaitingComponent } from './waiting/waiting.component';
 import { ConsumeComponent } from './consume/consume.component';
+import { FindComponent } from './find/find.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SidemenuComponent,
+    FindComponent,
   ],
   imports: [
     BrowserModule,
