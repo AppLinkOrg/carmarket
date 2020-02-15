@@ -138,6 +138,7 @@ export class FindaddComponent extends AppBase {
         //   beizhu: '',
         //   photo: ''
         // };
+         
       } else {
         var list = {
           id: idx,
@@ -169,6 +170,21 @@ export class FindaddComponent extends AppBase {
 
 
 
+  }
+
+  bindclear(i,id) {
+    var id = id;
+    var addlist = this.addlist;
+    var index = i;
+    var groupslist = this.groupslist;
+
+    console.log(id, "来来来", index);
+    //return;
+    addlist.splice(index, 1);
+    groupslist[id].check = true;
+    this.addlist=addlist;
+    this.groupslist=groupslist;
+    
   }
 
 
