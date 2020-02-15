@@ -89,7 +89,7 @@ export class FindComponent  extends AppBase  {
           carrecord: biaoti
         }).then((qwe:any) => {
 
-          this.navigate("storeHome",{vin: vin,biaoti:biaoti,brandCode:brandCode,mcid:mcid});
+          this.navigate("findadd",{vin: vin,biaoti:biaoti,brandCode:brandCode,mcid:mcid});
            
         })
       }
@@ -113,9 +113,12 @@ export class FindComponent  extends AppBase  {
     var that = this;
     var vin = id;
     console.log(vin,"来了")
-    return;
+    //return;
      
     this.carApi.vin({vin:vin }).then((res:any)=>{
+
+      console.log(vin,"来了")
+
       var vin = res.data.vin,
         brandCode = res.data.brandCode,
         mcid = res.data.mcid,
@@ -131,7 +134,7 @@ export class FindComponent  extends AppBase  {
         return;
       }
       if (res.code == 1) { 
-        this.navigate("storeHome",{vin: vin,biaoti:biaoti,brandCode:brandCode});
+        this.navigate("findadd",{vin: vin,biaoti:biaoti,brandCode:brandCode,mcid:mcid});
         
       }
       

@@ -228,7 +228,7 @@ export class CarApi {
             });
     }
 
-
+    
     public vinold(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'car/vinold';
         var headers = ApiConfig.GetHeader(url, data);
@@ -247,6 +247,27 @@ export class CarApi {
             .catch(err => {
                 console.error(err);
                 return ApiConfig.ErrorHandle('car/vinold', data, err);
+            });
+    }
+
+    public selectprice(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'car/selectprice';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('car/selectprice', data, err);
             });
     }
 

@@ -1,4 +1,4 @@
-<div class="flex-row flex-column " style=' '>
+<div class="flex-row flex-column "  >
     <div class="height-100"></div>
     <div class="box-shadow padding-10 flex-row flex-center">
         <input class=" input  flex-1" maxlength="17" placeholder="请输入17位车架号" focus='true'   [(ngModel)]="neiron">
@@ -17,13 +17,12 @@
             <div class=' '>清空</div>
             <img class='icon  margin-left ' src='{{uploadpath}}resource/{{res.clean}}' />
         </div>
-
-
+ 
     </div>
 
 
     <block *ngFor='let item of searchhistory' class="block">
-        <div class='he' (click)='bindcheck(item.id)'>
+        <div class='he' (click)='bindcheck(item.vin)'>
             <div class='  h5 txt-blue'>{{item.carrecord}}</div>
             <div class='flex-row' style='padding-bottom:2rpx;'>
                 <div class=" margin-top-35  h5   flex-row txt-blue">{{item.vin}} </div>
