@@ -37,6 +37,7 @@ import { WaitingComponent } from './waiting/waiting.component';
 import { ConsumeComponent } from './consume/consume.component';
 import { FindComponent } from './find/find.component';
 import { FindaddComponent } from './findadd/findadd.component';
+import { SubmitpageComponent } from './submitpage/submitpage.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { FindaddComponent } from './findadd/findadd.component';
     SidemenuComponent,
     FindComponent,
     FindaddComponent,
+    SubmitpageComponent,
   ],
   imports: [
     BrowserModule,

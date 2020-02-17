@@ -187,5 +187,11 @@ export class FindaddComponent extends AppBase {
     
   }
 
+  bindnext(){
+    var ss=JSON.stringify(this.addlist);
+    console.log(ss,'json列表')
+    this.navigate('submitpage',{ss:ss})
+  }
+
 
 }

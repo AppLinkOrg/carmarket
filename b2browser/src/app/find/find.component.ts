@@ -87,10 +87,8 @@ export class FindComponent  extends AppBase  {
         this.carApi.addhistory({
           vin: vin,
           carrecord: biaoti
-        }).then((qwe:any) => {
-
-          this.navigate("findadd",{vin: vin,biaoti:biaoti,brandCode:brandCode,mcid:mcid});
-           
+        }).then((qwe:any) => { 
+          this.navigate("findadd",{vin: vin,biaoti:biaoti,brandCode:brandCode,mcid:mcid}); 
         })
       }
     })
