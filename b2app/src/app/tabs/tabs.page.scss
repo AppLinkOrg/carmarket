@@ -1,0 +1,33 @@
+
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+}
+
+img.inactive{
+    display: unset;
+}
+img.active{
+    display: none;
+}
+.tab-selected img.inactive{
+
+    display: none;
+}
+.tab-selected img.active{
+    
+    display: unset;
+}
+
+.tabbar{
+    min-height: rpx(100);
+}
+
+.box {
+    width: rpx(20);
+    height: rpx(20);
+    background: red;
+    border-radius: 50%;
+    margin-left:rpx(35);
+    margin-top:rpx(-30);
+    position: absolute;
+  }

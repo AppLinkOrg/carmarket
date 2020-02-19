@@ -1,0 +1,40 @@
+<ion-tabs>
+
+  <ion-tab-bar slot="bottom" class="tabbar">
+    <ion-tab-button tab="tab1">
+      <img class="icon-10 active " src="assets/icon/tab1_1.png">
+      <img class="icon-10 inactive" src="assets/icon/tab1_2.png">
+      <ion-label class="margin-top-10">店铺首页</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab2">
+      <div class="box" *ngIf='isread=="N"'></div>
+      <img class="icon-10 active " src="assets/icon/tab2_1.png">
+      <img class="icon-10 inactive" src="assets/icon/tab2_2.png">
+      <ion-label class="margin-top-10">报价中心</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3">
+      <div class="box" *ngIf='oread=="N"'></div>
+      <img class="icon-10 active " src="assets/icon/tab3_1.png">
+      <img class="icon-10 inactive" src="assets/icon/tab3_2.png">
+      <ion-label class="margin-top-10">订单管理</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab4">
+      <div class="box" *ngIf='risread=="N"'></div>
+      <img class="icon-10 active " src="assets/icon/tab5_2.png">
+      <img class="icon-10 inactive" src="assets/icon/tab5_1.png">
+      <ion-label class="margin-top-10">退货管理</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab5">
+      <img class="icon-10 active " src="assets/icon/tab4_1.png">
+      <img class="icon-10 inactive" src="assets/icon/tab4_2.png">
+      <ion-label class="margin-top-10">管理中心</ion-label>
+    </ion-tab-button>
+
+
+  </ion-tab-bar>
+
+</ion-tabs>

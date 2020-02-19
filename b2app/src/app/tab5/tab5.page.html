@@ -1,0 +1,279 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>管理中心</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf='position=="B"'>
+
+    <div class="flex-row flex-center margin-left-10">
+      <div class="h8 box txt-d-gray {{btnscolor==1?'btn-active':''}}" (click)='qiehuan(1)'>我的账户</div>
+      <div class="h8 box txt-d-gray {{btnscolor==2?'btn-active':''}}" (click)='qiehuan(2)'>地址管理</div>
+    </div>
+    <div *ngIf='btnscolor==1'>
+      <div class="card padding-20">
+
+        <div class='card-body shadow ' *ngFor='let item of employeeinfo'>
+
+          <div class="flex-row flex-center padding-10">
+            <img src="{{uploadpath}}employee/{{item.photo}}" *ngIf='item.photo!=""' class="icon-85" />
+            <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='item.photo==""' class="icon-85" />
+            <div class="flex-1 margin-left-20">
+              <div class="h5 flex-row flex-bottom">{{item.name}} <span class="h8 margin-left-10">{{item.position_name}}</span>
+                <div class="flex-1"></div>
+                <div (click)='logout()'><img src="{{uploadpath}}resource/{{res.logout}}" class="icon-10"></div>
+              </div>
+              <p class="h8">{{item.enterprise.name}}</p>
+              <div class="h9">
+                <span class="margin-right-40">
+                  <img src="{{uploadpath}}resource/{{res.authentication}}" class="icon-10 margin-right-10"
+                    style="background-blend-mode:lighten;" />已认证
+                </span>
+                <span>
+                  <img src="{{uploadpath}}resource/{{res.return}}" class="icon-10 margin-right-10" />包退换
+                </span>
+              </div>
+
+            </div>
+          
+          </div>
+          <div
+            class="card-header bg-white py-3 no-border d-flex flex-row align-items-center justify-content-between padding-10">
+            <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;企业员工</h6>
+          </div>
+
+          <div class="table-responsive padding-10">
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead class="h8 bg-gray text-center">
+                <tr>
+                  <th>姓名</th>
+                  <th>电话</th>
+                  <th>职务</th>
+                  <th>权限</th>
+                </tr>
+              </thead>
+              <tbody class="h8 text-center">
+                <tr *ngFor='let list of allenterprise'>
+                  <td>{{list.name}}</td>
+                  <td>{{list.mobile}}</td>
+                  <td>{{list.position_name}}</td>
+                  <td>
+
+                    <ion-toggle class='togg' [(ngModel)]="list.powerss"  (ionChange)="changeSwitch(list)"></ion-toggle>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+        <div class="height-20"></div>
+        <div class="card-body shadow" *ngFor='let item of enterpriseinfo'>
+          <div
+            class="card-header bg-white py-3 no-border d-flex flex-row align-items-center justify-content-between padding-10">
+            <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;企业员工</h6>
+          </div>
+
+          <div class="flex-row">
+            <div class="flex-2 text-center">
+              <h2>{{item.account_money}}</h2>
+              <div class="h8">账户金额</div>
+            </div>
+            <div class="flex-1 text-left flex-bottom">
+              <div class='shenqin h8 margin-bottom-10' (click)='applytixian()'>申请提现</div>
+              <div class="h8 txt-blue" (click)='xiaoxi(operatorinfo)'>账单明细</div>
+            </div>
+          </div>
+
+          <div class="height-20"></div>
+
+          <div
+            class="card-header bg-white py-3 no-border d-flex flex-row align-items-center justify-content-between padding-10">
+            <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;销售额</h6>
+            <button class="no-border txt-blue h8 flex-1 text-right" (click)='yeji(operatorinfo)'>查看更多业绩></button>
+          </div>
+
+          <div class="table-responsive padding-10">
+
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead class="bg-gray text-center h8">
+                <tr>
+                  <th>姓名</th>
+                  <th>销售额累计</th>
+                </tr>
+              </thead>
+              <tbody class="h8 text-center" *ngFor='let list of allenterprise'>
+                <tr>
+                  <td>{{list.name}}</td>
+                  <td>{{list.sales_volume}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="mask" *ngIf='tixian==true || xinzen==true'></div>
+  <div class="text-center tixian shadow flex-row flex-column" *ngIf='tixian==true'>
+    <div class="h7">提现</div>
+    <div class="height-20"></div>
+    <div class="h8">提现金额：<input class="padding-left-5 inputs borinp" (keyup)='clear()' [(ngModel)]='money' type="number"></div>
+    <div class="margin-top-20 h8" style="color: red;" *ngIf='error!=""'>{{error}}</div>
+    <div class="height-20"></div>
+    <div class="flex-row flex-center">
+      <div class="tix h8" (click)='queding()'>确定</div>
+      <div class="tix2 h8" (click)='cancel()'>取消</div>
+    </div>
+  </div>
+
+
+
+
+  <div class=" xindizhi" *ngIf='xinzen==true'>
+    <div class="h6 text-center">新增地址</div>
+    <div class="height-20"></div>
+    <div class="h8">发货地区 <input type="text" name='region' [(ngModel)]='item.region' class="h8 inputs borinp"></div>
+    <div class="height-10"></div>
+    <div class="h8">发货地址 <input type="text" name='address' [(ngModel)]='item.address' class="h8 inputs borinp"></div>
+    <div class="height-10"></div>
+    <div class="h8">发货员 <input type="text" name='employee_name' [(ngModel)]='item.name' class="h8 margin-left-15 inputs borinp">
+    </div>
+    <div class="height-10"></div>
+    <div class="h8">电话 <input type="tel" maxlength="11" name='phonenumber' [(ngModel)]='item.phonenumber'
+        class="h8 margin-left-30 inputs borinp"></div>
+    <div class="height-10" *ngIf='isshow'></div>
+    <div *ngIf='isshow' class='h8' style="color: red;">
+      电话号码输入错误，请重新输入！
+    </div>
+    <div class="height-10"></div>
+    <div class="h8">是否默认 <input type="checkbox" name='morenaddress' [(ngModel)]='item.morenaddress'></div>
+    <div class="height-20"></div>
+    <div class="flex-row flex-center">
+      <div class="h8 tix2" (click)='quxiao(item)'>取消</div>
+      <div class="h8 tix margin-left-20" (click)='saveAddress(item)'>保存</div>
+    </div>
+  </div>
+
+  <div *ngIf='position!="B"'>
+    <div class="flex-row flex-center margin-left-10">
+      <div class="h8 box txt-d-gray {{btnscolor2==1?'btn-active':''}}" (click)='yuangong(1)'>我的账户</div>
+      <div class="h8 box txt-d-gray {{btnscolor2==2?'btn-active':''}}" (click)='yuangong(2)'>地址管理</div>
+      <div class="h8 box txt-d-gray {{btnscolor2==3?'btn-active':''}}" (click)='yuangong(3)'>我的业绩</div>
+    </div>
+  </div>
+  <div *ngIf='btnscolor2==1 && position!="B"'>
+    <div class=' shadow margin-20' *ngFor='let item of employeeinfo'>
+
+      <div class="flex-row flex-center padding-10">
+        <img src="{{uploadpath}}employee/{{item.photo}}" *ngIf='item.photo!=""' class="icon-85" />
+        <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='item.photo==""' class="icon-85" />
+        <div class="flex-1 margin-left-20">
+          <div class="h5 flex-row flex-bottom">{{item.name}} <span class="h8 margin-left-10">{{item.position_name}}</span> 
+            <div class="flex-1"></div>
+            <div (click)='logout()'><img src="{{uploadpath}}resource/{{res.logout}}" class="icon-10"></div></div>
+          <p class="h8">{{item.enterprise.name}}</p>
+          <div class="h9">
+            <span class="margin-right-40">
+              <img src="{{uploadpath}}resource/{{res.authentication}}" class="icon-10 margin-right-10"
+                style="background-blend-mode:lighten;" />已认证
+            </span>
+            <span>
+              <img src="{{uploadpath}}resource/{{res.return}}" class="icon-10 margin-right-10" />包退换
+            </span>
+          </div>
+
+        </div>
+       
+        
+      </div>
+    </div>
+  </div>
+  <!-- <div *ngIf='btnscolor2==2'></div> -->
+  <div *ngIf='btnscolor==2 || btnscolor2==2'>
+    <div class="flex-row flex-center dizhi" (click)='newadd()'>
+      <img src="{{uploadpath}}resource/{{res.jiadizhi}}" class="icon-10">
+      <div class="h8 txt-blue">新增地址</div>
+    </div>
+
+    <div class="shadow margin-10 padding-10" *ngFor='let item of addresslist'>
+      <div class="h8 flex-row flex-center">
+
+        <div class="h8 flex-1">发货员：{{item.name}} </div>
+        <div class="txt-blue h8 margin-right-20" (click)='editAddress(item)'>修改</div>
+        <div class="h8" (click)='deleteAddress(item)'>删除</div>
+      </div>
+      <div class="h8  flex-row flex-center">电话：{{item.phonenumber}}<div class="h8 margin-left-20">
+          是否默认地址：{{item.morenaddress}}</div>
+      </div>
+      <div class="h8">发货地址：{{item.region}}</div>
+      <div class="h8">发货详细地址：{{item.address}}</div>
+    </div>
+  </div>
+  <div *ngIf='btnscolor2==3'>
+    <div class="shadow margin-20 padding-10">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;搜索条件</h6>
+      </div>
+      <div class="flex-row flex-center padding-10">
+        <div class="h8">
+          订单编号 
+        </div>
+        <input type="text" class="input-box border-gray-1 text-center h8 margin-left-10" name='orderno'
+            [(ngModel)]='obj.orderno'>
+      </div>
+      <div class="flex-row flex-center padding-10">
+        <div class="h8">
+          开始时间
+        </div>
+        <input type="date" class="input-box border-gray-1 text-center h8  margin-left-10" name='start_time'
+          [(ngModel)]='obj.start_time'>
+      </div>
+      <div class="flex-row flex-center padding-10">
+        <div class="h8">
+          结束时间
+        </div>
+        <input type="date" class=" border-gray-1 text-center input-box h8  margin-left-10" name='end_time' [(ngModel)]='obj.end_time'>
+      </div>
+      <div class="height-10"></div>
+      <div class="flex-row flex-center">
+        <div class="reset h8" (click)='search(obj)'>查询</div>
+        <div class="reset h8" (click)='reset()'>重置</div>
+
+      </div>
+      <div class="height-20"></div>
+      <div class="">
+        <div class="flex-row flex-center">
+          <div class="btnss {{leixins==1?'btn-active':''}}" (click)=leixin(1)>全部</div>
+          <div class="btnss {{leixins==2?'btn-active':''}}" (click)=leixin(2)>已完成</div>
+          <div class="btnss {{leixins==3?'btn-active':''}}" (click)=leixin(3)>待退款</div>
+          <div class="btnss {{leixins==4?'btn-active':''}}" (click)=leixin(4)>已退款</div>
+        </div>
+    
+        <div class="shadow padding-5 margin-top-10" *ngFor='let item of data'>
+          
+          <div class="flex-row flex-center">
+            <div class="h8 flex-1">客户名称：{{item.receiver}}</div>
+            <div class="h8 flex-1">交易状态：{{item.order_status_name}}</div>
+          </div>
+          <div class="h8">交易金额：{{item.totalamount}}</div>
+          <div class="h8">订单编号：{{item.orderno}}</div>
+          <div class="h8"  *ngIf='bb==true'>{{item.returnno}}</div>
+          <div class="h8">交易完成时间：{{item.finish_time}}</div>
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+
+
+</ion-content>

@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+
+    <!-- <ion-title class="h7">{{lang.huanyin}}</ion-title> -->
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="flex-row flex-column">
+    <div class="h6 margin-top-20">{{InstInfo.systemname}}</div>
+  </div>
+
+  <div class="height-30"></div>
+
+  <div class="margin-20 ">
+    <!-- <div class="h8">账号</div> -->
+    <div class=" flex-row flex-center">
+      <img src="{{uploadpath}}resource/{{res.personphone}}" class="icon-10 margin-right-10">
+      <ion-input class="inputs h7_5 borinp" placeholder="请输入账户手机号码" [(ngModel)]="loginname" (keyup)='clearPopover()' maxlength='11'>
+       
+      </ion-input>
+    </div>
+    <div class="height-20" *ngIf='submitresult2!=""'></div>
+    <div class="txt-red margin-left-30 h8" (keyup)='clearPopover()' *ngIf='submitresult2!=""'>{{submitresult2}}</div>
+    <div class="height-20"></div>
+    <!-- <div class="h8 margin-top-10">密码</div> -->
+    <div class="flex-row flex-center">
+      <img src="{{uploadpath}}resource/{{res.pwd}}" class="icon-10 margin-right-10">
+      <ion-input class="inputs h7_5 borinp" placeholder="请输入密码" type='password' (keyup)='clearPopover()' [(ngModel)]="password">
+       
+      </ion-input>
+      
+    </div>
+    <div class="height-20" *ngIf='submitresult!=""'></div>
+    <div class="txt-red margin-left-30 h8" (keyup)='clearPopover()' *ngIf='submitresult!=""'>{{submitresult}}</div>
+
+    <!-- <div class="flex-row flex-center padding-top-10" (click)='forgetpassword()'  >
+      <div class="flex-1"></div>
+      <div class="txt-blue h7_5"  >自动记住账户与密码</div>
+      <img src="{{assets}}res/blue_right.png" class="icon-right margin-left-15" />
+    </div> -->
+    <div class="custom-control custom-checkbox small margin-left-30">
+      <input type="checkbox" class="custom-control-input" id="customCheck" [(ngModel)]='isremember'>
+      <label class="custom-control-label h8" for="customCheck"  >自动记住账户与密码</label>
+     
+    </div>
+  </div>
+
+
+  <div class="text-center margin-top txt-white h8 takebuttons" (click)='trylogin()' >
+    登录
+  </div>
+  
+
+</ion-content>

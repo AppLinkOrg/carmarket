@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>订单管理</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="flex-row flex-center">
+    <div class="h8 btnss txt-d-gray {{bb==1?'btn-active':''}}" (click)='change(1)'>全部 </div>
+    <div class="h8 btnss txt-d-gray {{bb==2?'btn-active':''}}" (click)='change(2)'>待发货</div>
+    <div class="h8 btnss txt-d-gray {{bb==3?'btn-active':''}}" (click)='change(3)'>待收货</div>
+    <div class="h8 btnss txt-d-gray {{bb==4?'btn-active':''}}" (click)='change(4)'>已完成</div>
+    <div class="h8 btnss txt-d-gray {{bb==5?'btn-active':''}}" (click)='change(5)'>已取消</div>
+    <div class="h8 btnss txt-d-gray {{bb==6?'btn-active':''}}" (click)='change(6)'>待付款</div>
+  </div>
+
+  <div class="margin-10 padding-10 border-gray-1 " *ngFor='let item of data'>
+    <div class="flex-row flex-center">
+      <div class="h8">订单编号：{{item.orderno}}</div>
+      <div class="flex-1"></div>
+      <div class="h8">订单金额：{{item.totalamount}}</div>
+    </div>
+    <div class="flex-row flex-center">
+      <div class="h8">下单员：{{item.baojiaperson}}</div>
+      <div class="flex-1"></div>
+      <div class="h8">下单时间：{{item.order_time_formatting}}</div>
+    </div>
+    <div class="flex-row flex-center">
+      <div class="h8">公司名称：{{item.baojiacom}}</div>
+      <div class="flex-1"></div>
+      <div class="h8">订单状态：<span class="h8 txt-bold">{{item.order_status_name}}</span></div>
+    </div>
+
+    <div class="h8" >配件清单：<span class="h8" *ngFor='let list of item.orderitem;let i=index'>{{list.parts}}，</span></div>
+    <div class="flex-row">
+      <div class="flex-1"></div>
+      <div class="h8 cha" (click)='detail(item)'  *ngIf='operation!="R"'>查看详情</div>
+      <div class="h8 cha" (click)='detail(item)' *ngIf='operation=="R"'>立即发货</div>
+    </div>
+  </div>
+</ion-content>
