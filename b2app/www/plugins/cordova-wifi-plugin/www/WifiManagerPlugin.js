@@ -1,5 +1,4 @@
-cordova.define("cordova-wifi-plugin.CordovaWifiManager", function(require, exports, module) {
-let WifiManagerPlugin = function (require, exports, module) {
+cordova.define("cordova-wifi-plugin.CordovaWifiManager", function(require, exports, module) { let WifiManagerPlugin = function (require, exports, module) {
   let exec = require('cordova/exec');
 
   const PLUGIN_NAME = 'CordovaWifiManager';

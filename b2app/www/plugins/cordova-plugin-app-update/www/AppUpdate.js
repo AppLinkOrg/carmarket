@@ -1,5 +1,4 @@
-cordova.define("cordova-plugin-app-update.AppUpdate", function(require, exports, module) {
-var exec = require('cordova/exec');
+cordova.define("cordova-plugin-app-update.AppUpdate", function(require, exports, module) { var exec = require('cordova/exec');
 
 /**
  * Check if there is an update to the App.

@@ -8,36 +8,36 @@
 <ion-content>
 
   <div class="">
-    <div class="shadow padding-10 margin-20">
-      <div
+    <div class="shadow padding-10 margin-20" *ngFor='let item of tempquotinfo;let i=index;'>
+      <div *ngIf='i==0'
         class="card-header bg-white py-3 no-border d-flex flex-row align-items-center justify-content-between padding-10">
         <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;报价信息</h6>
       </div>
-      <div>
-        <div class="h8">公司名称：{{quoteinfo.enterprise_id_name}}</div>
-        <div class="h8">地<span class="h8 margin-left-30">址</span>：{{quoteinfo.enterprise_corporate_address}}</div>
-        <div class="h8">下&nbsp; 单&nbsp; 员：{{quoteinfo.employee_id_name}}</div>
-        <div class="h8">电<span class="h8 margin-left-30">话</span>：{{quoteinfo.employee_mobile}}</div>
-        <div class="h8">报价编号：{{quoteinfo.quotenumber}}</div>
-        <div class="h8">车&nbsp; 架&nbsp; 号：<span class="h8" *ngIf='quoteinfo.vincode!=""'>{{quoteinfo.vincode}}</span><span class="h8" *ngIf='quoteinfo.vincode==""'>无识别</span></div>
+      <div *ngIf='i==0'>
+        <div class="h8">公司名称：{{item.enterprise_id_name}}</div>
+        <div class="h8">地<span class="h8 margin-left-30">址</span>：{{item.enterprise_corporate_address}}</div>
+        <div class="h8">下&nbsp; 单&nbsp; 员：{{item.employee_id_name}}</div>
+        <div class="h8">电<span class="h8 margin-left-30">话</span>：{{item.employee_mobile}}</div>
+        <div class="h8">报价编号：{{item.quotenumber}}</div>
+        <div class="h8">车&nbsp; 架&nbsp; 号：<span class="h8" *ngIf='item.vincode!=""'>{{item.vincode}}</span><span class="h8" *ngIf='item.vincode==""'>无识别</span></div>
         <div class="h8">车<span class="h8 margin-left-30">型</span>：<span class="h8"
-            *ngIf='quoteinfo.carmodel!=""'>{{quoteinfo.carmodel}}</span>
-          <span class="h8" *ngIf='quoteinfo.carmodel==""'>无识别</span></div>
-        <div class="h8">品<span class="h8 margin-left-30">质</span>：<span class="h8" *ngIf='quoteinfo.pinzhi==""'>无</span>
-          <span class="h8" *ngIf='quoteinfo.pinzhi!=""'>{{quoteinfo.pinzhi}}</span></div>
-        <div class="h8">询价时间：{{quoteinfo.quote_time}}</div>
+            *ngIf='item.carmodel!=""'>{{item.carmodel}}</span>
+          <span class="h8" *ngIf='item.carmodel==""'>无识别</span></div>
+        <div class="h8">品<span class="h8 margin-left-30">质</span>：<span class="h8" *ngIf='item.pinzhi==""'>无</span>
+          <span class="h8" *ngIf='item.pinzhi!=""'>{{item.pinzhi}}</span></div>
+        <div class="h8">询价时间：{{item.quote_time}}</div>
         <div class="h8">备<span class="h8 margin-left-30">注</span>：<span class="h8"
-            *ngIf='quoteinfo.information!=""'>{{quoteinfo.information}}</span>
-          <span class="h8" *ngIf='quoteinfo.information==""'>无</span></div>
-        <div class="h8">发票需求：<span class="txt-red h8" *ngIf='quoteinfo.rate>0'>需要发票</span>
-          <span class="h8" *ngIf='quoteinfo.rate==0'>不需要发票</span></div>
+            *ngIf='item.information!=""'>{{item.information}}</span>
+          <span class="h8" *ngIf='item.information==""'>无</span></div>
+        <div class="h8">发票需求：<span class="txt-red h8" *ngIf='item.rate>0'>需要发票</span>
+          <span class="h8" *ngIf='item.rate==0'>不需要发票</span></div>
         <!-- <div class="flex-row flex-center">
           <div class=" h8">图片附件：</div>
           <div style='color:#3d61b4;cursor: pointer;' class="h8" data-toggle="modal" data-target="#myModal4"
             (click)='showPhoto2(quoteinfo)'>查看图片</div>
         </div> -->
-        <div class="flex-row flex-center" *ngIf='quoteinfo.rate>0'>
-          <div class=" h8">发票税率：{{quoteinfo.rate}}%</div>
+        <div class="flex-row flex-center" *ngIf='item.rate>0'>
+          <div class=" h8">发票税率：{{item.rate}}%</div>
         </div>
       </div>
     </div>

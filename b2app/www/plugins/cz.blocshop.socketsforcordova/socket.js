@@ -1,5 +1,4 @@
-cordova.define("cz.blocshop.socketsforcordova.Socket", function(require, exports, module) {
-var exec = require('cordova/exec');
+cordova.define("cz.blocshop.socketsforcordova.Socket", function(require, exports, module) { var exec = require('cordova/exec');
 
 var SOCKET_EVENT = "SOCKET_EVENT";
 var CORDOVA_SERVICE_NAME = "SocketsForCordova";

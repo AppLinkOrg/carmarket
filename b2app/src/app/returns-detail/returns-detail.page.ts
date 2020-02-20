@@ -41,6 +41,7 @@ export class ReturnsDetailPage extends AppBase {
   }
   id = '';
   returndetail = {};
+  tempreturn=[];
   returnitem = [];
 
   returnstatus = '';
@@ -56,6 +57,7 @@ export class ReturnsDetailPage extends AppBase {
       console.log(returndetail, 'llllll')
       this.returnstatus = returndetail.orderstatus;
       this.returndetail = returndetail;
+      this.tempreturn.push(this.returndetail);
       this.returnitem = returndetail.tuihuoitem.filter((item) => {
         if (returndetail.id == item.tuihuo_id) {
           return item

@@ -32,7 +32,7 @@ export class AchievementPage extends AppBase {
   ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl, activeRoute,enterpriseApi,orderApi);
     this.headerscroptshow = 480;
-    // this.currentpage = "tab4";
+    this.currentpage = "achievement";
     
     // AppBase.TABName = "tab3";
     // AppBase.LASTTAB = this;

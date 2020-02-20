@@ -6,21 +6,22 @@
 </ion-header>
 
 <ion-content>
-  <div class="padding-10 margin-10 shadow">
+  <div *ngFor='let item of tempreturn;let i=index;'>
+  <div class="padding-10 margin-10 shadow" *ngIf='i==0'>
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
       <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;退货信息</h6>
     </div>
 
-    <div class="h8 margin-bottom-5">公司名称：{{returndetail.enterprise_name}}</div>
-    <div class="h8 margin-bottom-5">订单编号：{{returndetail.order_orderno}}</div>
-    <div class="h8 margin-bottom-5">申请人：{{returndetail.employee_id_name}}</div>
-    <div class="h8 margin-bottom-5">退货单号：{{returndetail.returnno}}</div>
-    <div class="h8 margin-bottom-5">申请时间：{{returndetail.return_time}}</div>
-    <div class="h8 margin-bottom-5">申请电话：{{returndetail.receivecontact}}</div>
-    <div class="h8 margin-bottom-5">申请原因：<span *ngIf='returndetail.remarks=="undefined"' class="h8">无</span><span *ngIf='returndetail.remarks!="undefined"' class="h8">{{returndetail.remarks}}</span></div>
+    <div class="h8 margin-bottom-5">公司名称：{{item.enterprise_name}}</div>
+    <div class="h8 margin-bottom-5">订单编号：{{item.order_orderno}}</div>
+    <div class="h8 margin-bottom-5">申请人：{{item.employee_id_name}}</div>
+    <div class="h8 margin-bottom-5">退货单号：{{item.returnno}}</div>
+    <div class="h8 margin-bottom-5">申请时间：{{item.return_time}}</div>
+    <div class="h8 margin-bottom-5">申请电话：{{item.receivecontact}}</div>
+    <div class="h8 margin-bottom-5">申请原因：<span *ngIf='item.remarks=="undefined"' class="h8">无</span><span *ngIf='item.remarks!="undefined"' class="h8">{{item.remarks}}</span></div>
 
   </div>
-
+</div>
     <div class="height-20"></div>
     
     <div class="margin-10 padding-10 shadow">

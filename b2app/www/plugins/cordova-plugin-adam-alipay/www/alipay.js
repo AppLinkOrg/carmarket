@@ -1,5 +1,4 @@
-cordova.define("cordova-plugin-adam-alipay.Alipay", function(require, exports, module) {
-var exec = require('cordova/exec');
+cordova.define("cordova-plugin-adam-alipay.Alipay", function(require, exports, module) { var exec = require('cordova/exec');
 
 var PLUGIN_NAME = 'Alipay';
 

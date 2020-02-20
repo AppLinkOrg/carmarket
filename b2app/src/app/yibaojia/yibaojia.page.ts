@@ -50,6 +50,7 @@ export class YibaojiaPage extends AppBase {
   }
 
   quoteinfo={};
+  tempquotinfo=[];
   id='';
   list=[];
 
@@ -109,6 +110,7 @@ export class YibaojiaPage extends AppBase {
               }
             
             }
+            this.tempquotinfo.push(this.quoteinfo);
             console.log(this.list,'list')
           })
     

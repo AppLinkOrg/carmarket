@@ -43,6 +43,7 @@ export class OrderDetailPage extends AppBase {
   id = '';
   list = {};
   list2 = null;
+  list3=[];
   orderItem = [];
 
   onMyLoad() {
@@ -74,6 +75,7 @@ export class OrderDetailPage extends AppBase {
       })
       this.list = detailList;
       this.list2 = detailList;
+      this.list3.push(detailList);
       console.log(this.list, 'lllllllll')
       console.log(this.orderItem)
     })

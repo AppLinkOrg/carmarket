@@ -1,5 +1,4 @@
-cordova.define("jpush-phonegap-plugin.JPushPlugin", function(require, exports, module) {
-var JPushPlugin = function() {};
+cordova.define("jpush-phonegap-plugin.JPushPlugin", function(require, exports, module) { var JPushPlugin = function() {};
 
 // private plugin function
 

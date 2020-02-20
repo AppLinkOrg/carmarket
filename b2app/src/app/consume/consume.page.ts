@@ -31,7 +31,7 @@ export class ConsumePage extends AppBase {
   ) {
       super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl, activeRoute,enterpriseApi,orderApi);
       this.headerscroptshow = 480;
-      // this.currentpage = "tab3";
+      this.currentpage = "consume";
 
       // AppBase.TABName = "tab3";
       // AppBase.LASTTAB = this;

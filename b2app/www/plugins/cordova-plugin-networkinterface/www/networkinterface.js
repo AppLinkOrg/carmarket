@@ -1,5 +1,4 @@
-cordova.define("cordova-plugin-networkinterface.networkinterface", function(require, exports, module) {
-var networkinterface = function() {
+cordova.define("cordova-plugin-networkinterface.networkinterface", function(require, exports, module) { var networkinterface = function() {
 };
 
 networkinterface.getWiFiIPAddress = function( success, fail ) {

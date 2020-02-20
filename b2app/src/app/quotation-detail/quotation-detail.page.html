@@ -34,7 +34,7 @@
         <div class="flex-row flex-center" *ngIf='show==true'>
           <div class=" h8">图片附件：</div>
           <div style='color:#3d61b4;cursor: pointer;' class="h8" 
-            (click)='showPhoto2(item)'>查看图片</div>
+            (click)='showPhoto2()'>查看图片</div>
         </div>
         <div class="flex-row flex-center" *ngIf='item.invoice_demand_value=="是"'>
           <div class=" h8">发票税率：</div>
@@ -89,7 +89,7 @@
           *ngIf='fitem.partnubmer!=""'>{{fitem.partnubmer}}</span>
         <span class="text-center h8" *ngIf='fitem.partnubmer==""'>无识别</span>
         <div class="flex-1"></div>
-        <div class="h8" *ngIf='fitem.photoLen>0'>零件图片：<span class="h8" style='color:#3d61b4;cursor: pointer;' (click)='showPhoto(item)'>查看图片</span></div>
+        <div class="h8" *ngIf='fitem.photoLen>0'>零件图片：<span class="h8" style='color:#3d61b4;cursor: pointer;' (click)='showPhoto(fitem)'>查看图片</span></div>
       </div>
 
       <div *ngIf='photoshow==true'>
@@ -159,6 +159,6 @@
   </div>
   <div class="height-20"></div>
   <div class="flex-row flex-column ">
-    <div class="h8 ty" (click)='baojias(operatorinfo.enterprise.id)'>提交报价</div>
+    <div class="h8 ty" (click)='baojias(operatorinfo.enterprise_id)'>提交报价</div>
   </div>
 </ion-content>
