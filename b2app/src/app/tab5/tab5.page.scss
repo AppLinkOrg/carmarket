@@ -28,7 +28,7 @@
     //   width: rpx(20) !important;
     // }
     .shenqin {
-      width: rpx(85);
+      width: 70%;
       padding: rpx(5) rpx(10);
       background: #4e73df;
       color: #ffffff;
@@ -52,8 +52,9 @@
     left: 0;
   }
   .tixian {
+    width: 90%;
     position: fixed;
-    left: 10%;
+    left: 5%;
     top: 30%;
     z-index: 20;
     background: #ffffff;
@@ -84,8 +85,9 @@
     margin-top: rpx(20);
   }
   .xindizhi {
+    width: 90%;
     position: fixed;
-    left: 10%;
+    left: 5%;
     top: 20%;
     z-index: 20;
     background: #ffffff;
@@ -125,4 +127,48 @@
   border: rpx(1) solid #cccccc;
   height: rpx(40) !important;
   padding-left: rpx(10) !important;
+}
+
+.offBtn {
+  border:rpx(3) solid #007bff;
+  background-color: #007bff;
+  height:rpx(30);
+  width:rpx(50);
+  border-radius: rpx(15);
+  position: relative;
+  margin: rpx(5) auto;
+}
+
+.offqiuti {
+  display:inline-block;
+  width: rpx(30);
+  height: rpx(30);
+  border-radius: 50%;
+  background: #009bff;
+  z-index: 10;
+  position: absolute;
+  top: rpx(-3);
+  right: rpx(-3);
+}
+
+.onBtn {
+  border:rpx(3) solid #ddd;
+  background-color: #eee;
+  height:rpx(30);
+  width:rpx(50);
+  border-radius: rpx(15);
+  position: relative;
+  margin: rpx(5) auto;
+}
+
+.onqiuti {
+  display:inline-block;
+  width: rpx(30);
+  height: rpx(30);
+  border-radius: 50%;
+  background: #ccc;
+  z-index: 10;
+  position: absolute;
+  top: rpx(-3);
+  left: rpx(-3);
 }

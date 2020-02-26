@@ -62,7 +62,13 @@
                   <td>{{list.position_name}}</td>
                   <td>
 
-                    <ion-toggle class='togg' [(ngModel)]="list.powerss"  (ionChange)="changeSwitch(list)"></ion-toggle>
+                    <!-- <ion-toggle class='togg' [(ngModel)]="list.powerss"  (ionChange)="changeSwitch(list)"></ion-toggle> -->
+                    <div class="offBtn cur-po" *ngIf='list.power == "是"'>
+                      <span class="offqiuti"  (click)='changeSwitch($event,list)'></span>
+                  </div>
+                  <div class="onBtn cur-po" *ngIf='list.power == "否" || list.power==""'>
+                      <span class="onqiuti"   (click)='changeSwitch($event,list)'></span>
+                  </div>
                   </td>
                 </tr>
               </tbody>

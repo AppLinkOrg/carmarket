@@ -112,15 +112,26 @@ export class Tab5Page extends AppBase {
       this.enterpriseApi.allenterprise({enterprise_id:this.enterprise_id }).then((allenterprise:any)=>{
         
 
-        this.allenterprise = allenterprise.filter((item)=>{
-          if(item.power_value=='Y'){
-            item.powerss = true;
-          }else if(item.power_value=='N'){
-            item.powerss = false;
-          }
-          return item.position != 'B'
+        // this.allenterprise = allenterprise.filter((item)=>{
+        //   if(item.power_value=='Y'){
+        //     item.powerss = true;
+        //   }else if(item.power_value=='N'){
+        //     item.powerss = false;
+        //   }
+        //   return item.position != 'B'
 
-        })
+        // })
+        for(let i=0;i<allenterprise.length;i++){
+          console.log(allenterprise[i],'allalll');
+          console.log(allenterprise[i].power,'allalll');
+          if(allenterprise[i].position!='B'){
+            allenterprise[i].powerss=false;
+            if(allenterprise[i].power=='是'){
+              allenterprise[i].powerss = true;
+            }
+            this.allenterprise.push(allenterprise[i]);
+          }
+        }
         console.log(this.allenterprise)
       })
 
@@ -160,12 +171,15 @@ qiehuan(e){
   this.btnscolor = e;
 }
 
-changeSwitch(list){
+changeSwitch(e,list){
   console.log(list,'llll')
-  
 
-  if(list.power=='是'){
-   
+  if(list.power == '是'){
+    e.target.classList.add('onqiuti')
+    e.target.parentElement.classList.add('onBtn')
+
+    e.target.classList.remove('offqiuti')
+    e.target.parentElement.classList.remove('offBtn')
 
     this.enterpriseApi.updatepower({id: list.id, power: 'N'}).then((updatepower:any)=>{
       console.log(updatepower,'ddd')
@@ -175,19 +189,23 @@ changeSwitch(list){
        
         for(let i=0;i<this.allenterprise.length;i++){
           if(this.allenterprise[i].id == list.id){
-            this.allenterprise[i].powerss = false
+            this.allenterprise[i].power = '否'
             return
           }
         }
-      
        console.log(this.allenterprise)
         
       }
       
     })
 
-  }else if(list.power=='否'){
-  
+  }else if(list.power == '否'){
+    e.target.classList.add('offqiuti')
+    e.target.parentElement.classList.add('offBtn')
+    
+    e.target.classList.remove('onqiuti')
+    e.target.parentElement.classList.remove('onBtn')
+
     this.enterpriseApi.updatepower({id: list.id, power: 'Y'}).then((updatepower:any)=>{
       console.log(updatepower,'aaa')
 
@@ -195,8 +213,8 @@ changeSwitch(list){
         
         for(let i=0;i<this.allenterprise.length;i++){
           if(this.allenterprise[i].id == list.id){
-            this.allenterprise[i].powerss = true
-            return
+            this.allenterprise[i].power = '是'
+            return 
           }
         }
        console.log(this.allenterprise)
