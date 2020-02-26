@@ -1,0 +1,102 @@
+
+
+<ion-content>
+
+        <div class="padding-20 ">
+
+            <div class="flex-row flex-center bg-pal-green padding shadow"  (click)='todayOrder()'>
+                <div class="flex-row flex-column">
+                    <img src="{{uploadpath}}resource/{{res.todayNum}}" class="icon-20 margin-left-10"/>          
+                  <div class="txt-black h8">总订单数</div>
+                </div>
+                <div class="h4 txt-white flex-1 text-center">{{count}}</div>
+            </div>
+            <div class="height-10"></div>
+            
+            <div class="flex-row flex-center bg-pal-yellow padding shadow"  (click)='todayIncome()'>
+                <div class="flex-row flex-column">
+                    <img src="{{uploadpath}}resource/{{res.todayIncome}}" class="icon-20 margin-left-10"/>
+                  <div class="txt-black  h8">今日收入额</div>
+                </div>
+                <div class="h4 txt-white flex-1 text-center">{{totalIncome}}</div>
+            </div>
+
+            <div class="height-10"></div>
+            <div class="flex-row flex-center bg-dep-yellow shadow padding"   (click)='monthOrder()'>
+                <div class="flex-row flex-column">
+                    <img src="{{uploadpath}}resource/{{res.monthNum}}" class="icon-20 margin-left-10"/>
+                    <div class=" txt-black  h8">本月订单数</div>
+                </div>
+                <div class="h4 txt-white flex-1 text-center">{{monOrder}}</div>
+            </div>
+
+            <div class="height-10"></div>
+            <div class="flex-row flex-center bg-pal-red padding bg-pal-red shadow"  (click)='monthIncome()'>
+                <div class="flex-row flex-column">
+                    <img src="{{uploadpath}}resource/{{res.monthIncome}}" class="icon-20 margin-left-10"/>
+                  <div class="txt-black  h8">本月收入额</div>
+                </div>
+                <div class="h4 txt-white flex-1 text-center">{{monIncome}}</div>
+            </div>
+        </div>
+
+
+    <div class="padding-20">
+   
+    
+      <div class="row ">
+    
+        <!-- Area Chart -->
+        <div class="col-lg-12 ">
+          <div class="card shadow mb-4 ">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between  padding-left-20 padding-top-20">
+              <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;待处理业务</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body txt-blue ">
+              <div class="chart-area padding-left-40 margin-top-10">
+                <div class="row">
+                  <div class="col-xl-3  cursor-po"> 
+                    <div (click)='reGoods(true)'  class="h8">
+                      <img src="{{uploadpath}}resource/{{res.sendgoods}}" class="icon-10 margin-right-10"/>
+                       待发货：
+                       <span  class="h8">{{goods}}</span>
+                      </div>
+                    </div>
+                    <div class="height-10"></div>
+                  <div class="col-xl-3  cursor-po"> 
+                    <div (click)='applyGoods(true)'  class="h8">
+                      <img src="{{uploadpath}}resource/{{res.returngoods}}" class="icon-10 margin-right-10"/> 
+                       客户申请退货：
+                       <span  class="h8">{{returnGoods}}</span>
+                    </div>
+                  </div>
+                  <div class="height-10"></div>
+                  <div class="col-xl-3  cursor-po"> 
+                    <div (click)='applyGoods(false)'  class="h8">
+                      <img src="{{uploadpath}}resource/{{res.yituihuo}}" class="icon-10 margin-right-10"/> 
+                       已退货：
+                       <span  class="h8">{{yituihuoGoods}}</span>
+                    </div>
+                    </div>
+                    <div class="height-10"></div>
+                    <div class="col-xl-3  cursor-po "> 
+                      <div (click)='reGoods(false)' class="h8">
+                        <img src="{{uploadpath}}resource/{{res.wancheng}}" class="icon-10 margin-right-10"/> 
+                         已完成：
+                         <span  class="h8">{{yiwanchengGoods}}</span>
+                      </div>
+                      </div>
+                      <div class="height-10"></div>
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+        
+      </div>
+    
+    </div>
+
+</ion-content>

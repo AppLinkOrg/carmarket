@@ -1,0 +1,29 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 414;
+  }
+.reset {
+    display: inline-block;
+    width: rpx(80);
+    height: rpx(25);
+    background: #007bff;
+    line-height: rpx(25);
+    text-align: center;
+    color: #fff;
+    margin: 0 rpx(50);
+    cursor: pointer;
+}
+.input-box {
+    width: 50%;
+    height: rpx(30);
+}
+.btnss {
+    width: 20%;
+    border: rpx(1) solid #cccccc;
+    font-size: rpx(16);
+    text-align: center;
+}
+.btn-active {
+    background:  #007bff;
+    color: #ffffff !important;
+    border-color: #007bff;
+}
