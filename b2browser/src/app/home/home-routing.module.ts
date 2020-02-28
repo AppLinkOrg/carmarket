@@ -22,6 +22,12 @@ import { AchievementComponent } from '../achievement/achievement.component';
 import { EmployeeManagementComponent } from '../employee-management/employee-management.component';
 import { WaitingComponent } from '../waiting/waiting.component';
 import { ConsumeComponent } from '../consume/consume.component';
+import { WatchorderComponent } from '../watchorder/watchorder.component';
+import { WaitsendComponent } from '../waitsend/waitsend.component';
+import { WaitreceiveComponent } from '../waitreceive/waitreceive.component';
+import { SuccessComponent } from '../success/success.component';
+import { ChangeapplyComponent } from '../changeapply/changeapply.component';
+import { ObligationsComponent } from '../obligations/obligations.component';
 
 const routes: Routes = [
   {
@@ -49,6 +55,12 @@ const routes: Routes = [
       { path: "achievement", component: AchievementComponent},
       { path: "waiting", component: WaitingComponent},
       { path: "consume", component: ConsumeComponent},
+      { path: "watchorder", component: WatchorderComponent},
+      { path: "waitsend", component: WaitsendComponent},
+      { path: "waitreceive", component: WaitreceiveComponent},
+      { path: "success", component: SuccessComponent},
+      { path: "changeapply", component: ChangeapplyComponent},
+      { path: "obligations", component: ObligationsComponent},
     ]
   }
 ];

@@ -27,7 +27,12 @@ import { AchievementComponent } from '../achievement/achievement.component';
 import { EmployeeManagementComponent } from '../employee-management/employee-management.component';
 import { WaitingComponent } from '../waiting/waiting.component';
 import { ConsumeComponent } from '../consume/consume.component';
-
+import { WatchorderComponent } from '../watchorder/watchorder.component';
+import { WaitsendComponent } from '../waitsend/waitsend.component';
+import { WaitreceiveComponent } from '../waitreceive/waitreceive.component';
+import { SuccessComponent } from '../success/success.component';
+import { ChangeapplyComponent } from '../changeapply/changeapply.component';
+import { ObligationsComponent } from '../obligations/obligations.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -48,7 +53,13 @@ import { ConsumeComponent } from '../consume/consume.component';
     AchievementComponent,
     WaitingComponent,
     ConsumeComponent,
-    DashboardComponent],
+    WatchorderComponent,
+    WaitsendComponent,
+    WaitreceiveComponent,
+    SuccessComponent,
+    ChangeapplyComponent,
+    ObligationsComponent,
+    DashboardComponent,],
   imports: [
     CommonModule,
     FormsModule,

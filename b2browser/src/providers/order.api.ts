@@ -846,5 +846,49 @@ export class OrderApi {
             });
     }
 
+    public 	addtuohuoitem(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/addtuohuoitem';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        } 
+        
+        return this.http.post(url, body, options).toPromise()
+ 
+            .then((res) => {
+                return  res; 
+            })
+            .catch(err => {
+                console.error(err,'000000');
+                return ApiConfig.ErrorHandle('order/addtuohuoitem', data, err);
+            });
+    }
+
+    
+    public 	addtuihuo(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/addtuihuo';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        } 
+        
+        return this.http.post(url, body, options).toPromise()
+ 
+            .then((res) => {
+                return  res; 
+            })
+            .catch(err => {
+                console.error(err,'000000');
+                return ApiConfig.ErrorHandle('order/addtuihuo', data, err);
+            });
+    }
 
 }

@@ -38,7 +38,12 @@ import { ConsumeComponent } from './consume/consume.component';
 import { FindComponent } from './find/find.component';
 import { FindaddComponent } from './findadd/findadd.component';
 import { SubmitpageComponent } from './submitpage/submitpage.component';
-
+import { WatchorderComponent } from './watchorder/watchorder.component';
+import { WaitsendComponent } from './waitsend/waitsend.component';
+import { WaitreceiveComponent } from './waitreceive/waitreceive.component';
+import { SuccessComponent } from './success/success.component';
+import { ChangeapplyComponent } from './changeapply/changeapply.component';
+import { ObligationsComponent } from './obligations/obligations.component';
 @NgModule({
   declarations: [
     AppComponent,
