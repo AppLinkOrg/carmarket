@@ -1,0 +1,116 @@
+
+
+
+<div style="width:50%;margin:0 auto;">
+
+
+  <div class="flex-row flex-center bg-primary padding-20">
+    <img src="{{uploadpath}}resource/{{res.fanhui}}" (click)='back()' class="icon">
+    <div class="flex-1"></div>
+    <div class="txt-white">退换货申请</div>
+    <div class="flex-1"></div>
+</div>
+
+    <div class="    bg-white  ">
+
+        <div class=' flex-row margin-top  '>
+          <div class='borderleft'></div>
+          <div class='margin-left-10 txt-black txt-bold'>退换信息</div>
+        </div>
+      
+        <div class="flex-row  flex-center margin-top-20 margin-left-30" >
+          <div class="h5" >订单编号：</div>
+          <div class="h5 margin-left-20">{{change2.orderno}}</div>
+        </div>
+      
+        <div class="flex-row flex-center margin-top-20 margin-left-30" >
+          <div class="h5" >VIN:</div>
+          <div class="h5 margin-left-20">{{change2.vin}}</div>
+        </div>
+      
+        <div class="flex-row flex-top margin-top-20 margin-left-30" >
+          <div class="h5" >车型:</div>
+          <div class="h5 margin-left-20 flex-1">{{change2.carname}}</div>
+        </div>
+      
+      </div>
+      
+      
+      <div class="bott margin-top"></div>
+      
+      <div class=' flex-row margin-top  '>
+        <div class='borderleft'></div>
+        <div class='margin-left-10 txt-black txt-bold'>退换信息</div>
+      </div>
+      
+      <div class="flex-row flex-center margin-30">
+        <div class="h5">手机号码： </div>
+        <input class="h5 ip" placeholder="请输入你的手机号码" [(ngModel)]='phone'  maxlength="11" type="number">
+      </div>
+      
+      <div class="tex">
+        <textarea class="h5 margin-left-10 margin-top-10" style='width:97%'  [(ngModel)]='content' placeholder="为了帮我们做更好，请尽可能详细描述您的退换货原因，并提交后台，我们平台收到后将尽快处理"></textarea>
+      </div>
+      <div class="bott margin-top"></div>
+      
+      <div class=' flex-row margin-top  '>
+        <div class='borderleft'></div>
+        <div class='margin-left-10 txt-black txt-bold'>选择配件</div>
+      </div>
+      
+      
+      
+      <div class='flex-row flex-center margin-top' *ngFor="let item of change2.orderitem;let idx=index;"  style='border-bottom: 1px solid #ccc;'>
+      
+        <div class='margin-left-30 '>
+          <img *ngIf="item.check==false" (click)="bindxuanze(idx)"  class='icon  ' src='{{uploadpath}}resource/{{res.nocheck}}'>
+          <img *ngIf="item.check==true" (click)="bindxuanze(idx)"  class='icon  ' src='{{uploadpath}}resource/{{res.checking}}'>
+        </div>
+      
+        <div class='margin-left-10 '>
+          <div class=' txt-black marg margin-left-10 txt-bold'>{{item.parts}}</div>
+      
+          <div class='flex-row  margin-top-10 '>
+            <div class=''>【{{item.quality }}】</div>
+            <div class="margin-left-10 txt-red txt-bold">￥{{item.price}}</div>
+          </div>
+      
+          <!-- <div class='flex-row flex-wrap margin-top-20  '>
+            <div class=''>单价：</div>
+            <div class='txt-red'>{{item.price}}元</div>
+          </div> -->
+          <div style="height:40px;"></div>
+        </div>
+      
+        <div class="flex-1"></div>
+      
+        <div class="flex-row  flex-center">
+      
+          <img class='icon-25 ' src='{{uploadpath}}resource/{{res.reduce}}'  (click)='bindadd(idx,"jian")'>
+          <div class='  text-center h5 txt-bold' style="width:80px;">{{item.qty}}</div>
+          <img class='icon-25 margin-right-20' src='{{uploadpath}}resource/{{res.add}}' (click)='bindadd(idx,"jia")'>
+      
+        </div>
+          
+      
+      </div>
+      
+      <div class='bott margin-top-20 margin-bottom-20'></div>
+      <div class='flex-row  '>
+        <img *ngIf="quan=='B'"  class='icon margin-left-30' src='{{uploadpath}}resource/{{res.nocheck}}' (click)="bindall('B')">
+      
+        <img *ngIf="quan=='Q'"  class='icon margin-left-30' src='{{uploadpath}}resource/{{res.checking}}' (click)="bindall('Q')">
+      
+        <div class="margin-left-10">全选</div>
+      
+        <div class="flex-1"></div>
+        <div class=' txt-black'>总计：</div>
+        <div class='txt-red margin-right-30 txt-bold'>￥{{price}}元</div>
+      </div>
+      
+      <div class='bott margin-top-20 margin-bottom-20'></div>
+      <div style="height:120px"></div>
+      
+      <div class="btn-btn" (click)='bindsubmit'>提交</div>
+
+</div>

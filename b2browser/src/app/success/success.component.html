@@ -1,0 +1,120 @@
+<div style="width:50%;margin:0 auto;">
+
+
+    <div class="flex-row flex-center bg-primary padding-20">
+        <img src="{{uploadpath}}resource/{{res.fanhui}}" (click)='back()' class="icon">
+        <div class="flex-1"></div>
+        <div class="txt-white">订单详情</div>
+        <div class="flex-1"></div>
+    </div>
+ <div class="flex-row flex-column padding-20 bg-primary" style=" ">
+
+
+    <div style="height:20px;"></div>
+    <div class="flex-row flex-center">
+      <img src="{{uploadpath}}resource/{{res.wait}}" class="icon"/>
+      <div class="txt-white margin-left-20  " *ngIf='yiwancheng.order_status=="L"'>订单已支付，商家准备发货。请耐心等待！</div>
+      <div class="txt-white margin-left-20  " *ngIf='yiwancheng.order_status=="M"'>商家已发货，物流配送中，请注意查收！</div>
+      <div class="txt-white margin-left-20  " *ngIf='yiwancheng.order_status!="M" && yiwancheng.order_status!="L" && yiwancheng.order_status!="E"'>交易已完成</div>
+      <div class="txt-white margin-left-20  " *ngIf='yiwancheng.order_status=="E"'>订单已取消</div>
+    </div>
+    <div style="height:20px;"></div>
+  </div>
+  
+  <div class=" bg-white  padding-20   flex-row flex-center">
+  
+    <img class='icon-30 margin-right-20 ' src='{{uploadpath}}resource/{{res.zuobiao}}'/>
+    <div class=" flex-1">
+      <div class=" flex-row flex-bottom">
+        <div class="txt-black  ">{{yiwancheng.receiver}}</div>
+        <div class="  margin-left-30  h5">{{yiwancheng.receivecontact}}</div>
+      </div>
+      <div class="txt-black h5 margin-top-10">{{yiwancheng.receiveaddress}}</div>
+    </div>
+  </div>
+  
+  <div class="margin-top-20 bg-white  ">
+    <div class="flex-row flex-center padding-20">
+      <img src="{{uploadpath}}resource/{{res.store}}" class="icon-30 margin-right-20"/>
+      <div class="txt-black">{{yiwancheng.enterprise_id_name}}</div>
+    </div>
+  
+    <div class="margin-20" *ngFor='let item of yiwancheng.orderitem;let idx=index;' style="border-bottom:1px solid #ccc">
+  
+      <div class="flex-row flex-top">
+        <div class="txt-black">{{idx+1}}.</div>
+        <div class="txt-bold txt-black flex-1 margin-left-10">{{item.parts}}</div>
+        <div class="flex-1"></div>
+        <img *ngIf='item.tui==true' src="{{uploadpath}}resource/{{res.xiaotui}}" class="icon-25 margin-right-10"/>
+      </div>
+  
+      <div class="flex-row flex-bottom margin-top-20 margin-left-20">
+        <div class=" h6">【{{item.quality}}】</div>
+        <div class="txt-red txt-bold margin-left-20">￥{{item.price}}</div>
+        <div class="h6 margin-left-10">x{{item.qty}}</div>
+      </div>
+  
+      <div style="height:40px;"></div>
+  
+  
+    </div>
+  
+    <div class='margin-right-40 flex-row flex-center '>
+      <div class="flex-1"></div>
+      <div class='txt-black h5'>总计：</div>
+      <div class='txt-red h5 txt-bold'>￥{{yiwancheng.totalamount}}元</div>
+    </div>
+    <div style="height:10px;"></div>
+  </div>
+  
+  <div class="margin-top-20 padding-20 bg-white  ">
+  
+    <div class="flex-1 txt-black h5 txt-bold">订单信息</div>
+  
+    <div class="flex-row flex-center margin-top-20" style=" ">
+      <div class="h5" style="width:200px;">订单编号：</div>
+      <div class="h5">{{yiwancheng.orderno}}</div>
+    </div>
+  
+    <div class="flex-row flex-center margin-top-20" style=" ">
+      <div class="h5" style="width:200px;">VIN:</div>
+      <div class="h5">{{yiwancheng.vin}}</div>
+    </div>
+  
+    <div class="flex-row flex-top margin-top-20" style=" ">
+      <div class="h5" style="width:200px;">车型:</div>
+      <div class="h5 flex-1">{{yiwancheng.carname}}</div>
+    </div>
+  
+    <div class="flex-row flex-top margin-top-20" style=" ">
+      <div class="h5" style="width:200px;">发票:</div>
+      <div class="h5 flex-1">{{yiwancheng.needinvoice_value=='Y'?'有':'无'}}</div>
+    </div>
+   
+    <div class="flex-row flex-center margin-top-20" style=" ">
+      <div class="h5" style="width:200px;">创建时间：</div>
+      <div class="h5">{{yiwancheng.order_time}}</div>
+    </div>
+  
+    <div class="flex-row flex-top margin-top-20" *ngIf='yiwancheng.remarks!=""'>
+      <div class="h5" style="width:200px;">备注:</div>
+      <div class="h5 flex-1">{{yiwancheng.remarks}}</div>
+    </div>
+   
+  </div>
+   
+   
+  <div style="height:150px"></div>
+  
+  <div class='bott margin-top-20 margin-bottom-20'></div>
+  <div class='flex-row margin-top weizhi' *ngIf='yiwancheng.order_status!="L" && yiwancheng.order_status!="M" && yiwancheng.order_status!="E"'> 
+      <div class=' padding-top-10 h5 txt-white text-center btn0ne' > 如果商品存在质量问题可申请退换，但是原厂的产品恕不退换 
+    </div>
+    <div class='btnTwo txt-white text-center' *ngIf='yiwancheng.order_status=="N" || weiquantuohuo==false' (click)='bindapply(yiwancheng.id)'>申请退换</div>
+    <div class='btnTwoS txt-white text-center' *ngIf='yiwancheng.order_status=="I" && yiquantuohuo==true' >退货中</div>
+    <div class='btnTwoS txt-white text-center' *ngIf='yiwancheng.order_status=="Y" && yiquantuohuo==true' >已退货</div>
+    <div class='btnTwoS txt-white text-center' *ngIf='yiwancheng.order_status=="R" && yiquantuohuo==true' >待退货</div>
+  
+  </div>
+
+</div>

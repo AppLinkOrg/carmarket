@@ -46,7 +46,7 @@ export class AppBase implements OnInit {
     public params: Params = null;
 
 
-    public operatorinfo={id:0,name:"",photo:"",loginname:"",enterprise_id:""};
+    public operatorinfo={id:0,name:"",photo:"",loginname:"",enterprise_id:"",enterprise:{account_money:0}};
 
     mySwiperOption = {
         zoom: {
@@ -184,6 +184,9 @@ export class AppBase implements OnInit {
     }
     navigate(pagename, param = {}) {
         this.router.navigate([pagename], { queryParams: param });
+    }
+    back(){
+        window.history.back(); 
     }
 
     decode(val) {
