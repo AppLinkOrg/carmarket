@@ -559,6 +559,10 @@
   .margin-left-40 {
     margin-left: 40px;
   }
+
+  .margin-left-50 {
+    margin-left: 50px;
+  }
   
   .radius-50 {
     border-radius: 50%;
@@ -704,9 +708,24 @@
   
   
   
-  
-  
-  
+  .order {
+    height: 2px;
+    width: 50px;
+  }
+  .bg-btn {
+    background: #143779;
+    color: white;
+  }
+  .icon-17 {
+    width: 34px;
+    height: 34px;
+  }
+  .borderleft {
+    border-left: 5px solid #143779;
+    height: 14px;
+    margin-top: 5px;
+    margin-left: 15px;
+  }
   
   .dotter {
     border-bottom: 1px dotted #4C556E;

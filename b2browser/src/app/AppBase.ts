@@ -46,7 +46,7 @@ export class AppBase implements OnInit {
     public params: Params = null;
 
 
-    public operatorinfo={id:0,name:"",photo:"",loginname:"",enterprise_id:"",enterprise:{account_money:0}};
+    public operatorinfo={id:0,name:"",photo:"",loginname:"",enterprise_id:"",enterprise:{account_money:0,logo:"",name:''},position:''};
 
     mySwiperOption = {
         zoom: {

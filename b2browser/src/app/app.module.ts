@@ -44,6 +44,15 @@ import { WaitreceiveComponent } from './waitreceive/waitreceive.component';
 import { SuccessComponent } from './success/success.component';
 import { ChangeapplyComponent } from './changeapply/changeapply.component';
 import { ObligationsComponent } from './obligations/obligations.component';
+import { MyComponent } from './my/my.component';
+import { JiaoyijiluComponent } from './jiaoyijilu/jiaoyijilu.component';
+import { EditComponent } from './edit/edit.component';
+import { AccountComponent } from './account/account.component';
+import { HelpcenterComponent } from './helpcenter/helpcenter.component';
+import { ChangeComponent } from './change/change.component';
+import { AuthorityComponent } from './authority/authority.component';
+import { AddressComponent } from './address/address.component';
+import { OrderComponent } from './order/order.component';
 @NgModule({
   declarations: [
     AppComponent,

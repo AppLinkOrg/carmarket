@@ -28,7 +28,16 @@ import { WaitreceiveComponent } from '../waitreceive/waitreceive.component';
 import { SuccessComponent } from '../success/success.component';
 import { ChangeapplyComponent } from '../changeapply/changeapply.component';
 import { ObligationsComponent } from '../obligations/obligations.component';
-
+import { MyComponent } from '../my/my.component';
+import { JiaoyijiluComponent } from '../jiaoyijilu/jiaoyijilu.component';
+import { EditComponent } from '../edit/edit.component';
+import { AccountComponent } from '../account/account.component';
+import { HelpcenterComponent } from '../helpcenter/helpcenter.component';
+import { ChangeComponent } from '../change/change.component';
+import { AuthorityComponent } from '../authority/authority.component';
+import { AddressComponent } from '../address/address.component';
+import { OrderComponent } from '../order/order.component';
+import { AboutusComponent } from '../aboutus/aboutus.component';
 const routes: Routes = [
   {
     path: '',
@@ -61,6 +70,16 @@ const routes: Routes = [
       { path: "success", component: SuccessComponent},
       { path: "changeapply", component: ChangeapplyComponent},
       { path: "obligations", component: ObligationsComponent},
+      { path: "my", component: MyComponent},
+      { path: "jiaoyijilu", component: JiaoyijiluComponent},
+      { path: "edit", component: EditComponent},
+      { path: "account", component: AccountComponent},
+      { path: "helpcenter", component: HelpcenterComponent},
+      { path: "change", component: ChangeComponent},
+      { path: "authority", component: AuthorityComponent},
+      { path: "address", component: AddressComponent},
+      { path: "order", component: OrderComponent},
+      { path: "aboutus", component: AboutusComponent},
     ]
   }
 ];
