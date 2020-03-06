@@ -38,6 +38,7 @@ import { AuthorityComponent } from '../authority/authority.component';
 import { AddressComponent } from '../address/address.component';
 import { OrderComponent } from '../order/order.component';
 import { AboutusComponent } from '../aboutus/aboutus.component';
+import { AddressaddComponent } from '../addressadd/addressadd.component';
 const routes: Routes = [
   {
     path: '',
@@ -80,6 +81,7 @@ const routes: Routes = [
       { path: "address", component: AddressComponent},
       { path: "order", component: OrderComponent},
       { path: "aboutus", component: AboutusComponent},
+      { path: "addressadd", component: AddressaddComponent},
     ]
   }
 ];

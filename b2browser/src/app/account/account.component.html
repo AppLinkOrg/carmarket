@@ -1,6 +1,6 @@
 <div style="width:50%;margin:0 auto;">
 
-    <div class="flex-row flex-center bg-primary padding-20">
+    <div class="flex-row flex-center bg-btn padding-20">
         <img src="{{uploadpath}}resource/{{res.fanhui}}" (click)='back()' class="icon">
         <div class="flex-1"></div>
         <div class="txt-white">我的账户</div>
@@ -8,7 +8,7 @@
     </div>
 
     <div class='pageone'>
-        <div class='bg' [style.background-image]="'url('+uploadpath+'resource/'+res.bgimg+')'">
+        <div class='bg' style="background-size: 100% 100%;" [style.background-image]="'url('+uploadpath+'resource/'+res.bgimg+')'">
           <div class="h5 txt-black margin-left-40 yue">账户余额</div>
           <div class="flex-row   flex-bottom margin-top-20">
             <div class="h2 margin-left-30 txt-bold txt-bc">{{operatorinfo.enterprise.account_money}}</div>

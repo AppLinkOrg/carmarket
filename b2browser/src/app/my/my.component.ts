@@ -49,7 +49,7 @@ export class MyComponent extends AppBase  {
     // wx.reLaunch({
     //   url: '/pages/order/order',
     // })
-    this.navigate('/order');
+    this.navigate('/watchorder');
   }
 
   bindaddress() {

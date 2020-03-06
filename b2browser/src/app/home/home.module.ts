@@ -43,6 +43,7 @@ import { AuthorityComponent } from '../authority/authority.component';
 import { AddressComponent } from '../address/address.component';
 import { OrderComponent } from '../order/order.component';
 import { AboutusComponent } from '../aboutus/aboutus.component';
+import { AddressaddComponent } from '../addressadd/addressadd.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -79,6 +80,7 @@ import { AboutusComponent } from '../aboutus/aboutus.component';
     AddressComponent,
     AboutusComponent,
     OrderComponent,
+    AddressaddComponent,
     DashboardComponent,],
   imports: [
     CommonModule,
