@@ -44,6 +44,10 @@ import { AddressComponent } from '../address/address.component';
 import { OrderComponent } from '../order/order.component';
 import { AboutusComponent } from '../aboutus/aboutus.component';
 import { AddressaddComponent } from '../addressadd/addressadd.component';
+import { FindComponent } from '../find/find.component';
+import { FindaddComponent } from '../findadd/findadd.component';
+import { SubmitpageComponent } from '../submitpage/submitpage.component';
+import { ChangedetailComponent } from '../changedetail/changedetail.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -81,6 +85,10 @@ import { AddressaddComponent } from '../addressadd/addressadd.component';
     AboutusComponent,
     OrderComponent,
     AddressaddComponent,
+    FindComponent,
+    FindaddComponent,
+    SubmitpageComponent,
+    ChangedetailComponent,
     DashboardComponent,],
   imports: [
     CommonModule,

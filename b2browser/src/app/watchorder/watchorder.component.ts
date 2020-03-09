@@ -37,8 +37,8 @@ export class WatchorderComponent extends AppBase  {
   yiquxiao=[];
   onMyShow(){
     console.log('oooo22')
-    this.operatorinfo.id=1;
-    this.operatorinfo.enterprise_id="1";
+    // this.operatorinfo.id=1;
+    // this.operatorinfo.enterprise_id="1";
     this.orderApi.mylist({
       order_status: 'W', baojia: this.operatorinfo.id, orderby:'r_main.orderno desc'
     }).then((daifukuan:any) => {

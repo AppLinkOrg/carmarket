@@ -54,14 +54,12 @@ import { AuthorityComponent } from './authority/authority.component';
 import { AddressComponent } from './address/address.component';
 import { OrderComponent } from './order/order.component';
 import { AddressaddComponent } from './addressadd/addressadd.component';
+import { ChangedetailComponent } from './changedetail/changedetail.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SidemenuComponent,
-    FindComponent,
-    FindaddComponent,
-    SubmitpageComponent,
   ],
   imports: [
     BrowserModule,

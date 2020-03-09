@@ -23,8 +23,38 @@ export class ChangeComponent extends AppBase  {
   ) { 
     super(router,activeRoute,instApi,orderApi,enterpriseApi);
   }
+  change="A";
+  returnlist=[];
+  yituihuan=[];
   onMyShow(){
-    
+    this.orderApi.returnlist({
+      orderstatus:'R,I'
+      }).then( (returnlist:any) => {
+        this.returnlist=returnlist;
+      })
+  
+      this.orderApi.returnlist({ 
+        orderstatus: 'Y'
+      }).then((yituihuan:any) => {
+        this.yituihuan=yituihuan;
+      })
+  }
+
+  bindtui(id) {
+    // var id = e.currentTarget.id;
+    // wx.navigateTo({
+    //   url: '/pages/changedetail/changedetail?id=' + id,
+    // })
+    this.navigate('/changedetail',{id:id})
+   
+  }
+
+  bindchange(e) {
+    // var changeid = e.currentTarget.dataset.change;
+    // this.Base.setMyData({
+    //   change: changeid
+    // });
+    this.change=e;
   }
 
 }

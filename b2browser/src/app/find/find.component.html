@@ -21,7 +21,7 @@
     </div>
 
 
-    <block *ngFor='let item of searchhistory' class="block">
+    <div *ngFor='let item of searchhistory' class="block">
         <div class='he' (click)='bindcheck(item.vin)'>
             <div class='  h5 txt-blue'>{{item.carrecord}}</div>
             <div class='flex-row' style='padding-bottom:2rpx;'>
@@ -30,7 +30,7 @@
                 <div class="h6 margin-top-35   text-right  flex-row txt-blue">{{item.created_date}}</div>
             </div>
         </div>
-    </block>
+    </div>
 
 
 </div>

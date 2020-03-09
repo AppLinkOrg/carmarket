@@ -12,7 +12,7 @@
 <ion-content>
   <div class="flex-row margin-10">
     <div class="flex-1"></div>
-    <div class="h8 dayin">打印</div>
+    <div class="h8 dayin" (click)='print()'>打印</div>
   </div>
     <div *ngFor='let lists of list3;let i=index;'>
   <div *ngIf='i==0' class="padding-10 margin-10 shadow" >
