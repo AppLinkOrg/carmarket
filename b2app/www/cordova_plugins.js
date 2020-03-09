@@ -538,43 +538,11 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/cordova-plugin-appversion/www/app-version.js",
-        "id": "cordova-plugin-appversion.RareloopAppVersion",
-        "pluginId": "cordova-plugin-appversion",
-        "clobbers": [
-            "AppVersion"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-app-update/www/AppUpdate.js",
-        "id": "cordova-plugin-app-update.AppUpdate",
-        "pluginId": "cordova-plugin-app-update",
-        "clobbers": [
-            "AppUpdate"
-        ]
-    },
-    {
         "file": "plugins/cordova-wifi-plugin/www/WifiManagerPlugin.js",
         "id": "cordova-wifi-plugin.CordovaWifiManager",
         "pluginId": "cordova-wifi-plugin",
         "clobbers": [
             "cordova.plugins.WifiManagerPlugin"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-app-version/www/AppVersionPlugin.js",
-        "id": "cordova-plugin-app-version.AppVersionPlugin",
-        "pluginId": "cordova-plugin-app-version",
-        "clobbers": [
-            "cordova.getAppVersion"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-hotspot/www/HotSpotPlugin.js",
-        "id": "cordova-plugin-hotspot.HotSpotPlugin",
-        "pluginId": "cordova-plugin-hotspot",
-        "clobbers": [
-            "cordova.plugins.hotspot"
         ]
     }
 ];
@@ -605,12 +573,7 @@ module.exports.metadata =
     "cordova-plugin-screen-orientation": "3.0.2",
     "cordova-plugin-statusbar": "2.4.3",
     "cordova-plugin-globalization": "1.11.0",
-    "cordova-plugin-appversion": "1.0.0",
-    "cordova-plugin-app-update": "2.0.2",
-    "cordova-wifi-plugin": "1.0.4",
-    "cordova-plugin-app-version": "0.1.9",
-    "cordova-plugin-compat": "1.2.0",
-    "cordova-plugin-hotspot": "1.2.10"
+    "cordova-wifi-plugin": "1.0.4"
 }
 // BOTTOM OF METADATA
 });
