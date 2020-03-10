@@ -61,11 +61,11 @@
                               <span class="bg-dep-gray txt-black padding-three-words margin-right-20">下单员</span><span>{{quoteinfo.employee_id_name}}</span>
                           </div>        
                           <div class="flex-4">
-                              <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red" *ngIf='quoteinfo.invoice_demand_value=="是"'>需要发票</span>
-                              <span *ngIf='quoteinfo.invoice_demand_value=="否"'>不需要发票</span>
+                              <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red" *ngIf='quoteinfo.rate!="0"'>需要发票</span>
+                              <span *ngIf='quoteinfo.rate=="0"'>不需要发票</span>
                           </div>
                           <div  class="flex-4">
-                              <div  *ngIf='quoteinfo.invoice_demand_value=="是"'>
+                              <div  *ngIf='quoteinfo.rate!="0"'>
                                   <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票税率</span>
                                   <span>{{quoteinfo.rate}}%</span>
                               </div>
