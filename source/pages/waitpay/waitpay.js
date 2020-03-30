@@ -72,7 +72,7 @@ class Content extends AppBase {
             title: '正在付款~',
           })
 
-          if (sumprice > enmoney){
+          if (Number(sumprice) > Number(enmoney)){
             wx.showToast({
               title: '余额不足，请及时充值！',
               icon: 'none'
