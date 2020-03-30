@@ -48,9 +48,16 @@ export class QuotationCenterComponent extends AppBase {
   employee_id = '';
   employee_id_name = '';
 
- 
+ onMyLoad(){
+   this.params;
+   console.log(this.params,'aaaaaaaaaaaaaaa')
+   if(this.params.aa!=undefined){
+     this.aa = this.params.aa;
+   }
+   this.comlen();
+ }
   onMyShow() {
-
+    console.log(this.aa,'aaaaaaaaaaaa')
     let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
     var a = this.orderApi;
@@ -62,14 +69,14 @@ export class QuotationCenterComponent extends AppBase {
       this.employee_id_name = employeeinfo.name
       this.enterprise_id_name = employeeinfo.enterprise.name
 
-      this.quoteHandle();
+      // this.quoteHandle();
     
       a.distinctlist({}).then((distinctlist: any) => {
         console.log(distinctlist, "33333")
         this.distinctlist = distinctlist
       })
 
-      
+      this.change(this.aa);
       setInterval(() => {
         if(this.aa==1){
           this.quoteHandle();
@@ -336,8 +343,10 @@ aa=1;
 
           if (searchignore.code == "0") {
     
-            this.onMyShow()
-    
+            // this.onMyShow()
+            // this.aa=3;
+            this.change(3);
+            this.yihulen++;
     
           }
         })
@@ -358,7 +367,259 @@ aa=1;
   yihulen=0;
   yishilen=0;
   alllen=0;
+  comlen(){
+    var a = this.orderApi;
+    a.quotelist({}).then((list: any) => {
+       
+      console.log(list,'list')
 
+        a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
+          // this.ignore = ignore
+          this.yihulen=ignore.length;
+          console.log(ignore, 'ignore')
+          console.log(ignore.length, 'ignore.length')
+  
+          if (ignore.length == 0) {
+            a.yiquotelist({quoteenterprise_id: this.enterprise_id}).then((yiquotelist:any)=>{
+              console.log(yiquotelist,'yiquotelist')
+              console.log(yiquotelist.length,'yiquotelist.length')
+              
+              if(yiquotelist.length == 0){
+  
+                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
+                  console.log(list, 'lsit')
+                  list = list.filter(item=>{
+                    return item.quote_id!='';
+                  })
+                    for (let item of list) {
+                      if (item.quotestatus == 'Q') {
+      
+                        item.photoLen = 0
+                        console.log(item)
+        
+                        if (item.frontofcar != '' && item.frontofcar!="undefined") {
+                          item.photoLen++
+                        }
+                        if (item.namesplate != ''&& item.namesplate!="undefined") {
+                          item.photoLen++
+                        }
+                        if (item.rearofcar != ''&& item.rearofcar!="undefined") {
+                          item.photoLen++
+                        }
+                        if (item.photo1 != ''&& item.photo1!="undefined") {
+                          var arr =  item.photo1.split(/[, ，]/)
+                          item.photoLen +=arr.length
+                        }
+                        // if (item.photo2 != ''&& item.photo2!="undefined") {
+                        //   item.photoLen++
+                        // }
+                        this.list.push(item)
+                      }
+                    }
+                    this.list = this.list.sort(this.compare("quote_time_timespan"))
+          
+                    for (let i = 0; i < this.list.length; i++) {
+                      this.list[i].index = i
+                    }
+                    this.daibaolen = this.list.length;
+                    this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                    this.length = this.list.length;
+                    console.log(this.list)
+  
+                })
+              }else {
+                var yibao=[];
+                var shi=[];
+                yiquotelist.filter(item=>{
+                  if(item.invalid=='是' || item.quotestatus=='E'){
+                    // this.yishilen ++ ;
+                    shi.push(item);
+                  }else if(item.invalid=='否' && item.quotestatus!='E'){
+                    // this.yibaolen ++;
+                    yibao.push(item);
+                  }
+                })
+                this.yibaolen=yibao.length;
+                this.yishilen=shi.length
+                // this.yibaolen = yiquotelist.length;
+                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
+                  console.log(list, 'bbb')
+                  list =  list.filter(item=>{
+                    return item.quote_id!=''
+                  })
+                  var result = [];
+                  for (let item of list) {
+                    if (item.quotestatus === 'Q') {
+                      if (this.notinignore2(item, yiquotelist)) {
+  
+                        item.photoLen = 0
+                        if (item.frontofcar != '' && item.frontofcar !="undefined") {
+                          item.photoLen++
+                        }
+                        if (item.namesplate != '' && item.namesplate !="undefined") {
+                          item.photoLen++
+                        }
+                        if (item.rearofcar != '' && item.rearofcar !="undefined") {
+                          item.photoLen++
+                        }
+                        if (item.photo1 != '' && item.photo1 !="undefined") {
+                          var arr =  item.photo1.split(',')
+                          item.photoLen +=arr.length
+                        }
+                        // if (item.photo2 != '' && item.photo2 !="undefined") {
+                        //   item.photoLen++
+                        // }
+  
+                        result.push(item);
+                      }
+                    }
+      
+                  }
+      
+                  this.list = result.sort(this.compare("quote_time_timespan"));
+                  this.daibaolen = this.list.length
+                  for (let i = 0; i < this.list.length; i++) {
+                    this.list[i].index = i
+                  }
+                  this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                  this.length = this.list.length;
+      
+                });
+              }
+      
+            })
+  
+          } else {
+  
+            a.yiquotelist({quoteenterprise_id: this.enterprise_id}).then((yiquotelist:any)=>{
+              console.log(yiquotelist,'yyyyy')
+              // this.yibaolen = yiquotelist.length;
+              if(yiquotelist.length == 0){
+  
+                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
+                  console.log(list, 'list')
+                  list = list.filter(item=>{
+                    return item.quote_id!=''
+                  })
+                  var result = [];
+                    for (let item of list) {
+                      if (item.quotestatus == 'Q') {
+      
+                        if (this.notinignore2(item, ignore)) {
+                          item.photoLen = 0
+                          console.log(item)
+          
+                          if (item.frontofcar != '' && item.frontofcar !="undefined") {
+                            item.photoLen++
+                          }
+                          if (item.namesplate != '' && item.namesplate !="undefined") {
+                            item.photoLen++
+                          }
+                          if (item.rearofcar != '' && item.rearofcar !="undefined") {
+                            item.photoLen++
+                          }
+                          if (item.photo1 != '' && item.photo1 !="undefined") {
+                            var arr =  item.photo1.split(/[, ，]/)
+                            item.photoLen += arr.length
+                          }
+                          // if (item.photo2 != '' && item.photo2 !="undefined") {
+                          //   item.photoLen++
+                          // }
+                          result.push(item);
+  
+                        }
+                        
+                       
+                        // this.list.push(item)
+                      
+                      }
+                    }
+                    this.list = result.sort(this.compare("quote_time_timespan"));
+                    this.daibaolen = this.list.length;
+                    for (let i = 0; i < this.list.length; i++) {
+                      this.list[i].index = i
+                    }
+                    this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                    this.length = this.list.length;
+  
+                })
+              }else {
+                var shi=[];
+                var yibao=[];
+                yiquotelist.filter(item=>{
+                  if(item.invalid=='是' || item.quotestatus=='E'){
+                    // this.yishilen ++ ;
+                    shi.push(item);
+                  }else if(item.invalid=='否' && item.quotestatus!="E"){
+                    // this.yibaolen ++;
+                    yibao.push(item);
+                  }
+                })
+                this.yibaolen=yibao.length;
+                this.yishilen=shi.length
+                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
+                  console.log(list, 'list')
+                  list = list.filter(item=>{
+                    return item.quote_id!=''
+                  })
+                  var result = [];
+                  for (let item of list) {
+                    if (item.quotestatus === 'Q') {
+                      item.photoLen = 0
+                      
+                      if (item.frontofcar != '' && item.frontofcar !="undefined") {
+                        item.photoLen++
+                      }
+                      if (item.namesplate != '' && item.namesplate !="undefined") {
+                        item.photoLen++
+                      }
+                      if (item.rearofcar != '' && item.rearofcar !="undefined") {
+                        item.photoLen++
+                      }
+                      if (item.photo1 != '' && item.photo1 !="undefined") {
+                        var arr =  item.photo1.split(/[, ，]/)
+                        item.photoLen +=arr.length
+                      }
+                      // if (item.photo2 != '' && item.photo2 !="undefined") {
+                      //   item.photoLen++
+                      // }
+  
+                      console.log('尽快发货方')
+                      console.log(this.notinignore2(item, yiquotelist),'jjjjdddddd')
+                      if (this.notinignore2(item, yiquotelist)) {
+                        console.log('斤斤计较')
+                        if (this.notinignore2(item, ignore)) {
+                          console.log('jjjjj')
+                          result.push(item);
+                        }
+                      }
+                        
+                    }
+      
+                  }
+                  console.log(result,'kkkkk')
+      
+                  this.list = result.sort(this.compare("quote_time_timespan"));
+                  this.daibaolen = this.list.length;
+                  for (let i = 0; i < this.list.length; i++) {
+                    this.list[i].index = i
+                  }
+                  this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                  this.length = this.list.length;
+      
+                });
+              }
+      
+            })
+  
+          }
+  
+        })
+  
+
+   
+  })
+  }
   // 待报价
   quoteHandle() {
     this.list = [];
@@ -444,10 +705,10 @@ var a = this.orderApi;
                 var yibao=[];
                 var shi=[];
                 yiquotelist.filter(item=>{
-                  if(item.invalid=='是'){
+                  if(item.invalid=='是' || item.quotestatus=='E'){
                     // this.yishilen ++ ;
                     shi.push(item);
-                  }else if(item.invalid=='否'){
+                  }else if(item.invalid=='否' && item.quotestatus!='E'){
                     // this.yibaolen ++;
                     yibao.push(item);
                   }
@@ -563,10 +824,10 @@ var a = this.orderApi;
                 var shi=[];
                 var yibao=[];
                 yiquotelist.filter(item=>{
-                  if(item.invalid=='是'){
+                  if(item.invalid=='是' || item.quotestatus=='E'){
                     // this.yishilen ++ ;
                     shi.push(item);
-                  }else if(item.invalid=='否'){
+                  }else if(item.invalid=='否' && item.quotestatus!="E"){
                     // this.yibaolen ++;
                     yibao.push(item);
                   }
@@ -719,6 +980,8 @@ var a = this.orderApi;
 
 
   }
+
+  
 
   // 已报价
   quotedPrice() {
@@ -937,7 +1200,8 @@ var a = this.orderApi;
             quote_id: quote_id,
             employee_id: this.employee_id,
             employee_id_name: this.employee_id_name,
-            enterprise_id_name: this.enterprise_id_name
+            enterprise_id_name: this.enterprise_id_name,
+            aa:this.aa
           }
         })
       }
@@ -946,13 +1210,14 @@ var a = this.orderApi;
   }
 
   tiaozhuan2(itemId) {
+    var that = this;
     this.orderApi.editisread({quote_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.employee_id }).then((ret)=>{
       console.log(ret,'改改了')
       if(ret){
         this.router.navigate(['detailsOfQuotedPrice'], {
           queryParams: {
             quote_id: itemId,
-    
+            aa:that.aa
           }
         })
       }

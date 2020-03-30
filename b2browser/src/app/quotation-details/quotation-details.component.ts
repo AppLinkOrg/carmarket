@@ -607,5 +607,7 @@ export class QuotationDetailsComponent extends AppBase {
 
 
   }
-
+  fanhui(){
+    this.navigate('quotationCenter',{aa:this.params.aa})
+  }
 }

@@ -58,6 +58,13 @@ export class OrderManagementComponent extends AppBase  {
   wanlen=0;
   qulen=0;
   fulen=0;
+  onMyLoad(){
+    this.params;
+    if(this.params.aa!=undefined){
+      this.bb = this.params.aa;
+    }
+    // this.change(this.bb);
+  }
 
   onMyShow(){
     let oldtime = (new Date()).getTime() +  6*60*60*1000;
@@ -186,7 +193,7 @@ export class OrderManagementComponent extends AppBase  {
                 
                 this.alllen = this.list.length;
                 this.length = this.list.length
-                this.pagination(this.list,this.length)
+                // this.pagination(this.list,this.length)
                
               }else {
                 console.log(this.order_time_dateformat,'不是你了')
@@ -226,7 +233,7 @@ export class OrderManagementComponent extends AppBase  {
                 this.length = this.list.length
                 console.log(this.list)
              
-                this.pagination(this.list,this.length)
+                // this.pagination(this.list,this.length)
               }
                
               
@@ -235,10 +242,10 @@ export class OrderManagementComponent extends AppBase  {
           
           }
 
-          if(this.cc!=undefined){
-            this.bb=Number(this.cc);
+          // if(this.cc!=undefined){
+          //   this.bb=Number(this.cc);
             this.change(this.bb);
-          }
+          // }
           
           
         })
@@ -460,7 +467,8 @@ export class OrderManagementComponent extends AppBase  {
         if(ret){
           this.router.navigate(['sendGoodsDetail'],{
             queryParams: {
-              id: item.id
+              id: item.id,
+              aa:this.bb
             }
           })
         }
@@ -481,7 +489,8 @@ export class OrderManagementComponent extends AppBase  {
       if(ret){
         this.router.navigate(['receiveGoodsDetail'],{
           queryParams: {
-            id: item.id
+            id: item.id,
+            aa:this.bb
           }
         })
       }
@@ -498,7 +507,8 @@ export class OrderManagementComponent extends AppBase  {
       if(ret){
         this.router.navigate(['finishDetail'],{
           queryParams: {
-            id: item.id
+            id: item.id,
+            aa:this.bb
           }
         })
       }
@@ -513,7 +523,8 @@ export class OrderManagementComponent extends AppBase  {
       if(ret){
         this.router.navigate(['cancelDetail'],{
           queryParams: {
-            id: item.id
+            id: item.id,
+            aa:this.bb
           }
         })
       }
@@ -528,7 +539,8 @@ export class OrderManagementComponent extends AppBase  {
         if(ret){
           this.router.navigate(['waiting'],{
             queryParams: {
-              id: item.id
+              id: item.id,
+              aa:this.bb
             }
           })
         }

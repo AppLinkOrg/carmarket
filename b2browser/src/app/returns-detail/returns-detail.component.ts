@@ -103,4 +103,7 @@ export class ReturnsDetailComponent extends AppBase  {
 
 
   }
+  fanhui(){
+    this.navigate('returnsManagement',{bb:this.params.bb})
+  }
 }
