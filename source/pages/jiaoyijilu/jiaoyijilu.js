@@ -21,8 +21,9 @@ class Content extends AppBase {
     //options.id=5;
      super.onLoad(options);
      var type=[
-       { id: 1, name: '已完成' },
-       { id: 2, name: '已退货' },
+       { id: 1, name: '全部' },
+       { id: 2, name: '已完成' },
+       { id: 3, name: '已退货' },
      ];
      this.Base.setMyData({type,seq:0})
   }
@@ -44,14 +45,16 @@ class Content extends AppBase {
       for (var i = 0; i < templist.length;i++){
         templist[i].consume_time1 = that.changedate(templist[i].consume_time);
         templist[i].consume_time2 = that.changetime(templist[i].consume_time);
-        if(seq==0){
+        if(seq==1){
           if (templist[i].type == 'G') {
             ss.push(templist[i]);
           }
-        }else {
+        }else if(seq==2){
           if (templist[i].type == 'R') {
             ss.push(templist[i]);
           }
+        }else {
+          ss.push(templist[i]);
         }
         
       }
@@ -105,12 +108,14 @@ class Content extends AppBase {
           list.push(templist[i])
         }
       }
-    }else {
+    }else if(cur==2){
       for (var i = 0; i < templist.length; i++) {
         if (templist[i].type == 'G') {
           list.push(templist[i])
         }
       }
+    }else{
+      list=templist;
     }
     console.log(e)
     this.Base.setMyData({

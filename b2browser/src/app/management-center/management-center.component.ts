@@ -94,7 +94,8 @@ export class ManagementCenterComponent extends AppBase  {
         
 
         this.allenterprise = allenterprise.filter((item)=>{
-          return item.position != 'B'
+          // return item.position != 'B'
+          return item
         })
         console.log(this.allenterprise)
       })

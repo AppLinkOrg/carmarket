@@ -54,7 +54,7 @@ export class QuotationCenterComponent extends AppBase {
    if(this.params.aa!=undefined){
      this.aa = this.params.aa;
    }
-   this.comlen();
+   
  }
   onMyShow() {
     console.log(this.aa,'aaaaaaaaaaaa')
@@ -76,7 +76,14 @@ export class QuotationCenterComponent extends AppBase {
         this.distinctlist = distinctlist
       })
 
-      this.change(this.aa);
+      if(this.aa==1){
+        this.quoteHandle();
+      }else {
+        this.change(this.aa);
+        this.comlen();
+      }
+      
+      console.log(this.aa,'aaaaaaaaaaaaa-----------')
       setInterval(() => {
         if(this.aa==1){
           this.quoteHandle();
@@ -84,11 +91,12 @@ export class QuotationCenterComponent extends AppBase {
       
         console.log(11122334455)
     }, 10*1000);
+
     })
 
 
 
-
+    
 
 
   }
@@ -368,6 +376,11 @@ aa=1;
   yishilen=0;
   alllen=0;
   comlen(){
+    this.daibaolen=0;
+    this.yibaolen=0;
+    this.yihulen=0;
+    this.yishilen=0;
+    this.alllen=0;
     var a = this.orderApi;
     a.quotelist({}).then((list: any) => {
        
@@ -424,7 +437,7 @@ aa=1;
                     this.daibaolen = this.list.length;
                     this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
                     this.length = this.list.length;
-                    console.log(this.list)
+                    console.log('com',this.list,)
   
                 })
               }else {
@@ -626,11 +639,11 @@ aa=1;
     this.pageList = [];
     this.isquote = true;
     this.isshow = false
-    // this.daibaolen=0;
-    // this.yibaolen=0;
-    // this.yihulen=0;
-    // this.yishilen=0;
-    // this.alllen=0;
+    this.daibaolen=0;
+    this.yibaolen=0;
+    this.yihulen=0;
+    this.yishilen=0;
+    this.alllen=0;
     this.exp = true;
     // let current = e.target
     // current.classList.add('btn-active')
@@ -715,7 +728,7 @@ var a = this.orderApi;
                 })
                 this.yibaolen=yibao.length;
                 this.yishilen=shi.length
-                // this.yibaolen = yiquotelist.length;
+                this.yibaolen = yiquotelist.length;
                 a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
                   console.log(list, 'bbb')
                   list =  list.filter(item=>{
@@ -768,7 +781,7 @@ var a = this.orderApi;
   
             a.yiquotelist({quoteenterprise_id: this.enterprise_id}).then((yiquotelist:any)=>{
               console.log(yiquotelist,'yyyyy')
-              // this.yibaolen = yiquotelist.length;
+              this.yibaolen = yiquotelist.length;
               if(yiquotelist.length == 0){
   
                 a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
@@ -825,10 +838,10 @@ var a = this.orderApi;
                 var yibao=[];
                 yiquotelist.filter(item=>{
                   if(item.invalid=='是' || item.quotestatus=='E'){
-                    // this.yishilen ++ ;
+                    this.yishilen ++ ;
                     shi.push(item);
                   }else if(item.invalid=='否' && item.quotestatus!="E"){
-                    // this.yibaolen ++;
+                    this.yibaolen ++;
                     yibao.push(item);
                   }
                 })

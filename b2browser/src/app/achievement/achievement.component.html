@@ -71,7 +71,7 @@
                                             <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='myreturn($event)'>待退款</button>     
                                             <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray" (click)='myyitui($event)'>已退款</button>     
                                         </div> 
-                                        <div class="margin-10">订单总额：<span class="txt-red">￥{{totalMoney}}</span></div>
+                                        <div class="margin-10">订单总额：<span class="txt-red">￥{{totalMoney.toFixed(2)}}</span></div>
                                         <!-- DataTales Example -->
                                         <div class="card shadow mb-4">
                                         <div class="card-body">
@@ -95,7 +95,11 @@
                                                        <td *ngIf='bb==true'>{{item.returnno}}</td>
                                                        <td>{{item.receiver}}</td>
                                                        <td>{{item.finish_time}}</td>
-                                                       <td>{{item.totalamount}}</td>
+                                                       <td>
+                                                           <span *ngIf='item.orderstatus=="Y"'>-</span>
+                                                        <span *ngIf='item.order_status=="N"'>+</span>
+                                                        {{item.totalamount}}
+                                                    </td>
                                                        <td>{{item.order_status_name}}</td>
                                                     </tr>
                                                 </tbody>
