@@ -57,6 +57,7 @@ export class Tab1Page extends AppBase {
   returnGoods = 0
   
   today_time = null
+  today_time2=null
   year_mon = null
 
  enterprise_id = ''
@@ -122,11 +123,12 @@ export class Tab1Page extends AppBase {
   
             month = month < 10 ? '0'+ month : month
             date = date < 10  ? '0'+ date : date
-            this.today_time = year+ "-" + month + "-" + date;
-            this.year_mon = year+ "-" + month 
+            this.today_time = year+ "/" + month + "/" + date+' '+'00:00:00';
+            this.today_time2 = year+ "/" + month + "/" + date+' '+'23:59:59';
+            this.year_mon = year+ "/" + month+'/01'+' '+'00:00:00';
   
             for(var k=0;k<returnlist.length;k++){
-              if(this.today_time==returnlist[k].return_time_dateformat){
+              if(new Date(this.today_time).getTime()<new Date(returnlist[k].return_time).getTime() && new Date(this.today_time2).getTime()>new Date(returnlist[k].return_time).getTime()){
                 if(returnlist[k].orderstatus=='Y'){
                   this.yituihuoGoods ++ ;
                 }
@@ -141,12 +143,12 @@ export class Tab1Page extends AppBase {
   
               let index = mylist[i].order_time.indexOf('-');
               
-              mylist[i].order_time = mylist[i].order_time.substring(0,index+3);
+              // mylist[i].order_time = mylist[i].order_time.substring(0,index+3);
               
-            
-              if(mylist[i].order_time == this.year_mon){
+              
+              if(new Date(mylist[i].order_time).getTime()>new Date(this.year_mon).getTime()){
   
-                if(mylist[i].order_time_dateformat ==  this.today_time){
+                if(new Date(this.today_time).getTime()<new Date(mylist[i].order_time).getTime() && new Date(this.today_time2).getTime()>new Date(mylist[i].order_time).getTime()){
                   
                   if(mylist[i].order_status != 'R' && mylist[i].order_status != 'Y' && mylist[i].order_status != 'I'){
                     if(mylist[i].order_status == 'L'){

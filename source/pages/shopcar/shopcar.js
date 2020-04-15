@@ -241,9 +241,9 @@ console.log(types,'来来来');
           }, (createorder) => {
             console.log(createorder);
             that.Base.setMyData({ createorder: createorder})
-
+            // return
             wx.redirectTo({
-              url: '/pages/waitpay/waitpay?id=' + that.Base.options.id 
+              url: '/pages/waitpay/waitpay?id=' + that.Base.options.id + '&order_id=' + createorder.return
             })
               // + '&json=' + JSON.stringify(arr)
           })

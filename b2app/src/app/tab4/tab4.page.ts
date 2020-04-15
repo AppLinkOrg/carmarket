@@ -179,7 +179,8 @@ export class Tab4Page extends AppBase {
             }
       
             this.length = this.returnlist.length
-            this.pagination(this.returnlist,this.length)
+            // this.pagination(this.returnlist,this.length)
+            this.yuangong(this.btnscolor)
             console.log(this.returnlist)
           })
     

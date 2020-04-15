@@ -71,7 +71,7 @@ export class Tab3Page extends AppBase {
     fulen=0;
     onMyLoad(){
         this.params;
-        
+        console.log(11)
     }
     onMyShow() {
         AppBase.TABName = "tab3";
@@ -107,7 +107,7 @@ export class Tab3Page extends AppBase {
        
        
         a.mylist({ enterprise_id: this.enterprise_id,employee_id: this.employee_id }).then((mylist:any)=>{
-          console.log(mylist)
+          // console.log(mylist)
         //   this.alllen=0;
         // this.falen=0;
         // this.shoulen=0;
@@ -139,7 +139,7 @@ export class Tab3Page extends AppBase {
               //   this.fulen++;
               // }
               this.enterpriseApi.getemployeeinfo({id:mylist[j].baojia}).then((getemployeeinfo:any)=>{
-                console.log(getemployeeinfo,'嘻嘻嘻嘻嘻')
+                // console.log(getemployeeinfo,'嘻嘻嘻嘻嘻')
                 mylist[j].baojiaperson = getemployeeinfo.name
                 mylist[j].baojiacom = getemployeeinfo.enterprise_name
               })
@@ -152,7 +152,7 @@ export class Tab3Page extends AppBase {
               if(this.order_time_dateformat != undefined){
                 this.pageList = []
                 
-                console.log(this.order_time_dateformat,'是你了')
+                // console.log(this.order_time_dateformat,'是你了')
                 for(let i=0;i<lists.length;i++){
                   this.pageList = []
   
@@ -203,8 +203,8 @@ export class Tab3Page extends AppBase {
                 
                 this.alllen = this.list.length;
                 this.length = this.list.length
-                this.pagination(this.list,this.length)
-               
+                // this.pagination(this.list,this.length)
+                this.change(this.bb);
               }else {
                 console.log(this.order_time_dateformat,'不是你了')
                 console.log('oooo')
@@ -242,8 +242,8 @@ export class Tab3Page extends AppBase {
                 this.alllen = this.list.length
                 this.length = this.list.length
                 console.log(this.list)
-             
-                this.pagination(this.list,this.length)
+                this.change(this.bb);
+                // this.pagination(this.list,this.length)
               }
                
               
@@ -254,7 +254,7 @@ export class Tab3Page extends AppBase {
 
           if(this.cc!=undefined){
             this.bb=Number(this.cc);
-            this.change(this.bb);
+            
           }
           
           

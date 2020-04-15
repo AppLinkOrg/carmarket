@@ -160,7 +160,7 @@
                 <td>
                   <!-- <div *ngIf='item.invoice_demand_value=="Y"' >是</div>
                           <div *ngIf='item.invoice_demand_value=="N"' >否</div> -->
-                  <div>{{item.invoice_demand_value}}</div>
+                  <div>{{item.rate=="0"?'否':'是'}}</div>
                 </td>
                 <td>
                   <div>{{item.quotenumber}}</div>

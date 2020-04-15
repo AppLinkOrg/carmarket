@@ -323,7 +323,7 @@ export class AppBase implements OnInit,OnDestroy {
                 ApiConfig.SetToken(token);
                 this.enterpriseApi.employeeinfo({}).then((operator:any)=>{
                     console.log(operator,'operator')
-                    if(operator==null || operator.enterprise_id=='0'){
+                    if(operator==null ){
                         this.router.navigate(["login"]);
                     }else{
                         this.operatorinfo=operator;
@@ -452,6 +452,7 @@ export class AppBase implements OnInit,OnDestroy {
             this.navCtrl.back();
         }
     }
+  
     backToUrl(url) {
         this.navCtrl.navigateBack(url);
     }

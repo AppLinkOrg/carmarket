@@ -80,7 +80,7 @@ export class SendGoodsDetailComponent extends AppBase  {
       this.orderApi.updatestatus({id: this.list.id, order_status: this.list.order_status, status: 'A'}).then((updatestatus:any)=>{
      
         if(updatestatus.code == 0){
-          this.router.navigate(['receiveGoodsDetail'],{ queryParams: { id: this.id }});
+          this.router.navigate(['receiveGoodsDetail'],{ queryParams: { id: this.id ,aa:3}});
         }
       })
    

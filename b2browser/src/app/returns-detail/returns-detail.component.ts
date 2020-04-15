@@ -63,7 +63,7 @@ export class ReturnsDetailComponent extends AppBase  {
       this.orderApi.updatereturnstatus({id:item.id,orderstatus:item.orderstatus,order_id:item.order_id}).then((updatereturnstatus:any)=>{
         console.log(updatereturnstatus)
         // if(updatereturnstatus.code=='0'){
-          this.navigate('returnsManagement')
+          this.navigate('returnsManagement',{bb:3})
         // }
       })
 
@@ -87,7 +87,7 @@ export class ReturnsDetailComponent extends AppBase  {
                   that.orderApi.updatereturnstatus({id:item.id,orderstatus:item.orderstatus,order_id:item.order_id}).then((updatereturnstatus:any)=>{
                     console.log(updatereturnstatus)
                     // if(updatereturnstatus.code=='0'){
-                      that.navigate('returnsManagement')
+                      that.navigate('returnsManagement',{bb:4})
                     // }
                   })
                 }

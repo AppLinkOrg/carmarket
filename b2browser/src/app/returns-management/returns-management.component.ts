@@ -126,8 +126,8 @@ export class ReturnsManagementComponent extends AppBase  {
             //   this.returnlist[j].index = j
             // }
             this.alllen=this.returnlist.length;
-            this.length = this.returnlist.length
-            this.pagination(this.returnlist,this.length)
+            // this.length = this.returnlist.length
+            // this.pagination(this.returnlist,this.length)
             console.log(this.returnlist);
             if(this.cc!=undefined){
               this.bb = Number(this.cc);
@@ -167,9 +167,9 @@ export class ReturnsManagementComponent extends AppBase  {
                 this.tuizhonglen++;
               }
             }
-      
-            this.length = this.returnlist.length
-            this.pagination(this.returnlist,this.length)
+            this.change(this.bb)
+            // this.length = this.returnlist.length
+            // this.pagination(this.returnlist,this.length)
             console.log(this.returnlist)
           })
     

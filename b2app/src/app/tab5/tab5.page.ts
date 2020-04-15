@@ -110,7 +110,7 @@ export class Tab5Page extends AppBase {
       this.employeeinfo.push(employeeinfo)
 
       this.enterpriseApi.allenterprise({enterprise_id:this.enterprise_id }).then((allenterprise:any)=>{
-        
+        this.allenterprise=[];
 
         // this.allenterprise = allenterprise.filter((item)=>{
         //   if(item.power_value=='Y'){
@@ -124,13 +124,13 @@ export class Tab5Page extends AppBase {
         for(let i=0;i<allenterprise.length;i++){
           console.log(allenterprise[i],'allalll');
           console.log(allenterprise[i].power,'allalll');
-          if(allenterprise[i].position!='B'){
+          // if(allenterprise[i].position!='B'){
             allenterprise[i].powerss=false;
             if(allenterprise[i].power=='是'){
               allenterprise[i].powerss = true;
             }
             this.allenterprise.push(allenterprise[i]);
-          }
+          // }
         }
         console.log(this.allenterprise)
       })

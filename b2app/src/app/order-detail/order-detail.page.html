@@ -1,6 +1,6 @@
 <ion-header *ngFor='let item of list3;let i=index; '>
   <ion-toolbar *ngIf='i==0'>
-    <img src="{{uploadpath}}resource/{{res.fanhui}}" (click)='back()' class='icon-10'>
+    <img src="{{uploadpath}}resource/{{res.fanhui}}" (click)='fankui()' class='icon-10'>
     <ion-title *ngIf='item.order_status=="W"'>等待卖家付款</ion-title>
     <ion-title *ngIf='item.order_status=="L"'>供应商发货</ion-title>
     <ion-title *ngIf='item.order_status=="M"'>等买家收货</ion-title>

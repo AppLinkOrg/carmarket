@@ -89,7 +89,8 @@ export class OrderDetailPage extends AppBase {
         // this.quxiao = true;
         this.confirm3('买家已经取消订单，请选择其他订单！',function(ret){
           if(ret){
-            that.back();
+            // that.back();
+            that.navigate('tabs/tab3')
           }
         })
       }else {
@@ -112,7 +113,9 @@ export class OrderDetailPage extends AppBase {
 
 
   }
-
+  fankui(url){
+    this.navigate('tabs/tab3')
+}
   print() {
     window.open('https://cmsdev.app-link.org/alucard263096/carmarkets/api/order/print?order_id=' + this.id);
   }
