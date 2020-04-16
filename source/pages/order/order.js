@@ -28,7 +28,7 @@ class Content extends AppBase {
     var orderapi = new OrderApi();
  
     orderapi.mylist({
-      order_status: 'W', baojia: this.Base.getMyData().emp_id, orderby:'r_main.orderno desc'
+      order_status: 'W', employee_id: this.Base.getMyData().emp_id, orderby:'r_main.orderno desc'
     }, (daifukuan) => {
       for (var i = 0; i < daifukuan.length; i++) {
         daifukuan[i].order_time_formatting = this.gettime(daifukuan[i].order_time_formatting)
