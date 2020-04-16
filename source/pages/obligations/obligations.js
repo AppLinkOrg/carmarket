@@ -59,7 +59,7 @@ class Content extends AppBase {
       success: function(res) {
         if (res.confirm) {
 
-          if (detail.totalamount > enmoney) {
+          if (Number(detail.totalamount) > Number(enmoney)) {
             wx.showToast({
               title: '余额不足，请及时充值！',
               icon: 'none'

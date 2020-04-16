@@ -211,7 +211,7 @@ export class StoreHomeComponent extends AppBase  {
         // stauts: 'L',
         order_time_dateformat:this.today_time,
         // emm_id:this.emm_id,
-        bb:2
+        aa:2
       }
     })
    }else {
@@ -220,7 +220,7 @@ export class StoreHomeComponent extends AppBase  {
         // stauts: 'Y',
         order_time_dateformat:this.today_time,
         // emm_id:this.emm_id,
-        bb:4
+        aa:4
       }
     })
    }
@@ -255,7 +255,7 @@ export class StoreHomeComponent extends AppBase  {
     this.router.navigate(['orderManagement'],{
       queryParams: {
         // emm_id: this.emm_id
-        bb:4
+        aa:4
       }
     })
   }

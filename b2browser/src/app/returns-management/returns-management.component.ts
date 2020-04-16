@@ -51,6 +51,12 @@ export class ReturnsManagementComponent extends AppBase  {
   yituilen=0;
   tuizhonglen=0;
   order_time_dateformat='';
+  onMyLoad(){
+    this.params;
+    if(this.params.bb!=undefined){
+      this.bb=this.params.bb;
+    }
+  }
   onMyShow(){
     let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
@@ -309,7 +315,8 @@ bb=1;
       if(ret){
         this.router.navigate(['returnsDetail'],{
           queryParams: {
-            id:item.id
+            id:item.id,
+            bb:this.bb
           }
         })
       }

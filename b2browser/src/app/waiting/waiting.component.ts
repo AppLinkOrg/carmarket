@@ -63,5 +63,8 @@ export class WaitingComponent  extends AppBase  {
   print(){
     window.open('https://cmsdev.app-link.org/alucard263096/carmarkets/api/order/print?order_id='+this.id);
   }
+  fanhui(){
+    this.navigate('orderManagement',{aa:this.params.aa})
+  }
 
 }

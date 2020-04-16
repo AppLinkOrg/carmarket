@@ -49,4 +49,7 @@ export class CancelDetailComponent extends AppBase  {
    
 
   }
+  fanhui(){
+    this.navigate('orderManagement',{aa:this.params.aa})
+  }
 }

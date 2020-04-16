@@ -120,5 +120,7 @@ export class DetailsOfQuotedPriceComponent  extends AppBase  {
       
 
   }
-
+  fanhui(){
+    this.navigate('quotationCenter',{aa:this.params.aa})
+  }
 }
