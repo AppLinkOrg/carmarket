@@ -40,9 +40,7 @@ class Content extends AppBase {
     var that = this;
     var orderapi = new OrderApi();
 
-
     console.log("来了来了", this.Base.getMyData().emp_id)
-
 
     orderapi.quotelist({
       employee_id: this.Base.getMyData().emp_id
