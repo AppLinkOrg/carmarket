@@ -306,8 +306,8 @@ class Content extends AppBase {
 
         enterprise_id: shopcar[i].enterprise_id,
         supplier: emp_id,
-        baojia: this.Base.getMyData().employeeinfo.id,
-        employee_id: shopcar[i].employee_id,
+        baojia: shopcar[i].employee_id,
+        employee_id: this.Base.getMyData().employeeinfo.id,
         fittings_id: shopcar[i].fittings_id,
         quote_id: this.Base.options.id,
         //supplier: shopcar[i].company,

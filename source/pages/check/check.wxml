@@ -40,10 +40,7 @@
       <view class="bot"></view>
     </block>
   </scroll-view>
-<!-- ZD18cHt6PSU/PVxaW0BcUT1i
-ZD18cHt6PSU/PVxaW0BcUT1i
-4120310AB_F0326740
-4120310AC_F0326748 -->
+ 
 </view>
 
 <view class="button text-center" bindtap="bindnext">下一步</view>
