@@ -133,22 +133,6 @@ export class AppBase implements OnInit,OnDestroy {
 
         var that = this;
     
-        // this.enterpriseApi.employeeinfo({}).then((employeeinfo: any) => {
-        //   console.log(employeeinfo)
-    
-        //   if (employeeinfo.enterprise_id == "0") {
-        //     this.router.navigate(["login"]);
-        //     return
-        //   }
-        //   this.employee_id = employeeinfo.id;
-        //   this.enterprise_id = employeeinfo.enterprise_id
-        //   console.log("进来了");
-        //   console.log(333333)
-        //   console.log(employeeinfo)
-        //   console.log(employeeinfo.enterprise_id, employeeinfo.id)
-        //   console.log(44444444)
-    
-        //   var a = this.orderapi
           var arrs = [];
     
        
@@ -278,7 +262,7 @@ export class AppBase implements OnInit,OnDestroy {
         var a = this.orderApi;
         setTimeout(() => {
           a.addquotation(json).then((addquotation: any) => {
-            console.log(addquotation, 'addquotation');
+      
           })
         }, i * 600);
     
@@ -323,7 +307,7 @@ export class AppBase implements OnInit,OnDestroy {
                 ApiConfig.SetToken(token);
                 this.enterpriseApi.employeeinfo({}).then((operator:any)=>{
                     console.log(operator,'operator')
-                    if(operator==null ){
+                    if(operator==null || operator.enterprise==''){
                         this.router.navigate(["login"]);
                     }else{
                         this.operatorinfo=operator;
@@ -416,9 +400,7 @@ export class AppBase implements OnInit,OnDestroy {
 
     onPullRefresh(ref) {
         this.onMyShow();
-        setTimeout(() => { 
-            ref.target.complete();
-        }, 2000);
+        ref.complete();
     }
     doRefresh(ref) {
         this.onPullRefresh(ref);

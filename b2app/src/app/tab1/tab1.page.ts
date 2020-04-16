@@ -155,10 +155,10 @@ export class Tab1Page extends AppBase {
                       this.goods ++;
                     }
                    
-      
                     if(mylist[i].order_status == 'N'){
                       this.yiwanchengGoods ++ ;
                     }
+                   
                     this.list.push(mylist[i]);
                    
                   }

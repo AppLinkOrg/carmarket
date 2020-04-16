@@ -26,11 +26,11 @@ export class TabsPage {
     
     TabsPage.Instance=this;
     console.log(TabsPage.Instance,'歷史5555555555555555')
-    console.log("asdasdasd",AppBase.LASTTAB);
+    console.log("asdasdasd555",AppBase.LASTTAB);
     if (AppBase.LASTTAB != null) {
       AppBase.LASTTAB.ionViewDidEnter();
     }
-
+    console.log("asdasdasd55522",AppBase.LASTTAB);
     // this.returnnum = AppBase.LASTTAB.returnnum;
     // this.ordernum = AppBase.LASTTAB.ordernum;
     // this.quotereadnum = AppBase.LASTTAB.quotereadnum;
@@ -45,7 +45,13 @@ export class TabsPage {
 
       }, 20 * 1000);
   }
+  flag = 'tab1';
+  change(event)
 
+  { 
+    this.flag=event.detail.tab;
+ 
+  }
 
     returnnum = '';
     ordernum = ''
@@ -55,9 +61,9 @@ export class TabsPage {
     isread = 'Y'
     update() {
 
-      console.log('也是也是yesyes222')
+      console.log('也是也是yesyes222555')
       if(AppBase.LASTTAB.operatorinfo.id!=''){
-        console.log('也是也是yesyes33333')
+        console.log('也是也是yesyes33333555')
       
 
         var that = this;
