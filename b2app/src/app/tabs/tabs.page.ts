@@ -1,16 +1,21 @@
 import { Component } from '@angular/core';
 import { AppBase } from '../AppBase';
-
+import { OrderApi } from "src/providers/order.api";
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
-  styleUrls: ['tabs.page.scss']
+  styleUrls: ['tabs.page.scss'],
+  providers:[OrderApi]
 })
 export class TabsPage {
 
   static Instance:TabsPage=null;
+  // static operatorinfo:TabsPage=null;
   currentpage="";
-  constructor() {
+  enterprise_id="";
+  id=null;
+  constructor(public orderApi:OrderApi) {
+    
   }
   hidetab=false;
   xz=1;
@@ -30,7 +35,7 @@ export class TabsPage {
     if (AppBase.LASTTAB != null) {
       AppBase.LASTTAB.ionViewDidEnter();
     }
-    console.log("asdasdasd55522",AppBase.LASTTAB);
+    console.log("asdasdasd55522",TabsPage.Instance.currentpage,TabsPage.Instance.enterprise_id,TabsPage.Instance.id,);
     // this.returnnum = AppBase.LASTTAB.returnnum;
     // this.ordernum = AppBase.LASTTAB.ordernum;
     // this.quotereadnum = AppBase.LASTTAB.quotereadnum;
@@ -62,7 +67,7 @@ export class TabsPage {
     update() {
 
       console.log('也是也是yesyes222555')
-      if(AppBase.LASTTAB.operatorinfo.id!=''){
+      if(TabsPage.Instance.id!=''){
         console.log('也是也是yesyes33333555')
       
 
@@ -71,7 +76,7 @@ export class TabsPage {
           var arrs = [];
     
        
-          AppBase.LASTTAB.orderApi.orderisread({ enterprise_id: AppBase.LASTTAB.operatorinfo.enterprise_id, employee_id: AppBase.LASTTAB.operatorinfo.id }).then((ret: any) => {
+         this.orderApi.orderisread({ enterprise_id:TabsPage.Instance.enterprise_id, employee_id:TabsPage.Instance.id }).then((ret: any) => {
             console.log(ret, '订单')
             if (ret) {
               if (ret.quote > '0') {

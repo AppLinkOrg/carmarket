@@ -167,13 +167,13 @@ export class Tab1Page extends AppBase {
   
                 if(mylist[i].order_status == 'N'){
                   this.monOrder ++  ;
+                  this.monList.push(mylist[i])
                 }
   
-                  this.monList.push(mylist[i])
+                 
     
                   
-               
-  
+                  
               }
              
   
@@ -184,8 +184,9 @@ export class Tab1Page extends AppBase {
             }
             console.log(this.list,'upppppqqqq');
             console.log(this.monList,'upppppqqqq222');
-            this.totalIncome =Number(this.getIncome(this.list,returnlist));
             this.monIncome = Number( this.getIncome(this.monList,returnlist));
+            this.totalIncome =Number(this.getIncome(this.list,returnlist));
+           
           })
         })
        

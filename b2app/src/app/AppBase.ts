@@ -137,7 +137,6 @@ export class AppBase implements OnInit,OnDestroy {
     
        
           this.orderApi.orderisread({ enterprise_id: this.operatorinfo.enterprise_id, employee_id: this.operatorinfo.id }).then((ret: any) => {
-            console.log(ret, '订单')
             if (ret) {
               if (ret.quote > '0') {
                 this.isread = 'N';
@@ -376,11 +375,14 @@ export class AppBase implements OnInit,OnDestroy {
     }
     ionViewDidEnter() {
         console.log('走了444444444')
-        AppComponent.Instance.currentpage = this.currentpage;
+        // AppComponent.Instance.currentpage = this.currentpage;
         this.consolelog("123132", this.currentpage);
         console.log(this.currentpage);
         if (TabsPage.Instance != null) {
             TabsPage.Instance.currentpage = this.currentpage;
+            TabsPage.Instance.enterprise_id=this.operatorinfo.enterprise_id;
+            TabsPage.Instance.id=this.operatorinfo.id;
+
         }
 
         AppBase.CurrentRoute = this.router;
