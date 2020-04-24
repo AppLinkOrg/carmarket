@@ -83,24 +83,20 @@ export class QuotationCenterComponent extends AppBase {
         this.comlen();
       }
       
-      console.log(this.aa,'aaaaaaaaaaaaa-----------')
+      
       setInterval(() => {
         if(this.aa==1){
           this.quoteHandle();
         }
-      
-        console.log(11122334455)
+       
     }, 10*1000);
 
     })
 
-
-
-    
-
+ 
 
   }
-aa=1;
+  aa=1;
   change(e){
     this.aa = e;
     if(e==1){
@@ -1012,7 +1008,7 @@ var a = this.orderApi;
     //     others[i].classList.remove('btn-active')
     //   }
     // }
-
+   
 
     this.orderApi.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((list: any) => {
       console.log(list,'pppp')
@@ -1025,26 +1021,24 @@ var a = this.orderApi;
       let mm = date.getMinutes();
   
       let nowtime = year + '-' + month + '-' + day +" "+ hh +":"+ mm
-      console.log(nowtime,'5555')
+      
       let shijian = date.getTime()
-      console.log(shijian)
+       
       for (let i = 0; i < list.length; i++) {
         if (list[i].invalid=='否' || list[i].quotestatus=='C') {
-          console.log(list[i],'哈哈哈')
+          
           let newDate = new Date(list[i].expired_time)
           list[i].times = newDate.getTime()
           if (list[i].times < shijian && list[i].quotestatus=="W") {
-            console.log('西喜爱',list[i].times)
-            this.orderApi.editquotestatus({quoteenterprise_id: this.enterprise_id,quotestatus: 'E',quote_id: list[i].quote_id}).then((editquotestatus:any)=>{
-              console.log(editquotestatus)
-              if(editquotestatus){
-                
-              }
+            
+            this.orderApi.editquotestatus({quoteenterprise_id: this.enterprise_id,quotestatus: 'E',quote_id: list[i].quote_id}).then((editquotestatus:any)=>{ 
+              // if(editquotestatus){ 
+              // }
             })
           
           }
           if( list[i].quotestatus=="W" || list[i].quotestatus=="C"){
-            console.log('哈哈哈')
+           
             this.list.push(list[i])
           }
         }

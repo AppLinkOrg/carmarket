@@ -370,27 +370,22 @@ export class QuotationDetailsComponent extends AppBase {
     }
    
   }
-  enterprise_id=""
+  enterprise_id="";
+
   saveQuote(enterprise_id) {
     this.enterprise_id = enterprise_id
     
-   
-    // console.log(item, 'kkkkk');
-    console.log(this.fittinglist, 'yyyyyy');
-    // var aa = 0
-    
-    // console.log(aa);
-    //return;
     this.bb = true;
     this.baojia = false;
-    if (this.aa == this.fittinglist.length) {
-      console.log(this.list,'list')
+
     this.tijiao();
+    // if (this.aa == this.fittinglist.length) {
+     
+    //   this.tijiao();
 
-    }
-    else {
-      console.log(this.list,'too');
-
+    // }
+    // else {
+       
       // for(let item of this.fittinglist){
       //   if(this.kong(item,this.list)){
       //     this.baojia = true;
@@ -415,9 +410,9 @@ export class QuotationDetailsComponent extends AppBase {
     //   //   }
      
     //   // }
-      this.tijiao();
+    //  this.tijiao();
      
-    }
+  //  }
 
     
   }
@@ -444,14 +439,20 @@ export class QuotationDetailsComponent extends AppBase {
     return false
   }
 
-  tijiao(){
-    console.log(this.list, '444')
 
-    console.log(this.baojia, 'baojai')
+  tijiao(){
+   // console.log(this.list, '444')
+
+   // console.log(this.baojia, '报价人')
+
     // this.baojia=false;
 
 
+    //return;
+
     var data = [];
+    var jsonlist=[];
+
     for (let i = 0; i < this.list.length; i++) {
       if (!data[this.list[i].fittings_id]) {
         var arr = [];
@@ -462,46 +463,44 @@ export class QuotationDetailsComponent extends AppBase {
       }
     }
 
-    console.log(data, 'data')
+   // console.log(data, 'data')
     var minprice = [];
     var maxprice = [];
     for (let f_id of data) {
-      console.log(f_id, '尽快尽快尽快')
+    //  console.log(f_id, '尽快尽快尽快')
       if (f_id != undefined) {
         var ddd = f_id.sort(function (a, b) {
           return a.price - b.price
         })
         minprice[ddd[0].fittings_id] = ddd[0].price
         maxprice[ddd[0].fittings_id] = ddd[ddd.length - 1].price
-        console.log(ddd, '嘻嘻嘻')
+      //  console.log(ddd, '嘻嘻嘻')
       }
 
     }
-    console.log(minprice, 'uuuu')
+   // console.log(minprice, 'uuuu')
     var minmoney = 0
     var maxmoney = 0
     for (let pp of minprice) {
-      console.log(pp, '积分三')
+     // console.log(pp, '积分三')
       if (pp != undefined) {
         minmoney += pp
       }
     }
 
     for (let pp of maxprice) {
-      console.log(pp, '积分三')
+     // console.log(pp, '积分三')
       if (pp != undefined) {
         maxmoney += pp
       }
     }
-    console.log(minmoney, 'min')
-    console.log(maxmoney, 'max')
+
+    //console.log(minmoney, 'min')
+    //console.log(maxmoney, 'max')
 
 
     for (let i = 0; i < this.list.length; i++) {
-
-      console.log(this.list[i].fittings_id, '斤斤计较')
-
-
+ 
       var lists = {
         fittings_id: (this.list[i].fittings_id),
         partnubmer: (this.list[i].partnubmer),
@@ -524,20 +523,28 @@ export class QuotationDetailsComponent extends AppBase {
         maxrate: (maxmoney + maxmoney * Number(this.rate) / 100),
 
       }
-      console.log(this.employee_id, 'aaaa')
+     // console.log(this.employee_id, 'aaaa')
 
-      this.fitting(lists,i)
+      jsonlist.push(lists);
 
-    }
-
-    if (this.list.length != 0) {
-      console.log(this.enterprise_id, "卡啦啦啦");
-
-      setTimeout(()=>{
-        this.editStatus(this.enterprise_id)
-      },this.list.length*300)
+      //this.fitting(lists,i)
 
     }
+
+    var datajson=JSON.stringify(jsonlist);
+
+  console.log(datajson,'看看这串');
+
+    // return;
+
+      this.orderApi.confirmquote({datajson:datajson}).then((confirmquote) => {
+        
+        console.log(confirmquote,'提交的返回');
+        
+         this.editStatus(this.enterprise_id);  
+      })
+
+  
   }
 
   compare(pro) {
@@ -579,9 +586,10 @@ export class QuotationDetailsComponent extends AppBase {
       if (editquote.code == '0') {
         a.editquotation({ quote_id: this.quoteinfo.quote_id, quotecompan_id: enterprise_id, quotestatus: 'W' }).then((ret) => {
           if (ret) {
-            console.log(this.quoteinfo, 'llllllll')
+            
             a.addexpired(this.quoteinfo).then((addexpired: any) => {
-              console.log(addexpired)
+             
+              console.log(addexpired,'看看返回了什么')
               if (addexpired.code == '0') {
 
                 a.deleteignore({ quote_id: this.quoteinfo.quote_id, quoteenterprise_id: enterprise_id, status: 'D' }).then((deletData: any) => {
