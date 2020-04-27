@@ -21,7 +21,7 @@ export class QuotationCenterComponent extends AppBase {
     public orderApi: OrderApi,
     public enterpriseApi: EnterpriseApi,
   ) {
-    super(router, activeRoute, instApi,orderApi,enterpriseApi);
+    super(router, activeRoute, instApi, orderApi, enterpriseApi);
   }
 
   list = [];
@@ -48,18 +48,18 @@ export class QuotationCenterComponent extends AppBase {
   employee_id = '';
   employee_id_name = '';
 
- onMyLoad(){
-   this.params;
-   console.log(this.params,'aaaaaaaaaaaaaaa')
-   if(this.params.aa!=undefined){
-     this.aa = this.params.aa;
-   }
-   
- }
+  onMyLoad() {
+    this.params;
+    console.log(this.params, 'aaaaaaaaaaaaaaa')
+    if (this.params.aa != undefined) {
+      this.aa = this.params.aa;
+    }
+
+  }
   onMyShow() {
-    console.log(this.aa,'aaaaaaaaaaaa')
-    let oldtime = (new Date()).getTime() +  6*60*60*1000;
-    window.localStorage.setItem('oldtime',oldtime.toString())
+    console.log(this.aa, 'aaaaaaaaaaaa')
+    let oldtime = (new Date()).getTime() + 6 * 60 * 60 * 1000;
+    window.localStorage.setItem('oldtime', oldtime.toString())
     var a = this.orderApi;
 
     this.enterpriseApi.employeeinfo({}).then((employeeinfo: any) => {
@@ -70,57 +70,57 @@ export class QuotationCenterComponent extends AppBase {
       this.enterprise_id_name = employeeinfo.enterprise.name
 
       // this.quoteHandle();
-    
+
       a.distinctlist({}).then((distinctlist: any) => {
         console.log(distinctlist, "33333")
         this.distinctlist = distinctlist
       })
 
-      if(this.aa==1){
+      if (this.aa == 1) {
         this.quoteHandle();
-      }else {
+      } else {
         this.change(this.aa);
         this.comlen();
       }
-      
-      
+
+
       setInterval(() => {
-        if(this.aa==1){
+        if (this.aa == 1) {
           this.quoteHandle();
         }
-       
-    }, 10*1000);
+
+      }, 10 * 1000);
 
     })
 
- 
+
 
   }
-  aa=1;
-  change(e){
+  aa = 1;
+  change(e) {
     this.aa = e;
-    if(e==1){
+    if (e == 1) {
       this.quoteHandle();
-    }else if(e==2){
+    } else if (e == 2) {
       this.quotedPrice();
-    }else if(e==3){
+    } else if (e == 3) {
       this.neglected();
-    }else if(e==4){
+    } else if (e == 4) {
       this.expired();
-    }else if(e==5){
+    } else if (e == 5) {
       this.allQuote()
     }
   }
-  compare(pro){
-    return function(a,b){
-      return b[pro]-a[pro]
+  compare(pro) {
+    return function (a, b) {
+      return b[pro] - a[pro]
     }
   }
 
-  notinignore4(item,arr){
-    for(let yiitem of arr){
-      if(yiitem.quote_id==item.id){
-        if(yiitem.quotecompan_id==this.enterprise_id && yiitem.quoteper==this.employee_id){
+  notinignore4(item, arr) {
+    for (let yiitem of arr) {
+      if (yiitem.quote_id == item.id) {
+        if (yiitem.quotecompan_id == this.enterprise_id && yiitem.quoteper == this.employee_id) {
           return false
         }
       }
@@ -242,7 +242,7 @@ export class QuotationCenterComponent extends AppBase {
     this.pageList = []
 
     console.log(this.distinct)
-    console.log(this.list,'555555')
+    console.log(this.list, '555555')
     let temp = []
     for (let i = 0; i < this.list.length; i++) {
       for (let j = 0; j < this.distinct.length; j++) {
@@ -253,28 +253,28 @@ export class QuotationCenterComponent extends AppBase {
 
         } else {
 
-          if(this.hasClass(this.distinct[j],'disname-active')){
+          if (this.hasClass(this.distinct[j], 'disname-active')) {
             console.log(this.distinct[j].innerText)
 
-            if (this.list[i].enterprise_corporate_address.indexOf(this.distinct[j].innerText)!=-1) {
+            if (this.list[i].enterprise_corporate_address.indexOf(this.distinct[j].innerText) != -1) {
               // console.log(this.distinct[j])
               temp.push(this.list[i])
               console.log('kkkkk')
-  
+
             } else {
               console.log(false)
             }
 
           }
 
-         
+
 
         }
 
       }
     }
 
-    console.log(temp,'6666')
+    console.log(temp, '6666')
 
     this.length = temp.length
 
@@ -293,21 +293,21 @@ export class QuotationCenterComponent extends AppBase {
     console.log(item)
 
     this.imgs.push(item)
-    var arr=[]
+    var arr = []
     this.imgs = this.imgs.filter((item, index) => {
 
-      console.log(item.photo1,'lllll')
-      if(item.photo1.indexOf(',')>-1){
-        arr =  item.photo1.split(',')
-      }else {
+      console.log(item.photo1, 'lllll')
+      if (item.photo1.indexOf(',') > -1) {
+        arr = item.photo1.split(',')
+      } else {
         arr.push(item.photo1)
       }
-       
-        console.log(arr,'急急急')
 
-        item.arr  = arr
+      console.log(arr, '急急急')
 
-      if (item.frontofcar == ""  && item.namesplate != "") {
+      item.arr = arr
+
+      if (item.frontofcar == "" && item.namesplate != "") {
         item.frontofcar = item.namesplate
         item.namesplate = ""
       }
@@ -316,15 +316,15 @@ export class QuotationCenterComponent extends AppBase {
         item.rearofcar = ""
       }
       if (item.frontofcar == "" && item.namesplate == "" && item.rearofcar == "" && item.photo1 != "") {
-       
-        item.frontofcar =  item.photo1
+
+        item.frontofcar = item.photo1
         item.photo1 = ""
       }
-    
+
       return item
     })
     // var iamg =  this.imgs.concat(arr)
-    console.log( this.imgs,'llll')
+    console.log(this.imgs, 'llll')
 
   }
 
@@ -333,31 +333,31 @@ export class QuotationCenterComponent extends AppBase {
 
   ignoreHandle(item) {
     this.list = [];
-    console.log(item,'已忽略')
+    console.log(item, '已忽略')
     this.pageList = [];
     // item.quote_id = item.id
     item.ignorestatus = 'Y'
     item.quoteemployee_id = this.employee_id
     item.quoteenterprise_id = this.enterprise_id
     console.log(item)
-    this.orderApi.editisread({quote_id:item.quote_id,enterprise_id:this.enterprise_id,employee_id:this.employee_id }).then((ret)=>{
-      console.log(ret,'改改了')
-      if(ret){
+    this.orderApi.editisread({ quote_id: item.quote_id, enterprise_id: this.enterprise_id, employee_id: this.employee_id }).then((ret) => {
+      console.log(ret, '改改了')
+      if (ret) {
         this.orderApi.addignore(item).then((searchignore: any) => {
 
           if (searchignore.code == "0") {
-    
+
             // this.onMyShow()
             // this.aa=3;
             this.change(3);
             this.yihulen++;
-    
+
           }
         })
       }
     })
 
-   
+
 
   }
 
@@ -366,268 +366,268 @@ export class QuotationCenterComponent extends AppBase {
   }
 
 
-  daibaolen=0;
-  yibaolen=0;
-  yihulen=0;
-  yishilen=0;
-  alllen=0;
-  comlen(){
-    this.daibaolen=0;
-    this.yibaolen=0;
-    this.yihulen=0;
-    this.yishilen=0;
-    this.alllen=0;
+  daibaolen = 0;
+  yibaolen = 0;
+  yihulen = 0;
+  yishilen = 0;
+  alllen = 0;
+  comlen() {
+    this.daibaolen = 0;
+    this.yibaolen = 0;
+    this.yihulen = 0;
+    this.yishilen = 0;
+    this.alllen = 0;
     var a = this.orderApi;
     a.quotelist({}).then((list: any) => {
-       
-      console.log(list,'list')
 
-        a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
-          // this.ignore = ignore
-          this.yihulen=ignore.length;
-          console.log(ignore, 'ignore')
-          console.log(ignore.length, 'ignore.length')
-  
-          if (ignore.length == 0) {
-            a.yiquotelist({quoteenterprise_id: this.enterprise_id}).then((yiquotelist:any)=>{
-              console.log(yiquotelist,'yiquotelist')
-              console.log(yiquotelist.length,'yiquotelist.length')
-              
-              if(yiquotelist.length == 0){
-  
-                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
-                  console.log(list, 'lsit')
-                  list = list.filter(item=>{
-                    return item.quote_id!='';
-                  })
-                    for (let item of list) {
-                      if (item.quotestatus == 'Q') {
-      
-                        item.photoLen = 0
-                        console.log(item)
-        
-                        if (item.frontofcar != '' && item.frontofcar!="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.namesplate != ''&& item.namesplate!="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.rearofcar != ''&& item.rearofcar!="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.photo1 != ''&& item.photo1!="undefined") {
-                          var arr =  item.photo1.split(/[, ，]/)
-                          item.photoLen +=arr.length
-                        }
-                        // if (item.photo2 != ''&& item.photo2!="undefined") {
-                        //   item.photoLen++
-                        // }
-                        this.list.push(item)
-                      }
-                    }
-                    this.list = this.list.sort(this.compare("quote_time_timespan"))
-          
-                    for (let i = 0; i < this.list.length; i++) {
-                      this.list[i].index = i
-                    }
-                    this.daibaolen = this.list.length;
-                    this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
-                    this.length = this.list.length;
-                    console.log('com',this.list,)
-  
+      console.log(list, 'list')
+
+      a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
+        // this.ignore = ignore
+        this.yihulen = ignore.length;
+        console.log(ignore, 'ignore')
+        console.log(ignore.length, 'ignore.length')
+
+        if (ignore.length == 0) {
+          a.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((yiquotelist: any) => {
+            console.log(yiquotelist, 'yiquotelist')
+            console.log(yiquotelist.length, 'yiquotelist.length')
+
+            if (yiquotelist.length == 0) {
+
+              a.quotationlist({ quotecompan_id: this.enterprise_id, quoteper: this.employee_id }).then((list: any) => {
+                console.log(list, 'lsit')
+                list = list.filter(item => {
+                  return item.quote_id != '';
                 })
-              }else {
-                var yibao=[];
-                var shi=[];
-                yiquotelist.filter(item=>{
-                  if(item.invalid=='是' || item.quotestatus=='E'){
-                    // this.yishilen ++ ;
-                    shi.push(item);
-                  }else if(item.invalid=='否' && item.quotestatus!='E'){
-                    // this.yibaolen ++;
-                    yibao.push(item);
-                  }
-                })
-                this.yibaolen=yibao.length;
-                this.yishilen=shi.length
-                // this.yibaolen = yiquotelist.length;
-                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
-                  console.log(list, 'bbb')
-                  list =  list.filter(item=>{
-                    return item.quote_id!=''
-                  })
-                  var result = [];
-                  for (let item of list) {
-                    if (item.quotestatus === 'Q') {
-                      if (this.notinignore2(item, yiquotelist)) {
-  
-                        item.photoLen = 0
-                        if (item.frontofcar != '' && item.frontofcar !="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.namesplate != '' && item.namesplate !="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.rearofcar != '' && item.rearofcar !="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.photo1 != '' && item.photo1 !="undefined") {
-                          var arr =  item.photo1.split(',')
-                          item.photoLen +=arr.length
-                        }
-                        // if (item.photo2 != '' && item.photo2 !="undefined") {
-                        //   item.photoLen++
-                        // }
-  
-                        result.push(item);
-                      }
+                for (let item of list) {
+                  if (item.quotestatus == 'Q') {
+
+                    item.photoLen = 0
+                    console.log(item)
+
+                    if (item.frontofcar != '' && item.frontofcar != "undefined") {
+                      item.photoLen++
                     }
-      
+                    if (item.namesplate != '' && item.namesplate != "undefined") {
+                      item.photoLen++
+                    }
+                    if (item.rearofcar != '' && item.rearofcar != "undefined") {
+                      item.photoLen++
+                    }
+                    if (item.photo1 != '' && item.photo1 != "undefined") {
+                      var arr = item.photo1.split(/[, ，]/)
+                      item.photoLen += arr.length
+                    }
+                    // if (item.photo2 != ''&& item.photo2!="undefined") {
+                    //   item.photoLen++
+                    // }
+                    this.list.push(item)
                   }
-      
-                  this.list = result.sort(this.compare("quote_time_timespan"));
-                  this.daibaolen = this.list.length
-                  for (let i = 0; i < this.list.length; i++) {
-                    this.list[i].index = i
-                  }
-                  this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
-                  this.length = this.list.length;
-      
-                });
-              }
-      
-            })
-  
-          } else {
-  
-            a.yiquotelist({quoteenterprise_id: this.enterprise_id}).then((yiquotelist:any)=>{
-              console.log(yiquotelist,'yyyyy')
+                }
+                this.list = this.list.sort(this.compare("quote_time_timespan"))
+
+                for (let i = 0; i < this.list.length; i++) {
+                  this.list[i].index = i
+                }
+                this.daibaolen = this.list.length;
+                this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                this.length = this.list.length;
+                console.log('com', this.list)
+
+              })
+            } else {
+              var yibao = [];
+              var shi = [];
+              yiquotelist.filter(item => {
+                if (item.invalid == '是' || item.quotestatus == 'E') {
+                  // this.yishilen ++ ;
+                  shi.push(item);
+                } else if (item.invalid == '否' && item.quotestatus != 'E') {
+                  // this.yibaolen ++;
+                  yibao.push(item);
+                }
+              })
+              this.yibaolen = yibao.length;
+              this.yishilen = shi.length
               // this.yibaolen = yiquotelist.length;
-              if(yiquotelist.length == 0){
-  
-                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
-                  console.log(list, 'list')
-                  list = list.filter(item=>{
-                    return item.quote_id!=''
-                  })
-                  var result = [];
-                    for (let item of list) {
-                      if (item.quotestatus == 'Q') {
-      
-                        if (this.notinignore2(item, ignore)) {
-                          item.photoLen = 0
-                          console.log(item)
-          
-                          if (item.frontofcar != '' && item.frontofcar !="undefined") {
-                            item.photoLen++
-                          }
-                          if (item.namesplate != '' && item.namesplate !="undefined") {
-                            item.photoLen++
-                          }
-                          if (item.rearofcar != '' && item.rearofcar !="undefined") {
-                            item.photoLen++
-                          }
-                          if (item.photo1 != '' && item.photo1 !="undefined") {
-                            var arr =  item.photo1.split(/[, ，]/)
-                            item.photoLen += arr.length
-                          }
-                          // if (item.photo2 != '' && item.photo2 !="undefined") {
-                          //   item.photoLen++
-                          // }
-                          result.push(item);
-  
-                        }
-                        
-                       
-                        // this.list.push(item)
-                      
-                      }
-                    }
-                    this.list = result.sort(this.compare("quote_time_timespan"));
-                    this.daibaolen = this.list.length;
-                    for (let i = 0; i < this.list.length; i++) {
-                      this.list[i].index = i
-                    }
-                    this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
-                    this.length = this.list.length;
-  
+              a.quotationlist({ quotecompan_id: this.enterprise_id, quoteper: this.employee_id }).then((list: any) => {
+                console.log(list, 'bbb')
+                list = list.filter(item => {
+                  return item.quote_id != ''
                 })
-              }else {
-                var shi=[];
-                var yibao=[];
-                yiquotelist.filter(item=>{
-                  if(item.invalid=='是' || item.quotestatus=='E'){
-                    // this.yishilen ++ ;
-                    shi.push(item);
-                  }else if(item.invalid=='否' && item.quotestatus!="E"){
-                    // this.yibaolen ++;
-                    yibao.push(item);
-                  }
-                })
-                this.yibaolen=yibao.length;
-                this.yishilen=shi.length
-                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
-                  console.log(list, 'list')
-                  list = list.filter(item=>{
-                    return item.quote_id!=''
-                  })
-                  var result = [];
-                  for (let item of list) {
-                    if (item.quotestatus === 'Q') {
+                var result = [];
+                for (let item of list) {
+                  if (item.quotestatus === 'Q') {
+                    if (this.notinignore2(item, yiquotelist)) {
+
                       item.photoLen = 0
-                      
-                      if (item.frontofcar != '' && item.frontofcar !="undefined") {
+                      if (item.frontofcar != '' && item.frontofcar != "undefined") {
                         item.photoLen++
                       }
-                      if (item.namesplate != '' && item.namesplate !="undefined") {
+                      if (item.namesplate != '' && item.namesplate != "undefined") {
                         item.photoLen++
                       }
-                      if (item.rearofcar != '' && item.rearofcar !="undefined") {
+                      if (item.rearofcar != '' && item.rearofcar != "undefined") {
                         item.photoLen++
                       }
-                      if (item.photo1 != '' && item.photo1 !="undefined") {
-                        var arr =  item.photo1.split(/[, ，]/)
-                        item.photoLen +=arr.length
+                      if (item.photo1 != '' && item.photo1 != "undefined") {
+                        var arr = item.photo1.split(',')
+                        item.photoLen += arr.length
                       }
                       // if (item.photo2 != '' && item.photo2 !="undefined") {
                       //   item.photoLen++
                       // }
-  
-                      console.log('尽快发货方')
-                      console.log(this.notinignore2(item, yiquotelist),'jjjjdddddd')
-                      if (this.notinignore2(item, yiquotelist)) {
-                        console.log('斤斤计较')
-                        if (this.notinignore2(item, ignore)) {
-                          console.log('jjjjj')
-                          result.push(item);
-                        }
-                      }
-                        
-                    }
-      
-                  }
-                  console.log(result,'kkkkk')
-      
-                  this.list = result.sort(this.compare("quote_time_timespan"));
-                  this.daibaolen = this.list.length;
-                  for (let i = 0; i < this.list.length; i++) {
-                    this.list[i].index = i
-                  }
-                  this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
-                  this.length = this.list.length;
-      
-                });
-              }
-      
-            })
-  
-          }
-  
-        })
-  
 
-   
-  })
+                      result.push(item);
+                    }
+                  }
+
+                }
+
+                this.list = result.sort(this.compare("quote_time_timespan"));
+                this.daibaolen = this.list.length
+                for (let i = 0; i < this.list.length; i++) {
+                  this.list[i].index = i
+                }
+                this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                this.length = this.list.length;
+
+              });
+            }
+
+          })
+
+        } else {
+
+          a.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((yiquotelist: any) => {
+            console.log(yiquotelist, 'yyyyy')
+            // this.yibaolen = yiquotelist.length;
+            if (yiquotelist.length == 0) {
+
+              a.quotationlist({ quotecompan_id: this.enterprise_id, quoteper: this.employee_id }).then((list: any) => {
+                console.log(list, 'list')
+                list = list.filter(item => {
+                  return item.quote_id != ''
+                })
+                var result = [];
+                for (let item of list) {
+                  if (item.quotestatus == 'Q') {
+
+                    if (this.notinignore2(item, ignore)) {
+                      item.photoLen = 0
+                      console.log(item)
+
+                      if (item.frontofcar != '' && item.frontofcar != "undefined") {
+                        item.photoLen++
+                      }
+                      if (item.namesplate != '' && item.namesplate != "undefined") {
+                        item.photoLen++
+                      }
+                      if (item.rearofcar != '' && item.rearofcar != "undefined") {
+                        item.photoLen++
+                      }
+                      if (item.photo1 != '' && item.photo1 != "undefined") {
+                        var arr = item.photo1.split(/[, ，]/)
+                        item.photoLen += arr.length
+                      }
+                      // if (item.photo2 != '' && item.photo2 !="undefined") {
+                      //   item.photoLen++
+                      // }
+                      result.push(item);
+
+                    }
+
+
+                    // this.list.push(item)
+
+                  }
+                }
+                this.list = result.sort(this.compare("quote_time_timespan"));
+                this.daibaolen = this.list.length;
+                for (let i = 0; i < this.list.length; i++) {
+                  this.list[i].index = i
+                }
+                this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                this.length = this.list.length;
+
+              })
+            } else {
+              var shi = [];
+              var yibao = [];
+              yiquotelist.filter(item => {
+                if (item.invalid == '是' || item.quotestatus == 'E') {
+                  // this.yishilen ++ ;
+                  shi.push(item);
+                } else if (item.invalid == '否' && item.quotestatus != "E") {
+                  // this.yibaolen ++;
+                  yibao.push(item);
+                }
+              })
+              this.yibaolen = yibao.length;
+              this.yishilen = shi.length
+              a.quotationlist({ quotecompan_id: this.enterprise_id, quoteper: this.employee_id }).then((list: any) => {
+                console.log(list, 'list')
+                list = list.filter(item => {
+                  return item.quote_id != ''
+                })
+                var result = [];
+                for (let item of list) {
+                  if (item.quotestatus === 'Q') {
+                    item.photoLen = 0
+
+                    if (item.frontofcar != '' && item.frontofcar != "undefined") {
+                      item.photoLen++
+                    }
+                    if (item.namesplate != '' && item.namesplate != "undefined") {
+                      item.photoLen++
+                    }
+                    if (item.rearofcar != '' && item.rearofcar != "undefined") {
+                      item.photoLen++
+                    }
+                    if (item.photo1 != '' && item.photo1 != "undefined") {
+                      var arr = item.photo1.split(/[, ，]/)
+                      item.photoLen += arr.length
+                    }
+                    // if (item.photo2 != '' && item.photo2 !="undefined") {
+                    //   item.photoLen++
+                    // }
+
+                    console.log('尽快发货方')
+                    console.log(this.notinignore2(item, yiquotelist), 'jjjjdddddd')
+                    if (this.notinignore2(item, yiquotelist)) {
+                      console.log('斤斤计较')
+                      if (this.notinignore2(item, ignore)) {
+                        console.log('jjjjj')
+                        result.push(item);
+                      }
+                    }
+
+                  }
+
+                }
+                console.log(result, 'kkkkk')
+
+                this.list = result.sort(this.compare("quote_time_timespan"));
+                this.daibaolen = this.list.length;
+                for (let i = 0; i < this.list.length; i++) {
+                  this.list[i].index = i
+                }
+                this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                this.length = this.list.length;
+
+              });
+            }
+
+          })
+
+        }
+
+      })
+
+
+
+    })
   }
   // 待报价
   quoteHandle() {
@@ -635,11 +635,11 @@ export class QuotationCenterComponent extends AppBase {
     this.pageList = [];
     this.isquote = true;
     this.isshow = false
-    this.daibaolen=0;
-    this.yibaolen=0;
-    this.yihulen=0;
-    this.yishilen=0;
-    this.alllen=0;
+    this.daibaolen = 0;
+    this.yibaolen = 0;
+    this.yihulen = 0;
+    this.yishilen = 0;
+    this.alllen = 0;
     this.exp = true;
     // let current = e.target
     // current.classList.add('btn-active')
@@ -650,262 +650,262 @@ export class QuotationCenterComponent extends AppBase {
     //     others[i].classList.remove('btn-active')
     //   }
     // }
-var a = this.orderApi;
+    var a = this.orderApi;
     a.quotelist({}).then((list: any) => {
-       
-      console.log(list,'list')
 
-        a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
-          // this.ignore = ignore
-          this.yihulen=ignore.length;
-          console.log(ignore, 'ignore')
-          console.log(ignore.length, 'ignore.length')
-  
-          if (ignore.length == 0) {
-            a.yiquotelist({quoteenterprise_id: this.enterprise_id}).then((yiquotelist:any)=>{
-              console.log(yiquotelist,'yiquotelist')
-              console.log(yiquotelist.length,'yiquotelist.length')
-              
-              if(yiquotelist.length == 0){
-  
-                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
-                  console.log(list, 'lsit')
-                  list = list.filter(item=>{
-                    return item.quote_id!='';
-                  })
-                    for (let item of list) {
-                      if (item.quotestatus == 'Q') {
-      
-                        item.photoLen = 0
-                        console.log(item)
-        
-                        if (item.frontofcar != '' && item.frontofcar!="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.namesplate != ''&& item.namesplate!="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.rearofcar != ''&& item.rearofcar!="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.photo1 != ''&& item.photo1!="undefined") {
-                          var arr =  item.photo1.split(/[, ，]/)
-                          item.photoLen +=arr.length
-                        }
-                        // if (item.photo2 != ''&& item.photo2!="undefined") {
-                        //   item.photoLen++
-                        // }
-                        this.list.push(item)
-                      }
-                    }
-                    this.list = this.list.sort(this.compare("quote_time_timespan"))
-          
-                    for (let i = 0; i < this.list.length; i++) {
-                      this.list[i].index = i
-                    }
-                    this.daibaolen = this.list.length;
-                    this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
-                    this.length = this.list.length;
-                    this.pagination(this.list, this.length);
-                    console.log(this.list)
-  
+      console.log(list, 'list')
+
+      a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
+        // this.ignore = ignore
+        this.yihulen = ignore.length;
+        console.log(ignore, 'ignore')
+        console.log(ignore.length, 'ignore.length')
+
+        if (ignore.length == 0) {
+          a.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((yiquotelist: any) => {
+            console.log(yiquotelist, 'yiquotelist')
+            console.log(yiquotelist.length, 'yiquotelist.length')
+
+            if (yiquotelist.length == 0) {
+
+              a.quotationlist({ quotecompan_id: this.enterprise_id, quoteper: this.employee_id }).then((list: any) => {
+                console.log(list, 'lsit')
+                list = list.filter(item => {
+                  return item.quote_id != '';
                 })
-              }else {
-                var yibao=[];
-                var shi=[];
-                yiquotelist.filter(item=>{
-                  if(item.invalid=='是' || item.quotestatus=='E'){
-                    // this.yishilen ++ ;
-                    shi.push(item);
-                  }else if(item.invalid=='否' && item.quotestatus!='E'){
-                    // this.yibaolen ++;
-                    yibao.push(item);
-                  }
-                })
-                this.yibaolen=yibao.length;
-                this.yishilen=shi.length
-                this.yibaolen = yiquotelist.length;
-                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
-                  console.log(list, 'bbb')
-                  list =  list.filter(item=>{
-                    return item.quote_id!=''
-                  })
-                  var result = [];
-                  for (let item of list) {
-                    if (item.quotestatus === 'Q') {
-                      if (this.notinignore2(item, yiquotelist)) {
-  
-                        item.photoLen = 0
-                        if (item.frontofcar != '' && item.frontofcar !="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.namesplate != '' && item.namesplate !="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.rearofcar != '' && item.rearofcar !="undefined") {
-                          item.photoLen++
-                        }
-                        if (item.photo1 != '' && item.photo1 !="undefined") {
-                          var arr =  item.photo1.split(',')
-                          item.photoLen +=arr.length
-                        }
-                        // if (item.photo2 != '' && item.photo2 !="undefined") {
-                        //   item.photoLen++
-                        // }
-  
-                        result.push(item);
-                      }
+                for (let item of list) {
+                  if (item.quotestatus == 'Q') {
+
+                    item.photoLen = 0
+                    console.log(item)
+
+                    if (item.frontofcar != '' && item.frontofcar != "undefined") {
+                      item.photoLen++
                     }
-      
+                    if (item.namesplate != '' && item.namesplate != "undefined") {
+                      item.photoLen++
+                    }
+                    if (item.rearofcar != '' && item.rearofcar != "undefined") {
+                      item.photoLen++
+                    }
+                    if (item.photo1 != '' && item.photo1 != "undefined") {
+                      var arr = item.photo1.split(/[, ，]/)
+                      item.photoLen += arr.length
+                    }
+                    // if (item.photo2 != ''&& item.photo2!="undefined") {
+                    //   item.photoLen++
+                    // }
+                    this.list.push(item)
                   }
-      
-                  this.list = result.sort(this.compare("quote_time_timespan"));
-                  this.daibaolen = this.list.length
-                  for (let i = 0; i < this.list.length; i++) {
-                    this.list[i].index = i
-                  }
-                  this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
-                  this.length = this.list.length;
-                  this.pagination(this.list, this.length);
-      
-                });
-              }
-      
-            })
-  
-          } else {
-  
-            a.yiquotelist({quoteenterprise_id: this.enterprise_id}).then((yiquotelist:any)=>{
-              console.log(yiquotelist,'yyyyy')
+                }
+                this.list = this.list.sort(this.compare("quote_time_timespan"))
+
+                for (let i = 0; i < this.list.length; i++) {
+                  this.list[i].index = i
+                }
+                this.daibaolen = this.list.length;
+                this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                this.length = this.list.length;
+                this.pagination(this.list, this.length);
+                console.log(this.list)
+
+              })
+            } else {
+              var yibao = [];
+              var shi = [];
+              yiquotelist.filter(item => {
+                if (item.invalid == '是' || item.quotestatus == 'E') {
+                  // this.yishilen ++ ;
+                  shi.push(item);
+                } else if (item.invalid == '否' && item.quotestatus != 'E') {
+                  // this.yibaolen ++;
+                  yibao.push(item);
+                }
+              })
+              this.yibaolen = yibao.length;
+              this.yishilen = shi.length
               this.yibaolen = yiquotelist.length;
-              if(yiquotelist.length == 0){
-  
-                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
-                  console.log(list, 'list')
-                  list = list.filter(item=>{
-                    return item.quote_id!=''
-                  })
-                  var result = [];
-                    for (let item of list) {
-                      if (item.quotestatus == 'Q') {
-      
-                        if (this.notinignore2(item, ignore)) {
-                          item.photoLen = 0
-                          console.log(item)
-          
-                          if (item.frontofcar != '' && item.frontofcar !="undefined") {
-                            item.photoLen++
-                          }
-                          if (item.namesplate != '' && item.namesplate !="undefined") {
-                            item.photoLen++
-                          }
-                          if (item.rearofcar != '' && item.rearofcar !="undefined") {
-                            item.photoLen++
-                          }
-                          if (item.photo1 != '' && item.photo1 !="undefined") {
-                            var arr =  item.photo1.split(/[, ，]/)
-                            item.photoLen += arr.length
-                          }
-                          // if (item.photo2 != '' && item.photo2 !="undefined") {
-                          //   item.photoLen++
-                          // }
-                          result.push(item);
-  
-                        }
-                        
-                       
-                        // this.list.push(item)
-                      
-                      }
-                    }
-                    this.list = result.sort(this.compare("quote_time_timespan"));
-                    this.daibaolen = this.list.length;
-                    for (let i = 0; i < this.list.length; i++) {
-                      this.list[i].index = i
-                    }
-                    this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
-                    this.length = this.list.length;
-                    this.pagination(this.list, this.length);
-                    console.log(this.list)
-  
+              a.quotationlist({ quotecompan_id: this.enterprise_id, quoteper: this.employee_id }).then((list: any) => {
+                console.log(list, 'bbb')
+                list = list.filter(item => {
+                  return item.quote_id != ''
                 })
-              }else {
-                var shi=[];
-                var yibao=[];
-                yiquotelist.filter(item=>{
-                  if(item.invalid=='是' || item.quotestatus=='E'){
-                    this.yishilen ++ ;
-                    shi.push(item);
-                  }else if(item.invalid=='否' && item.quotestatus!="E"){
-                    this.yibaolen ++;
-                    yibao.push(item);
-                  }
-                })
-                this.yibaolen=yibao.length;
-                this.yishilen=shi.length
-                a.quotationlist({quotecompan_id: this.enterprise_id,quoteper:this.employee_id}).then((list: any) => {
-                  console.log(list, 'list')
-                  list = list.filter(item=>{
-                    return item.quote_id!=''
-                  })
-                  var result = [];
-                  for (let item of list) {
-                    if (item.quotestatus === 'Q') {
+                var result = [];
+                for (let item of list) {
+                  if (item.quotestatus === 'Q') {
+                    if (this.notinignore2(item, yiquotelist)) {
+
                       item.photoLen = 0
-                      
-                      if (item.frontofcar != '' && item.frontofcar !="undefined") {
+                      if (item.frontofcar != '' && item.frontofcar != "undefined") {
                         item.photoLen++
                       }
-                      if (item.namesplate != '' && item.namesplate !="undefined") {
+                      if (item.namesplate != '' && item.namesplate != "undefined") {
                         item.photoLen++
                       }
-                      if (item.rearofcar != '' && item.rearofcar !="undefined") {
+                      if (item.rearofcar != '' && item.rearofcar != "undefined") {
                         item.photoLen++
                       }
-                      if (item.photo1 != '' && item.photo1 !="undefined") {
-                        var arr =  item.photo1.split(/[, ，]/)
-                        item.photoLen +=arr.length
+                      if (item.photo1 != '' && item.photo1 != "undefined") {
+                        var arr = item.photo1.split(',')
+                        item.photoLen += arr.length
                       }
                       // if (item.photo2 != '' && item.photo2 !="undefined") {
                       //   item.photoLen++
                       // }
-  
-                      console.log('尽快发货方')
-                      console.log(this.notinignore2(item, yiquotelist),'jjjjdddddd')
-                      if (this.notinignore2(item, yiquotelist)) {
-                        console.log('斤斤计较')
-                        if (this.notinignore2(item, ignore)) {
-                          console.log('jjjjj')
-                          result.push(item);
-                        }
-                      }
-                        
-                    }
-      
-                  }
-                  console.log(result,'kkkkk')
-      
-                  this.list = result.sort(this.compare("quote_time_timespan"));
-                  this.daibaolen = this.list.length;
-                  for (let i = 0; i < this.list.length; i++) {
-                    this.list[i].index = i
-                  }
-                  this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
-                  this.length = this.list.length;
-                  this.pagination(this.list, this.length);
-      
-                });
-              }
-      
-            })
-  
-          }
-  
-        })
-  
 
-   
-  })
+                      result.push(item);
+                    }
+                  }
+
+                }
+
+                this.list = result.sort(this.compare("quote_time_timespan"));
+                this.daibaolen = this.list.length
+                for (let i = 0; i < this.list.length; i++) {
+                  this.list[i].index = i
+                }
+                this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                this.length = this.list.length;
+                this.pagination(this.list, this.length);
+
+              });
+            }
+
+          })
+
+        } else {
+
+          a.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((yiquotelist: any) => {
+            console.log(yiquotelist, 'yyyyy')
+            this.yibaolen = yiquotelist.length;
+            if (yiquotelist.length == 0) {
+
+              a.quotationlist({ quotecompan_id: this.enterprise_id, quoteper: this.employee_id }).then((list: any) => {
+                console.log(list, 'list')
+                list = list.filter(item => {
+                  return item.quote_id != ''
+                })
+                var result = [];
+                for (let item of list) {
+                  if (item.quotestatus == 'Q') {
+
+                    if (this.notinignore2(item, ignore)) {
+                      item.photoLen = 0
+                      console.log(item)
+
+                      if (item.frontofcar != '' && item.frontofcar != "undefined") {
+                        item.photoLen++
+                      }
+                      if (item.namesplate != '' && item.namesplate != "undefined") {
+                        item.photoLen++
+                      }
+                      if (item.rearofcar != '' && item.rearofcar != "undefined") {
+                        item.photoLen++
+                      }
+                      if (item.photo1 != '' && item.photo1 != "undefined") {
+                        var arr = item.photo1.split(/[, ，]/)
+                        item.photoLen += arr.length
+                      }
+                      // if (item.photo2 != '' && item.photo2 !="undefined") {
+                      //   item.photoLen++
+                      // }
+                      result.push(item);
+
+                    }
+
+
+                    // this.list.push(item)
+
+                  }
+                }
+                this.list = result.sort(this.compare("quote_time_timespan"));
+                this.daibaolen = this.list.length;
+                for (let i = 0; i < this.list.length; i++) {
+                  this.list[i].index = i
+                }
+                this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                this.length = this.list.length;
+                this.pagination(this.list, this.length);
+                console.log(this.list)
+
+              })
+            } else {
+              var shi = [];
+              var yibao = [];
+              yiquotelist.filter(item => {
+                if (item.invalid == '是' || item.quotestatus == 'E') {
+                  this.yishilen++;
+                  shi.push(item);
+                } else if (item.invalid == '否' && item.quotestatus != "E") {
+                  this.yibaolen++;
+                  yibao.push(item);
+                }
+              })
+              this.yibaolen = yibao.length;
+              this.yishilen = shi.length
+              a.quotationlist({ quotecompan_id: this.enterprise_id, quoteper: this.employee_id }).then((list: any) => {
+                console.log(list, 'list')
+                list = list.filter(item => {
+                  return item.quote_id != ''
+                })
+                var result = [];
+                for (let item of list) {
+                  if (item.quotestatus === 'Q') {
+                    item.photoLen = 0
+
+                    if (item.frontofcar != '' && item.frontofcar != "undefined") {
+                      item.photoLen++
+                    }
+                    if (item.namesplate != '' && item.namesplate != "undefined") {
+                      item.photoLen++
+                    }
+                    if (item.rearofcar != '' && item.rearofcar != "undefined") {
+                      item.photoLen++
+                    }
+                    if (item.photo1 != '' && item.photo1 != "undefined") {
+                      var arr = item.photo1.split(/[, ，]/)
+                      item.photoLen += arr.length
+                    }
+                    // if (item.photo2 != '' && item.photo2 !="undefined") {
+                    //   item.photoLen++
+                    // }
+
+                    console.log('尽快发货方')
+                    console.log(this.notinignore2(item, yiquotelist), 'jjjjdddddd')
+                    if (this.notinignore2(item, yiquotelist)) {
+                      console.log('斤斤计较')
+                      if (this.notinignore2(item, ignore)) {
+                        console.log('jjjjj')
+                        result.push(item);
+                      }
+                    }
+
+                  }
+
+                }
+                console.log(result, 'kkkkk')
+
+                this.list = result.sort(this.compare("quote_time_timespan"));
+                this.daibaolen = this.list.length;
+                for (let i = 0; i < this.list.length; i++) {
+                  this.list[i].index = i
+                }
+                this.alllen = this.daibaolen + this.yibaolen + this.yihulen + this.yishilen;
+                this.length = this.list.length;
+                this.pagination(this.list, this.length);
+
+              });
+            }
+
+          })
+
+        }
+
+      })
+
+
+
+    })
 
 
 
@@ -946,7 +946,7 @@ var a = this.orderApi;
 
   }
 
-  exp=true
+  exp = true
   // 已过期
   expired() {
 
@@ -965,13 +965,13 @@ var a = this.orderApi;
     //   }
     // }
 
-   
 
-    this.orderApi.yiquotelist({quoteenterprise_id: this.enterprise_id}).then((list: any) => {
+
+    this.orderApi.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((list: any) => {
 
       for (let i = 0; i < list.length; i++) {
-        
-        if(list[i].quotestatus == 'E' || list[i].invalid=='是'){
+
+        if (list[i].quotestatus == 'E' || list[i].invalid == '是') {
           this.list.push(list[i])
         }
       }
@@ -990,7 +990,7 @@ var a = this.orderApi;
 
   }
 
-  
+
 
   // 已报价
   quotedPrice() {
@@ -1008,10 +1008,10 @@ var a = this.orderApi;
     //     others[i].classList.remove('btn-active')
     //   }
     // }
-   
+
 
     this.orderApi.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((list: any) => {
-      console.log(list,'pppp')
+      console.log(list, 'pppp')
 
       let date = new Date();
       let year = date.getFullYear();
@@ -1019,26 +1019,26 @@ var a = this.orderApi;
       let day = date.getDate();
       let hh = date.getHours();
       let mm = date.getMinutes();
-  
-      let nowtime = year + '-' + month + '-' + day +" "+ hh +":"+ mm
-      
+
+      let nowtime = year + '-' + month + '-' + day + " " + hh + ":" + mm
+
       let shijian = date.getTime()
-       
+
       for (let i = 0; i < list.length; i++) {
-        if (list[i].invalid=='否' || list[i].quotestatus=='C') {
-          
+        if (list[i].invalid == '否' || list[i].quotestatus == 'C') {
+
           let newDate = new Date(list[i].expired_time)
           list[i].times = newDate.getTime()
-          if (list[i].times < shijian && list[i].quotestatus=="W") {
-            
-            this.orderApi.editquotestatus({quoteenterprise_id: this.enterprise_id,quotestatus: 'E',quote_id: list[i].quote_id}).then((editquotestatus:any)=>{ 
+          if (list[i].times < shijian && list[i].quotestatus == "W") {
+
+            this.orderApi.editquotestatus({ quoteenterprise_id: this.enterprise_id, quotestatus: 'E', quote_id: list[i].quote_id }).then((editquotestatus: any) => {
               // if(editquotestatus){ 
               // }
             })
-          
+
           }
-          if( list[i].quotestatus=="W" || list[i].quotestatus=="C"){
-           
+          if (list[i].quotestatus == "W" || list[i].quotestatus == "C") {
+
             this.list.push(list[i])
           }
         }
@@ -1075,16 +1075,16 @@ var a = this.orderApi;
     // }
 
     var a = this.orderApi
-    
 
-    a.yiquotelist({quoteenterprise_id: this.enterprise_id }).then((yiquotelist:any)=>{
-      console.log(yiquotelist,'yiquotelist')
+
+    a.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((yiquotelist: any) => {
+      console.log(yiquotelist, 'yiquotelist')
       // let yiquotelists = yiquotelist
-      if(yiquotelist.length==0){
+      if (yiquotelist.length == 0) {
         let result = []
-        a.quotationlist({quotecompan_id:this.enterprise_id,quoteper:this.employee_id}).then((quotelist:any)=>{
-          quotelist =  quotelist.filter(item=>{
-            return item.quote_id!=''
+        a.quotationlist({ quotecompan_id: this.enterprise_id, quoteper: this.employee_id }).then((quotelist: any) => {
+          quotelist = quotelist.filter(item => {
+            return item.quote_id != ''
           })
           console.log(quotelist)
           // for(let item of quotelist){
@@ -1094,113 +1094,113 @@ var a = this.orderApi;
           // }
           a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
             console.log(ignore)
-            if(ignore.length==0){
-              for(let item of quotelist){
-                if(item.quotestatus=='Q'){
-                   result.push(item);
+            if (ignore.length == 0) {
+              for (let item of quotelist) {
+                if (item.quotestatus == 'Q') {
+                  result.push(item);
                 }
               }
-              
-            }else {
-              result=ignore;
-              for(let item of quotelist){
-                if(item.quotestatus=='Q'){
-                // if(this.panduan(item,ignore)){
-    
-                  result.push(this.panduan(item,ignore));
-                // }
-                 
+
+            } else {
+              result = ignore;
+              for (let item of quotelist) {
+                if (item.quotestatus == 'Q') {
+                  // if(this.panduan(item,ignore)){
+
+                  result.push(this.panduan(item, ignore));
+                  // }
+
+                }
+
               }
-              
-            }
             }
             this.list = result
             for (let i = 0; i < this.list.length; i++) {
               this.list[i].index = i
             }
             this.length = this.list.length
-            this.pagination(this.list,this.length)
+            this.pagination(this.list, this.length)
           })
-         
+
         })
-      }else {
+      } else {
         let result = [];
         result = yiquotelist;
-        a.quotationlist({quoteenterprise_id: this.enterprise_id,quoteper:this.employee_id,}).then((quotelist:any)=>{
-          quotelist = quotelist.filter(item=>{
-            return item.quote_id!=''
+        a.quotationlist({ quoteenterprise_id: this.enterprise_id, quoteper: this.employee_id, }).then((quotelist: any) => {
+          quotelist = quotelist.filter(item => {
+            return item.quote_id != ''
           })
-          console.log(quotelist,'quotelsit')
-          quotelist.filter(item=>{
-            item.quote_id>0
+          console.log(quotelist, 'quotelsit')
+          quotelist.filter(item => {
+            item.quote_id > 0
           })
-          
-      a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
-        // this.ignore = ignore
 
-        console.log(ignore, 'ignore')
-        console.log(ignore.length, 'ignore.length')
-        if(ignore.length==0){
-          for(let item of quotelist){
-            if(item.quotestatus=='Q'){
-            result.push(item);
+          a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
+            // this.ignore = ignore
+
+            console.log(ignore, 'ignore')
+            console.log(ignore.length, 'ignore.length')
+            if (ignore.length == 0) {
+              for (let item of quotelist) {
+                if (item.quotestatus == 'Q') {
+                  result.push(item);
+                }
+              }
+
+            } else {
+              for (let iignore of ignore) {
+                result.push(iignore)
+              }
+              for (let item of quotelist) {
+                if (item.quotestatus == 'Q') {
+                  // if(this.panduan(item,ignore))
+
+                  result.push(this.panduan(item, ignore));
+                  // }
+
+                }
+              }
             }
-          }
-          
-        }else {
-          for(let iignore of ignore){
-            result.push(iignore)
-          }
-          for(let item of quotelist){
-            if(item.quotestatus=='Q'){
-            // if(this.panduan(item,ignore))
 
-              result.push(this.panduan(item,ignore));
-            // }
-             
-          }
-        }
-        }
+            this.list = result
+            for (let i = 0; i < this.list.length; i++) {
+              this.list[i].index = i
+            }
+            console.log(this.list, 'list')
+            this.length = this.list.length
+            this.pagination(this.list, this.length)
 
-        this.list = result
-          for (let i = 0; i < this.list.length; i++) {
-            this.list[i].index = i
-          }
-          console.log(this.list,'list')
-          this.length = this.list.length
-          this.pagination(this.list,this.length)
-       
-      })
-          
-  
-          
+          })
+
+
+
         })
       }
-     
+
     })
 
 
   }
 
-  panduan(item,yiquote){
-    for(let yiitem of yiquote){
-      if(item.quote_id==yiitem.quote_id){
+  panduan(item, yiquote) {
+    for (let yiitem of yiquote) {
+      if (item.quote_id == yiitem.quote_id) {
         console.log('1111')
         return yiitem
-      }else {
+      } else {
         console.log('222')
         return item
       }
     }
-   
+
   }
 
 
 
-  tiaozhuan(itemId,quote_id) {
-    this.orderApi.editisread({quote_id:quote_id,enterprise_id:this.enterprise_id,employee_id:this.employee_id }).then((ret)=>{
-      console.log(ret,'改改了')
-      if(ret){
+  tiaozhuan(itemId, quote_id) {
+    this.orderApi.editisread({ quote_id: quote_id, enterprise_id: this.enterprise_id, employee_id: this.employee_id }).then((ret) => {
+      console.log(ret, '改改了')
+      if (ret) {
         this.router.navigate(['quotationDetails'], {
           queryParams: {
             id: itemId,
@@ -1208,28 +1208,28 @@ var a = this.orderApi;
             employee_id: this.employee_id,
             employee_id_name: this.employee_id_name,
             enterprise_id_name: this.enterprise_id_name,
-            aa:this.aa
+            aa: this.aa
           }
         })
       }
     })
-    
+
   }
 
   tiaozhuan2(itemId) {
     var that = this;
-    this.orderApi.editisread({quote_id:itemId,enterprise_id:this.enterprise_id,employee_id:this.employee_id }).then((ret)=>{
-      console.log(ret,'改改了')
-      if(ret){
+    this.orderApi.editisread({ quote_id: itemId, enterprise_id: this.enterprise_id, employee_id: this.employee_id }).then((ret) => {
+      console.log(ret, '改改了')
+      if (ret) {
         this.router.navigate(['detailsOfQuotedPrice'], {
           queryParams: {
             quote_id: itemId,
-            aa:that.aa
+            aa: that.aa
           }
         })
       }
     })
-    
+
   }
 
   pagination(list, length) {
