@@ -51,22 +51,19 @@ export class QuotationDetailsComponent extends AppBase {
     let oldtime = (new Date()).getTime() + 6*60*60*1000;
     window.localStorage.setItem('oldtime', oldtime.toString())
     var a = this.orderApi
-
-
+ 
     this.activeRoute.queryParams.subscribe(queryParams => {
-      console.log(queryParams)
+      console.log(queryParams,'拉开距离看')
       this.id = queryParams.id
 
-      this.employee_id = queryParams.employee_id
-      this.employee_id_name = queryParams.employee_id_name
-      this.enterprise_id_name = queryParams.enterprise_id_name
+      this.employee_id = queryParams.employee_id;
+      this.employee_id_name = queryParams.employee_id_name;
+      this.enterprise_id_name = queryParams.enterprise_id_name;
 
       a.quotationdetail({ id: this.id, quote_id: queryParams.quote_id }).then((quoteinfo: any) => {
 
         this.quoteinfo = quoteinfo;
-        // this.quoteinfo.employee_id = this.employee_id
-        // this.quoteinfo.employee_id_name = this.employee_id_name
-        // this.quoteinfo.enterprise_id_name = this.enterprise_id_name
+        
         if(this.quoteinfo.namesplate=='' && this.quoteinfo.frontofcar=='' && this.quoteinfo.rearofcar==''){
           this.show=false
         }
@@ -370,58 +367,119 @@ export class QuotationDetailsComponent extends AppBase {
     }
    
   }
-  enterprise_id=""
+  enterprise_id=null;
+
   saveQuote(enterprise_id) {
     this.enterprise_id = enterprise_id
     
-   
-    // console.log(item, 'kkkkk');
-    console.log(this.fittinglist, 'yyyyyy');
-    // var aa = 0
-    
-    // console.log(aa);
-    //return;
     this.bb = true;
+
     this.baojia = false;
-    if (this.aa == this.fittinglist.length) {
-      console.log(this.list,'list')
+
     this.tijiao();
-
-    }
-    else {
-      console.log(this.list,'too');
-
-      // for(let item of this.fittinglist){
-      //   if(this.kong(item,this.list)){
-      //     this.baojia = true;
-      //     this.bb = true;
-      //     return
-      //   }
-      // }
-
-    //   console.log()
-
-    //   if(this.list.length==0){
-    //     this.baojia = true;
-    //     this.bb = false;
-    //     return
-    //   }
-
-    //   // for(let item of this.fittinglist){
-    //   //   if(this.kong(item,this.list)){
-    //   //     this.baojia = true;
-    //   //     this.bb = true;
-    //   //     return
-    //   //   }
-     
-    //   // }
-      this.tijiao();
-     
-    }
-
     
   }
+
   bb=true;
+
+
+  tijiao(){ 
+     var data = [];
+     var jsonlist=[];
+     var minprice = [];
+     var maxprice = [];
+     var minmoney = 0;
+     var maxmoney = 0;
+     var arr = [];
+       
+     for (let f_id of data) {
+     //  console.log(f_id, '尽快尽快尽快')
+       if (f_id != undefined) {
+         var ddd = f_id.sort(function (a, b) {
+           return a.price - b.price
+         })
+         minprice[ddd[0].fittings_id] = ddd[0].price
+         maxprice[ddd[0].fittings_id] = ddd[ddd.length - 1].price
+       //  console.log(ddd, '嘻嘻嘻')
+       }
+ 
+     }
+     
+     for (let pp of minprice) {
+      // console.log(pp, '积分三')
+       if (pp != undefined) {
+         minmoney += pp
+       }
+     }
+ 
+     for (let pp of maxprice) {
+      // console.log(pp, '积分三')
+       if (pp != undefined) {
+         maxmoney += pp
+       }
+     }
+ 
+
+ 
+     for (let i = 0; i < this.list.length; i++) {
+
+      if (!data[this.list[i].fittings_id]) { 
+        arr.push(this.list[i]);
+        data[this.list[i].fittings_id] = arr;
+      } else {
+        data[this.list[i].fittings_id].push(this.list[i])
+      }
+
+       var lists = {
+         fittings_id: (this.list[i].fittings_id),
+         partnubmer: (this.list[i].partnubmer),
+         name: (this.list[i].name),
+         price: (this.list[i].price),
+         Sprice: (this.list[i].Sprice),
+         qty: (this.list[i].quantity),
+         quality: (this.list[i].quality),
+         standby_time: (this.list[i].standby_time),
+         guarantee: (this.list[i].guarantee),
+         sendcar_time: (this.list[i].sendcar_time),
+         rate: (this.list[i].rate),
+         pinzhi: (this.list[i].pinzhi),
+         rateprice: (this.list[i].rateprice),
+         enterprise_id: this.enterprise_id,
+         employee_id: this.employee_id,
+         minprice: minmoney,
+         maxprice: maxmoney,
+         minrate: (minmoney + minmoney * Number(this.rate) / 100),
+         maxrate: (maxmoney + maxmoney * Number(this.rate) / 100),
+ 
+       }
+
+      // console.log(this.employee_id, 'aaaa')
+
+       jsonlist.push(lists);
+
+       //this.fitting(lists,i)
+
+     }
+ 
+     var datajson=JSON.stringify(jsonlist);
+ 
+   console.log(datajson,'看看这串');
+ 
+     // return;
+ 
+       this.orderApi.confirmquote({datajson:datajson}).then((confirmquote) => {
+         
+         console.log(confirmquote,'提交的返回');
+         
+          this.editStatus(this.enterprise_id);  
+       })
+ 
+   
+   }
+
+
+
+
   kong(json,arr){
     // quality: item.quality,
     // standby_time: item.standby_time,
@@ -444,101 +502,8 @@ export class QuotationDetailsComponent extends AppBase {
     return false
   }
 
-  tijiao(){
-    console.log(this.list, '444')
-
-    console.log(this.baojia, 'baojai')
-    // this.baojia=false;
 
 
-    var data = [];
-    for (let i = 0; i < this.list.length; i++) {
-      if (!data[this.list[i].fittings_id]) {
-        var arr = [];
-        arr.push(this.list[i]);
-        data[this.list[i].fittings_id] = arr;
-      } else {
-        data[this.list[i].fittings_id].push(this.list[i])
-      }
-    }
-
-    console.log(data, 'data')
-    var minprice = [];
-    var maxprice = [];
-    for (let f_id of data) {
-      console.log(f_id, '尽快尽快尽快')
-      if (f_id != undefined) {
-        var ddd = f_id.sort(function (a, b) {
-          return a.price - b.price
-        })
-        minprice[ddd[0].fittings_id] = ddd[0].price
-        maxprice[ddd[0].fittings_id] = ddd[ddd.length - 1].price
-        console.log(ddd, '嘻嘻嘻')
-      }
-
-    }
-    console.log(minprice, 'uuuu')
-    var minmoney = 0
-    var maxmoney = 0
-    for (let pp of minprice) {
-      console.log(pp, '积分三')
-      if (pp != undefined) {
-        minmoney += pp
-      }
-    }
-
-    for (let pp of maxprice) {
-      console.log(pp, '积分三')
-      if (pp != undefined) {
-        maxmoney += pp
-      }
-    }
-    console.log(minmoney, 'min')
-    console.log(maxmoney, 'max')
-
-
-    for (let i = 0; i < this.list.length; i++) {
-
-      console.log(this.list[i].fittings_id, '斤斤计较')
-
-
-      var lists = {
-        fittings_id: (this.list[i].fittings_id),
-        partnubmer: (this.list[i].partnubmer),
-        name: (this.list[i].name),
-        price: (this.list[i].price),
-        Sprice: (this.list[i].Sprice),
-        qty: (this.list[i].quantity),
-        quality: (this.list[i].quality),
-        standby_time: (this.list[i].standby_time),
-        guarantee: (this.list[i].guarantee),
-        sendcar_time: (this.list[i].sendcar_time),
-        rate: (this.list[i].rate),
-        pinzhi: (this.list[i].pinzhi),
-        rateprice: (this.list[i].rateprice),
-        enterprise_id: this.enterprise_id,
-        employee_id: this.employee_id,
-        minprice: minmoney,
-        maxprice: maxmoney,
-        minrate: (minmoney + minmoney * Number(this.rate) / 100),
-        maxrate: (maxmoney + maxmoney * Number(this.rate) / 100),
-
-      }
-      console.log(this.employee_id, 'aaaa')
-
-      this.fitting(lists,i)
-
-    }
-
-    if (this.list.length != 0) {
-      console.log(this.enterprise_id, "卡啦啦啦");
-
-      setTimeout(()=>{
-        this.editStatus(this.enterprise_id)
-      },this.list.length*300)
-
-    }
-  }
 
   compare(pro) {
     return function (a, b) {
@@ -579,9 +544,10 @@ export class QuotationDetailsComponent extends AppBase {
       if (editquote.code == '0') {
         a.editquotation({ quote_id: this.quoteinfo.quote_id, quotecompan_id: enterprise_id, quotestatus: 'W' }).then((ret) => {
           if (ret) {
-            console.log(this.quoteinfo, 'llllllll')
+            
             a.addexpired(this.quoteinfo).then((addexpired: any) => {
-              console.log(addexpired)
+             
+              console.log(addexpired,'看看返回了什么')
               if (addexpired.code == '0') {
 
                 a.deleteignore({ quote_id: this.quoteinfo.quote_id, quoteenterprise_id: enterprise_id, status: 'D' }).then((deletData: any) => {

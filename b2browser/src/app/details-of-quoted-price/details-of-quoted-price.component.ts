@@ -11,116 +11,114 @@ import { EnterpriseApi } from 'src/providers/enterprise.api';
   selector: 'app-details-of-quoted-price',
   templateUrl: './details-of-quoted-price.component.html',
   styleUrls: ['./details-of-quoted-price.component.scss'],
-  providers:[InstApi,OrderApi,EnterpriseApi]
+  providers: [InstApi, OrderApi, EnterpriseApi]
 })
-export class DetailsOfQuotedPriceComponent  extends AppBase  {
+export class DetailsOfQuotedPriceComponent extends AppBase {
 
   constructor(
     public router: Router,
     public activeRoute: ActivatedRoute,
-    public instApi:InstApi,
+    public instApi: InstApi,
     public orderApi: OrderApi,
     public enterpriseApi: EnterpriseApi,
-  ) { 
-    super(router,activeRoute,instApi,orderApi,enterpriseApi);
+  ) {
+    super(router, activeRoute, instApi, orderApi, enterpriseApi);
   }
 
 
-  quoteinfo={};
-  id='';
-  list=[];
+  quoteinfo = {};
+  id = '';
+  list = [];
 
-  employee_id=''
-  employee_id_name=''
-  enterprise_id_name=''
+  employee_id = ''
+  employee_id_name = ''
+  enterprise_id_name = ''
   enterprise_id = ''
 
   perInfo = []
-  quote_id=''
-  invalid=''
+  quote_id = ''
+  invalid = ''
 
-  onMyShow(){
-    let oldtime = (new Date()).getTime() +  6*60*60*1000;
-    window.localStorage.setItem('oldtime',oldtime.toString())
-    this.activeRoute.queryParams.subscribe(queryParams=>{
-        console.log(queryParams)
-        // this.id = queryParams.id
-        this.quote_id = queryParams.quote_id
+  onMyShow() {
+    let oldtime = (new Date()).getTime() + 6 * 60 * 60 * 1000;
+    window.localStorage.setItem('oldtime', oldtime.toString())
+    this.activeRoute.queryParams.subscribe(queryParams => {
+      console.log(queryParams)
+      // this.id = queryParams.id
+      this.quote_id = queryParams.quote_id
 
-        var a = this.orderApi
+      var a = this.orderApi
 
-        this.enterpriseApi.employeeinfo({}).then((employeeinfo: any) => {
-          console.log(employeeinfo)
-          this.enterprise_id = employeeinfo.enterprise_id
-          this.employee_id = employeeinfo.id
-          this.employee_id_name = employeeinfo.name
-          this.enterprise_id_name = employeeinfo.enterprise.name
-  
-          this.orderApi.yiquotelist({quote_id:this.quote_id,quoteenterprise_id: this.enterprise_id}).then((yiquotelist:any)=>{
-            console.log(yiquotelist,'yiyyyiyiyi')
+      this.enterpriseApi.employeeinfo({}).then((employeeinfo: any) => {
+        console.log(employeeinfo)
+        this.enterprise_id = employeeinfo.enterprise_id
+        this.employee_id = employeeinfo.id
+        this.employee_id_name = employeeinfo.name
+        this.enterprise_id_name = employeeinfo.enterprise.name
 
-            for(let item of yiquotelist){
-              this.id = item.id
-            }
+        this.orderApi.yiquotelist({ quote_id: this.quote_id, quoteenterprise_id: this.enterprise_id }).then((yiquotelist: any) => {
+          console.log(yiquotelist, 'yiyyyiyiyi')
 
-            a.yiquoteinfo({ id: this.id,quote_id: this.quote_id }).then((quoteinfo:any)=>{
-  
-          
-              this.quoteinfo = quoteinfo;
-              console.log(this.quoteinfo,'jjjjj')
-              this.invalid = quoteinfo.invalid_value
-              
-              for(let item of quoteinfo.fittingsitem){
-                if(item.quoteitems.length != 0){
-                  console.log('llll')
-               
-                  for(let list of item.quoteitems){
-                    console.log('aaaa')
-                      if(  list.enterprise_id == this.enterprise_id){
-                        console.log('ooooo')
-                        this.list.push(list)
-                    }
-                    
-                    // this.employee_id = list.employee_id
-                    // this.enterprise_id_name = list.edt_name
-                    // this.enterprise_id = list.enterprise_id
-                  }
-                }
-              
-              }
-              console.log(this.list,'list')
-            })
-      
-
-          })
-  
-  
-      })
-
-
-      })
-      
-    
-
-        this.enterpriseApi.allenterprise({ id: this.employee_id,enterprise_id: this.enterprise_id}).then((info:any)=>{
-          console.log(info,'info')
-          for(let i=0;i<info.length;i++){
-            if(info[i].id == this.employee_id && info[i].enterprise_id==this.enterprise_id){
-              this.employee_id_name = info[i].name
-              this.perInfo.push( info[i] )
-            }
+          for (let item of yiquotelist) {
+            this.id = item.id
           }
-        })
-        
 
-        console.log(this.perInfo,'perInfo')
-        console.log(this.list)
-        console.log(this.employee_id,this.employee_id_name,this.enterprise_id_name)
-     
-      
+          a.yiquoteinfo({ id: this.id, quote_id: this.quote_id }).then((quoteinfo: any) => {
+
+
+            this.quoteinfo = quoteinfo;
+            console.log(this.quoteinfo, 'jjjjj')
+            this.invalid = quoteinfo.invalid_value
+
+            for (let item of quoteinfo.fittingsitem) {
+              if (item.quoteitems.length != 0) {
+                console.log('llll')
+
+                for (let list of item.quoteitems) {
+                  console.log('aaaa');
+                  if (list.enterprise_id == this.enterprise_id) { 
+                    this.list.push(list)
+                  }
+
+                  // this.employee_id = list.employee_id
+                  // this.enterprise_id_name = list.edt_name
+                  // this.enterprise_id = list.enterprise_id
+                }
+              }
+
+            }
+            console.log(this.list, '看看这个列表')
+          })
+
+
+        })
+
+
+      })
+
+
+    })
+
+
+
+    this.enterpriseApi.allenterprise({ id: this.employee_id, enterprise_id: this.enterprise_id }).then((info: any) => {
+      console.log(info, 'info')
+      for (let i = 0; i < info.length; i++) {
+        if (info[i].id == this.employee_id && info[i].enterprise_id == this.enterprise_id) {
+          this.employee_id_name = info[i].name
+          this.perInfo.push(info[i])
+        }
+      }
+    })
+
+
+    console.log(this.perInfo, 'perInfo')
+    console.log(this.list)
+    console.log(this.employee_id, this.employee_id_name, this.enterprise_id_name)
+
 
   }
-  fanhui(){
-    this.navigate('quotationCenter',{aa:this.params.aa})
+  fanhui() {
+    this.navigate('quotationCenter', { aa: this.params.aa })
   }
 }
