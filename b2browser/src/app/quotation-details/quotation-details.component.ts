@@ -60,8 +60,8 @@ export class QuotationDetailsComponent extends AppBase {
       this.employee_id_name = queryParams.employee_id_name;
       this.enterprise_id_name = queryParams.enterprise_id_name;
 
-      a.quotationdetail({ id: this.id, quote_id: queryParams.quote_id }).then((quoteinfo: any) => {
-
+      a.quoteinfo({ id:  queryParams.id }).then((quoteinfo: any) => {
+        console.log(quoteinfo,'quoteinfoquoteinfo')
         this.quoteinfo = quoteinfo;
         
         if(this.quoteinfo.namesplate=='' && this.quoteinfo.frontofcar=='' && this.quoteinfo.rearofcar==''){
@@ -534,31 +534,19 @@ export class QuotationDetailsComponent extends AppBase {
     this.quoteinfo.quoteemployee_id = this.employee_id
     this.quoteinfo.quoteenterprise_id = enterprise_id
     this.quoteinfo.invalid = 'N'
-    this.quoteinfo.rate = this.rate
+    this.quoteinfo.rate = this.selectedSite
     this.quoteinfo.invoice_demand = this.quoteinfo.invoice_demand_value
     this.quoteinfo.yiquoted_time = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + (date1.getDate()) + " " + (date1.getHours()) + ":" + (date1.getMinutes())
     this.quoteinfo.expired_time = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() + " " + (date2.getHours()) + ":" + (date2.getMinutes())
     console.log(this.quoteinfo)
 
-    a.editquote({ id: this.quoteinfo.quote_id, quotestatus: "W" }).then((editquote: any) => {
+    a.editquote({ id: this.quoteinfo.id, quotestatus: "W" }).then((editquote: any) => {
       if (editquote.code == '0') {
-        a.editquotation({ quote_id: this.quoteinfo.quote_id, quotecompan_id: enterprise_id, quotestatus: 'W' }).then((ret) => {
+        a.editquotation({ quote_id: this.quoteinfo.id, quotecompan_id: enterprise_id, quotestatus: 'W',rate:this.quoteinfo.rate }).then((ret) => {
           if (ret) {
-            
-            a.addexpired(this.quoteinfo).then((addexpired: any) => {
-             
-              console.log(addexpired,'看看返回了什么')
-              if (addexpired.code == '0') {
-
-                a.deleteignore({ quote_id: this.quoteinfo.quote_id, quoteenterprise_id: enterprise_id, status: 'D' }).then((deletData: any) => {
-                  console.log(deletData, 'deletData')
-                })
-
-                this.router.navigate(['detailsOfQuotedPrice'], {
-                  queryParams: {
-                    quote_id: this.quoteinfo.quote_id
-                  }
-                })
+            this.router.navigate(['detailsOfQuotedPrice'], {
+              queryParams: {
+                quote_id: this.quoteinfo.id
               }
             })
           }

@@ -78,11 +78,11 @@
                             </div>
                             <div class="flex-4">
                                 <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span
-                                    class="txt-red" *ngIf='quoteinfo.invoice_demand_value=="是"'>需要发票</span>
-                                <span *ngIf='quoteinfo.invoice_demand_value=="否"'>不需要发票</span>
+                                    class="txt-red" *ngIf='quoteinfo.invoice_demand_value=="Y"'>需要发票</span>
+                                <span *ngIf='quoteinfo.invoice_demand_value=="N"'>不需要发票</span>
                             </div>
                             <div class="flex-4">
-                                <div *ngIf='quoteinfo.invoice_demand_value=="是"'>
+                                <div *ngIf='quoteinfo.invoice_demand_value=="Y"'>
                                     <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票税率</span>
                                     <!-- <input type="text" [(ngModel)]='rate' style="border: 1px solid #ccc; padding-left:5px;">% -->
                                     <select [(ngModel)]="selectedSite">
