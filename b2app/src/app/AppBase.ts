@@ -133,27 +133,10 @@ export class AppBase implements OnInit,OnDestroy {
 
         var that = this;
     
-        // this.enterpriseApi.employeeinfo({}).then((employeeinfo: any) => {
-        //   console.log(employeeinfo)
-    
-        //   if (employeeinfo.enterprise_id == "0") {
-        //     this.router.navigate(["login"]);
-        //     return
-        //   }
-        //   this.employee_id = employeeinfo.id;
-        //   this.enterprise_id = employeeinfo.enterprise_id
-        //   console.log("进来了");
-        //   console.log(333333)
-        //   console.log(employeeinfo)
-        //   console.log(employeeinfo.enterprise_id, employeeinfo.id)
-        //   console.log(44444444)
-    
-        //   var a = this.orderapi
           var arrs = [];
     
        
           this.orderApi.orderisread({ enterprise_id: this.operatorinfo.enterprise_id, employee_id: this.operatorinfo.id }).then((ret: any) => {
-            console.log(ret, '订单')
             if (ret) {
               if (ret.quote > '0') {
                 this.isread = 'N';
@@ -278,7 +261,7 @@ export class AppBase implements OnInit,OnDestroy {
         var a = this.orderApi;
         setTimeout(() => {
           a.addquotation(json).then((addquotation: any) => {
-            console.log(addquotation, 'addquotation');
+      
           })
         }, i * 600);
     
@@ -323,7 +306,7 @@ export class AppBase implements OnInit,OnDestroy {
                 ApiConfig.SetToken(token);
                 this.enterpriseApi.employeeinfo({}).then((operator:any)=>{
                     console.log(operator,'operator')
-                    if(operator==null || operator.enterprise_id=='0'){
+                    if(operator==null || operator.enterprise==''){
                         this.router.navigate(["login"]);
                     }else{
                         this.operatorinfo=operator;
@@ -392,11 +375,14 @@ export class AppBase implements OnInit,OnDestroy {
     }
     ionViewDidEnter() {
         console.log('走了444444444')
-        AppComponent.Instance.currentpage = this.currentpage;
+        // AppComponent.Instance.currentpage = this.currentpage;
         this.consolelog("123132", this.currentpage);
         console.log(this.currentpage);
         if (TabsPage.Instance != null) {
             TabsPage.Instance.currentpage = this.currentpage;
+            TabsPage.Instance.enterprise_id=this.operatorinfo.enterprise_id;
+            TabsPage.Instance.id=this.operatorinfo.id;
+
         }
 
         AppBase.CurrentRoute = this.router;
@@ -416,9 +402,7 @@ export class AppBase implements OnInit,OnDestroy {
 
     onPullRefresh(ref) {
         this.onMyShow();
-        setTimeout(() => { 
-            ref.target.complete();
-        }, 2000);
+        ref.complete();
     }
     doRefresh(ref) {
         this.onPullRefresh(ref);
@@ -452,6 +436,7 @@ export class AppBase implements OnInit,OnDestroy {
             this.navCtrl.back();
         }
     }
+  
     backToUrl(url) {
         this.navCtrl.navigateBack(url);
     }

@@ -29,14 +29,14 @@
         <div class="h8">备<span class="h8 margin-left-30">注</span>：<span class="h8"
             *ngIf='item.information!=""'>{{item.information}}</span>
           <span class="h8" *ngIf='item.information==""'>无</span></div>
-        <div class="h8">发票需求：<span class="txt-red h8" *ngIf='item.invoice_demand_value=="是"'>需要发票</span>
-          <span class="h8" *ngIf='item.invoice_demand_value=="否"'>不需要发票</span></div>
+        <div class="h8">发票需求：<span class="txt-red h8" *ngIf='item.rate>0'>需要发票</span>
+          <span class="h8" *ngIf='item.rate==0'>不需要发票</span></div>
         <div class="flex-row flex-center" *ngIf='show==true'>
           <div class=" h8">图片附件：</div>
           <div style='color:#3d61b4;cursor: pointer;' class="h8" 
             (click)='showPhoto2()'>查看图片</div>
         </div>
-        <div class="flex-row flex-center" *ngIf='item.invoice_demand_value=="是"'>
+        <div class="flex-row flex-center" *ngIf='item.rate>0'>
           <div class=" h8">发票税率：</div>
           <select [(ngModel)]="selectedSite" class="h8">
             <option *ngFor='let item of ratetype' value="{{item.name}}">{{item.name}}</option>

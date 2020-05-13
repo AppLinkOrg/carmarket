@@ -160,7 +160,7 @@
                 <td>
                   <!-- <div *ngIf='item.invoice_demand_value=="Y"' >是</div>
                           <div *ngIf='item.invoice_demand_value=="N"' >否</div> -->
-                  <div>{{item.invoice_demand_value}}</div>
+                  <div>{{item.rate=="0"?'否':'是'}}</div>
                 </td>
                 <td>
                   <div>{{item.quotenumber}}</div>
@@ -214,19 +214,19 @@
                   <div>{{item.quotestatus_name}}</div>
                 </td>
                 <td *ngIf='exp'>
-                  <div *ngIf='item.quotestatus === "Q" &&  isquote==true'>
+                  <div *ngIf='item.quotestatus === "Q" '>
                     <button class="btn btn-primary" (click)="tiaozhuan(item.id,item.quote_id)"><a>立即报价</a></button><br>
                     <button class="btn btn-default txt-blue" (click)='ignoreHandle(item)'>忽略</button>
                   </div>
 
-                  <div *ngIf='item.quotestatus === "Q" &&  isquote==false'>
+                  <div *ngIf='item.quotestatus === "H" '>
                     <button class="btn btn-primary" (click)="tiaozhuan(item.id,item.quote_id)"><a>立即报价</a></button><br>
                   </div>
-                  <div *ngIf='item.quotestatus === "E" &&  isquote==false'>
+                  <div *ngIf='item.quotestatus === "S" '>
                     <div>一</div><br>
                   </div>
                   <div *ngIf='item.quotestatus === "W" || item.quotestatus=="C"'>
-                    <button class="btn btn-primary" (click)="tiaozhuan2(item.quote_id)"><a>查看详情</a></button><br>
+                    <button class="btn btn-primary" (click)="tiaozhuan2(item.id)"><a>查看详情</a></button><br>
                     <!-- <span class="txt-orange" *ngIf='item.invalid_value ==="N"'>等待买家确认</span> -->
                   </div>
                 </td>

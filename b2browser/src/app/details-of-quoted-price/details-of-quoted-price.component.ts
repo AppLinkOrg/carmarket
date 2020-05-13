@@ -26,7 +26,7 @@ export class DetailsOfQuotedPriceComponent extends AppBase {
   }
 
 
-  quoteinfo = {};
+  quoteinfo :any= {};
   id = '';
   list = [];
 
@@ -56,14 +56,9 @@ export class DetailsOfQuotedPriceComponent extends AppBase {
         this.employee_id_name = employeeinfo.name
         this.enterprise_id_name = employeeinfo.enterprise.name
 
-        this.orderApi.yiquotelist({ quote_id: this.quote_id, quoteenterprise_id: this.enterprise_id }).then((yiquotelist: any) => {
-          console.log(yiquotelist, 'yiyyyiyiyi')
+      
 
-          for (let item of yiquotelist) {
-            this.id = item.id
-          }
-
-          a.yiquoteinfo({ id: this.id, quote_id: this.quote_id }).then((quoteinfo: any) => {
+          a.quoteinfo({ id:  this.quote_id }).then((quoteinfo: any) => {
 
 
             this.quoteinfo = quoteinfo;
@@ -92,9 +87,6 @@ export class DetailsOfQuotedPriceComponent extends AppBase {
 
 
         })
-
-
-      })
 
 
     })
