@@ -368,127 +368,103 @@ export class QuotationDetailsComponent extends AppBase {
    
   }
   enterprise_id=null;
+  bb=true;
 
   saveQuote(enterprise_id) {
-    this.enterprise_id = enterprise_id
-    
-    this.bb = true;
-
+    this.enterprise_id = enterprise_id;
+    var data = [];
+    var jsonlist=[];
+    var minprice = [];
+    var maxprice = [];
+    var minmoney = 0;
+    var maxmoney = 0;
+    var arr = []; 
+    this.bb = true; 
     this.baojia = false;
 
-    this.tijiao();
+    for (let f_id of data) {
+      
+        if (f_id != undefined) {
+          var ddd = f_id.sort(function (a, b) {
+            return a.price - b.price
+          })
+          minprice[ddd[0].fittings_id] = ddd[0].price
+          maxprice[ddd[0].fittings_id] = ddd[ddd.length - 1].price
+       
+        }
+  
+    }
+      
+    for (let pp of minprice) {
+       
+        if (pp != undefined) {
+          minmoney += pp
+        }
+    }
+  
+    for (let pp of maxprice) {
+       
+        if (pp != undefined) {
+          maxmoney += pp
+        }
+    }
+   
+    for (let i = 0; i < this.list.length; i++) {
+ 
+       if (!data[this.list[i].fittings_id]) { 
+         arr.push(this.list[i]);
+         data[this.list[i].fittings_id] = arr;
+       } else {
+         data[this.list[i].fittings_id].push(this.list[i])
+       }
+ 
+        var lists = {
+          fittings_id: (this.list[i].fittings_id),
+          partnubmer: (this.list[i].partnubmer),
+          name: (this.list[i].name),
+          price: (this.list[i].price),
+          Sprice: (this.list[i].Sprice),
+          qty: (this.list[i].quantity),
+          quality: (this.list[i].quality),
+          standby_time: (this.list[i].standby_time),
+          guarantee: (this.list[i].guarantee),
+          sendcar_time: (this.list[i].sendcar_time),
+          rate: (this.list[i].rate),
+          pinzhi: (this.list[i].pinzhi),
+          rateprice: (this.list[i].rateprice),
+          enterprise_id: this.enterprise_id,
+          employee_id: this.employee_id,
+          minprice: minmoney,
+          maxprice: maxmoney,
+          minrate: (minmoney + minmoney * Number(this.rate) / 100),
+          maxrate: (maxmoney + maxmoney * Number(this.rate) / 100),
+  
+        }
+  
+ 
+        jsonlist.push(lists);
+  
+    }
+
+    var datajson=JSON.stringify(jsonlist);
+  
+    this.orderApi.confirmquote({datajson:datajson}).then((confirmquote) => {
+       
+       this.editStatus(this.enterprise_id);  
+    })
+ 
     
   }
 
-  bb=true;
-
-
-  tijiao(){ 
-     var data = [];
-     var jsonlist=[];
-     var minprice = [];
-     var maxprice = [];
-     var minmoney = 0;
-     var maxmoney = 0;
-     var arr = [];
-       
-     for (let f_id of data) {
-     //  console.log(f_id, '尽快尽快尽快')
-       if (f_id != undefined) {
-         var ddd = f_id.sort(function (a, b) {
-           return a.price - b.price
-         })
-         minprice[ddd[0].fittings_id] = ddd[0].price
-         maxprice[ddd[0].fittings_id] = ddd[ddd.length - 1].price
-       //  console.log(ddd, '嘻嘻嘻')
-       }
- 
-     }
-     
-     for (let pp of minprice) {
-      // console.log(pp, '积分三')
-       if (pp != undefined) {
-         minmoney += pp
-       }
-     }
- 
-     for (let pp of maxprice) {
-      // console.log(pp, '积分三')
-       if (pp != undefined) {
-         maxmoney += pp
-       }
-     }
- 
+  
 
  
-     for (let i = 0; i < this.list.length; i++) {
-
-      if (!data[this.list[i].fittings_id]) { 
-        arr.push(this.list[i]);
-        data[this.list[i].fittings_id] = arr;
-      } else {
-        data[this.list[i].fittings_id].push(this.list[i])
-      }
-
-       var lists = {
-         fittings_id: (this.list[i].fittings_id),
-         partnubmer: (this.list[i].partnubmer),
-         name: (this.list[i].name),
-         price: (this.list[i].price),
-         Sprice: (this.list[i].Sprice),
-         qty: (this.list[i].quantity),
-         quality: (this.list[i].quality),
-         standby_time: (this.list[i].standby_time),
-         guarantee: (this.list[i].guarantee),
-         sendcar_time: (this.list[i].sendcar_time),
-         rate: (this.list[i].rate),
-         pinzhi: (this.list[i].pinzhi),
-         rateprice: (this.list[i].rateprice),
-         enterprise_id: this.enterprise_id,
-         employee_id: this.employee_id,
-         minprice: minmoney,
-         maxprice: maxmoney,
-         minrate: (minmoney + minmoney * Number(this.rate) / 100),
-         maxrate: (maxmoney + maxmoney * Number(this.rate) / 100),
- 
-       }
-
-      // console.log(this.employee_id, 'aaaa')
-
-       jsonlist.push(lists);
-
-       //this.fitting(lists,i)
-
-     }
- 
-     var datajson=JSON.stringify(jsonlist);
- 
-   console.log(datajson,'看看这串');
- 
-     // return;
- 
-       this.orderApi.confirmquote({datajson:datajson}).then((confirmquote) => {
-         
-         console.log(confirmquote,'提交的返回');
-         
-          this.editStatus(this.enterprise_id);  
-       })
- 
-   
-   }
 
 
 
 
   kong(json,arr){
-    // quality: item.quality,
-    // standby_time: item.standby_time,
-    // guarantee: item.guarantee,
-    // price: item.price,
-    // sendcar_time: item.sendcar_time,
-    // if(json.quality!=""&&json.standby_time!=''&&json.guarantee!=""&&json.price!=""&&json.sendcar_time!=''){
-
-    // }
+    
     console.log(json,'json')
     for(let ii of arr){
       if(json.fittings_id!=ii.fittings_id){
@@ -511,15 +487,7 @@ export class QuotationDetailsComponent extends AppBase {
     }
   }
 
-  fitting(json, i) {
-
-    setTimeout(() => {
-      this.orderApi.confirmquote(json).then((confirmquote: any) => {
-        console.log(confirmquote)
-      })
-    }, i * 300)
-
-  }
+ 
 
   editStatus(enterprise_id) {
 

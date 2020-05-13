@@ -641,6 +641,7 @@ export class QuotationCenterComponent extends AppBase {
     this.yishilen = 0;
     this.alllen = 0;
     this.exp = true;
+
     // let current = e.target
     // current.classList.add('btn-active')
     // let others = e.target.parentElement.childNodes
@@ -650,17 +651,16 @@ export class QuotationCenterComponent extends AppBase {
     //     others[i].classList.remove('btn-active')
     //   }
     // }
+    
     var a = this.orderApi;
     a.quotelist({}).then((list: any) => {
 
-      console.log(list, 'list')
+      console.log(list, '待报价')
 
       a.ignore({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
         // this.ignore = ignore
         this.yihulen = ignore.length;
-        console.log(ignore, 'ignore')
-        console.log(ignore.length, 'ignore.length')
-
+        
         if (ignore.length == 0) {
           a.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((yiquotelist: any) => {
             console.log(yiquotelist, 'yiquotelist')
@@ -776,7 +776,7 @@ export class QuotationCenterComponent extends AppBase {
         } else {
 
           a.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((yiquotelist: any) => {
-            console.log(yiquotelist, 'yyyyy')
+             
             this.yibaolen = yiquotelist.length;
             if (yiquotelist.length == 0) {
 
@@ -829,6 +829,7 @@ export class QuotationCenterComponent extends AppBase {
                 console.log(this.list)
 
               })
+
             } else {
               var shi = [];
               var yibao = [];
@@ -866,12 +867,8 @@ export class QuotationCenterComponent extends AppBase {
                       var arr = item.photo1.split(/[, ，]/)
                       item.photoLen += arr.length
                     }
-                    // if (item.photo2 != '' && item.photo2 !="undefined") {
-                    //   item.photoLen++
-                    // }
+  
 
-                    console.log('尽快发货方')
-                    console.log(this.notinignore2(item, yiquotelist), 'jjjjdddddd')
                     if (this.notinignore2(item, yiquotelist)) {
                       console.log('斤斤计较')
                       if (this.notinignore2(item, ignore)) {
