@@ -542,7 +542,7 @@ export class QuotationDetailsComponent extends AppBase {
 
     a.editquote({ id: this.quoteinfo.id, quotestatus: "W" }).then((editquote: any) => {
       if (editquote.code == '0') {
-        a.editquotation({ quote_id: this.quoteinfo.id, quotecompan_id: enterprise_id, quotestatus: 'W',rate:this.quoteinfo.rate }).then((ret) => {
+        a.editquotation({ quote_id: this.quoteinfo.id, quotecompan_id: enterprise_id, quotestatus: 'W',rate:this.quoteinfo.rate,quoteper:this.employee_id }).then((ret) => {
           if (ret) {
             this.router.navigate(['detailsOfQuotedPrice'], {
               queryParams: {
