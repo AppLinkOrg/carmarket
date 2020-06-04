@@ -61,7 +61,7 @@ export class QuotationDetailsComponent extends AppBase {
       this.enterprise_id_name = queryParams.enterprise_id_name;
 
       a.quoteinfo({ id:  queryParams.id }).then((quoteinfo: any) => {
-        console.log(quoteinfo,'quoteinfoquoteinfo')
+        console.log(quoteinfo,'为什么不出来')
         this.quoteinfo = quoteinfo;
         
         if(this.quoteinfo.namesplate=='' && this.quoteinfo.frontofcar=='' && this.quoteinfo.rearofcar==''){
@@ -149,7 +149,8 @@ export class QuotationDetailsComponent extends AppBase {
       item.pinzhi = '无'
     }
 
-    if(this.quoteinfo.invoice_demand_value=='是'){
+    if(this.quoteinfo.invoice_demand_value=='Y'){
+      console.log(this.selectedSite,'看看这个税率');
       this.rate= this.selectedSite.toString();
       let rates = item.price * Number( this.rate) / 100;
       item.rateprice = item.price + rates;
@@ -306,7 +307,7 @@ export class QuotationDetailsComponent extends AppBase {
         item.pinzhi = '无'
       }
 
-      if(this.quoteinfo.invoice_demand_value=='是'){
+      if(this.quoteinfo.invoice_demand_value=='Y'){
         this.rate= this.selectedSite.toString();
         let rates = item.price * Number( this.rate) / 100;
         item.rateprice = item.price + rates;
@@ -408,7 +409,7 @@ export class QuotationDetailsComponent extends AppBase {
           maxmoney += pp
         }
     }
-   
+    console.log(this.list,'先看看这个里面有什么');
     for (let i = 0; i < this.list.length; i++) {
  
        if (!data[this.list[i].fittings_id]) { 
@@ -441,11 +442,13 @@ export class QuotationDetailsComponent extends AppBase {
   
         }
   
- 
-        jsonlist.push(lists);
+         
+          jsonlist.push(lists);
   
     }
 
+    console.log(jsonlist,'看看这个里面有什么');
+    
     var datajson=JSON.stringify(jsonlist);
   
     this.orderApi.confirmquote({datajson:datajson}).then((confirmquote) => {
