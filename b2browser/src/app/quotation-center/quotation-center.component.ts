@@ -90,7 +90,7 @@ export class QuotationCenterComponent extends AppBase {
           this.comlen();
         }
 
-      }, 10 * 1000);
+      }, 3000);
 
     })
 
@@ -100,6 +100,7 @@ export class QuotationCenterComponent extends AppBase {
   aa = 1;
   change(e) {
     this.aa = e;
+    // this.comlen();
     if (e == 1) {
       this.quoteHandle();
     } else if (e == 2) {
@@ -111,7 +112,7 @@ export class QuotationCenterComponent extends AppBase {
     } else if (e == 5) {
       this.allQuote()
     }
-    // this.comlen();
+    
   }
   compare(pro) {
     return function (a, b) {
@@ -376,21 +377,32 @@ export class QuotationCenterComponent extends AppBase {
     this.yishilen = 0;
     this.alllen = 0;
     var a = this.orderApi;
-    a.yiquotelist({}).then((list:any)=>{
+    a.quotationlist({quoteper:this.employee_id,quotestatus:'Q'}).then((list:any)=>{
       this.daibaolen=list.length;
     })
 
-    this.orderApi.quotationlist({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id,quotestatus:'H' }).then((ignore: any) => {
+    this.orderApi.quotationlist({quoteper:this.employee_id, quotestatus:'H' }).then((ignore: any) => {
       this.yihulen=ignore.length;
     })
-    this.orderApi.quotationlist({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id,quotestatus:'W' }).then((ignore: any) => {
+    this.orderApi.quotationlist({quotestatus:'W' }).then((ignore: any) => {
       this.yibaolen=ignore.length;
     })
-    this.orderApi.quotationlist({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id,quotestatus:'S' }).then((ignore: any) => {
+    this.orderApi.quotationlist({ quotestatus:'S' }).then((ignore: any) => {
       this.yishilen=ignore.length;
     })
-    this.orderApi.quotationlist({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id }).then((ignore: any) => {
-      this.alllen=ignore.length;
+    this.orderApi.quotationlist({ }).then((ignore: any) => {
+      var arr=[];
+      for(let item of ignore){
+        if(item.quoteper==this.employee_id){
+          arr.push(item);
+        }else {
+          if(item.quotestatus=='W' || item.quotestatus=='S'){
+            arr.push(item);
+          }
+        }
+        
+      }
+      this.alllen=arr.length;
     })
   }
   // 待报价
@@ -400,19 +412,9 @@ export class QuotationCenterComponent extends AppBase {
     this.isquote = true;
     this.isshow = false;
     this.exp = true;
-
-    // let current = e.target
-    // current.classList.add('btn-active')
-    // let others = e.target.parentElement.childNodes
-
-    // for (let i = 0; i < others.length; i++) {
-    //   if (others[i] != current) {
-    //     others[i].classList.remove('btn-active')
-    //   }
-    // }
-    
+   
     var a = this.orderApi;
-    a.yiquotelist({}).then((list:any)=>{
+    a.quotationlist({quoteper:this.employee_id,quotestatus:'Q'}).then((list:any)=>{
       console.log(list,'lililili')
       this.list=list;
       for (let i = 0; i < this.list.length; i++) {
@@ -435,17 +437,14 @@ export class QuotationCenterComponent extends AppBase {
     this.isshow = false
     this.isquote = false;
     this.exp = true;
-    // let current = e.target
-    // current.classList.add('btn-active')
-    // let others = e.target.parentElement.childNodes
-
-    // for (let i = 0; i < others.length; i++) {
-    //   if (others[i] != current) {
-    //     others[i].classList.remove('btn-active')
-    //   }
-    // }
+   
     var type=type;
-    this.orderApi.quotationlist({ quoteenterprise_id: this.enterprise_id, quoteemployee_id: this.employee_id,quotestatus:type }).then((ignore: any) => {
+    if(type=='H'){
+      var quoteper=this.employee_id;
+    }else {
+      var quoteper='';
+    }
+    this.orderApi.quotationlist({ quotestatus:type ,quoteper:quoteper}).then((ignore: any) => {
       this.list = ignore;
       this.length = ignore.length;
 
@@ -469,15 +468,7 @@ export class QuotationCenterComponent extends AppBase {
     this.isquote = false;
     this.isshow = false
     this.exp = false;
-    // let current = e.target
-    // current.classList.add('btn-active')
-    // let others = e.target.parentElement.childNodes
-
-    // for (let i = 0; i < others.length; i++) {
-    //   if (others[i] != current) {
-    //     others[i].classList.remove('btn-active')
-    //   }
-    // }
+ 
 
 
 
@@ -513,15 +504,7 @@ export class QuotationCenterComponent extends AppBase {
     this.isquote = false;
     this.isshow = false
     this.exp = true;
-    // let current = e.target
-    // current.classList.add('btn-active')
-    // let others = e.target.parentElement.childNodes
 
-    // for (let i = 0; i < others.length; i++) {
-    //   if (others[i] != current) {
-    //     others[i].classList.remove('btn-active')
-    //   }
-    // }
 
 
     this.orderApi.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((list: any) => {
@@ -584,19 +567,32 @@ export class QuotationCenterComponent extends AppBase {
 
     this.orderapi.quotationlist({}).then((list:any)=>{
       console.log(list)
-      this.list=list;
-      for(var i=0;i<this.list.length;i++){
-        this.list[i].index=i;
-        if(this.list[i].quotestatus=='Q'){
-          this.list[i].quotestatus_name='待报价';
-        }else   if(this.list[i].quotestatus=='W'){
-          this.list[i].quotestatus_name='已报价';
-        }else   if(this.list[i].quotestatus=='H'){
-          this.list[i].quotestatus_name='已忽略';
-        }else   if(this.list[i].quotestatus=='S'){
-          this.list[i].quotestatus_name='已失效';
+      var arr=[];
+      for(var i=0;i<list.length;i++){
+        list[i].index=i;
+        if(list[i].quotestatus=='Q'){
+          list[i].quotestatus_name='待报价';
+        }else   if(list[i].quotestatus=='W'){
+         list[i].quotestatus_name='已报价';
+        }else   if(list[i].quotestatus=='H'){
+          list[i].quotestatus_name='已忽略';
+        }else   if(list[i].quotestatus=='S'){
+         list[i].quotestatus_name='已失效';
         }
+
+        if(list[i].quoteper==this.employee_id){
+          arr.push(list[i]);
+        }else {
+          if(list[i].quotestatus=='W' || list[i].quotestatus=='S'){
+            arr.push(list[i]);
+          }
+        }
+
+        
+
       }
+      
+      this.list=arr;
       this.pagination(this.list,this.list.length);
     })
   }
