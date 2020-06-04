@@ -112,6 +112,7 @@ export class QuotationDetailsComponent extends AppBase {
 
 
   }
+
   photoshow2=false;
   img2=[];
   showPhoto2(){
@@ -295,6 +296,7 @@ export class QuotationDetailsComponent extends AppBase {
     return true
   }
   aa=0
+
   baojias(){
 
     for (let item of this.fittinglist) {
@@ -312,22 +314,9 @@ export class QuotationDetailsComponent extends AppBase {
         let rates = item.price * Number( this.rate) / 100;
         item.rateprice = item.price + rates;
       }else {
-        this.rate='0';
+        this.rate='0';                        
         item.rateprice = item.price;
       }
-
-      // if (this.rate != '') {
-      //   let rates = item.price * Number(this.rate) / 100;
-
-      //   item.rateprice = item.price + rates;
-
-      // }
-
-      // if (this.rate == '') {
-      //   this.rate = '0';
-      //   item.rateprice = item.price;
-      // }
-
 
       var addList = {
         fittings_id: item.id,
@@ -345,22 +334,25 @@ export class QuotationDetailsComponent extends AppBase {
         rate: this.rate,
         pinzhi: item.pinzhi
       }
+
       console.log(addList, 'uuuu')
 
       if (this.checkkong(addList)) {
         addList.rateprice=item.rateprice,
         this.aa++;
-        this.list.push(addList);
+        //  this.list.push(addList);
+         this.list.length=1
         console.log('不为空哦')
       }else {
+       // this.list.length=1
         console.log('有报价没填完')
       }
 
     }
 
     if(this.baojia==true){
-      this.baojia = !this.baojia;
-    }
+      this.baojia = false;
+    } 
 
     if(this.list.length==0){
       this.baojia=true;
@@ -368,6 +360,9 @@ export class QuotationDetailsComponent extends AppBase {
     }
    
   }
+
+
+
   enterprise_id=null;
   bb=true;
 
@@ -409,41 +404,78 @@ export class QuotationDetailsComponent extends AppBase {
           maxmoney += pp
         }
     }
+    
     console.log(this.list,'先看看这个里面有什么');
-    for (let i = 0; i < this.list.length; i++) {
+    // for (let i = 0; i < this.list.length; i++) {
  
-       if (!data[this.list[i].fittings_id]) { 
-         arr.push(this.list[i]);
-         data[this.list[i].fittings_id] = arr;
-       } else {
-         data[this.list[i].fittings_id].push(this.list[i])
-       }
- 
-        var lists = {
-          fittings_id: (this.list[i].fittings_id),
-          partnubmer: (this.list[i].partnubmer),
-          name: (this.list[i].name),
-          price: (this.list[i].price),
-          Sprice: (this.list[i].Sprice),
-          qty: (this.list[i].quantity),
-          quality: (this.list[i].quality),
-          standby_time: (this.list[i].standby_time),
-          guarantee: (this.list[i].guarantee),
-          sendcar_time: (this.list[i].sendcar_time),
-          rate: (this.list[i].rate),
-          pinzhi: (this.list[i].pinzhi),
-          rateprice: (this.list[i].rateprice),
-          enterprise_id: this.enterprise_id,
-          employee_id: this.employee_id,
-          minprice: minmoney,
-          maxprice: maxmoney,
-          minrate: (minmoney + minmoney * Number(this.rate) / 100),
-          maxrate: (maxmoney + maxmoney * Number(this.rate) / 100),
-  
-        }
-  
-         
-          jsonlist.push(lists);
+    //    if (!data[this.list[i].fittings_id]) { 
+    //      arr.push(this.list[i]);
+    //      data[this.list[i].fittings_id] = arr;
+    //    } else {
+    //      data[this.list[i].fittings_id].push(this.list[i])
+    //    }
+    //     var lists = {
+          
+          
+    //       qty: (this.list[i].quantity),
+    //       quality: (this.list[i].quality),
+    //       standby_time: (this.list[i].standby_time),
+    //       guarantee: (this.list[i].guarantee),
+    //       sendcar_time: (this.list[i].sendcar_time),
+    //       rate: (this.list[i].rate),
+    //       pinzhi: (this.list[i].pinzhi),
+    //       rateprice: (this.list[i].rateprice),
+    //       enterprise_id: this.enterprise_id,
+    //       employee_id: this.employee_id,
+    //       minprice: minmoney,
+    //       maxprice: maxmoney,
+    //       minrate: (minmoney + minmoney * Number(this.rate) / 100),
+    //       maxrate: (maxmoney + maxmoney * Number(this.rate) / 100),
+    //     }
+    //       jsonlist.push(lists);
+    // }
+
+    for (let item of this.fittinglist) {
+     
+      if (item.partnubmer == "") {
+        item.partnubmer = '无识别'
+      }
+
+      if (item.pinzhi == "") {
+        item.pinzhi = '无'
+      }
+
+      if(this.quoteinfo.invoice_demand_value=='Y'){
+        this.rate= this.selectedSite.toString();
+        let rates = item.price * Number( this.rate) / 100;
+        item.rateprice = item.price + rates;
+      }else {
+        this.rate='0'; 
+        item.rateprice = item.price;
+      }
+
+      var addList = {
+        enterprise_id: this.enterprise_id,
+        employee_id: this.employee_id,
+        fittings_id: item.id,
+        name: item.name,
+        partnubmer: item.partnubmer,
+        quality: item.quality,
+        qty: item.quantity,
+        Sprice: item.Sprice, 
+        standby_time: item.standby_time,
+        guarantee: item.guarantee,
+        price: item.price,
+        sendcar_time: item.sendcar_time,
+        rateprice:item.rateprice,
+        minprice: minmoney,
+        maxprice: maxmoney, 
+        minrate: (minmoney + minmoney * Number(this.rate) / 100),
+        maxrate: (maxmoney + maxmoney * Number(this.rate) / 100), 
+        rate: this.rate,
+        pinzhi: item.pinzhi
+      }
+      jsonlist.push(addList);
   
     }
 
@@ -459,12 +491,7 @@ export class QuotationDetailsComponent extends AppBase {
     
   }
 
-  
-
- 
-
-
-
+   
 
   kong(json,arr){
     
