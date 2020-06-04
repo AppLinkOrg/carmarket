@@ -347,9 +347,6 @@ class Content extends AppBase {
 
     }, i * 300)
 
-
-
-
   }
 
   toast(e) {

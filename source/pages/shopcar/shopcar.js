@@ -228,7 +228,7 @@ console.log(types,'来来来');
           orderapi.createorder({
             employee_id: that.Base.getMyData().employeeinfo.id, 
             gongsi: that.Base.getMyData().employeeinfo.id, 
-             vin: that.Base.options.vin,
+            vin: that.Base.options.vin,
             // vin: '123456',
             carname: that.Base.options.carmodel,
             // carname: '看六角恐龙',
@@ -236,8 +236,7 @@ console.log(types,'来来来');
             receiver: addressinfo.name,
             needinvoice: needinvoice,
             receivecontact: addressinfo.phonenumber,
-            receiveaddress: addressinfo.region + addressinfo.address,
-            
+            receiveaddress: addressinfo.region + addressinfo.address, 
           }, (createorder) => {
             console.log(createorder);
             that.Base.setMyData({ createorder: createorder})
