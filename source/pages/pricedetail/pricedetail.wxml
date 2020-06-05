@@ -135,8 +135,6 @@
             <view class="h6 margin-left-6">发车{{item.sendcar_time}}</view>
           </view>
 
-
-
           <view class="h6 margin-top-20" wx:if='{{item.remarks_infor!=""}}'>备注：{{item.remarks_infor}}</view>
 
         </view>
