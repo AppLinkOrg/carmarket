@@ -1,0 +1,43 @@
+<view class='pageone'>
+  <view class='bg' style='background-image:url({{uploadpath}}resource/{{res.bgimg}});'>
+    <view class="h5 txt-black margin-left-40 yue">账户余额</view>
+    <view class="flex-row   flex-bottom margin-top-20">
+      <view class="h2 margin-left-30 txt-bold txt-bc">{{employeeinfo.enterprise.account_money}}</view>
+      <view class=" txt-black margin-left-10">额度</view>
+    </view>
+
+
+    <view class="flex-row " bindtap="phoneCall" id="{{instinfo.tel}}">
+      <view class="flex-1"></view>
+      <view class="margin-right-20  txt-bc">额度申请</view>
+      <image class='icon margin-right-20 ' src='{{uploadpath}}resource/{{res.jiantouyou}}'></image>
+    </view>
+
+  </view>
+
+  <view class="white-block margin-bottom-20">
+    <view class=' flex-row margin-top '>
+      <view class='borderleft'></view>
+      <view class='margin-left-10 txt-black txt-bold'>交易记录</view>
+    </view>
+  <view style="height:30rpx"></view>
+     <view class="flex-row flex-center">
+
+      <view wx:for='{{type}}' class="flex-1 text-center" wx:for-index="idx">
+        <view class="{{seq==idx?'types':''}}" bindtap="qiehuan" data-idx="{{idx}}">{{item.name}}</view>
+      </view>
+  </view>
+
+    <view class="flex-row flex-center bg-gray margin-20 yuan" wx:for="{{list}}" wx:key='k' bindtap='todetails' id='{{item.order_id}}'>
+      <view class="txt-black margin-left-30 margin-top-30 flex-1">
+        {{item.employee_name}}
+        <view class="txt-black  ">日期：{{item.consume_time}}</view>
+        <view class="txt-black  margin-bottom-20">订单号：{{item.order_orderno}}</view>
+      </view>
+      <view class="txt-black  margin-right-20" wx:if="{{item.type=='G'}}">-￥{{item.amount}}额度</view>
+      <view class="txt-black  margin-right-20" wx:if="{{item.type=='R'}}">+￥{{item.amount}}额度</view>
+    </view>
+
+
+  </view>
+</view>

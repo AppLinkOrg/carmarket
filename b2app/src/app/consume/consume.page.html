@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <img src="{{uploadpath}}resource/{{res.fanhui}}" (click)='back()' class='icon-10'>
+    <ion-title>交易明细</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="padding-20">
+    <div class="shadow">
+      <div class="flex-row flex-center padding-10">
+        <div class="h8">
+          姓名：
+        </div>
+        <select class="margin-left-10 text-center h8 w-80" [(ngModel)]="name" name="id" >
+          <option value="">请选择</option>
+          <option #id *ngFor='let item of allenterprise;let i=index'>{{item.name}}</option>
+        </select>
+      </div>
+        <div class="flex-row flex-center padding-10">
+        <div class="h8">
+          日期：
+        </div>
+        <input type="date" class="input-box border-gray-1 text-center margin-left-10 h8" name='shijian'
+          [(ngModel)]='shijian'>
+      </div>
+      <div class="flex-row flex-center">
+        <div class="reset h8" (click)='search()'>查询</div>
+        <div class="reset h8" (click)='reset()'>重置</div>
+
+      </div>
+
+      <div class="height-20"></div>
+
+      <div class="table-responsive padding-10">
+
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
+          <thead class="bg-gray text-center h8">
+            <tr>
+              <th>姓名</th>
+              <th>时间</th>
+              <th>金额</th>
+            </tr>
+          </thead>
+          <tbody class="h8 text-center"  *ngIf='consumelist.length>0'>
+            <tr *ngFor='let item of consumelist'>
+              <td>{{item.employee_id_name}}</td>
+              <td>{{item.consume_time_formatting}}</td>
+              <td>
+                <div class="h8" *ngIf='item.type=="R"'>-{{item.amount}}威币</div>
+                <div class="h8" *ngIf='item.type=="S"'>+{{item.amount}}威币</div>
+              </td>
+            </tr>
+          </tbody>
+          <tbody class="h8 text-center" *ngIf='consumelist.length==0'>
+            <tr>
+              <td colspan='3' class="padding-10">无数据</td>
+            </tr>
+          </tbody>
+        </table>
+        
+      </div>
+
+    </div>
+  </div>
+
+</ion-content>

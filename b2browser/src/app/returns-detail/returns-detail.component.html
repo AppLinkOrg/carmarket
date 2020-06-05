@@ -1,0 +1,189 @@
+<div class="container-fluid">
+
+        <div class="card mb-4 bg-gray">
+            <div class="box-auto">
+                <h4 class="margin-40">退货详情</h4>
+            </div>
+        </div>
+
+        <div class="row">
+    
+            <!-- Area Chart -->
+            <div class="col-lg-12">
+            <div class="card shadow mb-4" *ngIf='returndetail!=null'>
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;退货信息</h6>
+                    <a (click)='fanhui()'  class="txt-black"><i class="fa fa-angle-left margin-right"></i>返回</a>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                <div class="border-dep-gray">
+                    <div class="flex-row">
+                        <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">公司名称</span><span>{{returndetail.enterprise_name}}</span>
+                    </div>
+                    <div class="flex-row">
+                        <div class="flex-1">
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">订单编号</span><span>{{returndetail.order_orderno}}</span>
+                        </div>        
+                        <div class="flex-2">
+                            <span class="bg-dep-gray txt-black padding-three-words margin-right-20">申请人</span><span>{{returndetail.employee_id_name}}</span>
+                        </div>  
+                    </div>
+                    <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
+                    <div class="flex-row margin-bottom-3">
+                        <div class="flex-1">
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">退货单号</span><span>{{returndetail.returnno}}</span>
+                        </div>        
+                        <div class="flex-2">
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">申请时间</span><span>{{returndetail.return_time}}</span>
+                        </div>
+                    </div>
+                    <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
+                    <div class="flex-row margin-bottom-3">
+                        <div class="flex-1">
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">申请电话</span><span>{{returndetail.receivecontact}}</span>
+                        </div>        
+                        <div class="flex-2">
+                            <span class="bg-dep-gray txt-black padding-four-words margin-right-20">申请原因</span><span *ngIf='returndetail.remarks=="undefined"'>无</span><span *ngIf='returndetail.remarks!="undefined"'>{{returndetail.remarks}}</span>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div> 
+            </div>
+                
+        </div>
+        <div class="row">
+    
+                <!-- Area Chart -->
+                <div class="col-lg-12">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;退货清单</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="container-fluid">
+                            <!-- DataTales Example -->
+                            <div class="card shadow mb-4">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead class="bg-gray text-center">
+                                        <tr>
+                                        <th>序号</th>
+                                        <th>配件名称</th>
+                                        <th>零件号</th>
+                                        <th>数量</th>
+                                        <th>品质/品牌</th>
+                                        <th>备货时间</th>
+                                        <th>质保期</th>
+                                        <th>单价</th>
+                                        <th>发车时间</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="h5 text-center">
+                                        <tr *ngFor='let item of returnitem; let i=index'>
+                                            <td>{{i+1}}</td>
+                                            <td> 
+                                               {{item.name}}
+                                            </td>
+                                            <td>{{item.mcid}}</td>
+                                            <td>
+                                                {{item.qty}}
+                                            </td>
+                                            <td>
+                                               {{item.quality}}
+                                            </td>
+                                            <td>
+                                                <div>{{item.stand_time}}</div>
+                                            </td>
+                                            <td>
+                                                <div>{{item.guarantee}}</div>
+                                            </td>
+                                            <td>
+                                                <div>{{item.price}}</div>
+                                            </td>
+                                            <td>
+                                                <div>{{item.remark}}</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                        </div> 
+                    </div>
+                </div>
+                </div>
+        </div>
+    
+        <div class="row margin-top-40" *ngIf='returnstatus=="R"'>
+
+            <!-- Area Chart -->
+            <div class="col-lg-12">
+            <div class="card show mb-4">
+                    <div class="card-body flex-row box-auto flex-bottom">
+                    <button class="btn btn-primary padding-left-50 padding-right-50"  data-toggle="modal" data-target="#myModal3" ><a>同意申请退货</a></button>
+                    </div>
+            </div> 
+            </div>
+            
+        </div>
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="myModal3">
+                
+            <div class="modal-dialog" >
+              <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">退货提示</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+              <div class="modal-body">
+               同意给买家退货？
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary " (click)="saveQuote(returndetail)"  data-dismiss="modal">确定</button>
+              </div>
+              </div>
+            </div>
+        </div>
+        
+        <div class="row margin-top-40"  *ngIf='returnstatus=="I"'>
+
+            <!-- Area Chart -->
+            <div class="col-lg-12">
+            <div class="card show mb-4">
+                    <div class="card-body flex-row box-auto flex-bottom">
+                    <button class="btn btn-primary padding-left-50 padding-right-50" data-toggle="modal" data-target="#myModal4"><a>已收到货</a></button>
+                    </div>
+            </div> 
+            </div>
+            
+        </div>
+
+        
+        <div class="modal fade" tabindex="-1" role="dialog" id="myModal4" >
+                
+            <div class="modal-dialog" >
+              <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">退货提示</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+              </div>
+              <div class="modal-body">
+              已经收到买家的退回来的货品？
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary "  (click)="saveQuote(returndetail)"  data-dismiss="modal">确定</button>
+              </div>
+              </div>
+            </div>
+        </div>
+
+    </div>

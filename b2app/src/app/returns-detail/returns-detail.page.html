@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <img src="{{uploadpath}}resource/{{res.fanhui}}" (click)='back()' class='icon-10'>
+    <ion-title>退货详情</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor='let item of tempreturn;let i=index;'>
+  <div class="padding-10 margin-10 shadow" *ngIf='i==0'>
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;退货信息</h6>
+    </div>
+
+    <div class="h8 margin-bottom-5">公司名称：{{item.enterprise_name}}</div>
+    <div class="h8 margin-bottom-5">订单编号：{{item.order_orderno}}</div>
+    <div class="h8 margin-bottom-5">申请人：{{item.employee_id_name}}</div>
+    <div class="h8 margin-bottom-5">退货单号：{{item.returnno}}</div>
+    <div class="h8 margin-bottom-5">申请时间：{{item.return_time}}</div>
+    <div class="h8 margin-bottom-5">申请电话：{{item.receivecontact}}</div>
+    <div class="h8 margin-bottom-5">申请原因：<span *ngIf='item.remarks=="undefined"' class="h8">无</span><span *ngIf='item.remarks!="undefined"' class="h8">{{item.remarks}}</span></div>
+
+  </div>
+</div>
+    <div class="height-20"></div>
+    
+    <div class="margin-10 padding-10 shadow">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;退货清单</h6>
+      </div>
+
+        <div class="border-gray-1 padding-10 margin-10" *ngFor='let item of returnitem'>
+         
+          <div class="flex-row flex-center">
+            <div class="h8">配件名称： {{item.name}}</div>
+            <div class="flex-1"></div>
+            <div class="h8">数量：{{item.qty}}</div>
+          </div>
+          <div class="flex-row flex-center">
+            <div class="h8">零件号：{{item.mcid}}</div>
+            <div class="flex-1"></div>
+            <div class="h8">单价：{{item.price}}</div>
+          </div>
+          <div class="flex-row flex-center">
+            <div class="h8">品质/品牌：{{item.quality}}</div>
+            <div class="flex-1"></div>
+            <div class="h8">备货时间：{{item.stand_time}}</div>
+          </div>
+          <div class="flex-row flex-center">
+            <div class="h8">质保期：{{item.guarantee}}</div>
+            <div class="flex-1"></div>
+            <div class="h8">发车时间：{{item.remark}}</div>
+          </div>
+          
+          
+        </div>
+
+    </div>
+
+    <div class="flex-row flex-column">
+      <div class="h8 ty" (click)='tongyi(returndetail)' *ngIf='returnstatus=="R"'>同意申请退货</div>
+      <div class="h8 ty" (click)='yishou(returndetail)' *ngIf='returnstatus=="I"'>已收到货</div>
+    </div>
+
+
+    
+
+</ion-content>

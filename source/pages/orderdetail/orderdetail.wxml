@@ -1,0 +1,59 @@
+<view class="white-block onebtn margin-top-20"  bindtap="bindaddress">
+  <view class="margin-top-20 flex-row ">
+    <view class="txt-black margin-left-20 txt-bold">{{addressinfo.name}}</view>
+    <view class="txt-black margin-left-30 txt-bold">{{addressinfo.phonenumber}}</view>
+
+    <view wx:if='{{addressinfo==undefined}}'>请选择地址</view>
+    <!-- <view class="margin-left-30"></view> -->
+    <view class="flex-1"></view>
+    <image class='icon margin-right-20 margin-top-20' src='{{uploadpath}}resource/{{res.smallright}}' ></image>
+  </view>
+  <view class="margin-left-20 h5 margin-bottom-20">{{addressinfo.region}}{{addressinfo.address}}</view>
+</view>
+
+
+<view class="box margin-40 padding-20 bg-white" wx:for='{{alllist}}' wx:key='key' wx:for-index='index'> 
+
+  <view class="flex-row flex-center margin-top-20"> 
+    <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.store}}"></image>
+    <view class="margin-left-10 txt-bold txt-black">{{item.enterprise_name}}</view>
+    <image class="icon margin-left-10 " src="{{uploadpath}}resource/{{res.smile}}"></image>
+    <view class="flex-1"></view>
+    <image src="{{uploadpath}}resource/{{res.yes}}" wx:if='{{check==true}}' id="{{item.id}}" class="icon" bindtap="check"></image>
+    <image src="{{uploadpath}}resource/{{res.no}}" wx:if='{{check==false}}' class="icon" bindtap="check"></image>
+  </view>
+
+  <view class=" padding-20" wx:for='{{item.name}}' wx:for-index='idx' wx:key='k' style="border-top:2rpx solid black">
+
+    <view class="flex-row flex-center">
+      <view>{{idx+1}}、</view>
+      <view class="margin-left-10 txt-bold black">{{item.fittings_name}}</view>
+      <view class="h6 margin-left-10">x{{item.qty}}</view>
+    </view>
+ 
+    <view class="flex-row flex-center margin-top-20">
+      <view class="yuan margin-left-10  ">
+        <view class="h5 padding-left-10 padding-right-10">{{item.quality}}</view>
+      </view>
+      <view class="flex-1"></view>
+      <view class="txt-red margin-left-20">￥{{item.price}}</view>
+    </view>
+
+  </view>
+
+  <view class="flex-row flex-center">
+    <view class="flex-1"></view>
+    <view>共{{item.name.length}}件商品，总计：￥{{item.pp}}</view>
+  </view>
+
+</view>
+
+<view style="height:150rpx;"></view>
+
+<view class="bg-white bott">
+  <view class="flex-row margin-top-20 padding-bottom-20">
+    <view class="flex-1"></view>
+    <view class="txt-black margin-top-20">应付：￥{{sumprice}}</view>
+    <view class="bgjie txt-white margin-left-20 margin-right-20 text-center" bindtap="submit">提交订单</view>
+  </view>
+</view>

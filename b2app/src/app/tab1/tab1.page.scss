@@ -1,0 +1,36 @@
+@function rpx($px) {
+  @return ($px * 100vw) / 414;
+}
+
+.bg-pal-red {
+  background: #F76C5E;
+}
+
+.bg-dep-yellow {
+  background: #F1A208;
+}
+
+.bg-pal-yellow {
+  background: #D5C67A;
+}
+
+.bg-pal-green {
+  background: #06A77D;
+}
+
+.cursor-po{
+  cursor: pointer;
+}
+.height-10 {
+  height: rpx(10);
+}
+
+.shadow {
+  
+-moz-box-shadow: rpx(2) rpx(2) rpx(10) #909090;
+-webkit-box-shadow: rpx(2) rpx(2) rpx(10) #909090;
+box-shadow: rpx(2) rpx(2) rpx(10) #909090;
+}
+.border-left-primary{
+  border-left:rpx(4) solid #4e73df !important;
+}

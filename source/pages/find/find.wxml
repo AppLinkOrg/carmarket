@@ -1,0 +1,74 @@
+<!--轮播-->
+
+<swiper class="" indicator-dots="true" autoplay="true" interval="3000" duration="500" style='width:750rpx;height:400rpx;'>
+  <block wx:for="{{indexbanner}}" wx:key="index">
+    <swiper-item>
+      <image src='{{uploadpath}}indexbanner/{{item.img}}' style='width:750rpx;height:400rpx;'></image>
+    </swiper-item>
+  
+  </block>
+</swiper>
+
+<view class='flex-row '>
+  <view class='btn box-shadow'>
+
+    <image class='icon-17 margin-left-20' src='{{uploadpath}}resource/{{res.search}}'></image>
+
+    <input style=" " class="flex-1 margin-left-10 padding-right-20" maxlength="17" value="{{vin}}" placeholder="手动输入17位车架号" bindconfirm="bindsearch" bindinput="bindvalue"></input>
+ <!-- LVSFFSAFX7F003683 -->
+ 
+    <view class="margin-right-20 h6 txt-bold">{{count}}/17</view>
+
+    <image class='icon-25 margin-right-20' bindtap="clickvin" src='{{uploadpath}}resource/{{res.cream}}'></image>
+
+    <!-- <view class='flex-row flex-column flex-1 txt-black txt-bold'>手动输入17位车架号查询</view> -->
+    
+  </view>
+
+</view>
+
+<view class=' flex-row ' style='border-bottom:1px solid #ccc;padding:20rpx;'>
+  <view class='flex-row  '>
+    <view class='borderleft'></view>
+    <view class=' margin-left-20'>历史搜索</view>
+  </view>
+
+  <view class="flex-1"></view>
+  <view class='flex-row' bindtap='bindclear'>
+    <view class='margin-right-20'>清空</view>
+    <image class='icon margin-right-20 ' src='{{uploadpath}}resource/{{res.clean}}'></image>
+  </view>
+</view>
+
+
+<block wx:for="{{searchhistory}}" wx:key="k">
+<view class='he'bindtap="bindcheck"  id="{{item.vin}}">
+  <view class='margin-left-30 margin-top-35 h5 txt-black' >{{item.carrecord}}</view>
+  <view class='flex-row' style='padding-bottom:20rpx;'>
+    <view class=" margin-top-35 margin-left-30 h5 txt-black flex-row">{{item.vin}} </view>
+    <view class='flex-1'></view>
+    <view class="h6 margin-top-35  txt-black text-right margin-right-30 flex-row">{{item.created_date}}</view>
+    </view>
+    </view>
+</block>
+
+
+<view style="height:240rpx"></view>
+
+<view class='' bindtap='clickvin'>
+  <view class='flex-row flex-column vinbg'>
+    <image class='margin-top-30 icon-40 ' src='{{uploadpath}}resource/{{res.VIN}}' mode="aspectFit"></image>
+    <view class='margin-top-10 txt-white h5'>VIN码识别</view>
+  </view>
+</view>
+
+
+
+<view class="flex-row margin-left-50" bindtap="bindunable">
+
+  <view class="flex-row  flex-column wubg">
+    <image class="margin-top-30 icon-40" src="{{uploadpath}}resource/{{res.wushibie}}"></image>
+    <view class="margin-top-10 txt-white h5">无识别查找</view>
+  </view>
+
+</view>

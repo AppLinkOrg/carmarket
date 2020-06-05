@@ -1,0 +1,187 @@
+<div class="container-fluid">
+
+
+    <div class="card mb-4 bg-gray">
+        <div class="box-auto flex-row">
+            <h4 class="txt-red">订单已取消</h4>
+        </div>
+        <div class="margin-left-20 margin-top-40 margin-bottom-10">
+            <button  (click)='fanhui()' type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 bg-white">
+                <a class="txt-d-gray"><i class="fa fa-angle-left margin-right"></i>返回</a>
+            </button>
+            <button (click)='print()' type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 bg-white">
+                <a class="txt-d-gray"><i class="fa fa-print margin-right"></i>打印</a>
+            </button>           
+        </div>
+    </div>
+
+    <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-lg-12">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;收货人信息</h6>
+                    <!-- <a routerLink="/quotationCenter" class="txt-black"><i class="fa fa-angle-left margin-right"></i>返回</a> -->
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                <div class="border-dep-gray padding-top-5 " *ngIf='list !=null'>
+                    <div class="flex-row">
+                        <div class="flex-1">
+                            <span class="bg-dep-gray txt-black padding-three-words margin-right-20">收货人</span><span>{{list.receiver}}</span>
+                        </div>        
+                        <div class="flex-2">
+                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">电话</span><span>{{list.receivecontact}}</span>
+                        </div>   
+                    </div>
+                    <div class="flex-row"><span class="border-box-wh"></span></div>
+                    <div class="flex-row">
+                        <!-- <div> -->
+                            <span class="bg-dep-gray txt-black padding-two-words margin-right-20">地址</span><span>{{list.receiveaddress}}</span>
+                        <!-- </div>          -->
+                    </div>
+                </div>
+                </div>
+            </div> 
+            </div>
+                
+    </div>
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-lg-12">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;订单信息</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+            <div class="border-dep-gray" *ngIf='list !=null'>
+                <div class="flex-row">
+                    <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">公司名称</span><span>{{list.enterprise_name}}</span>
+                </div>
+                <div class="flex-row">
+                    <div class="flex-4">
+                        <span class="bg-dep-gray txt-black padding-four-words margin-right-20">订单编号</span><span>{{list.orderno}}</span>
+                    </div>        
+                    <div class="flex-4">
+                        <span class="bg-dep-gray txt-black padding-three-words margin-right-20">车架号</span>
+                        <span *ngIf='list.vin!=""'>{{list.vin}}</span>
+                        <span *ngIf='list.vin==""'>无识别</span>
+                    </div>
+                    <div class="flex-4">
+                        <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span><span>{{list.remarks}}</span>
+                    </div>    
+                </div>
+                <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
+                <div class="flex-row">
+                    <div class="flex-1">
+                        <span class="bg-dep-gray txt-black padding-four-words margin-right-20">报价时间</span><span>{{list.quoteconfirm_time}}</span>
+                    </div>        
+                    <div class="flex-2">
+                        <span class="bg-dep-gray txt-black padding-two-words margin-right-20">车型</span>
+                        <span *ngIf='list.carname!=""'>{{list.carname}}</span>
+                        <span *ngIf='list.carname==""'>无识别</span>
+                    </div>  
+                </div>
+                <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
+                <div class="flex-row margin-bottom-3">
+                    <div class="flex-1">
+                        <span class="bg-dep-gray txt-black padding-three-words margin-right-20">下单员</span><span>{{list.employee_name}}</span>
+                    </div>        
+                    <div class="flex-2">
+                        <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red" *ngIf='list.needinvoice'>需要发票</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div> 
+        </div>
+            
+    </div>
+    <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-lg-12">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;送货清单</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead class="bg-gray text-center">
+                                    <tr>
+                                    <th>序号</th>
+                                    <th>配件名称</th>
+                                    <th>零件号</th>
+                                    <th>数量</th>
+                                    <th>品质/品牌</th>
+                                    <th>备货时间</th>
+                                    <th>质保期</th>
+                                    <th>单价</th>
+                                    <th>备注信息</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="h5 text-center" *ngFor='let item of orderItem;let i=index'>
+                                    <tr>
+                                        <td>{{i+1}}</td>
+                                        <td> 
+                                            {{item.name}}
+                                        </td>
+                                        <td>{{item.id}}</td>
+                                        <td>
+                                            {{item.qty}}
+                                        </td>
+                                        <td>
+                                            {{item.quality}}
+                                        </td>
+                                        <td>
+                                            <div>{{item.stand_time}}</div>
+                                        </td>
+                                        <td>
+                                            <div>{{item.guarantee}}</div>
+                                        </td>
+                                        <td>
+                                            <div>{{item.price}}</div>
+                                        </td>
+                                        <td>
+                                            <div>{{item.remark}}</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                    </div> 
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <div class="row margin-top-40">
+
+        <!-- Area Chart -->
+        <div class="col-lg-12">
+        <div class="card show mb-4">
+                <div class="card-body flex-row box-auto flex-bottom">
+                    <span class="h4-5">总计:</span>
+                    <span class="txt-red h3 margin-right-20 margin-left-10" *ngIf='list !=null'>￥{{list.totalamount}}</span>
+                </div>
+        </div> 
+        </div>
+        
+    </div>
+
+</div>

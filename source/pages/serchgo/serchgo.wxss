@@ -1,0 +1,41 @@
+page {
+  background-color: #f1f1f1;
+}
+
+
+.btnn {
+  margin: 30rpx;
+  width: 92%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+}
+
+.vbtn {
+  width: 92vw;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #143779;
+  color: white;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  border-radius: 50rpx;
+}
+
+.detele {
+  position: fixed;
+  margin-left: -20rpx;
+  margin-top: -10rpx;
+}
+
+.baocun {
+  height:110rpx;
+  width: 100vw;
+  background-color: white;
+  bottom: 10rpx;
+  position: fixed;
+}

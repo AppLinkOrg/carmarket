@@ -1,0 +1,123 @@
+ Page {
+  background: rgb(241, 241, 241);
+}
+
+.borderleft {
+  border-left: 5px solid #143779;
+  height: 28rpx;
+  margin-top: 10rpx;
+  margin-left: 30rpx;
+}
+
+.btnn {
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  width: 92%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+}
+
+.ar {
+  background-color: white;
+}
+
+.btnone {
+  width: 320rpx;
+  height: 80rpx;
+  border: 2rpx #143779 solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12rpx 0rpx 0rpx 12rpx;
+}
+
+.btntwo {
+  border-radius: 0rpx 12rpx 12rpx 0rpx;
+}
+
+.img {
+  width: 70rpx;
+  height: 40rpx;
+  margin-left: 15rpx;
+}
+
+.radius-5 {
+  border-radius: 10rpx;
+}
+
+.left {
+  width: 48vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 110;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.dialog-box {
+  width: 52vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 110;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgb(255, 255, 255);
+}
+
+.xiaobtn {
+  border: 2rpx black solid;
+  border-radius: 10rpx;
+  width: 150rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+ 
+
+.border {
+  border: 4rpx solid white;
+  color: white;
+  height: 40rpx;
+  line-height: 40rpx;
+  width: 40rpx;
+  border-radius: 50%;
+}
+
+.top {
+  position: fixed;
+  width: 95vw;
+  z-index: 10;
+  top: 0;
+}
+
+.bottom-block {
+  width: 100vw;
+  height: 230rpx;
+  bottom: 0;
+  background: white;
+  position: fixed;
+  z-index: 100;
+}
+
+.buy {
+  width: 60%;
+  border-radius: 40rpx;
+}
+
+.blueblock {
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+
+.border_top {
+  border-top: 2rpx solid rgb(212, 209, 209);
+}

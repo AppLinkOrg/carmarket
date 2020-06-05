@@ -1,0 +1,88 @@
+<div class="container-fluid">
+        
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+          <div class="card mb-4 bg-gray">
+            <div class="box-auto">
+               <h4 class="margin-40">退货管理</h4>
+            </div>
+          </div>
+         
+    
+          <div class="card-body">
+            <div class="margin-bottom-20" role="group" aria-label="...">
+                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==1?'btn-active ':''}}" (click)='change(1)'>全部 {{alllen}}</button>
+                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==2?'btn-active ':''}}" (click)='change(2)'>待退货 {{daituilen}}</button>
+                <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==3?'btn-active ':''}}" (click)='change(3)'>退货中 {{tuizhonglen}}</button>
+                <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==4?'btn-active ':''}}" (click)='change(4)'>已退货 {{yituilen}}</button>       
+            </div>
+          
+            <div class="table-responsive">
+              <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                <thead class="bg-gray">
+                  <tr>
+                    <th>序号</th>
+                    <th>订单编号</th>
+                    <th>退货单号</th>
+                    <th>公司名称</th>
+                    <th>申请人</th>
+                    <th>申请时间</th>
+                    <th>退货金额</th>
+                    <th *ngIf='isshow'>退货状态</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor='let item of data'>
+                  <tr>
+                    <td class="tab-mid">{{item.index+1}}</td>
+                    <td class="tab-mid">{{item.order_orderno}}</td>
+                    <td class="tab-mid">{{item.returnno}}</td>
+                    <td class="tab-mid">{{item.enterprise_id_name}}</td>
+                    <td class="tab-mid">{{item.employee_id_name}}</td>
+                    <td class="tab-mid">{{item.return_time}}</td>
+                    <td class="tab-mid">￥{{item.return_money}}</td>
+                    <td class="tab-mid" *ngIf='isshow'>{{item.orderstatus_name}}</td>
+                    <td class="tab-mid">
+                        <button class="btn btn-primary" (click)='tiaozhuan(item)'><a>查看详情</a></button><br>
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+            <div class="flex-row flex-column" *ngIf='pageList.length>1'>
+                <ul class="pagination cursor-pointer">
+                    <li class="margin-10 padding-10">共{{length}}条</li>
+                    <li class="border-gray-1 margin-10 padding-10" role='button' (click)="fristPage()">
+                        <a >
+                          <span aria-hidden="true">首页</span>
+                        </a>
+                      </li>
+                    <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Previous()">
+                      <a class="h3">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" *ngFor="let page of pageList"  
+                    [ngClass]="{pagActive: isActivePage(page)}" role='button'  (click)='selectPage(page)' style="line-height: 36px;">
+                      <a>{{page}}</a>
+                    </li>
+                    <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Next()">
+                        <a class="h3">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    <li class="border-gray-1 margin-10 padding-10" role='button' (click)="lastPage()">
+                        <a >
+                          <span aria-hidden="true">尾页</span>
+                        </a>
+                      </li>
+                  </ul>
+            </div>
+          </div>
+    
+          
+        </div>
+    
+    </div>
+    

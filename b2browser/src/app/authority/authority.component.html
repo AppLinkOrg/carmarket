@@ -1,0 +1,23 @@
+<div style="width:50%;margin:0 auto">
+
+    <div class="flex-row flex-center bg-btn padding-20">
+        <img src="{{uploadpath}}resource/{{res.fanhui}}" (click)='back()' class="icon">
+        <div class="flex-1"></div>
+        <div class="txt-white">我的下级</div>
+        <div class="flex-1"></div>
+    </div>
+
+<!-- 我的上级-->
+<div class='flex-row flex-column' *ngIf="list.length==0 ">
+    <img class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.img}}' />
+    <div class=''>暂无下级哦</div>
+  </div>
+  
+  <div class="flex-row margin-left-10 margin-bottom-10" *ngFor="let item of list" style='border-bottom:1px solid #ccc;padding:15px;'>
+    <img class='icon-60 margin-left-20 margin-top-20 radius-50%;' src='{{uploadpath}}employee/{{item.photo}}' />
+    <div class=" margin-top  ">
+      <div class="txt-black margin-left-20 ">{{item.name}}【{{item.position=='B'?'老板':'员工'}}】</div>
+      <div class="txt-black flex-row margin-top-10  margin-left-20">成交额：{{item.amountsum==''?'0':'item.amountsum'}}额度</div>
+    </div>
+  </div>
+</div>

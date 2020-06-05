@@ -1,0 +1,46 @@
+<block>
+  <view class="bg-white  padding-30">
+    <view class='txt-black '>{{biaoti}}</view>
+    <view class=" margin-top-20">{{vin}}</view>
+  </view>
+</block>
+ 
+<view class='flex-row bg-white margin-top-20'>
+  <view class=' btn  txt-black'>
+    <view class='flex-row margin-left-20'>
+      <image class='icon ' src='{{uploadpath}}resource/{{res.search}}' bindtap="bindpart"></image>
+    </view>
+    <input class=" flex-1 h5  margin-left-20 margin-right-20" placeholder-class="opa5" placeholder='请输入配件名称...' bindinput="bindinput" value="{{partinput}}" bindconfirm="bindpart"></input>
+    <view class='margin-right-20'>
+      <image class='icon ' src='{{uploadpath}}resource/{{res.delect}}' bindtap='binddelect'></image>
+    </view>
+  </view>
+</view>
+<view class="flex-row">
+  <!--左侧-->
+  <scroll-view scroll-y class="left  padding-20 ">
+    <view class="txt-black">已添加配件</view>
+
+    <view class="flex-row column">
+      <view wx:for='{{addlist}}' wx:key='s' wx:for-index='index' class="margin-top-30 flex-row flex-top">
+        <view class=" btnb chaochu h6">{{item.name}}</view>
+        <image class="icon-17  " style="margin-left:-6rpx;" src="{{uploadpath}}resource/{{res.quchu}}" bindtap="bindclear" id="{{item.id}}" data-index="{{index}}"></image>
+      </view>
+    </view>
+  </scroll-view>
+
+
+
+  <!--右侧-->
+  <scroll-view scroll-y class="right padding-20 margin-left-30">
+    <view class="txt-black  ">请选择</view>
+    <block wx:for="{{groupslist}}" wx:key="k" wx:for-index='idx' wx:if='{{item.check==true}}'>
+      <view class="txt-red  margin-top-20" data-img='{{item.url}}' id="{{idx}}" data-mid="{{item.pid}}" data-name="{{item.label}}" bindtap="bindadd">{{item.label}}</view>
+      <view class="h6" id="{{idx}}" wx:if='{{item.pid!=""}}' data-img='{{item.url}}' data-mid="{{item.pid}}" data-name="{{item.label}}" bindtap="bindadd">({{item.pid}})</view>
+      <view class="bot"></view>
+    </block>
+  </scroll-view>
+ 
+</view>
+
+<view class="button text-center" bindtap="bindnext">下一步</view>

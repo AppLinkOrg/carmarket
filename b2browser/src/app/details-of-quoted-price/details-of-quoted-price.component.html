@@ -1,0 +1,171 @@
+<div class="container-fluid">
+        <div class="card mb-4 bg-gray">
+            <div class="box-auto">
+               <h4 class="margin-40">报价详情</h4>
+            </div>
+        </div>
+
+        <div class="row">
+      
+              <!-- Area Chart -->
+              <div class="col-lg-12">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;报价信息</h6>
+                    <a (click)='fanhui()' class="txt-black"><i class="fa fa-angle-left margin-right"></i>返回</a>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="border-dep-gray">
+                      <div class="flex-row">
+                          <span class="bg-dep-gray txt-black detail-wh margin-right-20 border-bottom-white">公司名称</span><span>{{quoteinfo.enterprise_id_name}}</span>
+                      </div>
+                      
+                      <div class="flex-row">
+                          <div class="flex-3">
+                              <span class="bg-dep-gray txt-black padding-four-words margin-right-20">报价编号</span><span>{{quoteinfo.quotenumber}}</span>
+                          </div>        
+                          <div class="flex-4">
+                              <span class="bg-dep-gray txt-black padding-three-words margin-right-20">车架号</span>
+                              <span *ngIf='quoteinfo.vincode!=""'>{{quoteinfo.vincode}}</span>
+                              <span *ngIf='quoteinfo.vincode==""'>无识别</span>
+                          </div>
+                          <div class="flex-4">
+                              <span class="bg-dep-gray txt-black padding-two-words margin-right-20">备注</span>
+                              <span *ngIf='quoteinfo.information!=""'>{{quoteinfo.information}}</span>
+                              <span *ngIf='quoteinfo.information==""'>无</span>
+                          </div>    
+                      </div>
+                      <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
+                      <div class="flex-row">
+                          <div class="flex-3">
+                              <span class="bg-dep-gray txt-black padding-four-words margin-right-20">报价时间</span><span>{{quoteinfo.submitquote_time}}</span>
+                          </div>        
+                          <div class="flex-4">
+                              <span class="bg-dep-gray txt-black padding-two-words margin-right-20">车型</span>
+                              <span *ngIf='quoteinfo.carmodel!=""'>{{quoteinfo.carmodel}}</span>
+                              <span *ngIf='quoteinfo.carmodel==""'>无识别</span>
+                          </div>  
+                          <div class="flex-4">
+
+                              <span class="bg-dep-gray txt-black padding-two-words margin-right-20">品质</span><span class="txt-red"  *ngIf='quoteinfo.pinzhi==""'>无</span>
+                              <span *ngIf='quoteinfo.pinzhi!=""'>{{quoteinfo.pinzhi}}</span>
+                           
+                            
+                        </div>
+                      </div>
+                      <div class="flex-row"><span class="border-bottom-white border-box" ></span></div>
+                      <div class="flex-row margin-bottom-3">
+                          <div class="flex-3">
+                              <span class="bg-dep-gray txt-black padding-three-words margin-right-20">下单员</span><span>{{quoteinfo.employee_id_name}}</span>
+                          </div>        
+                          <div class="flex-4">
+                              <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票需求</span><span class="txt-red" *ngIf='quoteinfo.rate!="0"'>需要发票</span>
+                              <span *ngIf='quoteinfo.rate=="0"'>不需要发票</span>
+                          </div>
+                          <div  class="flex-4">
+                              <div  *ngIf='quoteinfo.rate!="0"'>
+                                  <span class="bg-dep-gray txt-black padding-four-words margin-right-20">发票税率</span>
+                                  <span>{{quoteinfo.rate}}%</span>
+                              </div>
+                           
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+              </div>
+              
+        </div>
+        <div class="row">
+      
+              <!-- Area Chart -->
+              <div class="col-lg-12">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;报价处理</h6>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                      <div class="container-fluid">
+                          <!-- DataTales Example -->
+                          <div class="card shadow mb-4">
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                  <thead class="bg-gray text-center">
+                                      <tr>
+                                      <th>序号</th>
+                                      <th width='20%'>配件名称</th>
+                                      <th>零件号</th>
+                                      <th>数量</th>
+                                      <!-- <th>品质</th> -->
+                                      <th>品质/品牌</th>
+                                      <th>备货时间</th>
+                                      <th>质保期</th>
+                                      <th>4S店价格</th>
+                                      <th>单价</th>
+                                      <th>发车时间</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody class="h5 text-center tabth">
+                                      <tr *ngFor='let item of list; let i=index'>
+                                          <td>{{i+1}}</td>
+                                          <td> 
+                                            {{item.name}}
+                                              <!-- <img src="{{uploadpath}}resource/{{res.peijian}}" class="icon-30"> -->
+                                          </td>
+                                          <td><span>{{item.partnubmer}}</span></td>
+                                          <td>
+                                              <div>{{item.qty}}</div>
+                                          </td>
+                                          <!-- <td>
+                                              <div>{{item.pinzhi}}</div>
+                                          </td> -->
+                                          <td>
+                                              <div>{{item.quality}}</div>
+                                          </td>
+                                          <td>
+                                              <div>{{item.standby_time}}</div>
+                                          </td>
+                                          <td>
+                                              <div>{{item.guarantee}}</div>
+                                          </td>
+                                          <td>
+                                              <div>{{item.Sprice}}</div>
+                                          </td>
+                                          <td>
+                                            <div>{{item.price}}</div>
+                                          </td>
+                                          <td>
+                                              <div>{{item.sendcar_time}}</div>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                         </div>
+                      </div> 
+                  </div>
+                </div>
+              </div>
+        </div>
+      
+        <div class="row margin-top-40">
+      
+          <!-- Area Chart -->
+          <div class="col-lg-12">
+            <div class="card show mb-4">
+                  <div class="card-body flex-row box-auto flex-bottom">
+                     <!-- <span *ngIf='invalid=="N"' class="h4 txt-orange">等待买家确认...</span> -->
+                     <span *ngIf='invalid=="Y"' class="h4 txt-orange">已失效</span>
+                  </div>
+            </div> 
+          </div>
+          
+        </div>
+      
+      </div>

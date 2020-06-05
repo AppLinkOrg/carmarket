@@ -1,0 +1,29 @@
+.bg {
+  margin: 20rpx;
+  height: 420rpx;
+  width: 708rpx;
+  border-radius: 16rpx;
+}
+
+.pageone {
+  background: rgb(241, 241, 241);
+  height: 100vh;
+  width: 100%;
+}
+
+.content {
+  height: 300rpx;
+  width: 95%;
+  border-radius: 10rpx;
+}
+.yue{
+  margin-top: 230rpx;
+}
+
+.yuan{
+  border-radius:15rpx;
+}
+.types {
+  color: #143779 !important;
+}
+

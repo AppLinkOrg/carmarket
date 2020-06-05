@@ -1,0 +1,94 @@
+  
+<view class="flex-row flex-column padding-20 bg-primary" style=" ">
+  <view style="height:20rpx;"></view>
+  <view class="flex-row flex-center">
+    <image src="{{uploadpath}}resource/{{res.wait}}" class="icon"></image>
+    <view class="txt-white margin-left-20  ">商家已发货，物流配送中，请注意查收！</view>
+  </view>
+  <view style="height:20rpx;"></view>
+</view>
+
+<view class=" bg-white  padding-20   flex-row flex-center">
+
+  <image class='icon-30 margin-right-20 ' src='{{uploadpath}}resource/{{res.zuobiao}}'></image>
+  <view class=" flex-1">
+    <view class=" flex-row flex-bottom">
+      <view class="txt-black  ">{{daishouhuo.receiver}}</view>
+      <view class="  margin-left-30  h5">{{daishouhuo.receivecontact}}</view>
+    </view>
+    <view class="txt-black h5 margin-top-10">{{daishouhuo.receiveaddress}}</view>
+  </view>
+</view>
+
+<view class="margin-top-20 bg-white  ">
+  <view class="flex-row flex-center padding-20">
+    <image src="{{uploadpath}}resource/{{res.store}}" class="icon-30 margin-right-20"></image>
+    <view class="txt-black">{{daishouhuo.enterprise_id_name}}</view>
+  </view>
+
+  <view class="margin-20" wx:for='{{daishouhuo.orderitem}}' wx:for-index='idx' wx:key='k' style=" ">
+
+    <view class="flex-row flex-top">
+      <view class="txt-black">{{idx+1}}.</view>
+      <view class="txt-bold txt-black flex-1 margin-left-10">{{item.parts}}</view>
+  
+    </view>
+
+    <view class="flex-row flex-bottom margin-top-20 margin-left-20">
+      <view class=" h6">【{{item.quality}}】</view>
+      <view class="txt-red txt-bold margin-left-20">￥{{item.price}}</view>
+      <view class="h6 margin-left-10">x{{item.qty}}</view>
+    </view>
+
+    <view style="height:40rpx;"></view>
+
+
+  </view>
+
+  <view class='margin-right-40 flex-row flex-center '>
+    <view class="flex-1"></view>
+    <view class='txt-black h5'>总计：</view>
+    <view class='txt-red h5 txt-bold'>￥{{daishouhuo.totalamount}}元</view>
+  </view>
+  <view style="height:10rpx;"></view>
+</view>
+
+<view class="margin-top-20 padding-20 bg-white  ">
+
+  <view class="flex-1 txt-black h5 txt-bold">订单信息</view>
+
+  <view class="flex-row flex-center margin-top-20" style=" ">
+    <view class="h5" style="width:200rpx;">订单编号：</view>
+    <view class="h5">{{daishouhuo.orderno}}</view>
+  </view>
+
+  <view class="flex-row flex-center margin-top-20" style=" ">
+    <view class="h5" style="width:200rpx;">VIN:</view>
+    <view class="h5">{{daishouhuo.vin}}</view>
+  </view>
+
+  <view class="flex-row flex-top margin-top-20" style=" ">
+    <view class="h5" style="width:200rpx;">车型:</view>
+    <view class="h5 flex-1">{{daishouhuo.carname}}</view>
+  </view>
+
+  <view class="flex-row flex-top margin-top-20" style=" ">
+    <view class="h5" style="width:200rpx;">发票:</view>
+    <view class="h5 flex-1">{{daishouhuo.needinvoice_value=='Y'?'有':'无'}}</view>
+  </view>
+ 
+  <view class="flex-row flex-center margin-top-20" style=" ">
+    <view class="h5" style="width:200rpx;">创建时间：</view>
+    <view class="h5">{{daishouhuo.order_time}}</view>
+  </view>
+
+  <view class="flex-row flex-top margin-top-20" wx:if='{{daishouhuo.remarks!=""}}'>
+    <view class="h5" style="width:200rpx;">备注:</view>
+    <view class="h5 flex-1">{{daishouhuo.remarks}}</view>
+  </view>
+ 
+</view>
+ 
+<view style="height:150rpx"></view>
+  
+<view class='txt-white  yes' bindtap="bindshou" id="{{daishouhuo.id}}">确认签收</view>

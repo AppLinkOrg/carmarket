@@ -1,0 +1,20 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 414;
+  }
+.ty {
+    width: 30%;
+    padding: rpx(5) 0;
+    background: #4e73df;
+    color: #ffffff;
+    text-align: center;
+    border-radius: rpx(10);
+    margin: rpx(20) 0;
+}
+.dayin {
+    width: 20%;
+    // padding: rpx(5) 0;
+    border: rpx(1) solid #cccccc;
+    border-radius: rpx(10);
+    text-align: center;
+    
+}

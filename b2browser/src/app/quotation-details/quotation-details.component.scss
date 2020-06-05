@@ -1,0 +1,116 @@
+.bg-dep-gray {
+    background: #D2D2D2;
+}
+
+.border-dep-gray {
+    border: 1px solid #D2D2D2;
+}
+
+.padding-rb {
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 4px;
+    padding-top: 4px;
+}
+
+.detail-wh {
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.margin-top-tl {
+    margin-top: 30%;
+    margin-left: 50%;
+}
+
+.padding-two-words {
+    padding: 4.5px 24px;
+}
+
+.padding-three-words {
+    padding: 4.5px 16px;
+}
+
+.padding-four-words {
+    padding: 4.5px 8px;
+}
+
+
+.border-bottom-white {
+    border-bottom: 2px solid #fff;
+    z-index: 2;
+}
+
+.border-box {
+    width:80%;
+    height: 1px;
+    background: #fff;
+}
+
+
+.margin-bottom-3 {
+    margin-bottom: 3px;
+}
+
+.table-box {
+    display: inline-block;
+    width: 100%;
+    height: 30px;  /*自适应时需要变动*/
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #8A8A8A;
+}
+
+.fix-bottom-ed {
+    position: fixed;
+    bottom: 3.5rem;
+    width: 100vw;
+    // z-index: 100;
+}
+
+.box-auto {
+    margin: 0 auto;
+}
+
+.photo {
+    position: relative;
+    margin-top: 10px;
+    .photoLen {
+        width: 20px;
+        height: 20px;
+        background: red;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 12px;
+        line-height: 20px;
+        text-align: center;
+        position: absolute;
+        left: 18px;
+        top: -8px;
+    }
+    
+}
+
+.photoimg {
+    margin-top: 5%;
+    margin-left: 25%;
+    position: relative;
+    min-width: 1000px;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+.zoomImage{
+    width:100%;
+    height:0;
+    padding-bottom: 100%;
+    overflow:hidden;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size:contain;
+    -moz-background-size:contain;
+    background-size:contain;
+}

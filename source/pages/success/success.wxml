@@ -1,0 +1,192 @@
+<!-- <view class='flex-row flex-column bg-btn'>
+  <view class='flex-row flex-center  margin-bottom-40'>
+    <image class='icon-25 ' src='{{uploadpath}}resource/{{res.success}}'></image>
+    <view class='txt-white h4 margin-left-10 '>交易成功</view>
+  </view>
+
+</view>
+
+
+<view class='flex-row flex-wrap margin-top-20'>
+  <view class='txt-black margin-left-30'>订单编号：</view>
+  <view class='txt-black '>{{yiwancheng.orderno}}</view>
+</view>
+<view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
+  <view class='txt-black '>订单时间：</view>
+  <view class='txt-black '>{{yiwancheng.order_time_formatting}}</view>
+</view>
+<view class="bott margin-top"></view>
+
+<view class="flex-row margin-left-30 margin-top-20">
+  <image class='icon-50 margin-right-10 radius-50%;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
+  <view class="txt-black margin-top-30">{{yiwancheng.quoteenterprise_id_name}}</view>
+</view>
+
+<view class='flex-row flex-wrap margin-top-20'>
+  <view class='txt-black margin-left-30'>车架号：</view>
+  <view class='txt-black '>{{yiwancheng.vin}}</view>
+</view>
+<view class='flex-row flex-wrap margin-bottom-20 margin-left-30 margin-top-10'>
+  <view class='txt-black margin-right-30'>车型：{{yiwancheng.carname}}</view>
+
+</view>
+<view class="bott margin-top"></view>
+
+<view wx:for="{{yiwancheng.orderitems}}" wx:key="key">
+  <view class='margin-left-30 margin-top-30'>
+    <view class=' txt-black'>{{item.name}}</view>
+    <view class='flex-row  margin-top-10 '>
+      <view class=''>品质：</view>
+      <view class=''>{{}}</view>
+    </view>
+    <view class='flex-row'>
+      <view class=''>单价：</view>
+      <view class='txt-red'>{{item.price}}元</view>
+      <view class="flex-1"></view>
+      <view>发货数量：</view>
+      <view class="margin-right-50">{{item.qty}}</view>
+    </view>
+  </view>
+  <view class='bott margin-top-20 margin-bottom-20'></view>
+</view>
+
+<view class='margin-left-30 flex-row margin-top-20 '>
+  <view class='txt-black'>总价：</view>
+  <view class='txt-red'>{{yiwancheng.totalamount}}元</view>
+</view>
+
+<view class='bott margin-top-20 margin-bottom-20'></view>
+<view class='margin-left-30 flex-row margin-top-20 '>
+  <view class='txt-black'>发票：</view>
+  <view class='txt-black'>{{yiwancheng.needinvoice}}</view>
+</view>
+<view class='bott margin-top-20 margin-bottom-20'></view>
+<view class='margin-left-30 flex-row margin-top-20 '>
+  <view class='txt-black'>备注：</view>
+  <view class='txt-black'>{{yiwancheng.remarks}}</view>
+</view>
+<view class='bott margin-top-20 margin-bottom-20'></view>
+
+<view class="">
+  <view class="flex-row margin-left-20">
+    <image class='icon-25 margin-right-10 ' src='{{uploadpath}}resource/{{res.dizhi}}'></image>
+    <view class="flex-row   ">
+      <view class="txt-black margin-right-20">{{yiwancheng.receiver}}</view>
+      <view class="txt-black  ">{{yiwancheng.receivecontact}}</view>
+    </view>
+  </view>
+  <view class=" flex-row left ">{{yiwancheng.receiveaddress}}</view>
+</view>
+ -->
+
+
+
+
+
+<view class="flex-row flex-column padding-20 bg-primary" style=" ">
+  <view style="height:20rpx;"></view>
+  <view class="flex-row flex-center">
+    <image src="{{uploadpath}}resource/{{res.wait}}" class="icon"></image>
+    <view class="txt-white margin-left-20  " wx:if='{{yiwancheng.order_status=="L"}}'>订单已支付，商家准备发货。请耐心等待！</view>
+    <view class="txt-white margin-left-20  " wx:if='{{yiwancheng.order_status=="M"}}'>商家已发货，物流配送中，请注意查收！</view>
+    <view class="txt-white margin-left-20  " wx:if='{{yiwancheng.order_status!="M" && yiwancheng.order_status!="L" && yiwancheng.order_status!="E"}}'>交易已完成</view>
+    <view class="txt-white margin-left-20  " wx:if='{{yiwancheng.order_status=="E"}}'>订单已取消</view>
+  </view>
+  <view style="height:20rpx;"></view>
+</view>
+
+<view class=" bg-white  padding-20   flex-row flex-center">
+
+  <image class='icon-30 margin-right-20 ' src='{{uploadpath}}resource/{{res.zuobiao}}'></image>
+  <view class=" flex-1">
+    <view class=" flex-row flex-bottom">
+      <view class="txt-black  ">{{yiwancheng.receiver}}</view>
+      <view class="  margin-left-30  h5">{{yiwancheng.receivecontact}}</view>
+    </view>
+    <view class="txt-black h5 margin-top-10">{{yiwancheng.receiveaddress}}</view>
+  </view>
+</view>
+
+<view class="margin-top-20 bg-white  ">
+  <view class="flex-row flex-center padding-20">
+    <image src="{{uploadpath}}resource/{{res.store}}" class="icon-30 margin-right-20"></image>
+    <view class="txt-black">{{yiwancheng.enterprise_id_name}}</view>
+  </view>
+
+  <view class="margin-20" wx:for='{{yiwancheng.orderitem}}' wx:for-index='idx' wx:key='k' style="border-bottom:1px solid #ccc">
+
+    <view class="flex-row flex-top">
+      <view class="txt-black">{{idx+1}}.</view>
+      <view class="txt-bold txt-black flex-1 margin-left-10">{{item.parts}}</view>
+      <view class="flex-1"></view>
+      <image wx:if='{{item.tui==true}}' src="{{uploadpath}}resource/{{res.xiaotui}}" class="icon-25 margin-right-10"></image>
+    </view>
+
+    <view class="flex-row flex-bottom margin-top-20 margin-left-20">
+      <view class=" h6">【{{item.quality}}】</view>
+      <view class="txt-red txt-bold margin-left-20">￥{{item.price}}</view>
+      <view class="h6 margin-left-10">x{{item.qty}}</view>
+    </view>
+
+    <view style="height:40rpx;"></view>
+
+
+  </view>
+
+  <view class='margin-right-40 flex-row flex-center '>
+    <view class="flex-1"></view>
+    <view class='txt-black h5'>总计：</view>
+    <view class='txt-red h5 txt-bold'>￥{{yiwancheng.totalamount}}元</view>
+  </view>
+  <view style="height:10rpx;"></view>
+</view>
+
+<view class="margin-top-20 padding-20 bg-white  ">
+
+  <view class="flex-1 txt-black h5 txt-bold">订单信息</view>
+
+  <view class="flex-row flex-center margin-top-20" style=" ">
+    <view class="h5" style="width:200rpx;">订单编号：</view>
+    <view class="h5">{{yiwancheng.orderno}}</view>
+  </view>
+
+  <view class="flex-row flex-center margin-top-20" style=" ">
+    <view class="h5" style="width:200rpx;">VIN:</view>
+    <view class="h5">{{yiwancheng.vin}}</view>
+  </view>
+
+  <view class="flex-row flex-top margin-top-20" style=" ">
+    <view class="h5" style="width:200rpx;">车型:</view>
+    <view class="h5 flex-1">{{yiwancheng.carname}}</view>
+  </view>
+
+  <view class="flex-row flex-top margin-top-20" style=" ">
+    <view class="h5" style="width:200rpx;">发票:</view>
+    <view class="h5 flex-1">{{yiwancheng.needinvoice_value=='Y'?'有':'无'}}</view>
+  </view>
+ 
+  <view class="flex-row flex-center margin-top-20" style=" ">
+    <view class="h5" style="width:200rpx;">创建时间：</view>
+    <view class="h5">{{yiwancheng.order_time}}</view>
+  </view>
+
+  <view class="flex-row flex-top margin-top-20" wx:if='{{yiwancheng.remarks!=""}}'>
+    <view class="h5" style="width:200rpx;">备注:</view>
+    <view class="h5 flex-1">{{yiwancheng.remarks}}</view>
+  </view>
+ 
+</view>
+ 
+ 
+<view style="height:150rpx"></view>
+
+<view class='bott margin-top-20 margin-bottom-20'></view>
+<view class='flex-row margin-top weizhi' wx:if='{{yiwancheng.order_status!="L" && yiwancheng.order_status!="M" && yiwancheng.order_status!="E"}}'> 
+    <view class=' padding-top-10 h5 txt-white text-center btn0ne' > 如果商品存在质量问题可申请退换，但是原厂的产品恕不退换 
+  </view>
+  <view class='btnTwo txt-white text-center' wx:if='{{yiwancheng.order_status=="N" || weiquantuohuo==false}}' bindtap='bindapply' id="{{yiwancheng.id}}">申请退换</view>
+  <view class='btnTwoS txt-white text-center' wx:if='{{yiwancheng.order_status=="I" && yiquantuohuo==true}}' id="{{yiwancheng.id}}">退货中</view>
+  <view class='btnTwoS txt-white text-center' wx:if='{{yiwancheng.order_status=="Y" && yiquantuohuo==true}}' id="{{yiwancheng.id}}">已退货</view>
+  <view class='btnTwoS txt-white text-center' wx:if='{{yiwancheng.order_status=="R" && yiquantuohuo==true}}' id="{{yiwancheng.id}}">待退货</view>
+
+</view>

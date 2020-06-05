@@ -1,0 +1,58 @@
+<view class="flex-row mar ">
+  <view class="">收货人</view>
+  <view class=" margin-left-40 ">
+    <input placeholder="姓名" name="name" bindinput="bindman" value="{{people}}"></input>
+  </view>
+</view>
+<view class='bott'></view>
+<view class="flex-row mar">
+  <view class="">手机号码</view>
+  <view class=" margin-left-40 ">
+    <input class='' placeholder="请输入手机号码" name="name" maxlength="11" value="{{phone}}" bindinput="bindphone"></input>
+  </view>
+</view>
+
+
+<view class='bott'></view>
+
+
+
+<view class="flex-row  mar">
+  <view class="">地区</view>
+
+  <view class=" margin-left-40 ">
+    <picker mode="region" bindchange="bindRegionChange">
+      <input   placeholder="请选择地区" name="name" value="{{city}}" disabled="{{true}}"></input>
+    </picker>
+  </view>
+
+
+  <!-- <view class=" margin-left-40 ">
+    <input placeholder="请输入地区地址" name="name" bindinput="binddizhi"></input>
+  </view> -->
+</view>
+
+<view class='bott'></view>
+<view class="flex-row mar">
+  <view class="">门牌号</view>
+  <view class=" margin-left-40 ">
+    <input placeholder="请输入门牌号" name="name" value="{{address}}" bindinput="bindxiangxi" ></input>
+  </view>
+</view>
+<view class='bott'></view>
+<view class='flex-row mar '>
+  <view class=" ">设置为默认地址</view>
+  <view class='flex-1'></view>
+
+
+  <image wx:if='{{check=="N"}}' class='icon-25 margin-right-30' src='{{uploadpath}}resource/{{res.bumoren}}' id="N" bindtap="bindcheck"></image>
+
+  <image wx:if='{{check=="Y"}}' class='icon-25 margin-right-30' src='{{uploadpath}}resource/{{res.moren}}' id="Y" bindtap="bindcheck"></image>
+
+
+</view>
+
+<view class='posi flex-row '>
+  <view class="detele" bindtap="binddetele" wx:if="{{id!=undefined}}">删除</view>
+  <view class="bao" bindtap="bindcaocun">保存</view>
+</view>

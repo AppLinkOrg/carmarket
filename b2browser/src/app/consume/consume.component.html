@@ -1,0 +1,72 @@
+<div class="container-fluid">
+
+
+    <div class="card mb-4 bg-gray">
+        <div class="box-auto">
+            <h4 class="margin-40">交易明细</h4>
+        </div> 
+    </div>
+    <div class="margin-left-20 margin-top-40 margin-bottom-10">
+        <button routerLink="/managementCenter" type="button"
+            class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 bg-white">
+            <a class="txt-d-gray"><i class="fa fa-angle-left margin-right"></i>返回</a>
+        </button>
+    </div>
+    <div class="row">
+
+
+        <!-- Area Chart -->
+        <div class="col-lg-12">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="flex-row flex-center" style="margin-top: 50px;margin-left: 50px;">
+                    <span> 姓名:</span>
+                    <select class="margin-left text-center" [(ngModel)]="name" name="id" (ngModelChange)="changcode()"
+                        style="width: 90px;">
+                        <option value="">请选择</option>
+                        <option #id *ngFor='let item of allenterprise;let i=index'>{{item.name}}</option>
+                    </select>
+                    <!-- <span class="reset" (click)='reset()'>重置</span> -->
+                    <div style="width:30px; height:10px;"></div>
+                    <span> 日期:</span>
+                    <input type="date" class="input-box border-gray-1 text-center margin-left" name='shijian'
+                        [(ngModel)]='shijian' (ngModelChange)="changcode2()">
+
+                    <div class="flex-row flex-center">
+                        <div class="reset" (click)='search()'>查询</div>
+                        <div class="reset" (click)='reset()'>重置</div>
+
+                    </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead class="bg-gray text-center">
+                                    <tr>
+                                        <th>姓名</th>
+                                        <th>时间</th>
+                                        <th>金额</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="h5 text-center">
+                                    <tr *ngFor='let item of consumelist'>
+                                        <td>{{item.employee_id_name}}</td>
+                                        <td>{{item.consume_time_formatting}}</td>
+                                        <td>
+                                            <div *ngIf='item.type=="R"'>-{{item.amount}}威币</div>
+                                            <div *ngIf='item.type=="S"'>+{{item.amount}}威币</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>

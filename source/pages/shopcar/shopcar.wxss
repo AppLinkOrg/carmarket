@@ -1,0 +1,68 @@
+Page {
+  background: rgb(235, 235, 235);
+}
+
+.bg {
+  background-color: #2875ce;
+  border-radius: 16rpx 16rpx 0rpx 0rpx;
+}
+
+.box {
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  background-color: white;
+  border-radius: 20rpx;
+}
+
+.bgye {
+  background-color: #feffdc;
+}
+
+.kaipiao {
+  border: 1rpx solid sandybrown;
+  border-radius: 6rpx;
+}
+
+.yuan {
+  border: 1rpx solid rgb(207, 207, 207);
+  border-radius: 6rpx;
+}
+
+
+
+.bott {
+  bottom: 0;
+  position: fixed;
+  width: 100vw;
+  
+}
+
+.bgjie {
+  background: linear-gradient(to right, rgb(228, 46, 46), rgb(255, 72, 0));
+  height: 70rpx;
+  line-height: 70rpx;
+  width: 210rpx; 
+  border-radius: 40rpx;
+}
+.num {
+  border-top: 2rpx solid  rgb(223, 221, 221);
+  border-bottom:  2rpx solid  rgb(223, 221, 221);
+  width: 80rpx;
+  height: 46rpx;
+}
+.jimg {
+  width: 50rpx;
+  height: 46rpx;
+  border: 2rpx solid rgb(223, 221, 221);
+  border-top-left-radius: 6rpx;
+  border-bottom-left-radius: 6rpx;
+}
+.jimg2 {
+  width: 50rpx;
+  height: 46rpx;
+  border: 2rpx solid rgb(223, 221, 221);
+  border-top-right-radius: 6rpx;
+  border-bottom-right-radius: 6rpx;
+}
+

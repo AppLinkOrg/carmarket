@@ -1,0 +1,14 @@
+page {
+  /* background-color: rgb(241, 241, 241); */
+}
+
+.row {
+  border-bottom: 1rpx solid #ddd;
+}
+.txt{
+  line-height: 70rpx;
+}
+.types {
+  color: #143779 !important;
+}
+

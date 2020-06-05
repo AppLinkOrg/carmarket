@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <img src="{{uploadpath}}resource/{{res.fanhui}}" (click)='fanhui()' class='icon-10'>
+    <ion-title>报价详情</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="">
+    <div class="shadow padding-10 margin-20" *ngFor='let item of tempquotinfo;let i=index;'>
+      <div *ngIf='i==0'
+        class="card-header bg-white py-3 no-border d-flex flex-row align-items-center justify-content-between padding-10">
+        <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;报价信息</h6>
+      </div>
+      <div *ngIf='i==0'>
+        <div class="h8">公司名称：{{item.enterprise_id_name}}</div>
+        <div class="h8">地<span class="h8 margin-left-30">址</span>：{{item.enterprise_corporate_address}}</div>
+        <div class="h8">下&nbsp; 单&nbsp; 员：{{item.employee_id_name}}</div>
+        <div class="h8">电<span class="h8 margin-left-30">话</span>：{{item.employee_mobile}}</div>
+        <div class="h8">报价编号：{{item.quotenumber}}</div>
+        <div class="h8">车&nbsp; 架&nbsp; 号：<span class="h8" *ngIf='item.vincode!=""'>{{item.vincode}}</span><span class="h8" *ngIf='item.vincode==""'>无识别</span></div>
+        <div class="h8">车<span class="h8 margin-left-30">型</span>：<span class="h8"
+            *ngIf='item.carmodel!=""'>{{item.carmodel}}</span>
+          <span class="h8" *ngIf='item.carmodel==""'>无识别</span></div>
+        <div class="h8">品<span class="h8 margin-left-30">质</span>：<span class="h8" *ngIf='item.pinzhi==""'>无</span>
+          <span class="h8" *ngIf='item.pinzhi!=""'>{{item.pinzhi}}</span></div>
+        <div class="h8">询价时间：{{item.quote_time}}</div>
+        <div class="h8">备<span class="h8 margin-left-30">注</span>：<span class="h8"
+            *ngIf='item.information!=""'>{{item.information}}</span>
+          <span class="h8" *ngIf='item.information==""'>无</span></div>
+        <div class="h8">发票需求：<span class="txt-red h8" *ngIf='item.rate>0'>需要发票</span>
+          <span class="h8" *ngIf='item.rate==0'>不需要发票</span></div>
+        <!-- <div class="flex-row flex-center">
+          <div class=" h8">图片附件：</div>
+          <div style='color:#3d61b4;cursor: pointer;' class="h8" data-toggle="modal" data-target="#myModal4"
+            (click)='showPhoto2(quoteinfo)'>查看图片</div>
+        </div> -->
+        <div class="flex-row flex-center" *ngIf='item.rate>0'>
+          <div class=" h8">发票税率：{{item.rate}}%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="shadow padding-10 margin-20">
+    <div
+      class="card-header bg-white py-3 no-border d-flex flex-row align-items-center justify-content-between padding-10">
+      <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;报价处理</h6>
+    </div>
+    <div class="border-gray-1 padding-10 margin-bottom-20" *ngFor='let fitem of list'>
+      <div class='h8'>配件名称 ：{{fitem.name}}</div>
+      <div class='h8 flex-row flex-center'>零&nbsp; 件&nbsp; 号：<span class="text-center h8"
+          *ngIf='fitem.partnubmer!=""'>{{fitem.partnubmer}}</span>
+        <span class="text-center h8" *ngIf='fitem.partnubmer==""'>无识别</span>
+        <div class="flex-1"></div>
+        <div class='h8'>数<span class="h8 margin-left-30">量 ：</span>{{fitem.qty}}</div>
+      </div>
+      <div class="flex-row flex-center">
+        <div class="h8 ">单<span class="h8 margin-left-30">价 ：{{fitem.price}}</span></div>
+        <div class="flex-1"></div>
+        <div class='h8'>4S店价格 ：{{fitem.Sprice}}</div>
+      </div>
+      <div class="flex-row flex-center">
+        <div class="h8 ">品质/品牌：{{fitem.quality}} </div>
+        <div class="flex-1"></div>
+        <div class="h8 ">备货时间 ：{{fitem.standby_time}}</div>
+      </div>
+      <div class="flex-row flex-center">
+        <div class="h8 ">质&nbsp; 保&nbsp; 期：{{fitem.guarantee}}</div>
+        <div class="flex-1"></div>
+        <div class="h8 ">发车时间 ：{{fitem.sendcar_time}}</div>
+      </div>
+    
+
+    </div>
+  </div>
+  <div class="height-20"></div>
+  <div class="flex-row flex-column ">
+    <span *ngIf='invalid=="N"' class="h7 txt-orange">等待买家确认...</span>
+    <span *ngIf='invalid=="Y"' class="h7 txt-orange">已失效</span>
+  </div>
+  <div class="height-20"></div>
+</ion-content>

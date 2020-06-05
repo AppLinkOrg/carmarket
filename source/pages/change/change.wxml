@@ -1,0 +1,74 @@
+<view class='flex-row flex-center margin-top-20'>
+
+  <view class='flex-row flex-column flex-1' data-change='A' bindtap='bindchange'>
+    <view class=' txt-bold flex-1 text-center {{change=="A"?"txt-blue":""}}'>待退货</view>
+    <view class='order {{change=="A"?"bg-blue":"bg-white"}}'></view>
+  </view>
+
+  <view class='flex-row flex-column flex-1 ' data-change='B' bindtap='bindchange'>
+    <view class='txt-bold flex-1 text-center {{change=="B"?"txt-blue":""}}'>已退货</view>
+    <view class='order {{change=="B"?"bg-blue":"bg-white"}}'></view>
+  </view>
+
+</view>
+<view class='borderbottom'></view>
+
+<view class=" " wx:if="{{change=='A'}}">
+
+  <!-- 我的退换订单-->
+
+
+
+  <view class='flex-row flex-column' wx:if="{{returnlist.length==0}}">
+    <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullchange}}'></image>
+    <view class=''>暂时没有退换订单</view>
+  </view>
+
+  <!--待退换-->
+  <view class='box padding-20' wx:for="{{returnlist}}" wx:key="k" bindtap="bindtui" id="{{item.id}}">
+    <view class='flex-row  margin-top-30 '>
+      <view class='h5'>退货单号：</view>
+      <view class="h5">{{item.returnno}}</view>
+      <view class='flex-1'></view>
+      <view class='margin-right-30'>{{item.orderstatus_name}}</view>
+    </view>
+    <view class="flex-row flex-center flex-wrap margin-top-10">
+      <view class=' txt-black' wx:for='{{item.tuihuoitem}}' wx:key='s' wx:for-index='idx'>{{idx==0?'':'、'}}{{item.name}}</view>
+    </view>
+    <view class=' margin-top-10'>{{item.carmodel}}</view>
+    <view class='flex-row  margin-top-30'>
+      <view class=' '>申请退换时间：</view>
+      <view class=' '>{{item.return_time}}</view>
+    </view>
+  </view>
+
+</view>
+
+<view class=" " wx:if="{{change=='B'}}">
+  <!-- 我的退换订单-->
+  <view class='flex-row flex-column' wx:if="{{mylist.length==0}}">
+    <image class='null_icon1 padding-40 ' src='{{uploadpath}}resource/{{res.nullchange}}'></image>
+    <view class=''>暂时没有退换订单</view>
+  </view>
+
+  <!--已退换-->
+ <view class='box padding-20' wx:for="{{yituihuan}}" wx:key="k" bindtap="bindtui" id="{{item.id}}">
+    <view class='flex-row  margin-top-30 '>
+      <view class='h5'>退货单号：</view>
+      <view class="h5">{{item.returnno}}</view>
+      <view class='flex-1'></view>
+      <view class='margin-right-30'>已退换</view>
+    </view>
+    <view class="flex-row flex-center flex-wrap margin-top-10">
+      <view class=' txt-black' wx:for='{{item.tuihuoitem}}' wx:key='s' wx:for-index='idx'>{{idx==0?'':'、'}}{{item.name}}</view>
+    </view>
+    <view class=' margin-top-10'>{{item.carmodel}}</view>
+    <view class='flex-row  margin-top-30'>
+      <view class=' '>申请退换时间：</view>
+      <view class=' '>{{item.return_time}}</view>
+    </view>
+  </view>
+
+
+
+</view>

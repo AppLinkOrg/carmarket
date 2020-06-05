@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <img src="{{uploadpath}}resource/{{res.fanhui}}" (click)='back()' class='icon-10'>
+    <ion-title>员工业绩</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class='padding-20'>
+    <div class="shadow">
+      <div class="padding-10">
+        <div
+          class="card-header bg-white py-3 no-border d-flex flex-row align-items-center justify-content-between padding-10">
+          <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;员工业绩信息</h6>
+        </div>
+        <div class="flex-row flex-center padding-10">
+          <div class="h8">
+            员工姓名
+          </div>
+          <select name="userName" class="input-box h8 margin-left-10" [(ngModel)]="obj.userName">
+            <option aria-checked="true">全部</option>
+            <option *ngFor='let item of allenterprise'>{{item.name}}</option>
+          </select>
+        </div>
+        <div class="flex-row flex-center padding-10">
+          <div class="h8">
+            手机号码
+          </div>
+          <input type="text" class="input-box border-gray-1 text-center margin-left-10 h8" name='mobile'
+            [(ngModel)]="obj.mobile">
+        </div>
+        <div class="flex-row flex-center padding-10">
+          <div class="h8">
+            订单编号
+          </div>
+          <input type="text" class="input-box border-gray-1 text-center margin-left-10 h8" name='orderno'
+            [(ngModel)]='obj.orderno'>
+        </div>
+
+        <div class="flex-row flex-center padding-10">
+          <div class="h8">
+            开始时间
+          </div>
+          <input type="date" class="input-box border-gray-1 text-center h8 margin-left-10" name='start_time'
+            [(ngModel)]='obj.start_time'>
+        </div>
+
+        <div class="flex-row flex-center padding-10">
+          <div class="h8">
+            结束时间
+          </div>
+          <input type="date" class=" border-gray-1 text-center input-box h8 margin-left-10" name='end_time'
+            [(ngModel)]='obj.end_time'>
+        </div>
+        <div class="flex-row flex-center">
+          <div class="reset h8" (click)='search(obj)'>查询</div>
+          <div class="reset h8" (click)='reset()'>重置</div>
+
+        </div>
+      </div>
+
+      <div class="padding-15">
+        <div class="flex-row flex-center">
+          <div class="btnss {{btnscolor==1?'btn-active':''}}" (click)=qihuan(1)>全部</div>
+          <div class="btnss {{btnscolor==2?'btn-active':''}}" (click)=qihuan(2)>已完成</div>
+          <div class="btnss {{btnscolor==3?'btn-active':''}}" (click)=qihuan(3)>待退款</div>
+          <div class="btnss {{btnscolor==4?'btn-active':''}}" (click)=qihuan(4)>已退款</div>
+        </div>
+    
+        <div class="shadow padding-5 margin-top-10" *ngFor='let item of order'>
+          
+          <div class="flex-row flex-center">
+            <div class="h8 flex-1">客户名称：{{item.receiver}}</div>
+            <div class="h8 flex-1">交易状态：{{item.order_status_name}}</div>
+          </div>
+          <div class="h8">交易金额：{{item.totalamount}}</div>
+          <div class="h8">订单编号：{{item.orderno}}</div>
+          <div class="h8"  *ngIf='bb==true'>{{item.returnno}}</div>
+          <div class="h8">交易完成时间：{{item.finish_time}}</div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</ion-content>

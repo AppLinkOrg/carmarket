@@ -1,0 +1,10 @@
+ <view class='flex-row flex-column margin-top-80'>
+    <image class='icon-100 margin-top-20' src='{{uploadpath}}resource/{{res.jiaoyi}}'></image>
+    <view class="txt-black txt-bold margin-top-20"  >交易成功!</view>
+  </view>
+<view class="flex-row margin-top-80">
+  <view class="btnlr margin-left-30 txt-bold" bindtap="bindorder">查看我的订单</view>
+  <view class="flex-1"></view>
+  <view class="btnlr margin-right-30 txt-bold" bindtap="bindfind">继续求购配件</view>
+
+  </view>

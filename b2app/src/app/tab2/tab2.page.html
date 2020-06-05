@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar class="border-bot">
+    <ion-title>
+      报价中心
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="flex-row flex-center">
+    <div class="h8 btnss txt-d-gray {{aa==1?'btn-active':''}}" (click)='change(1)'>待报价 </div>
+    <div class="h8 btnss txt-d-gray {{aa==2?'btn-active':''}}" (click)='change(2)'>已报价</div>
+    <div class="h8 btnss txt-d-gray {{aa==3?'btn-active':''}}" (click)='change(3)'>已忽略</div>
+    <div class="h8 btnss txt-d-gray {{aa==4?'btn-active':''}}" (click)='change(4)'>已失效</div>
+    <div class="h8 btnss txt-d-gray {{aa==5?'btn-active':''}}" (click)='change(5)'>全部</div>
+  </div>
+  <div class="margin-10 flex-row flex-center">
+    <div class="flex-1"></div>
+    <div class="h8" (click)='screening()'>筛选</div>
+    <img src="{{uploadpath}}resource/{{res.suaixuan}}" (click)='screening()' class="icon-10" />
+  </div>
+  <div class="margin-10 padding-10 border-gray-1 radius-8" *ngFor="let item of list">
+    <div class="flex-row flex-center">
+      <div class="h8">报价单号：{{item.quotenumber}}</div>
+      <div class="flex-1"></div>
+      <div class="h8 txt-d-gray">{{item.quotestatus_name}}</div>
+    </div>
+    <div class="h8 " >配件清单：<span class="h8" *ngFor='let peijian of item.quoteitems'>{{peijian.name}}，</span></div>
+    <div class="text-left h8 txt-d-gray" *ngIf='item.carmodel!=""'>{{item.carmodel}} <br> {{item.vincode}}</div>
+    <div class="h8 txt-d-gray" *ngIf='item.carmodel==""'>无识别</div>
+    <div class='flex-row flex-center'>
+      <div class="h8 txt-d-gray">询价时间：{{item.quote_time}}</div>
+      <div class="flex-1"></div>
+      <div class="h8 btns btn-active radius-8" *ngIf='item.quotestatus === "Q" &&  isquote==true'
+        (click)="tiaozhuan(item.id,item.quote_id)">立即报价</div>
+      <div class="h8 margin-left-10 txt-blue" *ngIf='item.quotestatus === "Q" &&  isquote==true'
+        (click)='ignoreHandle(item)'>忽略</div>
+
+      <div class="h8 btns btn-active radius-8" *ngIf='item.quotestatus === "Q" &&  isquote==false'
+        (click)="tiaozhuan(item.id,item.quote_id)">立即报价</div>
+
+      <!-- <div class="h8" *ngIf='item.quotestatus === "E" &&  isquote==false'>一</div> -->
+      <div *ngIf='item.quotestatus === "W" || item.quotestatus=="C"' class="h8 btn3 btn-active radius-8"
+        (click)="tiaozhuan2(item.quote_id)">
+        查看详情
+        <div class="txt-orange h8 margin-left-10" *ngIf='item.invalid_value ==="N"'>等待买家确认</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="mask" *ngIf='disshow'></div>
+  <div class=" dizhi" *ngIf='disshow'>
+    <div class="flex-row flex-center padding-10">
+      <div class="flex-1"></div>
+      <div class="h6 txt-bold text-center">报价筛选</div>
+      <div class="flex-1"></div>
+      <img src="{{uploadpath}}resource/{{res.cuo}}" (click)='disscree()' class="icon-10">
+    </div>
+
+    <div class="h7 txt-bold">地区</div>
+    <span class="disname  h8 {{choquan=='Y'?'disname-active':''}}" (click)='choose("全部")'>全部</span>
+    <span *ngFor='let dis of distinctlist;let i=index;' class="disname h8 {{dis.chodis=='Y'?'disname-active':''}}"
+      (click)='choose(dis)'>{{dis.name}}</span>
+    <div class="flex-row flex-center text-center">
+      <div class="flex-1"></div>
+      <div class="h8 btn1" (click)='reset()'>重置</div>
+      <div class="flex-1"></div>
+      <div class="h8 btn2" (click)='save()'>保存</div>
+      <div class="flex-1"></div>
+    </div>
+    <div class="padding-left-20 h8">注: 筛选条件越多, 匹配将越精准, 但同时接收到的询价数量也将会大幅减少。</div>
+  </div>
+</ion-content>

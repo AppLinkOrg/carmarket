@@ -1,0 +1,148 @@
+<div class="container-fluid">
+
+
+        <div class="card mb-4 bg-gray">
+            <div class="box-auto">
+                <h4 class="margin-40">员工业绩</h4>
+            </div>
+
+            
+        </div>
+        <div class="margin-left-20 margin-top-40 margin-bottom-10">
+                <button  routerLink="/managementCenter" type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 bg-white">
+                    <a class="txt-d-gray"><i class="fa fa-angle-left margin-right"></i>返回</a>
+                </button>   
+            </div>
+        <div class="row">
+    
+                <!-- Area Chart -->
+                <div class="col-lg-12">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold txt-black border-left-primary">&nbsp;员工业绩信息</h6>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div>
+                            
+                                <div class="flex-row margin-bottom-10">
+                                    <div class="flex-1">
+                                        <span class="txt-black padding-four-words margin-right-20">员工姓名</span>
+                                        <!-- <input type="text" class="input-box border-gray-1 text-center" name='userName'  [(ngModel)]="obj.userName" > -->
+                                        <select name="userName" class="input-box" [(ngModel)]="obj.userName">
+                                            <option aria-checked="true">全部</option>
+                                            <option *ngFor='let item of allenterprise'>{{item.name}}</option>
+                                        </select>
+                                    </div> 
+                                    <div class="flex-2">
+                                        <span class="txt-black padding-four-words margin-right-20">手机号码</span>
+                                        <input type="text" class="border-gray-1 text-center " name='mobile'   [(ngModel)]="obj.mobile" style='width: 35%;height: 30px;' >
+                                    </div>        
+                                   
+                                </div>
+                                <div class="flex-row"><span class="border-bottom-white border-box"></span></div>
+                                <div class="flex-row">
+                                    <div class="flex-4">
+                                        <span class="txt-black padding-four-words margin-right-20">订单编号</span>
+                                        <input type="text" class="input-box border-gray-1 text-center" name='orderno' [(ngModel)]='obj.orderno' >
+                                    </div>
+                                    <div class="flex-4">
+                                        <span class="txt-black padding-four-words margin-right-20">开始时间</span>
+                                        <input type="date" class="input-box border-gray-1 text-center" name='start_time'  [(ngModel)]='obj.start_time'>
+                                    </div>        
+                                    <div class="flex-4">
+                                        <span class="txt-black padding-four-words margin-right-20">结束时间</span>
+                                        <input type="date" class=" border-gray-1 text-center input-box " name='end_time'   [(ngModel)]='obj.end_time'>
+                                    </div>  
+                                </div>
+                                <div class="text-right margin-bottom-20">
+                                    <button class="btn-active no-border border-tlb-r padding-left-40 padding-right-40 margin-left-20 margin-top-40" (click)='reset()'>重置</button>
+                                    <button class="btn-active no-border border-tlb-r padding-left-40 padding-right-40 margin-left-20 margin-top-40" (click)='search(obj)'>查询</button>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                    <div class="container-fluid">
+
+                                        <div class="margin-bottom-20 toggleBtns" role="group" aria-label="...">
+                                            <button type="button" class="btn-active btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='myAll($event)'>全部</button>
+                                            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='myfinish($event)'>已完成</button>     
+                                            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray" (click)='myreturn($event)'>待退款</button>     
+                                            <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray" (click)='myyitui($event)'>已退款</button>     
+                                        </div> 
+                                        <div class="margin-10">订单总额：<span class="txt-red">￥{{totalMoney.toFixed(2)}}</span></div>
+                                        <!-- DataTales Example -->
+                                        <div class="card shadow mb-4">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead class="bg-gray text-center">
+                                                    <tr>
+                                                    <th>序号</th>
+                                                    <th>订单编号</th>
+                                                    <th *ngIf='bb==true'>退货编号</th>
+                                                    <th>客户名称</th>
+                                                    <th>交易完成时间</th>
+                                                    <th>交易金额</th>
+                                                    <th>订单状态</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="h5 text-center">
+                                                    <tr *ngFor='let item of data'>
+                                                       <td>{{item.index+1}}</td>
+                                                       <td>{{item.orderno}}</td>
+                                                       <td *ngIf='bb==true'>{{item.returnno}}</td>
+                                                       <td>{{item.receiver}}</td>
+                                                       <td>{{item.finish_time}}</td>
+                                                       <td>
+                                                           <span *ngIf='item.orderstatus=="Y"'>-</span>
+                                                        <span *ngIf='item.order_status=="N"'>+</span>
+                                                        {{item.totalamount}}
+                                                    </td>
+                                                       <td>{{item.order_status_name}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div> 
+                                    <div class="flex-row flex-column"  *ngIf='pageList.length>1'>
+                                        <ul class="pagination cursor-pointer">
+                                            <li class="margin-10 padding-10">共{{length}}条</li>
+                                            <li class="border-gray-1 margin-10 padding-10" role='button' (click)="fristPage()">
+                                                <a >
+                                                    <span aria-hidden="true">首页</span>
+                                                </a>
+                                            </li>
+                                            <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Previous()">
+                                                <a class="h3">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" *ngFor="let page of pageList"  
+                                            [ngClass]="{pagActive: isActivePage(page)}" role='button'  (click)='selectPage(page)' style="line-height: 36px;">
+                                                <a>{{page}}</a>
+                                            </li>
+                                            <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Next()">
+                                                <a class="h3">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                            <li class="border-gray-1 margin-10 padding-10" role='button' (click)="lastPage()">
+                                                <a >
+                                                    <span aria-hidden="true">尾页</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                
+        </div>
+    
+    
+    </div>
