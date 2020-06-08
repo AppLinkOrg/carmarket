@@ -1,110 +1,123 @@
 <div class="container-fluid">
-        
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-      <div class="card mb-4 bg-gray">
-        <div class="box-auto">
-           <h4 class="margin-40">订单管理</h4>
-        </div>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card mb-4 bg-gray">
+      <div class="box-auto">
+        <h4 class="margin-40">订单管理</h4>
       </div>
-     
-
-      <div class="card-body">
-        <div class="margin-bottom-20 toggleBtns" role="group" aria-label="...">
-            <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==1?'btn-active ':''}}" (click)='change(1)'>全部 {{alllen}}</button>           
-            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==2?'btn-active ':''}}" (click)='change(2)'>待发货 {{falen}}</button>
-            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==3?'btn-active ':''}}" (click)='change(3)'>待收货 {{shoulen}}</button>           
-            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==4?'btn-active ':''}}" (click)='change(4)'>已完成 {{wanlen}}</button>           
-            <button type="button" class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==5?'btn-active ':''}}" (click)='change(5)'>已取消 {{qulen}}</button>   
-            <button type="button" class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==6?'btn-active ':''}}" (click)='change(6)'>待付款 {{fulen}}</button>   
-
-        </div>
-          <!-- 全部 -->
-          <div class="table-responsive">
-            <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
-              <thead class="bg-gray">
-                <tr>
-                  <th>序号</th>
-                  <th>订单编号</th>
-                  <th>公司名称</th>
-                  <th width="30%">配件清单</th>
-                  <th>下单员</th>
-                  <th>下单时间</th>
-                  <th>订单金额</th>
-                  <th *ngIf='isshow'>订单状态</th>
-                  <th>操作</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor='let item of data'>
-                  <td class="tab-mid">{{item.index+1}}</td>
-                  <td class="tab-mid">{{item.orderno}}</td>
-                  <td class="tab-mid">{{item.baojiacom}}</td>
-                  <td class="text-left">
-                    <div *ngFor='let list of item.orderitem;let i=index'>
-                      <div *ngIf='i<3'>{{list.parts}} x {{list.qty}} ({{list.mcid}})</div>
-                    </div>
-                    <div *ngIf='item.orderitem.length>3'>......</div>
-                  </td>
-                  <td class="tab-mid">{{item.baojiaperson}}</td>
-                  <td class="tab-mid">{{item.order_time_formatting}}</td>
-                  <td class="tab-mid">{{item.totalamount}}</td>
-                  <td class="tab-mid" *ngIf='isshow'>{{item.order_status_name}}</td>
-                  <td class="tab-mid">
-                    <div *ngIf='operation=="A"'>
-                        <button class="btn btn-primary" (click)='detailStatus(item)'><a>查看详情</a></button><br>
-                    </div>
-                    <div *ngIf='operation=="W"'>
-                        <button class="btn btn-primary" (click)='tiaozhuan5(item)'><a>查看详情</a></button><br>
-                    </div>
-                    <div *ngIf='operation=="R"'>
-                        <button class="btn btn-primary" (click)='tiaozhuan(item)'><a>立即发货</a></button>
-                    </div>
-                    <div *ngIf='operation=="S"'>
-                        <button class="btn btn-primary" (click)='tiaozhuan2(item)'><a>查看详情</a></button><br>
-                        <span class="txt-orange">等待买家收货</span>
-                    </div>
-                    <div *ngIf='operation=="F"'>
-                        <button class="btn btn-primary" (click)='tiaozhuan3(item)'><a>查看详情</a></button><br>
-                        <span class="txt-green">交易成功</span>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="flex-row flex-column" *ngIf='pageList.length>1'>
-              <ul class="pagination cursor-pointer">
-                  <li class="margin-10 padding-10">共{{length}}条</li>
-                  <li class="border-gray-1 margin-10 padding-10" role='button' (click)="fristPage()">
-                      <a >
-                        <span aria-hidden="true">首页</span>
-                      </a>
-                    </li>
-                  <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Previous()">
-                    <a class="h3">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" *ngFor="let page of pageList"  
-                  [ngClass]="{pagActive: isActivePage(page)}" role='button'  (click)='selectPage(page)' style="line-height: 36px;">
-                    <a>{{page}}</a>
-                  </li>
-                  <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button'  (click)="Next()">
-                      <a class="h3">
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  <li class="border-gray-1 margin-10 padding-10" role='button' (click)="lastPage()">
-                      <a >
-                        <span aria-hidden="true">尾页</span>
-                      </a>
-                    </li>
-                </ul>
-          </div>
-      </div>
-
-      
     </div>
+
+
+    <div class="card-body">
+      <div class="margin-bottom-20 toggleBtns" role="group" aria-label="...">
+        <button type="button"
+          class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==1?'btn-active ':''}}"
+          (click)='change(1)'>全部 {{alllen}}</button>
+        <button type="button"
+          class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==2?'btn-active ':''}}"
+          (click)='change(2)'>待发货 {{falen}}</button>
+        <button type="button"
+          class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==3?'btn-active ':''}}"
+          (click)='change(3)'>待收货 {{shoulen}}</button>
+        <button type="button"
+          class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==4?'btn-active ':''}}"
+          (click)='change(4)'>已完成 {{wanlen}}</button>
+        <button type="button"
+          class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==5?'btn-active ':''}}"
+          (click)='change(5)'>已取消 {{qulen}}</button>
+        <button type="button"
+          class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==6?'btn-active ':''}}"
+          (click)='change(6)'>待付款 {{fulen}}</button>
+
+      </div>
+      <!-- 全部 -->
+      <div class="table-responsive">
+        <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+          <thead class="bg-gray">
+            <tr>
+              <th>序号</th>
+              <th>订单编号</th>
+              <th>公司名称</th>
+              <th width="30%">配件清单</th>
+              <th>下单员</th>
+              <th>下单时间</th>
+              <th>订单金额</th>
+              <th *ngIf='isshow'>订单状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let item of data'>
+              <td class="tab-mid">{{item.index+1}}</td>
+              <td class="tab-mid">{{item.orderno}}</td>
+              <td class="tab-mid">{{item.baojiacom}}</td>
+              <td class="text-left">
+                <div *ngFor='let list of item.orderitem;let i=index'>
+                  <div *ngIf='i<3'>{{list.parts}} x {{list.qty}} ({{list.mcid}})</div>
+                </div>
+                <div *ngIf='item.orderitem.length>3'>......</div>
+              </td>
+              <td class="tab-mid">{{item.baojiaperson}}</td>
+              <td class="tab-mid">{{item.order_time_formatting}}</td>
+              <td class="tab-mid">{{item.totalamount}}</td>
+              <td class="tab-mid" *ngIf='isshow'>{{item.order_status_name}}</td>
+              <td class="tab-mid">
+                <div *ngIf='operation=="A"'>
+                  <button class="btn btn-primary" (click)='detailStatus(item)'><a>查看详情</a></button><br>
+                </div>
+                <div *ngIf='operation=="W"'>
+                  <button class="btn btn-primary" (click)='tiaozhuan5(item)'><a>查看详情</a></button><br>
+                </div>
+                <div *ngIf='operation=="R"'>
+                  <button class="btn btn-primary" (click)='tiaozhuan(item)'><a>立即发货</a></button>
+                </div>
+                <div *ngIf='operation=="S"'>
+                  <button class="btn btn-primary" (click)='tiaozhuan2(item)'><a>查看详情</a></button><br>
+                  <span class="txt-orange">等待买家收货</span>
+                </div>
+                <div *ngIf='operation=="F"'>
+                  <button class="btn btn-primary" (click)='tiaozhuan3(item)'><a>查看详情</a></button><br>
+                  <span class="txt-green">交易成功</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="flex-row flex-column" *ngIf='pageList.length>1'>
+        <ul class="pagination cursor-pointer">
+          <li class="margin-10 padding-10">共{{length}}条</li>
+          <li class="border-gray-1 margin-10 padding-10" role='button' (click)="fristPage()">
+            <a>
+              <span aria-hidden="true">首页</span>
+            </a>
+          </li>
+          <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button' (click)="Previous()">
+            <a class="h3">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" *ngFor="let page of pageList"
+            [ngClass]="{pagActive: isActivePage(page)}" role='button' (click)='selectPage(page)'
+            style="line-height: 36px;">
+            <a>{{page}}</a>
+          </li>
+          <li class="border-gray-1 margin-10 padding-left-17 padding-right-17" role='button' (click)="Next()">
+            <a class="h3">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          <li class="border-gray-1 margin-10 padding-10" role='button' (click)="lastPage()">
+            <a>
+              <span aria-hidden="true">尾页</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+  </div>
 
 </div>

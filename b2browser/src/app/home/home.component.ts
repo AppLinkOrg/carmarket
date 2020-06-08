@@ -76,18 +76,14 @@ export class HomeComponent extends AppBase {
   toggleSidebar() {
     console.log('jjjjjj')
     this.toggle = !this.toggle;
-
   }
 
   update(aa) {
 
-
-
-
     var that = this;
 
     this.enterpriseApi.employeeinfo({}).then((employeeinfo: any) => {
-      console.log(employeeinfo)
+      
 
       if (employeeinfo.enterprise_id == "0") {
         this.router.navigate(["login"]);
@@ -96,8 +92,7 @@ export class HomeComponent extends AppBase {
       this.employee_id = employeeinfo.id;
       this.enterprise_id = employeeinfo.enterprise_id
       
-
-      var a = this.orderapi
+      var a = this.orderapi;
       var arrs = [];
 
 
@@ -116,7 +111,7 @@ export class HomeComponent extends AppBase {
             this.oread = 'N';
             this.ordernum = ret.order;
             // this.ordernum =  '加载中';
-           
+            
           } else {
             this.oread = 'Y';
           }
@@ -132,20 +127,12 @@ export class HomeComponent extends AppBase {
         }
       })
 
-
-
-
-
-
-
-
+ 
     })
 
     if (aa.result == 'yes') {
       this.enterpriseApi.employeeinfo({}).then((employeeinfo: any) => {
-
-
-
+ 
         if (employeeinfo.enterprise_id == "0") {
           this.router.navigate(["login"]);
           return
@@ -155,9 +142,7 @@ export class HomeComponent extends AppBase {
         this.employee_id = employeeinfo.id
 
         this.obj = employeeinfo
-
-
-
+ 
         var a = this.orderapi
         var a = this.orderapi
         var arrs = [];
@@ -189,11 +174,7 @@ export class HomeComponent extends AppBase {
 
           }
         })
-
-
-
-
-
+ 
 
       })
     }

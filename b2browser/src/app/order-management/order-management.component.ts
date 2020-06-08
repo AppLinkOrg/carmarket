@@ -69,76 +69,48 @@ export class OrderManagementComponent extends AppBase  {
   onMyShow(){
     let oldtime = (new Date()).getTime() +  6*60*60*1000;
     window.localStorage.setItem('oldtime',oldtime.toString())
-    var a = this.orderApi
+    var a = this.orderApi;
 
-    this.activeRoute.queryParams.subscribe(query=>{
-        console.log(query);
-        this.emm_id=query.emm_id
+      this.activeRoute.queryParams.subscribe(query=>{
+    
+      this.emm_id=query.emm_id
       this.getstatus = query.stauts;
       this.cc=query.bb;
       this.order_time_dateformat = query.order_time_dateformat
       this.month_time = query.month_time
-      console.log(this.getstatus)
-      console.log(this.order_time_dateformat)
-      console.log(this.month_time)
-
+ 
       this.enterpriseApi.employeeinfo({ }).then((employeeinfo:any)=>{
-        console.log(employeeinfo,'000')
+         console.log(employeeinfo,'员工详情')
         this.enterprise_id = employeeinfo.enterprise_id
         this.em_id = employeeinfo.id
 
-        if( employeeinfo.position=='B' || employeeinfo.power=='Y'){
-          console.log('aaa')
+        if( employeeinfo.position=='B' || employeeinfo.power=='Y'){ 
           this.employee_id = '';
-        }else{
-          console.log('bb')
+        }else{ 
           this.employee_id = employeeinfo.id;
         }
        
-       
-        a.mylist({ enterprise_id: this.enterprise_id,employee_id: this.employee_id }).then((mylist:any)=>{
-          console.log(mylist)
-        //   this.alllen=0;
-        // this.falen=0;
-        // this.shoulen=0;
-        // this.wanlen=0;
-        // this.qulen=0;
-        // this.falen=0;
+        console.log(this.enterprise_id,'---',this.employee_id)
+        a.mylist({ enterprise_id: this.enterprise_id,baojia: this.employee_id }).then((mylist:any)=>{
+          
           this.list = []
           this.pageList = []
+          
           for(let j=0;j<mylist.length;j++){
-            // this.alllen++;
+           
             if(mylist[j].order_status != 'R' && mylist[j].order_status != 'Y' && mylist[j].order_status != 'I'){
-              // if(mylist[j].order_status == 'R' || mylist[j].order_status == 'Y' || mylist[j].order_status == 'I'){
-              //   mylist[j].order_status_name = '已完成';
-                
-              // }
-              // if(mylist[j].order_status=='L'){
-              //   this.falen++;
-              // }
-              // if(mylist[j].order_status=='M'){
-              //   this.shoulen++;
-              // }
-              // if(mylist[j].order_status=='E'){
-              //   this.qulen++;
-              // }
-              // if(mylist[j].order_status=='N'){
-              //   this.wanlen++;
-              // }
-              // if(mylist[j].order_status=='W'){
-              //   this.fulen++;
-              // }
+
               this.enterpriseApi.getemployeeinfo({id:mylist[j].baojia}).then((getemployeeinfo:any)=>{
-                console.log(getemployeeinfo,'嘻嘻嘻嘻嘻')
+                
                 mylist[j].baojiaperson = getemployeeinfo.name
                 mylist[j].baojiacom = getemployeeinfo.enterprise_name
               })
+
               var lists = []
               lists.push(mylist[j])
   
               this.pageList = []
-             
-  
+              
               if(this.order_time_dateformat != undefined){
                 this.pageList = []
                 
@@ -196,8 +168,7 @@ export class OrderManagementComponent extends AppBase  {
                 // this.pagination(this.list,this.length)
                
               }else {
-                console.log(this.order_time_dateformat,'不是你了')
-                console.log('oooo')
+              
                 this.list.push(mylist[j])
                 if(mylist[j].order_status=='L'){
                   this.falen++;
@@ -214,6 +185,7 @@ export class OrderManagementComponent extends AppBase  {
                 if(mylist[j].order_status=='W'){
                   this.fulen++;
                 }
+
                 for(let a=0;a<this.list.length-1;a++){
                   for(let b=a+1; b<this.list.length;b++){
                     if(this.list[a].orderno<this.list[b].orderno){
@@ -226,27 +198,20 @@ export class OrderManagementComponent extends AppBase  {
                
                 for(let k=0;k<this.list.length;k++){
                   this.list[k].index = k;
-                  
-                  
                 }
+
                 this.alllen = this.list.length
                 this.length = this.list.length
-                console.log(this.list)
-             
-                // this.pagination(this.list,this.length)
+
               }
                
-              
   
             }
           
           }
 
-          // if(this.cc!=undefined){
-          //   this.bb=Number(this.cc);
             this.change(this.bb);
-          // }
-          
+    
           
         })
 
@@ -290,15 +255,7 @@ export class OrderManagementComponent extends AppBase  {
       this.getstatus = null;
       this.order_time_dateformat = null
       this.month_time = null
-      
-
-      // var others = event.target.parentElement.children
-    
-      // for(let i=1;i<others.length;i++){
-      //   others[i].classList.remove('btn-active')
-      // }
-      // event.target.classList.add('btn-active')
-
+        
       this.list = this.list
       this.length = this.list.length
       this.pagination(this.list,this.length)

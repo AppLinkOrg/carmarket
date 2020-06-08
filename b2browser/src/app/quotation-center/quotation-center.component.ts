@@ -72,7 +72,7 @@ export class QuotationCenterComponent extends AppBase {
     var a = this.orderApi;
 
     this.enterpriseApi.employeeinfo({}).then((employeeinfo: any) => {
-      console.log(employeeinfo)
+      
       this.enterprise_id = employeeinfo.enterprise_id
       this.employee_id = employeeinfo.id
       this.employee_id_name = employeeinfo.name
@@ -80,17 +80,15 @@ export class QuotationCenterComponent extends AppBase {
  
 
       a.distinctlist({}).then((distinctlist: any) => {
-        console.log(distinctlist, "33333")
         this.distinctlist = distinctlist
       })
 
-      // if (this.aa == 1) {
-      //   this.quoteHandle();
-      // } else {
-      //   this.change(this.aa); 
-      // }
-
-      // this.comlen();
+      if (this.aa == 1) {
+        this.quoteHandle();
+        this.comlen();
+      }else{
+        this.change(this.aa);
+      }
 
       setInterval(() => {
         if (this.aa == 1) {
@@ -365,9 +363,9 @@ export class QuotationCenterComponent extends AppBase {
   screening() {
 
   }
- 
+  
   comlen() {
-   // return;
+    
     this.daibaolen = 0;
     this.yibaolen = 0;
     this.yihulen = 0;
@@ -399,6 +397,7 @@ export class QuotationCenterComponent extends AppBase {
             arr.push(item);
           }
         }
+
       }
 
       // this.daibaolen=this.daibaolen;
