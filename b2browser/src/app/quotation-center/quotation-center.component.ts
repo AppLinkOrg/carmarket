@@ -90,7 +90,7 @@ export class QuotationCenterComponent extends AppBase {
       //   this.change(this.aa); 
       // }
 
-      //this.comlen();
+      // this.comlen();
 
       setInterval(() => {
         if (this.aa == 1) {
@@ -374,15 +374,15 @@ export class QuotationCenterComponent extends AppBase {
     this.yishilen = 0;
     this.alllen = 0;
     var orderapi = this.orderApi; 
-  
-    orderapi.quotationlist({quoteper:this.employee_id }).then((ignore: any) => {
+    // quoteper:this.employee_id
+    orderapi.quotationlist({ }).then((ignore: any) => {
       var arr=[];
       for(let item of ignore){
 
-        if(item.quotestatus=='Q'){
+        if(item.quotestatus=='Q'&&item.quoteper==this.employee_id){
           this.daibaolen++
         }
-        if(item.quotestatus=='H'){
+        if(item.quotestatus=='H'&&item.quoteper==this.employee_id){
           this.yihulen++
         }
         if(item.quotestatus=='W'){
@@ -399,13 +399,12 @@ export class QuotationCenterComponent extends AppBase {
             arr.push(item);
           }
         }
-        
       }
 
-      this.daibaolen=this.daibaolen;
-      this.yihulen=this.yihulen;
-      this.yibaolen=this.yibaolen;
-      this.yishilen=this.yishilen;
+      // this.daibaolen=this.daibaolen;
+      // this.yihulen=this.yihulen;
+      // this.yibaolen=this.yibaolen;
+      // this.yishilen=this.yishilen;
       this.alllen=arr.length;
     })
 
