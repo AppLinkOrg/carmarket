@@ -27,7 +27,7 @@ class Content extends AppBase {
   onLoad(options) {
 
     this.Base.Page = this;
-     //options.id = 8;
+    //options.id = 3;
     super.onLoad(options);
     if(this.Base.options.fapiao=='Y'){
       var xuan = 'S';

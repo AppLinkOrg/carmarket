@@ -47,17 +47,26 @@ export class QuotationCenterComponent extends AppBase {
   enterprise_id_name = '';
   employee_id = '';
   employee_id_name = '';
-
+  aa = 1; 
+  distinct = []
+  daibaolen = 0;
+  yibaolen = 0;
+  yihulen = 0;
+  yishilen = 0;
+  alllen = 0;
+  photoshow = false;
+  imgs = [];
+  exp = true;
   onMyLoad() {
     this.params;
-    console.log(this.params, 'aaaaaaaaaaaaaaa')
+    
     if (this.params.aa != undefined) {
       this.aa = this.params.aa;
     }
 
   }
   onMyShow() {
-    console.log(this.aa, 'aaaaaaaaaaaa')
+   
     let oldtime = (new Date()).getTime() + 6 * 60 * 60 * 1000;
     window.localStorage.setItem('oldtime', oldtime.toString())
     var a = this.orderApi;
@@ -68,28 +77,28 @@ export class QuotationCenterComponent extends AppBase {
       this.employee_id = employeeinfo.id
       this.employee_id_name = employeeinfo.name
       this.enterprise_id_name = employeeinfo.enterprise.name
-
-      // this.quoteHandle();
+ 
 
       a.distinctlist({}).then((distinctlist: any) => {
         console.log(distinctlist, "33333")
         this.distinctlist = distinctlist
       })
 
-      if (this.aa == 1) {
-        this.quoteHandle();
-      } else {
-        this.change(this.aa);
-        
-      }
-      this.comlen();
+      // if (this.aa == 1) {
+      //   this.quoteHandle();
+      // } else {
+      //   this.change(this.aa); 
+      // }
+
+      //this.comlen();
 
       setInterval(() => {
         if (this.aa == 1) {
           this.quoteHandle();
           this.comlen();
+        }else{
+          this.change(this.aa); 
         }
-
       }, 3000);
 
     })
@@ -97,7 +106,7 @@ export class QuotationCenterComponent extends AppBase {
 
 
   }
-  aa = 1;
+
   change(e) {
     this.aa = e;
     // this.comlen();
@@ -114,6 +123,7 @@ export class QuotationCenterComponent extends AppBase {
     }
     
   }
+
   compare(pro) {
     return function (a, b) {
       return b[pro] - a[pro]
@@ -148,10 +158,7 @@ export class QuotationCenterComponent extends AppBase {
     }
     return true;
   }
-
-
-  distinct = []
-
+ 
   choose(e) {
 
     // this.distinct = []
@@ -287,8 +294,6 @@ export class QuotationCenterComponent extends AppBase {
   }
 
 
-  photoshow = false
-  imgs = []
   showPhoto(item) {
     console.log(item)
     this.imgs = []
@@ -330,10 +335,7 @@ export class QuotationCenterComponent extends AppBase {
     console.log(this.imgs, 'llll')
 
   }
-
-
-
-
+ 
   ignoreHandle(item) {
     this.list = [];
     console.log(item, '已忽略')
@@ -363,36 +365,33 @@ export class QuotationCenterComponent extends AppBase {
   screening() {
 
   }
-
-
-  daibaolen = 0;
-  yibaolen = 0;
-  yihulen = 0;
-  yishilen = 0;
-  alllen = 0;
+ 
   comlen() {
+   // return;
     this.daibaolen = 0;
     this.yibaolen = 0;
     this.yihulen = 0;
     this.yishilen = 0;
     this.alllen = 0;
-    var a = this.orderApi;
-    a.quotationlist({quoteper:this.employee_id,quotestatus:'Q'}).then((list:any)=>{
-      this.daibaolen=list.length;
-    })
-
-    this.orderApi.quotationlist({quoteper:this.employee_id, quotestatus:'H' }).then((ignore: any) => {
-      this.yihulen=ignore.length;
-    })
-    this.orderApi.quotationlist({quotestatus:'W' }).then((ignore: any) => {
-      this.yibaolen=ignore.length;
-    })
-    this.orderApi.quotationlist({ quotestatus:'S' }).then((ignore: any) => {
-      this.yishilen=ignore.length;
-    })
-    this.orderApi.quotationlist({ }).then((ignore: any) => {
+    var orderapi = this.orderApi; 
+  
+    orderapi.quotationlist({quoteper:this.employee_id }).then((ignore: any) => {
       var arr=[];
       for(let item of ignore){
+
+        if(item.quotestatus=='Q'){
+          this.daibaolen++
+        }
+        if(item.quotestatus=='H'){
+          this.yihulen++
+        }
+        if(item.quotestatus=='W'){
+          this.yibaolen++
+        }
+        if(item.quotestatus=='S'){
+          this.yishilen++
+        }
+        
         if(item.quoteper==this.employee_id){
           arr.push(item);
         }else {
@@ -402,9 +401,16 @@ export class QuotationCenterComponent extends AppBase {
         }
         
       }
+
+      this.daibaolen=this.daibaolen;
+      this.yihulen=this.yihulen;
+      this.yibaolen=this.yibaolen;
+      this.yishilen=this.yishilen;
       this.alllen=arr.length;
     })
+
   }
+
   // 待报价
   quoteHandle() {
     this.list = [];
@@ -412,7 +418,7 @@ export class QuotationCenterComponent extends AppBase {
     this.isquote = true;
     this.isshow = false;
     this.exp = true;
-   
+    
     var a = this.orderApi;
     a.quotationlist({quoteper:this.employee_id,quotestatus:'Q'}).then((list:any)=>{
       console.log(list,'lililili')
@@ -422,14 +428,9 @@ export class QuotationCenterComponent extends AppBase {
       }
       this.pagination(list,list.length);
     })
-
-
-
-
+  
   }
-
-
-
+ 
   // 已忽略
   neglected(type) {
     this.list = [];
@@ -459,7 +460,7 @@ export class QuotationCenterComponent extends AppBase {
 
   }
 
-  exp = true
+  
   // 已过期
   expired() {
 
@@ -469,9 +470,6 @@ export class QuotationCenterComponent extends AppBase {
     this.isshow = false
     this.exp = false;
  
-
-
-
     this.orderApi.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((list: any) => {
 
       for (let i = 0; i < list.length; i++) {
@@ -494,9 +492,7 @@ export class QuotationCenterComponent extends AppBase {
 
 
   }
-
-
-
+ 
   // 已报价
   quotedPrice() {
     this.list = [];
@@ -504,9 +500,7 @@ export class QuotationCenterComponent extends AppBase {
     this.isquote = false;
     this.isshow = false
     this.exp = true;
-
-
-
+ 
     this.orderApi.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((list: any) => {
       console.log(list, 'pppp')
 
@@ -586,10 +580,7 @@ export class QuotationCenterComponent extends AppBase {
           if(list[i].quotestatus=='W' || list[i].quotestatus=='S'){
             arr.push(list[i]);
           }
-        }
-
-        
-
+        } 
       }
       
       this.list=arr;

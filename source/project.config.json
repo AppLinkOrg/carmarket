@@ -344,6 +344,13 @@
 					"id": -1,
 					"name": "pages/jiaoyijilu/jiaoyijilu",
 					"pathName": "pages/jiaoyijilu/jiaoyijilu",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "提交订单",
+					"pathName": "pages/shopcar/shopcar",
 					"scene": null
 				}
 			]

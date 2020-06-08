@@ -27,7 +27,7 @@ class Content extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
-     //options.id = 11;
+     // options.id = 3;
     super.onLoad(options);
     this.Base.setMyData({
       //num: 0,
@@ -239,12 +239,15 @@ console.log(types,'来来来');
             receiveaddress: addressinfo.region + addressinfo.address, 
           }, (createorder) => {
             console.log(createorder);
-            that.Base.setMyData({ createorder: createorder})
-            // return
+              var res = createorder.return.slice(0,-1); 
+            //  var  al=res1.split(",");
+            console.log(res,'look');
+            // return;
             wx.redirectTo({
-              url: '/pages/waitpay/waitpay?id=' + that.Base.options.id + '&order_id=' + createorder.return
+              url: '/pages/waitpay/waitpay?id=' + that.Base.options.id + '&order_id=' + res
             })
-              // + '&json=' + JSON.stringify(arr)
+
+            // + '&json=' + JSON.stringify(arr)
           })
  
         }

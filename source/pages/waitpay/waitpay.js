@@ -35,20 +35,24 @@ class Content extends AppBase {
     var sumprice = 0;
     var orderapi = new OrderApi();
     var arr = [];
-    orderapi.detail({
-      quote_id: this.Base.options.id,
+     var all=this.Base.options.order_id;
+    // var all="3,4";
+    console.log(all,'订单id')
+   // return;
+   // var idlist=all.split(",");
+    orderapi.mylist({
+      // quote_id: 3,
       order_status: 'W',
-      id: this.Base.options.order_id
+      id: all
     }, (mylist) => {
-     
-      arr.push(mylist)
-      for (var i = 0; i < arr.length; i++) { 
-
-        sumprice += parseFloat(arr[i].totalamount)  ;
+      
+      for (var i = 0; i < mylist.length; i++) { 
+        sumprice += parseFloat(mylist[i].totalamount)  ;
       }
-      sumprice = sumprice.toFixed(2);
+
+       sumprice = sumprice.toFixed(2);
       this.Base.setMyData({
-        mylist: arr,
+        mylist: mylist,
         sumprice
       })
     })

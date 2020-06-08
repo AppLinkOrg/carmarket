@@ -110,6 +110,7 @@ class Content extends AppBase {
       mcid: mcid,
       search_key: search_key
     }, (groups) => {
+      console.log(groups,'搜索')
       var groupslist=[];
       var list = {
         label: search_key,
