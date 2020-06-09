@@ -557,7 +557,7 @@ export class QuotationCenterComponent extends AppBase {
   }
 
   selectPage(page) {
-    
+
     if (page < 1 || page > this.pages) return;
 
     if (page > 2) {
