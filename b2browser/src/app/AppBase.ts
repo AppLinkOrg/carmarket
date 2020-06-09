@@ -6,13 +6,13 @@ import { AppComponent } from "./app.component";
 import { ReturnStatement } from "@angular/compiler";
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
-import { OnInit, AfterViewInit,ElementRef} from '@angular/core';
+import { OnInit, OnDestroy,AfterViewInit,ElementRef} from '@angular/core';
 import { EnterpriseApi } from 'src/providers/enterprise.api'; 
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 declare let Wechat: any;
 
-export class AppBase implements OnInit {
+export class AppBase implements OnInit,OnDestroy {
     public needlogin = false;
     currentpage = "";
     platformname = "";
@@ -30,6 +30,8 @@ export class AppBase implements OnInit {
     public static Current: AppBase = null;
     public static myapp: AppComponent = null;
     public static UNICODE = "carmarkets";
+
+    public static interval=null;
 
     public statusBarStyle = "X";//{DARK}
     public uploadpath: string = ApiConfig.getUploadPath();
@@ -86,6 +88,10 @@ export class AppBase implements OnInit {
         //  this.statusBar.styleLightContent();
         
     }
+    ngOnDestroy(){
+
+    }
+    
     ngOnInit() {
         this.bfscrolltop = document.body.scrollTop;
         ApiConfig.SetUnicode(AppBase.UNICODE);

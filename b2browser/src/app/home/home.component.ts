@@ -111,7 +111,6 @@ export class HomeComponent extends AppBase {
             this.oread = 'N';
             this.ordernum = ret.order;
             // this.ordernum =  '加载中';
-            
           } else {
             this.oread = 'Y';
           }

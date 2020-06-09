@@ -11,7 +11,7 @@
             <!-- Nested Row within Card Body -->
             <div class="row">
               <div class="col-lg-6 d-none d-lg-block ">
-                  <img src="{{uploadpath}}resource/{{res.loginpic}}" class="loginpic" />
+                <img src="{{uploadpath}}resource/{{res.loginpic}}" class="loginpic" />
               </div>
               <div class="col-lg-6">
                 <div class="p-5">
@@ -22,29 +22,30 @@
                     <div class="form-group">
                       <i class="fas fa-fw fa-user faicon"></i>
                       <input type="text" class="form-control form-control-user" id="exampleInputEmail"
-                      (keyup)='clearPopover()'  [popover]='submitresult2' [isOpen]="isOpen" placement='bottom'
-                       name='loginname' [(ngModel)]="loginname" placeholder="请输入账户手机号" maxlength='11'>
+                        (keyup)='clearPopover()' [popover]='submitresult2' [isOpen]="isOpen" placement='bottom'
+                        name='loginname' [(ngModel)]="loginname" placeholder="请输入账户手机号" maxlength='11'>
                     </div>
                     <div class="form-group">
-                        <i class="fas fa-fw fa-unlock-alt faicon"></i>
+                      <i class="fas fa-fw fa-unlock-alt faicon"></i>
                       <input type="password" class="form-control form-control-user" id="exampleInputPassword"
-                        placeholder="输入密码" (keyup)='clearPopover()'
-                         triggers=""  [isOpen]="isOpen" [popover]='submitresult' placement='bottom'
-                          [(ngModel)]="password" name='password'>
+                        placeholder="输入密码" (keyup)='clearPopover()' triggers="" [isOpen]="isOpen"
+                        [popover]='submitresult' placement='bottom' [(ngModel)]="password" name='password'>
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck" [(ngModel)]='isremember'>
-                        <label class="custom-control-label" for="customCheck"  >自动记住账户与密码</label>
+                        <label class="custom-control-label" for="customCheck">自动记住账户与密码</label>
                         <span class="txt-red margin-left-30" (keyup)='clearPopover()'>{{error}}</span>
                       </div>
-                      
+
                     </div>
-                    <button  (click)='trylogin()' class="btn  btn-user btn-block" [class.btn-primary]='loginname!=""&&password!=""' [class.btn-secondary]='loginname==""||password==""' >
+                    <button (click)='trylogin()' class="btn  btn-user btn-block"
+                      [class.btn-primary]='loginname!=""&&password!=""'
+                      [class.btn-secondary]='loginname==""||password==""'>
                       登录
-                    </button >
+                    </button>
                   </div>
-                  
+
                 </div>
               </div>
 
@@ -59,7 +60,3 @@
 
   </div>
 </div>
-
-
-
-

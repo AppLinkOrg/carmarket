@@ -30,8 +30,8 @@ export class QuotationCenterComponent extends AppBase {
 
   length = null;
 
-  pageSize = null;
-  pages = null;
+  pageSize = 5;
+  pages = 1;
   newPage = null;
   pageList = [];
   selPage = 1;
@@ -47,57 +47,65 @@ export class QuotationCenterComponent extends AppBase {
   enterprise_id_name = '';
   employee_id = '';
   employee_id_name = '';
-  aa = 1; 
+  aa = 1;
   distinct = []
   daibaolen = 0;
   yibaolen = 0;
   yihulen = 0;
   yishilen = 0;
   alllen = 0;
+  check = "Q";
   photoshow = false;
   imgs = [];
   exp = true;
   onMyLoad() {
     this.params;
-    
+
     if (this.params.aa != undefined) {
       this.aa = this.params.aa;
     }
 
   }
+  ngOnDestroy(){
+    // alert('看看')
+    clearInterval(AppBase.interval);
+  }
   onMyShow() {
-   
+
     let oldtime = (new Date()).getTime() + 6 * 60 * 60 * 1000;
     window.localStorage.setItem('oldtime', oldtime.toString())
     var a = this.orderApi;
 
     this.enterpriseApi.employeeinfo({}).then((employeeinfo: any) => {
-      
+
       this.enterprise_id = employeeinfo.enterprise_id
       this.employee_id = employeeinfo.id
       this.employee_id_name = employeeinfo.name
       this.enterprise_id_name = employeeinfo.enterprise.name
- 
+
 
       a.distinctlist({}).then((distinctlist: any) => {
         this.distinctlist = distinctlist
       })
 
-      if (this.aa == 1) {
-        this.quoteHandle();
-        this.comlen();
-      }else{
-        this.change(this.aa);
-      }
 
-      setInterval(() => {
-        if (this.aa == 1) {
-          this.quoteHandle();
-          this.comlen();
-        }else{
-          this.change(this.aa); 
-        }
-      }, 3000);
+      this.quoteHandle("Q");
+      this.comlen();
+
+ 
+      console.log(AppBase.interval,'定时器');
+
+   
+        AppBase.interval=setInterval(() => { 
+          this.quoteHandle(this.check);
+          this.comlen(); 
+          console.log('定时器33');
+        }, 3000);
+      
+
+
+      console.log(AppBase.interval,'定时器22');
+
 
     })
 
@@ -105,21 +113,14 @@ export class QuotationCenterComponent extends AppBase {
 
   }
 
-  change(e) {
-    this.aa = e;
+   
+
+  change(type) {
+    this.check = type;
     // this.comlen();
-    if (e == 1) {
-      this.quoteHandle();
-    } else if (e == 2) {
-      this.neglected("W");
-    } else if (e == 3) {
-      this.neglected("H");
-    } else if (e == 4) {
-      this.neglected("S");
-    } else if (e == 5) {
-      this.allQuote()
-    }
-    
+
+    this.quoteHandle(type);
+
   }
 
   compare(pro) {
@@ -156,7 +157,7 @@ export class QuotationCenterComponent extends AppBase {
     }
     return true;
   }
- 
+
   choose(e) {
 
     // this.distinct = []
@@ -286,7 +287,7 @@ export class QuotationCenterComponent extends AppBase {
 
     this.length = temp.length
 
-    this.pagination(temp, this.length)
+    this.pagination()
     console.log(temp)
 
   }
@@ -333,7 +334,7 @@ export class QuotationCenterComponent extends AppBase {
     console.log(this.imgs, 'llll')
 
   }
- 
+
   ignoreHandle(item) {
     this.list = [];
     console.log(item, '已忽略')
@@ -346,12 +347,12 @@ export class QuotationCenterComponent extends AppBase {
     this.orderApi.editisread({ quote_id: item.id, enterprise_id: this.enterprise_id, employee_id: this.employee_id }).then((ret) => {
       console.log(ret, '改改了')
       if (ret) {
-        this.orderApi.addignore({id:item.id}).then((searchignore: any) => {
+        this.orderApi.addignore({ id: item.id }).then((searchignore: any) => {
 
-            this.change(3);
-            this.yihulen++;
+          this.change(3);
+          this.yihulen++;
 
-          
+
         })
       }
     })
@@ -363,228 +364,117 @@ export class QuotationCenterComponent extends AppBase {
   screening() {
 
   }
-  
-  comlen() {
-    
-    this.daibaolen = 0;
-    this.yibaolen = 0;
-    this.yihulen = 0;
-    this.yishilen = 0;
-    this.alllen = 0;
-    var orderapi = this.orderApi; 
-    // quoteper:this.employee_id
-    orderapi.quotationlist({ }).then((ignore: any) => {
-      var arr=[];
-      for(let item of ignore){
 
-        if(item.quotestatus=='Q'&&item.quoteper==this.employee_id){
-          this.daibaolen++
+  comlen() {
+
+    var daibaolen = 0;
+    var yibaolen = 0;
+    var yihulen = 0;
+    var yishilen = 0;
+    //var alllen = 0;
+    var orderapi = this.orderApi;
+
+    orderapi.quotationlist({}).then((ignore: any) => {
+      var arr = [];
+      for (let item of ignore) {
+
+        if (item.quotestatus == 'Q' && item.quoteper == this.employee_id) {
+          daibaolen++
         }
-        if(item.quotestatus=='H'&&item.quoteper==this.employee_id){
-          this.yihulen++
+        if (item.quotestatus == 'H' && item.quoteper == this.employee_id) {
+          yihulen++
         }
-        if(item.quotestatus=='W'){
-          this.yibaolen++
+        if (item.quotestatus == 'W') {
+          yibaolen++
         }
-        if(item.quotestatus=='S'){
-          this.yishilen++
+        if (item.quotestatus == 'S') {
+          yishilen++
         }
-        
-        if(item.quoteper==this.employee_id){
+
+        if (item.quoteper == this.employee_id) {
           arr.push(item);
-        }else {
-          if(item.quotestatus=='W' || item.quotestatus=='S'){
+        } else {
+          if (item.quotestatus == 'W' || item.quotestatus == 'S') {
             arr.push(item);
           }
         }
 
       }
 
-      // this.daibaolen=this.daibaolen;
-      // this.yihulen=this.yihulen;
-      // this.yibaolen=this.yibaolen;
-      // this.yishilen=this.yishilen;
-      this.alllen=arr.length;
+      this.daibaolen = daibaolen;
+      this.yihulen = yihulen;
+      this.yibaolen = yibaolen;
+      this.yishilen = yishilen;
+      this.alllen = arr.length;
     })
 
   }
 
-  // 待报价
-  quoteHandle() {
+  // 待报价 quoteHandle
+  quoteHandle(type) {
+
+    console.log(type, '选中的列表')
+    //return;
+
+    //dbj this.isquote = true; 
+    //ysx this.exp = false;
+    //qb  this.isshow = true;
+
+    var type = type;
+
     this.list = [];
-    this.pageList = [];
-    this.isquote = true;
-    this.isshow = false;
-    this.exp = true;
     
-    var a = this.orderApi;
-    a.quotationlist({quoteper:this.employee_id,quotestatus:'Q'}).then((list:any)=>{
-      console.log(list,'lililili')
-      this.list=list;
-      for (let i = 0; i < this.list.length; i++) {
-        this.list[i].index = i
-      }
-      this.pagination(list,list.length);
-    })
-  
-  }
+    // this.pageList = this.pageList;
+
+    // this.isshow = false;
+    // this.exp = true;
+    this.isshow = type == 'A' ? true : false;
+    this.isquote = type == 'Q' ? true : false;
+    this.exp = type == 'S' ? false : true;
  
-  // 已忽略
-  neglected(type) {
-    this.list = [];
-    this.pageList = [];
-    this.isshow = false
-    this.isquote = false;
-    this.exp = true;
-   
-    var type=type;
-    if(type=='H'){
-      var quoteper=this.employee_id;
-    }else {
-      var quoteper='';
+    //return;
+
+    var orderapi = this.orderApi;
+
+    if (type == 'H') {
+      var quoteper = this.employee_id;
+    } else {
+      var quoteper = '';
     }
-    this.orderApi.quotationlist({ quotestatus:type ,quoteper:quoteper}).then((ignore: any) => {
-      this.list = ignore;
-      this.length = ignore.length;
 
+    if (type == 'A') {
+      type = "";
+    }
+
+    orderapi.quotationlist({ quoteenterprise_id: this.enterprise_id, quotestatus: type, quoteper: quoteper }).then((list: any) => {
+      this.list = list;
+      console.log(this.list)
+
+      this.length = list.length;
 
       for (let i = 0; i < this.list.length; i++) {
+
+        if (list[i].quotestatus == 'Q') {
+          list[i].quotestatus_name = '待报价';
+        } else if (list[i].quotestatus == 'W') {
+          list[i].quotestatus_name = '已报价';
+        } else if (list[i].quotestatus == 'H') {
+          list[i].quotestatus_name = '已忽略';
+        } else if (list[i].quotestatus == 'S') {
+          list[i].quotestatus_name = '已失效';
+        }
+
         this.list[i].index = i
       }
 
-      this.pagination(this.list, this.length);
-
+      this.pagination();
     })
 
+     
+
   }
 
-  
-  // 已过期
-  expired() {
-
-    this.list = [];
-    this.pageList = [];
-    this.isquote = false;
-    this.isshow = false
-    this.exp = false;
  
-    this.orderApi.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((list: any) => {
-
-      for (let i = 0; i < list.length; i++) {
-
-        if (list[i].quotestatus == 'E' || list[i].invalid == '是') {
-          this.list.push(list[i])
-        }
-      }
-
-      for (let i = 0; i < this.list.length; i++) {
-
-        this.list[i].index = i
-
-      }
-
-      console.log(this.list, '888')
-      this.length = this.list.length
-      this.pagination(this.list, this.length);
-    });
-
-
-  }
- 
-  // 已报价
-  quotedPrice() {
-    this.list = [];
-    this.pageList = [];
-    this.isquote = false;
-    this.isshow = false
-    this.exp = true;
- 
-    this.orderApi.yiquotelist({ quoteenterprise_id: this.enterprise_id }).then((list: any) => {
-      console.log(list, 'pppp')
-
-      let date = new Date();
-      let year = date.getFullYear();
-      let month = date.getMonth() + 1;
-      let day = date.getDate();
-      let hh = date.getHours();
-      let mm = date.getMinutes();
-
-      let nowtime = year + '-' + month + '-' + day + " " + hh + ":" + mm
-
-      let shijian = date.getTime()
-
-      for (let i = 0; i < list.length; i++) {
-        if (list[i].invalid == '否' || list[i].quotestatus == 'C') {
-
-          let newDate = new Date(list[i].expired_time)
-          list[i].times = newDate.getTime()
-          if (list[i].times < shijian && list[i].quotestatus == "W") {
-
-            this.orderApi.editquotestatus({ quoteenterprise_id: this.enterprise_id, quotestatus: 'E', quote_id: list[i].quote_id }).then((editquotestatus: any) => {
-              // if(editquotestatus){ 
-              // }
-            })
-
-          }
-          if (list[i].quotestatus == "W" || list[i].quotestatus == "C") {
-
-            this.list.push(list[i])
-          }
-        }
-        //break;
-
-      }
-
-      for (let i = 0; i < this.list.length; i++) {
-        this.list[i].index = i
-      }
-
-      this.length = this.list.length
-      this.pagination(this.list, this.length);
-    });
-
-  }
-
-  // 全部
-  allQuote() {
-    console.log(event)
-    this.list = [];
-    this.pageList = [];
-    this.isquote = false;
-    this.isshow = true;
-    this.exp = true;
-
-
-    var a = this.orderApi
-
-    this.orderapi.quotationlist({}).then((list:any)=>{
-      console.log(list)
-      var arr=[];
-      for(var i=0;i<list.length;i++){
-        list[i].index=i;
-        if(list[i].quotestatus=='Q'){
-          list[i].quotestatus_name='待报价';
-        }else   if(list[i].quotestatus=='W'){
-         list[i].quotestatus_name='已报价';
-        }else   if(list[i].quotestatus=='H'){
-          list[i].quotestatus_name='已忽略';
-        }else   if(list[i].quotestatus=='S'){
-         list[i].quotestatus_name='已失效';
-        }
-
-        if(list[i].quoteper==this.employee_id){
-          arr.push(list[i]);
-        }else {
-          if(list[i].quotestatus=='W' || list[i].quotestatus=='S'){
-            arr.push(list[i]);
-          }
-        } 
-      }
-      
-      this.list=arr;
-      this.pagination(this.list,this.list.length);
-    })
-  }
 
   panduan(item, yiquote) {
     for (let yiitem of yiquote) {
@@ -598,7 +488,6 @@ export class QuotationCenterComponent extends AppBase {
     }
 
   }
-
 
 
   tiaozhuan(itemId, quote_id) {
@@ -636,26 +525,39 @@ export class QuotationCenterComponent extends AppBase {
 
   }
 
-  pagination(list, length) {
-    this.pageSize = 10;
-    // if()
-    this.pages = Math.ceil(length / this.pageSize)
+  pagination( ) {
+
+    var pagelist=[];
+    this.selPage=this.selPage;
+  
+    this.pages = Math.ceil(this.length / this.pageSize);
+    console.log(this.pages,'页数')
+
     this.newPage = this.pages > 5 ? 5 : this.pages;
-    this.selPage = 1;
+   // this.selPage = 1;
+
+    console.log(this.newPage,'新')
 
     this.setData = function () {
-      this.data = list.slice(this.pageSize * (this.selPage - 1), this.pageSize * this.selPage);
+      this.data = this.list.slice(this.pageSize * (this.selPage - 1), this.pageSize * this.selPage); 
     }
-    this.data = list.slice(0, this.pageSize);
 
+    this.data = this.list.slice(0, this.pageSize);
+     
 
     for (var i = 0; i < this.newPage; i++) {
-      this.pageList.push(i + 1);
+      pagelist.push(i + 1);
     }
+
+    this.pageList=pagelist;
+    
+    this.selectPage(this.selPage);
+    
 
   }
 
   selectPage(page) {
+    
     if (page < 1 || page > this.pages) return;
 
     if (page > 2) {

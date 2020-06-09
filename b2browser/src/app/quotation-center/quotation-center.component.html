@@ -15,20 +15,20 @@
         <div class="margin-bottom-20" role="group" aria-label="...">
 
           <button type="button"
-            class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{aa==1?'btn-active':''}}"
-            (click)='change(1)'>待报价 {{daibaolen}}</button>
+            class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{check=='Q'?'btn-active':''}}"
+            (click)='change("Q")'>待报价 {{daibaolen}}</button>
           <button type="button"
-            class="btn-default no-border border-tlb  padding-left-40 padding-right-40 txt-d-gray {{aa==2?'btn-active':''}}"
-            (click)='change(2)'>已报价 {{yibaolen}}</button>
+            class="btn-default no-border border-tlb  padding-left-40 padding-right-40 txt-d-gray {{check=='W'?'btn-active':''}}"
+            (click)='change("W")'>已报价 {{yibaolen}}</button>
           <button type="button"
-            class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{aa==3?'btn-active':''}}"
-            (click)='change(3)'>已忽略 {{yihulen}}</button>
+            class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{check=='H'?'btn-active':''}}"
+            (click)='change("H")'>已忽略 {{yihulen}}</button>
           <button type="button"
-            class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{aa==4?'btn-active':''}}"
-            (click)='change(4)'>已失效 {{yishilen}}</button>
+            class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{check=='S'?'btn-active':''}}"
+            (click)='change("S")'>已失效 {{yishilen}}</button>
           <button type="button"
-            class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{aa==5?'btn-active':''}}"
-            (click)='change(5)'>全部 {{alllen}}</button>
+            class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{check=='A'?'btn-active':''}}"
+            (click)='change("A")'>全部 {{alllen}}</button>
 
 
         </div>
@@ -234,7 +234,8 @@
             </tbody>
           </table>
         </div>
-        <div class="flex-row flex-column" *ngIf='pageList.length >1'>
+
+        <div class="flex-row flex-column" *ngIf='pages>1'>
           <ul class="pagination cursor-pointer">
             <li class="margin-10 padding-10">共{{length}}条</li>
             <li class="border-gray-1 margin-10 padding-10 cur-po" role='button' (click)="fristPage()">
@@ -265,6 +266,7 @@
             </li>
           </ul>
         </div>
+
       </div>
 
     </div>
