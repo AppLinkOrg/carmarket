@@ -302,6 +302,7 @@ class Content extends AppBase {
       } else {
         var price = shopcar[i].rateprice;
       }
+      
       var list = {
 
         enterprise_id: shopcar[i].enterprise_id,
@@ -321,6 +322,7 @@ class Content extends AppBase {
         sendcar_time: shopcar[i].sendcar_time,
         status: 'A'
       }
+
       this.carshoplist(list, i, shopcar.length);
 
     }

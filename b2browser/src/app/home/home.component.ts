@@ -51,39 +51,42 @@ export class HomeComponent extends AppBase {
   isread = 'Y'
   onMyShow() {
 
-    let oldtime = (new Date()).getTime() + 6*60*60*1000;
+    let oldtime = (new Date()).getTime() + 6 * 60 * 60 * 1000;
     window.localStorage.setItem('oldtime', oldtime.toString())
 
     this.activeRoute.queryParams.subscribe((aa) => {
-
+ 
+       
       this.update(aa);
-      this.getquot();
-      setInterval(() => {
-
-        this.update(aa);
         this.getquot();
 
+      if(AppBase.interval!=null){
+        clearInterval(AppBase.interval);
+      }
+     AppBase.interval=setInterval(() => { 
+        this.update(aa);
+          this.getquot(); 
       }, 2000);
-
-
 
     })
 
 
   }
 
-
+ 
+ 
   toggleSidebar() {
     console.log('jjjjjj')
     this.toggle = !this.toggle;
   }
+
 
   update(aa) {
 
     var that = this;
 
     this.enterpriseApi.employeeinfo({}).then((employeeinfo: any) => {
-      
+
 
       if (employeeinfo.enterprise_id == "0") {
         this.router.navigate(["login"]);
@@ -91,6 +94,8 @@ export class HomeComponent extends AppBase {
       }
       this.employee_id = employeeinfo.id;
       this.enterprise_id = employeeinfo.enterprise_id
+
+
       
       var a = this.orderapi;
       var arrs = [];
@@ -126,66 +131,27 @@ export class HomeComponent extends AppBase {
         }
       })
 
- 
+
     })
 
-    if (aa.result == 'yes') {
-      this.enterpriseApi.employeeinfo({}).then((employeeinfo: any) => {
- 
-        if (employeeinfo.enterprise_id == "0") {
-          this.router.navigate(["login"]);
-          return
-        }
-
-        this.enterprise_id = employeeinfo.enterprise_id
-        this.employee_id = employeeinfo.id
-
-        this.obj = employeeinfo
- 
-        var a = this.orderapi
-        var a = this.orderapi
-        var arrs = [];
-      
-
-        this.orderapi.orderisread({ enterprise_id: this.enterprise_id, employee_id: this.employee_id }).then((ret: any) => {
-          // console.log(ret, '订单')
-          if (ret) {
-            if (ret.quote > '0') {
-              this.isread = 'N';
-              this.quotereadnum = ret.quote;
-            } else {
-              this.isread = 'Y';
-            }
-
-            if (ret.order > '0') {
-              this.oread = 'N';
-              this.ordernum = ret.order;
-            } else {
-              this.oread = 'Y';
-            }
-
-            if (ret.return > '0') {
-              this.risread = 'N';
-              this.returnnum = ret.return;
-            } else {
-              this.risread = 'Y';
-            }
-
-          }
-        })
- 
-
-      })
-    }
+  
   }
+
+
+
+
+
+ 
+
+
   list = [];
   getquot() {
     this.list = [];
     var a = this.orderapi;
-    a.addquotation({}).then((list: any) => {
-   
+    a.addquotation({}).then((list: any) => { 
     })
   }
+
   ignore = [];
   getigro() {
     this.ignore = [];
@@ -220,9 +186,9 @@ export class HomeComponent extends AppBase {
       if (this.list[i].quotestatus == 'Q' || this.list[i].quotestatus == 'W') {
 
         if (this.notinignore(this.list[i], this.ignore)) {
-        
+
           if (this.notinignore4(this.list[i], this.quotion)) {
-           
+
             this.list[i].quote_id = this.list[i].id;
             this.list[i].quoteper = this.employee_id;
             this.list[i].quotecompan_id = this.enterprise_id;
@@ -264,10 +230,10 @@ export class HomeComponent extends AppBase {
 
   notinignore4(item, arr) {
     for (let yiitem of arr) {
-        if(yiitem.quote_id==item.id && yiitem.quotestatus=='W'){
-          return false
-        }
-      if (yiitem.quote_id =='0') {
+      if (yiitem.quote_id == item.id && yiitem.quotestatus == 'W') {
+        return false
+      }
+      if (yiitem.quote_id == '0') {
         return false
       }
 

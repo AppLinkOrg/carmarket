@@ -30,7 +30,7 @@ export class QuotationCenterComponent extends AppBase {
 
   length = null;
 
-  pageSize = 5;
+  pageSize = 10;
   pages = 1;
   newPage = null;
   pageList = [];
@@ -66,7 +66,7 @@ export class QuotationCenterComponent extends AppBase {
     }
 
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     // alert('看看')
     clearInterval(AppBase.interval);
   }
@@ -92,19 +92,22 @@ export class QuotationCenterComponent extends AppBase {
       this.quoteHandle("Q");
       this.comlen();
 
- 
-      console.log(AppBase.interval,'定时器');
 
-   
-        AppBase.interval=setInterval(() => { 
-          this.quoteHandle(this.check);
-          this.comlen(); 
-          console.log('定时器33');
-        }, 3000);
-      
+      console.log(AppBase.interval, '定时器');
+
+      if (AppBase.interval != null) {
+        clearInterval(AppBase.interval);
+      }
+
+      AppBase.interval = setInterval(() => {
+        this.quoteHandle(this.check);
+        this.comlen();
+        console.log('定时器33');
+      }, 3000);
 
 
-      console.log(AppBase.interval,'定时器22');
+
+      console.log(AppBase.interval, '定时器22');
 
 
     })
@@ -113,7 +116,7 @@ export class QuotationCenterComponent extends AppBase {
 
   }
 
-   
+
 
   change(type) {
     this.check = type;
@@ -423,7 +426,7 @@ export class QuotationCenterComponent extends AppBase {
     var type = type;
 
     this.list = [];
-    
+
     // this.pageList = this.pageList;
 
     // this.isshow = false;
@@ -431,7 +434,7 @@ export class QuotationCenterComponent extends AppBase {
     this.isshow = type == 'A' ? true : false;
     this.isquote = type == 'Q' ? true : false;
     this.exp = type == 'S' ? false : true;
- 
+
     //return;
 
     var orderapi = this.orderApi;
@@ -470,11 +473,11 @@ export class QuotationCenterComponent extends AppBase {
       this.pagination();
     })
 
-     
+
 
   }
 
- 
+
 
   panduan(item, yiquote) {
     for (let yiitem of yiquote) {
@@ -525,34 +528,34 @@ export class QuotationCenterComponent extends AppBase {
 
   }
 
-  pagination( ) {
+  pagination() {
 
-    var pagelist=[];
-    this.selPage=this.selPage;
-  
+    var pagelist = [];
+    this.selPage = this.selPage;
+
     this.pages = Math.ceil(this.length / this.pageSize);
-    console.log(this.pages,'页数')
+    console.log(this.pages, '页数')
 
     this.newPage = this.pages > 5 ? 5 : this.pages;
-   // this.selPage = 1;
+    // this.selPage = 1;
 
-    console.log(this.newPage,'新')
+    console.log(this.newPage, '新')
 
     this.setData = function () {
-      this.data = this.list.slice(this.pageSize * (this.selPage - 1), this.pageSize * this.selPage); 
+      this.data = this.list.slice(this.pageSize * (this.selPage - 1), this.pageSize * this.selPage);
     }
 
     this.data = this.list.slice(0, this.pageSize);
-     
+
 
     for (var i = 0; i < this.newPage; i++) {
       pagelist.push(i + 1);
     }
 
-    this.pageList=pagelist;
-    
+    this.pageList = pagelist;
+
     this.selectPage(this.selPage);
-    
+
 
   }
 

@@ -12,23 +12,23 @@
     <div class="card-body">
       <div class="margin-bottom-20 toggleBtns" role="group" aria-label="...">
         <button type="button"
-          class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==1?'btn-active ':''}}"
-          (click)='change(1)'>全部 {{alllen}}</button>
+          class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{type==''?'btn-active ':''}}"
+          (click)='change("A")'>全部 {{alllen}}</button>
         <button type="button"
-          class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==2?'btn-active ':''}}"
-          (click)='change(2)'>待发货 {{falen}}</button>
+          class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{type=='L'?'btn-active ':''}}"
+          (click)='change("L")'>待发货 {{falen}}</button>
         <button type="button"
-          class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==3?'btn-active ':''}}"
-          (click)='change(3)'>待收货 {{shoulen}}</button>
+          class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{type=='M'?'btn-active ':''}}"
+          (click)='change("M")'>待收货 {{shoulen}}</button>
         <button type="button"
-          class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==4?'btn-active ':''}}"
-          (click)='change(4)'>已完成 {{wanlen}}</button>
+          class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{type=='N'?'btn-active ':''}}"
+          (click)='change("N")'>已完成 {{wanlen}}</button>
         <button type="button"
-          class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{bb==5?'btn-active ':''}}"
-          (click)='change(5)'>已取消 {{qulen}}</button>
+          class="btn-default no-border border-tlb padding-left-40 padding-right-40 txt-d-gray {{type=='E'?'btn-active ':''}}"
+          (click)='change("E")'>已取消 {{qulen}}</button>
         <button type="button"
-          class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{bb==6?'btn-active ':''}}"
-          (click)='change(6)'>待付款 {{fulen}}</button>
+          class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 txt-d-gray {{type=='W'?'btn-active ':''}}"
+          (click)='change("W")'>待付款 {{fulen}}</button>
 
       </div>
       <!-- 全部 -->
@@ -43,7 +43,7 @@
               <th>下单员</th>
               <th>下单时间</th>
               <th>订单金额</th>
-              <th *ngIf='isshow'>订单状态</th>
+              <th>订单状态</th>
               <th>操作</th>
             </tr>
           </thead>
@@ -51,36 +51,42 @@
             <tr *ngFor='let item of data'>
               <td class="tab-mid">{{item.index+1}}</td>
               <td class="tab-mid">{{item.orderno}}</td>
-              <td class="tab-mid">{{item.baojiacom}}</td>
+              <!-- <td class="tab-mid">{{item.baojiacom}}</td> -->
+              <td class="tab-mid">{{item.enterprise_name}}</td>
               <td class="text-left">
                 <div *ngFor='let list of item.orderitem;let i=index'>
                   <div *ngIf='i<3'>{{list.parts}} x {{list.qty}} ({{list.mcid}})</div>
                 </div>
                 <div *ngIf='item.orderitem.length>3'>......</div>
               </td>
-              <td class="tab-mid">{{item.baojiaperson}}</td>
+              <!-- <td class="tab-mid">{{item.baojiaperson}}</td> -->
+              <td class="tab-mid">{{item.employee_name}}</td>
               <td class="tab-mid">{{item.order_time_formatting}}</td>
               <td class="tab-mid">{{item.totalamount}}</td>
-              <td class="tab-mid" *ngIf='isshow'>{{item.order_status_name}}</td>
+              <td class="tab-mid"  >{{item.order_status_name}}</td>
+
               <td class="tab-mid">
-                <div *ngIf='operation=="A"'>
+                <div *ngIf='type==""'>
                   <button class="btn btn-primary" (click)='detailStatus(item)'><a>查看详情</a></button><br>
                 </div>
-                <div *ngIf='operation=="W"'>
+                <div *ngIf='type=="E"||type=="W"'>
                   <button class="btn btn-primary" (click)='tiaozhuan5(item)'><a>查看详情</a></button><br>
                 </div>
-                <div *ngIf='operation=="R"'>
+                <div *ngIf='type=="L"'>
                   <button class="btn btn-primary" (click)='tiaozhuan(item)'><a>立即发货</a></button>
                 </div>
-                <div *ngIf='operation=="S"'>
+                <div *ngIf='type=="M"'>
                   <button class="btn btn-primary" (click)='tiaozhuan2(item)'><a>查看详情</a></button><br>
                   <span class="txt-orange">等待买家收货</span>
-                </div>
-                <div *ngIf='operation=="F"'>
+                </div> 
+                <div *ngIf='type=="N"'>
                   <button class="btn btn-primary" (click)='tiaozhuan3(item)'><a>查看详情</a></button><br>
                   <span class="txt-green">交易成功</span>
                 </div>
+  
               </td>
+
+
             </tr>
           </tbody>
         </table>
