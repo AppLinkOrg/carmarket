@@ -60,12 +60,13 @@ export class HomeComponent extends AppBase {
       this.update(aa);
         this.getquot();
 
-      if(AppBase.interval!=null){
-        clearInterval(AppBase.interval);
-      }
-     AppBase.interval=setInterval(() => { 
-        this.update(aa);
+      // if(AppBase.interval!=null){
+      //   clearInterval(AppBase.interval);
+      // }
+     AppBase.interval_all=setInterval(() => { 
+          this.update(aa);
           this.getquot(); 
+          console.log("有没有跑")
       }, 2000);
 
     })

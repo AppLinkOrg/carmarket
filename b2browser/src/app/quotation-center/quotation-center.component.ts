@@ -104,8 +104,7 @@ export class QuotationCenterComponent extends AppBase {
         this.comlen();
         console.log('定时器33');
       }, 3000);
-
-
+ 
 
       console.log(AppBase.interval, '定时器22');
 

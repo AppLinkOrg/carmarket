@@ -32,6 +32,7 @@ export class AppBase implements OnInit,OnDestroy {
     public static UNICODE = "carmarkets";
 
     public static interval=null;
+    public static interval_all=null;
 
     public statusBarStyle = "X";//{DARK}
     public uploadpath: string = ApiConfig.getUploadPath();
