@@ -121,9 +121,9 @@ export class HomeComponent extends AppBase {
             this.oread = 'Y';
           }
 
-          if (ret.return > '0') {
+          if (ret.returns > '0') {
             this.risread = 'N';
-            this.returnnum = ret.return;
+            this.returnnum = ret.returns;
             // this.returnnum = '加载中';
           } else {
             this.risread = 'Y';

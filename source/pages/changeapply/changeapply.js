@@ -225,7 +225,7 @@ class Content extends AppBase {
               // enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
               // employee_id: change.employee_id,
 
-              baojia: change.employee_id,
+              baojia: change.baojia,
               gongsi: change.enterprise_id,
 
               enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
