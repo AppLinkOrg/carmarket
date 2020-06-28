@@ -89,8 +89,9 @@
     <image src="{{uploadpath}}resource/{{res.wait}}" class="icon"></image>
     <view class="txt-white margin-left-20  " wx:if='{{yiwancheng.order_status=="L"}}'>订单已支付，商家准备发货。请耐心等待！</view>
     <view class="txt-white margin-left-20  " wx:if='{{yiwancheng.order_status=="M"}}'>商家已发货，物流配送中，请注意查收！</view>
-    <view class="txt-white margin-left-20  " wx:if='{{yiwancheng.order_status!="M" && yiwancheng.order_status!="L" && yiwancheng.order_status!="E"}}'>交易已完成</view>
+    <view class="txt-white margin-left-20  " wx:if='{{yiwancheng.order_status!="M" && yiwancheng.order_status!="L" && yiwancheng.order_status!="E" && yiquantuohuo==false}}'>交易已完成</view>
     <view class="txt-white margin-left-20  " wx:if='{{yiwancheng.order_status=="E"}}'>订单已取消</view>
+    <view class="txt-white margin-left-20  " wx:if='{{yiquantuohuo==true}}'>订单已退货</view>
   </view>
   <view style="height:20rpx;"></view>
 </view>
@@ -164,7 +165,7 @@
     <view class="h5" style="width:200rpx;">发票:</view>
     <view class="h5 flex-1">{{yiwancheng.needinvoice_value=='Y'?'有':'无'}}</view>
   </view>
- 
+
   <view class="flex-row flex-center margin-top-20" style=" ">
     <view class="h5" style="width:200rpx;">创建时间：</view>
     <view class="h5">{{yiwancheng.order_time}}</view>
@@ -174,15 +175,15 @@
     <view class="h5" style="width:200rpx;">备注:</view>
     <view class="h5 flex-1">{{yiwancheng.remarks}}</view>
   </view>
- 
+
 </view>
- 
- 
+
+
 <view style="height:150rpx"></view>
 
 <view class='bott margin-top-20 margin-bottom-20'></view>
-<view class='flex-row margin-top weizhi' wx:if='{{yiwancheng.order_status!="L" && yiwancheng.order_status!="M" && yiwancheng.order_status!="E"}}'> 
-    <view class=' padding-top-10 h5 txt-white text-center btn0ne' > 如果商品存在质量问题可申请退换，但是原厂的产品恕不退换 
+<view class='flex-row margin-top weizhi' wx:if='{{nottui==false && yiquantuohuo==false && yiwancheng.order_status!="L" && yiwancheng.order_status!="M" && yiwancheng.order_status!="E"}}'>
+  <view class=' padding-top-10 h5 txt-white text-center btn0ne'> 如果商品存在质量问题可申请退换，但是原厂的产品恕不退换
   </view>
   <view class='btnTwo txt-white text-center' wx:if='{{yiwancheng.order_status=="N" || weiquantuohuo==false}}' bindtap='bindapply' id="{{yiwancheng.id}}">申请退换</view>
   <view class='btnTwoS txt-white text-center' wx:if='{{yiwancheng.order_status=="I" && yiquantuohuo==true}}' id="{{yiwancheng.id}}">退货中</view>

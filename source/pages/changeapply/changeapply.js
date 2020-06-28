@@ -78,7 +78,26 @@ class Content extends AppBase {
         })
         console.log(lijian)
          
-        
+        if(change.orderitem.length==0){
+          wx.showModal({
+            title: '退货提示',
+            content: '此订单已全部退换',
+            confirmText:'查看',
+            cancelText:'返回',
+            success:function(res){
+              console.log(res);
+              if(res.confirm){
+                wx.navigateTo({
+                  url: '/pages/changedetail/changedetail?id=' + returndetail[0].id,
+                })
+              }else {
+                wx.switchTab({
+                  url: '/pages/order/order',
+                })
+              }
+            }
+          })
+        }
         this.Base.setMyData({ change})
 
 

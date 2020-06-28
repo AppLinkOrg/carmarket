@@ -183,7 +183,8 @@ export class QuotationDetailsComponent extends AppBase {
 
   checkkong(josn) {
     for (let key in josn) {
-      if (josn[key] == ''&&josn[key] !=0) {
+      // if (josn[key] == ''&&josn[key] !=0) {
+        if ( josn['quality'] == '' || josn['standby_time'] == '' || josn['guarantee'] == '' || josn['price'] == '' || josn['sendcar_time'] == '') {
         console.log(key, josn[key], '333')
         return false
       }
@@ -352,7 +353,7 @@ export class QuotationDetailsComponent extends AppBase {
       pinzhi: item.pinzhi
     }
 
-    console.log(addList,'临时列表')
+    console.log(addList,'临时列表');
 
      
     if (!(this.checkkong(addList))) {

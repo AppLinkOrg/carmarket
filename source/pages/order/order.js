@@ -246,7 +246,41 @@ class Content extends AppBase {
       url: '/pages/obligations/obligations?id=' + id
     })
   }
+  bindquxiao2(e){
+    var that = this;
+    var orderapi = new OrderApi();
+    var daifukuan = this.Base.getMyData().daifukuan;
+    var id = e.currentTarget.id;
+   
 
+      wx.showModal({
+        title: '取消订单',
+        content: '确认取消订单？',
+        showCancel: true,
+        cancelText: '取消',
+        cancelColor: '#EE2222',
+        confirmText: '确定',
+        confirmColor: '#2699EC',
+        success: function (res) {
+          if (res.confirm) {
+
+
+                orderapi.updatestatus({
+                  id: e.currentTarget.id,
+                  order_status: "E"
+                }, (updatestatus) => {
+                  that.onMyShow();
+                })
+
+          }
+        }
+      })
+
+
+    }
+  watchwuliu(e){
+    var id = e.currentTarget.id;
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -264,5 +298,7 @@ body.bindtobuy = content.bindtobuy;
 body.bindsend = content.bindsend;
 body.bindsuccess = content.bindsuccess;
 body.bindapply = content.bindapply;
-body.gettime=content.gettime;
+body.gettime = content.gettime;
+body.bindquxiao2 = content.bindquxiao2;
+body.watchwuliu = content.watchwuliu;
 Page(body)

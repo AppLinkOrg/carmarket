@@ -124,7 +124,7 @@ export class OrderManagementComponent extends AppBase {
 
     var orderapi = this.orderApi;
 
-    orderapi.mylist({ enterprise_id: this.enterprise_id, baojia: this.employee_id }).then((mylist: any) => {
+    orderapi.mylist({ enterprise_id: this.enterprise_id, baojia: this.employee_id ,orderby:'r_main.orderno desc'}).then((mylist: any) => {
       var arr = [];
       for (let item of mylist) {
         alllen++
@@ -192,7 +192,7 @@ export class OrderManagementComponent extends AppBase {
       this.type = "";
     }
 
-    orderapi.mylist({ enterprise_id: this.enterprise_id, baojia: this.employee_id, order_status: this.type }).then((mylist: any) => {
+    orderapi.mylist({ enterprise_id: this.enterprise_id, baojia: this.employee_id, order_status: this.type ,orderby:'r_main.orderno desc'}).then((mylist: any) => {
       this.list = mylist;
 
       console.log(this.list, '看看这个订单列表')
@@ -379,7 +379,13 @@ export class OrderManagementComponent extends AppBase {
 
   selectPage(page) {
     if (page < 1 || page > this.pages) return;
-
+    if(page==2){
+      var newpageList = [];
+      for (var i = (page - 2); i < ((page + 3) > this.pages ? this.pages : (page + 3)); i++) {
+          newpageList.push(i + 1);
+      }
+      this.pageList = newpageList;
+  }
     if (page > 2) {
       var newpageList = [];
       for (var i = (page - 3); i < ((page + 2) > this.pages ? this.pages : (page + 2)); i++) {

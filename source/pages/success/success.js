@@ -25,7 +25,8 @@ class Content extends AppBase {
     var that = this;
     var instapi = new InstApi();
     var orderapi = new OrderApi();
- 
+    var today = (new Date()).getTime();
+
     orderapi.detail({
       id: this.Base.options.id,
      // id: 1,
@@ -33,6 +34,14 @@ class Content extends AppBase {
       // this.Base.setMyData({
       //   yiwancheng, orderlijian: yiwancheng.orderitem
       // });
+      var fintime = new Date(yiwancheng.order_time).getTime();
+      if (yiwancheng.order_status == 'N' && today - fintime>90*24*60*60*1000){
+        var nottui = true;
+      }else {
+        var nottui = false;
+      }
+      this.Base.setMyData({ nottui});
+      
       this.getreturn(yiwancheng.orderitem, yiwancheng);
     });
   }
@@ -42,6 +51,8 @@ class Content extends AppBase {
     console.log(orderlijian,'orderlijian');
     // var yiwancheng=this.Base.getMyData().yiwancheng;
     var lijian = [];
+    var yiquantuohuo = false;
+    var weiquantuohuo = false;
     orderapi.returnlist({ order_id: this.Base.options.id }, (returndetail)=>{
       console.log(returndetail,'getreturn');
       if (returndetail.length>0){
@@ -53,11 +64,11 @@ class Content extends AppBase {
 
         })
        
-        if (orderlijian.length == lijian.length) {
-          var yiquantuohuo = true;
+        if (orderlijian.length <= lijian.length) {
+          yiquantuohuo = true;
         }
         if (orderlijian.length > lijian.length) {
-          var weiquantuohuo = false;
+          weiquantuohuo = false;
         
         }
         if(lijian.length>0){
@@ -76,7 +87,8 @@ class Content extends AppBase {
       }else {
         this.Base.setMyData({
           weiquantuohuo:false,
-          yiwancheng
+          yiwancheng,
+          yiquantuohuo
         })
       }
       

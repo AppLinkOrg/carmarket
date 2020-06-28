@@ -561,6 +561,13 @@ export class QuotationCenterComponent extends AppBase {
   selectPage(page) {
 
     if (page < 1 || page > this.pages) return;
+    if(page==2){
+        var newpageList = [];
+        for (var i = (page - 2); i < ((page + 3) > this.pages ? this.pages : (page + 3)); i++) {
+            newpageList.push(i + 1);
+        }
+        this.pageList = newpageList;
+    }
 
     if (page > 2) {
       var newpageList = [];
