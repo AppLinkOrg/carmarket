@@ -72,7 +72,7 @@ export class AchievementComponent extends AppBase  {
       this.allenterprise = allenterprise;
       // for(var i=0;i<allenterprise.length;i++){
         
-        this.orderApi.mylist({  enterprise_id:this.params.enterprise_id}).then((order:any)=>{
+        this.orderApi.mylist({  enterprise_id:this.params.enterprise_id,orderby:'r_main.orderno desc'}).then((order:any)=>{
           console.log(order,'order');
 
           

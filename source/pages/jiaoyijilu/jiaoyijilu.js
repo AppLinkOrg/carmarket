@@ -45,21 +45,21 @@ class Content extends AppBase {
       for (var i = 0; i < templist.length;i++){
         templist[i].consume_time1 = that.changedate(templist[i].consume_time);
         templist[i].consume_time2 = that.changetime(templist[i].consume_time);
-        if(seq==1){
-          if (templist[i].type == 'G') {
-            ss.push(templist[i]);
-          }
-        }else if(seq==2){
-          if (templist[i].type == 'R') {
-            ss.push(templist[i]);
-          }
-        }else {
-          ss.push(templist[i]);
-        }
+        // if(seq==1){
+        //   if (templist[i].type == 'G') {
+        //     ss.push(templist[i]);
+        //   }
+        // }else if(seq==2){
+        //   if (templist[i].type == 'R') {
+        //     ss.push(templist[i]);
+        //   }
+        // }else {
+        //   ss.push(templist[i]);
+        // }
         
       }
       this.Base.setMyData({
-        list:ss, templist
+        list: templist, templist
       });
     });
   }

@@ -198,61 +198,108 @@ console.log(types,'来来来');
       })
       return;
     }
- 
-    wx.showModal({
-      title: '提交',
-      content: '确认提交订单？',
-      showCancel: true,
-      cancelText: '取消',
-      cancelColor: '#EE2222',
-      confirmText: '确定',
-      confirmColor: '#2699EC',
-      success: function (res) {
-        if (res.confirm) {
 
-        //  var employee_id= that.Base.getMyData().employeeinfo.id,
-        //    gongsi =  that.Base.getMyData().employeeinfo.id,
-        //    vin =  that.Base.options.vin,
-        //    carname =  that.Base.options.carmodel,
-        //    quote_id =  that.Base.options.id,
-        //    receiver =  addressinfo.name,
-        //    needinvoice =  needinvoice,
-        //    receivecontact =  addressinfo.phonenumber,
-        //    receiveaddress =  addressinfo.region + addressinfo.address;
+    orderapi.mylist({ quote_id: that.Base.options.id},(ret)=>{
+      if (ret.length>0){
+        console.log(ret.length);
+        wx.showModal({
+          title: '提交',
+          content: '订单中已有此报价，是否继续提交？',
+          cancelText:'否',
+          confirmText:'是',
+          success:function(res){
+            console.log(res)
+            if(res.confirm){
+              orderapi.createorder({
+                employee_id: that.Base.getMyData().employeeinfo.id,
+                gongsi: that.Base.getMyData().employeeinfo.id,
+                vin: that.Base.options.vin,
+                // vin: '123456',
+                carname: that.Base.options.carmodel,
+                // carname: '看六角恐龙',
+                quote_id: that.Base.options.id,
+                receiver: addressinfo.name,
+                needinvoice: needinvoice,
+                receivecontact: addressinfo.phonenumber,
+                receiveaddress: addressinfo.region + addressinfo.address,
+              }, (createorder) => {
+                console.log(createorder);
+                var res = createorder.return.slice(0, -1);
+                //  var  al=res1.split(",");
+                console.log(res, 'look');
+                // return;
+                wx.redirectTo({
+                  url: '/pages/waitpay/waitpay?id=' + that.Base.options.id + '&order_id=' + res
+                })
 
-          //  console.log(
-          //    employee_id, '/', gongsi, '/', vin, '/', carname, '/', quote_id, '/', receiver, '/', needinvoice, '/', receivecontact, '/', receiveaddress
+                // + '&json=' + JSON.stringify(arr)
+              })
+            }else {
+              wx.redirectTo({
+                url: '/pages/waitpay/waitpay?id=' + that.Base.options.id + '&order_id=' + ret[0].id
+              })
+            }
+          }
+        })
+      }else{
+        wx.showModal({
+          title: '提交',
+          content: '确认提交订单？',
+          showCancel: true,
+          cancelText: '取消',
+          cancelColor: '#EE2222',
+          confirmText: '确定',
+          confirmColor: '#2699EC',
+          success: function (res) {
+            if (res.confirm) {
 
-          //  ) 
+              //  var employee_id= that.Base.getMyData().employeeinfo.id,
+              //    gongsi =  that.Base.getMyData().employeeinfo.id,
+              //    vin =  that.Base.options.vin,
+              //    carname =  that.Base.options.carmodel,
+              //    quote_id =  that.Base.options.id,
+              //    receiver =  addressinfo.name,
+              //    needinvoice =  needinvoice,
+              //    receivecontact =  addressinfo.phonenumber,
+              //    receiveaddress =  addressinfo.region + addressinfo.address;
 
-          orderapi.createorder({
-            employee_id: that.Base.getMyData().employeeinfo.id, 
-            gongsi: that.Base.getMyData().employeeinfo.id, 
-            vin: that.Base.options.vin,
-            // vin: '123456',
-            carname: that.Base.options.carmodel,
-            // carname: '看六角恐龙',
-            quote_id: that.Base.options.id,
-            receiver: addressinfo.name,
-            needinvoice: needinvoice,
-            receivecontact: addressinfo.phonenumber,
-            receiveaddress: addressinfo.region + addressinfo.address, 
-          }, (createorder) => {
-            console.log(createorder);
-              var res = createorder.return.slice(0,-1); 
-            //  var  al=res1.split(",");
-            console.log(res,'look');
-            // return;
-            wx.redirectTo({
-              url: '/pages/waitpay/waitpay?id=' + that.Base.options.id + '&order_id=' + res
-            })
+              //  console.log(
+              //    employee_id, '/', gongsi, '/', vin, '/', carname, '/', quote_id, '/', receiver, '/', needinvoice, '/', receivecontact, '/', receiveaddress
 
-            // + '&json=' + JSON.stringify(arr)
-          })
- 
-        }
+              //  ) 
+
+              orderapi.createorder({
+                employee_id: that.Base.getMyData().employeeinfo.id,
+                gongsi: that.Base.getMyData().employeeinfo.id,
+                vin: that.Base.options.vin,
+                // vin: '123456',
+                carname: that.Base.options.carmodel,
+                // carname: '看六角恐龙',
+                quote_id: that.Base.options.id,
+                receiver: addressinfo.name,
+                needinvoice: needinvoice,
+                receivecontact: addressinfo.phonenumber,
+                receiveaddress: addressinfo.region + addressinfo.address,
+              }, (createorder) => {
+                console.log(createorder);
+                var res = createorder.return.slice(0, -1);
+                //  var  al=res1.split(",");
+                console.log(res, 'look');
+                // return;
+                wx.redirectTo({
+                  url: '/pages/waitpay/waitpay?id=' + that.Base.options.id + '&order_id=' + res
+                })
+
+                // + '&json=' + JSON.stringify(arr)
+              })
+
+            }
+          }
+        })
       }
     })
+ 
+  
 
   }
 

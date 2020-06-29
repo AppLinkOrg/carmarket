@@ -288,10 +288,9 @@ export class QuotationCenterComponent extends AppBase {
     console.log(temp, '6666')
 
     this.length = temp.length
-
-    this.pagination()
-    console.log(temp)
-
+    this.list= temp;
+    this.pagination();
+    console.log(temp);
   }
 
 

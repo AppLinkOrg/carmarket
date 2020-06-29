@@ -350,36 +350,23 @@
                                                 <td class="text-center">
                                                     <div>{{item.Sprice}}</div>
                                                 </td>
-                                                <!-- <td class="text-center">
-                                            <div *ngIf='item.pinzhi!=""'>{{item.pinzhi}}</div>
-                                            <div *ngIf='item.pinzhi==""'>无</div>
-                                        </td> -->
+                                                
                                                 <td>
-                                                    <!-- <div class="table-box">{{item.quality}}</div> -->
+                                                   
                                                     <input type="text" class="table-box" [(ngModel)]='item.quality'>
-                                                    <!-- <ng-template *ngIf='count>1==true'>
-                                                {{item.quality}}
-                                            </ng-template> -->
+                                                   
                                                 </td>
                                                 <td>
-                                                    <!-- <div class="table-box">{{item.standby_time}}</div> -->
                                                     <input type="text" class="table-box"
                                                         [(ngModel)]='item.standby_time'>
                                                 </td>
                                                 <td>
-                                                    <!-- <div class="table-box">{{item.guarantee}}</div> -->
                                                     <input type="text" class="table-box" [(ngModel)]='item.guarantee'>
                                                 </td>
                                                 <td>
-                                                    <!-- <div class="table-box">{{item.price}}</div> -->
                                                     <input type="number" class="table-box" [(ngModel)]='item.price'>
                                                 </td>
-                                                <!-- <td> -->
-                                                <!-- <div >{{item.rateprice}}</div> -->
-                                                <!-- <input type="number" class="table-box" [(ngModel)]='item.price'> -->
-                                                <!-- </td> -->
                                                 <td>
-                                                    <!-- <div class="table-box">{{item.remarks_infor}}</div> -->
                                                     <input type="text" class="table-box"
                                                         [(ngModel)]='item.sendcar_time'>
                                                 </td>
@@ -396,14 +383,12 @@
                                                 <tr class="text-center" *ngFor='let list of item.quoteitems'>
                                                     <td>{{list.quantity}}</td>
                                                     <td>{{list.Sprice}}</td>
-                                                    <!-- <td>{{list.pinzhi}}</td> -->
                                                     <td>{{list.quality}}</td>
                                                     <td>{{list.standby_time}}</td>
                                                     <td>{{list.guarantee}}</td>
                                                     <td>
                                                         <div>{{list.price}}</div>
                                                     </td>
-                                                    <!-- <td><div >{{list.rateprice}}</div></td> -->
                                                     <td>{{list.sendcar_time}}</td>
                                                     <td class="text-center">
                                                         <div style='min-width: 86px'>

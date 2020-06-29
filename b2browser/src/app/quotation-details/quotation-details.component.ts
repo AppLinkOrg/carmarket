@@ -469,7 +469,10 @@ export class QuotationDetailsComponent extends AppBase {
         rate: this.rate,
         pinzhi: item.pinzhi
       }
-      this.jsonlist.push(addList);
+      if(addList.price!="" && addList.price!='0'){
+        this.jsonlist.push(addList);
+      }
+ 
 
     }
 

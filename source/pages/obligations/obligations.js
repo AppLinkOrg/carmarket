@@ -88,7 +88,7 @@ class Content extends AppBase {
               type: 'G',
               order_id: detail.id,
               enterprise_id2: detail.enterprise_id,
-              employee_id2: detail.employee_id,
+              employee_id2: detail.baojia,
               type2: 'S'
             }
 
