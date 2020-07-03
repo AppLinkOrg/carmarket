@@ -5,12 +5,14 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { InstApi } from 'src/providers/inst.api';
 import { OrderApi } from 'src/providers/order.api';
 import { EnterpriseApi } from 'src/providers/enterprise.api';
+import { CarApi } from 'src/providers/car.api';
+
 
 @Component({
   selector: 'app-send-goods-detail',
   templateUrl: './send-goods-detail.component.html',
   styleUrls: ['./send-goods-detail.component.scss'],
-  providers:[InstApi,OrderApi,EnterpriseApi]
+  providers:[InstApi,OrderApi,EnterpriseApi,CarApi]
 })
 export class SendGoodsDetailComponent extends AppBase  {
 
@@ -20,6 +22,7 @@ export class SendGoodsDetailComponent extends AppBase  {
     public instApi:InstApi,
     public orderApi: OrderApi,
     public enterpriseApi: EnterpriseApi,
+    public carApi: CarApi,
   ) { 
     super(router,activeRoute,instApi,orderApi,enterpriseApi);
   }
@@ -27,7 +30,7 @@ export class SendGoodsDetailComponent extends AppBase  {
   id = '';
   list = null;
   orderItem = [];
-
+  companylist=[];
   onMyShow(){
     
     let oldtime = (new Date()).getTime() +  6*60*60*1000;
@@ -61,9 +64,13 @@ export class SendGoodsDetailComponent extends AppBase  {
       })
 
     })
-   
+   this.carApi.companylist({}).then((companylist:any)=>{
+     this.companylist=companylist.data;
+     console.log(this.companylist);
+   })
 
   }
+  companyCode='';
   ifquxiao(){
     this.orderApi.detail({ id: this.id }).then((detailList:any)=>{
 
@@ -72,13 +79,19 @@ export class SendGoodsDetailComponent extends AppBase  {
       }
     })
   }
-  quxiao=false
+  quxiao=false;
+  xuanze=false;
   changeStatus(){
 
+    if(this.companyCode==''){
+      this.xuanze=true;
+      return
+    }
 
+    return
       this.list.order_status = "M"
       this.orderApi.updatestatus({id: this.list.id, order_status: this.list.order_status, status: 'A'}).then((updatestatus:any)=>{
-     
+      
         if(updatestatus.code == 0){
           this.router.navigate(['receiveGoodsDetail'],{ queryParams: { id: this.id ,aa:3}});
         }

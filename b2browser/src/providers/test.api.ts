@@ -9,8 +9,8 @@ export class TestApi {
     }
 
 
-    public generatertc(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'test/generatertc';
+    public test(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'test/test';
         var headers = ApiConfig.GetHeader(url, data);
         let options = { headers: headers };
         let body = ApiConfig.ParamUrlencoded(data);
@@ -26,7 +26,7 @@ export class TestApi {
             })
             .catch(err => {
                 console.error(err);
-                return ApiConfig.ErrorHandle('test/generatertc', data, err);
+                return ApiConfig.ErrorHandle('test/test', data, err);
             });
     }
 

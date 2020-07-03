@@ -9,8 +9,8 @@ export class EnterpriseApi {
     }
 
 
-    public employeeinfo(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'enterprise/employeeinfo';
+    public addtixian(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'enterprise/addtixian';
         var headers = ApiConfig.GetHeader(url, data);
         let options = { headers: headers };
         let body = ApiConfig.ParamUrlencoded(data);
@@ -26,9 +26,10 @@ export class EnterpriseApi {
             })
             .catch(err => {
                 console.error(err);
-                return ApiConfig.ErrorHandle('enterprise/employeeinfo', data, err);
+                return ApiConfig.ErrorHandle('enterprise/addtixian', data, err);
             });
     }
+
 
     public allenterprise(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'enterprise/allenterprise';
@@ -51,8 +52,9 @@ export class EnterpriseApi {
             });
     }
 
-    public enterpriseinfo(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'enterprise/enterpriseinfo';
+
+    public employeeinfo(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'enterprise/employeeinfo';
         var headers = ApiConfig.GetHeader(url, data);
         let options = { headers: headers };
         let body = ApiConfig.ParamUrlencoded(data);
@@ -68,52 +70,9 @@ export class EnterpriseApi {
             })
             .catch(err => {
                 console.error(err);
-                return ApiConfig.ErrorHandle('enterprise/enterpriseinfo', data, err);
+                return ApiConfig.ErrorHandle('enterprise/employeeinfo', data, err);
             });
     }
-
-    public applymoney(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'enterprise/applymoney';
-        var headers = ApiConfig.GetHeader(url, data);
-        let options = { headers: headers };
-        let body = ApiConfig.ParamUrlencoded(data);
-        let loading = null;
-
-        if (showLoadingModal) {
-            loading = ApiConfig.GetLoadingModal();
-        }
-
-        return this.http.post(url, body, options).toPromise()
-            .then((res) => {
-                return res;
-            })
-            .catch(err => {
-                console.error(err);
-                return ApiConfig.ErrorHandle('enterprise/applymoney', data, err);
-            });
-    }
-
-    public updatepower(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'enterprise/updatepower';
-        var headers = ApiConfig.GetHeader(url, data);
-        let options = { headers: headers };
-        let body = ApiConfig.ParamUrlencoded(data);
-        let loading = null;
-
-        if (showLoadingModal) {
-            loading = ApiConfig.GetLoadingModal();
-        }
-
-        return this.http.post(url, body, options).toPromise()
-            .then((res) => {
-                return res;
-            })
-            .catch(err => {
-                console.error(err);
-                return ApiConfig.ErrorHandle('enterprise/updatepower', data, err);
-            });
-    }
-
 
 
     public employeelogin(data, showLoadingModal: boolean = true) {
@@ -137,6 +96,29 @@ export class EnterpriseApi {
             });
     }
 
+
+    public enterpriseinfo(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'enterprise/enterpriseinfo';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('enterprise/enterpriseinfo', data, err);
+            });
+    }
+
+
     public getemployeeinfo(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'enterprise/getemployeeinfo';
         var headers = ApiConfig.GetHeader(url, data);
@@ -158,8 +140,9 @@ export class EnterpriseApi {
             });
     }
 
-    public addtixian(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'enterprise/addtixian';
+
+    public updatepower(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'enterprise/updatepower';
         var headers = ApiConfig.GetHeader(url, data);
         let options = { headers: headers };
         let body = ApiConfig.ParamUrlencoded(data);
@@ -175,7 +158,7 @@ export class EnterpriseApi {
             })
             .catch(err => {
                 console.error(err);
-                return ApiConfig.ErrorHandle('enterprise/addtixian', data, err);
+                return ApiConfig.ErrorHandle('enterprise/updatepower', data, err);
             });
     }
 

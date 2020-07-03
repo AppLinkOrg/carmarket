@@ -75,8 +75,8 @@ export class CarApi {
     }
 
 
-    public groups(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'car/groups';
+    public logistics(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'car/logistics';
         var headers = ApiConfig.GetHeader(url, data);
         let options = { headers: headers };
         let body = ApiConfig.ParamUrlencoded(data);
@@ -92,7 +92,7 @@ export class CarApi {
             })
             .catch(err => {
                 console.error(err);
-                return ApiConfig.ErrorHandle('car/groups', data, err);
+                return ApiConfig.ErrorHandle('car/logistics', data, err);
             });
     }
 
@@ -119,6 +119,28 @@ export class CarApi {
     }
 
 
+    public pinzhilist(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'car/pinzhilist';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('car/pinzhilist', data, err);
+            });
+    }
+
+
     public searchhistory(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'car/searchhistory';
         var headers = ApiConfig.GetHeader(url, data);
@@ -141,8 +163,8 @@ export class CarApi {
     }
 
 
-    public structure(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'car/structure';
+    public selectprice(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'car/selectprice';
         var headers = ApiConfig.GetHeader(url, data);
         let options = { headers: headers };
         let body = ApiConfig.ParamUrlencoded(data);
@@ -158,51 +180,7 @@ export class CarApi {
             })
             .catch(err => {
                 console.error(err);
-                return ApiConfig.ErrorHandle('car/structure', data, err);
-            });
-    }
-
-
-    public subs(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'car/subs';
-        var headers = ApiConfig.GetHeader(url, data);
-        let options = { headers: headers };
-        let body = ApiConfig.ParamUrlencoded(data);
-        let loading = null;
-
-        if (showLoadingModal) {
-            loading = ApiConfig.GetLoadingModal();
-        }
-
-        return this.http.post(url, body, options).toPromise()
-            .then((res) => {
-                return res;
-            })
-            .catch(err => {
-                console.error(err);
-                return ApiConfig.ErrorHandle('car/subs', data, err);
-            });
-    }
-
-
-    public testp1(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'car/testp1';
-        var headers = ApiConfig.GetHeader(url, data);
-        let options = { headers: headers };
-        let body = ApiConfig.ParamUrlencoded(data);
-        let loading = null;
-
-        if (showLoadingModal) {
-            loading = ApiConfig.GetLoadingModal();
-        }
-
-        return this.http.post(url, body, options).toPromise()
-            .then((res) => {
-                return res;
-            })
-            .catch(err => {
-                console.error(err);
-                return ApiConfig.ErrorHandle('car/testp1', data, err);
+                return ApiConfig.ErrorHandle('car/selectprice', data, err);
             });
     }
 
@@ -228,9 +206,9 @@ export class CarApi {
             });
     }
 
-    
-    public vinold(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'car/vinold';
+
+    public companylist(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'car/companylist';
         var headers = ApiConfig.GetHeader(url, data);
         let options = { headers: headers };
         let body = ApiConfig.ParamUrlencoded(data);
@@ -246,28 +224,7 @@ export class CarApi {
             })
             .catch(err => {
                 console.error(err);
-                return ApiConfig.ErrorHandle('car/vinold', data, err);
-            });
-    }
-
-    public selectprice(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'car/selectprice';
-        var headers = ApiConfig.GetHeader(url, data);
-        let options = { headers: headers };
-        let body = ApiConfig.ParamUrlencoded(data);
-        let loading = null;
-
-        if (showLoadingModal) {
-            loading = ApiConfig.GetLoadingModal();
-        }
-
-        return this.http.post(url, body, options).toPromise()
-            .then((res) => {
-                return res;
-            })
-            .catch(err => {
-                console.error(err);
-                return ApiConfig.ErrorHandle('car/selectprice', data, err);
+                return ApiConfig.ErrorHandle('car/companylist', data, err);
             });
     }
 
