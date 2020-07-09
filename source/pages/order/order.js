@@ -11,6 +11,9 @@ import {
 import {
   OrderApi
 } from "../../apis/order.api.js";
+import {
+  CarApi
+} from "../../apis/car.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -280,6 +283,10 @@ class Content extends AppBase {
     }
   watchwuliu(e){
     var id = e.currentTarget.id;
+    wx.navigateTo({
+      url: '/pages/wuliu/wuliu?id='+id,
+    })
+   
   }
 }
 var content = new Content();

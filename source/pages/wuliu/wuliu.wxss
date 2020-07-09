@@ -1,0 +1,8 @@
+/* pages/wuliu/wuliu.wxss */
+Page {
+  background: rgb(243, 243, 243);
+}
+.vv {
+   margin: 40rpx 30rpx;
+   border-radius: 20rpx;
+}

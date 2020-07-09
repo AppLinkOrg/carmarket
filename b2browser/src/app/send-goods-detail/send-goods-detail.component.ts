@@ -87,15 +87,22 @@ export class SendGoodsDetailComponent extends AppBase  {
       this.xuanze=true;
       return
     }
-
-    return
-      this.list.order_status = "M"
-      this.orderApi.updatestatus({id: this.list.id, order_status: this.list.order_status, status: 'A'}).then((updatestatus:any)=>{
+    var that = this;
+    this.list.order_status = "M"
+      this.carApi.logistics({id:this.id ,companyCode:this.companyCode}).then((logistics:any)=>{
+          console.log(logistics);
+          if(logistics.errorcode=='0'){
+            that.orderApi.updatestatus({id: that.list.id, order_status: that.list.order_status, status: 'A'}).then((updatestatus:any)=>{
       
-        if(updatestatus.code == 0){
-          this.router.navigate(['receiveGoodsDetail'],{ queryParams: { id: this.id ,aa:3}});
-        }
+              if(updatestatus.code == 0){
+                that.router.navigate(['receiveGoodsDetail'],{ queryParams: { id: that.id ,aa:3}});
+              }
+            })
+          }else {
+
+          }
       })
+     
    
    
   }

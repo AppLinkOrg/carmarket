@@ -1,0 +1,28 @@
+<view class="">
+
+
+  <view class="bg-white vv padding-bottom-20" wx:for='{{arr}}' wx:key='k' wx:for-item="logs">
+
+    <view class="flex-row padding-20 flex-wrap">
+      <view>
+        <view class="h5">{{logs.time}}</view>
+          <view class="margin-top-5">{{logs.message}}</view>
+      </view>
+      <view class="flex-1"></view>
+      
+        <view class="h5 margin-left-30">{{logs.address}}</view>
+
+    </view>
+
+    <view wx:if='{{logs.deliveryman.length!=0}}' class="padding-left-40">
+      <view class="h6">配送员：{{logs.deliveryman.name}}</view>
+      <view class="h6">电话：{{logs.deliveryman.phone}}</view>
+    </view>
+  
+
+  </view>
+
+
+
+
+</view>

@@ -151,7 +151,7 @@
       <view class='h5'></view>
       <view class="h5">{{item.orderno}}</view>
       <view class='flex-1'></view>
-      <!-- <view class='orpay txt-white text-center h6' id="{{item.id}}" bindtap="watchwuliu">查看物流</view> -->
+      <view class='orpay txt-white text-center h6' id="{{item.id}}" bindtap="watchwuliu">查看物流</view>
       <view class='orpay txt-white text-center h6 margin-left-10' id="{{item.id}}" bindtap="bindshou">确认收货</view>
     </view>
 

@@ -36,7 +36,8 @@
     "pages/changedetail/changedetail",
     "pages/shopcar/shopcar",
     "pages/ordersubmit/ordersubmit",
-    "pages/auth/auth"
+    "pages/auth/auth",
+    "pages/wuliu/wuliu"
   ],
   "permission": {
     "scope.userLocation": {

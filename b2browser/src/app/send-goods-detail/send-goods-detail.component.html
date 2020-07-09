@@ -251,13 +251,16 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" (click)='xuanze=false'>取消</button>
-                        <button type="button" class="btn btn-primary " (click)='changeStatus()' *ngIf='quxiao==false'
+                        <button type="button" class="btn btn-primary " (click)='changeStatus()' *ngIf='quxiao==false && companyCode==""'
+                            >确定</button>
+                            <button type="button" class="btn btn-primary " data-dismiss="modal"  (click)='changeStatus()' *ngIf='quxiao==false && companyCode!=""'
                             >确定</button>
                         <button type="button" class="btn btn-primary "
                             *ngIf='quxiao==true'>确定</button>
                     </div>
                 </div>
 
+            
                 <div class="modal-content" *ngIf='quxiao'>
                     <div class="modal-header">
                         <h4 class="modal-title">订单取消提示</h4>
