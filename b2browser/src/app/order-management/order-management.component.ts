@@ -67,9 +67,12 @@ export class OrderManagementComponent extends AppBase {
     }
     // this.change(this.bb);
   }
+
+  inloop=false;
   ngOnDestroy() {
     // alert('看看')
-    clearInterval(AppBase.interval);
+    
+    this.inloop=false;
   }
   onMyShow() {
     let oldtime = (new Date()).getTime() + 6 * 60 * 60 * 1000;
@@ -87,17 +90,11 @@ export class OrderManagementComponent extends AppBase {
         this.employee_id = employeeinfo.id;
       }
 
+      this.inloop=true;
+
       this.comlen();
       this.selectmylist();
 
-      if (AppBase.interval != null) {
-        clearInterval(AppBase.interval);
-      }
-
-      AppBase.interval = setInterval(() => {
-        this.selectmylist();
-        this.comlen();
-      }, 3000);
 
 
       // console.log(this.enterprise_id, '---', this.employee_id);
@@ -151,6 +148,13 @@ export class OrderManagementComponent extends AppBase {
       this.wanlen = wanlen;
       this.qulen = qulen;
       this.fulen = fulen;
+
+      if(this.inloop==true){
+        setTimeout(()=>{
+          this.comlen();
+        },3000);
+      }
+
     })
 
   }
@@ -185,7 +189,7 @@ export class OrderManagementComponent extends AppBase {
   }
 
   //查询关于我的订单列表
-  selectmylist() {
+  selectmylist(needloop=true) {
     this.isshow = false
     var orderapi = this.orderApi;
     if (this.type == 'A') {
@@ -207,6 +211,12 @@ export class OrderManagementComponent extends AppBase {
 
         this.pagination()
 
+      }
+
+      if(this.inloop==true&&needloop==true){
+        setTimeout(()=>{
+          this.selectmylist();
+        },4000);
       }
 
     })

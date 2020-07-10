@@ -66,9 +66,12 @@ export class QuotationCenterComponent extends AppBase {
     }
 
   }
+
+  inloop=false;
+
   ngOnDestroy() {
     // alert('看看')
-    clearInterval(AppBase.interval);
+    this.inloop=false;
   }
   onMyShow() {
 
@@ -88,25 +91,10 @@ export class QuotationCenterComponent extends AppBase {
         this.distinctlist = distinctlist
       })
 
-
+      this.inloop=true;
       this.quoteHandle("Q");
       this.comlen();
 
-
-      console.log(AppBase.interval, '定时器');
-
-      if (AppBase.interval != null) {
-        clearInterval(AppBase.interval);
-      }
-
-      AppBase.interval = setInterval(() => {
-        this.quoteHandle(this.check);
-        this.comlen();
-        console.log('定时器33');
-      }, 3000);
- 
-
-      console.log(AppBase.interval, '定时器22');
 
 
     })
@@ -121,7 +109,7 @@ export class QuotationCenterComponent extends AppBase {
     this.check = type;
     // this.comlen();
 
-    this.quoteHandle(type);
+    this.quoteHandle(type,false);
 
   }
 
@@ -375,7 +363,7 @@ export class QuotationCenterComponent extends AppBase {
     //var alllen = 0;
     var orderapi = this.orderApi;
 
-    orderapi.quotationlist({}).then((ignore: any) => {
+    orderapi.quotationlist({k:"acc"}).then((ignore: any) => {
       var arr = [];
       for (let item of ignore) {
 
@@ -407,12 +395,19 @@ export class QuotationCenterComponent extends AppBase {
       this.yibaolen = yibaolen;
       this.yishilen = yishilen;
       this.alllen = arr.length;
+      if(this.inloop==true){
+
+        setTimeout(()=>{
+          this.comlen();
+        },3*1000);
+      }
+
     })
 
   }
 
   // 待报价 quoteHandle
-  quoteHandle(type) {
+  quoteHandle(type,needloop=true) {
 
     console.log(type, '选中的列表')
     //return;
@@ -469,6 +464,12 @@ export class QuotationCenterComponent extends AppBase {
       }
 
       this.pagination();
+      if(this.inloop||needloop){
+
+        setTimeout(()=>{
+          this.quoteHandle(this.check);
+        },4*1000);
+      }
     })
 
 
