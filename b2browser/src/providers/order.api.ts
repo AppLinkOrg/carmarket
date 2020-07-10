@@ -692,7 +692,9 @@ export class OrderApi {
 
 
     public quotationlist(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'order/quotationlist';
+        
+        var url = ApiConfig.getApiUrl() + 'order/quotationlist?a='+data.k;
+        console.log("urlquotationlist",url,new Date());
         var headers = ApiConfig.GetHeader(url, data);
         let options = { headers: headers };
         let body = ApiConfig.ParamUrlencoded(data);
