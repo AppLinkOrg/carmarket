@@ -63,11 +63,11 @@ export class HomeComponent extends AppBase {
       // if(AppBase.interval!=null){
       //   clearInterval(AppBase.interval);
       // }
-    //  AppBase.interval_all=setInterval(() => { 
-    //       this.update(aa);
-    //       this.getquot(); 
-    //       console.log("有没有跑")
-    //   }, 2000);
+     AppBase.interval_all=setInterval(() => { 
+          this.update(aa);
+          this.getquot(); 
+          console.log("有没有跑")
+      }, 2000);
 
     })
 
