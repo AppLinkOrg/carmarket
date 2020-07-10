@@ -23,7 +23,7 @@
     "agora-rtc-sdk": "2.6.1",
     "bootstrap": "^4.3.1",
     "g": "^2.0.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery.easing": "^1.4.1",
     "ng": "0.0.0",
     "ngx-agora": "^1.5.13",
