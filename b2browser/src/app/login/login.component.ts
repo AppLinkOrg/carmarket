@@ -36,19 +36,19 @@ export class LoginComponent extends AppBase {
   }
   onMyShow() {
 
-    setTimeout(() => {
-      this.loginname = window.localStorage.getItem("lastloginname");
-      if (this.loginname == null) {
-        this.loginname = "";
-      }
-      this.password = window.localStorage.getItem("lastpassword");
-      if (this.password == null) {
-        this.password = "";
-        this.isremember = false;
-      } else if (this.password != '') {
-        this.isremember = true;
-      }
-    });
+    // setTimeout(() => {
+    //   this.loginname = window.localStorage.getItem("lastloginname");
+    //   if (this.loginname == null) {
+    //     this.loginname = "";
+    //   }
+    //   this.password = window.localStorage.getItem("lastpassword");
+    //   if (this.password == null) {
+    //     this.password = "";
+    //     this.isremember = false;
+    //   } else if (this.password != '') {
+    //     this.isremember = true;
+    //   }
+    // });
 
 
   }

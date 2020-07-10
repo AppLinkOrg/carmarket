@@ -63,11 +63,11 @@ export class HomeComponent extends AppBase {
       // if(AppBase.interval!=null){
       //   clearInterval(AppBase.interval);
       // }
-     AppBase.interval_all=setInterval(() => { 
-          this.update(aa);
-          this.getquot(); 
-          console.log("有没有跑")
-      }, 2000);
+    //  AppBase.interval_all=setInterval(() => { 
+    //       this.update(aa);
+    //       this.getquot(); 
+    //       console.log("有没有跑")
+    //   }, 2000);
 
     })
 
@@ -221,11 +221,11 @@ export class HomeComponent extends AppBase {
 
   addquote(i, json) {
     var a = this.orderapi;
-    setTimeout(() => {
-      a.addquotation(json).then((addquotation: any) => {
-        console.log(addquotation, 'addquotation');
-      })
-    }, i * 600);
+    // setTimeout(() => {
+    //   a.addquotation(json).then((addquotation: any) => {
+    //     console.log(addquotation, 'addquotation');
+    //   })
+    // }, i * 600);
 
   }
 

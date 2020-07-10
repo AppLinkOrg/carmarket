@@ -1,0 +1,50 @@
+<div class="login-page"  [style.background-image]="'url('+uploadpath+'resource/'+res.loginpic+')'" style="background-size:100% 100%;">
+  <div class="login-box">
+    <div class="login-logo txt-white">
+      <b>供应端系统登录</b>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <!-- <p class="login-box-msg"></p> -->
+        
+        <!-- <form  > -->
+          <div class="input-group mb-3">
+            <input type="text" class="form-control"  maxlength="11" [(ngModel)]='username' name='username' placeholder="请输入账户手机号">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-fw fa-user faicon"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" class="form-control"  [(ngModel)]='password' name='password' placeholder="输入密码">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-8">
+              <div class="icheck-primary">
+                <input type="checkbox" id="remember" [(ngModel)]='isremember'>
+                <label for="remember">
+                   记住密码
+                </label>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-4">
+              <button  (click)='login()' class="btn btn-primary btn-block">登录</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        <!-- </form> -->
+
+
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+</div>

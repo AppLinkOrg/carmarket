@@ -397,9 +397,9 @@ export class QuotationCenterComponent extends AppBase {
       this.alllen = arr.length;
       if(this.inloop==true){
 
-        setTimeout(()=>{
-          this.comlen();
-        },3*1000);
+        // setTimeout(()=>{
+        //   this.comlen();
+        // },3*1000);
       }
 
     })
@@ -432,19 +432,19 @@ export class QuotationCenterComponent extends AppBase {
 
     var orderapi = this.orderApi;
 
-    if (type == 'H') {
+    // if (type == 'H') {
       var quoteper = this.employee_id;
-    } else {
-      var quoteper = '';
-    }
+    // } else {
+    //   var quoteper = '';
+    // }
 
     if (type == 'A') {
       type = "";
     }
 
-    orderapi.quotationlist({ quoteenterprise_id: this.enterprise_id, quotestatus: type, quoteper: quoteper }).then((list: any) => {
+    orderapi.quotationlist({ quotecompan_id: this.enterprise_id, quotestatus: type, quoteper: quoteper }).then((list: any) => {
       this.list = list;
-      console.log(this.list)
+      console.log(this.list,'lsit')
 
       this.length = list.length;
 
@@ -466,9 +466,9 @@ export class QuotationCenterComponent extends AppBase {
       this.pagination();
       if(this.inloop||needloop){
 
-        setTimeout(()=>{
-          this.quoteHandle(this.check);
-        },4*1000);
+        // setTimeout(()=>{
+        //   this.quoteHandle(this.check);
+        // },4*1000);
       }
     })
 

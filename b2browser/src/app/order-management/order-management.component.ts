@@ -150,9 +150,9 @@ export class OrderManagementComponent extends AppBase {
       this.fulen = fulen;
 
       if(this.inloop==true){
-        setTimeout(()=>{
-          this.comlen();
-        },3000);
+        // setTimeout(()=>{
+        //   this.comlen();
+        // },3000);
       }
 
     })
@@ -214,9 +214,9 @@ export class OrderManagementComponent extends AppBase {
       }
 
       if(this.inloop==true&&needloop==true){
-        setTimeout(()=>{
-          this.selectmylist();
-        },4000);
+        // setTimeout(()=>{
+        //   this.selectmylist();
+        // },4000);
       }
 
     })

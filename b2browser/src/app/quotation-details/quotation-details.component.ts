@@ -426,9 +426,12 @@ export class QuotationDetailsComponent extends AppBase {
       }
     }
 
+
+
     console.log(this.list, '先看看这个里面有什么');
+    console.log(this.fittinglist, '先看看这个里面有什么');
 
-
+    
     for (let item of this.fittinglist) {
 
       if (item.partnubmer == "") {
@@ -475,9 +478,9 @@ export class QuotationDetailsComponent extends AppBase {
  
 
     }
-
+ 
     console.log(this.jsonlist, '看看这个里面有什么');
-
+    // return
     var datajson=JSON.stringify(this.jsonlist);
 
     this.orderApi.confirmquote({datajson:datajson}).then((confirmquote) => {

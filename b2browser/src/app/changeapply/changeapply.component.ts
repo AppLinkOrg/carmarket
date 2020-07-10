@@ -292,13 +292,13 @@ export class ChangeapplyComponent extends AppBase  {
   fitting(json, i) {
     var that = this;
     // var orderapi = new OrderApi();
-    setTimeout(() => {
-      that.orderApi.addtuohuoitem(json).then((addtuohuoitem) => {
-       this.addtuohuoitem=addtuohuoitem;
+    // setTimeout(() => {
+    //   that.orderApi.addtuohuoitem(json).then((addtuohuoitem) => {
+    //    this.addtuohuoitem=addtuohuoitem;
 
        
-      })
-    }, i * 300)
+    //   })
+    // }, i * 300)
 
     // wx.reLaunch({
     //   url: '/pages/order/order',
