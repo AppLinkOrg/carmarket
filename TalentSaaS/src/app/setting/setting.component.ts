@@ -31,7 +31,7 @@ export class SettingComponent extends AppBase {
     this.params;
   }
 
-  tabtype = 'companyinfo';
+  tabtype = 'account';
 
   targethuman = 0;
   targetorder = 0;

@@ -1,0 +1,413 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>报价详情</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a routerLink=''>首页</a></li>
+                        <li class="breadcrumb-item"><a routerLink='/quotecenter'>报价中心</a></li>
+                        <li class="breadcrumb-item active">报价详情</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Horizontal Form -->
+                <div class="card card-info">
+                    <div class="card-header bg-gray-d">
+                        <h3 class="card-title border-left-primary txt-bold h4-5"> &nbsp;报价信息</h3>
+                        <div (click)='fanhui()' class="txt-black float-right h4-5"><i class="fa fa-angle-left margin-right"></i>返回</div>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form class="form-horizontal">
+                        <div class="card-body" *ngIf='quoteinfo !==null'>
+                            <div class="row">
+                                <div class="form-group  col-lg-4 col-md-5 col-sm-6">
+                                    <label for="inputEmail3" class=" col-form-label col-form-label-sm">公司名称</label>
+                                    <div class="form-control col-form-label-sm">{{quoteinfo.enterprise_id_name}}</div>
+                                </div>
+                                <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                                    <label for="inputEmail3" class=" col-form-label col-form-label-sm">地址</label>
+                                    <div class="form-control col-form-label-sm">
+                                        {{quoteinfo.enterprise_corporate_address}}</div>
+                                </div>
+                                <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                                    <label for="inputEmail3" class=" col-form-label col-form-label-sm">电话</label>
+                                    <div class="form-control col-form-label-sm">{{quoteinfo.employee_mobile}}</div>
+                                </div>
+                                <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                                    <label for="inputEmail3" class=" col-form-label col-form-label-sm">报价编号</label>
+                                    <div class="form-control col-form-label-sm">{{quoteinfo.quotenumber}}</div>
+                                </div>
+                                <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                                    <label for="inputEmail3" class=" col-form-label  col-form-label-sm">车架号</label>
+                                    <div class="form-control col-form-label-sm">
+                                        {{quoteinfo.vincode==''?'无':quoteinfo.vincode}}</div>
+                                </div>
+                                <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                                    <label for="inputEmail3" class=" col-form-label col-form-label-sm">备注</label>
+                                    <div class="form-control col-form-label-sm">
+                                        {{quoteinfo.information==''?'无':quoteinfo.information}}</div>
+                                </div>
+                                <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                                    <label for="inputEmail3" class=" col-form-label col-form-label-sm">询价时间</label>
+                                    <div class="form-control col-form-label-sm">{{quoteinfo.quote_time}}</div>
+                                </div>
+                                <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                                    <label for="inputEmail3" class=" col-form-label col-form-label-sm">车型</label>
+                                    <div class="form-control col-form-label-sm">
+                                        {{quoteinfo.carmodel==''?'无识别':quoteinfo.carmodel}}</div>
+                                </div>
+                                <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                                    <label for="inputEmail3" class=" col-form-label col-form-label-sm">品质</label>
+                                    <div class="form-control col-form-label-sm">
+                                        {{quoteinfo.pinzhi==''?'无':quoteinfo.pinzhi}}</div>
+                                </div>
+                                <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                                    <label for="inputEmail3" class=" col-form-label col-form-label-sm">下单员</label>
+                                    <div class="form-control col-form-label-sm">{{quoteinfo.employee_id_name}}</div>
+                                </div>
+                                <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                                    <label for="inputEmail3" class=" col-form-label col-form-label-sm">发票需求</label>
+                                    <div class="form-control col-form-label-sm">
+                                        {{quoteinfo.invoice_demand_value=="Y"?'需要发票':'不需要发票'}}</div>
+                                </div>
+                                <div class="form-group   col-lg-4 col-md-5 col-sm-6"
+                                    *ngIf='quoteinfo.invoice_demand_value=="Y"'>
+                                    <label for="inputEmail3" class=" col-form-label col-form-label-sm">发票税率</label>
+                                    <select [(ngModel)]="selectedSite" class="form-control col-form-label-sm">
+                                        <option *ngFor='let item of ratetype' value="{{item.name}}">{{item.name}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group   col-lg-4 col-md-5 col-sm-6" *ngIf='ishow'>
+                                    <label for="inputEmail3" class=" col-form-label col-form-label-sm">图片附件</label>
+                                    <div (click)='showPhoto2()' style='color:#3d61b4;cursor: pointer;'
+                                        data-toggle="modal" data-target="#myModal4">查看图片</div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <!-- <div class="card-footer">
+                <button type="submit" class="btn btn-info ">Delete All</button>
+                <button type="submit" class="btn btn-default float-right">Search</button>
+              </div> -->
+                        <!-- /.card-footer -->
+                    </form>
+                </div>
+                <!-- /.card -->
+
+
+            </div>
+        </div>
+        <div *ngIf='photoshow2' class="modal fade " id="myModal4" tabindex="-1" role="dialog"
+            aria-labelledby="myModalLabel">
+            <div class="modal-dialog photoimg " role="img">
+                <div class="modal-content" style="background: transparent; border: none;width: 800px; height: 0;">
+
+                    <div id="demo" class="carousel slide"
+                        style="background: transparent; border: none;width: 800px; height: 0;padding-bottom: 100%;">
+                        <!-- 指示符 -->
+                        <ul class="carousel-indicators">
+                        </ul>
+
+                        <!-- 轮播图片 -->
+                        <div class="carousel-inner images" style="width: 100%;height: 0;padding-bottom:100%">
+                            <div class="carousel-item active"
+                                *ngIf='quoteinfo.frontofcar!="" && quoteinfo.frontofcar!="undefined"'>
+                                <div class="zoomImage"
+                                    [style.background-image]="'url('+uploadpath+'quote/'+quoteinfo.frontofcar+')'">
+                                </div>
+                            </div>
+                            <div class="carousel-item" style="height: 100%;"
+                                *ngIf='quoteinfo.namesplate!="" && quoteinfo.namesplate!="undefined"'>
+                                <div class="zoomImage"
+                                    [style.background-image]="'url('+uploadpath+'quote/'+quoteinfo.namesplate+')'">
+                                </div>
+                            </div>
+                            <div class="carousel-item" style="height: 100%;"
+                                *ngIf='quoteinfo.rearofcar!="" && quoteinfo.rearofcar!="undefined"'>
+                                <div class="zoomImage"
+                                    [style.background-image]="'url('+uploadpath+'quote/'+quoteinfo.rearofcar+')'">
+                                </div>
+                            </div>
+                            <div class="carousel-item" style="height: 100%;"
+                                *ngFor='let photos of quoteinfo.arr;let k=index;'>
+                                <div class="zoomImage" [style.background-image]="'url('+uploadpath+'quote/'+photos+')'">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 左右切换按钮 -->
+                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                            <div><img src="{{uploadpath}}resource/{{res.arrowl}}"
+                                    style="width: 30px !important;height: 30px !important;" /></div>
+                        </a>
+                        <a class="carousel-control-next" href="#demo" data-slide="next">
+                            <div><img src="{{uploadpath}}resource/{{res.arrowr}}"
+                                    style="width: 30px !important;height: 30px !important;"></div>
+                        </a>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div *ngIf='photoshow' class="modal fade " id="myModal2" tabindex="-1" role="dialog"
+            aria-labelledby="myModalLabel">
+            <div class="modal-dialog photoimg " role="img" *ngFor='let item of imgs'>
+                <div class="modal-content"
+                    style="background: transparent; border: none;width: 800px; height: 0;padding-bottom: 100%;">
+
+                    <div id="demo" class="carousel slide" style="width: 800px; height: 0;padding-bottom:100%">
+                        <!-- 指示符 -->
+                        <ul class="carousel-indicators">
+                            <li data-target="#demo" *ngIf='0<item.photoLen' data-slide-to="0" class="active">
+                            </li>
+                            <li data-target="#demo" *ngIf='1<item.photoLen' data-slide-to="1"></li>
+                            <li data-target="#demo" *ngIf='2<item.photoLen' data-slide-to="2"></li>
+                            <li data-target="#demo" *ngIf='3<item.photoLen' data-slide-to="3"></li>
+                            <li data-target="#demo" *ngIf='4<item.photoLen' data-slide-to="4"></li>
+                        </ul>
+
+                        <!-- 轮播图片 -->
+                        <div class="carousel-inner images" style="width: 100%;height: 0;padding-bottom:100%">
+                            <div class="carousel-item active" *ngIf='item.photo1!=""&&item.photo1!="undefined"'>
+                                <!-- <img src="{{uploadpath}}fittings/{{item.photo1}}"> -->
+                                <div class="zoomImage"
+                                    [style.background-image]="'url('+uploadpath+'fittings/'+item.photo1+')'">
+                                </div>
+                            </div>
+                            <div class="carousel-item" *ngIf='item.photo2!=""&&item.photo2!="undefined"'>
+                                <!-- <img src="{{uploadpath}}fittings/{{item.photo2}}"> -->
+                                <div class="zoomImage"
+                                    [style.background-image]="'url('+uploadpath+'fittings/'+item.photo2+')'">
+                                </div>
+                            </div>
+                            <div class="carousel-item" *ngIf='item.photo3!=""&&item.photo3!="undefined"'>
+                                <!-- <img src="{{uploadpath}}fittings/{{item.photo3}}"> -->
+                                <div class="zoomImage"
+                                    [style.background-image]="'url('+uploadpath+'fittings/'+item.photo3+')'">
+                                </div>
+                            </div>
+                            <div class="carousel-item" *ngIf='item.photo4!=""&&item.photo4!="undefined"'>
+                                <!-- <img src="{{uploadpath}}fittings/{{item.photo4}}"> -->
+                                <div class="zoomImage"
+                                    [style.background-image]="'url('+uploadpath+'fittings/'+item.photo4+')'">
+                                </div>
+                            </div>
+                            <div class="carousel-item" *ngIf='item.photo5!=""&&item.photo5!="undefined"'>
+                                <!-- <img  src="{{uploadpath}}fittings/{{item.photo5}}"> -->
+                                <div class="zoomImage"
+                                    [style.background-image]="'url('+uploadpath+'fittings/'+item.photo5+')'">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 左右切换按钮 -->
+                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#demo" data-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header  bg-gray-d">
+                        <h3 class="card-title border-left-primary txt-bold h4-5"> &nbsp;报价处理</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0" style="overflow-x: auto;">
+                        <table class="table table-bordered text-center" style="min-width: 768px;">
+                            <thead>
+                                <tr>
+                                    <th width='4%'>序号</th>
+                                    <th width="15%">配件名称</th>
+                                    <th width="10%">零件号</th>
+                                    <th width='4%'>数量</th>
+                                    <th>4S店价格</th>
+                                    <th width='9%'>品质/品牌</th>
+                                    <th width='9%'>备货时间</th>
+                                    <th width='9%'>质保期</th>
+                                    <th width='9%'>单价</th>
+                                    <th width='9%'>发车时间</th>
+                                    <th>新增</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor='let item of fittinglist; let i=index'>
+                                <tr class="text-center">
+                                    <td [attr.rowspan]='item.quoteitems.length+1'>{{i+1}}</td>
+                                    <td [attr.rowspan]='item.quoteitems.length+1'>
+                                        {{item.name}}
+                                        <div class="photo">
+                                            <img *ngIf='item.photo1!="" && item.photo1!="undefined"' data-toggle="modal"
+                                                data-target="#myModal2" (click)='showPhoto(item)'
+                                                src="{{uploadpath}}fittings/{{item.photo1}}" class="icon-30">
+                                            <img *ngIf='item.photo1=="" && item.photo2!="" && item.photo2!="undefined"'
+                                                data-toggle="modal" data-target="#myModal2" (click)='showPhoto(item)'
+                                                src="{{uploadpath}}fittings/{{item.photo2}}" class="icon-30">
+                                            <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3!="" && item.photo3!="undefined"'
+                                                data-toggle="modal" data-target="#myModal2" (click)='showPhoto(item)'
+                                                src="{{uploadpath}}fittings/{{item.photo3}}" class="icon-30">
+                                            <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3==""  && item.photo4!="" && item.photo4!="undefined"'
+                                                data-toggle="modal" data-target="#myModal2" (click)='showPhoto(item)'
+                                                src="{{uploadpath}}fittings/{{item.photo4}}" class="icon-30">
+                                            <img *ngIf='item.photo1=="" && item.photo2==""  && item.photo3=="" && item.photo4==""  && item.photo5!="" && item.photo5!="undefined"'
+                                                data-toggle="modal" data-target="#myModal2" (click)='showPhoto(item)'
+                                                src="{{uploadpath}}fittings/{{item.photo5}}" class="icon-30">
+                                            <div *ngIf='item.photoLen>1' class="photoLen">{{item.photoLen}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td [attr.rowspan]='item.quoteitems.length+1'>
+                                        {{item.partnubmer==''?'无识别':item.partnubmer}}</td>
+                                    <td>{{item.quantity}}</td>
+                                    <td>{{item.Sprice}}</td>
+                                    <td>
+                                        <input type="text" class="table-box" [(ngModel)]='item.quality'>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="table-box" [(ngModel)]='item.standby_time'>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="table-box" [(ngModel)]='item.guarantee'>
+                                    </td>
+                                    <td>
+                                        <input type="number" class="table-box" [(ngModel)]='item.price'>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="table-box" [(ngModel)]='item.sendcar_time'>
+                                    </td>
+
+                                    <td>
+                                        <div class="badge badge-primary cur-po" (click)='addQuote(item)'>新增报价</div>
+                                    </td>
+                                </tr>
+                                <ng-container ngShow='item.quoteitems.length>1'>
+                                    <tr class="text-center" *ngFor='let list of item.quoteitems;let k=index;'>
+                                        <td>{{list.quantity}}</td>
+                                        <td>{{list.Sprice}}</td>
+                                        <td>{{list.quality}}</td>
+                                        <td>{{list.standby_time}}</td>
+                                        <td>{{list.guarantee}}</td>
+                                        <td>
+                                            <div>{{list.price}}</div>
+                                        </td>
+                                        <td>{{list.sendcar_time}}</td>
+                                        <td class="text-center">
+                                            <div style='min-width: 86px'>
+                                                <div class="badge badge-danger cur-po" data-toggle="modal"
+                                                data-target="#modal-default2" (click)='deletequote(list,k)'>
+                                                    删除报价</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-primary" data-toggle="modal"
+                        data-target="#modal-default" (click)='tijiao()'>提交报价</button>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+            </div>
+        </div>
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<div class="modal fade" id="modal-default2" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">删除提示</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <p>是否删除该报价</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">否</button>
+          <button type="button" class="btn btn-primary" (click)='deletequote2()' data-dismiss="modal">是</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <div class="modal fade" id="modal-default" >
+    <div class="modal-dialog">
+      <div class="modal-content" *ngIf='yibao==false'>
+        <div class="modal-header">
+          <h4 class="modal-title">提交报价</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <p>确定要提交报价吗？</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" (click)='savequote()' data-dismiss="modal">确定</button>
+        </div>
+      </div>
+      <div class="modal-content" *ngIf='yibao==true'>
+        <div class="modal-header">
+          <h4 class="modal-title">提交报价</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <p>报价已被提交，请重新选择报价！</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-primary" (click)='back()' data-dismiss="modal">确定</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  

@@ -1,0 +1,175 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>报价详情</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a routerLink=''>首页</a></li>
+              <li class="breadcrumb-item"><a routerLink='/quotecenter'>报价中心</a></li>
+              <li class="breadcrumb-item active">报价详情</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+  
+    <!-- Main content -->
+    <section class="content">
+  
+  
+  
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Horizontal Form -->
+          <div class="card card-info">
+            <div class="card-header bg-gray-d">
+              <h3 class="card-title border-left-primary txt-bold h4-5"> &nbsp;报价信息</h3>
+              <div (click)='fanhui()' class="txt-black float-right h4-5"><i class="fa fa-angle-left margin-right"></i>返回</div>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form class="form-horizontal">
+              <div class="card-body" *ngIf='quoteinfo !==null'>
+                <div class="row">
+                    <div class="form-group  col-lg-4 col-md-5 col-sm-6">
+                        <label for="inputEmail3" class=" col-form-label col-form-label-sm">公司名称</label>
+                        <div class="form-control col-form-label-sm">{{quoteinfo.enterprise_id_name}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                        <label for="inputEmail3" class=" col-form-label col-form-label-sm">报价编号</label>
+                        <div class="form-control col-form-label-sm">
+                            {{quoteinfo.quotenumber}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                        <label for="inputEmail3" class=" col-form-label col-form-label-sm">车架号</label>
+                        <div class="form-control col-form-label-sm">
+                          {{quoteinfo.vincode==''?'无':quoteinfo.vincode}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                        <label for="inputEmail3" class=" col-form-label col-form-label-sm">备注</label>
+                        <div class="form-control col-form-label-sm">
+                          {{quoteinfo.information==''?'无':quoteinfo.information}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                        <label for="inputEmail3" class=" col-form-label  col-form-label-sm">报价时间</label>
+                        <div class="form-control col-form-label-sm">
+                            {{quoteinfo.submitquote_time}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">车型</label>
+                      <div class="form-control col-form-label-sm">
+                          {{quoteinfo.carmodel==''?'无识别':quoteinfo.carmodel}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">品质</label>
+                      <div class="form-control col-form-label-sm">
+                          {{quoteinfo.pinzhi==''?'无':quoteinfo.pinzhi}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                        <label for="inputEmail3" class=" col-form-label col-form-label-sm">下单员</label>
+                        <div class="form-control col-form-label-sm">{{quoteinfo.employee_id_name}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                        <label for="inputEmail3" class=" col-form-label col-form-label-sm">发票需求</label>
+                        <div class="form-control col-form-label-sm">
+                            {{quoteinfo.invoice_demand_value=="Y"?'需要发票':'不需要发票'}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5 col-sm-6"
+                        *ngIf='quoteinfo.invoice_demand_value=="Y"'>
+                        <label for="inputEmail3" class=" col-form-label col-form-label-sm">发票税率</label>
+                       <div  class="form-control col-form-label-sm">{{quoteinfo.rate}}%</div>
+                    </div>
+
+                </div>
+            </div>
+            </form>
+          </div>
+          <!-- /.card -->
+  
+  
+        </div>
+      </div>
+  
+  
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header bg-gray-d">
+              <h3 class="card-title border-left-primary txt-bold h4-5"> &nbsp;报价处理</h3>
+  
+              <!-- <div class="card-tools">
+                <ul class="pagination pagination-sm float-right">
+                  <li class="page-item"><a class="page-link" >&laquo;</a></li>
+                  <li class="page-item"><a class="page-link" >1</a></li>
+                  <li class="page-item"><a class="page-link" >2</a></li>
+                  <li class="page-item"><a class="page-link" >3</a></li>
+                  <li class="page-item"><a class="page-link" >&raquo;</a></li>
+                </ul>
+              </div> -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0" style="overflow-x: auto;">
+              <table class="table text-center" style="min-width: 768px;">
+                <thead>
+                  <tr>
+                    <th>序号</th>
+                    <th width='20%'>配件名称</th>
+                    <th>零件号</th>
+                    <th>数量</th>
+                    <th>品质/品牌</th>
+                    <th>备货时间</th>
+                    <th>质保期</th>
+                    <th>4S店价格</th>
+                    <th>单价</th>
+                    <th>发车时间</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor='let item of list; let i=index'>
+                    <td>{{i+1}}</td>
+                    <td> 
+                      {{item.name}}
+                    </td>
+                    <td><span>{{item.partnubmer}}</span></td>
+                    <td>
+                        <div>{{item.qty}}</div>
+                    </td>
+                    <td>
+                        <div>{{item.quality}}</div>
+                    </td>
+                    <td>
+                        <div>{{item.standby_time}}</div>
+                    </td>
+                    <td>
+                        <div>{{item.guarantee}}</div>
+                    </td>
+                    <td>
+                        <div>{{item.Sprice}}</div>
+                    </td>
+                    <td>
+                      <div>{{item.price}}</div>
+                    </td>
+                    <td>
+                        <div>{{item.sendcar_time}}</div>
+                    </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+  
+        </div>
+      </div>
+  
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  

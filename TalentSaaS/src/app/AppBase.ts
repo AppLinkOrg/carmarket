@@ -341,4 +341,7 @@ export class AppBase implements OnInit {
         //window.print();
         Chart.print(id);
     }
+    hidemodel(){
+        Chart.hidemodel();
+    }
 }

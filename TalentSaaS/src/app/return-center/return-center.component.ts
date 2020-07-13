@@ -30,12 +30,16 @@ export class ReturnCenterComponent extends AppBase {
   type='';
   onMyLoad() {
     this.params;
+    if(this.params.type!=undefined){
+      this.type=this.params.type;
+    }
   }
   onMyShow() {
     if (MainComponent.Instance != null) {
       MainComponent.Instance.setModule("return", "return");
     }
-    this.getlist();
+    this.changtype(this.type);
+    this.comlen();
   }
   changtype(type){
     this.type=type;
@@ -57,12 +61,24 @@ export class ReturnCenterComponent extends AppBase {
   }
   returnlist=[];
   getlist(){
+    this.pageList=[];
     console.log(this.memberinfo,'memner');
     this.orderApi.returnlist({gongsi: this.memberinfo.enterprise_id, baojia: this.memberinfo.id,orderstatus:this.type}).then((returnlist:any)=>{
       for(var i=0;i<returnlist.length;i++){
         returnlist[i].index=i;
       }
       this.pagination(returnlist,returnlist.length);
+    })
+  }
+  todetail(item){
+    var type='';
+    if(this.type==''){
+      type=item.orderstatus;
+    }else{
+      type=this.type;
+    }
+    this.orderApi.editisread({return_id:item.id,enterprise_id:this.memberinfo.enterprise.id,employee_id:this.memberinfo.id }).then((ret)=>{
+      this.navigate('/returndetail',{id:item.id,type:type});
     })
   }
 }

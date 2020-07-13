@@ -1,0 +1,303 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>订单详情</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a routerLink=''>首页</a></li>
+            <li class="breadcrumb-item"><a routerLink='/ordercenter'>订单管理</a></li>
+            <li class="breadcrumb-item active">订单详情</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-info">
+          <div class="card-header bg-gray-d ">
+            <div class="flex-row2">
+              <div class="flex-1"></div>
+              <div class="box-auto flex-row2 flex-center2" *ngIf='type!="E"'>
+                <div class=" {{type=='W'?'arrow-line-left-active':'arrow-line-left'}}">
+                  <i class="fa fa-dot-circle  margin-left-46  margin-bottom-10 {{type=='W'?' txt-primary':'txt-d-gray'}}"></i>
+                  <div
+                    class=" padding-top-10 padding-bottom-10 padding-left-10 padding-right-10   h4-5 {{type=='W'?'chat-arrow-active bg-primary txt-white' :'chat-arrow bg-white txt-d-gray'}}">
+                    等待卖家付款
+                  </div>
+                </div>
+                <div class="margin-left-100 {{type=='L'?'arrow-line-right-active arrow-line-left-active':'arrow-line-left arrow-line-right'}}">
+                  <i class="fa fa-dot-circle margin-left-46  margin-bottom-10 {{type=='L'?' txt-primary':'txt-d-gray'}}"></i>
+                  <div class=" padding-top-10 padding-bottom-10 padding-left-30 padding-right-30  h4-5 {{type=='L'?'chat-arrow-active bg-primary txt-white':'chat-arrow bg-white txt-d-gray'">
+                            供应商发货
+                        </div>
+                    </div>
+                    <div class="margin-left-100 margin-right-100 {{type=='M'?'arrow-line-right-active arrow-line-left-active ':'arrow-line-left arrow-line-right '}}">
+                        <i class="fa fa-dot-circle margin-left-46 margin-bottom-10 {{type=='M'?' txt-primary':'txt-d-gray'}}"></i>
+                        <div
+                            class=" padding-top-10 padding-bottom-10 padding-left-30 padding-right-30   h4-5 {{type=='M'?'chat-arrow-active bg-primary txt-white':'chat-arrow bg-white txt-d-gray'}}">
+                            等买家收货
+                        </div>
+                    </div>
+                    <div class=" {{type=='N'?'arrow-line-right-active':'arrow-line-right'}}">
+                        <i class="fa fa-dot-circle margin-left-46 margin-bottom-10 {{type=='N'?' txt-primary':'txt-d-gray'}}"></i>
+                        <div class=" padding-top-10 padding-bottom-10 padding-left-right-23  h4-5 {{type=='N'?'chat-arrow-active bg-primary txt-white':' chat-arrow bg-white txt-d-gray'}}">
+                            交易成功
+                        </div>
+                    </div>
+                </div>
+                <h4 class="txt-red" *ngIf='type=="E"'>订单已取消</h4>
+                <div class="flex-1"></div>
+            </div>
+            <div class="margin-left-20 margin-top-40 margin-bottom-10">
+                <button (click)='fanhui()' type="button"
+                    class="btn-default no-border border-tlb padding-left-40 padding-right-40 bg-white">
+                    <a class="txt-d-gray h4-5"><i class="fa fa-angle-left margin-right"></i>返回</a>
+                </button>
+                <button (click)='print()' type="button"
+                    class="btn-default no-border border-tlb-r padding-left-40 padding-right-40 bg-white">
+                    <a class="txt-d-gray h4-5"><i class="fa fa-print margin-right"></i>打印</a>
+                </button>
+            </div>
+        </div>
+      </div>
+    </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Horizontal Form -->
+          <div class="card card-info">
+            <div class="card-header bg-gray-d">
+              <h3 class="card-title   border-left-primary txt-bold h4-5"> &nbsp;收货人信息</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form class="form-horizontal">
+              <div class="card-body">
+                <div class="row" *ngIf='list!=null'>
+                  <div class="form-group  col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">收货人</label>
+                      <div class="form-control col-form-label-sm">{{list.receiver}}</div>
+                  </div>
+                  <div class=" form-group col-lg-4 col-md-5 col-sm-6">
+                    <label for="inputEmail3" class=" col-form-label col-form-label-sm">电话</label>
+                    <div class="form-control col-form-label-sm">{{list.receivecontact}}</div>
+                  </div>
+                  <div class="form-group   col-lg-4 col-md-5  col-sm-6">
+                    <label for="inputEmail3" class=" col-form-label col-form-label-sm">地址</label>
+                    <div class="form-control col-form-label-sm">{{list.receiveaddress}}</div>
+                  </div>
+                </div>
+              </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="card card-info">
+              <div class="card-header bg-gray-d">
+                <h3 class="card-title  border-left-primary txt-bold h4-5"> &nbsp;订单信息</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form class="form-horizontal">
+                <div class="card-body">
+                  <div class="row" *ngIf='list!=null'>
+                    <div class="form-group  col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">公司名称</label>
+                      <div class="form-control col-form-label-sm">{{list.baojiacom}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">订单编号</label>
+                      <div class="form-control col-form-label-sm">{{list.orderno}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">车架号</label>
+                      <div class="form-control col-form-label-sm">{{list.vin=='无识别'?'':list.vin}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">备注</label>
+                      <div class="form-control col-form-label-sm">{{list.remarks==''?'无':list.remarks}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">报价时间</label>
+                      <div class="form-control col-form-label-sm">{{list.quote_time}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">车型</label>
+                      <div class="form-control col-form-label-sm">{{list.carname==''?'无识别':list.carname}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">下单员</label>
+                      <div class="form-control col-form-label-sm">{{list.baojiaperson}}</div>
+                    </div>
+                    <div class="form-group   col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">发票需求</label>
+                      <div class="form-control col-form-label-sm">{{list.needinvoice=="是"?'需要发票':'不需要发票'}}</div>
+                    </div>
+
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header bg-gray-d">
+                <h3 class="card-title  border-left-primary txt-bold h4-5">&nbsp;送货清单</h3>
+
+                <!-- <div class="card-tools">
+                  <ul class="pagination pagination-sm float-right">
+                    <li class="page-item"><a class="page-link">&laquo;</a></li>
+                    <li class="page-item"><a class="page-link">1</a></li>
+                    <li class="page-item"><a class="page-link">2</a></li>
+                    <li class="page-item"><a class="page-link">3</a></li>
+                    <li class="page-item"><a class="page-link">&raquo;</a></li>
+                  </ul>
+                </div> -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0" style="overflow-x: auto;">
+                <table class="table text-center" style="min-width: 768px;">
+                  <thead>
+                    <tr>
+                      <th>序号</th>
+                      <th>配件名称</th>
+                      <th>零件号</th>
+                      <th>数量</th>
+                      <th>品质/品牌</th>
+                      <th>备货时间</th>
+                      <th>质保期</th>
+                      <th>单价</th>
+                      <th>发车时间</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor='let item of orderItem;let i=index'>
+                    <tr>
+                      <td>{{i+1}}</td>
+                      <td>
+                        {{item.parts}}
+                      </td>
+                      <td>{{item.mcid}}</td>
+                      <td>
+                        {{item.qty}}
+                      </td>
+                      <td>
+                        {{item.quality}}
+                      </td>
+                      <td>
+                        <div>{{item.standby_time}}</div>
+                      </td>
+                      <td>
+                        <div>{{item.guarantee}}</div>
+                      </td>
+                      <td>
+                        <div>{{item.price}}</div>
+                      </td>
+                      <td>
+                        <div>{{item.sendcar_time}}</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+             
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body text-center" *ngIf='list!=null'>
+                <span class="h4-5">总计:</span>
+                <span class="txt-red h3 margin-right-20 margin-left-10" *ngIf='list !=null'>￥{{list.totalamount}}</span>
+                <button class="btn btn-primary" *ngIf='type=="L"' data-toggle="modal"
+                data-target="#modal-default3" (click)='ifquxiao()'>立即发货</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+<div class="modal fade" id="modal-default3" >
+  <div class="modal-dialog">
+
+    <div class="modal-content" *ngIf='quxiao==false'>
+      <div class="modal-header">
+        <h4 class="modal-title">发货提示</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class=" flex-row2">
+          <div class="margin-right-20">请选择物流公司</div>
+          <select name="" id="" [(ngModel)]='companyCode' (click)='xuanze=false'>
+              <option value="">请选择</option>
+              <option value="{{item.code}}" *ngFor='let item of companylist;'>{{item.name}}</option>
+          </select>
+        </div>
+       
+        <div class="txt-red" *ngIf='xuanze'>请选择物流公司</div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)='xuanze=false'>取消</button>
+        <button type="button" class="btn btn-primary"  (click)='changeStatus()' >确定</button>
+      </div>
+    </div>
+
+    <div class="modal-content " *ngIf='quxiao'>
+      <div class="modal-header">
+        <h4 class="modal-title">订单取消提示</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        买家已经取消订单，请选择其他订单！
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-primary"  routerLink='/ordercenter'
+        data-dismiss="modal">确定</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

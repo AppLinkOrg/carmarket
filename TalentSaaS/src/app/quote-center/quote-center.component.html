@@ -1,81 +1,245 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>报价中心</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a routerLink=''>首页</a></li>
-              <li class="breadcrumb-item active">报价中心</li>
-            </ol>
-          </div>
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>报价中心</h1>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
-  
-    <!-- Main content -->
-    <section class="content">
-   
-  
-  
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-                <button type="submit" class="btn {{type=='Q'?'btn-primary':'btn-default'}} margin-right-10" (click)='changtype("Q")'>待报价</button>
-                <button type="submit" class="btn {{type=='W'?'btn-primary':'btn-default'}} margin-right-10" (click)='changtype("W")'>已报价</button>
-                <button type="submit" class="btn {{type=='H'?'btn-primary':'btn-default'}} margin-right-10" (click)='changtype("H")'>已忽略</button>
-                <button type="submit" class="btn {{type=='S'?'btn-primary':'btn-default'}} margin-right-10" (click)='changtype("S")'>已失效</button>
-                <button type="submit" class="btn {{type==''?'btn-primary':'btn-default'}} margin-right-10" (click)='changtype("")'>全部</button>
-  
-              <div class="card-tools">
-                <ul class="pagination pagination-sm float-right">
-                    <li class="page-item"><span class="page-link" (click)='Previous()'>&laquo;</span></li>
-                    <li class="page-item" *ngFor='let i of pageList'><span class="page-link {{selPage==i?'bg-primary':''}}"
-                        (click)='changedate(i)'>{{i}}</span></li>
-                    <li class="page-item"><span class="page-link" (click)='Next()'>&raquo;</span></li>
-                </ul>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body p-0">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 10px">#</th>
-                    <th>Task</th>
-                    <th>Progress</th>
-                    <th style="width: 40px">Label</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1.</td>
-                    <td>Update software</td>
-                    <td>
-                      <div class="progress progress-xs">
-                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                      </div>
-                    </td>
-                    <td><span class="badge bg-danger">55%</span></td>
-                  </tr>
-                  
-                </tbody>
-              </table>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-  
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a routerLink=''>首页</a></li>
+            <li class="breadcrumb-item active">报价中心</li>
+          </ol>
         </div>
       </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <button type="submit" class="btn {{type=='Q'?'btn-primary':'btn-default'}} margin-right-10"
+              (click)='changtype("Q")'>待报价 {{daibaolen}}</button>
+            <button type="submit" class="btn {{type=='W'?'btn-primary':'btn-default'}} margin-right-10"
+              (click)='changtype("W")'>已报价 {{yibaolen}}</button>
+            <button type="submit" class="btn {{type=='H'?'btn-primary':'btn-default'}} margin-right-10"
+              (click)='changtype("H")'>已忽略 {{yihulen}}</button>
+            <button type="submit" class="btn {{type=='S'?'btn-primary':'btn-default'}} margin-right-10"
+              (click)='changtype("S")'>已失效 {{yishilen}}</button>
+            <button type="submit" class="btn {{type==''?'btn-primary':'btn-default'}} margin-right-10"
+              (click)='changtype("")'>全部 {{alllen}}</button>
+
+            <div class="card-tools">
+
+              <ul class="pagination pagination-sm float-right">
+                <li class="page-item"><span class="page-link" (click)='Previous()'>&laquo;</span></li>
+                <li class="page-item" *ngFor='let i of pageList'><span class="page-link {{selPage==i?'bg-primary':''}}"
+                    (click)='changedate(i)'>{{i}}</span></li>
+                <li class="page-item"><span class="page-link" (click)='Next()'>&raquo;</span></li>
+              </ul>
+              <div class="margin-top-80">
+                <span class="margin-10" data-toggle="modal" data-target="#myModal">筛选</span>
+                <img src="{{uploadpath}}resource/{{res.suaixuan}}"  data-toggle="modal"
+                  data-target="#myModal" class="icon-25" />
+              </div>
+            </div>
+
+            
+          </div>
+
+          <div class="modal right fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title box-auto txt-bold" id="myModalLabel">报价筛选</h4>
+              </div>
+              <div class="modal-body">
+                <div class="txt-bold h4">地区</div>
+                <!-- <span class="disname " (click)='choose()'>全部</span> -->
+                <span *ngFor='let dis of distinctlist;let i=index;' class="disname {{dis.check==true?'disname-active':''}}" (click)='choose(i,dis)'>{{dis.name}}</span>
+
+              </div>
+              <div class=" margin-bottom-70">
+                <div class="flex-row2 flex-center2 margin-bottom-20">
+                  <div class="flex-1"></div>
+                  <div class="">
+                    <button type="button" class="btn btn-default footbtn "  data-dismiss="modal" (click)='reset()'>重置</button>
+                  </div>
+                  <div class="flex-1"></div>
+                  <div class="">
+                    <button type="button" class="btn btn-primary footbtn" data-dismiss="modal"
+                      (click)='save()'>保存</button>
+                  </div>
+                  <div class="flex-1"></div>
+                </div>
+                <div class="padding-left-40">注: 筛选条件越多, 匹配将越精准, 但同时接收到的询价数量也将会大幅减少。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          
+          <!-- /.card-header -->
+          <div class="card-body p-0" style="overflow-x: auto;">
+            <table class="table text-center" style="min-width: 768px;">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>发票要求</th>
+                  <th>报价单号</th>
+                  <th>车型/车架号</th>
+                  <th>配件清单</th>
+                  <th>图片附件</th>
+                  <th>买家信息</th>
+                  <th>询价时间</th>
+                  <th *ngIf='type==""'>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of data">
+                  <td>{{item.index+1}}</td>
+                  <td>{{item.invoice_demand=="N"?'否':'是'}}</td>
+                  <td>
+                    {{item.quotenumber}}
+                  </td>
+                  <td>
+                    <div class="text-left" *ngIf='item.carmodel!=""'>{{item.carmodel}} <br> {{item.vincode}}</div>
+                    <div *ngIf='item.carmodel==""'>无识别</div>
+                  </td>
+                  <td>
+                    <div *ngFor="let itemName of item.quoteitems;let i=index">
+                      <div *ngIf='i<3'>
+                        {{itemName.name}} x {{itemName.quantity}} <span
+                          *ngIf='itemName.partnubmer!=""'>({{itemName.partnubmer}})</span>
+                        <span *ngIf='itemName.partnubmer==""'>(无识别)</span>
+                      </div>
+                    </div>
+                    <div *ngIf='item.quoteitems.length>3'>......</div>
+                  </td>
+                  <td [ngSwitch]="item.carmodel=='' || item.carmodel=='undefined'">
+                    <div class="photo">
+                      <div *ngSwitchCase='true'>
+                        <img *ngIf='item.frontofcar != "" && item.frontofcar != "undefined"' data-toggle="modal"
+                          data-target="#myModal2" (click)='showPhoto(item)' src="{{uploadpath}}quote/{{item.frontofcar}}"
+                          class="icon-60" />
+                        <img *ngIf='item.frontofcar == ""  && item.namesplate != "" && item.namesplate != "undefined"'
+                          data-toggle="modal" data-target="#myModal2" (click)='showPhoto(item)'
+                          src="{{uploadpath}}quote/{{item.namesplate}}" class="icon-60" />
+                        <img
+                          *ngIf='item.frontofcar == ""  && item.namesplate == ""  && item.rearofcar != ""  && item.rearofcar != "undefined"'
+                          data-toggle="modal" data-target="#myModal2" (click)='showPhoto(item)'
+                          src="{{uploadpath}}quote/{{item.rearofcar}}" class="icon-60" />
+                      </div>
+                      <div *ngSwitchCase='false'>
+                        <img *ngIf='item.photo1 != "" && item.photo1!="undefined" ' data-toggle="modal"
+                          data-target="#myModal2" (click)='showPhoto(item)' src="{{uploadpath}}quote/{{item.photo1}}"
+                          class="icon-60" />
+                       
+                      </div>
+                      <div *ngIf='item.imgs>1' class="photoLen">{{item.imgs.length}}</div>
+                    </div>
   
-    </section>
-    <!-- /.content -->
+                  </td>
+                  <td>
+                    <div>{{item.enterprise_id_name}}</div>
+                    <div>{{item.enterprise_corporate_address}}</div>
+                  </td>
+                  <td>
+                    <div>{{item.quote_time}}</div>
+                  </td>
+                  <td  *ngIf='type==""'>
+                    <div>{{item.quotestatus_name}}</div>
+                  </td>
+                  <td>
+                    <div *ngIf='item.quotestatus === "Q" '>
+                      <div class="badge badge-primary cur-po" (click)='baojia(item.quote_id,item.id)'>立即报价</div><br />
+                      <div class="badge badge-default txt-blue cur-po" (click)='ignoreHandle(item)'>忽略</div>
+                    </div>
+
+                    <div *ngIf='item.quotestatus === "H" ' class="badge badge-primary cur-po" (click)='baojia(item.quote_id,item.id)'>
+                      立即报价
+                    </div>
+                    <div *ngIf='item.quotestatus === "S" '>
+                      <div>一</div><br>
+                    </div>
+                    <div *ngIf='item.quotestatus === "W" || item.quotestatus=="C"' class="badge badge-primary cur-po" (click)='yibao(item.id)'>
+                      查看详情
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+      </div>
+    </div>
+
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+<div *ngIf='photoshow' class="modal fade " id="myModal2" tabindex="-1" role="dialog"
+aria-labelledby="myModalLabel">
+<div class="modal-dialog photoimg " role="img" *ngFor='let item of imgs'>
+  <div class="modal-content"
+    style="background: transparent; border: none;width: 800px; height: 0;">
+
+    <div id="demo" class="carousel slide"
+      style="background: transparent; border: none;width: 800px; height: 0;padding-bottom: 100%;">
+      <!-- 指示符 -->
+      <ul class="carousel-indicators">
+      </ul>
+
+      <!-- 轮播图片 -->
+      <div class="carousel-inner images" style="width: 100%;height: 0;padding-bottom:100%">
+        <div class="carousel-item active" *ngIf='item.frontofcar!="" && item.frontofcar!="undefined"'>
+          <div class="zoomImage" [style.background-image]="'url('+uploadpath+'quote/'+item.frontofcar+')'">
+          </div>
+        </div>
+        <div class="carousel-item" style="height: 100%;"
+          *ngIf='item.namesplate!="" && item.namesplate!="undefined"'>
+          <div class="zoomImage" [style.background-image]="'url('+uploadpath+'quote/'+item.namesplate+')'">
+          </div>
+        </div>
+        <div class="carousel-item" style="height: 100%;"
+          *ngIf='item.rearofcar!="" && item.rearofcar!="undefined"'>
+          <div class="zoomImage" [style.background-image]="'url('+uploadpath+'quote/'+item.rearofcar+')'">
+          </div>
+        </div>
+        <div class="carousel-item" style="height: 100%;" *ngFor='let photos of item.arr;let k=index;'>
+          <div class="zoomImage" [style.background-image]="'url('+uploadpath+'quote/'+photos+')'"></div>
+        </div>
+      </div>
+
+      <!-- 左右切换按钮 -->
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <div><img src="{{uploadpath}}resource/{{res.arrowl}}"
+            style="width: 30px !important;height: 30px !important;" /></div>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <div><img src="{{uploadpath}}resource/{{res.arrowr}}"
+            style="width: 30px !important;height: 30px !important;"></div>
+      </a>
+
+    </div>
+
+
   </div>
-  <!-- /.content-wrapper -->
-  
+</div>
+</div>

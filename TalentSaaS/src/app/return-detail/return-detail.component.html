@@ -1,0 +1,202 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>退货详情</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a routerLink=''>首页</a></li>
+              <li class="breadcrumb-item"><a routerLink='/returncenter'>退货管理</a></li>
+              <li class="breadcrumb-item active">退货详情</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+  
+    <!-- Main content -->
+    <section class="content">
+  
+  
+  
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Horizontal Form -->
+          <div class="card card-info">
+            <div class="card-header bg-gray-d">
+              <h3 class="card-title border-left-primary txt-bold h4-5"> &nbsp;退货信息</h3>
+              <div (click)='fanhui()' class="txt-black float-right h4-5"><i class="fa fa-angle-left margin-right"></i>返回</div>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form class="form-horizontal">
+              <div class="card-body">
+                <div class="row" *ngIf='returndetail!=null'>
+                  <div class="form-group  col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3"  class=" col-form-label col-form-label-sm">公司名称</label>
+                      <div class="form-control col-form-label-sm">{{returndetail.enterprise_name}}</div>
+                  </div>
+                  <div class="form-group   col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">订单编号</label>
+                      <div class="form-control col-form-label-sm">{{returndetail.order_orderno}}</div>
+                  </div>
+                  <div class="form-group   col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">申请人</label>
+                      <div class="form-control col-form-label-sm">{{returndetail.employee_id_name}}</div>
+                  </div>
+                  <div class="form-group   col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">退货单号</label>
+                      <div class="form-control col-form-label-sm">{{returndetail.returnno}}</div>
+                  </div>
+                  <div class="form-group   col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label  col-form-label-sm">申请时间</label>
+                      <div class="form-control col-form-label-sm">{{returndetail.return_time}}</div>
+                  </div>
+                  <div class="form-group   col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">申请电话</label>
+                      <div class="form-control col-form-label-sm">{{returndetail.receivecontact=='undefined'?'无':returndetail.receivecontact}}</div>
+                  </div>
+                  <div class="form-group   col-lg-4 col-md-5  col-sm-6">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">申请原因</label>
+                      <div class="form-control col-form-label-sm">{{returndetail.remarks=='undefined'?'无':returndetail.remarks}}</div>
+                  </div>
+                  
+                </div>
+              </div>
+              <!-- /.card-body -->
+             
+              <!-- /.card-footer -->
+            </form>
+          </div>
+          <!-- /.card -->
+  
+  
+        </div>
+      </div>
+  
+  
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header bg-gray-d">
+              <h3 class="card-title border-left-primary txt-bold h4-5">&nbsp;退货清单</h3>
+  
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0" style="overflow-x: auto;">
+              <table class="table text-center" style="min-width: 768px;">
+                <thead>
+                  <tr>
+                    <th>序号</th>
+                    <th>配件名称</th>
+                    <th>零件号</th>
+                    <th>数量</th>
+                    <th>品质/品牌</th>
+                    <th>备货时间</th>
+                    <th>质保期</th>
+                    <th>单价</th>
+                    <th>发车时间</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let item of returnitem; let i=index'>
+                    <td>{{i+1}}</td>
+                    <td> 
+                       {{item.name}}
+                    </td>
+                    <td>{{item.mcid}}</td>
+                    <td>
+                        {{item.qty}}
+                    </td>
+                    <td>
+                       {{item.quality}}
+                    </td>
+                    <td>
+                        <div>{{item.stand_time}}</div>
+                    </td>
+                    <td>
+                        <div>{{item.guarantee}}</div>
+                    </td>
+                    <td>
+                        <div>{{item.price}}</div>
+                    </td>
+                    <td>
+                        <div>{{item.remark}}</div>
+                    </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+  
+        </div>
+      </div>
+      <div class="row" *ngIf='type!="Y"'>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body text-center">
+                    <button class="btn btn-primary padding-left-50 padding-right-50" *ngIf='type=="R"'  data-toggle="modal" data-target="#modal-default3" >同意申请退货</button>
+                    <button class="btn btn-primary padding-left-50 padding-right-50" *ngIf='type=="I"' data-toggle="modal" data-target="#modal-default2"><a>已收到货</a></button>
+                </div>
+                
+            </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  
+  <div class="modal fade" id="modal-default3" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">退货提示</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <p>同意给买家退货？</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" (click)='saveQuote()' data-dismiss="modal">确定</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  <div class="modal fade" id="modal-default2" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">退货提示</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <p>已经收到买家的退回来的货品？</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">否</button>
+          <button type="button" class="btn btn-primary" (click)='saveQuote()' data-dismiss="modal">是</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  

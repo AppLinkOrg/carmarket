@@ -30,13 +30,16 @@ export class OrderCenterComponent extends AppBase {
   type='';
   onMyLoad() {
     this.params;
+    if(this.params.type!=undefined){
+      this.type=this.params.type;
+    }
   }
   onMyShow() {
     if (MainComponent.Instance != null) {
       MainComponent.Instance.setModule("order", "order");
     }
-    this.getlist();
-    
+    this.changtype(this.type);
+    this.comlen();
   }
   changtype(type){
     this.type=type;
@@ -63,6 +66,7 @@ export class OrderCenterComponent extends AppBase {
   }
   mylist=[];
   getlist(){
+    this.pageList=[];
     console.log(this.memberinfo,'memner');
     this.orderApi.mylist({enterprise_id: this.memberinfo.enterprise_id, baojia: this.memberinfo.id, order_status: this.type ,orderby:'r_main.orderno desc'}).then((mylist:any)=>{
       for(var i=0;i<mylist.length;i++){
@@ -70,5 +74,18 @@ export class OrderCenterComponent extends AppBase {
       }
       this.pagination(mylist,mylist.length);
     })
+  }
+  todetail(item){
+    var id = item.id;
+    var type='';
+    if(this.type==''){
+      type= item.order_status;
+    }else {
+      type = this.type;
+    }
+    this.orderApi.editisread({ order_id: item.id, enterprise_id: this.memberinfo.enterprise.id, employee_id: this.memberinfo.id }).then((ret) => {
+      this.navigate('/orderdetail',{id:id,type:type})
+    })
+   
   }
 }

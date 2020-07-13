@@ -9,7 +9,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/">首页</a></li>
             <li class="breadcrumb-item active">管理中心</li>
           </ol>
         </div>
@@ -25,154 +25,70 @@
       <div class="row">
         <div class="col-md-3">
           <!-- Profile Image -->
-          <div class="card card-primary ">
-            <!-- <div class="card-header">
-              <h3 class="card-title">About Me</h3>
+          <!-- <div class="card card-primary ">
+            <div class="card-header">
             </div>
-            <div class="card-body box-profile">
+            <div class="card-body box-profile" *ngIf="memberinfo!=null">
               <div class="text-center">
-                <img class="profile-user-img img-fluid img-circle"
-                  src="{{uploadpath}}manpower/{{memberinfo.manpower.logo}}" alt="User profile picture">
+                <img *ngIf='memberinfo.enterprise.logo!=""'
+                  src="{{uploadpath}}enterprise/{{memberinfo.enterprise.logo}}"
+                  class="profile-user-img img-fluid img-circle" alt="User Image">
+                <img *ngIf='memberinfo.enterprise.logo==""' src="{{uploadpath}}resource/{{res.touxiang}}"
+                  class="profile-user-img img-fluid img-circle" alt="User Image">
               </div>
 
               <h3 class="profile-username text-center">{{memberinfo.name}}</h3>
 
               <p class="text-muted text-center">
-                {{memberinfo.usertype=='A'?"老板":""}}
-                {{memberinfo.usertype=='B'?"管理者":""}}
-                {{memberinfo.usertype=='C'?"员工":""}}</p>
-
-
-            </div> -->
-            <!-- /.card-body -->
-          </div>
+                {{memberinfo.position=='B'?"老板":""}}
+                {{memberinfo.position=='C'?"员工":""}}</p>
+            </div>
+          </div> -->
           <!-- /.card -->
 
-
-          <!-- About Me Box -->
-          <div class="card card-primary">
-            <!-- <div class="card-header">
-              <h3 class="card-title">About Us</h3>
-            </div> -->
-            <!-- /.card-header -->
-            <!-- <div class="card-body">
-              <strong><i class="fas fa-book mr-1"></i> 公司编号</strong>
-
-              <p class="text-muted">
-                {{memberinfo.manpower.identity}}
-              </p>
-
-              <hr>
-              <strong><i class="fas fa-book mr-1"></i> 公司名称</strong>
-
-              <p class="text-muted">
-                <input type="text" name='name' [(ngModel)]='memberinfo.manpower.name'>
-              </p>
-
-              <hr>
-
-              <strong><i class="fas fa-map-marker-alt mr-1"></i> 地址</strong>
-
-              <p class="text-muted">
-                <textarea style="width: 100%;" name='address' [(ngModel)]='memberinfo.manpower.address' ></textarea>
-               </p>
-
-              <hr>
-
-              <strong><i class="fas fa-pencil-alt mr-1"></i> 联系电话</strong>
-
-              <p class="text-muted">
-                <input type="text" name='tel' [(ngModel)]='memberinfo.manpower.tel'>
-              
-              </p>
-
-              <hr>
-
-              <strong><i class="far fa-file-alt mr-1"></i> 备注</strong>
-
-              <p class="text-muted">  <input type="text" name='note' [(ngModel)]='memberinfo.manpower.note'>
-              </p>
-            
-                <button class="btn btn-primary float-right" (click)='save()'>Save</button>
-              
-               
-           
-            </div> -->
-            <!-- /.card-body -->
-          </div>
           <!-- /.card -->
         </div>
         <!-- /.col -->
         <div class="col-md-12">
           <div class="card">
             <div class="card-header p-2 bg-gray-d">
-              <!-- <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link" [class.active]='tabtype=="companyinfo"'
-                    (click)='tabtype="companyinfo"' data-toggle="tab">{{lang.gonsixinxi}}</a></li>
-                <li class="nav-item"><a class="nav-link" [class.active]='tabtype=="companyfile"'
-                    (click)='tabtype="companyfile"' data-toggle="tab">{{lang.gonsiwenjian}}</a></li>
-                <li class="nav-item"><a class="nav-link" [class.active]='tabtype=="resetpassword"'
-                    (click)='tabtype="resetpassword"' data-toggle="tab">{{lang.xiugaimima}}</a></li>
-                <li class="nav-item" *ngIf="memberinfo.usertype.indexOf('A')>-1||memberinfo.usertype.indexOf('B')>-1"><a
-                    class="nav-link" [class.active]='tabtype=="target"' (click)='tabtype="target"'
-                    data-toggle="tab">{{lang.mubiaoshezhe}}</a></li>
-                <li class="nav-item"><a class="nav-link" [class.active]='tabtype=="employee"'
-                    (click)='tabtype="employee"' data-toggle="tab">{{lang.zhaopinwanzhi}}</a></li>
-              </ul> -->
+              <ul class="nav nav-pills">
+                <li class="nav-item"><a class="nav-link" [class.active]='tabtype=="account"' (click)='tabtype="account"'
+                    data-toggle="tab">我的账户</a></li>
+                <li class="nav-item"><a class="nav-link" [class.active]='tabtype=="yeji"' (click)='tabtype="yeji"'
+                    data-toggle="tab">我的业绩</a></li>
+
+              </ul>
             </div><!-- /.card-header -->
 
             <div class="card-body">
               <div class="tab-content">
-                <div class="tab-pane" [class.active]='tabtype=="companyinfo"' *ngIf='tabtype=="companyinfo"'>
+                <div class="tab-pane" [class.active]='tabtype=="account"' *ngIf='tabtype=="account"'>
 
-                  <form class="form-horizontal">
-                    <!-- <div class="form-group row">
-                      <label for="inputName" class="col-sm-2 col-form-label">{{lang.corporatename}}</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName" name='name'
-                          [(ngModel)]='memberinfo.manpower.name'>
-                      </div>
-                    </div>
+                  <form class="form-horizontal" *ngIf='memberinfo!=null'>
                     <div class="form-group row">
-                      <label for="inputEmail" class="col-sm-2 col-form-label">{{lang.companyaddress}}</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputEmail" name='address'
-                          [(ngModel)]='memberinfo.manpower.address'>
+                      <!-- <label for="inputName" class="col-sm-2 col-form-label">{{lang.corporatename}}</label> -->
+                      <div class="text-center">
+                        <img *ngIf='memberinfo.enterprise.logo!=""'
+                          src="{{uploadpath}}enterprise/{{memberinfo.enterprise.logo}}"
+                          class="profile-user-img img-fluid img-circle" alt="User Image">
+                        <img *ngIf='memberinfo.enterprise.logo==""' src="{{uploadpath}}resource/{{res.touxiang}}"
+                          class="profile-user-img img-fluid img-circle" alt="User Image">
                       </div>
+                      <div class="margin-left-40">
+                        <h5>{{memberinfo.name}} <span class="h6 margin-left-10">{{memberinfo.position_name}}</span></h5>
+                        <p class="h5">{{memberinfo.enterprise.name}}</p>
+                        <div class="h6">
+                            <span class="margin-right-40">
+                                <img src="{{uploadpath}}resource/{{res.authentication}}" class="icon-25 margin-right-10" style="background-blend-mode:lighten;" />已认证
+                            </span>
+                            <span>
+                                <img src="{{uploadpath}}resource/{{res.return}}" class="icon-25 margin-right-10" />包退换
+                            </span>
+                        </div>
                     </div>
-                    <div class="form-group row">
-                      <label for="inputName2" class="col-sm-2 col-form-label">{{lang.companyphone}}</label>
-                      <div class="col-sm-10">
-                        <input class="form-control" id="inputName2" type="text" name='tel'
-                          [(ngModel)]='memberinfo.manpower.tel'>
-                      </div>
                     </div>
-                    <div class="form-group row">
-                      <label for="inputName2" class="col-sm-2 col-form-label">{{lang.email}}</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName2" name="email"
-                          [(ngModel)]='memberinfo.manpower.email'>
-                      </div>
-                    </div> -->
-                    <!-- <div class="form-group row">
-                      <label for="inputName2" class="col-sm-2 col-form-label">Facebook</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName2" name="facebook"
-                          [(ngModel)]='memberinfo.manpower.facebook'>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="inputName2" class="col-sm-2 col-form-label">WhatsApp</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName2" name="whatsApp"
-                          [(ngModel)]='memberinfo.manpower.whatsApp'>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <div class="offset-sm-2 col-sm-10">
-                        <button class="btn btn-primary " (click)='save()'>Save</button>
-                      </div>
-                    </div> -->
+
                   </form>
 
 
@@ -181,7 +97,7 @@
                 <div class="tab-pane" [class.active]='tabtype=="companyfile"' *ngIf='tabtype=="companyfile"'>
 
                   <form class="form-horizontal">
-<!--                    
+                    <!--                    
                     <div class="clearfix">
                       <nz-upload nzAction="{{uploadapi}}?module=manpower&field=file&rettype=json" nzListType="picture" [(nzFileList)]="fileList1"  (nzChange)="afterupload($event)">
                         <button nz-button><i nz-icon nzType="upload"></i>Upload</button>
@@ -234,64 +150,13 @@
                 </div>
 
 
-                <div class="tab-pane" [class.active]='tabtype=="target"' *ngIf='tabtype=="target"'>
-                  <div class="form-horizontal">
-                    <!-- <div class="form-group row">
-                      <label for="inputName" class="col-sm-3 col-form-label">{{lang.shezherencai}}</label>
-                      <div class="col-sm-9">
-                        <input type="number" min="0" class="form-control" [(ngModel)]='targethuman'>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="inputName" class="col-sm-3 col-form-label">{{lang.shezheorder}}</label>
-                      <div class="col-sm-9">
-                        <input type="number" min="0" class="form-control" [(ngModel)]='targetorder'>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="inputName" class="col-sm-3 col-form-label">{{lang.shezhekehu}}</label>
-                      <div class="col-sm-9">
-                        <input type="number" min="0" class="form-control" [(ngModel)]='targetclient'>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="inputName" class="col-sm-3 col-form-label">{{lang.shezheshouru}}</label>
-                      <div class="col-sm-9">
-                        <input type="number" min="0" class="form-control" [(ngModel)]='targetamount'>
-                      </div>
-                    </div> -->
 
-
-                    <div class="form-group row">
-                      <div class="offset-sm-2 col-sm-10">
-                        <button type="button" (click)='submitTarget()'
-                          class="btn btn-primary ">Submit</button>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-
-                <!-- <div class="tab-pane" [class.active]='tabtype=="employee"' *ngIf='tabtype=="employee"'>
-                  <div class="form-group row">
-                    <label for="inputName" class="col-sm-12 col-form-label">{{InstInfo.links}}-{{lang.feiyong}}<span
-                        class="badge badge-primary margin-left-20" (click)='copy("A")'>{{lang.copy}}</span></label>
-
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputEmail" class="col-sm-12 col-form-label">{{InstInfo.links}}-{{lang.qita}}<span
-                        class="badge badge-primary margin-left-20" (click)='copy("B")'>{{lang.copy}}</span></label>
-
-                  </div>
-
-                </div> -->
-                <!-- /.tab-pane -->
               </div>
               <!-- /.tab-content -->
             </div><!-- /.card-body -->
           </div>
 
-       
+
           <!-- /.nav-tabs-custom -->
         </div>
 

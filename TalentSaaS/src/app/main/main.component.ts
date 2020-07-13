@@ -112,6 +112,11 @@ export class MainComponent extends AppBase {
 
       }
     })
+
+
+    this.orderApi.addquotation({}).then(()=>{
+      
+    })
   })
   }
 

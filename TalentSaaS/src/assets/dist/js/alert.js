@@ -41,3 +41,7 @@ Chart.print=function(id){
     doctype: '<!doctype html>'
 });
 }
+Chart.hidemodel=function(){
+
+  $("#modal-default3").modal('hide');
+}

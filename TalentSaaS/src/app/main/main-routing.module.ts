@@ -11,6 +11,10 @@ import { SearchComponent } from '../search/search.component';
 import { QuoteCenterComponent } from '../quote-center/quote-center.component';
 import { OrderCenterComponent } from '../order-center/order-center.component';
 import { ReturnCenterComponent } from '../return-center/return-center.component';
+import { QuoteDetailComponent } from '../quote-detail/quote-detail.component';
+import { QuotePriceComponent } from '../quote-price/quote-price.component';
+import { OrderDetailComponent } from '../order-detail/order-detail.component';
+import { ReturnDetailComponent } from '../return-detail/return-detail.component';
 
 const routes: Routes = [
   {
@@ -29,6 +33,10 @@ const routes: Routes = [
       { path: "quotecenter", component:  QuoteCenterComponent},
       { path: "ordercenter", component:  OrderCenterComponent},
       { path: "returncenter", component:  ReturnCenterComponent},
+      { path: "quotedetail", component:  QuoteDetailComponent},
+      { path: "quoteprice", component:  QuotePriceComponent},
+      { path: "orderdetail", component:  OrderDetailComponent},
+      { path: "returndetail", component:  ReturnDetailComponent},
     ]
   }
 ];

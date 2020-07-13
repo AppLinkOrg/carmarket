@@ -31,6 +31,10 @@ import { APP_BASE_HREF } from '@angular/common';
 import { QuoteCenterComponent } from './quote-center/quote-center.component';
 import { OrderCenterComponent } from './order-center/order-center.component';
 import { ReturnCenterComponent } from './return-center/return-center.component';
+import { QuoteDetailComponent } from './quote-detail/quote-detail.component';
+import { QuotePriceComponent } from './quote-price/quote-price.component';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { ReturnDetailComponent } from './return-detail/return-detail.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +53,10 @@ import { ReturnCenterComponent } from './return-center/return-center.component';
     QuoteCenterComponent,
     OrderCenterComponent,
     ReturnCenterComponent,
+    QuoteDetailComponent,
+    QuotePriceComponent,
+    OrderDetailComponent,
+    ReturnDetailComponent,
   ],
   imports: [
     BrowserModule,

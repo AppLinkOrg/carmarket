@@ -647,6 +647,28 @@ export class OrderApi {
     }
 
 
+    public ordernum(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/ordernum';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = { headers: headers };
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                return res;
+            })
+            .catch(err => {
+                console.error(err);
+                return ApiConfig.ErrorHandle('order/ordernum', data, err);
+            });
+    }
+
+
     public print(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'order/print';
         var headers = ApiConfig.GetHeader(url, data);
@@ -1021,8 +1043,8 @@ export class OrderApi {
     }
 
 
-    public ordernum(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'order/ordernum';
+    public qoutenum(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'order/qoutenum';
         var headers = ApiConfig.GetHeader(url, data);
         let options = { headers: headers };
         let body = ApiConfig.ParamUrlencoded(data);
@@ -1038,7 +1060,7 @@ export class OrderApi {
             })
             .catch(err => {
                 console.error(err);
-                return ApiConfig.ErrorHandle('order/ordernum', data, err);
+                return ApiConfig.ErrorHandle('order/qoutenum', data, err);
             });
     }
 
