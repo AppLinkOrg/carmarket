@@ -83,6 +83,66 @@
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
+
+        <div class="col-md-8">
+          <!-- MAP & BOX PANE -->
+
+
+          <!-- TABLE: LATEST ORDERS -->
+          <div class="card">
+            <div class="card-header border-transparent">
+              <h3 class="card-title">最新订单</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table m-0 text-center">
+                  <thead>
+                    <tr>
+                      <th>订单编号</th>
+                      <th>公司名称</th>
+                      <th>订单状态</th>
+                      <th>订单金额</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of latestorder">
+                      <td><a href="javascript:void(0)" (click)='navigate("/orderdetail",{id:item.id})'>{{item.orderno}}</a></td>
+                      <td>{{item.enterprise_name}}</td>
+                      
+                      <td>
+                        <span class="badge badge-success" *ngIf="item.order_status=='L'">待发货</span>
+                        <span class="badge badge-warning" *ngIf="item.order_status=='M'">待收货</span>
+                        <span class="badge badge-primary" *ngIf="item.order_status=='N'">已完成</span>
+                        <span class="badge badge-danger" *ngIf="item.order_status=='E'">已取消</span>
+                        <span class="badge badge-info" *ngIf="item.order_status=='W'">待付款</span>
+                      </td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">{{item.totalamount}}</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.table-responsive -->
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer clearfix">
+              <a routerLink="/ordercenter" class="btn btn-sm btn-secondary float-right">查看所有订单</a>
+            </div>
+            <!-- /.card-footer -->
+          </div>
+          <!-- /.card -->
+        </div>
        
         <div class="col-md-4">
           <!-- Info Boxes Style 2 -->

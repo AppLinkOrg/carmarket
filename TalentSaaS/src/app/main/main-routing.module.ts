@@ -15,6 +15,8 @@ import { QuoteDetailComponent } from '../quote-detail/quote-detail.component';
 import { QuotePriceComponent } from '../quote-price/quote-price.component';
 import { OrderDetailComponent } from '../order-detail/order-detail.component';
 import { ReturnDetailComponent } from '../return-detail/return-detail.component';
+import { EmployeeSalesComponent } from '../employee-sales/employee-sales.component';
+import { ConsumeComponent } from '../consume/consume.component';
 
 const routes: Routes = [
   {
@@ -37,6 +39,8 @@ const routes: Routes = [
       { path: "quoteprice", component:  QuotePriceComponent},
       { path: "orderdetail", component:  OrderDetailComponent},
       { path: "returndetail", component:  ReturnDetailComponent},
+      { path: "employeesales", component:  EmployeeSalesComponent},
+      { path: "consume", component:  ConsumeComponent},
     ]
   }
 ];

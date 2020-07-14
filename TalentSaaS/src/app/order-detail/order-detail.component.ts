@@ -75,6 +75,8 @@ export class OrderDetailComponent extends AppBase {
       }
     })
   }
+  addresserror=false;
+  receaddress='';
   changeStatus(){
     if(this.companyCode==''){
       this.xuanze=true;
@@ -82,8 +84,8 @@ export class OrderDetailComponent extends AppBase {
     }
     
     var that = this;
-    this.list.order_status = "M"
-      this.carApi.logistics({id:this.primary_id ,companyCode:this.companyCode}).then((logistics:any)=>{
+    this.list.order_status = "M";
+      this.carApi.logistics({id:this.primary_id ,companyCode:this.companyCode,receaddress:this.receaddress}).then((logistics:any)=>{
           console.log(logistics);
           if(logistics.errorcode=='0'){
             
@@ -93,10 +95,14 @@ export class OrderDetailComponent extends AppBase {
                 // that.router.navigate(['receiveGoodsDetail'],{ queryParams: { id: that.primary_id ,aa:3}});
                 this.onMyShow();
                 this.type='M';
+                this.addresserror=false;
               }
+
             })
           }else {
-
+            this.addresserror=true;
+            this.toast('收货人地址错误！');
+            return
           }
       })
      

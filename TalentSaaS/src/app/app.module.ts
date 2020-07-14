@@ -35,6 +35,8 @@ import { QuoteDetailComponent } from './quote-detail/quote-detail.component';
 import { QuotePriceComponent } from './quote-price/quote-price.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { ReturnDetailComponent } from './return-detail/return-detail.component';
+import { EmployeeSalesComponent } from './employee-sales/employee-sales.component';
+import { ConsumeComponent } from './consume/consume.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { ReturnDetailComponent } from './return-detail/return-detail.component';
     QuotePriceComponent,
     OrderDetailComponent,
     ReturnDetailComponent,
+    EmployeeSalesComponent,
+    ConsumeComponent,
   ],
   imports: [
     BrowserModule,

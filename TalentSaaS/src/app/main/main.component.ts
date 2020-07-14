@@ -55,11 +55,12 @@ export class MainComponent extends AppBase {
     //alert(this.memberinfo.expireddatetimespan);
     //alert(this.memberinfo.expireddatetimespan/24/3600/1000);
     //alert(timespan/24/3600/1000);
-    if (this.memberinfo != null
-      &&
-      this.memberinfo.expireddatetimespan / 24 / 3600 / 1000 - timespan / 24 / 3600 / 1000 < 30) {
-      this.warning("Account Expired", "Your license would be expired in " + this.memberinfo.manpower.expired_date + ", please content support to update your license.");
-    }
+    
+
+    setInterval(() => { 
+      this.refreshSummary();
+    }, 2000);
+
   }
 
   

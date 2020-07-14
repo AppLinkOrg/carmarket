@@ -38,6 +38,7 @@ export class ReturnCenterComponent extends AppBase {
     if (MainComponent.Instance != null) {
       MainComponent.Instance.setModule("return", "return");
     }
+    this.inloop=true;
     this.changtype(this.type);
     this.comlen();
   }
@@ -49,6 +50,10 @@ export class ReturnCenterComponent extends AppBase {
   daituilen=0;
   yituilen=0;
   tuizhonglen=0;
+  inloop=false;
+  ngOnDestroy() {
+    this.inloop=false;
+  }
   comlen(){
     this.orderApi.ordernum({}).then((ordernum:any)=>{
       if(ordernum){
@@ -56,6 +61,12 @@ export class ReturnCenterComponent extends AppBase {
         this.daituilen=ordernum.rdaitui;
         this.yituilen=ordernum.rtuizhong;
         this.tuizhonglen=ordernum.ryitui;
+        
+      }
+      if(this.inloop==true){
+        setTimeout(()=>{
+          this.comlen();
+        },3000);
       }
     })
   }
@@ -68,6 +79,11 @@ export class ReturnCenterComponent extends AppBase {
         returnlist[i].index=i;
       }
       this.pagination(returnlist,returnlist.length);
+      if(this.inloop==true){
+        setTimeout(()=>{
+          this.changtype(this.type);
+        },4000);
+      }
     })
   }
   todetail(item){

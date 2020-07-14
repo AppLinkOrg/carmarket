@@ -21,7 +21,7 @@
 
     <!-- SEARCH FORM -->
     <div class="form-inline ml-3" *ngIf="module!='search'">
-      <div class="input-group input-group-sm">
+      <!-- <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="搜索" aria-label="Search" [(ngModel)]='searchkey' >
         <div class="input-group-append">
           <button class="btn btn-navbar" type="button" (click)='searchkey="";navigate("search",{key:searchkey})'>
@@ -34,7 +34,7 @@
             <div class="dropdown-divider" ></div>
             <a (click)='searchkey="";navigate("search",{key:key.name})' class="dropdown-item"  >{{key.name}}</a>
         </ng-template>
-      </div>
+      </div> -->
     </div>
 
     <!-- Right navbar links -->
@@ -178,7 +178,7 @@
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link  {{module=='order'?'active':''}}"  routerLink='/ordercenter'>
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-copy"></i>
               <p>
                 订单管理
                 <span class="badge badge-info right" *ngIf='ordernum>0'>{{ordernum}}</span>
@@ -198,7 +198,7 @@
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link  {{module=='setting'?'active':''}}"  routerLink='/setting'>
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-cog"></i>
               <p>
                 管理中心
               </p>

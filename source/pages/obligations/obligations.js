@@ -69,8 +69,10 @@ class Content extends AppBase {
 
           orderapi.updatemoney({
             id: that.Base.getMyData().employeeinfo.enterprise.id,
+            ent_id: detail.enterprise_id,
             money: detail.totalamount,
-            em_id: detail.employee_id
+            em_id: detail.baojia,
+
           }, (updatemoney) => {
 
             orderapi.updatestatus({
@@ -78,6 +80,14 @@ class Content extends AppBase {
               order_status: "L",
               quote_id: detail.quote_id
             }, (updatestatus) => {
+
+            })
+
+            orderapi.editquotation({
+              quotecompan_id: detail.enterprise_id,
+              quote_id: detail.quote_id,
+              quotestatus: 'W'
+            }, (editquotation) => {
 
             })
 

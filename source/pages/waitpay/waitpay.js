@@ -111,7 +111,7 @@ class Content extends AppBase {
             orderapi.updatemoney({
               id: that.Base.getMyData().employeeinfo.enterprise.id,
               ent_id: mylist[i].enterprise_id,
-              em_id: mylist[i].employee_id,
+              em_id: mylist[i].baojia,
               money: mylist[i].totalamount
             }, (updatemoney) => {
  
@@ -120,21 +120,21 @@ class Content extends AppBase {
            // that.bindinsert2(list2, i)
  
             orderapi.editquotation({
-              quotecompan_id: mylist[i].quotecompan_id,
+              quotecompan_id: mylist[i].enterprise_id,
               quote_id: mylist[i].quote_id,
               quotestatus: 'W'
             }, (editquotation) => {
 
             })
 
-            orderapi.editquotestatus({
-              quoteenterprise_id: mylist[i].quotecompan_id,
-              quote_id: mylist[i].quote_id,
-              quotestatus: 'C',
-              invalid: 'Y'
-            }, (editquotestatus) => {
-              console.log(editquotestatus, 'ooooo')
-            })
+            // orderapi.editquotestatus({
+            //   quoteenterprise_id: mylist[i].enterprise_id,
+            //   quote_id: mylist[i].quote_id,
+            //   quotestatus: 'C',
+            //   invalid: 'Y'
+            // }, (editquotestatus) => {
+            //   console.log(editquotestatus, 'ooooo')
+            // })
 
             that.bindinsert(list, i);
 

@@ -163,9 +163,9 @@ export class QuoteDetailComponent extends AppBase {
     addlist.fittings_id = item.id;
     addlist.name = item.name;
     addlist.partnubmer = item.partnubmer;
-    addlist.quantity = item.quantity;
+    addlist.qty = item.quantity;
     addlist.Sprice = item.Sprice;
-    addlist.rateprice = '1';
+    addlist.rateprice = item.rateprice;
     addlist.rate = this.rate;
     addlist.pinzhi = item.pinzhi;
     // addlist.minprice = minmoney;
@@ -227,8 +227,8 @@ export class QuoteDetailComponent extends AppBase {
   yibao = false;
   list = [];
   tijiao() {
-    this.orderApi.quoteinfo({ id: this.primary_id }).then((quoteinfo: any) => {
-      if (quoteinfo.quotestatus == 'W') {
+    this.orderApi.isquoted({ quote_id: this.primary_id }).then((isquoted: any) => {
+      if (isquoted.ifquotednum>0) {
         this.yibao = true;
       }
     })
@@ -269,9 +269,9 @@ export class QuoteDetailComponent extends AppBase {
       addlist.fittings_id = item.id;
       addlist.name = item.name;
       addlist.partnubmer = item.partnubmer;
-      addlist.quantity = item.quantity;
+      addlist.qty = item.quantity;
       addlist.Sprice = item.Sprice;
-      addlist.rateprice = '1';
+      addlist.rateprice = item.rateprice;
       addlist.rate = this.rate;
       addlist.pinzhi = item.pinzhi;
 

@@ -38,6 +38,7 @@ export class OrderCenterComponent extends AppBase {
     if (MainComponent.Instance != null) {
       MainComponent.Instance.setModule("order", "order");
     }
+    this.inloop=true;
     this.changtype(this.type);
     this.comlen();
   }
@@ -51,7 +52,10 @@ export class OrderCenterComponent extends AppBase {
   wanlen = 0;
   qulen = 0;
   fulen = 0;
-
+  inloop=false;
+  ngOnDestroy() {
+    this.inloop=false;
+  }
   comlen(){
     this.orderApi.ordernum({}).then((ordernum:any)=>{
       if(ordernum){
@@ -62,6 +66,13 @@ export class OrderCenterComponent extends AppBase {
         this.qulen=ordernum.yiquxiao;
         this.fulen=ordernum.daifukuan;
       }
+
+      if(this.inloop==true){
+        setTimeout(()=>{
+          this.comlen();
+        },3000);
+      }
+
     })
   }
   mylist=[];
@@ -73,6 +84,11 @@ export class OrderCenterComponent extends AppBase {
         mylist[i].index=i;
       }
       this.pagination(mylist,mylist.length);
+      if(this.inloop==true){
+        setTimeout(()=>{
+          this.changtype(this.type);
+        },4000);
+      }
     })
   }
   todetail(item){

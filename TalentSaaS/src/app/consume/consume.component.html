@@ -1,0 +1,119 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>交易明细</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a routerLink=''>首页</a></li>
+              <li class="breadcrumb-item"><a routerLink='/setting'>管理中心</a></li>
+              <li class="breadcrumb-item active">交易明细</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+  
+    <!-- Main content -->
+    <section class="content">
+  
+  
+  
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Horizontal Form -->
+          <div class="card card-info">
+            <!-- <div class="card-header">
+              <h3 class="card-title">Horizontal Form</h3>
+            </div> -->
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form class="form-horizontal">
+              <div class="card-body">
+                <div class="row">
+                  <div class="form-group  col-lg-3 col-md-4  col-sm-5">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">姓名</label>
+                      <select class="form-control col-form-label-sm" id="inputEmail3" name='name' [(ngModel)]='name'>
+                          <option value="" selected>请选择</option>
+                          <option value="{{item.id}}" *ngFor='let item of allenterprise'>{{item.name}}</option>
+                      </select>
+                  </div>
+                  <div class="form-group   col-lg-3 col-md-4  col-sm-5">
+                      <label for="inputEmail3" class=" col-form-label col-form-label-sm">日期</label>
+                      <input type="date" class="form-control col-form-label-sm" id="inputEmail3" name='shijian' [(ngModel)]='shijian' />
+                  </div>
+                  
+                </div>
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer text-right">
+                <button type="submit" class="btn btn-defalut bg-gray " (click)='reset()'>重置</button>
+                <button type="submit" class="btn btn-primary margin-left-20" (click)='search()'>搜索</button>
+              </div>
+              <!-- /.card-footer -->
+            </form>
+          </div>
+          <!-- /.card -->
+  
+  
+        </div>
+      </div>
+  
+  
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <!-- <h3 class="card-title">Simple Full Width Table</h3> -->
+  
+              <div class="card-tools">
+                <ul class="pagination pagination-sm ">
+                    <li class="page-item"><span class="page-link" (click)='Previous()'>&laquo;</span></li>
+                    <li class="page-item" *ngFor='let i of pageList'><span class="page-link {{selPage==i?'bg-primary':''}}"
+                        (click)='changedate(i)'>{{i}}</span></li>
+                    <li class="page-item"><span class="page-link" (click)='Next()'>&raquo;</span></li>
+                </ul>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+              <table class="table text-center">
+                <thead>
+                  <tr>
+                    <th>姓名</th>
+                    <th>时间</th>
+                    <th>金额</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor='let item of data'>
+                    <td>{{item.employee_id_name}}</td>
+                    <td>{{item.consume_time_formatting}}</td>
+                    <td>
+                        <div *ngIf='item.type=="R"'>-{{item.amount}}威币</div>
+                        <div *ngIf='item.type=="S"'>+{{item.amount}}威币</div>
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer text-center">
+                <button class="btn btn-defalut bg-gray" (click)='back()'>返回</button>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+  
+        </div>
+      </div>
+  
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  

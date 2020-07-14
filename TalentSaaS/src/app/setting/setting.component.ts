@@ -7,12 +7,14 @@ import { MemberApi } from 'src/providers/member.api';
 import { MainComponent } from '../main/main.component';
 import { ApiConfig } from '../api.config';
 import { EnterpriseApi } from 'src/providers/enterprise.api';
+import { OrderApi } from 'src/providers/order.api';
+import { AppUtil } from '../app.util';
 declare let Chart: any;
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
   styleUrls: ['./setting.component.scss'],
-  providers: [InstApi, MemberApi,EnterpriseApi]
+  providers: [InstApi, MemberApi,EnterpriseApi,OrderApi]
 })
 export class SettingComponent extends AppBase {
   loading=false;
@@ -23,14 +25,22 @@ export class SettingComponent extends AppBase {
     public instApi: InstApi,
     public memberApi: MemberApi,
     public enterpriseApi: EnterpriseApi,
+    public orderApi: OrderApi,
   ) {
     super(router, activeRoute, instApi, memberApi,enterpriseApi);
   }
 
   onMyLoad() {
     this.params;
+    var now = new Date();
+    var year = now.getFullYear();
+    this.today = year + "-" + AppUtil.ten2(now.getMonth() + 1) + "-" + AppUtil.ten2(now.getDate());
+    this.datefrom = year + "-" + AppUtil.ten2(1) + "-" + AppUtil.ten2(1);
+    this.dateto = year + "-" + AppUtil.ten2(now.getMonth() + 1) + "-" + AppUtil.ten2(now.getDate());
   }
-
+  today='';
+  datefrom='';
+  dateto='';
   tabtype = 'account';
 
   targethuman = 0;
@@ -39,132 +49,84 @@ export class SettingComponent extends AppBase {
   targetamount = 0;
   zizhi=[];
   fileList1=[];
+  allenterprise=[];
   onMyShow() {
     if (MainComponent.Instance != null) {
       MainComponent.Instance.setModule("setting", "setting");
     }
-    // this.targethuman = this.memberinfo.manpower.targethuman;
-    // this.targetorder = this.memberinfo.manpower.targetorder;
-    // this.targetclient = this.memberinfo.manpower.targetclient;
-    // this.targetamount = this.memberinfo.manpower.targetamount;
-    // this.memberApi.manpowerzizhi({manpower_id:this.memberinfo.manpower_id}).then((zizhi:any)=>{
-    //   for(let item of zizhi){
-    //     item.primary_id=item.id;
-    //     item.uid=item.id;
-    //     item.status='done';
-    //     item.url=ApiConfig.getUploadPath()+'manpower/'+item.img;
-    //     item.thumbUrl=ApiConfig.getUploadPath()+'manpower/'+item.img;
-    //   }
-    //   this.zizhi=zizhi;
-    //   this.fileList1=zizhi;
-    // })
+    this.enterpriseApi.allenterprise({enterprise_id:this.memberinfo.enterprise.id }).then((allenterprise:any)=>{
+        this.allenterprise=allenterprise;
+    })
+    this.changtype(this.type);
   }
-  submitTarget() {
-    // this.memberApi.submittarget({
-    //   targethuman: this.targethuman, targetorder: this.targetorder,
-    //   targetclient: this.targetclient, targetamount: this.targetamount
-    // }).then(()=>{
-    //   Chart.toast("Updated");
-    // });
-  }
-  copy(type){
-    const oInput = document.createElement('input');
-    // oInput.value = this.InstInfo.links+"?id="+this.memberinfo.manpower.id+"&type="+type;
-    var url=this.base64encode("id="+(this.memberinfo.manpower.id)+"&type="+(type));
-    // oInput.value=this.InstInfo.links+"?v="+url;
-    document.body.appendChild(oInput);
-    oInput.select();
-    document.execCommand('Copy');
-  }
-  oldpassword='';
-  newpassword='';
-  newpassword2='';
-  resetpwd(){
-    // if(this.oldpassword.trim()=="" || this.newpassword.trim()=="" || this.newpassword2.trim()==""){
-    //   this.toast(this.lang.mimaweikongchongxinshuru);
-    //   return
-    // }
-    // if(this.newpassword2!=this.newpassword){
-    //   this.toast(this.lang.shezhimimabuyiyang);
-    //   return
-    // }
-    // this.memberApi.resetpwd({
-    //   oldpassword:this.oldpassword,
-    //   newpassword:this.newpassword2
-    // }).then((res:any)=>{
-    //   console.log(res);
-    //   if(res.code=='0'){
-    //     this.saveing();
-    //   }else {
-    //     this.toast(res.result);
-    //   }
-    // })
-  }
-  watchimg(item){
-    var url=ApiConfig.getUploadPath()+'manpower/'+item.img;
-    window.open(url,'new','');
-  }
-  save(){
-    console.log(this.memberinfo.manpower);
-    // this.memberApi.editmanpower(this.memberinfo.manpower).then((res)=>{
-    //   if(res){
-    //     this.saveing();
-    //   }
-    // })
-  }
-  jiaziliao(){
-    this.zizhi.push({
-      seq:this.zizhi.length+1,
-      name:'',
-      img:'',
-      uploadtime:'',
-      status:'A',
+  changquan(item){
+    item.power_value= item.power_value=='Y'?'N':'Y';
+    this.enterpriseApi.updatepower({id: item.id, power: 'N'}).then((updatepower:any)=>{
+      
     })
   }
-  jianziliao(i){
-    if (this.zizhi[i].status!="") {
-      this.zizhi[i].status = 'D';
-    } 
-    console.log(this.zizhi)
-  }
-  afterupload(e){
-    console.log(e);
-   
-    if (e.type == "success") {
-      this.zizhi.push({
-        img:e.file.response.result,
-        name:e.file.name,
-        status:'done'
-      })
-      for(var i=0;i<e.fileList.length;i++){
-        if(e.fileList[i].uid==e.file.uid){
-          e.fileList[i].thumbUrl=ApiConfig.getUploadPath()+'manpower/'+e.file.response.result;
-          e.fileList[i].url=ApiConfig.getUploadPath()+'manpower/'+e.file.response.result;
-        }
+  money=0;
+  error='';
+  applytixian(){
+    var totalmoney=this.memberinfo.enterprise.account_money;
+    console.log(totalmoney);
+    console.log(this.money);
+    if(this.money>0){
+      if(totalmoney >= Number(this.money)){
+        this.enterpriseApi.addtixian({enterprise_id:this.memberinfo.enterprise.id,money:this.money,status:'A'}).then((addtixian)=>{
+          console.log(addtixian,'addtixian')
+          if(addtixian){
+            this.orderApi.updatemoney({id:this.memberinfo.enterprise.id,money:this.money}).then((updatemoney)=>{
+              console.log(updatemoney)
+              
+            })
+            this.hidemodel();
+            this.error=""
+            this.onMyShow();
+          }
+        })
+      }else {
+        this.error='提现金额太大了，余额不足！'
       }
-      e.thumbUrl=ApiConfig.getUploadPath()+'manpower/'+e.file.response.result;
-    } else if (e.type == 'removed') {
- 
+     
+    }else {
+      this.error='提现金额小于0，请重新填入！'
     }
   }
-  
-  watchfile(item) {
-    console.log(item);
-    var url = ApiConfig.getUploadPath() + 'manpower/' + item.img;
-    console.log(url);
-    window.open(url, 'new', '');
+  type='';
+  totalMoney=0;
+  changtype(type){
+    this.type=type;
+    this.search();
   }
-  saveziliao(){
-   
-    var datajson=JSON.stringify(this.zizhi);
-    // this.memberApi.manpowerziliao({datajson:datajson}).then((res)=>{
-    //   console.log(res)
-    //   if(res){
-    //    this.saveing();
-    //    this.onMyShow();
-    //   }
-    // })
+  search(){
+    this.pageList=[];
+    this.orderApi.employeesales({
+      datefrom:this.datefrom,
+      dateto:this.dateto,
+      orderno:this.orderno,
+      id:this.memberinfo.id
+    }).then((employeesales:any)=>{
+        var list=[];
+        if(this.type=='N'){
+          list=employeesales.orderlist;
+        }else if(this.type=='Y'){
+          list=employeesales.returnlist;
+        }else {
+          list=employeesales.orderlist.concat(employeesales.returnlist);
+        }
+      
+      for(var i=0;i<list.length;i++){
+        list[i].index=i;
+      }
+      this.totalMoney=employeesales.totalMoney;
+      this.pagination(list,list.length);
+    })
   }
- 
- 
+  orderno='';
+  reset(){
+    this.orderno='';
+    this.onMyLoad();
+    this.search();
+  }
 }

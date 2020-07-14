@@ -49,8 +49,7 @@ export class QuoteCenterComponent extends AppBase {
     if (MainComponent.Instance != null) {
       MainComponent.Instance.setModule("quote", "quote");
     }
-    this.changtype(this.type);
-    this.comlen();
+   
     this.orderApi.distinctlist({}).then((distinctlist: any) => {
       distinctlist.unshift({
         id:-1,
@@ -61,6 +60,16 @@ export class QuoteCenterComponent extends AppBase {
       }
       this.distinctlist = distinctlist
     })
+    this.inloop=true;
+    this.changtype(this.type);
+    this.comlen();
+
+  }
+  inloop=false;
+
+  ngOnDestroy() {
+    // alert('看看')
+    this.inloop=false;
   }
   changtype(type){
     this.type=type;
@@ -81,7 +90,14 @@ export class QuoteCenterComponent extends AppBase {
         this.yihulen=qoutenum.yihuilu;
         this.yishilen=qoutenum.yishixiao;
       }
+      if(this.inloop==true){
+
+        setTimeout(()=>{
+          this.comlen();
+        },3*1000);
+      }
     })
+   
   }
   imgs=[];
   list=[];
@@ -96,8 +112,7 @@ export class QuoteCenterComponent extends AppBase {
     json.quoteper=this.memberinfo.id;
     json.disarr=this.disarr;
     
-    console.log(this.memberinfo,'memner');
-    console.log(this.disarr,'memner',json);
+
     this.orderApi.quotationlist(json).then((quotationlist:any)=>{
       var imgs=[];
       for(var i=0;i<quotationlist.length;i++){
@@ -157,8 +172,13 @@ export class QuoteCenterComponent extends AppBase {
       
       }
       this.list=quotationlist;
-      console.log(imgs,'imgs');
       this.pagination(quotationlist,quotationlist.length);
+      if(this.inloop){
+
+        setTimeout(()=>{
+          this.changtype(this.type);
+        },4*1000);
+      }
     })
   }
   previewImage: string | undefined = '';
