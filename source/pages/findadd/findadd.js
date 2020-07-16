@@ -218,7 +218,8 @@ class Content extends AppBase {
                 photo4: shibie[i].photo[3],
                 photo5: shibie[i].photo[4],
                 Sprice: shibie[i].cost_price,
-                status: 'A'
+                status: 'A',
+                remarks_infor: shibie[i].beizhu
               }
               that.fitting(list, i, shibie.length)
  

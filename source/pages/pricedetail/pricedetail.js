@@ -285,13 +285,23 @@ class Content extends AppBase {
 
   addcar(e) {
     var that = this;
+    var shopcar = this.Base.getMyData().shopcar;
+
+    if(shopcar.length==0){
+      wx.showToast({
+        title: '请选择商品',
+        icon:'none'
+      })
+      return
+    }
+    
     wx.showLoading({
       title: '提交中...',
     })
     // console.log(this.Base.getMyData().employeeinfo.enterprise.id)
     //return;
 
-    var shopcar = this.Base.getMyData().shopcar;
+   
     var emp_id = this.Base.getMyData().employeeinfo.enterprise.id;
     var xuan = this.Base.getMyData().xuan;
 

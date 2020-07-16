@@ -50,11 +50,11 @@
                         <div class="form-control col-form-label-sm">
                           {{quoteinfo.vincode==''?'无':quoteinfo.vincode}}</div>
                     </div>
-                    <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                    <!-- <div class="form-group   col-lg-4 col-md-5 col-sm-6">
                         <label for="inputEmail3" class=" col-form-label col-form-label-sm">备注</label>
                         <div class="form-control col-form-label-sm">
                           {{quoteinfo.information==''?'无':quoteinfo.information}}</div>
-                    </div>
+                    </div> -->
                     <div class="form-group   col-lg-4 col-md-5 col-sm-6">
                         <label for="inputEmail3" class=" col-form-label  col-form-label-sm">报价时间</label>
                         <div class="form-control col-form-label-sm">
@@ -133,7 +133,8 @@
                   <tr *ngFor='let item of list; let i=index'>
                     <td>{{i+1}}</td>
                     <td> 
-                      {{item.name}}
+                      <div>{{item.name}}</div>
+                      <div>({{item.remarks_infor}})</div>
                     </td>
                     <td><span>{{item.partnubmer}}</span></td>
                     <td>

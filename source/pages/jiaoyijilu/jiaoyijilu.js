@@ -22,8 +22,8 @@ class Content extends AppBase {
      super.onLoad(options);
      var type=[
        { id: 1, name: '全部' },
-       { id: 2, name: '已完成' },
-       { id: 3, name: '已退货' },
+       { id: 2, name: '已付款' },
+       { id: 3, name: '已退款' },
      ];
      this.Base.setMyData({type,seq:0})
   }
@@ -36,7 +36,7 @@ class Content extends AppBase {
     orderApi.consumelist({
       employee_id: that.Base.getMyData().employeeinfo.id,
       orderby:'r_main.consume_time desc'
-
+    
     }, (list) => {
       console.log(list, 'ooooo')
       var templist=[];
@@ -56,10 +56,12 @@ class Content extends AppBase {
         // }else {
         //   ss.push(templist[i]);
         // }
-        
+        if (templist[i].type!='S'){
+          ss.push(templist[i]);
+        }
       }
       this.Base.setMyData({
-        list: templist, templist
+        list: ss, templist: ss
       });
     });
   }
@@ -85,7 +87,7 @@ class Content extends AppBase {
       console.log(e)
       var type=e.currentTarget.dataset.type.type;
       // return
-      if(type=='G'){
+      if(type=='G' || type=='E'){
         wx.navigateTo({
           url: '/pages/success/success?id=' + e.currentTarget.id,
 
@@ -102,15 +104,15 @@ class Content extends AppBase {
     var cur = e.currentTarget.dataset.idx;
     var templist = this.Base.getMyData().templist;
     var list=[];
-    if(cur==1){
+    if(cur==2){
       for(var i=0;i<templist.length;i++){
-        if (templist[i].type=='R'){
+        if (templist[i].type == 'R' || templist[i].type == 'E'){
           list.push(templist[i])
         }
       }
-    }else if(cur==2){
+    }else if(cur==1){
       for (var i = 0; i < templist.length; i++) {
-        if (templist[i].type == 'G') {
+        if (templist[i].type == 'G' ) {
           list.push(templist[i])
         }
       }

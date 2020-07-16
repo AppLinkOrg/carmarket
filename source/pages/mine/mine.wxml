@@ -1,7 +1,8 @@
 <view class="bg-btn padding-20">
   <view class="flex-row  flex-center">
 
-    <image class='icon-60 radius-50;' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
+    <image class='icon-60 radius-50;' wx:if='{{employeeinfo.enterprise.logo!=""}}' src='{{uploadpath}}enterprise/{{employeeinfo.enterprise.logo}}'></image>
+    <image class='icon-60 radius-50;' wx:if='{{employeeinfo.enterprise.logo==""}}' src='{{uploadpath}}resource/{{res.touxiang}}'></image>
 
     <view class="margin-left-20">
      <view class="txt-white h4  ">{{employeeinfo.enterprise.name}}</view>

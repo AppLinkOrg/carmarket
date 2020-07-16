@@ -288,6 +288,7 @@ export class QuoteCenterComponent extends AppBase {
     var arr=[];
     for(let item of this.distinctlist){
       if(item.check==true){
+         item.id = item.id==-1?'':item.id;
         arr.push(item.id);
       }
     }

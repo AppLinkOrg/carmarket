@@ -168,10 +168,6 @@ export class QuoteDetailComponent extends AppBase {
     addlist.rateprice = item.rateprice;
     addlist.rate = this.rate;
     addlist.pinzhi = item.pinzhi;
-    // addlist.minprice = minmoney;
-    // addlist.maxprice = maxmoney;
-    // addlist.minrate = (minmoney + minmoney * Number(this.rate) / 100);
-    // addlist.maxrate = (maxmoney + maxmoney * Number(this.rate) / 100);
 
     item.quality = '';
     item.standby_time = '';
@@ -261,7 +257,7 @@ export class QuoteDetailComponent extends AppBase {
 
       if (!this.checknull(json)) {
         this.toast('您有报价未填完');
-        return
+        // return
       }
 
       var addlist = null;
@@ -279,13 +275,76 @@ export class QuoteDetailComponent extends AppBase {
     }
 
   }
+
+  addbaojia(item) {
+    console.log(item);
+    var json = {
+      quality: item.quality,
+      standby_time: item.standby_time,
+      guarantee: item.guarantee,
+      price: item.price,
+      sendcar_time: item.sendcar_time,
+    }
+    if (!this.checknull(json)) {
+      // this.toast('请填写完成!');
+      // return
+    }else {
+      if (item.partnubmer == "") {
+        item.partnubmer = '无识别'
+      }
+  
+      if (item.pinzhi == "") {
+        item.pinzhi = '无'
+      }
+      if (this.quoteinfo.invoice_demand_value == 'Y') {
+        console.log(this.selectedSite, '看看这个税率');
+        this.rate = this.selectedSite.toString();
+        let rates = item.price * Number(this.rate) / 100;
+        item.rateprice = item.price + rates;
+      } else {
+        this.rate = '0';
+        item.rateprice = item.price;
+      }
+  
+  
+      var addlist = null;
+      addlist = json;
+      addlist.fittings_id = item.id;
+      addlist.name = item.name;
+      addlist.partnubmer = item.partnubmer;
+      addlist.qty = item.quantity;
+      addlist.Sprice = item.Sprice;
+      addlist.rateprice = item.rateprice;
+      addlist.rate = this.rate;
+      addlist.pinzhi = item.pinzhi;
+  
+      item.quality = '';
+      item.standby_time = '';
+      item.guarantee = '';
+      item.price = '';
+      item.sendcar_time = '';
+  
+      if (addlist.price != 0) {
+  
+        for (var j = 0; j < this.fittinglist.length; j++) {
+          if (this.fittinglist[j].id == item.id) {
+            this.fittinglist[j].quoteitems.push(addlist)
+            this.fittinglist[j].count = addlist.count
+          }
+        }
+        this.jsonlist.push(addlist)
+      }
+    }
+    
+  }
+
   savequote() {
     console.log(this.list, this.jsonlist);
     var arr = this.list.concat(this.jsonlist);
     console.log(arr, '11');
     console.log(this.fittinglist, '22');
     for(let item of this.fittinglist){
-      this.addQuote(item);
+      this.addbaojia(item);
     }
     console.log(this.fittinglist, '33');
       var minprice = [];
@@ -296,7 +355,7 @@ export class QuoteDetailComponent extends AppBase {
 
       for (let f_json of this.fittinglist) {
 
-        if (f_json != undefined) {
+        if (f_json != undefined && f_json.quoteitems.length>0) {
           var ddd = f_json.quoteitems.sort(function (a, b) {
             return a.price - b.price
           })
@@ -336,14 +395,16 @@ export class QuoteDetailComponent extends AppBase {
         }
        
       }
+      console.log(minmoney, '----', maxmoney)
+    console.log(this.jsonlist);
+    // return
       var datajson=JSON.stringify(this.jsonlist);
 
       this.orderApi.confirmquote({datajson:datajson}).then((confirmquote) => {
   
          this.editStatus();  
       })
-    console.log(minmoney, '----', maxmoney)
-    console.log(this.jsonlist);
+    
   }
   editStatus(){
     

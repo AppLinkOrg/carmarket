@@ -76,6 +76,13 @@ export class AppBase implements OnInit {
             this.params = params;
         });
         this.res = [];
+        // this.memberinfo = JSON.parse(window.localStorage.getItem("memberinfo"));
+        var longlivetoken=window.localStorage.getItem("token");
+        var token=window.sessionStorage.getItem("token");
+        if(token==null&&longlivetoken!=null){
+            window.sessionStorage.setItem("token",longlivetoken);
+           
+        }
         this.memberinfo = JSON.parse(window.localStorage.getItem("memberinfo"));
     }
 
@@ -103,7 +110,8 @@ export class AppBase implements OnInit {
         console.log(111111)
         if (this.isLoginPage == false) {
             console.log(22222222)
-            var token = window.localStorage.getItem("token");
+            // var token = window.localStorage.getItem("token");
+            var token = window.sessionStorage.getItem("token");
 
             console.log("token", '--', token);
 

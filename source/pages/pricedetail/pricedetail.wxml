@@ -129,8 +129,8 @@
           </view>
 
           <view class="flex-row flex-center margin-top-10"> 
-            <view class="h6 " >{{item.quality}} | </view>
-            <view class="h6 margin-left-6" >{{item.standby_time}} |</view>
+            <view class="h6 " >品质/品牌{{item.quality}} | </view>
+            <view class="h6 margin-left-6" >备货{{item.standby_time}} |</view>
             <view class="h6 margin-left-6" >质保{{item.guarantee}} |</view>
             <view class="h6 margin-left-6">发车{{item.sendcar_time}}</view>
           </view>
@@ -208,14 +208,14 @@
 
 
           <view class="flex-row flex-center margin-top-10">
-            <view class="h5 flex-1 txt-black">【{{item.quality}}】</view>
+            <!-- <view class="h5 flex-1 txt-black">【{{item.quality}}】</view> -->
             <view class="h5 txt-black">{{item.edt_address}}</view>
           </view>
 
           
           <view class="flex-row flex-center margin-top-10"> 
-            <view class="h6 " >{{item.quality}} | </view>
-            <view class="h6 margin-left-6" >{{item.standby_time}} |</view>
+            <view class="h6 " >品质/品牌{{item.quality}} | </view>
+            <view class="h6 margin-left-6" >备货{{item.standby_time}} |</view>
             <view class="h6 margin-left-6" >质保{{item.guarantee}} |</view>
             <view class="h6 margin-left-6">发车{{item.sendcar_time}}</view>
           </view>

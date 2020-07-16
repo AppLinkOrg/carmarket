@@ -58,11 +58,11 @@
                                     <div class="form-control col-form-label-sm">
                                         {{quoteinfo.vincode==''?'无':quoteinfo.vincode}}</div>
                                 </div>
-                                <div class="form-group   col-lg-4 col-md-5 col-sm-6">
+                                <!-- <div class="form-group   col-lg-4 col-md-5 col-sm-6">
                                     <label for="inputEmail3" class=" col-form-label col-form-label-sm">备注</label>
                                     <div class="form-control col-form-label-sm">
                                         {{quoteinfo.information==''?'无':quoteinfo.information}}</div>
-                                </div>
+                                </div> -->
                                 <div class="form-group   col-lg-4 col-md-5 col-sm-6">
                                     <label for="inputEmail3" class=" col-form-label col-form-label-sm">询价时间</label>
                                     <div class="form-control col-form-label-sm">{{quoteinfo.quote_time}}</div>
@@ -175,7 +175,7 @@
             aria-labelledby="myModalLabel">
             <div class="modal-dialog photoimg " role="img" *ngFor='let item of imgs'>
                 <div class="modal-content"
-                    style="background: transparent; border: none;width: 800px; height: 0;padding-bottom: 100%;">
+                    style="background: transparent; border: none;width: 800px; height: 0;">
 
                     <div id="demo" class="carousel slide" style="width: 800px; height: 0;padding-bottom:100%">
                         <!-- 指示符 -->
@@ -266,7 +266,8 @@
                                 <tr class="text-center">
                                     <td [attr.rowspan]='item.quoteitems.length+1'>{{i+1}}</td>
                                     <td [attr.rowspan]='item.quoteitems.length+1'>
-                                        {{item.name}}
+                                        <div>{{item.name}}</div>
+                                       <div>{{item.remarks_infor==''?'':'(备注：'+item.remarks_infor+')'}}</div>
                                         <div class="photo">
                                             <img *ngIf='item.photo1!="" && item.photo1!="undefined"' data-toggle="modal"
                                                 data-target="#myModal2" (click)='showPhoto(item)'
@@ -354,7 +355,7 @@
 <div class="modal fade" id="modal-default2" >
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-white">
           <h4 class="modal-title">删除提示</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -377,7 +378,7 @@
   <div class="modal fade" id="modal-default" >
     <div class="modal-dialog">
       <div class="modal-content" *ngIf='yibao==false'>
-        <div class="modal-header">
+        <div class="modal-header bg-white">
           <h4 class="modal-title">提交报价</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -392,7 +393,7 @@
         </div>
       </div>
       <div class="modal-content" *ngIf='yibao==true'>
-        <div class="modal-header">
+        <div class="modal-header bg-white">
           <h4 class="modal-title">提交报价</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>

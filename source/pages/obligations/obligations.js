@@ -86,10 +86,13 @@ class Content extends AppBase {
             orderapi.editquotation({
               quotecompan_id: detail.enterprise_id,
               quote_id: detail.quote_id,
-              quotestatus: 'W'
+              quotestatus: 'W',
+              quoteper: mylist[i].baojia,
             }, (editquotation) => {
 
             })
+
+           
 
             var list = {
               enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,

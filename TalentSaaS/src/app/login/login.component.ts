@@ -67,7 +67,7 @@ export class LoginComponent extends AppBase {
         if(this.isremember==true){
           window.localStorage.setItem("lastpassword",this.password);
         }
-        window.localStorage.setItem("token",token);
+        window.sessionStorage.setItem("token", token);
 
         ApiConfig.SetToken(token);
         this.enterpriseApi.employeeinfo({}).then((info: any) => {

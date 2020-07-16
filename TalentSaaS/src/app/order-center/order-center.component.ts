@@ -43,6 +43,7 @@ export class OrderCenterComponent extends AppBase {
     this.comlen();
   }
   changtype(type){
+    this.pageList=[];
     this.type=type;
     this.getlist();
   }
@@ -57,6 +58,7 @@ export class OrderCenterComponent extends AppBase {
     this.inloop=false;
   }
   comlen(){
+   
     this.orderApi.ordernum({}).then((ordernum:any)=>{
       if(ordernum){
         this.alllen=ordernum.allorder;

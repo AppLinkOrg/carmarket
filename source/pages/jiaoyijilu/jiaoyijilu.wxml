@@ -26,6 +26,7 @@
     <!-- <view class="flex-1"></view> -->
     <view class="flex-1 txt-black  margin-right-20" wx:if="{{item.type=='G'}}">-￥{{item.amount}}</view>
     <view class="flex-1 txt-black  margin-right-20"  wx:if="{{item.type=='R'}}">+￥{{item.amount}}</view>
+    <view class="flex-1 txt-black  margin-right-20"  wx:if="{{item.type=='E'}}">+￥{{item.amount}}</view>
 
   </view>
   <view class="margin-bottom-20"></view>

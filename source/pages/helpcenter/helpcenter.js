@@ -34,7 +34,14 @@ class Content extends AppBase {
       content: content,
       status:'A'
     }, (addfankui) => {
-
+      if(addfankui.code=='0'){
+        this.Base.toast('反馈成功');
+        setTimeout(()=>{
+          wx.navigateBack({
+            
+          })
+        }, 2000)
+      }
     })
   }
 }
