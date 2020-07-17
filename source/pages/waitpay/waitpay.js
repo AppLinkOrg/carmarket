@@ -62,6 +62,8 @@ class Content extends AppBase {
     var that = this;
     var orderapi = new OrderApi();
     var mylist = this.Base.getMyData().mylist;
+    // console.log(mylist);
+    // return
     var sumprice = this.Base.getMyData().sumprice;
     var enmoney = this.Base.getMyData().employeeinfo.enterprise.account_money;
     wx.showModal({

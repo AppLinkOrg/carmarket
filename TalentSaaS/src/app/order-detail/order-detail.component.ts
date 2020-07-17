@@ -85,6 +85,7 @@ export class OrderDetailComponent extends AppBase {
     
     var that = this;
     this.list.order_status = "M";
+    this.receaddress='北京北京市';
       this.carApi.logistics({id:this.primary_id ,companyCode:this.companyCode,receaddress:this.receaddress}).then((logistics:any)=>{
           console.log(logistics);
           if(logistics.errorcode=='0'){
@@ -102,6 +103,8 @@ export class OrderDetailComponent extends AppBase {
           }else {
             this.addresserror=true;
             this.toast('收货人地址错误！');
+            this.hidemodel();
+            document.getElementById('addresss').focus();
             return
           }
       })

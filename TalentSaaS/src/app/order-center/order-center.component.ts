@@ -43,7 +43,7 @@ export class OrderCenterComponent extends AppBase {
     this.comlen();
   }
   changtype(type){
-    this.pageList=[];
+    // this.pageList=[];
     this.type=type;
     this.getlist();
   }
@@ -79,7 +79,7 @@ export class OrderCenterComponent extends AppBase {
   }
   mylist=[];
   getlist(){
-    this.pageList=[];
+    // this.pageList=[];
     console.log(this.memberinfo,'memner');
     this.orderApi.mylist({enterprise_id: this.memberinfo.enterprise_id, baojia: this.memberinfo.id, order_status: this.type ,orderby:'r_main.orderno desc'}).then((mylist:any)=>{
       for(var i=0;i<mylist.length;i++){

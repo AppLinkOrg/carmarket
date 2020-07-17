@@ -346,6 +346,11 @@ export class QuoteDetailComponent extends AppBase {
     for(let item of this.fittinglist){
       this.addbaojia(item);
     }
+
+    if(this.jsonlist.length==0){
+      this.toast('您还没有填写报价');
+      return
+    }
     console.log(this.fittinglist, '33');
       var minprice = [];
       var maxprice = [];
@@ -427,7 +432,7 @@ export class QuoteDetailComponent extends AppBase {
 
     a.editquote({ id: this.quoteinfo.id, quotestatus: "W" }).then((editquote: any) => {
       if (editquote.code == '0') {
-        a.editquotation({ quote_id: this.quoteinfo.id, quotecompan_id: enterprise_id, quotestatus: 'W', rate: this.quoteinfo.rate, quoteper: this.memberinfo.id }).then((ret) => {
+        a.editquotestatus({ quote_id: this.quoteinfo.id, quotecompan_id: enterprise_id, quotestatus: 'W', rate: this.quoteinfo.rate, quoteper: this.memberinfo.id }).then((ret) => {
           if (ret) {
             this.router.navigate(['quoteprice'], {
               queryParams: {

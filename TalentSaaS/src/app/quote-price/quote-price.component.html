@@ -134,7 +134,6 @@
                     <td>{{i+1}}</td>
                     <td> 
                       <div>{{item.name}}</div>
-                      <div>({{item.remarks_infor}})</div>
                     </td>
                     <td><span>{{item.partnubmer}}</span></td>
                     <td>
@@ -158,6 +157,9 @@
                     <td>
                         <div>{{item.sendcar_time}}</div>
                     </td>
+                </tr>
+                <tr *ngIf='list.length==0'>
+                  <td colspan="9">没有数据</td>
                 </tr>
                 </tbody>
               </table>

@@ -255,7 +255,8 @@ class Content extends AppBase {
               return_money: that.Base.getMyData().price,
               receivecontact: that.Base.getMyData().phone,
               orderstatus: 'R',
-              status: 'A'
+              status: 'A',
+              receiver: change.receiver
             }, (addtuihuo) => {
 
               // orderapi.updatestatus({

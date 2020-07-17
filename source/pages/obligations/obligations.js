@@ -87,7 +87,7 @@ class Content extends AppBase {
               quotecompan_id: detail.enterprise_id,
               quote_id: detail.quote_id,
               quotestatus: 'W',
-              quoteper: mylist[i].baojia,
+              quoteper: detail.baojia,
             }, (editquotation) => {
 
             })

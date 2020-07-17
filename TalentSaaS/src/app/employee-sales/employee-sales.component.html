@@ -127,7 +127,9 @@
                     <td>{{item.order_status=='N'?item.totalamount:item.return_money}}</td>
                     <td>{{item.order_status=='N'?'已完成':'已退款'}}</td>
                   </tr>
-                  
+                  <tr *ngIf='data.length==0'>
+                    <td colspan="9">没有数据</td>
+                  </tr>
                 </tbody>
               </table>
             </div>

@@ -169,9 +169,9 @@
                   <form class="form-horizontal">
                     <div class="card-body">
                       <div class="row">
-                        <div class="form-group  col-lg-2 col-md-3  col-sm-4">
-                          <label for="inputEmail3" class=" col-form-label">订单编号</label>
-                          <input type="text" class="form-control" id="inputEmail3" name='orderno'
+                        <div class="form-group  col-lg-3 col-md-4  col-sm-5">
+                          <label for="inputEmail3" class=" col-form-label col-form-label-sm">订单编号</label>
+                          <input type="text" class="form-control col-form-label-sm" id="inputEmail3" name='orderno'
                             [(ngModel)]='orderno' />
                         </div>
                         <div class="form-group   col-lg-3 col-md-4  col-sm-5">
@@ -246,7 +246,9 @@
                             <td>{{item.order_status=='N'?item.totalamount:item.return_money}}</td>
                             <td>{{item.order_status=='N'?'已完成':'已退款'}}</td>
                           </tr>
-
+                          <tr *ngIf='data.length==0'>
+                            <td colspan="9">没有数据</td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>

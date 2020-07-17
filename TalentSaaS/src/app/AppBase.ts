@@ -83,7 +83,7 @@ export class AppBase implements OnInit {
             window.sessionStorage.setItem("token",longlivetoken);
            
         }
-        this.memberinfo = JSON.parse(window.localStorage.getItem("memberinfo"));
+        this.memberinfo = JSON.parse(window.sessionStorage.getItem("memberinfo"));
     }
 
 
@@ -122,7 +122,7 @@ export class AppBase implements OnInit {
                 this.enterpriseApi.employeeinfo({}).then((info: any) => {
                     console.log(info,'info')
                     if (info != null) {
-                        window.localStorage.setItem("memberinfo", JSON.stringify(info));
+                        window.sessionStorage.setItem("memberinfo", JSON.stringify(info));
 
                         if (this.memberinfo == null) {
                             this.memberinfo = info;
@@ -208,7 +208,7 @@ export class AppBase implements OnInit {
     }
 
     onMyShow() {
-
+   
     }
 
     windowslocation(url) {
@@ -287,7 +287,7 @@ export class AppBase implements OnInit {
     pageList = [];
     setData = null;
     pagination(list, length) {
-
+        this.pageList = [];
         this.pages = Math.ceil(length / this.pageSize);
         this.newPage = this.pages > 5 ? 5: this.pages;
         this.selPage = 1;

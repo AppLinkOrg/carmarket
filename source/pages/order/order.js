@@ -156,9 +156,11 @@ class Content extends AppBase {
     var price = 0;
     for (var i = 0; i < daifahuo.length;i++){
       if (id == daifahuo[i].id){
-        for (var j = 0; j < daifahuo[i].orderitem.length;j++){
-          price += parseFloat(daifahuo[i].orderitem[j].price);
-        }
+        price = daifahuo[i].totalamount
+        // for (var j = 0; j < daifahuo[i].orderitem.length;j++){
+        //   price += parseFloat(daifahuo[i].orderitem[j].price);
+        
+        // }
       }
     }
 

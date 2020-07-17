@@ -98,7 +98,9 @@
                         <div *ngIf='item.type=="S"'>+{{item.amount}}威币</div>
                     </td>
                   </tr>
-                  
+                  <tr *ngIf='data.length==0'>
+                    <td colspan="9">没有数据</td>
+                  </tr>
                 </tbody>
               </table>
             </div>

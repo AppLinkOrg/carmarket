@@ -71,7 +71,7 @@ export class LoginComponent extends AppBase {
 
         ApiConfig.SetToken(token);
         this.enterpriseApi.employeeinfo({}).then((info: any) => {
-          window.localStorage.setItem("memberinfo",JSON.stringify(info)) ;
+          window.sessionStorage.setItem("memberinfo",JSON.stringify(info)) ;
           //this.navigate("/");
           window.location.href="/";
       })

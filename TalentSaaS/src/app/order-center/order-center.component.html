@@ -63,7 +63,7 @@
                   <tr *ngFor='let item of data'>
                     <td>{{item.index+1}}</td>
                     <td>{{item.orderno}}</td>
-                    <td>{{item.enterprise_name}}</td>
+                    <td>{{item.employee_com}}</td>
                     <td>  
                       <div *ngFor='let list of item.orderitem;let i=index'>
                       <div *ngIf='i<3'>{{list.parts}} x {{list.qty}} ({{list.mcid}})</div>
@@ -96,7 +96,9 @@
 
                     </td>
                   </tr>
-                  
+                  <tr *ngIf='data.length==0'>
+                    <td colspan="9">没有数据</td>
+                  </tr>
                 </tbody>
               </table>
             </div>

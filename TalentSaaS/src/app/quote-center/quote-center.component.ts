@@ -103,19 +103,21 @@ export class QuoteCenterComponent extends AppBase {
   list=[];
   json1={};
   getlist(){
-    this.pageList=[];
+    // this.pageList=[];
 
     var json=null;
     json=this.json1;
     json.quotecompan_id=this.memberinfo.enterprise.id;
     json.quotestatus=this.type;
     json.quoteper=this.memberinfo.id;
-    json.disarr=this.disarr;
+    // json.disarr=this.disarr;
     
 
     this.orderApi.quotationlist(json).then((quotationlist:any)=>{
       var imgs=[];
+      var arr=[];
       for(var i=0;i<quotationlist.length;i++){
+        
         quotationlist[i].index=i;
         quotationlist[i].imgs=[];
         if(quotationlist[i].quotestatus=='Q'){
@@ -169,10 +171,21 @@ export class QuoteCenterComponent extends AppBase {
           
           quotationlist[i].imgs=imgs;
         }
-      
+        if(this.disarr.length>0){
+            for(let json of this.disarr){
+              if(quotationlist[i].enterprise_district_id==json){
+                arr.push(quotationlist[i]);
+              }
+            }
+        }
       }
-      this.list=quotationlist;
-      this.pagination(quotationlist,quotationlist.length);
+      if(this.disarr.length>0 && this.disarr[0]!=''){
+        this.list=arr;
+      }else {
+        this.list=quotationlist;
+      }
+     
+      this.pagination(this.list,this.list.length);
       if(this.inloop){
 
         setTimeout(()=>{
@@ -280,10 +293,10 @@ export class QuoteCenterComponent extends AppBase {
     for(let item of this.distinctlist){
       item.check=false;
     }
-    this.disarr='';
+    this.disarr=[];
     this.getlist();
   }
-  disarr='';
+  disarr=[];
   save(){
     var arr=[];
     for(let item of this.distinctlist){
@@ -292,9 +305,10 @@ export class QuoteCenterComponent extends AppBase {
         arr.push(item.id);
       }
     }
-    if(arr.length>0){
-      this.disarr=arr.join(',');
-    }
+    // if(arr.length>0){
+    //   this.disarr=arr.join(',');
+    // }
+    this.disarr=arr;
     this.getlist();
     console.log(this.disarr);
   }

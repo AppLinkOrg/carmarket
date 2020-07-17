@@ -95,7 +95,7 @@
                   <div class="form-group   col-lg-4 col-md-5  col-sm-6">
                     <label for="inputEmail3" class=" col-form-label col-form-label-sm">地址</label>
                     <div *ngIf='addresserror==false' class="form-control col-form-label-sm">{{list.receiveaddress}}</div>
-                    <input *ngIf='addresserror==true' type="text" [(ngModel)]='receaddress' name='address' class="form-control col-form-label-sm">
+                    <input *ngIf='addresserror==true' id='addresss' type="text" [(ngModel)]='receaddress' name='address' class="form-control col-form-label-sm is-invalid">
                   </div>
                 </div>
 
@@ -206,6 +206,9 @@
                     <td>
                       <div>{{item.sendcar_time}}</div>
                     </td>
+                  </tr>
+                  <tr *ngIf='orderItem.length==0'>
+                    <td colspan="9">没有数据</td>
                   </tr>
                 </tbody>
               </table>

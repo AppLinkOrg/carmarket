@@ -72,7 +72,7 @@ export class ReturnCenterComponent extends AppBase {
   }
   returnlist=[];
   getlist(){
-    this.pageList=[];
+    // this.pageList=[];
     console.log(this.memberinfo,'memner');
     this.orderApi.returnlist({gongsi: this.memberinfo.enterprise_id, baojia: this.memberinfo.id,orderstatus:this.type}).then((returnlist:any)=>{
       for(var i=0;i<returnlist.length;i++){

@@ -41,6 +41,8 @@ class Content extends AppBase {
 
   bindquxiao(e) {
     var that =this;
+    var daifahuo = this.Base.getMyData().daifahuo;
+    console.log(daifahuo);
     var orderapi = new OrderApi();
     wx.showModal({
       title: '取消订单',
@@ -52,14 +54,35 @@ class Content extends AppBase {
       confirmColor: '#2699EC',
       success: function (res) {
         if (res.confirm) {
-          
-          orderapi.updatestatus({
-            id: that.Base.options.id,
-            order_status: "E"
-          }, (updatestatus) => {
-            wx.navigateBack({
+
+          orderapi.updatemoney({
+            ent_id: that.Base.getMyData().employeeinfo.enterprise.id,
+            money: daifahuo.totalamount,
+          }, (updatemoney) => {
+
+            orderapi.addxiaofei({
+              type: 'E',
+              amount: daifahuo.totalamount,
+              enterprise_id: that.Base.getMyData().employeeinfo.enterprise.id,
+              employee_id: that.Base.getMyData().employeeinfo.id,
+              order_id: that.Base.options.id,
+            }, (addxiaofei) => {
+
+
+
+              orderapi.updatestatus({
+                id: that.Base.options.id,
+                order_status: "E"
+              }, (updatestatus) => {
+                wx.navigateBack({
+                })
+              })
+
             })
+
           })
+
+        
         }
       }
     })

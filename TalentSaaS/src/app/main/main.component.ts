@@ -15,6 +15,7 @@ import { OrderApi } from 'src/providers/order.api';
 export class MainComponent extends AppBase {
   static Instance: MainComponent = null;
   instinfo = null;
+  memberinfo = null;
   toggle = false;
   constructor(
     public router: Router,
@@ -29,6 +30,7 @@ export class MainComponent extends AppBase {
     this.instApi.info({ unicode: "carmarkets" }).then((instinfo) => {
       this.instinfo = instinfo;
     });
+    
     MainComponent.Instance = this;
   }
 
