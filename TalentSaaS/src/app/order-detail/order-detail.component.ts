@@ -85,7 +85,7 @@ export class OrderDetailComponent extends AppBase {
     
     var that = this;
     this.list.order_status = "M";
-    this.receaddress='北京北京市';
+    // this.receaddress='北京北京市';
       this.carApi.logistics({id:this.primary_id ,companyCode:this.companyCode,receaddress:this.receaddress}).then((logistics:any)=>{
           console.log(logistics);
           if(logistics.errorcode=='0'){

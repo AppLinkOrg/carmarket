@@ -129,7 +129,7 @@ class Content extends AppBase {
     for (var i = 0; i < list.length; i++) {
 
       if (list[i].check == true) {
-        price += parseFloat(list[i].price) * parseInt(list[i].qty)
+        price += (parseFloat(list[i].price) * parseInt(list[i].qty));
       }
 
     }
@@ -139,7 +139,7 @@ class Content extends AppBase {
 
     this.Base.setMyData({
       change,
-      price
+      price:price.toFixed(2)
     })
   }
 
@@ -171,7 +171,7 @@ class Content extends AppBase {
     }
   
     this.Base.setMyData({
-      change, price
+      change, price: price.toFixed(2)
     })
   }
 
@@ -203,7 +203,7 @@ class Content extends AppBase {
     }
 
     this.Base.setMyData({
-      change,price
+      change, price: price.toFixed(2)
     })
 
   }
