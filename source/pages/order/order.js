@@ -290,6 +290,29 @@ class Content extends AppBase {
     })
    
   }
+  delete(e){
+    var that = this;
+    var orderapi = new OrderApi(); 
+    var id = e.currentTarget.id; 
+      wx.showModal({
+        title: '删除订单',
+        content: '确认删除订单？',
+        showCancel: true,
+        cancelText: '取消',
+        cancelColor: '#EE2222',
+        confirmText: '确定',
+        confirmColor: '#2699EC',
+        success: function (res) {
+          if (res.confirm) {
+                orderapi.deleteorder({
+                  id: id
+                }, (updatestatus) => {
+                  that.onMyShow();
+                })
+          }
+        }
+      })
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -297,6 +320,8 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.bindorder = content.bindorder;
 body.bindreceive = content.bindreceive; 
+
+body.delete = content.delete;
 
 body.totuihuan = content.totuihuan; 
 
