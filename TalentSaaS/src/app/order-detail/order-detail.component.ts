@@ -90,7 +90,7 @@ export class OrderDetailComponent extends AppBase {
           console.log(logistics);
           if(logistics.errorcode=='0'){
             
-            that.orderApi.updatestatus({id: that.list.id, order_status: that.list.order_status, status: 'A'}).then((updatestatus:any)=>{
+            that.orderApi.updatestatus({id: that.list.id, order_status: that.list.order_status, status: 'A',receiveaddress:this.receaddress}).then((updatestatus:any)=>{
               this.hidemodel();
               if(updatestatus.code == 0){
                 // that.router.navigate(['receiveGoodsDetail'],{ queryParams: { id: that.primary_id ,aa:3}});
