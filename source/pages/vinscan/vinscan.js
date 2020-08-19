@@ -159,8 +159,12 @@ class Content extends AppBase {
     });
   }
   write(){
-    wx.navigateTo({
-      url: '/pages/check/check',
+    // wx.navigateTo({
+    //   url: '/pages/check/check',
+    // })
+
+    wx.reLaunch({
+      url: '/pages/find/find',
     })
   }
 }

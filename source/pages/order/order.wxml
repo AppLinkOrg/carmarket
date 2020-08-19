@@ -233,9 +233,9 @@
       <view class='h5'>{{item.order_time_dateformat}}</view>
       <view class='flex-1'></view>
       <view class='h5'></view>
-      <view class="h5">{{item.orderno}}123131</view>
+      <view class="h5">{{item.orderno}}</view>
       <view class='flex-1'></view>
-      <!-- <view class='orpay txt-white text-center h6' id="{{item.id}}" bindtap="">取消</view> -->
+      <view class='orpay txt-white text-center h6' id="{{item.id}}" bindtap="delete">删除</view>
     </view>
 
   </view>
