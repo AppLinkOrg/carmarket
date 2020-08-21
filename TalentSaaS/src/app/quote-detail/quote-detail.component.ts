@@ -214,7 +214,7 @@ export class QuoteDetailComponent extends AppBase {
   }
   checknull(json) {
     for (let key in json) {
-      if (json[key] == '') {
+      if (json[key] == '' || json[key] == undefined) {
         return false
       }
     }
