@@ -147,6 +147,10 @@ export class QuoteDetailComponent extends AppBase {
     if (item.pinzhi == "") {
       item.pinzhi = '无'
     }
+    if(item.price<0){
+      this.toast('价格不能小于0!');
+      return
+    }
     if (this.quoteinfo.invoice_demand_value == 'Y') {
       console.log(this.selectedSite, '看看这个税率');
       this.rate = this.selectedSite.toString();
@@ -220,14 +224,16 @@ export class QuoteDetailComponent extends AppBase {
     }
     return true
   }
-  yibao = false;
+  yibao = 'A';
   list = [];
   tijiao() {
     this.orderApi.isquoted({ quote_id: this.primary_id }).then((isquoted: any) => {
       if (isquoted.ifquotednum>0) {
-        this.yibao = true;
+        this.yibao = 'B';
+        return
       }
     })
+    this.yibao='A';
     this.list = [];
     for (let item of this.fittinglist) {
 
@@ -238,7 +244,12 @@ export class QuoteDetailComponent extends AppBase {
       if (item.pinzhi == "") {
         item.pinzhi = '无'
       }
-
+      if(item.price<0){
+        this.toast('价格不能小于0!');
+        this.yibao='C';
+        return
+      }
+     
       if (this.quoteinfo.invoice_demand_value == 'Y') {
         this.rate = this.selectedSite.toString();
         let rates = item.price * Number(this.rate) / 100;
@@ -259,7 +270,7 @@ export class QuoteDetailComponent extends AppBase {
         this.toast('您有报价未填完');
         // return
       }
-
+      
       var addlist = null;
       addlist = json;
       addlist.fittings_id = item.id;
