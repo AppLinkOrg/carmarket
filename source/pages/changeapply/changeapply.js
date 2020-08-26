@@ -63,7 +63,7 @@ class Content extends AppBase {
          
             for (var i = 0; i < orderlijian.length; i++) {
               for (var k = 0; k < item.returnitem.length; k++) {
-                if (orderlijian[i].parts == item.returnitem[k].name) {
+                if (orderlijian[i].id == item.returnitem[k].shop_id) {
 
                   if (orderlijian[i].qty > item.returnitem[k].qty){
                     change.orderitem[i].qty = orderlijian[i].qty - item.returnitem[k].qty
@@ -215,7 +215,7 @@ class Content extends AppBase {
     var shibie = change.orderitem;
 
   
-    // console.log(shibie);
+    console.log(shibie);
     // return;
     if(this.checkno(shibie)){
       wx.showModal({
@@ -269,7 +269,8 @@ class Content extends AppBase {
               that.Base.setMyData({
                 addtuihuo
               })
-
+              var arr=[];
+              var a=0;
               for (var i = 0; i < shibie.length; i++) {
                 if (shibie[i].check == true) {
                   var list = {
@@ -283,11 +284,30 @@ class Content extends AppBase {
                     stand_time: shibie[i].standby_time,
                     guarantee: shibie[i].guarantee,
                     remark: shibie[i].sendcar_time,
-                    status: 'A'
+                    status: 'A',
+                    shop_id: shibie[i].id
                   }
-                  that.fitting(list, i)
+                  arr[a] = list;
+                  a++;
+                  // that.fitting(list, i)
                 }
               }
+              if (arr.length==a && a>0){
+                var datajson = JSON.stringify(arr);
+                orderapi.addtuohuoitem({ datajson: datajson}, (addtuohuoitem) => {
+                  that.Base.setMyData({
+                    addtuohuoitem
+                  })
+
+                  wx.hideLoading();
+                  wx.reLaunch({
+                    url: '/pages/order/order',
+                  })
+                })
+              }
+              console.log(arr.length, a);
+            console.log(arr,a);
+
             })
           }
         }

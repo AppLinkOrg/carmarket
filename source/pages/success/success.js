@@ -74,7 +74,7 @@ class Content extends AppBase {
         if(lijian.length>0){
           for (var i = 0; i < orderlijian.length; i++) {
             for (var j = 0; j < lijian.length; j++) {
-              if (orderlijian[i].parts == lijian[j].name) {
+              if (orderlijian[i].id == lijian[j].shop_id) {
                 yiwancheng.orderitem[i].tui = true
               }
             }

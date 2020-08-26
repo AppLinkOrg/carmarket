@@ -116,7 +116,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let item of latestorder">
-                      <td><a href="javascript:void(0)" (click)='navigate("/orderdetail",{id:item.id})'>{{item.orderno}}</a></td>
+                      <td><a href="javascript:void(0)" (click)='navigate("/orderdetail",{id:item.id,type:item.order_status})'>{{item.orderno}}</a></td>
                       <td>{{item.enterprise_name}}</td>
                       
                       <td>

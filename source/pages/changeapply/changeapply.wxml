@@ -66,7 +66,7 @@
     <image wx:if="{{item.check==true}}" bindtap="bindxuanze" data-id="{{idx}}" class='icon  ' src='{{uploadpath}}resource/{{res.checking}}'></image>
   </view>
 
-  <view class='margin-left-10 '>
+  <view class='margin-left-10 ' bindtap="bindxuanze" data-id="{{idx}}">
     <view class=' txt-black marg margin-left-10 txt-bold'>{{item.parts}}</view>
 
     <view class='flex-row  margin-top-10 '>

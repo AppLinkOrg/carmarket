@@ -27,31 +27,31 @@ class Content extends AppBase {
     this.Base.setMyData({
       fapiao: 'N',mcid:this.Base.options.mcid,biaoti:this.Base.options.biaoti
     })
- 
-    
-  }
-  onMyShow() {
-    var that = this;
-    var carapi=new CarApi();
+    var carapi = new CarApi();
     carapi.pinzhilist({ orderby: 'r_main.seq' }, (pinzhilist) => {
-      for (var i = 0; i < pinzhilist.length;i++){
-        pinzhilist[i].check=false;
+      for (var i = 0; i < pinzhilist.length; i++) {
+        pinzhilist[i].check = false;
       }
       this.Base.setMyData({ pinzhilist })
     })
-   // console.log(JSON.parse(this.Base.options.json),'999');
-    if (this.Base.getMyData().list==undefined){
+    // console.log(JSON.parse(this.Base.options.json),'999');
+    if (this.Base.getMyData().list == undefined) {
       var json = JSON.parse(this.Base.options.json);
 
       this.Base.setMyData({
         json
       })
-    }else{
+    } else {
       var json = JSON.parse(this.Base.getMyData().list);
       this.Base.setMyData({
         json
       })
     }
+    
+  }
+  onMyShow() {
+    var that = this;
+    
    
 
   }
@@ -165,11 +165,11 @@ class Content extends AppBase {
          }
     }
     var pinzhi = arr;
-    //console.log(arr);
-   //return;
-    //console.log(shibie);
+    // console.log(arr);
+  //  return;
+    // console.log(shibie);
 
-    //return;
+    // return;
 
     wx.showModal({
       title: '提交',
@@ -260,7 +260,7 @@ class Content extends AppBase {
   clearfits(e){
    var idx=e.currentTarget.id;
     var json = this.Base.getMyData().json;
-    json.splice(idx,1)
+    json.splice(idx,1);
     this.Base.setMyData({ json})
   }
 

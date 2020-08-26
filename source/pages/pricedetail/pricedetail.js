@@ -294,7 +294,7 @@ class Content extends AppBase {
       })
       return
     }
-    
+    console.log('shopcar',shopcar);
     wx.showLoading({
       title: '提交中...',
     })
@@ -304,7 +304,7 @@ class Content extends AppBase {
    
     var emp_id = this.Base.getMyData().employeeinfo.enterprise.id;
     var xuan = this.Base.getMyData().xuan;
-
+    var arr = [];
     for (var i = 0; i < shopcar.length; i++) {
 
       if (xuan == 'F') {
@@ -332,11 +332,24 @@ class Content extends AppBase {
         sendcar_time: shopcar[i].sendcar_time,
         status: 'A'
       }
+      arr[i]=list;
 
-      this.carshoplist(list, i, shopcar.length);
+      // this.carshoplist(list, i, shopcar.length);
 
     }
 
+    if (arr.length == shopcar.length){
+      var datajson = JSON.stringify(arr);
+      var orderapi = new OrderApi();
+      orderapi.addshopcar({ datajson: datajson}, (addshopcar) => {
+        wx.hideLoading();
+        wx.navigateTo({
+          url: '/pages/shopcar/shopcar?id=' + this.Base.options.id + '&carmodel=' + this.Base.getMyData().quoteinfo.carmodel + '&vin=' + this.Base.getMyData().quoteinfo.vincode + '&xuan=' + this.Base.getMyData().xuan
+        }) 
+       })
+      
+    }
+    
   }
 
   carshoplist(json, i, length) {

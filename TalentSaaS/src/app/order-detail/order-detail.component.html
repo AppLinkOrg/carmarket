@@ -36,12 +36,11 @@
                     等待卖家付款
                   </div>
                 </div>
-                <div
-                  class="margin-left-100 {{type=='L'?'arrow-line-right-active arrow-line-left-active':'arrow-line-left arrow-line-right'}}">
+                <div class="margin-left-100  {{type=='L'?'arrow-line-right-active arrow-line-left-active ':'arrow-line-left arrow-line-right '}}">
                   <i
-                    class="fa fa-dot-circle margin-left-46  margin-bottom-10 {{type=='L'?'txt-primary':'txt-d-gray'}}"></i>
+                      class="fa fa-dot-circle margin-left-46 margin-bottom-10 {{type=='L'?' txt-primary':'txt-d-gray'}}"></i>
                   <div
-                    class=" padding-top-10 padding-bottom-10 padding-left-30 padding-right-30  h4-5 {{type=='L'?'chat-arrow-active bg-primary txt-white':'chat-arrow bg-white txt-d-gray'">
+                  class=" padding-top-10 padding-bottom-10 padding-left-30 padding-right-30   h4-5 {{type=='L'?'chat-arrow-active bg-primary txt-white':'chat-arrow bg-white txt-d-gray'}}">
                             供应商发货
                         </div>
                     </div>
@@ -74,7 +73,7 @@
         <div class="col-md-12">
           <!-- Horizontal Form -->
           <div class="card card-info">
-            <div class="card-header bg-gray-d" >
+            <div class="card-header bg-gray-d">
               <h3 class="card-title  border-left-primary txt-bold h4-5">&nbsp;订单详情</h3>
             </div>
             <!-- /.card-header -->
@@ -94,8 +93,10 @@
                   </div>
                   <div class="form-group   col-lg-4 col-md-5  col-sm-6">
                     <label for="inputEmail3" class=" col-form-label col-form-label-sm">地址</label>
-                    <div *ngIf='addresserror==false' class="form-control col-form-label-sm">{{list.receiveaddress}}</div>
-                    <input *ngIf='addresserror==true' id='addresss' type="text" placeholder="{{list.receiveaddress}}" [(ngModel)]='receaddress' name='address' class="form-control col-form-label-sm is-invalid">
+                    <div *ngIf='addresserror==false' class="form-control col-form-label-sm">{{list.receiveaddress}}
+                    </div>
+                    <input *ngIf='addresserror==true' id='addresss' type="text" placeholder="{{list.receiveaddress}}"
+                      [(ngModel)]='receaddress' name='address' class="form-control col-form-label-sm is-invalid">
                   </div>
                 </div>
 
